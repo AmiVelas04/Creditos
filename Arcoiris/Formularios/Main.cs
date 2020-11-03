@@ -7,11 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace Arcoiris.Formularios
 {
+    
     public partial class Main : Form
     {
+        [DllImport("User32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("User32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+
         public Main()
         {
             InitializeComponent();
@@ -19,7 +26,14 @@ namespace Arcoiris.Formularios
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            LbUsuario.Text = "Usuario: " + Form1.Nombre;
+            if (Form1.Cod_U == "1" || Form1.Cod_U == "2")
+            {
+                BtnAsesor.Visible = true;
+                //BtnReporte.Visible = true;
+                BtnGuardar.Visible = true;
+                BtnAdmin.Visible = true;
+            }
         }
 
         private void BtnCliente_Click(object sender, EventArgs e)
@@ -61,6 +75,65 @@ namespace Arcoiris.Formularios
             PanelCentral.Controls.Add(presta);
             PanelCentral.Tag = presta;
             presta.Show();
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.WindowState =FormWindowState.Minimized ;
+        }
+
+        private void BtnMinimizar_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void BtnReporte_Click(object sender, EventArgs e)
+        {
+            /*Formularios.FormRep repo = new Formularios.FormRep();
+            repo.Show();*/
+            PanelCentral.Controls.Clear();
+            Formularios.Reporte  repo = new Formularios.Reporte();
+           repo.TopLevel = false;
+            PanelCentral.Controls.Add(repo);
+            PanelCentral.Tag = repo;
+            repo.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PanelCentral.Controls.Clear();
+            Formularios.Caja  caj = new Formularios.Caja ();
+            caj.TopLevel = false;
+            PanelCentral.Controls.Add(caj);
+            PanelCentral.Tag = caj;
+            caj.Show();
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            Formularios.Respaldo resp = new Formularios.Respaldo();
+            resp.Show();
+        }
+
+        private void PanelSup_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void PanelLat_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BtnAdmin_Click(object sender, EventArgs e)
+        {
+            PanelCentral.Controls.Clear();
+            Formularios.Usuario usu = new Formularios.Usuario();
+            usu.TopLevel = false;
+            PanelCentral.Controls.Add(usu);
+            PanelCentral.Tag = usu;
+            usu.Show();
         }
     }
 }

@@ -26,12 +26,12 @@ namespace Arcoiris.Formularios
             string[] datos = {TxtNom.Text ,TxtTel .Text ,TxtDir.Text};
             if (ase.ingresar_asesor(datos))
             {
-                MessageBox.Show("ASesor ingresado con exito");
+                MessageBox.Show("Assesor ingresado con exito");
                 limpiar();
             }
             else
             {
-                MessageBox.Show("Error al ingredas asesor");
+                MessageBox.Show("Error al ingredar asesor");
                 limpiar();
 
             }
@@ -47,6 +47,14 @@ namespace Arcoiris.Formularios
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             DGVAsesor .DataSource = ase.busca_asesor(TxtNom.Text);
+            DGVAsesor.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+            DGVAsesor.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            DGVAsesor.Refresh();
+
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
 
         }
     }

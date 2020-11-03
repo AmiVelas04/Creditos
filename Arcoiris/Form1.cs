@@ -14,7 +14,13 @@ namespace Arcoiris
     
     public partial class Form1 : Form
     {
-      
+        
+        public static string Cod_U { get; set; } = "";
+        public static string Nombre { get; set; } = "";
+        public static string Nivel { get; set; } = "";
+
+
+
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +38,9 @@ namespace Arcoiris
         {
             Tmr1.Enabled = false;
             Formularios.Main principal = new Formularios.Main();
-            principal.Show();
+            Formularios.login Loguearse = new Formularios.login();
+            Loguearse.Show();
+            //principal.Show();
             this.Hide();
         }
     }

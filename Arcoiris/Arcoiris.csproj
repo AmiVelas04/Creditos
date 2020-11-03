@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Arcoiris</RootNamespace>
     <AssemblyName>Arcoiris</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,10 +33,61 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Icono Gen.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=8.0.18.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.6.1.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.6.1\lib\net45\Google.Protobuf.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Humanizer, Version=2.8.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.8.11\lib\netstandard1.0\Humanizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1357.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1357.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySqlBackup, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySqlBackup.NET.2.3.1\lib\net452\MySqlBackup.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
+      <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,12 +97,21 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.8.0.19\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\CajaOpe.cs" />
     <Compile Include="Clases\ClAsesor.cs" />
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\conexion.cs" />
+    <Compile Include="Clases\Credito.cs" />
+    <Compile Include="Clases\Logueo.cs" />
+    <Compile Include="Clases\Pago.cs" />
     <Compile Include="Clases\Solicitud.cs" />
+    <Compile Include="Clases\Usuario.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,11 +124,29 @@
     <Compile Include="Formularios\Asesor.Designer.cs">
       <DependentUpon>Asesor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Autopass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Autopass.Designer.cs">
+      <DependentUpon>Autopass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Caja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Caja.Designer.cs">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Cliente.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ListCred.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ListCred.Designer.cs">
+      <DependentUpon>ListCred.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\login.cs">
       <SubType>Form</SubType>
@@ -87,22 +166,139 @@
     <Compile Include="Formularios\Prestamo.Designer.cs">
       <DependentUpon>Prestamo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Reporte.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Reporte.Designer.cs">
+      <DependentUpon>Reporte.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ReportesGen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ReportesGen.Designer.cs">
+      <DependentUpon>ReportesGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\Respaldo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Respaldo.Designer.cs">
+      <DependentUpon>Respaldo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Solicitud.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\Solicitud.Designer.cs">
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\Usuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\Usuario.Designer.cs">
+      <DependentUpon>Usuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\AtrasOrd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\AtrasOrd.Designer.cs">
+      <DependentUpon>AtrasOrd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Atrasos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Atrasos.Designer.cs">
+      <DependentUpon>Atrasos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\AtrasosD.cs" />
+    <Compile Include="Reportes\AtrasosE.cs" />
+    <Compile Include="Reportes\BoletaPag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\BoletaPag.Designer.cs">
+      <DependentUpon>BoletaPag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\CajaRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\CajaRep.Designer.cs">
+      <DependentUpon>CajaRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\CreCartera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\CreCartera.Designer.cs">
+      <DependentUpon>CreCartera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Credi_Activ.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Credi_Activ.Designer.cs">
+      <DependentUpon>Credi_Activ.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Credi_Activity.cs" />
+    <Compile Include="Reportes\Cre_Cance_Vig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Cre_Cance_Vig.Designer.cs">
+      <DependentUpon>Cre_Cance_Vig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\CuentayPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\CuentayPago.Designer.cs">
+      <DependentUpon>CuentayPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\DatosCre.cs" />
+    <Compile Include="Reportes\EstadoDet.cs" />
+    <Compile Include="Reportes\EstadoEnc.cs" />
+    <Compile Include="Reportes\Ganancias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Ganancias.Designer.cs">
+      <DependentUpon>Ganancias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\LlenarReport.cs" />
+    <Compile Include="Reportes\PagoDesc.cs" />
+    <Compile Include="Reportes\RepDesem.cs" />
+    <Compile Include="Reportes\RepDetalle1.cs" />
+    <Compile Include="Reportes\RepDetCli.cs" />
+    <Compile Include="Reportes\RepEnc.cs" />
+    <Compile Include="Reportes\Resumen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Resumen.Designer.cs">
+      <DependentUpon>Resumen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\TablaDet.cs" />
+    <Compile Include="Reportes\TablaEnc.cs" />
+    <Compile Include="Reportes\Tablapagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Tablapagos.Designer.cs">
+      <DependentUpon>Tablapagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Asesor.resx">
       <DependentUpon>Asesor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Autopass.resx">
+      <DependentUpon>Autopass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Caja.resx">
+      <DependentUpon>Caja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ListCred.resx">
+      <DependentUpon>ListCred.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\login.resx">
+      <DependentUpon>login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -110,8 +306,20 @@
     <EmbeddedResource Include="Formularios\Prestamo.resx">
       <DependentUpon>Prestamo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Reporte.resx">
+      <DependentUpon>Reporte.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ReportesGen.resx">
+      <DependentUpon>ReportesGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Respaldo.resx">
+      <DependentUpon>Respaldo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Solicitud.resx">
       <DependentUpon>Solicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\Usuario.resx">
+      <DependentUpon>Usuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -121,7 +329,108 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reportes\AtrasOrd.resx">
+      <DependentUpon>AtrasOrd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Atrasos.rdlc" />
+    <EmbeddedResource Include="Reportes\Atrasos.resx">
+      <DependentUpon>Atrasos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\BoletaPag.resx">
+      <DependentUpon>BoletaPag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\CajaRep.rdlc" />
+    <EmbeddedResource Include="Reportes\CajaRep.resx">
+      <DependentUpon>CajaRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\CreCartera.rdlc" />
+    <EmbeddedResource Include="Reportes\CreCartera.resx">
+      <DependentUpon>CreCartera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Credi_Activ.rdlc" />
+    <EmbeddedResource Include="Reportes\Credi_Activ.resx">
+      <DependentUpon>Credi_Activ.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Cre_Cance_Vig.rdlc" />
+    <EmbeddedResource Include="Reportes\Cre_Cance_Vig.resx">
+      <DependentUpon>Cre_Cance_Vig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\CuentaPag.rdlc" />
+    <EmbeddedResource Include="Reportes\CuentayPago.resx">
+      <DependentUpon>CuentayPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Desembolso.rdlc" />
+    <EmbeddedResource Include="Reportes\EstadoCli.rdlc" />
+    <EmbeddedResource Include="Reportes\Ganancias.rdlc" />
+    <EmbeddedResource Include="Reportes\Ganancias.resx">
+      <DependentUpon>Ganancias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Pago.rdlc" />
+    <EmbeddedResource Include="Reportes\Reporte1.rdlc" />
+    <EmbeddedResource Include="Reportes\Resumen.rdlc" />
+    <EmbeddedResource Include="Reportes\Resumen.resx">
+      <DependentUpon>Resumen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\TablaP.rdlc" />
+    <EmbeddedResource Include="Reportes\Tablapagos.resx">
+      <DependentUpon>Tablapagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Credi_Activity.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_E.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_E1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_E2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_E3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.DatosCre.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoDet.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoDet1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoDet2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoDet3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDesem.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDesem1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDesem2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetalle1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetalle11.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetalle12.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetalle13.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetCli.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetCli1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetCli2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepDetCli3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepEnc.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepEnc1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepEnc2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.RepEnc3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaDet.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaDet1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaDet2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaDet3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaEnc.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaEnc1.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaEnc2.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.TablaEnc3.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -136,7 +445,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Reportes\" />
+    <Content Include="Icono Gen.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

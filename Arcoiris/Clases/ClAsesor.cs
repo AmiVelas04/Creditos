@@ -67,7 +67,7 @@ namespace Arcoiris.Clases
                 conect.conn.Open();
                 com.ExecuteNonQuery();
                 conect.conn.Close();
-                MessageBox.Show(consultaing);
+             
                 return true;
 
             }
@@ -97,7 +97,7 @@ namespace Arcoiris.Clases
         {
             DataTable datos = new DataTable();
             string consulta;
-            consulta = "Select nombre from asesor";
+            consulta = "Select Nombre,Cod_asesor as Codigo from asesor";
             datos = buscar(consulta);
             return datos;
         }
