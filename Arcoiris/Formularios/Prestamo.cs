@@ -634,6 +634,7 @@ namespace Arcoiris.Formularios
             if (TxtCuotaD.Text != "")
             {
                 TxtCuota.Text = TxtCuotaD.Text;
+                TxtEfectivo.Text= TxtCuotaD.Text;
             }
             else
 
@@ -816,7 +817,8 @@ namespace Arcoiris.Formularios
             if (Convert.ToDecimal(TxtSaldInt.Text)>0) TxtIntD.Text = TxtSaldInt.Text;
             TxtCapD.Text = TxtSaldo.Text;
             TxtCuota.Text = TxtTotalTod.Text;
-            
+            TxtEfectivo.Text= TxtTotalTod.Text;
+
         }
 
         private void BtnBoleta_Click(object sender, EventArgs e)

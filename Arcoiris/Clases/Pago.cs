@@ -259,7 +259,7 @@ namespace Arcoiris.Clases
             capital += Convert.ToDecimal(cap);
             interes += Convert.ToDecimal(inter);
             string consuupd;
-            consuupd = "Update credito set saldo_cap=" + capital + ", saldo_int=" + interes + " where cod_credito=" + credi;
+            consuupd = "Update credito set saldo_cap=" + capital + ", saldo_int=" + interes + ", Estado='Activo' where cod_credito=" + credi;
             if (consulta_gen(consuupd))
             {
                 return true;
