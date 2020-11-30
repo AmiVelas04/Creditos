@@ -541,7 +541,8 @@ datoscli = cli.Buscar_nom_cli();
                     pago[2] = "0";
                     if (cuotaint >0) pago[1] = cuotaint.ToString();
                     if (cuotacapital>0) pago[2] = cuotacapital.ToString();
-                    pago[3] = (cuotacapital+cuotaint).ToString();
+                    
+                    pago[3] = (decimal.Parse(pago[1]) + decimal.Parse(pago[2])).ToString();
 
 
                     //Registrar pago

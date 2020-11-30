@@ -254,6 +254,7 @@ namespace Arcoiris.Formularios
             TxtMora.Text = "0";
             TxtCapD .Text = datos.Rows[0][4].ToString();
             TxtIntD .Text = datos.Rows[0][5].ToString();
+            TxtEfectivo.Text = "";
             decimal cuotaN;
             decimal CapN = Convert.ToDecimal(datos.Rows[0][4].ToString());
             decimal IntM = Convert.ToDecimal(datos.Rows[0][5].ToString());
@@ -427,7 +428,7 @@ namespace Arcoiris.Formularios
             datosP.interes= Convert.ToDecimal(TxtIntD.Text);
             datosP.mora= Convert.ToDecimal(TxtMora.Text);
             datosP.total = Convert.ToDecimal(TxtCuota.Text);
-            decimal Saldor, valor, saldoint=0,saldot;
+            decimal Saldor, valor, saldoint=0,saldot,restacent;
             Saldor = Convert.ToDecimal(TxtSaldo.Text) - Convert.ToDecimal(TxtCapD.Text);
             datosP.saldo =Saldor ;
             valor = Convert.ToDecimal(TxtCuota.Text);
@@ -437,7 +438,8 @@ namespace Arcoiris.Formularios
             datosP.totalD = saldot;
             int total, cents;
             cents = Convert.ToInt32((valor % 1) * 100);
-            total = Convert.ToInt32(valor - (cents / 100));
+            total= int.Parse(Math.Truncate(valor).ToString());
+           // total = Convert.ToInt32(valor - (cents / 100));
             string letras;
             letras = total.ToWords() + " con " + cents.ToWords();
             if (cents <= 0) letras = total.ToWords() + " exactos";
@@ -474,7 +476,8 @@ namespace Arcoiris.Formularios
             datosP.totalD = saldot;
             int total, cents;
             cents = Convert.ToInt32((valor % 1)*100);
-            total = Convert.ToInt32(valor - (cents / 100));
+            total = int.Parse(Math.Truncate(valor).ToString());
+           // total = Convert.ToInt32(valor - (cents / 100));
             string letras;
             letras = total.ToWords() + " con " + cents.ToWords();
             if (cents<=0) letras = total.ToWords() + " exactos";
