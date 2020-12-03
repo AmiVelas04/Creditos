@@ -1537,7 +1537,6 @@ namespace Arcoiris.Clases
             int numpag = num_pagos(cre),Totd=0;
             DataTable tipo = new DataTable();
             DataTable Pagos = new DataTable();
-
             string tipoc;
             string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,Fecha_venci as fechaf from credito where cod_credito =" + cre;
             string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes FROM pagos WHERE cod_credito="+cre+" AND estado ='Hecho'";
@@ -1552,7 +1551,6 @@ namespace Arcoiris.Clases
             decimal monto=Convert.ToDecimal(tipo.Rows[0][2]), interes = Convert.ToDecimal(tipo.Rows[0][3]);
 
             int diasP = Convert.ToInt32(tipo.Rows[0][4]);
-
             if (tipo.Rows[0][0] == DBNull.Value)
             {
                 tipoc = "0";
@@ -1574,20 +1572,16 @@ namespace Arcoiris.Clases
                 DateTime Inicio = Fini;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
-                
-                
                 for (cont = 1; cont <= dias; cont++)
                 {
 
                     Fini = Fini.AddDays(1);
                     TotG -= (Pcap + Pint);
                     if(TotG >=0) Dfin++;
-
                     if (Fini.DayOfWeek == DayOfWeek.Saturday || Fini.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
                     }
-                    
                 }
                 dias -= Dfin;
                 if (dias < 0) dias = 0;
@@ -1603,19 +1597,15 @@ namespace Arcoiris.Clases
                 DateTime Inicio = Fini;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
-
                for (cont = 1; cont <= dias; cont++)
                 {
-
                     Fini = Fini.AddDays(1);
                     TotG -= (Pcap + Pint);
                     if (TotG >= 0) Dfin++;
-
                     if (Fini.DayOfWeek == DayOfWeek.Saturday || Fini.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
                     }
-
                 }
                 dias -= Dfin;
                 if (dias < 0) dias = 0;
@@ -1628,28 +1618,42 @@ namespace Arcoiris.Clases
                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes /100/12), 2);
                 int contdi=0,cont=0,Dfin=0;
                 DateTime fcamb = Fini.AddMonths(0);
-                while(Ffin >fcamb  )
+                while(Ffin >fcamb)
                 {
                     fcamb  = fcamb .AddMonths(1);
-
                     TotG -= (Pcap + Pint);
                     if (TotG >= 0) Dfin++;
-
                 }
                 Dfin++;
                 dif = Ffin- Fini.AddMonths (Dfin);
                 contdi = dif.Days;
                 if (contdi < 0) contdi = 0;
                 Totd = contdi;
-
             }
             else if (tipoc == "4")
             {
-                //falta de calcular
-                Fini = Fini.AddMonths(1);
-                Fini = Fini.AddMonths(numpag);
-                dif = Ffin - Fini;
-                Totd = dif.Days;
+                //Calculo de atraso...
+                decimal montoprov=monto;
+                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
+                int contdi = 0, cont = 0, Dfin = 0;
+                DateTime fcamb = Fini.AddMonths(0);
+                while (Ffin > fcamb)
+                {
+                    fcamb = fcamb.AddMonths(1);
+                    TotG -= (Pcap+Pint);
+                    if (TotG >= 0) Dfin++;
+                    montoprov -= Pcap;
+                    Pint = Math.Round((montoprov * interes / 100 / 12), 2);
+                }
+                Dfin++;
+                dif = Ffin - Fini.AddMonths(Dfin);
+                contdi = dif.Days;
+                if (contdi < 0) contdi = 0;
+                Totd = contdi;
+                /*  Fini = Fini.AddMonths(1);
+                  Fini = Fini.AddMonths(numpag);
+                  dif = Ffin - Fini;
+                  Totd = dif.Days;*/
             }
             if (Totd < 0) Totd = 0;
             return Totd;
@@ -1669,7 +1673,7 @@ namespace Arcoiris.Clases
              inte = Convert.ToDecimal(datcre.Rows[0][1]); 
              dias = Convert.ToInt32(datcre.Rows[0][2]);
              fechaC= Convert.ToDateTime(datcre.Rows[0][4]);
-                tipo = datcre.Rows[0][3].ToString();
+             tipo = datcre.Rows[0][3].ToString();
             }
 
 
