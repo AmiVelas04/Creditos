@@ -1687,7 +1687,7 @@ namespace Arcoiris.Clases
             if (pagos > dias) pagos = dias;
             if (tipo == "1")
             {
-                pcap = (monto / dias);
+                pcap = Math.Round((monto / dias),2);
                 pint = Math.Round((monto * inte / 100 ), 2);
                 
                 //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
@@ -1713,7 +1713,7 @@ namespace Arcoiris.Clases
             }
             else if (tipo == "3")
             {
-                pcap =  monto / dias;
+                pcap = Math.Round( (monto / dias),2);
                 pint = Math.Round((monto * inte / 100/12),2);
              //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
                 pcap *= pagos;
