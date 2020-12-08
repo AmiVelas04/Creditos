@@ -53,7 +53,7 @@ namespace Arcoiris.Formularios
                   CboCliente .Items.Add(datoscli.Rows[c2][0]);
               }*/
 
-            //Agregar datos al combo box clientre
+            //Agregar datos al combo box cliente
             DataTable datoscli = new DataTable();
 datoscli = cli.Buscar_nom_cli();
             CboCliente.DataSource = datoscli ;
@@ -632,7 +632,7 @@ datoscli = cli.Buscar_nom_cli();
             int credi;
             credi = cre.id_credit(soli);
             string dpi = cli.clidpi(soli);
-            int a=1;
+            //int a=1;
             //ThreadStart resumen = new ThreadStart(LLenRep);
 
             //ThreadStart tabla = new ThreadStart(LLenRep);

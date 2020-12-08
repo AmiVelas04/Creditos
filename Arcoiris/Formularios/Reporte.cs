@@ -12,7 +12,10 @@ namespace Arcoiris.Formularios
 {
     public partial class Reporte : Form
     {
+        Clases.ClAsesor aseso = new Clases.ClAsesor();
         Reportes.LlenarReport repor = new Reportes.LlenarReport();
+        Clases.Credito cre = new Clases.Credito();
+
         public Reporte()
         {
             InitializeComponent();
@@ -37,6 +40,8 @@ namespace Arcoiris.Formularios
                 //BtnCartera.Visible = true;
                 mes();
                 anio();
+                listarasesores();
+                CboAsesor.SelectedIndex = 0;
             }
             else
             {
@@ -298,6 +303,198 @@ namespace Arcoiris.Formularios
         private void BtnCartera_Click(object sender, EventArgs e)
         {
            // repor.ColAct();
+        }
+
+        private void listarasesores()
+        {
+            DataTable datosas = new DataTable();
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            datosas = aseso.busca_asesor_nom();
+            CboAsesor.DataSource = datosas;
+            CboAsesor.DisplayMember = "Nombre";
+            CboAsesor.ValueMember = "Codigo";
+           /* foreach (DataRow row in datosas.Rows)
+            {
+                coleccion.Add(row["Nombre"].ToString());
+
+            }
+            CboAsesor.AutoCompleteCustomSource = coleccion;
+            CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
+        }
+
+        private void BtnComi_Click(object sender, EventArgs e)
+        {
+            string codase = CboAsesor.SelectedValue.ToString();
+            string fechai, fechaf,asesor;
+            DataTable datos = new DataTable();
+            datos = cre.creditos(codase);
+            asesor = aseso.nom_aseso(codase);
+            fechai = DtpComIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpComiFin.Value.ToString("yyyy/MM/dd");
+            
+        calculocomi(datos,asesor,fechai,fechaf);
+
+
+        }
+
+        private void calculocomi(DataTable datos,string asesor, string fechai,string fechaf)
+        {
+            int cant, cont=0;
+            string fechahoy = DateTime.Now.ToString("yyyy/MM/dd");
+            string codcre = "";
+            decimal Totalcomi=0;
+            decimal pago =0, cuota=0, pagoint=0, pagocap=0;
+            cant = datos.Rows.Count;
+            DataTable datoscomi = new DataTable();
+            datoscomi.Columns.Add("Credito").DataType = Type.GetType("System.String");
+            datoscomi.Columns.Add("Cliente").DataType = Type.GetType("System.String");
+            datoscomi.Columns.Add("Tipo").DataType = Type.GetType("System.String");
+            datoscomi.Columns.Add("PagosH").DataType = Type.GetType("System.String");
+            datoscomi.Columns.Add("Comision").DataType = Type.GetType("System.String");
+           
+
+            for (cont = 0; cont < cant; cont++)
+            {
+                string fechaini = datos.Rows[cont][5].ToString();
+                string cliente = datos.Rows[cont][8].ToString() + " " + datos.Rows[cont][9].ToString();
+                string tipCre = "";
+                int totpagos, tipocre=0, pagoscre=0,comi=0;
+                int pagos = int.Parse(datos.Rows[cont][4].ToString());
+                codcre = datos.Rows[cont][0].ToString();
+                decimal totalpagAct= cre.totalpagAct(codcre,fechai,fechaf);
+                decimal totalpagAnt = cre.totalpagAnt(codcre, fechai);
+                decimal interes=0, capital=0,pagosope,Valint,Monto;
+                Monto = decimal.Parse(datos.Rows[cont][1].ToString());
+                Valint = decimal.Parse(datos.Rows[cont][2].ToString());
+                pagoscre = 0;
+                tipocre = int.Parse(datos.Rows[cont][7].ToString());
+                totpagos = cre.pagosfutu(fechaini, fechahoy, tipocre.ToString());
+               
+                pagosope = totalpagAct;
+                if (tipocre == 1)
+                {
+                    capital = Math.Round((Monto / pagos), 2);
+                    interes = Math.Round(((Monto * Valint) / 100), 2);
+                    tipCre = "Diario";
+                    bool bandera = true,Novacuota=true;
+                    cuota = capital + interes;
+                    while (Novacuota)
+                    {
+                        totalpagAnt -= cuota;
+                        if (totalpagAnt < cuota)
+                        {
+                            Novacuota = false;
+                        }
+                    }
+                    pagosope += totalpagAnt;
+                    while (bandera)
+                    {
+                        pagosope -= (cuota);
+                        
+                        if (pagosope <= 0)
+                        {
+                            bandera = false;
+                        }
+                        else {
+                            pagoscre++;
+                        }
+                    }
+                }
+                else if (tipocre == 2)
+                {
+                    capital =0 ;
+                    interes = Math.Round(((Monto * Valint) / 100), 2);
+                    cuota = capital + interes;
+                        decimal saldado;
+                        saldado = Monto + (interes * pagos);
+                    tipCre = "Diario - Interes";
+                    if (pagosope >= saldado)
+                        {
+                            pagoscre = pagos;
+                                                   }
+                        else
+                        {
+                        pagoscre = 0;
+                    }
+                }
+                else if (tipocre == 3)
+                {
+                    capital = Math.Round((Monto / pagos), 2);
+                    interes = Math.Round(((Monto * Valint) / 100), 2);
+                    bool bandera = true, Novacuota = true;
+                    cuota = capital + interes;
+                    tipCre = "Mensual";
+
+                    while (Novacuota)
+                    {
+                        totalpagAnt -= cuota;
+                        if (totalpagAnt < cuota)
+                        {
+                            Novacuota = false;
+                        }
+                    }
+                    pagosope += totalpagAnt;
+                    while (bandera)
+                    {
+                        pagosope -= (cuota);
+                        
+                        if (pagosope <= 0)
+                        {
+                            bandera = false;
+                        }
+                        else {
+                            pagoscre++;
+                        }
+                    }
+                }
+                else if (tipocre == 4)
+                {
+                capital = Math.Round((Monto / pagos), 2);
+                    tipCre = "Mensual SobreSaldo";
+                    pagoscre = 0;               
+                }
+                if (pagoscre > pagos) pagoscre = pagos;                
+                comi = pagoscre;
+                DataRow fila = datoscomi.NewRow();
+                fila["Credito"] = codcre;
+                fila["Cliente"] = cliente;
+                fila["Tipo"] =tipCre ;
+                fila["PagosH"] = comi;
+                fila["Comision"] = comi;
+                datoscomi.Rows.Add(fila);
+            }
+            imprepcomi(datoscomi,asesor,fechai,fechaf);
+
+        }
+
+        private void imprepcomi(DataTable datos,string asesor, string fechai, string fechaf)
+        {
+            Reportes.ComisionEnc enca = new Reportes.ComisionEnc();
+            enca.asesor = asesor;
+            enca.fechai = fechai;
+            enca.fechaf = fechaf;
+            int cant, cont;
+            cant = datos.Rows.Count;
+            for (cont = 0; cont < cant; cont++)
+            {
+                if (datos.Rows[cont][3].ToString()!="0")
+                {
+                Reportes.ComisionDet deta = new Reportes.ComisionDet();
+                deta.credito = datos.Rows[cont][0].ToString();
+                deta.cliente = datos.Rows[cont][1].ToString();
+                deta.tipo = datos.Rows[cont][2].ToString();
+                deta.pago = int.Parse(datos.Rows[cont][3].ToString());
+                deta.comision = int.Parse(datos.Rows[cont][4].ToString());
+                enca.detalle.Add(deta);
+            }
+            }
+            Reportes.Comisiones Comi = new Reportes.Comisiones();
+            Comi.Encabezado.Add(enca);
+            Comi.Detalle = enca.detalle;
+            Comi.Show();
+            
+
         }
     }
 }

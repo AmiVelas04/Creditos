@@ -710,6 +710,11 @@ namespace Arcoiris.Reportes
             Activos.Show();
 
         }
+
+        public void calculocomision()
+        {
+            int pagosproy;
+        }
     }
 }
 

@@ -225,6 +225,14 @@
     <Compile Include="Reportes\CajaRep.Designer.cs">
       <DependentUpon>CajaRep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ComisionDet.cs" />
+    <Compile Include="Reportes\ComisionEnc.cs" />
+    <Compile Include="Reportes\Comisiones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Comisiones.Designer.cs">
+      <DependentUpon>Comisiones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\CreCartera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -346,6 +354,10 @@
     <EmbeddedResource Include="Reportes\CajaRep.resx">
       <DependentUpon>CajaRep.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Comisiones.rdlc" />
+    <EmbeddedResource Include="Reportes\Comisiones.resx">
+      <DependentUpon>Comisiones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\CreCartera.rdlc" />
     <EmbeddedResource Include="Reportes\CreCartera.resx">
       <DependentUpon>CreCartera.cs</DependentUpon>
@@ -387,6 +399,8 @@
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE2.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionDet.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionEnc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Credi_Activity.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D1.datasource" />

@@ -120,6 +120,16 @@ namespace Arcoiris.Clases
 
         }
 
+        public string nom_aseso(string id)
+        {
+            DataTable datos = new DataTable();
+            string consulta;
+            consulta = "Select nombre from asesor where cod_asesor =" +id ;
+            datos = buscar(consulta);
+            return datos.Rows[0][0].ToString();
+
+        }
+
 
 
 

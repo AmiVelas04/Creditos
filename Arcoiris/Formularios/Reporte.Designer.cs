@@ -30,6 +30,13 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.GbxD = new System.Windows.Forms.GroupBox();
+            this.BtnComi = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.CboAsesor = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.DtpComiFin = new System.Windows.Forms.DateTimePicker();
+            this.DtpComIni = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.GbxCreditos = new System.Windows.Forms.GroupBox();
             this.BtnCartera = new System.Windows.Forms.Button();
@@ -44,6 +51,7 @@
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.GbxD.SuspendLayout();
             this.panel2.SuspendLayout();
             this.GbxCreditos.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -62,6 +70,13 @@
             // 
             // GbxD
             // 
+            this.GbxD.Controls.Add(this.BtnComi);
+            this.GbxD.Controls.Add(this.label6);
+            this.GbxD.Controls.Add(this.CboAsesor);
+            this.GbxD.Controls.Add(this.label5);
+            this.GbxD.Controls.Add(this.label4);
+            this.GbxD.Controls.Add(this.DtpComiFin);
+            this.GbxD.Controls.Add(this.DtpComIni);
             this.GbxD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxD.Location = new System.Drawing.Point(0, 0);
             this.GbxD.Margin = new System.Windows.Forms.Padding(4);
@@ -70,8 +85,67 @@
             this.GbxD.Size = new System.Drawing.Size(765, 251);
             this.GbxD.TabIndex = 0;
             this.GbxD.TabStop = false;
-            this.GbxD.Text = "Cartera";
-            this.GbxD.Visible = false;
+            this.GbxD.Text = "Calculo de Comisiones";
+            // 
+            // BtnComi
+            // 
+            this.BtnComi.Location = new System.Drawing.Point(314, 130);
+            this.BtnComi.Name = "BtnComi";
+            this.BtnComi.Size = new System.Drawing.Size(142, 25);
+            this.BtnComi.TabIndex = 6;
+            this.BtnComi.Text = "Mostrar Comisiones";
+            this.BtnComi.UseVisualStyleBackColor = true;
+            this.BtnComi.Click += new System.EventHandler(this.BtnComi_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 110);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 17);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Asesor";
+            // 
+            // CboAsesor
+            // 
+            this.CboAsesor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboAsesor.FormattingEnabled = true;
+            this.CboAsesor.Location = new System.Drawing.Point(12, 130);
+            this.CboAsesor.Name = "CboAsesor";
+            this.CboAsesor.Size = new System.Drawing.Size(245, 25);
+            this.CboAsesor.TabIndex = 4;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(311, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 17);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Hasta";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(12, 48);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 17);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Desde";
+            // 
+            // DtpComiFin
+            // 
+            this.DtpComiFin.Location = new System.Drawing.Point(314, 68);
+            this.DtpComiFin.Name = "DtpComiFin";
+            this.DtpComiFin.Size = new System.Drawing.Size(245, 25);
+            this.DtpComiFin.TabIndex = 1;
+            // 
+            // DtpComIni
+            // 
+            this.DtpComIni.Location = new System.Drawing.Point(12, 68);
+            this.DtpComIni.Name = "DtpComIni";
+            this.DtpComIni.Size = new System.Drawing.Size(245, 25);
+            this.DtpComIni.TabIndex = 0;
             // 
             // panel2
             // 
@@ -168,7 +242,7 @@
             // 
             // BtnRepGan
             // 
-            this.BtnRepGan.Location = new System.Drawing.Point(151, 152);
+            this.BtnRepGan.Location = new System.Drawing.Point(48, 152);
             this.BtnRepGan.Name = "BtnRepGan";
             this.BtnRepGan.Size = new System.Drawing.Size(120, 35);
             this.BtnRepGan.TabIndex = 4;
@@ -228,6 +302,8 @@
             this.Text = "Reporte";
             this.Load += new System.EventHandler(this.Reporte_Load);
             this.panel1.ResumeLayout(false);
+            this.GbxD.ResumeLayout(false);
+            this.GbxD.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.GbxCreditos.ResumeLayout(false);
             this.GbxCreditos.PerformLayout();
@@ -255,5 +331,12 @@
         private System.Windows.Forms.ComboBox CboMes;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnCartera;
+        private System.Windows.Forms.Button BtnComi;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox CboAsesor;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker DtpComiFin;
+        private System.Windows.Forms.DateTimePicker DtpComIni;
     }
 }

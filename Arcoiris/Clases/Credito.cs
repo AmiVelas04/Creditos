@@ -1899,6 +1899,71 @@ namespace Arcoiris.Clases
         return total;
         }
         #endregion
+
+        #region "Calculo comisiones"
+        public DataTable creditos(string aseso)
+        { string consulta;
+            DataTable datos = new DataTable();
+            consulta= "SELECT c.COD_CREDITO,c.MONTO, c.INTERES,c.PLAZO,c.Dias_pago,Date_format(c.FECHA_CONC,'%y/%m/%d'),date_format(c.FECHA_VENCI,'%y/%m/%d'),c.id_tipo_credito, cli.NOMBRES, cli.APELLIDOS " +
+                      "FROM credito c "+
+                      "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = c.COD_CREDITO "+
+                      "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = ac.ID_SOLICITUD "+
+                      "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = sol.ID_SOLICITUD "+
+                      "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD "+
+                      "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli "+
+                      "WHERE asol.COD_ASESOR = "+aseso+" AND c.ESTADO = 'Activo' "+
+                      "ORDER BY c.FECHA_CONC, c.COD_CREDITO asc";
+            return buscar(consulta);
+
+        }
+
+        public decimal totalpagAct(string credito, string fechai, string fechaf)
+        {
+            string consulta;
+            decimal valor;
+            DataTable datos = new DataTable();
+            consulta = "SELECT SUM(p.Total) FROM pagos p " +
+                       "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
+                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito+ " and p.fecha>='"+fechai+"' and p.fecha<='"+fechaf+"'";
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                valor = decimal.Parse(datos.Rows[0][0].ToString());
+            }
+            else
+            {
+                valor = 0;
+            }
+            return valor;
+        }
+
+        public decimal totalpagAnt(string credito, string fechai)
+        {
+            string consulta;
+            decimal valor;
+            DataTable datos = new DataTable();
+            consulta = "SELECT SUM(p.Total) FROM pagos p " +
+                       "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
+                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito + " and p.fecha<='" + fechai + "'";
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                valor = decimal.Parse(datos.Rows[0][0].ToString());
+            }
+            else
+            {
+                valor = 0;
+            }
+            return valor;
+        }
+
+
+        public int pagosfutu(string fechai, string fechaAct, string tipo)
+        {
+            return pagproy(fechai, fechaAct, tipo);
+        }
+        
+        #endregion
     }
 }
 
