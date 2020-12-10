@@ -358,7 +358,7 @@ namespace Arcoiris.Formularios
             {
                 string fechaini = datos.Rows[cont][5].ToString();
                 string cliente = datos.Rows[cont][8].ToString() + " " + datos.Rows[cont][9].ToString();
-                string tipCre = "";
+                string tipCre = "", estado = datos.Rows[cont][10].ToString();
                 int totpagos, tipocre=0, pagoscre=0,comi=0;
                 int pagos = int.Parse(datos.Rows[cont][4].ToString());
                 codcre = datos.Rows[cont][0].ToString();
@@ -377,73 +377,137 @@ namespace Arcoiris.Formularios
                     capital = Math.Round((Monto / pagos), 2);
                     interes = Math.Round(((Monto * Valint) / 100), 2);
                     tipCre = "Diario";
-                    bool bandera = true,Novacuota=true;
-                    cuota = capital + interes;
-                    while (Novacuota)
+                    if (totalpagAct == 0 && estado == "Terminado")
                     {
-                        totalpagAnt -= cuota;
-                        if (totalpagAnt < cuota)
+                        pagoscre=0;
+                    }
+                    else if (totalpagAct > 0 && estado == "Activo") {
+
+                        bool bandera = true, Novacuota = true;
+                        cuota = interes;
+
+                        while (Novacuota)
                         {
-                            Novacuota = false;
+                            if (totalpagAnt < cuota)
+                            {
+                                Novacuota = false;
+                            }
+                            else
+                            {
+                                totalpagAnt -= cuota;
+                            }
+                        }
+                        pagosope += totalpagAnt;
+                        while (bandera)
+                        {
+                            if (pagosope < cuota)
+                            {
+                                bandera = false;
+                            }
+                            else
+                            {
+                                pagosope -= (cuota);
+                                pagoscre++;
+                            }
                         }
                     }
-                    pagosope += totalpagAnt;
-                    while (bandera)
+                    else if (totalpagAct > 0 && estado == "Terminado")
                     {
-                        pagosope -= (cuota);
-                        
-                        if (pagosope <= 0)
+                        bool bandera = true, Novacuota = true;
+                        cuota = interes;
+
+                        while (Novacuota)
                         {
-                            bandera = false;
+                            if (totalpagAnt < cuota)
+                            {
+                                Novacuota = false;
+                            }
+                            else
+                            {
+                                totalpagAnt -= cuota;
+                            }
                         }
-                        else {
-                            pagoscre++;
+                        pagosope += totalpagAnt;
+                        while (bandera)
+                        {
+                            if (pagosope < cuota)
+                            {
+                                bandera = false;
+                            }
+                            else
+                            {
+                                pagosope -= (cuota);
+                                pagoscre++;
+                            }
                         }
                     }
+                    
+                    
                 }
                 else if (tipocre == 2)
                 {
                     capital =0 ;
                     interes = Math.Round(((Monto * Valint) / 100), 2);
                     cuota = capital + interes;
-                        decimal saldado;
-                        saldado = Monto + (interes * pagos);
+                    decimal saldado;
+                    saldado = Monto + (interes * pagos);
+                    pagosope = totalpagAnt + totalpagAct;
                     tipCre = "Diario - Interes";
-                    if (pagosope >= saldado)
+
+                    if (totalpagAct == 0 && estado!="Terminado")
+                    {
+                        pagoscre = 0;
+                    }
+                    else if (totalpagAct > 0 && estado == "Terminado") 
+                    {
+                        bool bandera = true;
+                            while (bandera)
                         {
-                            pagoscre = pagos;
-                                                   }
-                        else
-                        {
+                            if (pagosope >= cuota)
+                            {
+                                pagosope -= cuota;
+                                pagoscre++;
+                            }
+                            else
+                            {
+                                bandera = false;
+                            }
+                        }
+                            if (pagoscre>pagos) pagoscre = pagos;
+                    }
+                    else
+                    {
                         pagoscre = 0;
                     }
                 }
                 else if (tipocre == 3)
                 {
                     capital = Math.Round((Monto / pagos), 2);
-                    interes = Math.Round(((Monto * Valint) / 100), 2);
-                    bool bandera = true, Novacuota = true;
-                    cuota = capital + interes;
+                    interes = Math.Round(((Monto * Valint) / 100/12), 2);
                     tipCre = "Mensual";
-
+                    bool bandera = true, Novacuota = true;
+                    cuota = interes;
                     while (Novacuota)
                     {
-                        totalpagAnt -= cuota;
                         if (totalpagAnt < cuota)
                         {
                             Novacuota = false;
+                        }
+                        else
+                        {
+                            totalpagAnt -= cuota;
                         }
                     }
                     pagosope += totalpagAnt;
                     while (bandera)
                     {
-                        pagosope -= (cuota);
-                        
-                        if (pagosope <= 0)
+                        if (pagosope < cuota)
                         {
                             bandera = false;
                         }
-                        else {
+                        else
+                        {
+                            pagosope -= (cuota);
                             pagoscre++;
                         }
                     }
@@ -456,6 +520,7 @@ namespace Arcoiris.Formularios
                 }
                 if (pagoscre > pagos) pagoscre = pagos;                
                 comi = pagoscre;
+
                 DataRow fila = datoscomi.NewRow();
                 fila["Credito"] = codcre;
                 fila["Cliente"] = cliente;
