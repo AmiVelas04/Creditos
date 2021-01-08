@@ -86,12 +86,13 @@
             this.GbxD.TabIndex = 0;
             this.GbxD.TabStop = false;
             this.GbxD.Text = "Calculo de Comisiones";
+            this.GbxD.Visible = false;
             // 
             // BtnComi
             // 
-            this.BtnComi.Location = new System.Drawing.Point(314, 130);
+            this.BtnComi.Location = new System.Drawing.Point(314, 122);
             this.BtnComi.Name = "BtnComi";
-            this.BtnComi.Size = new System.Drawing.Size(142, 25);
+            this.BtnComi.Size = new System.Drawing.Size(149, 39);
             this.BtnComi.TabIndex = 6;
             this.BtnComi.Text = "Mostrar Comisiones";
             this.BtnComi.UseVisualStyleBackColor = true;

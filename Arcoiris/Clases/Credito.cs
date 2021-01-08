@@ -101,9 +101,9 @@ namespace Arcoiris.Clases
             string consulta;
             DataTable datos = new DataTable();
             consulta = "Select plazo,interes,Date_format(fecha_conc,'%d-%m-%Y'),Date_format(fecha_venci,'%d-%m-%Y'),monto from credito where cod_credito=" + cre;
-            datos=buscar(consulta);
+            datos = buscar(consulta);
             return datos;
-            
+
 
         }
 
@@ -184,32 +184,32 @@ namespace Arcoiris.Clases
             int NumPagos = Convert.ToInt32(datos.Rows[0][1]);
 
             DataTable Dcre = new DataTable();
-            string consultaT= "Select id_tipo_credito,dias_pago, date_format(Fecha_conc,'%Y-%M-%d') as conce from credito where cod_credito=" + credito;
-            Dcre = buscar(consultaT); 
+            string consultaT = "Select id_tipo_credito,dias_pago, date_format(Fecha_conc,'%Y-%M-%d') as conce from credito where cod_credito=" + credito;
+            Dcre = buscar(consultaT);
             string tipoc = Dcre.Rows[0][0].ToString();
             string valor = "";
             int dmaxatraso = Convert.ToInt32(Dcre.Rows[0][1]);
-            
+
             //calculo si no existe un pago previo
             if ((datos.Rows[0][0] == DBNull.Value) && NumPagos == 0)
             {
                 string fech = Dcre.Rows[0][2].ToString();
                 DateTime fechav = Convert.ToDateTime(fech);
                 DateTime fechaact = Convert.ToDateTime(fechas);
-               // fechaact = Convert.ToDateTime(fechaact.ToString("dd/MM/yyyy"));
+                // fechaact = Convert.ToDateTime(fechaact.ToString("dd/MM/yyyy"));
                 TimeSpan dias = fechaact - fechav;
                 int tdias = dias.Days;
-                int cont,atra = 0,datraso = 0;
+                int cont, atra = 0, datraso = 0;
                 if (tipoc.Equals("1") || tipoc.Equals("2"))
                 {
                     dias = fechaact - fechav.AddDays(1);
                     tdias = dias.Days;
                     for (cont = 1; cont <= tdias; cont++)
                     {
-                        
+
                         if (fechav.DayOfWeek == DayOfWeek.Saturday || fechav.DayOfWeek == DayOfWeek.Sunday)
                         {
-                        
+
                         }
                         else
                         {
@@ -223,9 +223,9 @@ namespace Arcoiris.Clases
 
                 else if (tipoc.Equals("3") || tipoc.Equals("4"))
                 {
-                    int mesatras=0;
+                    int mesatras = 0;
                     fechav = fechav.AddDays(1);
-                    while (fechav.AddMonths(mesatras) <fechaact )
+                    while (fechav.AddMonths(mesatras) < fechaact)
                     { mesatras++; }
                     datraso = Convert.ToInt32(mesatras);
                 }
@@ -233,7 +233,7 @@ namespace Arcoiris.Clases
                 {
                     datraso = dmaxatraso;
                 }
-                if (datraso <0)
+                if (datraso < 0)
                 {
                     datraso = 0;
                 }
@@ -245,18 +245,18 @@ namespace Arcoiris.Clases
                 DateTime fechaact = Convert.ToDateTime(fechas);
                 fechap = Convert.ToDateTime(Dcre.Rows[0][2]);
                 fechap = fechap.AddMonths(NumPagos);
-                DateTime sigfecha=fechav;
-                while (fechap >sigfecha)
+                DateTime sigfecha = fechav;
+                while (fechap > sigfecha)
                 { sigfecha = sigfecha.AddMonths(1); }
 
-                TimeSpan dif =fechaact -sigfecha;
+                TimeSpan dif = fechaact - sigfecha;
                 int diastraso = dif.Days;
-               
-                int cont,atra = 0,datraso = 0;
+
+                int cont, atra = 0, datraso = 0;
 
                 if (tipoc.Equals("1") || tipoc.Equals("2"))
                 {
-                    for (cont = 1; cont <=diastraso; cont++)
+                    for (cont = 1; cont <= diastraso; cont++)
                     {
                         if (fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Saturday || fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Sunday)
                         {
@@ -267,13 +267,13 @@ namespace Arcoiris.Clases
                         }
                     }
                     datraso = atra;
-                   }
+                }
 
                 else if (tipoc.Equals("3") || tipoc.Equals("4"))
                 {
-                    int atram =0;
-                   sigfecha =sigfecha.AddDays(1);
-                    while (fechaact>=sigfecha)
+                    int atram = 0;
+                    sigfecha = sigfecha.AddDays(1);
+                    while (fechaact >= sigfecha)
                     {
                         atram++;
                         sigfecha = sigfecha.AddMonths(1);
@@ -294,7 +294,7 @@ namespace Arcoiris.Clases
             return valor;
         }
 
-       public DataTable datoscre(string credito, string fecha)
+        public DataTable datoscre(string credito, string fecha)
         {
             string tipo;
             string consulta = "Select id_tipo_credito from credito where cod_credito='" + credito + "'";
@@ -311,20 +311,20 @@ namespace Arcoiris.Clases
             DataTable datos = new DataTable();
             if (tipo.Equals("1"))
             {
-                datos = calculo_norm(credito, fecha,"1");
+                datos = calculo_norm(credito, fecha, "1");
             }
             else if (tipo.Equals("2"))
             {
-                datos = interesPrim(credito, fecha,"2");
+                datos = interesPrim(credito, fecha, "2");
             }
             else if (tipo.Equals("3"))
             {
-                datos = calculo_mes(credito, fecha,"3");
+                datos = calculo_mes(credito, fecha, "3");
             }
             else if (tipo.Equals("4"))
             {
 
-                datos = calculo_saldo(credito, fecha,"4");
+                datos = calculo_saldo(credito, fecha, "4");
             }
 
             return datos;
@@ -339,7 +339,7 @@ namespace Arcoiris.Clases
             DataTable pag = new DataTable();
             pag = buscar(consulpago);
             int tpagos = Convert.ToInt32(pag.Rows[0][0]);
-            decimal pagoint=0,saldoint=0;
+            decimal pagoint = 0, saldoint = 0;
             if (tpagos > 0)
             {
                 int diasatras;
@@ -351,7 +351,7 @@ namespace Arcoiris.Clases
                 decimal interes = Convert.ToDecimal(credidat.Rows[0][4]);
                 int diasmax = Convert.ToInt32(credidat.Rows[0][5]);
                 decimal intpag = Math.Round(monto * interes / 100 * (diasatras), 2);
-                pagoint = Math.Round(monto * interes / 100 /diasmax , 2);
+                pagoint = Math.Round(monto * interes / 100 / diasmax, 2);
                 saldoint = Saldointe(credito, fecha, credidat.Rows[0][3].ToString(), pagoint);
                 DataTable DatosR = new DataTable();
                 DatosR.Columns.Add("Monto").DataType = System.Type.GetType("System.String");
@@ -372,9 +372,9 @@ namespace Arcoiris.Clases
                 fila["Tipo"] = credidat.Rows[0][3];
                 fila["atraso"] = diasatras;
                 fila["Saldoint"] = saldoint;
-                fila["Concesion"]= credidat.Rows[0][7].ToString();
+                fila["Concesion"] = credidat.Rows[0][7].ToString();
                 fila["Interes"] = interes.ToString();
-                fila["plazo"]= credidat.Rows[0][8].ToString();
+                fila["plazo"] = credidat.Rows[0][8].ToString();
 
                 DatosR.Rows.Add(fila);
                 datos = DatosR;
@@ -387,7 +387,7 @@ namespace Arcoiris.Clases
                 DataTable credidat = new DataTable();
                 consulta1 = "Select Monto,Saldo_cap,Date_Format(Fecha_venci,'%d-%m-%Y'),id_tipo_credito,interes,dias_pago,saldo_int,Date_format(Fecha_conc,'%d-%m-%Y') ,plazo  from credito where cod_credito='" + credito + "'";
                 credidat = buscar(consulta1);
-               
+
                 decimal monto = Convert.ToDecimal(credidat.Rows[0][0]);
                 decimal interes = Convert.ToDecimal(credidat.Rows[0][4]);
                 int diasmax = Convert.ToInt32(credidat.Rows[0][5]);
@@ -413,7 +413,7 @@ namespace Arcoiris.Clases
                 fila["Saldoint"] = saldoint;
                 fila["Concesion"] = credidat.Rows[0][7].ToString();
                 fila["Interes"] = interes.ToString();
-                fila["plazo"]= credidat.Rows[0][8].ToString();
+                fila["plazo"] = credidat.Rows[0][8].ToString();
                 DatosR.Rows.Add(fila);
                 datos = DatosR;
 
@@ -421,8 +421,8 @@ namespace Arcoiris.Clases
 
             return datos;
         }
-        
-        public decimal saldoant(string usu,string cre)
+
+        public decimal saldoant(string usu, string cre)
         {
             string consulta;
             DataTable datos = new DataTable();
@@ -431,7 +431,7 @@ namespace Arcoiris.Clases
             "INNER JOIN asigna_credito ascre ON ascre.COD_CREDITO = cre.COD_CREDITO " +
             "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = ascre.ID_SOLICITUD " +
             "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
-            "WHERE cli.CODIGO_CLI =" + usu + " and Cre.Cod_credito="+cre;
+            "WHERE cli.CODIGO_CLI =" + usu + " and Cre.Cod_credito=" + cre;
             datos = buscar(consulta);
 
             return Convert.ToDecimal(datos.Rows[0][0].ToString());
@@ -465,17 +465,17 @@ namespace Arcoiris.Clases
             }
         }
 
-        public decimal gasadmin(string codcred,string fechain, string fechaf)
+        public decimal gasadmin(string codcred, string fechain, string fechaf)
         {
-            string consulta = "SELECT cre.Gastos_admin from credito cre "+
-                              "WHERE cre.COD_CREDITO='"+codcred+"' AND cre.FECHA_CONC >= '"+fechain+"' AND cre.FECHA_CONC <= '"+fechaf+"'";
+            string consulta = "SELECT cre.Gastos_admin from credito cre " +
+                              "WHERE cre.COD_CREDITO='" + codcred + "' AND cre.FECHA_CONC >= '" + fechain + "' AND cre.FECHA_CONC <= '" + fechaf + "'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             decimal gasto;
             if (datos.Rows.Count > 0) { return gasto = decimal.Parse(datos.Rows[0][0].ToString()); }
             else
-            { return gasto=decimal.Parse("0.00"); }
-            
+            { return gasto = decimal.Parse("0.00"); }
+
 
         }
         #endregion
@@ -555,7 +555,7 @@ namespace Arcoiris.Clases
                             pago = 0;
 
                         }
-                       
+
                         fechai = fechai.AddDays(sumfech);
                         #endregion
                         break;
@@ -626,7 +626,7 @@ namespace Arcoiris.Clases
 
                     }
                 }
-                
+
                 fila["orden"] = cont;
                 fila["fechap"] = fechai;
                 fila["capital"] = pagocap;
@@ -675,12 +675,12 @@ namespace Arcoiris.Clases
 
         }
 
-        private decimal difcapital(string credit, decimal cuotacap,int pagosh)
+        private decimal difcapital(string credit, decimal cuotacap, int pagosh)
         {
             decimal totalesp;
             decimal totalh;
             decimal dif;
-           
+
             totalesp = (pagosh * cuotacap);
             totalh = totalpagcap(credit);
             dif = totalesp - totalh;
@@ -698,7 +698,7 @@ namespace Arcoiris.Clases
             totalesp = (pagosh * cuotaint);
             totalh = totalpagint(credit);
             dif = totalesp - totalh;
-          
+
             return dif;
 
         }
@@ -725,7 +725,7 @@ namespace Arcoiris.Clases
             decimal cuota;
             int atraso = Convert.ToInt32(dias_atraso(credito, fecha));
             int pagar = num_pagos(credito);
-            int pagarfutu = pagproy(datos.Rows[0][8].ToString(),fechaact.ToString ("yyyy/MM/dd"),tipo);
+            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo);
 
             //Revisar si se hizo el pago de hoy
             string consulp;
@@ -752,14 +752,14 @@ namespace Arcoiris.Clases
                 intpaga = 1;
                 pagoint = Math.Round(((monto * interes / 100)), 2);
                 pagocap = Math.Round((((monto / diasp))), 2);
-              //  MessageBox.Show("1");
+                //  MessageBox.Show("1");
             }
             //2) si no se ha hecho ningun pago con atrasos
             else if (pagoshoy == 0 && pagar == 0 && atraso > 0)
             {
                 pagoint = Math.Round(((monto * interes / 100) * (atraso)), 2);
                 pagocap = Math.Round((((monto / diasp)) * (atraso)), 2);
-             //  MessageBox.Show("2");
+                //  MessageBox.Show("2");
             }
             //3) hay pagos hoy,  es igual a mayor a la fecha y  no hay atraso
             else if (pagoshoy > 0 && fechaact >= fechavenc && atraso == 0)
@@ -768,7 +768,7 @@ namespace Arcoiris.Clases
                 pagocap = Math.Round((((monto / diasp))), 2);
                 pagoint += DifInt;
                 pagocap += DifCap;
-             //  MessageBox.Show("3");
+                //  MessageBox.Show("3");
             }
             //4) no se ha hecho un pago hoy , si existen anteriores, no se ha pasado de la fehca y  hay atraso
             else if (pagoshoy == 0 && pagar > 0 && fechaact < fechavenc && atraso > 0)
@@ -794,7 +794,7 @@ namespace Arcoiris.Clases
                     pagoint += DifInt;
                 }
 
-             //  MessageBox.Show("4");
+                //  MessageBox.Show("4");
             }
 
             //5) hay pago hoy, no se ha pasado de la fecha no hay atrasos
@@ -803,7 +803,7 @@ namespace Arcoiris.Clases
 
                 pagocap += DifCap;
                 pagoint += DifInt;
-              //  MessageBox.Show("5");
+                //  MessageBox.Show("5");
             }
 
             //6)hay pagos hoy, no se ha pasado de la fecha y si hay atraso
@@ -811,13 +811,13 @@ namespace Arcoiris.Clases
             {
                 decimal capant = Convert.ToDecimal(UltPag.Rows[0][1]);
                 decimal intant = Convert.ToDecimal(UltPag.Rows[0][1]);
-             
+
                 pagoint = Math.Round(((monto * interes / 100) * (atraso + 1)), 2);
                 pagocap = Math.Round((((monto / diasp)) * (atraso + 1)), 2);
-                              
+
                 pagocap += DifCap;
                 pagoint += DifInt;
-               // MessageBox.Show("6");
+                // MessageBox.Show("6");
             }
 
 
@@ -827,25 +827,25 @@ namespace Arcoiris.Clases
 
                 pagoint = Math.Round((saldoi), 2);
                 pagocap = Math.Round((saldoc), 2);
-             //  MessageBox.Show("7");
+                //  MessageBox.Show("7");
             }
             //8) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
             else if (pagoshoy > 0 && fechaact >= fechavenc && atraso > 0)
             {
                 pagoint = Math.Round((saldoi), 2);
                 pagocap = Math.Round((saldoc), 2);
-              // MessageBox.Show("8");
+                // MessageBox.Show("8");
             }
             //9
             else if (pagoshoy == 0 && fechaact >= fechavenc && atraso > 0)
             {
                 pagoint = Math.Round((saldoi), 2);
                 pagocap = Math.Round((saldoc), 2);
-               // MessageBox.Show("8");
+                // MessageBox.Show("8");
             }
             else
             {
-               // MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
+                // MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
             }
 
             //Fin de revision de pago hoy
@@ -928,21 +928,21 @@ namespace Arcoiris.Clases
                 intpaga = 1;
                 pagoint = Math.Round(((monto * interes / 100)), 2);
                 pagocap = 0;
-            //   MessageBox.Show("1");
+                //   MessageBox.Show("1");
             }
             // 2) si no se ha hecho ningun pago con atrasos
             else if (pagoshoy == 0 && pagar == 0 && fechaact < fechavenc && atraso > 0)
             {
-                pagoint = Math.Round(((monto * interes / 100) * (atraso+1)), 2);
+                pagoint = Math.Round(((monto * interes / 100) * (atraso + 1)), 2);
                 pagocap = 0;
-            //   MessageBox.Show("2");
+                //   MessageBox.Show("2");
             }
             //3) hay pagos hoy,  es igual a mayor a la fecha y  no hay atraso
             else if (pagoshoy > 0 && fechaact >= fechavenc && atraso == 0)
             {
                 pagoint = 0;
                 pagocap = saldoc;
-            //  MessageBox.Show("3");
+                //  MessageBox.Show("3");
             }
             //4) no se ha hecho un pago hoy , si existen anteriores, no se ha pasado de la fecha y  hay atraso
             else if (pagoshoy == 0 && fechaact >= fechavenc && atraso > 0)
@@ -961,7 +961,7 @@ namespace Arcoiris.Clases
 
                 pagoint = saldoi;
                 pagocap = saldoc;
-               //MessageBox.Show("4");
+                //MessageBox.Show("4");
             }
 
             //5) hay pago hoy, no se ha pasado de la fecha no hay atrasos
@@ -969,7 +969,7 @@ namespace Arcoiris.Clases
             {
                 pagoint = Math.Round(((monto * interes / 100) * (atraso)), 2);
                 pagocap = 0;
-              //  MessageBox.Show("5");
+                //  MessageBox.Show("5");
             }
 
 
@@ -991,7 +991,7 @@ namespace Arcoiris.Clases
                 }
                 pagocap += Convert.ToDecimal(saldosante[0]);
                 pagoint += Convert.ToDecimal(saldosante[1]);
-              // MessageBox.Show("6");
+                // MessageBox.Show("6");
             }
 
             //7) no hay pagos hoy, hay pago anteriores, es igual a mayor a la fecha y  no hay atraso
@@ -1000,7 +1000,7 @@ namespace Arcoiris.Clases
 
                 pagoint = Math.Round((saldoi), 2);
                 pagocap = Math.Round((saldoc), 2);
-              // MessageBox.Show("7");
+                // MessageBox.Show("7");
             }
             //8) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
             else if (pagoshoy > 0 && fechaact >= fechavenc && atraso > 0)
@@ -1010,19 +1010,19 @@ namespace Arcoiris.Clases
                 //MessageBox.Show("8");
             }
             //9) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
-            else if (pagoshoy==0 && fechaact <fechavenc && atraso>0)
+            else if (pagoshoy == 0 && fechaact < fechavenc && atraso > 0)
             {
 
                 decimal capant = Convert.ToDecimal(UltPag.Rows[0][1]);
                 decimal intant = Convert.ToDecimal(UltPag.Rows[0][1]);
-                
+
                 pagoint = Math.Round(((monto * interes / 100) * (atraso)), 2);
                 pagocap = 0;
-               // MessageBox.Show("9");
+                // MessageBox.Show("9");
             }
             else
             {
-            // MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
+                // MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
             }
 
             //Fin de revisin de pago hoy
@@ -1067,7 +1067,7 @@ namespace Arcoiris.Clases
             int atraso = Convert.ToInt32(dias_atraso(credito, fecha));
             int pagar = num_pagos(credito);
             int pagarfutu = 0;
-          
+
 
             //Revisar si se hizo el pago de hoy
             string consulp;
@@ -1083,38 +1083,38 @@ namespace Arcoiris.Clases
             UltPag = buscar(consultultp);
             decimal PagoN = Math.Round((((monto / diasp))), 2);
             decimal intN = Math.Round(((monto * interes / 100 / 12)), 2);
-            decimal IntAct=Saldointe(credito,fecha,tipo,intN);
+            decimal IntAct = Saldointe(credito, fecha, tipo, intN);
             decimal DifCap = 0;
-            decimal DifInt = 0; 
-           // MessageBox.Show("atraso: " + atraso);
+            decimal DifInt = 0;
+            // MessageBox.Show("atraso: " + atraso);
             //1) si no se ha hecho ningun pago sin atrasos
             if (pagoshoy == 0 && pagar == 0 && atraso == 0)
             {
                 intpaga = 1;
                 pagoint = Math.Round(((monto * interes / 100 / 12)), 2);
                 pagocap = Math.Round((((monto / diasp))), 2);
-          //MessageBox.Show("1");
+                //MessageBox.Show("1");
             }
-           // 2) si no se ha hecho ningun pago con atrasos
+            // 2) si no se ha hecho ningun pago con atrasos
             else if (pagoshoy == 0 && pagar == 0 && atraso > 0)
             {
                 pagoint = Math.Round(((monto * interes / 100 / 12) * (atraso + 1)), 2);
                 pagocap = Math.Round((((monto / diasp)) * (atraso + 1)), 2);
-            // MessageBox.Show("2");
+                // MessageBox.Show("2");
             }
-         //  3) hay pagos hoy,  es igual a mayor a la fecha y  no hay atraso
+            //  3) hay pagos hoy,  es igual a mayor a la fecha y  no hay atraso
             else if (pagoshoy > 0 && fechaact >= fechavenc && atraso == 0)
             {
                 pagarfutu = pagproy(UltPag.Rows[0][3].ToString(), fechaact.ToString(), tipo);
-                DifCap =   difcapital(credito, PagoN, pagarfutu);
+                DifCap = difcapital(credito, PagoN, pagarfutu);
                 DifInt = difint(credito, intN, pagarfutu);
-                
+
 
                 pagoint = 0;
                 pagocap = Math.Round((((monto / diasp))), 2);
                 pagoint += DifInt;
                 pagocap += DifCap;
-       // MessageBox.Show("3");
+                // MessageBox.Show("3");
             }
             //4) no se ha hecho un pago hoy , si existen anteriores, no se ha pasado de la fehca y  hay atraso
             else if (pagoshoy == 0 && pagar > 0 && fechaact < fechavenc && atraso > 0)
@@ -1122,13 +1122,13 @@ namespace Arcoiris.Clases
                 pagarfutu = pagproy(UltPag.Rows[0][3].ToString(), fechaact.ToString(), tipo);
                 DifCap = difcapital(credito, PagoN, pagarfutu);
                 DifInt = difint(credito, intN, pagarfutu);
-               
+
                 decimal capant = Convert.ToDecimal(UltPag.Rows[0][1]);
                 decimal intant = Convert.ToDecimal(UltPag.Rows[0][2]);
                 pagoint = Math.Round(((monto * interes / 100 / 12) * (atraso)), 2);
                 pagocap = Math.Round((((monto / diasp)) * (atraso)), 2);
 
-                if (saldoc <= pagocap )
+                if (saldoc <= pagocap)
                 {
                     pagocap = saldoc;
                 }
@@ -1136,15 +1136,15 @@ namespace Arcoiris.Clases
                 {
                     //pagocap += DifCap;
                 }
-                if (saldoi <= pagoint )
+                if (saldoi <= pagoint)
                 {
                     pagoint = saldoi;
                 }
                 else
                 {
-                  //  pagoint += DifInt;
+                    //  pagoint += DifInt;
                 }
-            // MessageBox.Show("4");
+                // MessageBox.Show("4");
             }
 
             //5) hay pago hoy, no se ha pasado de la fecha no hay atrasos
@@ -1152,7 +1152,7 @@ namespace Arcoiris.Clases
             {
                 pagocap += DifCap;
                 pagoint += DifInt;
-             //MessageBox.Show("5");
+                //MessageBox.Show("5");
             }
 
             //6)hay pagos hoy, no se ha pasado de la fecha y si hay atraso
@@ -1160,7 +1160,7 @@ namespace Arcoiris.Clases
             {
                 decimal capant = Convert.ToDecimal(UltPag.Rows[0][1]);
                 decimal intant = Convert.ToDecimal(UltPag.Rows[0][2]);
-                
+
                 pagoint = Math.Round(((monto * interes / 100 / 12) * (atraso + 1)), 2);
                 pagocap = Math.Round((((monto / diasp)) * (atraso + 1)), 2);
 
@@ -1180,7 +1180,7 @@ namespace Arcoiris.Clases
                 {
                     pagoint += DifInt;
                 }
-             /// MessageBox.Show("6");
+                /// MessageBox.Show("6");
             }
 
 
@@ -1190,17 +1190,17 @@ namespace Arcoiris.Clases
 
                 pagoint = Math.Round((saldoi), 2);
                 pagocap = Math.Round((saldoc), 2);
-          // MessageBox.Show("7");
+                // MessageBox.Show("7");
             }
-           //8) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
-            else if ((pagoshoy > 0  || pagoshoy ==0)&& fechaact >= fechavenc && atraso > 0)
+            //8) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
+            else if ((pagoshoy > 0 || pagoshoy == 0) && fechaact >= fechavenc && atraso > 0)
             {
                 pagoint = Math.Round((saldoi), 2);
                 pagocap = Math.Round((saldoc), 2);
-           //MessageBox.Show("8");
+                //MessageBox.Show("8");
             }
-           //9) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
-            else if (pagoshoy == 0 && fechaact <= fechavenc && atraso== 0)
+            //9) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
+            else if (pagoshoy == 0 && fechaact <= fechavenc && atraso == 0)
             {
                 pagoint = Math.Round(((monto * interes / 100 / 12)), 2);
                 pagocap = Math.Round((((monto / diasp))), 2);
@@ -1221,11 +1221,11 @@ namespace Arcoiris.Clases
                     pagoint += DifInt;
                 }
 
-          //MessageBox.Show("9");
+                //MessageBox.Show("9");
             }
             else
             {
-            //  MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
+                //  MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
             }
 
             //Fin de revision de pago hoy
@@ -1237,7 +1237,7 @@ namespace Arcoiris.Clases
             {
                 pagocap = 0;
             }
-            
+
             cuota = Math.Round((pagocap + pagoint), 2);
             DataTable resp = new DataTable();
 
@@ -1247,7 +1247,7 @@ namespace Arcoiris.Clases
             resp.Columns.Add("estado").DataType = System.Type.GetType("System.String");
             resp.Columns.Add("capnormal").DataType = System.Type.GetType("System.String");
             resp.Columns.Add("intnormal").DataType = System.Type.GetType("System.String");
-           
+
             DataRow fila = resp.NewRow();
             fila["pagoint"] = pagoint;
             fila["pagocap"] = pagocap;
@@ -1298,7 +1298,7 @@ namespace Arcoiris.Clases
             {
                 pagoint = Math.Round(((saldoc * interes / 100 / 12)), 2);
                 pagocap = Math.Round((((monto / diasp))), 2);
-           //    MessageBox.Show("1");
+                //    MessageBox.Show("1");
             }
             // 2) si no se ha hecho ningun pago con atrasos
             else if (pagoshoy == 0 && pagar == 0 && atraso > 0)
@@ -1313,14 +1313,14 @@ namespace Arcoiris.Clases
                     SaldoTemp -= CuotaBase;
                 }
                 pagocap = CuotaBase * (atraso);
-              // MessageBox.Show("2");
+                // MessageBox.Show("2");
             }
             //3) hay pagos hoy,  es igual a mayor a la fecha y  no hay atraso
             else if (pagoshoy > 0 && fechaact < fechavenc && atraso == 0)
             {
                 pagoint = Math.Round(((saldoc * interes / 100 / 12)), 2);
                 pagocap = Math.Round((((monto / diasp))), 2);
-            //  MessageBox.Show("3");
+                //  MessageBox.Show("3");
             }
             //4) no se ha hecho un pago hoy , si existen anteriores, no se ha pasado de la fehca y  hay atraso
             else if (pagoshoy == 0 && pagar > 0 && fechaact < fechavenc && atraso > 0)
@@ -1335,7 +1335,7 @@ namespace Arcoiris.Clases
                     SaldoTemp -= CuotaBase;
                 }
                 pagocap = CuotaBase * (diasp);
-              //  MessageBox.Show("4");
+                //  MessageBox.Show("4");
             }
 
             //5) hay pago hoy, no se ha pasado de la fecha no hay atrasos
@@ -1343,7 +1343,7 @@ namespace Arcoiris.Clases
             {
                 pagoint = 0;
                 pagocap = Math.Round((((monto / diasp))), 2);
-             //   MessageBox.Show("5");
+                //   MessageBox.Show("5");
             }
 
             //6)hay pagos hoy, no se ha pasado de la fecha y si hay atraso
@@ -1356,7 +1356,7 @@ namespace Arcoiris.Clases
                 SaldoTemp -= CuotaBase;
 
                 pagocap = CuotaBase * (diasp);
-              //  MessageBox.Show("6");
+                //  MessageBox.Show("6");
             }
 
             //7) no hay pagos hoy, hay pago anteriores, es igual a mayor a la fecha y  no hay atraso
@@ -1371,7 +1371,7 @@ namespace Arcoiris.Clases
                     SaldoTemp -= CuotaBase;
                 }
                 pagocap = saldoc;
-              // MessageBox.Show("7");
+                // MessageBox.Show("7");
             }
             //8) hay pagos hoy, hay pagos anteriores, es igual o mayor de la fecha, hay atrasos 
             else if ((pagoshoy > 0 || pagoshoy == 0) && fechaact >= fechavenc)
@@ -1385,16 +1385,16 @@ namespace Arcoiris.Clases
                     SaldoTemp -= CuotaBase;
                 }
                 pagocap = saldoc;
-             //   MessageBox.Show("8");
+                //   MessageBox.Show("8");
             }
-            else if ((pagoshoy == 0 ) && pagar > 0 && fechaact < fechavenc && atraso ==0)
+            else if ((pagoshoy == 0) && pagar > 0 && fechaact < fechavenc && atraso == 0)
             {
                 pagoint = Math.Round(((saldoc * interes / 100 / 12)), 2);
                 pagocap = Math.Round(((monto / diasp)), 2);
             }
             else
             {
-             //  MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
+                //  MessageBox.Show("Pagos de hoy: " + pagoshoy + "\n Pagos hechos: " + pagar + "\nAtrasos: " + atraso + "\nDias de pago: " + diasp);
             }
 
 
@@ -1487,7 +1487,7 @@ namespace Arcoiris.Clases
 
             return saldo;
         }
-      
+
         //Encontrar el numero de pagos
         private int num_pagos(string credito)
         {
@@ -1506,22 +1506,22 @@ namespace Arcoiris.Clases
             int cont;
             int diashab = 0;
             if (totdia >= 30) totdia = totdia;
-            for(cont=1;cont<=totdia;cont++)
+            for (cont = 1; cont <= totdia; cont++)
             {
                 if (fechai.AddDays(cont).DayOfWeek == DayOfWeek.Sunday || fechai.AddDays(cont).DayOfWeek == DayOfWeek.Saturday)
                 {
-                   
+
                 }
                 else
                 {
                     diashab++;
                 }
-             }
+            }
             if (tipo.Equals("3") || tipo.Equals("4"))
             {
                 diashab = 0;
                 fechai = fechai.AddMonths(1);
-                while (fechaa>fechai )
+                while (fechaa > fechai)
                 {
                     fechai = fechai.AddMonths(1);
                     diashab++;
@@ -1531,24 +1531,24 @@ namespace Arcoiris.Clases
 
             return diashab;
         }
-     
-        public int diasnopag(string cre, string fecha,string fechai)
+
+        public int diasnopag(string cre, string fecha, string fechai)
         {
-            int numpag = num_pagos(cre),Totd=0;
+            int numpag = num_pagos(cre), Totd = 0;
             DataTable tipo = new DataTable();
             DataTable Pagos = new DataTable();
             string tipoc;
             string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,Fecha_venci as fechaf from credito where cod_credito =" + cre;
-            string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes FROM pagos WHERE cod_credito="+cre+" AND estado ='Hecho'";
-           
+            string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
 
-            tipo = buscar(constipo );
+
+            tipo = buscar(constipo);
             Pagos = buscar(Consulpagos);
-            decimal TotCap=0;
-            if (Pagos.Rows[0][0] != DBNull.Value) TotCap=Convert.ToDecimal(Pagos.Rows[0][0]);
+            decimal TotCap = 0;
+            if (Pagos.Rows[0][0] != DBNull.Value) TotCap = Convert.ToDecimal(Pagos.Rows[0][0]);
             decimal TotInt = 0;
             if (Pagos.Rows[0][1] != DBNull.Value) TotInt = Convert.ToDecimal(Pagos.Rows[0][1]);
-            decimal monto=Convert.ToDecimal(tipo.Rows[0][2]), interes = Convert.ToDecimal(tipo.Rows[0][3]);
+            decimal monto = Convert.ToDecimal(tipo.Rows[0][2]), interes = Convert.ToDecimal(tipo.Rows[0][3]);
 
             int diasP = Convert.ToInt32(tipo.Rows[0][4]);
             if (tipo.Rows[0][0] == DBNull.Value)
@@ -1567,8 +1567,8 @@ namespace Arcoiris.Clases
             decimal TotG = TotCap + TotInt;
             if (tipoc == "1")
             {
-                decimal Pcap=Math .Round((monto /diasP),2), Pint= Math.Round((monto *interes/100), 2);
-                int dias = 0, cont,Dfin=0;
+                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100), 2);
+                int dias = 0, cont, Dfin = 0;
                 DateTime Inicio = Fini;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
@@ -1577,7 +1577,7 @@ namespace Arcoiris.Clases
 
                     Fini = Fini.AddDays(1);
                     TotG -= (Pcap + Pint);
-                    if(TotG >=0) Dfin++;
+                    if (TotG >= 0) Dfin++;
                     if (Fini.DayOfWeek == DayOfWeek.Saturday || Fini.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
@@ -1589,15 +1589,15 @@ namespace Arcoiris.Clases
             }
             else if (tipoc == "2")
             {
-                DateTime final = Convert.ToDateTime(tipo.Rows [0][5]);
+                DateTime final = Convert.ToDateTime(tipo.Rows[0][5]);
                 decimal Pcap = 0;
                 if (Ffin >= final) Pcap = 0;//Math.Round((monto / diasP), 2); 
-                decimal   Pint = Math.Round((monto * interes / 100), 2);
+                decimal Pint = Math.Round((monto * interes / 100), 2);
                 int dias = 0, cont, Dfin = 0;
                 DateTime Inicio = Fini;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
-               for (cont = 1; cont <= dias; cont++)
+                for (cont = 1; cont <= dias; cont++)
                 {
                     Fini = Fini.AddDays(1);
                     TotG -= (Pcap + Pint);
@@ -1615,17 +1615,17 @@ namespace Arcoiris.Clases
             {
                 //Fini = Fini.AddMonths(1);
                 // Fini = Fini.AddMonths(numpag);
-                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes /100/12), 2);
-                int contdi=0,cont=0,Dfin=0;
+                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
+                int contdi = 0, cont = 0, Dfin = 0;
                 DateTime fcamb = Fini.AddMonths(0);
-                while(Ffin >fcamb)
+                while (Ffin > fcamb)
                 {
-                    fcamb  = fcamb .AddMonths(1);
+                    fcamb = fcamb.AddMonths(1);
                     TotG -= (Pcap + Pint);
                     if (TotG >= 0) Dfin++;
                 }
                 Dfin++;
-                dif = Ffin- Fini.AddMonths (Dfin);
+                dif = Ffin - Fini.AddMonths(Dfin);
                 contdi = dif.Days;
                 if (contdi < 0) contdi = 0;
                 Totd = contdi;
@@ -1633,14 +1633,14 @@ namespace Arcoiris.Clases
             else if (tipoc == "4")
             {
                 //Calculo de atraso...
-                decimal montoprov=monto;
+                decimal montoprov = monto;
                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
                 int contdi = 0, cont = 0, Dfin = 0;
                 DateTime fcamb = Fini.AddMonths(0);
                 while (Ffin > fcamb)
                 {
                     fcamb = fcamb.AddMonths(1);
-                    TotG -= (Pcap+Pint);
+                    TotG -= (Pcap + Pint);
                     if (TotG >= 0) Dfin++;
                     montoprov -= Pcap;
                     Pint = Math.Round((montoprov * interes / 100 / 12), 2);
@@ -1662,44 +1662,44 @@ namespace Arcoiris.Clases
         public DataTable saldosdias(string cre, string fecha)
         {
             //parte 1 datos originales
-            string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha from credito where cod_credito="+cre + " and estado='Activo'";
-            string tipo="";
+            string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha from credito where cod_credito=" + cre + " and estado='Activo'";
+            string tipo = "";
             DataTable datcre = new DataTable();
             datcre = buscar(consulCre);
-            decimal monto=0, inte=0;
-            int dias=0; DateTime fechaC=DateTime .Now;
-            if (datcre.Rows.Count > 0) { 
-             monto = Convert.ToDecimal(datcre.Rows[0][0]); 
-             inte = Convert.ToDecimal(datcre.Rows[0][1]); 
-             dias = Convert.ToInt32(datcre.Rows[0][2]);
-             fechaC= Convert.ToDateTime(datcre.Rows[0][4]);
-             tipo = datcre.Rows[0][3].ToString();
+            decimal monto = 0, inte = 0;
+            int dias = 0; DateTime fechaC = DateTime.Now;
+            if (datcre.Rows.Count > 0) {
+                monto = Convert.ToDecimal(datcre.Rows[0][0]);
+                inte = Convert.ToDecimal(datcre.Rows[0][1]);
+                dias = Convert.ToInt32(datcre.Rows[0][2]);
+                fechaC = Convert.ToDateTime(datcre.Rows[0][4]);
+                tipo = datcre.Rows[0][3].ToString();
             }
 
 
 
 
             //parte 2 calculo de valores 
-       
-            int pagos = pagproy(fechaC.ToString ("yyyy/MM/dd") ,fecha,tipo);//revisar numero de pagos que deberia haberse hecho
+
+            int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo);//revisar numero de pagos que deberia haberse hecho
             int atraso = Convert.ToInt32(dias_atraso(cre, fecha));
-            decimal pint=0, pcap=0, ptot=0;
+            decimal pint = 0, pcap = 0, ptot = 0;
             if (pagos > dias) pagos = dias;
             if (tipo == "1")
             {
-                pcap = Math.Round((monto / dias),2);
-                pint = Math.Round((monto * inte / 100 ), 2);
-                
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100), 2);
+
                 //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
-                pcap *=pagos;
-                pint *= pagos ;
+                pcap *= pagos;
+                pint *= pagos;
                 //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;
             }
             else if (tipo == "2")
-            {   
+            {
                 pcap = 0;
                 if (pagos >= dias) pcap = monto;
                 pint = Math.Round((monto * inte / 100), 2);
@@ -1713,23 +1713,23 @@ namespace Arcoiris.Clases
             }
             else if (tipo == "3")
             {
-                pcap = Math.Round( (monto / dias),2);
-                pint = Math.Round((monto * inte / 100/12),2);
-             //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100 / 12), 2);
+                //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
                 pcap *= pagos;
                 pint *= pagos;
-            //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
-                pcap = Math.Round(pcap ,2);
+                //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
+                pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;
             }
             else if (tipo == "4")
             {
                 int cont;
-                
+
                 pcap = Math.Round((monto / dias), 2);
 
-               
+
                 for (cont = 1; cont <= pagos; cont++)
                 {
                     pint += monto * inte / 100 / 12;
@@ -1751,28 +1751,28 @@ namespace Arcoiris.Clases
             if (datsal.Rows[0][0] == DBNull.Value)
             { Scap = 0; }
             else
-            {Scap = Convert.ToDecimal(datsal.Rows[0][0]); }
+            { Scap = Convert.ToDecimal(datsal.Rows[0][0]); }
 
             if (datsal.Rows[0][1] == DBNull.Value)
             { Sint = 0; }
             else
             { Sint = Convert.ToDecimal(datsal.Rows[0][1]); }
-          
+
             //paso 4 sumar todos los valores y retornarlos en un datatable
             decimal Rint, Rcap, Rtot;
-            Rcap = Math.Round((pcap - Scap),2);
-            Rint = Math.Round((pint - Sint),2);
+            Rcap = Math.Round((pcap - Scap), 2);
+            Rint = Math.Round((pint - Sint), 2);
             Rtot = Rcap + Rint;
             DataTable resp = new DataTable();
             resp.Columns.Add("Capital").DataType = System.Type.GetType("System.String");
             resp.Columns.Add("Interes").DataType = System.Type.GetType("System.String");
             resp.Columns.Add("Total").DataType = System.Type.GetType("System.String");
-            
+
 
             DataRow fila = resp.NewRow();
             fila["Capital"] = Rcap;
             fila["Interes"] = Rint;
-            fila["Total"] = Rtot;            
+            fila["Total"] = Rtot;
 
 
             resp.Rows.Add(fila);
@@ -1780,27 +1780,27 @@ namespace Arcoiris.Clases
             return resp;
         }
         //Crear pago de interes a futuro
-        public decimal SaldoDeinteres(string cre, string fecha,string tipo, decimal cuotaint)
+        public decimal SaldoDeinteres(string cre, string fecha, string tipo, decimal cuotaint)
         {
             return Saldointe(cre, fecha, tipo, cuotaint);
         }
-        private decimal Saldointe (string cre,string fecha,string tipo, decimal cuota)
+        private decimal Saldointe(string cre, string fecha, string tipo, decimal cuota)
         {
-        decimal saldop,total;
+            decimal saldop, total;
             DateTime fechaf = Convert.ToDateTime(fecha);
             string consultad = "Select date_format(fecha_conc,'%d-%M-%y') as fecha, monto,interes,dias_pago, Date_format(Fecha_venci,'%Y-%M-%d') from credito where cod_credito=" + cre;
-            
+
             DataTable datosc = new DataTable();
             datosc = buscar(consultad);
-            DateTime fechaT= Convert.ToDateTime(datosc.Rows[0][4]);
-            decimal inter = Convert.ToDecimal(datosc .Rows [0][2]);
-            decimal monto= Convert.ToDecimal(datosc.Rows[0][1]);
+            DateTime fechaT = Convert.ToDateTime(datosc.Rows[0][4]);
+            decimal inter = Convert.ToDecimal(datosc.Rows[0][2]);
+            decimal monto = Convert.ToDecimal(datosc.Rows[0][1]);
             if (fechaf > fechaT.AddDays(1))
             {
                 fechaf = fechaT.AddDays(1);
             }
             DateTime fechacon = Convert.ToDateTime(datosc.Rows[0][0]);
-            int contarpag=0;
+            int contarpag = 0;
             string consulpag;
             int dias = Convert.ToInt32(datosc.Rows[0][3].ToString());
             consulpag = "Select sum(interes) as interes from pagos where cod_credito=" + cre + " and estado= 'Hecho'";
@@ -1817,20 +1817,20 @@ namespace Arcoiris.Clases
             }
             //tipo 1 de credito
             if (tipo == "1") {
-                cuota = monto * inter/100;
+                cuota = monto * inter / 100;
                 fechacon = fechacon.AddDays(1);
-            while (fechaf > fechacon)
-            {
-                fechacon=fechacon.AddDays(1);
-                    if (fechacon.DayOfWeek == DayOfWeek.Monday  || fechacon.DayOfWeek == DayOfWeek.Sunday)
+                while (fechaf > fechacon)
+                {
+                    fechacon = fechacon.AddDays(1);
+                    if (fechacon.DayOfWeek == DayOfWeek.Monday || fechacon.DayOfWeek == DayOfWeek.Sunday)
                     {
-                    //    MessageBox.Show(fechacon.DayOfWeek.ToString());
+                        //    MessageBox.Show(fechacon.DayOfWeek.ToString());
                     }
                     else
                     {
                         contarpag++;
                     }
-            }
+                }
                 if (contarpag > dias) contarpag = dias;
                 cuota = cuota * contarpag;
             }
@@ -1844,7 +1844,7 @@ namespace Arcoiris.Clases
                     fechacon = fechacon.AddDays(1);
                     if (fechacon.DayOfWeek == DayOfWeek.Monday || fechacon.DayOfWeek == DayOfWeek.Sunday)
                     {
-                      //  MessageBox.Show(fechacon.DayOfWeek.ToString());
+                        //  MessageBox.Show(fechacon.DayOfWeek.ToString());
                     }
                     else
                     {
@@ -1878,9 +1878,9 @@ namespace Arcoiris.Clases
                     contarpag++;
                 }
                 int cont;
-                decimal pagint=0,cuotac=0;
-               decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
-               
+                decimal pagint = 0, cuotac = 0;
+                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
+
                 cuotac = monto / dias;
                 cuota = 0;
                 for (cont = 1; cont <= contarpag; cont++)
@@ -1893,10 +1893,10 @@ namespace Arcoiris.Clases
 
 
             total = cuota - saldop;
-            total = Math.Round(total ,2);
+            total = Math.Round(total, 2);
 
 
-        return total;
+            return total;
         }
         #endregion
 
@@ -1904,14 +1904,14 @@ namespace Arcoiris.Clases
         public DataTable creditos(string aseso)
         { string consulta;
             DataTable datos = new DataTable();
-            consulta= "SELECT c.COD_CREDITO,c.MONTO, c.INTERES,c.PLAZO,c.Dias_pago,Date_format(c.FECHA_CONC,'%y/%m/%d'),date_format(c.FECHA_VENCI,'%y/%m/%d'),c.id_tipo_credito, cli.NOMBRES, cli.APELLIDOS,c.Estado " +
-                      "FROM credito c "+
-                      "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = c.COD_CREDITO "+
-                      "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = ac.ID_SOLICITUD "+
-                      "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = sol.ID_SOLICITUD "+
-                      "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD "+
-                      "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli "+
-                      "WHERE asol.COD_ASESOR = "+aseso+" and c.Estado!='Cancelado' "+
+            consulta = "SELECT c.COD_CREDITO,c.MONTO, c.INTERES,c.PLAZO,c.Dias_pago,Date_format(c.FECHA_CONC,'%Y/%m/%d'),date_format(c.FECHA_VENCI,'%Y/%m/%d'),c.id_tipo_credito, cli.NOMBRES, cli.APELLIDOS,c.Estado " +
+                      "FROM credito c " +
+                      "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = c.COD_CREDITO " +
+                      "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = ac.ID_SOLICITUD " +
+                      "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                      "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                      "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
+                      "WHERE asol.COD_ASESOR = " + aseso + " and c.Estado!='Cancelado' " +
                       "ORDER BY cli.nombres,c.FECHA_CONC, c.COD_CREDITO asc";
             return buscar(consulta);
 
@@ -1924,7 +1924,7 @@ namespace Arcoiris.Clases
             DataTable datos = new DataTable();
             consulta = "SELECT SUM(p.interes) FROM pagos p " +
                        "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
-                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito+ " and p.fecha>='"+fechai+"' and p.fecha<='"+fechaf+"'";
+                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito + " and p.fecha>='" + fechai + "' and p.fecha<='" + fechaf + "'";
             datos = buscar(consulta);
             if (datos.Rows[0][0] != DBNull.Value)
             {
@@ -1957,13 +1957,78 @@ namespace Arcoiris.Clases
             return valor;
         }
 
+        public decimal totalGenAnt(string credito, string fechai, string fechaf)
+        {
+            if (UltpCredi(credito, fechai, fechaf))
+            {
+                string consulta;
+                DataTable datos = new DataTable();
+                decimal total;
+                consulta = "SELECT SUM(p.Interes), Sum(p.Capital) FROM pagos p " +
+                       "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
+                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito;
+                datos = buscar(consulta);
+                total = decimal.Parse(datos.Rows[0][0].ToString()) + decimal.Parse(datos.Rows[0][1].ToString());
+                return total;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         public int pagosfutu(string fechai, string fechaAct, string tipo)
         {
             return pagproy(fechai, fechaAct, tipo);
         }
 
-       
-        
+
+        public bool UltpCredi (string credito, string fechai, string fechaf)
+            {
+            string consulta;
+            decimal interes, capital, total;
+            DataTable datos = new DataTable();
+            consulta = "Select Sum(p.capital), sum(p.interes) " +
+                "From pagos p " +
+                "where p.cod_credito = "+credito+" and  p.fecha>= '" + fechai + "' and p.fecha<='" + fechaf + "' and estado = 'Hecho'";
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] == DBNull.Value)
+            {
+                capital = 0;
+            }
+            else
+            {
+                capital = decimal.Parse(datos.Rows[0][0].ToString());
+            }
+
+            if (datos.Rows[0][1] == DBNull.Value)
+            { interes = 0; }
+            else
+            {
+                interes = decimal.Parse(datos.Rows[0][0].ToString());
+            }
+
+            total = capital + interes;
+            if (total>0)
+            { return true; }
+            else
+            { return false; }
+
+            }
+
+        public DataTable PagosSobresaldo(string idcod)
+        {
+            DataTable datos = new DataTable();
+            string consulta;
+            consulta = "SELECT c.monto,c.interes,c.Dias_pago,p.FECHA, p.capital, p.interes "+
+                       "FROM credito c "+
+                       "INNER JOIN pagos p ON p.COD_CREDITO = c.COD_CREDITO "+
+                       "WHERE c.COD_CREDITO = "+idcod+" AND p.Estado = 'Hecho'";
+            datos = buscar(consulta);
+            return datos;
+        }
+
+
         #endregion
     }
 }

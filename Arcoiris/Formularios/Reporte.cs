@@ -42,6 +42,7 @@ namespace Arcoiris.Formularios
                 anio();
                 listarasesores();
                 CboAsesor.SelectedIndex = 0;
+                GbxD.Visible = true;
             }
             else
             {
@@ -374,98 +375,133 @@ namespace Arcoiris.Formularios
                 pagosope = totalpagAct;
                 if (tipocre == 1)
                 {
-                    capital = Math.Round((Monto / pagos), 2);
-                    interes = Math.Round(((Monto * Valint) / 100), 2);
-                    tipCre = "Diario";
-                    if (totalpagAct == 0 && estado == "Terminado")
-                    {
-                        pagoscre=0;
-                    }
-                    else if (totalpagAct > 0 && estado == "Activo") {
+                    /*  capital = Math.Round((Monto / pagos), 2);
+                      interes = Math.Round(((Monto * Valint) / 100), 2);
+                      tipCre = "Diario";
+                      if (totalpagAct == 0 && estado == "Terminado")
+                      {
+                          pagoscre=0;
+                      }
+                      else if (totalpagAct > 0 && estado == "Activo") {
 
-                        bool bandera = true, Novacuota = true;
-                        cuota = interes;
+                          bool bandera = true, Novacuota = true;
+                          cuota = interes;
 
-                        while (Novacuota)
-                        {
-                            if (totalpagAnt < cuota)
-                            {
-                                Novacuota = false;
-                            }
-                            else
-                            {
-                                totalpagAnt -= cuota;
-                            }
-                        }
-                        pagosope += totalpagAnt;
-                        while (bandera)
-                        {
-                            if (pagosope < cuota)
-                            {
-                                bandera = false;
-                            }
-                            else
-                            {
-                                pagosope -= (cuota);
-                                pagoscre++;
-                            }
-                        }
-                    }
-                    else if (totalpagAct > 0 && estado == "Terminado")
-                    {
-                        bool bandera = true, Novacuota = true;
-                        cuota = interes;
+                          while (Novacuota)
+                          {
+                              if (totalpagAnt < cuota)
+                              {
+                                  Novacuota = false;
+                              }
+                              else
+                              {
+                                  totalpagAnt -= cuota;
+                              }
+                          }
+                          pagosope += totalpagAnt;
+                          while (bandera)
+                          {
+                              if (pagosope < cuota)
+                              {
+                                  bandera = false;
+                              }
+                              else
+                              {
+                                  pagosope -= (cuota);
+                                  pagoscre++;
+                              }
+                          }
+                      }
+                      else if (totalpagAct > 0 && estado == "Terminado")
+                      {
+                          bool bandera = true, Novacuota = true;
+                          cuota = interes;
+                          while (Novacuota)
+                          {
+                              if (totalpagAnt < cuota)
+                              {
+                                  Novacuota = false;
+                              }
+                              else
+                              {
+                                  totalpagAnt -= cuota;
+                              }
+                          }
+                          pagosope += totalpagAnt;
+                          while (bandera)
+                          {
+                              if (pagosope < cuota)
+                              {
+                                  bandera = false;
+                              }
+                              else
+                              {
+                                  pagosope -= (cuota);
+                                  pagoscre++;
+                              }
+                          }
+                      }*/
 
-                        while (Novacuota)
-                        {
-                            if (totalpagAnt < cuota)
-                            {
-                                Novacuota = false;
-                            }
-                            else
-                            {
-                                totalpagAnt -= cuota;
-                            }
-                        }
-                        pagosope += totalpagAnt;
-                        while (bandera)
-                        {
-                            if (pagosope < cuota)
-                            {
-                                bandera = false;
-                            }
-                            else
-                            {
-                                pagosope -= (cuota);
-                                pagoscre++;
-                            }
-                        }
-                    }
-                    
-                    
-                }
-                else if (tipocre == 2)
-                {
-                    capital =0 ;
+                    capital = Monto;
                     interes = Math.Round(((Monto * Valint) / 100), 2);
                     cuota = capital + interes;
                     decimal saldado;
                     saldado = Monto + (interes * pagos);
-                    pagosope = totalpagAnt + totalpagAct;
-                    tipCre = "Diario - Interes";
+                    //pagosope = totalpagAnt + totalpagAct;
+                    pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
+                    tipCre = "Diario";
 
-                    if (totalpagAct == 0 && estado!="Terminado")
+                    if (!cre.UltpCredi(codcre, fechai, fechaf) && estado != "Terminado")
                     {
                         pagoscre = 0;
                     }
-                    else if (totalpagAct > 0 && estado == "Terminado") 
+                    else if (cre.UltpCredi(codcre, fechai, fechaf) && estado == "Terminado")
                     {
                         bool bandera = true;
+                        pagosope -= capital;
+                        while (bandera)
+                        {
+                            if (pagosope >= interes)
+                            {
+                                pagosope -= interes;
+                                pagoscre++;
+                            }
+                            else
+                            {
+                                bandera = false;
+                            }
+                        }
+                        if (pagoscre > pagos) pagoscre = pagos;
+                    }
+                    else
+                    {
+                        pagoscre = 0;
+                    }
+                }
+                else if (tipocre == 2)
+                {
+                    capital =Monto ;
+                    interes = Math.Round(((Monto * Valint) / 100), 2);
+                    cuota = capital + interes;
+                    decimal saldado;
+                    saldado = Monto + (interes * pagos);
+                    //pagosope = totalpagAnt + totalpagAct;
+                    pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
+                    tipCre = "Diario - Interes";
+
+                    if (!cre.UltpCredi(codcre, fechai, fechaf) && estado!="Terminado")
+                    {
+                        pagoscre = 0;
+                    }
+                    else if (cre.UltpCredi(codcre,fechai,fechaf) && estado == "Terminado") 
+                    {
+                        bool bandera = true;
+                        pagosope -= capital;
                             while (bandera)
                         {
-                            if (pagosope >= cuota)
+                            if (pagosope >= interes)
                             {
-                                pagosope -= cuota;
+                                pagosope -= interes;
                                 pagoscre++;
                             }
                             else
@@ -487,6 +523,11 @@ namespace Arcoiris.Formularios
                     tipCre = "Mensual";
                     bool bandera = true, Novacuota = true;
                     cuota = interes;
+                    if (cuota == 0)
+                    {
+                        Novacuota = false;
+                        bandera = false ;
+                    }
                     while (Novacuota)
                     {
                         if (totalpagAnt < cuota)
@@ -514,10 +555,37 @@ namespace Arcoiris.Formularios
                 }
                 else if (tipocre == 4)
                 {
-                capital = Math.Round((Monto / pagos), 2);
-                    tipCre = "Mensual SobreSaldo";
-                    pagoscre = 0;               
+                    //calculo de interes creditos sobre saldo
+                    tipCre = "Mensual-SobreSaldo";
+                    DataTable datoscred = new DataTable();
+                    decimal MontoTotCred = Monto,SaldoTotInt=0, CapitalGen,interGen=0;
+                    datoscred = cre.PagosSobresaldo(codcre);
+                    int conteo1, totaldecredi ;
+                    totaldecredi = datoscred.Rows.Count;
+                    for(conteo1 = 0;conteo1 < totaldecredi;conteo1++)
+                    {
+                        int pagoscred = 0;
+                        decimal totaldecomi = 0, cuotacapital = 0, cuotainteres = 0, porcentin = 0, montocred = 0, CuotaIntEsp=0;
+                        montocred = decimal.Parse(datoscred.Rows[conteo1][0].ToString());
+                        porcentin= decimal.Parse(datoscred.Rows[conteo1][1].ToString());
+                        pagoscred = int.Parse(datoscred.Rows[conteo1][2].ToString());
+                        cuotacapital = decimal.Parse(datoscred.Rows[conteo1][4].ToString());
+                        cuotainteres = decimal.Parse(datoscred.Rows[conteo1][5].ToString());
+                        CuotaIntEsp = MontoTotCred * porcentin / 100 / pagoscred;
+                        SaldoTotInt += CuotaIntEsp;
+                        if (cuotainteres >= CuotaIntEsp)
+                        {
+                            SaldoTotInt -= cuotainteres;
+                            if (CuotaIntEsp != 0)
+                            {
+                                pagoscre++;
+                            }
+                            
+                        }
+                        MontoTotCred -= cuotacapital;
+                    }
                 }
+
                 if (pagoscre > pagos) pagoscre = pagos;                
                 comi = pagoscre;
 
