@@ -131,7 +131,7 @@ namespace Arcoiris.Reportes
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (estado == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
-            consulta = "SELECT CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%Y'),DATE_format(cre.FECHA_VENCI,'%d/%m/%Y'), CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos,cli.codigo_cli " +
+            consulta = "SELECT CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%Y'),DATE_format(cre.FECHA_VENCI,'%d/%m/%Y'), CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos,cli.codigo_cli,cre.cod_credito " +
             "FROM cliente cli " +
             "INNER JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
             "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
@@ -145,13 +145,18 @@ namespace Arcoiris.Reportes
             Enca.Titulo = titulo;
             for (cont = 0; cont <= total - 1; cont++)
             {
+                string ultpag = "Select date_format(Max(fecha),'%d/%m/%Y') from pagos where cod_credito= " + credito.Rows[cont][6].ToString();
+                DataTable cance = new DataTable();
+                cance = buscar(ultpag);
+
                 if (!CredAct(credito.Rows[cont][5].ToString())) { 
                 Reportes.RepDetCli detalle = new Reportes.RepDetCli();
                 detalle.Cliente = credito.Rows[cont][0].ToString();
                 detalle.Total = Convert.ToDecimal(credito.Rows[cont][1]);
                 detalle.FechaD = credito.Rows[cont][2].ToString();
-                detalle.FechaC = credito.Rows[cont][3].ToString();
-                detalle.pago = "N/E";
+                //detalle.FechaC = credito.Rows[cont][3].ToString();
+                    detalle.FechaC = cance.Rows[0][0].ToString();
+                    detalle.pago = "N/E";
                 detalle.tel = credito.Rows[cont][4].ToString();
                 Enca.detalleC.Add(detalle);
                 }
@@ -711,10 +716,7 @@ namespace Arcoiris.Reportes
 
         }
 
-        public void calculocomision()
-        {
-            int pagosproy;
-        }
+       
     }
 }
 

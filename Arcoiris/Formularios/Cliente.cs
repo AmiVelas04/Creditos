@@ -144,7 +144,7 @@ namespace Arcoiris.Formularios
             {
                 DataTable fiad = new DataTable();
                 idcli = Convert.ToString(DGVCliente.CurrentRow.Cells[0].Value);
-                fiad = clien.idfiad(DGVCliente.CurrentRow.Cells[8].Value.ToString ());
+                fiad = clien.idfiad(idcli);
                 idfiad = fiad.Rows[0][0].ToString();
                 TxtFiadNom2.Text = fiad.Rows[0][1].ToString();
                 TxtFiadDir2.Text = fiad.Rows[0][2].ToString();
@@ -223,7 +223,7 @@ namespace Arcoiris.Formularios
             string tfiad = TxtFiadTel2.Text;
             string dfiad = TxtFiadDir2.Text;
             string[] cliente = {nom,ape,dir,dpi,tel1,tel2,prof,Est_civil ,Nom_cony ,Ape_cony ,telcon ,refe };
-            string[] fiador = { fiad,tfiad ,dfiad };
+            string[] fiador = { fiad ,dfiad, tfiad };
 
             if (clien.updatecliente(idcli , cliente))
             {

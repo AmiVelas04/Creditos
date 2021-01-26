@@ -199,7 +199,10 @@ namespace Arcoiris.Clases
         public DataTable  idfiad(string fiador)
         {
             string consulta;
-            consulta = "Select id_fiador,Nombre, direccion,telefono from fiador where nombre='" + fiador+ "'";
+            consulta = "SELECT f.id_fiador, f.nombre,f.direccion,telefono "+
+            "FROM fiador f "+
+            "INNER JOIN cliente c ON c.ID_fiador=f.id_fiador "+
+            "WHERE c.CODIGO_CLI = '" + fiador+ "'";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
