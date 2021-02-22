@@ -499,6 +499,16 @@ namespace Arcoiris.Reportes
                 string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
                 string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
                 string codigocre = datos.Rows[cont - 1][5].ToString();
+                decimal capicalc, intecalc,moracalc;
+                capicalc = pag.totalcapi(Fechai, Fechaf, codigocre);
+                intecalc = pag.totalinte(Fechai, Fechaf, codigocre);
+                moracalc = pag.totalmora(Fechai, Fechaf, codigocre);
+                if (decimal.Parse(pago) != capicalc)   pago = capicalc.ToString();
+                if (decimal.Parse(capi) != intecalc)   capi = intecalc.ToString();
+                if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
+
+
+
                 detall.Cliente = datos.Rows[cont-1][0].ToString()+ "\nCredito: " + codigocre  ;
                 detall.Credito = datos.Rows[cont - 1][1].ToString();
                 detall.pago = pago;
@@ -512,10 +522,7 @@ namespace Arcoiris.Reportes
             Gan.Deta = Encab.detalleC;
             Gan.Show();
             //faltaln datos en form ganacias
-
-
-
-        }
+           }
 
         public void Venc_ord(string titulo,string tip)
         {

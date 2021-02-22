@@ -288,26 +288,75 @@ namespace Arcoiris.Clases
 
         }
 
-        public string FechUltPag(string credi)
+        /* public string FechUltPag(string credi)
+         {
+             string consulta = "SELECT Max(Date_format(fecha,'%d-%m-%y')) FROM pagos WHERE cod_credito=" + credi;
+             DataTable datos = new DataTable();
+                 datos = buscar(consulta);
+             if (datos.Rows[0][0]==DBNull.Value )
+             {
+                 string fechcre = "Select date_format(fecha_conc,'%d-%m-%Y') from credito where cod_credito=" + credi;
+                 DataTable fech;
+                 fech = buscar(fechcre);
+                 DateTime rev;
+                 rev = Convert.ToDateTime(fech.Rows[0][0]);
+                 rev = rev.AddDays(1);
+                 return rev.ToString("dd/MM/yyyy"); ;
+             }
+             else
+             {
+                 return datos.Rows[0][0].ToString();
+             }
+         }*/
+
+        public decimal totalinte(string fechai, string fechaf, string codcre)
         {
-            string consulta = "SELECT Max(Date_format(fecha,'%d-%m-%y')) FROM pagos WHERE cod_credito=" + credi;
+            string consulta= "SELECT SUM(p.interes) " +
+                             "FROM pagos p "+
+                             "WHERE p.COD_CREDITO ="+codcre+" AND p.FECHA >= '"+fechai+"' AND p.FECHA <= '"+fechaf+"' AND p.Estado = 'Hecho'";
+            decimal total;
             DataTable datos = new DataTable();
-                datos = buscar(consulta);
-            if (datos.Rows[0][0]==DBNull.Value )
-            {
-                string fechcre = "Select date_format(fecha_conc,'%d-%m-%Y') from credito where cod_credito=" + credi;
-                DataTable fech;
-                fech = buscar(fechcre);
-                DateTime rev;
-                rev = Convert.ToDateTime(fech.Rows[0][0]);
-                rev = rev.AddDays(1);
-                return rev.ToString("dd/MM/yyyy"); ;
-            }
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            { total = decimal.Parse(datos.Rows[0][0].ToString()); }
             else
-            {
-                return datos.Rows[0][0].ToString();
-            }
+            { total = 0; }
+           
+            return total;
         }
+
+        public decimal totalcapi(string fechai, string fechaf, string codcre)
+        {
+            string consulta = "SELECT SUM(p.capital) " +
+                             "FROM pagos p " +
+                             "WHERE p.COD_CREDITO ="+codcre+" AND p.FECHA >= '"+fechai+"' AND p.FECHA <= '"+fechaf+"' AND p.Estado = 'Hecho'";
+            decimal total;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            { total = decimal.Parse(datos.Rows[0][0].ToString()); }
+            else
+            { total = 0; }
+
+            return total;
+        }
+
+        public decimal totalmora(string fechai, string fechaf, string codcre)
+        {
+            string consulta = "SELECT SUM(p.Mora) " +
+                             "FROM pagos p " +
+                             "WHERE p.COD_CREDITO =" + codcre + " AND p.FECHA >= '" + fechai + "' AND p.FECHA <= '" + fechaf + "' AND p.Estado = 'Hecho'";
+            decimal total;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            { total = decimal.Parse(datos.Rows[0][0].ToString()); }
+            else
+            { total = 0; }
+
+            return total;
+        }
+
 
 
 
