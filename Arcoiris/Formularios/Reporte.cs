@@ -364,7 +364,7 @@ namespace Arcoiris.Formularios
                 int pagos = int.Parse(datos.Rows[cont][4].ToString());
                 codcre = datos.Rows[cont][0].ToString();
                 decimal totalpagAct= cre.totalpagAct(codcre,fechai,fechaf);
-                decimal totalpagAnt = cre.totalpagAnt(codcre, fechai);
+                decimal totalpagAnt = cre.totalpagAnt(codcre, fechai,fechaf);
                 decimal interes=0, capital=0,pagosope,Valint,Monto;
                 Monto = decimal.Parse(datos.Rows[cont][1].ToString());
                 Valint = decimal.Parse(datos.Rows[cont][2].ToString());
@@ -451,11 +451,11 @@ namespace Arcoiris.Formularios
                     pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
                     tipCre = "Diario";
 
-                    if (!cre.UltpCredi(codcre, fechai, fechaf) && estado != "Terminado")
+                    if (!/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado != "Terminado")
                     {
                         pagoscre = 0;
                     }
-                    else if (cre.UltpCredi(codcre, fechai, fechaf) && estado == "Terminado")
+                    else if (/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado == "Terminado")
                     {
                         bool bandera = true;
                         pagosope -= capital;
@@ -489,11 +489,11 @@ namespace Arcoiris.Formularios
                     pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
                     tipCre = "Diario - Interes";
 
-                    if (!cre.UltpCredi(codcre, fechai, fechaf) && estado!="Terminado")
+                    if (!/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado!="Terminado")
                     {
                         pagoscre = 0;
                     }
-                    else if (cre.UltpCredi(codcre,fechai,fechaf) && estado == "Terminado") 
+                    else if (/*cre.UltpCredi*/cre.PagosCredCance(codcre,fechai,fechaf) && estado == "Terminado") 
                     {
                         bool bandera = true;
                         pagosope -= capital;
@@ -580,15 +580,14 @@ namespace Arcoiris.Formularios
                             {
                                 pagoscre++;
                             }
-                            
                         }
                         MontoTotCred -= cuotacapital;
                     }
+                    pagoscre = cre.PagosTot(codcre, fechai, fechaf);
                 }
 
                 if (pagoscre > pagos) pagoscre = pagos;                
                 comi = pagoscre;
-
                 DataRow fila = datoscomi.NewRow();
                 fila["Credito"] = codcre;
                 fila["Cliente"] = cliente;

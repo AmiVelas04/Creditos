@@ -1786,7 +1786,7 @@ namespace Arcoiris.Clases
         }
         private decimal Saldointe(string cre, string fecha, string tipo, decimal cuota)
         {
-            decimal saldop, total;
+            decimal saldop,CapPag, total;
             DateTime fechaf = Convert.ToDateTime(fecha);
             string consultad = "Select date_format(fecha_conc,'%d-%M-%y') as fecha, monto,interes,dias_pago, Date_format(Fecha_venci,'%Y-%M-%d') from credito where cod_credito=" + cre;
 
@@ -1803,7 +1803,7 @@ namespace Arcoiris.Clases
             int contarpag = 0;
             string consulpag;
             int dias = Convert.ToInt32(datosc.Rows[0][3].ToString());
-            consulpag = "Select sum(interes) as interes from pagos where cod_credito=" + cre + " and estado= 'Hecho'";
+            consulpag = "Select sum(interes) as interes, sum(capital) as capital from pagos where cod_credito=" + cre + " and estado= 'Hecho'";
             DataTable datosp = new DataTable();
             datosp = buscar(consulpag);
 
@@ -1815,6 +1815,16 @@ namespace Arcoiris.Clases
             {
                 saldop = Convert.ToDecimal(datosp.Rows[0][0]);
             }
+            if (datosp.Rows[0][1] == DBNull.Value)
+            {
+                CapPag = 0;
+            }
+            else
+            {
+                CapPag = Convert.ToDecimal(datosp.Rows[0][1]);
+            }
+
+
             //tipo 1 de credito
             if (tipo == "1") {
                 cuota = monto * inter / 100;
@@ -1871,7 +1881,15 @@ namespace Arcoiris.Clases
             //tipo 4 de credito
             else if (tipo == "4")
             {
+                DataTable datospag = new DataTable();
+                decimal cappag, intpag;
+                string consulta;
+                consulta = "select capital, interes from pagos where id_pago ="+cre +" and Estado='Hecho'";
+                datospag = buscar(consulta);
                 fechacon = fechacon.AddDays(1);
+                fechacon = fechacon.AddMonths(1);
+
+
                 while (fechaf >= fechacon)
                 {
                     fechacon = fechacon.AddMonths(1);
@@ -1880,22 +1898,21 @@ namespace Arcoiris.Clases
                 int cont;
                 decimal pagint = 0, cuotac = 0;
                 decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
-
                 cuotac = monto / dias;
                 cuota = 0;
+
+                
                 for (cont = 1; cont <= contarpag; cont++)
                 {
                     pagint = monto * intere / 100 / 12;
                     monto -= cuotac;
                     cuota += pagint;
                 }
+
+
             }
-
-
             total = cuota - saldop;
             total = Math.Round(total, 2);
-
-
             return total;
         }
         #endregion
@@ -1937,14 +1954,14 @@ namespace Arcoiris.Clases
             return valor;
         }
 
-        public decimal totalpagAnt(string credito, string fechai)
+        public decimal totalpagAnt(string credito, string fechai,string fechaf)
         {
             string consulta;
             decimal valor;
             DataTable datos = new DataTable();
             consulta = "SELECT SUM(p.Interes) FROM pagos p " +
                        "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
-                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito + " and p.fecha<'" + fechai + "'";
+                       "WHERE p.Estado = 'Hecho' AND c.COD_CREDITO = " + credito + " and p.fecha<='" + fechaf + "' and p.fecha>='"+fechai+"'";
             datos = buscar(consulta);
             if (datos.Rows[0][0] != DBNull.Value)
             {
@@ -2005,7 +2022,7 @@ namespace Arcoiris.Clases
             { interes = 0; }
             else
             {
-                interes = decimal.Parse(datos.Rows[0][0].ToString());
+                interes = decimal.Parse(datos.Rows[0][1].ToString());
             }
 
             total = capital + interes;
@@ -2028,6 +2045,60 @@ namespace Arcoiris.Clases
             return datos;
         }
 
+
+        public bool PagosCredCance(string credito, string fechai, string fechaf)
+        {
+            DataTable datos = new DataTable();
+            int pagos;
+            string consulta;
+            consulta = "SELECT COUNT(*) FROM pagos p " +
+                      "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
+                      "WHERE(SELECT MAX(p.FECHA) FROM pagos p " +
+                      "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
+                      "WHERE c.COD_CREDITO = "+credito+" AND p.Estado = 'Hecho' AND c.ESTADO = 'Terminado') >= '"+fechai+"' AND(SELECT MAX(p.FECHA) FROM pagos p " +
+                      "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
+                      "WHERE c.COD_CREDITO = "+credito+" AND p.Estado = 'Hecho' AND c.ESTADO = 'Terminado') <= '"+fechaf+"' AND c.COD_CREDITO = "+credito+" AND c.ESTADO = 'Terminado' AND p.Estado = 'Hecho' ";
+                      datos = buscar(consulta);
+            pagos = Int32.Parse(datos.Rows[0][0].ToString());
+            if (pagos > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+       public int PagosTot(string cre, string fechai, string fechaf)
+        {
+            string consulta, consultapgos;
+            int pagosh, totalp, totalpagmes;
+            DataTable datos = new DataTable();
+            DataTable pagoscre = new DataTable();
+            consulta = "SELECT p.ID_PAGO,p.FECHA,p.capital,p.interes,p.Mora,p.Total,c.PLAZO "+
+                       "FROM pagos p "+
+                       "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO "+
+                       "WHERE c.COD_CREDITO = "+cre+" AND p.Estado = 'Hecho' and p.interes>0 "+
+                       "GROUP BY p.ID_PAGO";
+            datos = buscar(consulta);
+            consultapgos = "SELECT COUNT(*) "+
+                           "from pagos p "+
+                           "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO "+
+                           "WHERE p.FECHA >= '"+fechai+"' AND p.FECHA <= '"+fechaf+"'  and p.Estado = 'Hecho' AND c.COD_CREDITO ="+cre + " AND p.interes>0";
+            pagoscre = buscar(consultapgos);
+            totalpagmes = Int32.Parse(pagoscre.Rows[0][0].ToString());
+            totalp = Int32.Parse(datos.Rows[0][6].ToString());
+            pagosh = datos.Rows.Count;
+            if (pagosh > totalp)
+            {
+                return 0;
+            }
+            else
+            {
+                return totalpagmes;
+            }
+        }
 
         #endregion
     }
