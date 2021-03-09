@@ -50,12 +50,17 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.GbxGan = new System.Windows.Forms.GroupBox();
+            this.RdbTodos = new System.Windows.Forms.RadioButton();
+            this.RdbDia = new System.Windows.Forms.RadioButton();
+            this.RdbMes = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.panel2.SuspendLayout();
             this.GbxCreditos.SuspendLayout();
             this.panel3.SuspendLayout();
             this.GbxAs.SuspendLayout();
+            this.GbxGan.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -226,6 +231,7 @@
             // 
             // GbxAs
             // 
+            this.GbxAs.Controls.Add(this.GbxGan);
             this.GbxAs.Controls.Add(this.BtnRepGan);
             this.GbxAs.Controls.Add(this.CboAnio);
             this.GbxAs.Controls.Add(this.label3);
@@ -243,7 +249,7 @@
             // 
             // BtnRepGan
             // 
-            this.BtnRepGan.Location = new System.Drawing.Point(48, 152);
+            this.BtnRepGan.Location = new System.Drawing.Point(48, 184);
             this.BtnRepGan.Name = "BtnRepGan";
             this.BtnRepGan.Size = new System.Drawing.Size(120, 35);
             this.BtnRepGan.TabIndex = 4;
@@ -287,6 +293,50 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
             // 
+            // GbxGan
+            // 
+            this.GbxGan.Controls.Add(this.RdbMes);
+            this.GbxGan.Controls.Add(this.RdbDia);
+            this.GbxGan.Controls.Add(this.RdbTodos);
+            this.GbxGan.Location = new System.Drawing.Point(183, 144);
+            this.GbxGan.Name = "GbxGan";
+            this.GbxGan.Size = new System.Drawing.Size(155, 116);
+            this.GbxGan.TabIndex = 5;
+            this.GbxGan.TabStop = false;
+            this.GbxGan.Text = "Categoria";
+            // 
+            // RdbTodos
+            // 
+            this.RdbTodos.AutoSize = true;
+            this.RdbTodos.Checked = true;
+            this.RdbTodos.Location = new System.Drawing.Point(22, 26);
+            this.RdbTodos.Name = "RdbTodos";
+            this.RdbTodos.Size = new System.Drawing.Size(63, 21);
+            this.RdbTodos.TabIndex = 0;
+            this.RdbTodos.TabStop = true;
+            this.RdbTodos.Text = "Todos";
+            this.RdbTodos.UseVisualStyleBackColor = true;
+            // 
+            // RdbDia
+            // 
+            this.RdbDia.AutoSize = true;
+            this.RdbDia.Location = new System.Drawing.Point(22, 54);
+            this.RdbDia.Name = "RdbDia";
+            this.RdbDia.Size = new System.Drawing.Size(70, 21);
+            this.RdbDia.TabIndex = 1;
+            this.RdbDia.Text = "Diarios";
+            this.RdbDia.UseVisualStyleBackColor = true;
+            // 
+            // RdbMes
+            // 
+            this.RdbMes.AutoSize = true;
+            this.RdbMes.Location = new System.Drawing.Point(22, 84);
+            this.RdbMes.Name = "RdbMes";
+            this.RdbMes.Size = new System.Drawing.Size(91, 21);
+            this.RdbMes.TabIndex = 2;
+            this.RdbMes.Text = "Mensuales";
+            this.RdbMes.UseVisualStyleBackColor = true;
+            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -311,6 +361,8 @@
             this.panel3.ResumeLayout(false);
             this.GbxAs.ResumeLayout(false);
             this.GbxAs.PerformLayout();
+            this.GbxGan.ResumeLayout(false);
+            this.GbxGan.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -339,5 +391,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DateTimePicker DtpComiFin;
         private System.Windows.Forms.DateTimePicker DtpComIni;
+        private System.Windows.Forms.GroupBox GbxGan;
+        private System.Windows.Forms.RadioButton RdbMes;
+        private System.Windows.Forms.RadioButton RdbDia;
+        private System.Windows.Forms.RadioButton RdbTodos;
     }
 }

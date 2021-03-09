@@ -160,7 +160,24 @@ namespace Arcoiris.Formularios
         }
         private void BtnRepGan_Click(object sender, EventArgs e)
         {
-           Rep_gan();
+
+            if (RdbTodos.Checked)
+            {
+                Rep_gan();
+            }
+            else if (RdbMes.Checked)
+            {
+                Rep_Gan_Mes();
+            }
+            else if (RdbDia.Checked)
+            {
+                Rep_Gan_Di();
+            }
+                        else
+            {
+                MessageBox.Show("No se ha selecionado ninguna categoría");
+            }
+            
         }
         private void Rep_gan()
         {
@@ -171,6 +188,24 @@ namespace Arcoiris.Formularios
             nomfecha = CboMes.Text + " de " + CboAnio.Text;
             repor.Ganancia(Finicio, Ffin,nomfecha);
 
+        }
+
+        private void Rep_Gan_Di()
+        {
+            string Finicio = FechaI(CboMes.Text, CboAnio.Text);
+            string Ffin = FechaF(CboMes.Text, CboAnio.Text);
+            string nomfecha;
+            nomfecha = "\nCreditos Diarios\n"+CboMes.Text + " de " + CboAnio.Text;
+            repor.GanaciaDi(Finicio, Ffin, nomfecha);
+        }
+
+        private void Rep_Gan_Mes()
+        {
+            string Finicio = FechaI(CboMes.Text, CboAnio.Text);
+            string Ffin = FechaF(CboMes.Text, CboAnio.Text);
+            string nomfecha;
+            nomfecha = "\nCreditos Mensuales\n"+CboMes.Text + " de " + CboAnio.Text;
+            repor.GanaciaMes(Finicio, Ffin, nomfecha);
         }
 
         private string FechaI(string Mes, string anio)

@@ -473,56 +473,7 @@ namespace Arcoiris.Reportes
 
         }
 
-        public void Ganancia(string Fechai,string Fechaf, string nomfecha)
-        {
-            Reportes.RepEnc Encab = new Reportes.RepEnc();
-            Encab.Titulo = "Reporte de ganacia " + nomfecha;
-            Encab.periodo = "LOL";
-            string consulta;
-            consulta = "SELECT CONCAT(cli.nombres, ' ', Apellidos) AS nombre, cre.monto, SUM(pag.capital) AS cap, SUM(pag.interes)AS inte, pag.mora AS mora, cre.cod_credito " +
-                     "FROM cliente cli " +
-                     "inner JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
-                     "inner JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
-                     "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO  and cre.estado!='Cancelado' " +
-                     "LEFT JOIN pagos pag on cre.COD_CREDITO = pag.COD_CREDITO  and pag.estado='Hecho' " +
-                     "WHERE ((pag.FECHA >= '"+Fechai+ "' AND pag.FECHA <= '"+Fechaf+"' ) OR (cre.FECHA_CONC>='" + Fechai + "' AND cre.FECHA_CONC<='"+Fechaf+"' AND cre.Gastos_admin>0)) " +
-                     "GROUP BY cre.cod_credito "+
-                     "Order by cli.nombres";
-            DataTable datos = new DataTable();
-            datos = buscar(consulta);
-            int total,cont;
-            total = datos.Rows.Count;
-            for (cont = 1; cont <= total; cont++)
-            {
-                RepDetCli detall = new RepDetCli();
-                string pago=datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
-                string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
-                string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
-                string codigocre = datos.Rows[cont - 1][5].ToString();
-                decimal capicalc, intecalc,moracalc;
-                capicalc = pag.totalcapi(Fechai, Fechaf, codigocre);
-                intecalc = pag.totalinte(Fechai, Fechaf, codigocre);
-                moracalc = pag.totalmora(Fechai, Fechaf, codigocre);
-                if (decimal.Parse(pago) != capicalc)   pago = capicalc.ToString();
-                if (decimal.Parse(capi) != intecalc)   capi = intecalc.ToString();
-                if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
-
-
-
-                detall.Cliente = datos.Rows[cont-1][0].ToString()+ "\nCredito: " + codigocre  ;
-                detall.Credito = datos.Rows[cont - 1][1].ToString();
-                detall.pago = pago;
-                detall .Total = Convert.ToDecimal (capi);
-                detall.tel = inte;
-                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
-                Encab.detalleC.Add(detall);
-            }
-            Reportes.Ganancias Gan = new Reportes.Ganancias();
-            Gan.Enc.Add(Encab);
-            Gan.Deta = Encab.detalleC;
-            Gan.Show();
-            //faltaln datos en form ganacias
-           }
+        
 
         public void Venc_ord(string titulo,string tip)
         {
@@ -723,7 +674,163 @@ namespace Arcoiris.Reportes
 
         }
 
-       
+        #region "Calculo de Ganacias"
+        public void Ganancia(string Fechai, string Fechaf, string nomfecha)
+        {
+            Reportes.RepEnc Encab = new Reportes.RepEnc();
+            Encab.Titulo = "Reporte de ganacia " + nomfecha;
+            Encab.periodo = "LOL";
+            string consulta;
+            consulta = "SELECT CONCAT(cli.nombres, ' ', Apellidos) AS nombre, cre.monto, SUM(pag.capital) AS cap, SUM(pag.interes)AS inte, pag.mora AS mora, cre.cod_credito " +
+                     "FROM cliente cli " +
+                     "inner JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
+                     "inner JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
+                     "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO  and cre.estado!='Cancelado' " +
+                     "LEFT JOIN pagos pag on cre.COD_CREDITO = pag.COD_CREDITO  and pag.estado='Hecho' " +
+                     "WHERE ((pag.FECHA >= '" + Fechai + "' AND pag.FECHA <= '" + Fechaf + "' ) OR (cre.FECHA_CONC>='" + Fechai + "' AND cre.FECHA_CONC<='" + Fechaf + "' AND cre.Gastos_admin>0)) " +
+                     "GROUP BY cre.cod_credito " +
+                     "Order by cli.nombres";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int total, cont;
+            total = datos.Rows.Count;
+            for (cont = 1; cont <= total; cont++)
+            {
+                RepDetCli detall = new RepDetCli();
+                string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
+                string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
+                string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
+                string codigocre = datos.Rows[cont - 1][5].ToString();
+                decimal capicalc, intecalc, moracalc;
+                capicalc = pag.totalcapi(Fechai, Fechaf, codigocre);
+                intecalc = pag.totalinte(Fechai, Fechaf, codigocre);
+                moracalc = pag.totalmora(Fechai, Fechaf, codigocre);
+                if (decimal.Parse(pago) != capicalc) pago = capicalc.ToString();
+                if (decimal.Parse(capi) != intecalc) capi = intecalc.ToString();
+                if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
+
+
+
+                detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
+                detall.Credito = datos.Rows[cont - 1][1].ToString();
+                detall.pago = pago;
+                detall.Total = Convert.ToDecimal(capi);
+                detall.tel = inte;
+                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
+                Encab.detalleC.Add(detall);
+            }
+            Reportes.Ganancias Gan = new Reportes.Ganancias();
+            Gan.Enc.Add(Encab);
+            Gan.Deta = Encab.detalleC;
+            Gan.Show();
+            //faltaln datos en form ganacias
+        }
+
+        public void GanaciaDi(string Fechai, string Fechaf, string nomfecha)
+        {
+            Reportes.RepEnc Encab = new Reportes.RepEnc();
+            Encab.Titulo = "Reporte de ganacia " + nomfecha;
+            Encab.periodo = "LOL";
+            string consulta;
+            consulta = "SELECT CONCAT(cli.nombres, ' ', Apellidos) AS nombre, cre.monto, SUM(pag.capital) AS cap, SUM(pag.interes)AS inte, pag.mora AS mora, cre.cod_credito " +
+                     "FROM cliente cli " +
+                     "inner JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
+                     "inner JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
+                     "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO  and cre.estado!='Cancelado' " +
+                     "LEFT JOIN pagos pag on cre.COD_CREDITO = pag.COD_CREDITO  and pag.estado='Hecho' " +
+                     "WHERE ((pag.FECHA >= '" + Fechai + "' AND pag.FECHA <= '" + Fechaf + "' and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) ) OR (cre.FECHA_CONC>='" + Fechai + "' AND cre.FECHA_CONC<='" + Fechaf + "' AND cre.Gastos_admin>0 and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2))) " +
+                     "GROUP BY cre.cod_credito " +
+                     "Order by cli.nombres";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int total, cont;
+            total = datos.Rows.Count;
+            for (cont = 1; cont <= total; cont++)
+            {
+                RepDetCli detall = new RepDetCli();
+                string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
+                string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
+                string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
+                string codigocre = datos.Rows[cont - 1][5].ToString();
+                decimal capicalc, intecalc, moracalc;
+                capicalc = pag.totalcapi(Fechai, Fechaf, codigocre);
+                intecalc = pag.totalinte(Fechai, Fechaf, codigocre);
+                moracalc = pag.totalmora(Fechai, Fechaf, codigocre);
+                if (decimal.Parse(pago) != capicalc) pago = capicalc.ToString();
+                if (decimal.Parse(capi) != intecalc) capi = intecalc.ToString();
+                if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
+
+
+
+                detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
+                detall.Credito = datos.Rows[cont - 1][1].ToString();
+                detall.pago = pago;
+                detall.Total = Convert.ToDecimal(capi);
+                detall.tel = inte;
+                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
+                Encab.detalleC.Add(detall);
+            }
+            Reportes.Ganancias Gan = new Reportes.Ganancias();
+            Gan.Enc.Add(Encab);
+            Gan.Deta = Encab.detalleC;
+            Gan.Show();
+            //faltaln datos en form ganacias
+
+        }
+
+        public void GanaciaMes(string Fechai, string Fechaf, string nomfecha)
+        {
+            Reportes.RepEnc Encab = new Reportes.RepEnc();
+            Encab.Titulo = "Reporte de ganacia " + nomfecha;
+            Encab.periodo = "LOL";
+            string consulta;
+            consulta = "SELECT CONCAT(cli.nombres, ' ', Apellidos) AS nombre, cre.monto, SUM(pag.capital) AS cap, SUM(pag.interes)AS inte, pag.mora AS mora, cre.cod_credito " +
+                     "FROM cliente cli " +
+                     "inner JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
+                     "inner JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
+                     "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO  and cre.estado!='Cancelado' " +
+                     "LEFT JOIN pagos pag on cre.COD_CREDITO = pag.COD_CREDITO  and pag.estado='Hecho' " +
+                     "WHERE ((pag.FECHA >= '" + Fechai + "' AND pag.FECHA <= '" + Fechaf + "' and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) ) OR (cre.FECHA_CONC>='" + Fechai + "' AND cre.FECHA_CONC<='" + Fechaf + "' AND cre.Gastos_admin>0 and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4))) " +
+                     "GROUP BY cre.cod_credito " +
+                     "Order by cli.nombres";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            int total, cont;
+            total = datos.Rows.Count;
+            for (cont = 1; cont <= total; cont++)
+            {
+                RepDetCli detall = new RepDetCli();
+                string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
+                string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
+                string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
+                string codigocre = datos.Rows[cont - 1][5].ToString();
+                decimal capicalc, intecalc, moracalc;
+                capicalc = pag.totalcapi(Fechai, Fechaf, codigocre);
+                intecalc = pag.totalinte(Fechai, Fechaf, codigocre);
+                moracalc = pag.totalmora(Fechai, Fechaf, codigocre);
+                if (decimal.Parse(pago) != capicalc) pago = capicalc.ToString();
+                if (decimal.Parse(capi) != intecalc) capi = intecalc.ToString();
+                if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
+
+
+
+                detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
+                detall.Credito = datos.Rows[cont - 1][1].ToString();
+                detall.pago = pago;
+                detall.Total = Convert.ToDecimal(capi);
+                detall.tel = inte;
+                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
+                Encab.detalleC.Add(detall);
+            }
+            Reportes.Ganancias Gan = new Reportes.Ganancias();
+            Gan.Enc.Add(Encab);
+            Gan.Deta = Encab.detalleC;
+            Gan.Show();
+            //faltaln datos en form ganacias
+
+        }
+
+        #endregion
     }
 }
 

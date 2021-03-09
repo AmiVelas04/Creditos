@@ -1886,20 +1886,23 @@ namespace Arcoiris.Clases
                 string consulta;
                 consulta = "select capital, interes from pagos where id_pago ="+cre +" and Estado='Hecho'";
                 datospag = buscar(consulta);
-                fechacon = fechacon.AddDays(1);
+                //fechacon = fechacon.AddDays(1);
                 fechacon = fechacon.AddMonths(1);
-
 
                 while (fechaf >= fechacon)
                 {
                     fechacon = fechacon.AddMonths(1);
                     contarpag++;
                 }
+
                 int cont;
                 decimal pagint = 0, cuotac = 0;
                 decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
                 cuotac = monto / dias;
                 cuota = 0;
+
+
+
 
                 
                 for (cont = 1; cont <= contarpag; cont++)
