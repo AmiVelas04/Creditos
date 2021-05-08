@@ -1883,39 +1883,43 @@ namespace Arcoiris.Clases
             {
                 DataTable datospag = new DataTable();
                 decimal cappag, intpag;
+                int cont,cantph=0;
+                decimal pagint = 0, cuotac = 0, cuotacf = 0;
                 string consulta;
-                consulta = "select capital, interes from pagos where id_pago ="+cre +" and Estado='Hecho'";
+                consulta = "select capital, interes from pagos where cod_credito ="+cre +" and Estado='Hecho'";
                 datospag = buscar(consulta);
-                //fechacon = fechacon.AddDays(1);
-                fechacon = fechacon.AddMonths(1);
+                fechacon = fechacon.AddDays(1);
+                fechacon = fechacon.AddMonths(0);
+                cantph = datospag.Rows.Count;
 
                 while (fechaf >= fechacon)
                 {
                     fechacon = fechacon.AddMonths(1);
                     contarpag++;
                 }
-
-                int cont;
-                decimal pagint = 0, cuotac = 0;
-                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
-                cuotac = monto / dias;
-                cuota = 0;
-
-
-
-
                 
-                for (cont = 1; cont <= contarpag; cont++)
+                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
+                cuotacf = monto / dias;
+                cuota = 0;
+                for (cont = 1; cont <=contarpag; cont++)
                 {
+                    if (cont <= cantph)
+                    { cuotac = decimal.Parse(datospag.Rows[cont - 1][0].ToString()); }
+                    else
+                    {
+                        cuotac = cuotacf;
+                    }
+
                     pagint = monto * intere / 100 / 12;
                     monto -= cuotac;
                     cuota += pagint;
                 }
-
-
+             
             }
+
             total = cuota - saldop;
             total = Math.Round(total, 2);
+            //total = 100;
             return total;
         }
         #endregion

@@ -218,7 +218,6 @@ namespace Arcoiris.Formularios
         }
         private void CboPresta_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (CboPresta.Text != "" && ChkCancelado.Checked == false)
             {
                 BtnPago.Enabled = true;
