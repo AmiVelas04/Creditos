@@ -215,7 +215,7 @@
             // 
             this.BtnEliminarCre.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminarCre.Image")));
             this.BtnEliminarCre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEliminarCre.Location = new System.Drawing.Point(432, 57);
+            this.BtnEliminarCre.Location = new System.Drawing.Point(428, 57);
             this.BtnEliminarCre.Name = "BtnEliminarCre";
             this.BtnEliminarCre.Size = new System.Drawing.Size(102, 47);
             this.BtnEliminarCre.TabIndex = 51;
@@ -227,7 +227,7 @@
             // 
             // BtnListPago
             // 
-            this.BtnListPago.Location = new System.Drawing.Point(558, 57);
+            this.BtnListPago.Location = new System.Drawing.Point(549, 57);
             this.BtnListPago.Name = "BtnListPago";
             this.BtnListPago.Size = new System.Drawing.Size(88, 48);
             this.BtnListPago.TabIndex = 50;

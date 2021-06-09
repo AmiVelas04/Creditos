@@ -220,7 +220,6 @@ namespace Arcoiris.Clases
                     }
                     datraso = atra;
                 }
-
                 else if (tipoc.Equals("3") || tipoc.Equals("4"))
                 {
                     int mesatras = 0;
@@ -1282,7 +1281,7 @@ namespace Arcoiris.Clases
             //Revisar si se hizo el pago de hoy
             string consulp;
             int pagoshoy;
-            consulp = "Select count(*), sum(interes), sum(capital) from pagos where cod_credito=" + credito + " and fecha= '" + fecha + "'";
+            consulp = "Select count(*), sum(interes), sum(capital) from pagos where cod_credito=" + credito + " and Estado='Hecho'";
             DataTable datosp = new DataTable();
             datosp = buscar(consulp);
             // MessageBox.Show("Numeo de pagos: " + datosp .Rows [0][0].ToString ());
@@ -1325,15 +1324,29 @@ namespace Arcoiris.Clases
             //4) no se ha hecho un pago hoy , si existen anteriores, no se ha pasado de la fehca y  hay atraso
             else if (pagoshoy == 0 && pagar > 0 && fechaact < fechavenc && atraso > 0)
             {
-                decimal CuotaBase = 0;
+                string consulpag = "select capital, interes from pagos p where p.cod_credito =" + credito + " and p.Estado='Hecho'";
+                DataTable datapag = new DataTable();
+                decimal CuotaBase = 0, SaldoTemp = saldoc,TpagCap=0,TpagInt=0,IntProye=0;
+                int cont,Cpag,Total;
                 CuotaBase = Math.Round((monto / diasp), 2);
-                Decimal SaldoTemp = saldoc;
-                int cont;
+                TpagInt = 0;//saldoc * interes / 100 / 12;
+                datapag = buscar(consulpag);
+                Total = datapag.Rows.Count;
+
+                //calculo de pagos hechos por el cliente
+                for (Cpag=0;Cpag< Total;Cpag++)
+                {
+                    TpagInt += SaldoTemp * interes / 100 / 12;
+                    TpagCap = decimal.Parse(datapag.Rows[Cpag][0].ToString());
+                    SaldoTemp -= TpagCap;
+                }
+                IntProye = TpagInt;
                 for (cont = 1; cont <= atraso; cont++)
                 {
-                    pagoint += SaldoTemp * interes / 100 / 12;
-                    SaldoTemp -= CuotaBase;
+                    TpagInt += SaldoTemp * interes / 100 / 12;
                 }
+
+                pagoint = TpagInt;
                 pagocap = CuotaBase * (diasp);
                 //  MessageBox.Show("4");
             }
@@ -1349,13 +1362,31 @@ namespace Arcoiris.Clases
             //6)hay pagos hoy, no se ha pasado de la fecha y si hay atraso
             else if (pagoshoy > 0 && fechaact < fechavenc && atraso > 0)
             {
-                decimal CuotaBase = 0;
+                string consulpag = "select capital, interes from pagos p where p.cod_credito =" + credito + " and p.Estado='Hecho'";
+                DataTable datapag = new DataTable();
+                decimal CuotaBase = 0, SaldoTemp = monto, TpagCap = 0, TpagInt = 0, IntProye = 0;
+                int cont, Cpag, Total;
                 CuotaBase = Math.Round((monto / diasp), 2);
-                Decimal SaldoTemp = saldoc;
-                pagoint += 0;
-                SaldoTemp -= CuotaBase;
+                TpagInt = 0;//saldoc * interes / 100 / 12;
+                datapag = buscar(consulpag);
+                Total = datapag.Rows.Count;
 
+                //calculo de pagos hechos por el cliente
+                for (Cpag = 0; Cpag < Total; Cpag++)
+                {
+                    TpagInt += SaldoTemp * interes / 100 / 12;
+                    TpagCap = decimal.Parse(datapag.Rows[Cpag][0].ToString());
+                    SaldoTemp -= TpagCap;
+                }
+                IntProye = TpagInt;
+                for (cont = 1; cont <= atraso; cont++)
+                {
+                    TpagInt += SaldoTemp * interes / 100 / 12;
+                }
+
+                pagoint = TpagInt;
                 pagocap = CuotaBase * (diasp);
+                
                 //  MessageBox.Show("6");
             }
 
@@ -1635,15 +1666,34 @@ namespace Arcoiris.Clases
                 //Calculo de atraso...
                 decimal montoprov = monto;
                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
-                int contdi = 0, cont = 0, Dfin = 0;
+                DataTable datosp = new DataTable();
+                string consulpag = "select capital, interes from pagos p where p.cod_credito = "+cre +" and p.Estado = 'Hecho'";
+                datosp = buscar(consulpag);
+                int contdi = 0, cont = 0, Dfin = 0,cant=datosp.Rows.Count;
                 DateTime fcamb = Fini.AddMonths(0);
                 while (Ffin > fcamb)
                 {
+                    if (cont < cant)
+                    {
+                        if (datosp.Rows[cont][0] != DBNull.Value)
+                        {
+                            Pcap = decimal.Parse(datosp.Rows[cont][0].ToString());
+                        }
+                        else
+                        {
+                            Pcap = 0;
+                        }
+                    }
+                    else
+                    {
+                        Pcap = 0;
+                    }
                     fcamb = fcamb.AddMonths(1);
                     TotG -= (Pcap + Pint);
                     if (TotG >= 0) Dfin++;
                     montoprov -= Pcap;
                     Pint = Math.Round((montoprov * interes / 100 / 12), 2);
+                    cont++;
                 }
                 Dfin++;
                 dif = Ffin - Fini.AddMonths(Dfin);
@@ -1683,7 +1733,7 @@ namespace Arcoiris.Clases
 
             int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo);//revisar numero de pagos que deberia haberse hecho
             int atraso = Convert.ToInt32(dias_atraso(cre, fecha));
-            decimal pint = 0, pcap = 0, ptot = 0;
+            decimal pint = 0, pcap = 0, ptot = 0,PcapO=0;
             if (pagos > dias) pagos = dias;
             if (tipo == "1")
             {
@@ -1725,25 +1775,36 @@ namespace Arcoiris.Clases
             }
             else if (tipo == "4")
             {
-                int cont;
+                int conteo;
+                
+                string ConPagosH;
+                ConPagosH = "Select capital,interes from pagos p where p.cod_credito="+cre +" and p.estado='Hecho'";
 
+                
+                DataTable datosph = new DataTable();
+                datosph=buscar(ConPagosH);
+              
                 pcap = Math.Round((monto / dias), 2);
-
-
-                for (cont = 1; cont <= pagos; cont++)
+                pint= monto * inte / 100 / 12; ;
+                PcapO = pcap;
+                for (conteo = 0; conteo < (pagos-1); conteo++)
                 {
-                    pint += monto * inte / 100 / 12;
+                    if (conteo <datosph.Rows.Count)
+                    {
+                        pcap = decimal.Parse(datosph.Rows[conteo][0].ToString());
+                    }
+                    else
+                    { pcap = 0; }
                     monto -= pcap;
+                    pint += monto * inte / 100 / 12;
                 }
-                pcap *= pagos;
+                pcap = (monto / dias)* pagos;
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;
             }
 
-
             //Paso 3 obtener total de pagos hechos
-
             string consulpagoH = "Select sum(capital) as capital, sum(interes) as interes from pagos where cod_credito=" + cre + " and estado='Hecho'";
             DataTable datsal = new DataTable();
             datsal = buscar(consulpagoH);
@@ -1823,8 +1884,6 @@ namespace Arcoiris.Clases
             {
                 CapPag = Convert.ToDecimal(datosp.Rows[0][1]);
             }
-
-
             //tipo 1 de credito
             if (tipo == "1") {
                 cuota = monto * inter / 100;
@@ -1860,7 +1919,6 @@ namespace Arcoiris.Clases
                     {
                         contarpag++;
                     }
-
                 }
                 if (contarpag > dias) contarpag = dias;
                 cuota = cuota * contarpag;
@@ -1882,37 +1940,105 @@ namespace Arcoiris.Clases
             else if (tipo == "4")
             {
                 DataTable datospag = new DataTable();
-                decimal cappag, intpag;
-                string consulta;
-                consulta = "select capital, interes from pagos where id_pago ="+cre +" and Estado='Hecho'";
+                DataTable datospagosh = new DataTable();
+                decimal cappag=monto, intpag=0,pagint = 0, cuotac = 0;
+                int todopag,cont,contp,ConteoG;
+                string consulta,consultpag;
+                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
+                consulta = "select capital, interes from pagos p where p.cod_credito ="+cre +" and p.Estado='Hecho'";
+                consultpag = "";
                 datospag = buscar(consulta);
-                //fechacon = fechacon.AddDays(1);
-                fechacon = fechacon.AddMonths(1);
+                fechacon = fechacon.AddDays(1);
+                fechacon = fechacon.AddMonths(0);
+                todopag = datospag.Rows.Count;
+                cuotac =  monto / dias;
+                intpag = monto * intere / 100 / 12;
+                cuota = 0;
+                fechaf = fechaf.AddMonths(0);
 
                 while (fechaf >= fechacon)
                 {
-                    fechacon = fechacon.AddMonths(1);
                     contarpag++;
+                    fechacon = fechacon.AddMonths(1);
+                   
                 }
-
-                int cont;
-                decimal pagint = 0, cuotac = 0;
-                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
-                cuotac = monto / dias;
-                cuota = 0;
-
-
-
-
-                
-                for (cont = 1; cont <= contarpag; cont++)
+                if (contarpag > dias) contarpag = dias;
+                if (contarpag <= dias && contarpag == todopag)
                 {
-                    pagint = monto * intere / 100 / 12;
-                    monto -= cuotac;
+                    for (contp = 0; contp < todopag; contp++)
+                    {
+                        cappag -= cuotac;
+                        pagint += intpag;
+                       //if (contp<todopag)
+                            cuotac = decimal.Parse(datospag.Rows[contp][0].ToString());
+                        cuota += intpag;
+                        intpag = cappag * intere / 100 / 12;
+                    }
+                    
+                }
+                else if (contarpag <= dias && contarpag > todopag)
+                {
+                    int contalt=contarpag-todopag;
+                    cuotac = 0;
+                    for (contp = 0; contp < todopag; contp++)
+                    {
+                        cuotac = decimal.Parse(datospag.Rows[contp][0].ToString());
+                        cappag -= cuotac;
+                        pagint += intpag;
+                        intpag = cappag * intere / 100 / 12;
+                    }
                     cuota += pagint;
+                    decimal PagoGen;
+                    PagoGen = monto / dias;
+                    pagint = 0;
+                    for (contp=0;contp<contalt;contp++)
+                    {
+                        //cappag -= PagoGen;
+                        pagint += intpag;
+                        intpag = cappag * intere / 100 / 12;
+                    }
+                    cuota += pagint;
+                    
+                }
+                else if (contarpag > dias)
+                {
+                    for (contp = 0; contp < contarpag+1; contp++)
+                    {
+                        cappag -= cuotac;
+                        pagint += intpag;
+                        if (contp < todopag)
+                        { cuotac = decimal.Parse(datospag.Rows[contp][0].ToString()); }
+                        else
+                        {
+                            cuotac = monto / dias;
+                        }
+                        cuota += intpag;
+                        intpag = cappag * intere / 100 / 12;
+                    }
+                }
+                else
+                {
+                    cuota = saldop;
                 }
 
+              /*  for (contp = 0; contp < todopag; contp++)
+                {
+                    cappag -= cuotac;
+                    pagint += intpag;
+                    cuotac -= decimal.Parse(datospag.Rows[contp][0].ToString());
+                    intpag = cappag * intere / 100 / 12;
+                }
+                cuota = intpag;
+                */
 
+
+                // cuota = 0;
+                /* for (cont = 1; cont <= contarpag; cont++)
+                 {
+                     pagint = monto * intere / 100 / 12;
+                     monto -= cuotac;
+                     cuota += pagint;
+                 }*/
             }
             total = cuota - saldop;
             total = Math.Round(total, 2);

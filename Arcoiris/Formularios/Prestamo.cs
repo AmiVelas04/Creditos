@@ -116,7 +116,7 @@ namespace Arcoiris.Formularios
             DataTable datos = new DataTable();
             int atras = Convert.ToInt32(cre.dias_atraso(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd")));
          
-           // TxtInteres.Text = inteori.ToString();
+           //TxtInteres.Text = inteori.ToString();
             datos = cre.cantcre(CboPresta.Text,DtpPago.Value.ToString ());
             TxtMonto.Text = datos.Rows[0][0].ToString();
             decimal saldocap = Convert.ToDecimal(datos.Rows[0][1].ToString());
@@ -165,7 +165,7 @@ namespace Arcoiris.Formularios
             DataTable aldia = new DataTable();
             aldia = cre.saldosdias(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"));
             TxtCapital.Text = aldia.Rows[0][0].ToString();
-            TxtInteres.Text = aldia.Rows[0][1].ToString();
+           TxtInteres.Text = aldia.Rows[0][1].ToString();
             decimal intere=0;
             if (Convert.ToDecimal(aldia.Rows[0][1]) > 0) intere = Convert.ToDecimal(aldia.Rows[0][1]);
             decimal capi=0;
@@ -253,7 +253,7 @@ namespace Arcoiris.Formularios
 
             TxtMora.Text = "0";
             TxtCapD .Text = datos.Rows[0][4].ToString();
-            TxtIntD .Text = datos.Rows[0][5].ToString();
+           TxtIntD .Text = datos.Rows[0][5].ToString();
             TxtEfectivo.Text = "";
             decimal cuotaN;
             decimal CapN = Convert.ToDecimal(datos.Rows[0][4].ToString());
@@ -279,7 +279,7 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                TxtInteres.Text = datos.Rows[0][0].ToString();
+                //TxtInteres.Text = datos.Rows[0][0].ToString();
                 TxtCapital.Text = datos.Rows[0][1].ToString();
             }
 
@@ -685,7 +685,6 @@ namespace Arcoiris.Formularios
                 {
                     eliminar_credito(CboPresta.Text);
                 }
-                
             }
         }
 
