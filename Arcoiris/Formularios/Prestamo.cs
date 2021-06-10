@@ -378,14 +378,33 @@ namespace Arcoiris.Formularios
             }
             TxtIntD.Enabled = false;
             TxtCapD.Enabled = false;
-            Pago();
-            ingresocaja();
-            imprimir_bol();
-            TxtCapD.Enabled = false;
-            TxtIntD.Enabled = false;
-            TxtEfectivo.Text = "0";
-            limpiar();
-            CboPresta.Items.Clear();
+            string intpag, cappag,morapag, totpag;
+            intpag =TxtIntD.Text;
+            cappag = TxtCapD.Text;
+            if (TxtMora.Text != "")
+            { morapag = TxtMora.Text; }
+            else
+            {
+                morapag = "0";
+            }
+            if (decimal.Parse(TxtEfectivo.Text)<(decimal.Parse(morapag)+decimal.Parse(intpag)))
+            {
+                intpag= (decimal.Parse(TxtEfectivo.Text) - decimal.Parse(morapag)).ToString();
+                TxtIntD.Text = intpag;
+            }
+            totpag = (decimal.Parse(cappag)+decimal.Parse(intpag)+decimal.Parse(morapag)).ToString();
+            if (MessageBox.Show("Se realizará el siguiente pago: \n"+"Capital: Q." + cappag + "\nInteres: Q." + intpag + "\nMora: Q." + morapag + "\nTotal: Q."+totpag + "\n¿Desea proceder con el pago?","¿Realizar pago?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+            {
+                Pago();
+                ingresocaja();
+                imprimir_bol();
+                TxtCapD.Enabled = false;
+                TxtIntD.Enabled = false;
+                TxtEfectivo.Text = "0";
+                limpiar();
+                CboPresta.Items.Clear();
+            }
+            
             /*
             if (CboPresta.Text != "")
             {
@@ -578,9 +597,17 @@ namespace Arcoiris.Formularios
             if (TxtEfectivo.Text != "" && TxtCapD .Text!="" )
             {
                 if (decimal.Parse(TxtIntD.Text) < 0) TxtIntD.Text = "0";
+
+
                 decimal efectivo=Convert.ToDecimal(TxtEfectivo.Text) ;
                 decimal Capital=Convert.ToDecimal(TxtCapD.Text);
                 decimal interes=Convert.ToDecimal(TxtIntD.Text);
+                decimal interesDeu = Convert.ToDecimal(TxtInteres.Text);
+                if (interesDeu >= interes)
+                {
+                    interes = interesDeu;
+                    TxtIntD.Text = interes.ToString();
+                }
                 decimal mora= Convert.ToDecimal(TxtMora.Text);
                 decimal residuo= efectivo -interes;
                 decimal cuota = Convert.ToDecimal(TxtCuota.Text);
@@ -810,6 +837,7 @@ namespace Arcoiris.Formularios
         private void TxtMora_TextChanged_1(object sender, EventArgs e)
         {
             if (TxtMora.Text == "") TxtMora.Text = "0";
+            TxtEfectivo.Clear();
         }
 
         private void BtnCancel_Click(object sender, EventArgs e)
