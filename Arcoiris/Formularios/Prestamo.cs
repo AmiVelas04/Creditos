@@ -226,6 +226,7 @@ namespace Arcoiris.Formularios
                 TxtEfectivo.Enabled = true;
                 llenadocajas();
                 DatosCre();
+                activaDia();
                 //  calculo();
             }
             else if (CboPresta.Text != "" && ChkCancelado.Checked == true)
@@ -239,6 +240,23 @@ namespace Arcoiris.Formularios
 
             }
 
+
+
+        }
+
+        private void activaDia()
+        {
+            decimal interesc, interesd;
+            interesc = decimal.Parse(TxtIntD.Text);
+            interesd = decimal.Parse(TxtInteres.Text);
+            if (interesc >= interesd)
+            {
+                BtnAldia.Enabled = false;
+            }
+            else
+            {
+                BtnAldia.Enabled = true;
+            }
 
 
         }
@@ -420,7 +438,8 @@ namespace Arcoiris.Formularios
             string pago = TxtCuota .Text;
             string fecha = DtpPago.Value.ToString ();
             string mora = TxtMora.Text;
-            string[] datos = {credito,interes,capital,pago,fecha,mora };
+            string saldoint = TxtSaldInt.Text;
+            string[] datos = {credito,interes,capital,pago,fecha,mora,saldoint };
             Clases.Pago pagar = new Clases.Pago();
             if (pagar.Hacer_Pago(datos))
             {

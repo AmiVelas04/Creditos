@@ -1798,7 +1798,7 @@ namespace Arcoiris.Clases
                     monto -= pcap;
                     pint += monto * inte / 100 / 12;
                 }
-                pcap = (monto / dias)* pagos;
+                pcap = (decimal.Parse(datcre.Rows[0][0].ToString()) / dias)* pagos;
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;

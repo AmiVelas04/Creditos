@@ -79,14 +79,14 @@ namespace Arcoiris.Clases
             credito = buscar(consulta);
             //interes y capital para actualizar el credito
             decimal Sinteres = Convert.ToDecimal (credito.Rows[0][0].ToString());
-            decimal Scapital = Convert.ToDecimal(credito.Rows[0][1].ToString());
+            decimal Scapital = Convert.ToDecimal(datos[6]);
             decimal interesoriginal= Convert.ToDecimal(credito.Rows[0][4].ToString());
           
             if (tCredit == "1")
             {
                 Sinteres -= interes;
                 Scapital -= capital;
-                if (Scapital <= 0)
+                if (Scapital <= 0 && Sinteres<=0)
                 {
                     estado = "Terminado";
                 }
@@ -115,7 +115,7 @@ namespace Arcoiris.Clases
             {
                 Sinteres -= interes;
                 Scapital -= capital;
-                if (Scapital <= 0 /*&& Sinteres <= 0*/)
+                if (Scapital <= 0 && Sinteres <= 0)
                 {
 
                     estado = "Terminado";
@@ -128,7 +128,7 @@ namespace Arcoiris.Clases
             }
             else if (tCredit == "4")
             {
-                Scapital -= capital;
+               /* Scapital -= capital;
                 int plazo;
                 plazo = Convert.ToInt32 (credito.Rows[0][2].ToString());
                 int pagpend;
@@ -156,6 +156,16 @@ namespace Arcoiris.Clases
                 {
                     estado = "Terminado";
                    
+                }
+                else
+                {
+                    estado = "Activo";
+                }*/
+                Sinteres -= interes;
+                Scapital -= capital;
+                if (Scapital <= 0 && Sinteres <= 0)
+                {
+                    estado = "Terminado";
                 }
                 else
                 {
