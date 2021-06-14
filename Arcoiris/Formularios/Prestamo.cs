@@ -438,8 +438,9 @@ namespace Arcoiris.Formularios
             string pago = TxtCuota .Text;
             string fecha = DtpPago.Value.ToString ();
             string mora = TxtMora.Text;
+            string saldocap = TxtSaldo.Text;
             string saldoint = TxtSaldInt.Text;
-            string[] datos = {credito,interes,capital,pago,fecha,mora,saldoint };
+            string[] datos = {credito,interes,capital,pago,fecha,mora,saldocap,saldoint };
             Clases.Pago pagar = new Clases.Pago();
             if (pagar.Hacer_Pago(datos))
             {

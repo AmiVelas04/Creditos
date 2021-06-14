@@ -78,7 +78,7 @@ namespace Arcoiris.Clases
             consulta = "Select Saldo_int,Saldo_cap,plazo,monto,interes from credito where cod_credito =" + datos[0];
             credito = buscar(consulta);
             //interes y capital para actualizar el credito
-            decimal Sinteres = Convert.ToDecimal (credito.Rows[0][0].ToString());
+            decimal Sinteres = Convert.ToDecimal (datos[7]);
             decimal Scapital = Convert.ToDecimal(datos[6]);
             decimal interesoriginal= Convert.ToDecimal(credito.Rows[0][4].ToString());
           
