@@ -1785,10 +1785,13 @@ namespace Arcoiris.Clases
                 datosph=buscar(ConPagosH);
               
                 pcap = Math.Round((monto / dias), 2);
-                pint= monto * inte / 100 / 12; ;
+               // pint= monto * inte / 100 / 12; ;
                 PcapO = pcap;
-                for (conteo = 0; conteo < (pagos-1); conteo++)
+                for (conteo = 0; conteo < (pagos); conteo++)
                 {
+                    decimal cint = 0;
+                    cint = monto * inte / 100 / 12;
+                    pint += cint;
                     if (conteo <datosph.Rows.Count)
                     {
                         pcap = decimal.Parse(datosph.Rows[conteo][0].ToString());
@@ -1796,7 +1799,7 @@ namespace Arcoiris.Clases
                     else
                     { pcap = 0; }
                     monto -= pcap;
-                    pint += monto * inte / 100 / 12;
+                   
                 }
                 pcap = (decimal.Parse(datcre.Rows[0][0].ToString()) / dias)* pagos;
                 pcap = Math.Round(pcap, 2);
@@ -1823,6 +1826,7 @@ namespace Arcoiris.Clases
             decimal Rint, Rcap, Rtot;
             Rcap = Math.Round((pcap - Scap), 2);
             Rint = Math.Round((pint - Sint), 2);
+            
             Rtot = Rcap + Rint;
             DataTable resp = new DataTable();
             resp.Columns.Add("Capital").DataType = System.Type.GetType("System.String");
