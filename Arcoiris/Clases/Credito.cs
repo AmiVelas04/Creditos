@@ -1712,7 +1712,7 @@ namespace Arcoiris.Clases
         public DataTable saldosdias(string cre, string fecha)
         {
             //parte 1 datos originales
-            string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha from credito where cod_credito=" + cre + " and estado='Activo'";
+            string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha,date_format(Fecha_conc,'%d-%M-%Y') as fecha1 from credito where cod_credito=" + cre + " and estado='Activo'";
             string tipo = "";
             DataTable datcre = new DataTable();
             datcre = buscar(consulCre);
@@ -1776,30 +1776,90 @@ namespace Arcoiris.Clases
             else if (tipo == "4")
             {
                 int conteo;
-                
+                fechaC = Convert.ToDateTime(datcre.Rows[0][5].ToString());
                 string ConPagosH;
-                ConPagosH = "Select capital,interes from pagos p where p.cod_credito="+cre +" and p.estado='Hecho'";
-
-                
+                ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%d-%M-%Y') from pagos p where p.cod_credito=" + cre +" and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
                 datosph=buscar(ConPagosH);
-              
                 pcap = Math.Round((monto / dias), 2);
                // pint= monto * inte / 100 / 12; ;
                 PcapO = pcap;
-                for (conteo = 0; conteo < (pagos); conteo++)
+
+                //si los pagos hechos son iguales a los pagos requeridos
+                if (pagos == datosph.Rows.Count)
                 {
+                    for (conteo = 0; conteo < pagos; conteo++)
+                    {
+                        decimal cint = 0;
+                        cint = monto * inte / 100 / 12;
+                        pint += cint;
+                        monto -= decimal.Parse(datosph.Rows[conteo][0].ToString());
+                    }
+                }
+                // si el numero de pagos requeridos es mayor a los efectuados
+                else if (pagos > datosph.Rows.Count)
+                {
+                    DateTime fechap = new DateTime();
+                    DateTime fechaph = new DateTime();
+                    DateTime fechas = new DateTime();
+                    decimal cint = 0;
+                    int ordenpag=0,pagostot= datosph.Rows.Count;
+                    cint = monto * inte / 100 / 12;
+                    for (conteo = 0; conteo < pagos; conteo++)
+                    {
+                        pint += cint;
+                        fechap = fechaC.AddMonths(conteo);
+                        if (datosph.Rows[ordenpag][3] != DBNull.Value)
+                        {
+                        }
+                        else
+                        {
+                        }
+
+                        if (!DateTime.TryParse(datosph.Rows[ordenpag][3].ToString(), out fechaph))
+                        {fechaph= fechaC.AddMonths(-1); }
+
+
+                        if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
+                        {
+                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                            ordenpag++;
+                            //if (ordenpag <= datosph.Rows.Count) ordenpag = datosph.Rows.Count-1;
+                        }
+                        else
+                        {
+                            monto -= 0;
+                        }
+                        cint = monto * inte / 100 / 12;
+                    }
+                }
+                else {
+                    // si los pagos hechos son mayores a los pagos esperados
+                    int todo;
+                    todo = datosph.Rows.Count;
+                for (conteo = 0; conteo < (todo); conteo++)
+                {
+                    DateTime fechap = new DateTime();
+                    DateTime fechaph = new DateTime();
+                    
+                    fechap = fechaC.AddMonths(conteo + 1);
+                    if (conteo < datosph.Rows.Count) fechaph = DateTime.Parse(datosph.Rows[conteo][2].ToString());
+
+                    /* if (fechaph >= fechap && fechaph<(fechap.AddMonths(1)))
+                        {
+                            MessageBox.Show(fechaph.ToString());
+                        }*/
                     decimal cint = 0;
                     cint = monto * inte / 100 / 12;
                     pint += cint;
                     if (conteo <datosph.Rows.Count)
                     {
-                        pcap = decimal.Parse(datosph.Rows[conteo][0].ToString());
+                    pcap = decimal.Parse(datosph.Rows[conteo][0].ToString());
                     }
                     else
                     { pcap = 0; }
                     monto -= pcap;
-                   
+                }
                 }
                 pcap = (decimal.Parse(datcre.Rows[0][0].ToString()) / dias)* pagos;
                 pcap = Math.Round(pcap, 2);
@@ -1946,10 +2006,10 @@ namespace Arcoiris.Clases
                 DataTable datospag = new DataTable();
                 DataTable datospagosh = new DataTable();
                 decimal cappag=monto, intpag=0,pagint = 0, cuotac = 0;
-                int todopag,cont,contp,ConteoG;
+                int todopag,conteo;
                 string consulta,consultpag;
-                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString());
-                consulta = "select capital, interes from pagos p where p.cod_credito ="+cre +" and p.Estado='Hecho'";
+                decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString()),pcap=0;
+                consulta = "select capital, interes, fecha from pagos p where p.cod_credito ="+cre +" and p.Estado='Hecho'";
                 consultpag = "";
                 datospag = buscar(consulta);
                 fechacon = fechacon.AddDays(1);
@@ -1960,90 +2020,146 @@ namespace Arcoiris.Clases
                 cuota = 0;
                 fechaf = fechaf.AddMonths(0);
 
-                while (fechaf >= fechacon)
+               while (fechaf >= fechacon)
                 {
                     contarpag++;
                     fechacon = fechacon.AddMonths(1);
-                   
                 }
+                fechacon = Convert.ToDateTime(datosc.Rows[0][0]);
+
                 if (contarpag > dias) contarpag = dias;
-                if (contarpag <= dias && contarpag == todopag)
+
+                //si los pagos hechos son iguales a los pagos requeridos
+                if (contarpag == datospag.Rows.Count)
                 {
-                    for (contp = 0; contp < todopag; contp++)
+                    for (conteo = 0; conteo < contarpag; conteo++)
                     {
-                        cappag -= cuotac;
-                        pagint += intpag;
-                       //if (contp<todopag)
-                            cuotac = decimal.Parse(datospag.Rows[contp][0].ToString());
-                        cuota += intpag;
-                        intpag = cappag * intere / 100 / 12;
+                        decimal cint = 0;
+                        cint = monto * inter / 100 / 12;
+                        pagint += cint;
+                        monto -= decimal.Parse(datospag.Rows[conteo][0].ToString());
                     }
-                    
                 }
-                else if (contarpag <= dias && contarpag > todopag)
+                // si el numero de pagos requeridos es mayor a los efectuados
+                else if (contarpag > datospag.Rows.Count)
                 {
-                    int contalt=contarpag-todopag;
-                    cuotac = 0;
-                    for (contp = 0; contp < todopag; contp++)
+                    DateTime fechap = new DateTime();
+                    DateTime fechaph = new DateTime();
+                    decimal cint = 0;
+                    int ordenpag = 0;
+                    cint = monto * inter / 100 / 12;
+
+                    for (conteo = 0; conteo < contarpag; conteo++)
                     {
-                        cuotac = decimal.Parse(datospag.Rows[contp][0].ToString());
-                        cappag -= cuotac;
-                        pagint += intpag;
-                        intpag = cappag * intere / 100 / 12;
-                    }
-                    cuota += pagint;
-                    decimal PagoGen;
-                    PagoGen = monto / dias;
-                    pagint = 0;
-                    for (contp=0;contp<contalt;contp++)
-                    {
-                        //cappag -= PagoGen;
-                        pagint += intpag;
-                        intpag = cappag * intere / 100 / 12;
-                    }
-                    cuota += pagint;
-                    
-                }
-                else if (contarpag > dias)
-                {
-                    for (contp = 0; contp < contarpag+1; contp++)
-                    {
-                        cappag -= cuotac;
-                        pagint += intpag;
-                        if (contp < todopag)
-                        { cuotac = decimal.Parse(datospag.Rows[contp][0].ToString()); }
+                        pagint += cint;
+                        fechap = fechacon.AddMonths(conteo);
+                        if (!DateTime.TryParse(datospag.Rows[ordenpag][2].ToString(), out fechaph))
+                        { fechaph = fechacon.AddMonths(-1); }
+                        if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
+                        {
+                            monto -= decimal.Parse(datospag.Rows[ordenpag][0].ToString());
+                            ordenpag++;
+                        }
                         else
                         {
-                            cuotac = monto / dias;
+                            monto -= 0;
                         }
-                        cuota += intpag;
-                        intpag = cappag * intere / 100 / 12;
+                        cint = monto * inter / 100 / 12;
                     }
                 }
                 else
                 {
-                    cuota = saldop;
+                    // si los pagos hechos son mayores a los pagos esperados
+                    int todo;
+                    todo = datospag.Rows.Count;
+                    for (conteo = 0; conteo < (todo); conteo++)
+                    {
+                        DateTime fechap = new DateTime();
+                        DateTime fechaph = new DateTime();
+
+                        fechap = fechacon.AddMonths(conteo + 1);
+                        if (conteo < datospag.Rows.Count) fechaph = DateTime.Parse(datospag.Rows[conteo][2].ToString());
+
+                        /* if (fechaph >= fechap && fechaph<(fechap.AddMonths(1)))
+                            {
+                                MessageBox.Show(fechaph.ToString());
+                            }*/
+
+                        decimal cint = 0;
+                        cint = monto * inter / 100 / 12;
+                        pagint += cint;
+                        if (conteo < datospag.Rows.Count)
+                        {
+                            pcap = decimal.Parse(datospag.Rows[conteo][0].ToString());
+                        }
+                        else
+                        { pcap = 0; }
+                        monto -= pcap;
+                    }
                 }
 
-              /*  for (contp = 0; contp < todopag; contp++)
-                {
-                    cappag -= cuotac;
-                    pagint += intpag;
-                    cuotac -= decimal.Parse(datospag.Rows[contp][0].ToString());
-                    intpag = cappag * intere / 100 / 12;
-                }
-                cuota = intpag;
-                */
 
 
-                // cuota = 0;
-                /* for (cont = 1; cont <= contarpag; cont++)
-                 {
-                     pagint = monto * intere / 100 / 12;
-                     monto -= cuotac;
-                     cuota += pagint;
-                 }*/
+                /*  if (contarpag <= dias && contarpag == todopag)
+                  {
+                      for (contp = 0; contp < todopag; contp++)
+                      {
+                          cappag -= cuotac;
+                          pagint += intpag;
+                         //if (contp<todopag)
+                              cuotac = decimal.Parse(datospag.Rows[contp][0].ToString());
+                          cuota += intpag;
+                          intpag = cappag * intere / 100 / 12;
+                      }
+                  }
+                  else if (contarpag <= dias && contarpag > todopag)
+                  {
+                      int contalt=contarpag-todopag;
+                      cuotac = 0;
+                      for (contp = 0; contp < todopag; contp++)
+                      {
+                          cuotac = decimal.Parse(datospag.Rows[contp][0].ToString());
+                          cappag -= cuotac;
+                          pagint += intpag;
+                          intpag = cappag * intere / 100 / 12;
+                      }
+                      cuota += pagint;
+                      decimal PagoGen;
+                      PagoGen = monto / dias;
+                      pagint = 0;
+                      for (contp=0;contp<contalt;contp++)
+                      {
+                          //cappag -= PagoGen;
+                          pagint += intpag;
+                          intpag = cappag * intere / 100 / 12;
+                      }
+                      cuota += pagint;
+                  }
+                  else if (contarpag > dias)
+                  {
+                      for (contp = 0; contp < contarpag+1; contp++)
+                      {
+                          cappag -= cuotac;
+                          pagint += intpag;
+                          if (contp < todopag)
+                          { cuotac = decimal.Parse(datospag.Rows[contp][0].ToString()); }
+                          else
+                          {
+                              cuotac = monto / dias;
+                          }
+                          cuota += intpag;
+                          intpag = cappag * intere / 100 / 12;
+                      }
+                  }
+                  else
+                  {
+                      cuota = saldop;
+                  }*/
+
+
+                cuota = pagint;
             }
+            
             total = cuota - saldop;
             total = Math.Round(total, 2);
             return total;
