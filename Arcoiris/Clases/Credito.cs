@@ -1826,6 +1826,7 @@ namespace Arcoiris.Clases
             decimal Rint, Rcap, Rtot;
             Rcap = Math.Round((pcap - Scap), 2);
             Rint = Math.Round((pint - Sint), 2);
+            if (Rint < 0) Rint = 0;
             
             Rtot = Rcap + Rint;
             DataTable resp = new DataTable();
