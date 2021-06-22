@@ -435,7 +435,7 @@ datoscli = cli.Buscar_nom_cli();
         private string fechaf(string fechac,int dias)
         {
             DateTime Fini = Convert.ToDateTime (fechac);
-            DateTime Ffin=Convert.ToDateTime(fechac);//cambair esta fecha para el final
+            DateTime Ffin=Convert.ToDateTime(fechac);//cambiar esta fecha para el final
             int diasc = 0;
             while (diasc<dias)
             {
@@ -501,7 +501,6 @@ datoscli = cli.Buscar_nom_cli();
             //Comprueba si cancelas creditos anteriores o se crea solamente un nuevo credito
             if (totalcre >= 1 && CboEstado.Text == "Autorizado")
             {
-
                 if (MessageBox.Show("Existe(n) creditos activos de cliente \n¿Desea generar un refinanciamiento? \nSi(Refinanciar Credito)\nNo(Generar credito nuevo)", "Creditos anteriores", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     ListCred Lista = new ListCred();
@@ -531,11 +530,13 @@ datoscli = cli.Buscar_nom_cli();
                     datos[9] = totdias(fecha_conc, dias).ToString();
                     datos[10] = TxtGastos.Text;
 
-
+                    DataTable datosfi = new DataTable();
                     //calculo de cuotas finales
                     cuotacapital = cre.saldoant(cod_cli.ToString(), cod_credi.ToString());
-                    cuotaint = cre.SaldoDeinteres(cod_credi.ToString(), DateTime.Now.ToString("yyyy/MM/dd"),nTipo, 0);
-                    string[] pago =new string[4];
+                    datosfi = cre.cantcre(cod_credi.ToString(), DateTime.Now.ToString("dd/MM/yyyy"));
+                    // cuotaint = cre.SaldoDeinteres(cod_credi.ToString(), DateTime.Now.ToString("dd/MM/yyyy"),nTipo, 0);
+                    cuotaint = decimal.Parse(datosfi.Rows[0][5].ToString());
+                    string[] pago =new string[8];
                     pago[0] = cod_credi.ToString();
                     pago[1] = "0";
                     pago[2] = "0";
@@ -543,6 +544,10 @@ datoscli = cli.Buscar_nom_cli();
                     if (cuotacapital>0) pago[2] = cuotacapital.ToString();
                     
                     pago[3] = (decimal.Parse(pago[1]) + decimal.Parse(pago[2])).ToString();
+                    pago[4] = "";
+                    pago[5] = "";
+                    pago[6] = "";
+                    pago[7] =cuotaint.ToString();
 
 
                     //Registrar pago
@@ -652,7 +657,9 @@ datoscli = cli.Buscar_nom_cli();
             string pago = valores[3];
             string fecha = DateTime.Now .ToString ("yyyy/MM/dd");
             string mora = "0";
-            string[] datos = { credito, interes, capital, pago, fecha, mora };
+            string capital2 ="0";
+            string interes2 = valores[7];
+            string[] datos = { credito, interes2, capital, pago, fecha, mora,capital2,interes2 };
             Clases.Pago pagar = new Clases.Pago();
             if (pagar.Hacer_Pago(datos))
             {

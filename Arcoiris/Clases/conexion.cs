@@ -24,7 +24,6 @@ namespace Arcoiris.Clases
 
         }
 
-
         public string  probar_conn()  {
             string mensaje;
             conn.ConnectionString = cadena_conn;

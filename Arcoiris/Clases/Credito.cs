@@ -334,7 +334,7 @@ namespace Arcoiris.Clases
             string consulpago;
             string consulta1;
             DataTable datos = new DataTable();
-            consulpago = "Select count(*) from pagos where cod_credito=" + credito;
+            consulpago = "Select count(*) from pagos where cod_credito=" + credito +" and estado = 'Hecho'";
             DataTable pag = new DataTable();
             pag = buscar(consulpago);
             int tpagos = Convert.ToInt32(pag.Rows[0][0]);
@@ -1804,33 +1804,36 @@ namespace Arcoiris.Clases
                     DateTime fechas = new DateTime();
                     decimal cint = 0;
                     int ordenpag=0,pagostot= datosph.Rows.Count;
-                    cint = monto * inte / 100 / 12;
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
+                        cint = monto * inte / 100 / 12;
                         pint += cint;
                         fechap = fechaC.AddMonths(conteo);
-                        if (datosph.Rows[ordenpag][3] != DBNull.Value)
+
+
+                        if (ordenpag < pagostot)
                         {
+                            if (!DateTime.TryParse(datosph.Rows[ordenpag][3].ToString(), out fechaph))
+                            { fechaph = fechaC.AddMonths(-1); }
                         }
-                        else
-                        {
-                        }
-
-                        if (!DateTime.TryParse(datosph.Rows[ordenpag][3].ToString(), out fechaph))
-                        {fechaph= fechaC.AddMonths(-1); }
-
-
+                        
                         if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
                         {
-                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                            ordenpag++;
-                            //if (ordenpag <= datosph.Rows.Count) ordenpag = datosph.Rows.Count-1;
+                            if (ordenpag < pagostot)
+                            {
+                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                ordenpag++;
+                            }
+                            else
+                            {
+                                monto -= 0;
+                            }
                         }
                         else
                         {
                             monto -= 0;
                         }
-                        cint = monto * inte / 100 / 12;
+                      
                     }
                 }
                 else {
@@ -2010,7 +2013,7 @@ namespace Arcoiris.Clases
                 int todopag,conteo;
                 string consulta,consultpag;
                 decimal intere = Convert.ToDecimal(datosc.Rows[0][2].ToString()),pcap=0;
-                consulta = "select capital, interes, fecha from pagos p where p.cod_credito ="+cre +" and p.Estado='Hecho'";
+                consulta = "select capital, interes, date_format(fecha,'%d/%m/%Y') from pagos p where p.cod_credito ="+cre +" and p.Estado='Hecho'";
                 consultpag = "";
                 datospag = buscar(consulta);
                 fechacon = fechacon.AddDays(1);
@@ -2020,7 +2023,6 @@ namespace Arcoiris.Clases
                 intpag = monto * intere / 100 / 12;
                 cuota = 0;
                 fechaf = fechaf.AddMonths(0);
-
                while (fechaf >= fechacon)
                 {
                     contarpag++;
@@ -2047,25 +2049,38 @@ namespace Arcoiris.Clases
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     decimal cint = 0;
-                    int ordenpag = 0;
+                    int ordenpag = 0, pagostot= datospag.Rows.Count;
                     cint = monto * inter / 100 / 12;
 
                     for (conteo = 0; conteo < contarpag; conteo++)
                     {
+                        cint = monto * inter / 100 / 12;
                         pagint += cint;
                         fechap = fechacon.AddMonths(conteo);
-                        if (!DateTime.TryParse(datospag.Rows[ordenpag][2].ToString(), out fechaph))
-                        { fechaph = fechacon.AddMonths(-1); }
-                        if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
+                        if (ordenpag < pagostot)
                         {
-                            monto -= decimal.Parse(datospag.Rows[ordenpag][0].ToString());
-                            ordenpag++;
+                            if (!DateTime.TryParse(datospag.Rows[ordenpag][2].ToString(), out fechaph))
+                            { fechaph = fechacon.AddMonths(-1); }
+                        }
+
+                        if (fechaph >= fechap && fechaph <= fechap.AddMonths(2))
+                        {
+                            if (ordenpag < pagostot)
+                            {
+                                monto -= decimal.Parse(datospag.Rows[ordenpag][0].ToString());
+                                ordenpag++;
+                            }
+                            else
+                            {
+                                monto -= 0;
+                            }
+                               
                         }
                         else
                         {
                             monto -= 0;
                         }
-                        cint = monto * inter / 100 / 12;
+                        //cint = monto * inter / 100 / 12;
                     }
                 }
                 else
