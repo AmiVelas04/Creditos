@@ -135,9 +135,8 @@ namespace Arcoiris.Formularios
         private void BtnEditar_Click(object sender, EventArgs e)
         {
        
-            if (DGVCliente .Rows .Count > 0) {
-                DGVCliente.Select();
-                if (DGVCliente.CurrentRow.Index ==-1)
+            if (DGVCliente .Rows .Count > 0) { 
+            if (DGVCliente.CurrentRow.Index ==-1)
             {
          
             }
