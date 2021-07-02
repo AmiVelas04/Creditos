@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.BoletaRep = new Microsoft.Reporting.WinForms.ReportViewer();
             this.PagoDescBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.BoletaRep = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.PagoDescBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // PagoDescBindingSource
+            // 
+            this.PagoDescBindingSource.DataSource = typeof(Arcoiris.Reportes.PagoDesc);
             // 
             // BoletaRep
             // 
@@ -47,17 +51,12 @@
             this.BoletaRep.Size = new System.Drawing.Size(737, 261);
             this.BoletaRep.TabIndex = 0;
             // 
-            // PagoDescBindingSource
-            // 
-            this.PagoDescBindingSource.DataSource = typeof(Arcoiris.Reportes.PagoDesc);
-            // 
             // BoletaPag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(737, 261);
             this.Controls.Add(this.BoletaRep);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "BoletaPag";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Boleta";

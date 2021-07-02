@@ -24,10 +24,14 @@ namespace Arcoiris.Reportes
             this.BoletaRep.LocalReport.DataSources.Clear();
           //  ReportParameter[] parametro = new ReportParameter[1];
             this.BoletaRep.LocalReport.DataSources.Add(new ReportDataSource("Pago",descripcion ));
-           // this.BoletaRep.SetDisplayMode(DisplayMode.PrintLayout);
-           // this.BoletaRep.ZoomMode = ZoomMode.Percent;
+            this.BoletaRep.SetDisplayMode(DisplayMode.PrintLayout);
+            this.BoletaRep.ZoomMode = ZoomMode.Percent;
             //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
-           // this.BoletaRep.ZoomPercent = 100;
+            this.BoletaRep.ZoomPercent = 100;
+            // this.BoletaRep.SetDisplayMode(DisplayMode.PrintLayout);
+            // this.BoletaRep.ZoomMode = ZoomMode.Percent;
+            //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
+            // this.BoletaRep.ZoomPercent = 100;
             this.BoletaRep.RefreshReport();
         }
     }
