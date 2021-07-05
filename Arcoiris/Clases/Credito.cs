@@ -2038,7 +2038,7 @@ namespace Arcoiris.Clases
             }
             //tipo 1 de credito
             if (tipo == "1") {
-                cuota = monto * inter / 100;
+                cuota = Math.Round((monto * inter / 100),2);
                 fechacon = fechacon.AddDays(1);
                 while (fechaf > fechacon)
                 {
@@ -2058,7 +2058,7 @@ namespace Arcoiris.Clases
             //tipo 2 de credito
             else if (tipo == "2")
             {
-                cuota = monto * inter / 100;
+                cuota =Math.Round( (monto * inter / 100),2);
                 fechacon = fechacon.AddDays(1);
                 while (fechaf >= fechacon)
                 {
@@ -2078,7 +2078,7 @@ namespace Arcoiris.Clases
             //tipo 3 de credito
             else if (tipo == "3")
             {
-                cuota = monto * inter / 100 / 12;
+                cuota =Math.Round( (monto * inter / 100 / 12),2);
                 fechacon = fechacon.AddDays(1);
                 while (fechaf >= fechacon)
                 {
@@ -2092,7 +2092,7 @@ namespace Arcoiris.Clases
             else if (tipo == "4")
             {
                 DateTime fechaC = new DateTime();
-                decimal pcap=0,PcapO,inte,pint;
+                decimal pcap=0,PcapO,inte,pint=0;
                 int conteo,pagos;
                 fechaC = Convert.ToDateTime(datosc.Rows[0][0].ToString());
                 string ConPagosH;
@@ -2102,7 +2102,7 @@ namespace Arcoiris.Clases
                 pcap = Math.Round((monto / dias), 2);
                 // pint= monto * inte / 100 / 12; 
                 PcapO = pcap;
-
+                pagos = datosph.Rows.Count;
                 //------------------------------------------- si los pagos hechos son iguales a los pagos requeridos
                 if (pagos == datosph.Rows.Count)
                 {
@@ -2110,7 +2110,7 @@ namespace Arcoiris.Clases
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     Boolean pasarpago = false;
-                    decimal cint = cint = monto * inte / 100 / 12;
+                    decimal cint = Math.Round((monto * inter / 100 / 12),2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
@@ -2121,7 +2121,7 @@ namespace Arcoiris.Clases
                         int pagado = 0;
                         if (ordenpag < pagostot)
                         {
-                            cint = 0;
+                           
                             pasarpago = false;
                             while (!pasarpago)
                             {
@@ -2129,7 +2129,7 @@ namespace Arcoiris.Clases
                                 if (fechaph > fechap && fechaph < fechap.AddMonths(1))
                                 {
                                     monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                    cint += monto * inte / 100 / 12;
+                                    cint += Math.Round((monto * inter / 100 / 12),2);
                                     pagado++;
                                     ordenpag++;
                                     if (ordenpag == pagostot)
@@ -2144,7 +2144,7 @@ namespace Arcoiris.Clases
                                     if (cint <= 0)
                                     {
                                         monto -= 0;
-                                        cint += monto * inte / 100 / 12;
+                                        cint +=Math.Round( (monto * inter / 100 / 12),2);
                                     }
                                 }
                             }
@@ -2153,9 +2153,10 @@ namespace Arcoiris.Clases
                         {
                             sigpago++;
                             monto -= 0;
-                            cint += monto * inte / 100 / 12;
+                            cint += Math.Round((monto * inter / 100 / 12),2);
                         }
                     }
+                    cuota = cint;
                 }
                 // -------------------------------------------si el numero de pagos requeridos es mayor a los efectuados
                 else if (pagos > datosph.Rows.Count)
@@ -2164,7 +2165,7 @@ namespace Arcoiris.Clases
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     Boolean pasarpago = false;
-                    decimal cint = monto * inte / 100 / 12;
+                    decimal cint =  Math.Round((monto * inter / 100 / 12),2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
@@ -2183,7 +2184,7 @@ namespace Arcoiris.Clases
                                 if (fechaph > fechap && fechaph < fechap.AddMonths(1))
                                 {
                                     monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                    cint += monto * inte / 100 / 12;
+                                    cint += Math.Round((monto * inter / 100 / 12),2);
                                     pagado++;
                                     ordenpag++;
                                     if (ordenpag + 1 >= pagostot)
@@ -2198,7 +2199,7 @@ namespace Arcoiris.Clases
                                     if (cint <= 0)
                                     {
                                         monto -= 0;
-                                        cint += monto * inte / 100 / 12;
+                                        cint += Math.Round((monto * inter / 100 / 12),2);
                                     }
                                 }
                             }
@@ -2207,9 +2208,10 @@ namespace Arcoiris.Clases
                         {
                             sigpago++;
                             monto -= 0;
-                            cint += monto * inte / 100 / 12;
+                            cint += Math.Round((monto * inter / 100 / 12),2);
                         }
                     }
+                    cuota = cint;
                 }
                 else
                 {
@@ -2219,7 +2221,7 @@ namespace Arcoiris.Clases
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     Boolean pasarpago = false;
-                    decimal cint = monto * inte / 100 / 12;
+                    decimal cint = monto * inter / 100 / 12;
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
@@ -2238,7 +2240,7 @@ namespace Arcoiris.Clases
                                 if (fechaph > fechap && fechaph < fechap.AddMonths(1))
                                 {
                                     monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                    cint += monto * inte / 100 / 12;
+                                    cint += monto * inter / 100 / 12;
                                     pagado++;
                                     ordenpag++;
                                     if (ordenpag == pagostot)
@@ -2253,7 +2255,7 @@ namespace Arcoiris.Clases
                                     if (cint <= 0)
                                     {
                                         monto -= 0;
-                                        cint += monto * inte / 100 / 12;
+                                        cint += monto * inter / 100 / 12;
                                     }
                                 }
                             }
@@ -2262,11 +2264,12 @@ namespace Arcoiris.Clases
                         {
                             sigpago++;
                             monto -= 0;
-                            cint += monto * inte / 100 / 12;
+                            cint += monto * inter / 100 / 12;
                         }
                     }
+                    cuota = cint;
                 }
-                cuota = cint;
+                
             }
             
             total = cuota - saldop;
