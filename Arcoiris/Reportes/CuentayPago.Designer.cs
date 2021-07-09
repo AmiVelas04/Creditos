@@ -31,12 +31,20 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.RvCuenta = new Microsoft.Reporting.WinForms.ReportViewer();
             this.EstadoDetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.EstadoEncBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.RvCuenta = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.EstadoDetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EstadoEncBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // EstadoDetBindingSource
+            // 
+            this.EstadoDetBindingSource.DataSource = typeof(Arcoiris.Reportes.EstadoDet);
+            // 
+            // EstadoEncBindingSource
+            // 
+            this.EstadoEncBindingSource.DataSource = typeof(Arcoiris.Reportes.EstadoEnc);
             // 
             // RvCuenta
             // 
@@ -53,21 +61,12 @@
             this.RvCuenta.Size = new System.Drawing.Size(724, 261);
             this.RvCuenta.TabIndex = 0;
             // 
-            // EstadoDetBindingSource
-            // 
-            this.EstadoDetBindingSource.DataSource = typeof(Arcoiris.Reportes.EstadoDet);
-            // 
-            // EstadoEncBindingSource
-            // 
-            this.EstadoEncBindingSource.DataSource = typeof(Arcoiris.Reportes.EstadoEnc);
-            // 
             // CuentayPago
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 261);
             this.Controls.Add(this.RvCuenta);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "CuentayPago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
