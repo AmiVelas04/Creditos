@@ -96,7 +96,7 @@ namespace Arcoiris.Formularios
              2 Cancelados diarios
              3 Cancelados Mensuales
              4 Vigentes diarios
-             5 Vigerntes mensuales
+             5 Vigentes mensuales
              */
             string tipo ="",titulo="";
 

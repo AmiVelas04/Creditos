@@ -581,14 +581,23 @@ namespace Arcoiris.Reportes
                 diasatras = cre.diasnopag(codigocre, DateTime.Now.ToString("yyyy/MM/dd"), credito.Rows[cont][5].ToString());
                 cuotac= decimal.Parse(datcred.Rows[0][4].ToString());
                 cuotai= decimal.Parse(datcred.Rows[0][5].ToString());
+                if (cuotac < 0) cuotac = 0;
+                if (cuotai < 0) cuotai = 0;
                 cuota = cuotac + cuotai;
                 string tipoc="";
                 if (tipo.Equals("1")) { tipoc = "Diario"; }
                 else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
                 else if (tipo.Equals("3")) { tipoc = "Mensual"; }
                 else if (tipo.Equals("4")) { tipoc = "Mensua-Sobresaldo"; }
-                if (diasatras > 0)
+                decimal catras, iatras;
+                catras = decimal.Parse(saldos.Rows[0][0].ToString());
+                if (catras < 0) catras = 0;
+                iatras = decimal.Parse(saldos.Rows[0][1].ToString());
+                if (iatras < 0) iatras = 0;
+                detalle.intatras = iatras;
+                if (catras > 0 || iatras>0)
                 {
+                    decimal capatras, intatras;
                     Ccancelar = decimal.Parse(canti.Rows[0][5].ToString()) + decimal.Parse(credito.Rows[cont][7].ToString());
                     //No credito
                     detalle.cre = int.Parse(credito.Rows[cont][0].ToString());
@@ -609,9 +618,13 @@ namespace Arcoiris.Reportes
                     //Monto
                     detalle.monto = decimal.Parse(credito.Rows[cont][2].ToString());
                     //capatras
-                    detalle.capatras = decimal.Parse(saldos.Rows[0][0].ToString());
+                    capatras = decimal.Parse(saldos.Rows[0][0].ToString());
+                    if (capatras < 0) capatras = 0;
+                    detalle.capatras = capatras;
                     //intatras
-                    detalle.intatras = decimal.Parse(saldos.Rows[0][1].ToString());
+                    intatras= decimal.Parse(saldos.Rows[0][1].ToString());
+                    if (intatras < 0) intatras = 0;
+                    detalle.intatras = intatras;
                     //cancelar
                     detalle.cancelar = Ccancelar;
                     //cuota

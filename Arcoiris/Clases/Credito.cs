@@ -432,7 +432,6 @@ namespace Arcoiris.Clases
             "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
             "WHERE cli.CODIGO_CLI =" + usu + " and Cre.Cod_credito=" + cre;
             datos = buscar(consulta);
-
             return Convert.ToDecimal(datos.Rows[0][0].ToString());
         }
 
@@ -1571,8 +1570,6 @@ namespace Arcoiris.Clases
             string tipoc;
             string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,Fecha_venci as fechaf from credito where cod_credito =" + cre;
             string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
-
-
             tipo = buscar(constipo);
             Pagos = buscar(Consulpagos);
             decimal TotCap = 0;
@@ -1646,16 +1643,19 @@ namespace Arcoiris.Clases
             {
                 //Fini = Fini.AddMonths(1);
                 // Fini = Fini.AddMonths(numpag);
+                string credi = cre;
                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
                 int contdi = 0, cont = 0, Dfin = 0;
-                DateTime fcamb = Fini.AddMonths(0);
+                DateTime fcamb = Fini.AddMonths(1);
+
                 while (Ffin > fcamb)
                 {
                     fcamb = fcamb.AddMonths(1);
                     TotG -= (Pcap + Pint);
-                    if (TotG >= 0) Dfin++;
+                    if (TotG > 0) Dfin++;
                 }
-                Dfin++;
+               // Dfin++;
+               
                 dif = Ffin - Fini.AddMonths(Dfin);
                 contdi = dif.Days;
                 if (contdi < 0) contdi = 0;
@@ -1665,7 +1665,7 @@ namespace Arcoiris.Clases
             {
                 //Calculo de atraso...
                 decimal montoprov = monto;
-                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
+                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2); 
                 DataTable datosp = new DataTable();
                 string consulpag = "select capital, interes from pagos p where p.cod_credito = " + cre + " and p.Estado = 'Hecho'";
                 datosp = buscar(consulpag);
@@ -1678,6 +1678,7 @@ namespace Arcoiris.Clases
                         if (datosp.Rows[cont][0] != DBNull.Value)
                         {
                             Pcap = decimal.Parse(datosp.Rows[cont][0].ToString());
+                           Pint= Math.Round(((monto-Pcap) * interes / 100 / 12), 2);
                         }
                         else
                         {
@@ -1687,15 +1688,19 @@ namespace Arcoiris.Clases
                     else
                     {
                         Pcap = 0;
+                        Pint = 0;
                     }
                     fcamb = fcamb.AddMonths(1);
+
                     TotG -= (Pcap + Pint);
-                    if (TotG >= 0) Dfin++;
+                    if (TotG > 0) Dfin++;
                     montoprov -= Pcap;
                     Pint = Math.Round((montoprov * interes / 100 / 12), 2);
                     cont++;
                 }
                 Dfin++;
+                if (TotG > 0) Dfin=cant-1;
+                //if (datosp.Rows.Count == 0) Dfin = 0;
                 dif = Ffin - Fini.AddMonths(Dfin);
                 contdi = dif.Days;
                 if (contdi < 0) contdi = 0;
