@@ -114,7 +114,7 @@ namespace Arcoiris.Formularios
         private void DatosCre()
         {
             DataTable datos = new DataTable();
-            int atras = Convert.ToInt32(cre.dias_atraso(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd")));
+            int atras = Convert.ToInt32(cre.dias_atraso(CboPresta.Text,  DtpPago.Value.Date.ToString("yyyy/MM/dd")));
          
            //TxtInteres.Text = inteori.ToString();
             datos = cre.cantcre(CboPresta.Text,DtpPago.Value.ToString ());
