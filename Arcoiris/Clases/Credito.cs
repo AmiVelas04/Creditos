@@ -2112,7 +2112,7 @@ namespace Arcoiris.Clases
                 decimal pcap = 0, PcapO, inte, pint = 0;
                 int conteo, pagos;
                 fechaC = Convert.ToDateTime(datosc.Rows[0][0].ToString());
-                fechaC = fechaC.AddDays(0);
+                fechaC = fechaC.AddDays(1);
                 string ConPagosH;
                 ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%d-%M-%Y') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
@@ -2132,7 +2132,7 @@ namespace Arcoiris.Clases
                     decimal cint = Math.Round((monto * inter / 100 / 12), 2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                    // fechap = fechap.AddDays(sigpago);
-                    fechap = fechap.AddDays(0);
+                    fechap = fechap.AddDays(1);
                     pint += Math.Round(cint, 2);
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
@@ -2187,7 +2187,7 @@ namespace Arcoiris.Clases
                     Boolean pasarpago = false;
                     decimal cint = Math.Round((monto * inter / 100 / 12), 2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
-                    fechap = fechap.AddDays(0);
+                    fechap = fechap.AddDays(1);
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
                         pint += Math.Round(cint, 2);

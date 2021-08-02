@@ -892,5 +892,10 @@ namespace Arcoiris.Formularios
         {
 
         }
+
+        private void TxtAtraso_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

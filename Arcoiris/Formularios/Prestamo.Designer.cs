@@ -344,6 +344,7 @@
             this.TxtAtraso.Size = new System.Drawing.Size(130, 25);
             this.TxtAtraso.TabIndex = 41;
             this.TxtAtraso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtAtraso.TextChanged += new System.EventHandler(this.TxtAtraso_TextChanged);
             // 
             // TxtSaldInt
             // 
