@@ -67,11 +67,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(898, 313);
             this.Controls.Add(this.Rep1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AtrasOrd";
-            this.Text = "Atraso por orden";
+            this.Text = "Creditos atrasados";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.AtrasOrd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AtrasosEBindingSource)).EndInit();

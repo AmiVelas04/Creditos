@@ -1645,74 +1645,193 @@ namespace Arcoiris.Clases
             }
             else if (tipoc == "3")
             {
-                //Fini = Fini.AddMonths(1);
-                // Fini = Fini.AddMonths(numpag);
-                string credi = cre;
-                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
-                int contdi = 0, cont = 0, Dfin = 0;
-                DateTime fcamb = Fini.AddMonths(1);
 
-                while (Ffin > fcamb)
-                {
-                    fcamb = fcamb.AddMonths(1);
-                    TotG -= (Pcap + Pint);
-                    if (TotG > 0) Dfin++;
-                }
-               // Dfin++;
-               
-                dif = Ffin - Fini.AddMonths(Dfin);
-                contdi = dif.Days;
-                if (contdi < 0) contdi = 0;
-                Totd = contdi;
+                /* ---------------------------------mal funcionamiento de dias no pagados
+                 //Fini = Fini.AddMonths(1);
+                 // Fini = Fini.AddMonths(numpag);
+                 string credi = cre;
+                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2);
+                 int contdi = 0, cont = 0, Dfin = 0;
+                 DateTime fcamb = Fini.AddMonths(1);
+
+                 while (Ffin > fcamb)
+                 {
+                     fcamb = fcamb.AddMonths(1);
+                     TotG -= (Pcap + Pint);
+                     if (TotG > 0) Dfin++;
+                 }
+                // Dfin++;
+
+                 dif = Ffin - Fini.AddMonths(Dfin);
+                 contdi = dif.Days;
+                 if (contdi < 0) contdi = 0;
+                 Totd = contdi;*/
+                //---------------------------------------mal funcionamiento de dias no pagados
+
+                 decimal sint, scap, cuotac;
+                 DataTable saldos = new DataTable();
+                 saldos = saldosdias(cre, fecha);
+                 cuotac = Math.Round((monto / diasP),2);
+                 scap = decimal.Parse(saldos.Rows[0][0].ToString());
+                 sint = decimal.Parse(saldos.Rows[0][1].ToString());
+                 int atraso = 0;
+                 if (scap <= 0 && sint <= 0)
+                 {
+
+                     atraso = 0;
+                 }
+                 else if (scap > 0 && sint <= 0)
+                 {
+
+                     while (scap > 0)
+                     {
+                         atraso++;
+                         scap -= cuotac;
+                     }
+                 }
+                 else if (scap <= 0 && sint > 0)
+                 {
+
+                     decimal pagoint;
+                     pagoint = Math.Round((monto * interes / 100 / 12),2);
+                     while (sint > 0)
+                     {
+                         atraso++;
+                         sint -= pagoint;
+                     }
+                 }
+                 else
+                 {
+                     decimal pagoint;
+                     pagoint = Math.Round((monto *interes/100/12));
+                     while (scap > 0 || sint > 0)
+                     {
+                         atraso++;
+                         sint -= pagoint;
+                         scap -= cuotac;
+                     }
+                 }
+                 int conteo = 1;
+                 DateTime fechaavanz = Fini;
+                 while (Ffin > fechaavanz)
+                 {
+                     fechaavanz = Fini.AddMonths(conteo);
+                     conteo++;
+                 }
+                 fechaavanz = fechaavanz.AddMonths(-atraso);
+                 dif = Ffin - fechaavanz;
+                 Totd = dif.Days;
+                
             }
             else if (tipoc == "4")
             {
-                //Calculo de atraso...
-                decimal montoprov = monto;
-                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2); 
-                DataTable datosp = new DataTable();
-                string consulpag = "select capital, interes from pagos p where p.cod_credito = " + cre + " and p.Estado = 'Hecho'";
-                datosp = buscar(consulpag);
-                int contdi = 0, cont = 0, Dfin = 0, cant = datosp.Rows.Count;
-                DateTime fcamb = Fini.AddMonths(0);
-                while (Ffin > fcamb)
-                {
-                    if (cont < cant)
-                    {
-                        if (datosp.Rows[cont][0] != DBNull.Value)
-                        {
-                            Pcap = decimal.Parse(datosp.Rows[cont][0].ToString());
-                           Pint= Math.Round(((monto-Pcap) * interes / 100 / 12), 2);
-                        }
-                        else
-                        {
-                            Pcap = 0;
-                        }
-                    }
-                    else
-                    {
-                        Pcap = 0;
-                        Pint = 0;
-                    }
-                    fcamb = fcamb.AddMonths(1);
 
-                    TotG -= (Pcap + Pint);
-                    if (TotG > 0) Dfin++;
-                    montoprov -= Pcap;
-                    Pint = Math.Round((montoprov * interes / 100 / 12), 2);
-                    cont++;
+
+
+                /*inicio de calculo oimitido temporalmente para atraso de dias ---------------------------------------------------------------------------------------------
+                               //Calculo de atraso...
+                                decimal montoprov = monto;
+                                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100 / 12), 2); 
+                                DataTable datosp = new DataTable();
+                                string consulpag = "select capital, interes from pagos p where p.cod_credito = " + cre + " and p.Estado = 'Hecho'";
+                                datosp = buscar(consulpag);
+                                int contdi = 0, cont = 0, Dfin = 0, cant = datosp.Rows.Count;
+                                DateTime fcamb = Fini.AddMonths(0);
+                                while (Ffin > fcamb)
+                                {
+                                    if (cont < cant)
+                                    {
+                                        if (datosp.Rows[cont][0] != DBNull.Value)
+                                        {
+                                            Pcap = decimal.Parse(datosp.Rows[cont][0].ToString());
+                                           Pint= Math.Round(((monto-Pcap) * interes / 100 / 12), 2);
+                                        }
+                                        else
+                                        {
+                                            Pcap = 0;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Pcap = 0;
+                                        Pint = 0;
+                                    }
+                                    fcamb = fcamb.AddMonths(1);
+
+                                    TotG -= (Pcap + Pint);
+                                    if (TotG > 0) Dfin++;
+                                    montoprov -= Pcap;
+                                    Pint = Math.Round((montoprov * interes / 100 / 12), 2);
+                                    cont++;
+                                }
+                                Dfin++;
+                                if (TotG > 0) Dfin=cant-1;
+                                //if (datosp.Rows.Count == 0) Dfin = 0;
+                                dif = Ffin - Fini.AddMonths(Dfin);
+                                contdi = dif.Days;
+                                if (contdi < 0) contdi = 0;
+                                Totd = contdi;
+                                /*  Fini = Fini.AddMonths(1);
+                                  Fini = Fini.AddMonths(numpag);
+                                  dif = Ffin - Fini;
+                                  Totd = dif.Days;//
+                                  final de  parte omitida para registro de nuevo calculo de dias atrasados en creditos mensulaes sobre saldo-------------------------------------------------*/
+
+                decimal sint, scap,cuotac;
+                DataTable saldos = new DataTable();
+                saldos = saldosdias(cre, fecha);
+                cuotac = monto / diasP;
+                scap = decimal.Parse(saldos.Rows[0][0].ToString());
+                sint = decimal.Parse(saldos.Rows[0][1].ToString());
+                int atraso=0;
+                if (scap <= 0 && sint <= 0)
+                {
+                 
+                    atraso= 0;
                 }
-                Dfin++;
-                if (TotG > 0) Dfin=cant-1;
-                //if (datosp.Rows.Count == 0) Dfin = 0;
-                dif = Ffin - Fini.AddMonths(Dfin);
-                contdi = dif.Days;
-                if (contdi < 0) contdi = 0;
-                Totd = contdi;
-                /*  Fini = Fini.AddMonths(1);
-                  Fini = Fini.AddMonths(numpag);
-                  dif = Ffin - Fini;
-                  Totd = dif.Days;*/
+                else if (scap > 0 && sint <= 0)
+                {
+                    
+                    while (scap > 0)
+                    {
+                        atraso++;
+                        scap -= cuotac;
+                    }
+                }
+                else if (scap <= 0 && sint > 0)
+                {
+                   
+                    decimal montonew, pagoint;
+                    montonew = monto - scap;
+                    pagoint = Math.Round((montonew * interes / 100 / 12));
+                    while (sint > 0)
+                    {
+                        atraso++;
+                        sint -= pagoint;
+                    }
+                }
+                else
+                {
+                    decimal montonew, pagoint;
+                    montonew = monto - scap;
+                    pagoint = Math.Round((montonew * interes / 100 / 12),2);
+                    while (scap>0 || sint>0)
+                    {
+                        atraso++;
+                        sint -= pagoint;
+                        scap -= cuotac;
+                    }
+                }
+                int conteo = 1;
+                DateTime fechaavanz= Fini;
+                while (Ffin > fechaavanz)
+                {
+                    fechaavanz = Fini.AddMonths(conteo);
+                    conteo++;
+                }
+                fechaavanz = fechaavanz.AddMonths(-atraso);
+                dif = Ffin - fechaavanz;
+                Totd = dif.Days;
             }
             if (Totd < 0) Totd = 0;
             return Totd;
@@ -1803,7 +1922,7 @@ namespace Arcoiris.Clases
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     Boolean pasarpago = false;
-                    decimal cint = cint = monto * inte / 100 / 12;
+                    decimal cint =  monto * inte / 100 / 12M;
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     fechap = fechap.AddDays(1);
                     // pint += Math.Round(cint,2);
@@ -1817,7 +1936,7 @@ namespace Arcoiris.Clases
                         if (fechaph > fechap && fechaph <= fechap.AddMonths(2))
                         {
                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                            cint = Math.Round(monto * inte / 100 / 12);
+                            cint = Math.Round((monto * inte / 100 / 12),2);
                             pagado++;
                             ordenpag++;
                             sigpago++;
@@ -1825,7 +1944,6 @@ namespace Arcoiris.Clases
                         else if (fechaph > fechap.AddMonths(2))
                         {
                             cint = Math.Round((monto * inte / 100 / 12), 2);
-
                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
                             ordenpag++;
                             pagado++;
@@ -1937,7 +2055,7 @@ namespace Arcoiris.Clases
                                 if (fechaph > fechap && fechaph < fechap.AddMonths(2))
                                 {
                                     monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                    cint = monto * inte / 100 / 12;
+                                    cint = Math.Round((monto * inte / 100 / 12),2);
                                     pagado++;
                                     ordenpag++;
                                     if (ordenpag == pagostot)
@@ -1952,7 +2070,7 @@ namespace Arcoiris.Clases
                                     if (cint <= 0)
                                     {
                                         monto -= 0;
-                                        cint = monto * inte / 100 / 12;
+                                        cint =Math.Round((monto * inte / 100 / 12),2);
                                     }
                                 }
                             }
@@ -1961,7 +2079,7 @@ namespace Arcoiris.Clases
                         {
                             sigpago++;
                             monto -= 0;
-                            cint = monto * inte / 100 / 12;
+                            cint = Math.Round((monto * inte / 100 / 12),2);
                         }
                     }
 

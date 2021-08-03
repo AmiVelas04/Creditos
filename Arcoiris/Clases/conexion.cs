@@ -21,7 +21,6 @@ namespace Arcoiris.Clases
         public void iniciar()
         {
             conn.ConnectionString = cadena_conn;
-
         }
 
         public string  probar_conn()  {

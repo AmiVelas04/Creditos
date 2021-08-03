@@ -473,8 +473,6 @@ namespace Arcoiris.Reportes
 
         }
 
-        
-
         public void Venc_ord(string titulo,string tip)
         {
             Reportes.AtrasosE Encab = new Reportes.AtrasosE();
@@ -502,9 +500,9 @@ namespace Arcoiris.Reportes
                 Reportes.AtrasosD detalle = new Reportes.AtrasosD();
                 string cod = credito.Rows[cont][0].ToString();
                 string tipo = credito.Rows[cont][7].ToString();
-                string etiqueta;
+                /*string etiqueta="";
                 if (tipo == "1" || tipo == "2") { etiqueta = "(D)"; }
-                else { etiqueta = "(M)"; }
+                else { etiqueta = "(M)"; }*/
                 int diasatras = 0;
                 diasatras = cre.diasnopag(cod, DateTime.Now.ToString("yyyy/MM/dd"), credito.Rows[0][3].ToString());
                 DataTable atras = new DataTable();
