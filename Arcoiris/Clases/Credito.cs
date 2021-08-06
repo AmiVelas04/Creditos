@@ -731,7 +731,7 @@ namespace Arcoiris.Clases
             consulp = "Select count(*), sum(interes), sum(capital) from pagos where cod_credito=" + credito + " and fecha= '" + fecha + "'";
             DataTable datosp = new DataTable();
             datosp = buscar(consulp);
-            decimal intpaga = 0;
+           // decimal intpaga = 0;
             // MessageBox.Show("Numeo de pagos: " + datosp .Rows [0][0].ToString ());
             pagoshoy = Convert.ToInt32(datosp.Rows[0][0].ToString());
             string consultultp;
@@ -747,7 +747,7 @@ namespace Arcoiris.Clases
             // 1) si no se ha hecho ningun pago sin atrasos
             if (pagoshoy == 0 && pagar == 0 && atraso == 0)
             {
-                intpaga = 1;
+                //intpaga = 1;
                 pagoint = Math.Round(((monto * interes / 100)), 2);
                 pagocap = Math.Round((((monto / diasp))), 2);
                 //  MessageBox.Show("1");
@@ -1894,7 +1894,7 @@ namespace Arcoiris.Clases
             }
             else if (tipo == "3")
             {
-                pagos--;
+               // pagos--;
                 pcap = Math.Round((monto / dias), 2);
                 pint = Math.Round((monto * inte / 100 / 12), 2);
                 //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
@@ -2111,7 +2111,7 @@ namespace Arcoiris.Clases
             decimal Rint, Rcap, Rtot;
             Rcap = Math.Round((pcap - Scap), 2);
             Rint = Math.Round((pint - Sint), 2);
-            if (Rint < 0) Rint = 0;
+           // if (Rint < 0) Rint = 0;
 
             Rtot = Rcap + Rint;
             DataTable resp = new DataTable();
@@ -2221,7 +2221,7 @@ namespace Arcoiris.Clases
                     fechacon = fechacon.AddMonths(1);
                     contarpag++;
                 }
-                contarpag--;
+               // contarpag--;
                 if (contarpag > dias) contarpag = dias;
                 cuota = cuota * contarpag;
             }
