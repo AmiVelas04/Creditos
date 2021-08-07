@@ -210,9 +210,9 @@ namespace Arcoiris.Reportes
                 if (tipo == "1" || tipo == "2") { etiqueta = "(D)"; }
                 else { etiqueta = "(M)"; }
                 int diasatras = 0;
-                diasatras = cre.diasnopag(cod, DateTime.Now.ToString("yyyyy/MM/dd"), credito.Rows[0][3].ToString());
+                diasatras = cre.diasnopag(cod, DateTime.Now.Date.ToString("yyyyy/MM/dd"), credito.Rows[0][3].ToString());
                 DataTable atras = new DataTable();
-                atras = cre.saldosdias(cod, DateTime.Now.ToString());
+                atras = cre.saldosdias(cod, DateTime.Now.Date.ToString());
                
                 if (diasatras > 0)
                 {
@@ -504,9 +504,9 @@ namespace Arcoiris.Reportes
                 if (tipo == "1" || tipo == "2") { etiqueta = "(D)"; }
                 else { etiqueta = "(M)"; }*/
                 int diasatras = 0;
-                diasatras = cre.diasnopag(cod, DateTime.Now.ToString("yyyy/MM/dd"), credito.Rows[0][3].ToString());
+                diasatras = cre.diasnopag(cod, DateTime.Now.Date.ToString("yyyy/MM/dd"), credito.Rows[0][3].ToString());
                 DataTable atras = new DataTable();
-                atras = cre.saldosdias(cod, DateTime.Now.ToString());
+                atras = cre.saldosdias(cod, DateTime.Now.Date.ToString());
 
                 if (diasatras > 0)
                 {
@@ -573,10 +573,10 @@ namespace Arcoiris.Reportes
                 string codigocre = credito.Rows[cont][0].ToString();
                 string consfech = "SELECT date_format(Max(fecha),'%d-%M-%Y'), COUNT(*) FROM pagos WHERE cod_credito=" + codigocre +" and estado='Hecho'";
                 fechas = buscar(consfech);
-                saldos = cre.saldosdias(codigocre, DateTime.Now.ToString());
-                datcred = cre.datoscre(codigocre, DateTime.Now.ToString("yyyy/MM/dd"));
-                canti = cre.cantcre(codigocre, DateTime.Now.ToString());
-                diasatras = cre.diasnopag(codigocre, DateTime.Now.ToString("yyyy/MM/dd"), credito.Rows[cont][5].ToString());
+                saldos = cre.saldosdias(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
+                datcred = cre.datoscre(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
+                canti = cre.cantcre(codigocre, DateTime.Now.Date.ToString());
+                diasatras = cre.diasnopag(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"), credito.Rows[cont][5].ToString());
                 cuotac= decimal.Parse(datcred.Rows[0][4].ToString());
                 cuotai= decimal.Parse(datcred.Rows[0][5].ToString());
                 if (cuotac < 0) cuotac = 0;
@@ -660,7 +660,7 @@ namespace Arcoiris.Reportes
             int cont, cant;
             datos = buscar(consulta);
             cant = datos.Rows.Count;
-            string fechahoy = DateTime.Now.ToString("yyyy/MM/dd");
+            string fechahoy = DateTime.Now.Date.ToString("yyyy/MM/dd");
             RepEnc enca = new RepEnc();
             enca.Titulo = titulo;
             for (cont = 0; cont < cant; cont++)
