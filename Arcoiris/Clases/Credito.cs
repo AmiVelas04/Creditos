@@ -1703,7 +1703,7 @@ namespace Arcoiris.Clases
                  else
                  {
                      decimal pagoint;
-                     pagoint = Math.Round((monto *interes/100/12));
+                     pagoint = Math.Round((monto *interes/100/12),2);
                      while (scap > 0 || sint > 0)
                      {
                          atraso++;
@@ -1803,7 +1803,7 @@ namespace Arcoiris.Clases
                    
                     decimal montonew, pagoint;
                     montonew = monto - scap;
-                    pagoint = Math.Round((montonew * interes / 100 / 12));
+                    pagoint = Math.Round((montonew * interes / 100 / 12),2);
                     while (sint > 0)
                     {
                         atraso++;
@@ -1922,7 +1922,7 @@ namespace Arcoiris.Clases
                     //  pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
-                    Boolean pasarpago = false;
+                   Boolean pasarpago = false;
                     decimal cint =  monto * inte / 100 / 12M;
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     fechap = fechap.AddDays(1);
