@@ -39,21 +39,22 @@
             this.DtpComIni = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.GbxCreditos = new System.Windows.Forms.GroupBox();
-            this.BtnCartera = new System.Windows.Forms.Button();
+            this.DtpFechaR = new System.Windows.Forms.DateTimePicker();
+            this.LblFechaR = new System.Windows.Forms.Label();
             this.BtnReporte = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CboCre = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.GbxAs = new System.Windows.Forms.GroupBox();
+            this.GbxGan = new System.Windows.Forms.GroupBox();
+            this.RdbMes = new System.Windows.Forms.RadioButton();
+            this.RdbDia = new System.Windows.Forms.RadioButton();
+            this.RdbTodos = new System.Windows.Forms.RadioButton();
             this.BtnRepGan = new System.Windows.Forms.Button();
             this.CboAnio = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.GbxGan = new System.Windows.Forms.GroupBox();
-            this.RdbTodos = new System.Windows.Forms.RadioButton();
-            this.RdbDia = new System.Windows.Forms.RadioButton();
-            this.RdbMes = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -165,7 +166,8 @@
             // 
             // GbxCreditos
             // 
-            this.GbxCreditos.Controls.Add(this.BtnCartera);
+            this.GbxCreditos.Controls.Add(this.DtpFechaR);
+            this.GbxCreditos.Controls.Add(this.LblFechaR);
             this.GbxCreditos.Controls.Add(this.BtnReporte);
             this.GbxCreditos.Controls.Add(this.label1);
             this.GbxCreditos.Controls.Add(this.CboCre);
@@ -179,20 +181,29 @@
             this.GbxCreditos.TabStop = false;
             this.GbxCreditos.Text = "Creditos";
             // 
-            // BtnCartera
+            // DtpFechaR
             // 
-            this.BtnCartera.Location = new System.Drawing.Point(108, 228);
-            this.BtnCartera.Name = "BtnCartera";
-            this.BtnCartera.Size = new System.Drawing.Size(138, 43);
-            this.BtnCartera.TabIndex = 4;
-            this.BtnCartera.Text = "Repore de mora Detallada";
-            this.BtnCartera.UseVisualStyleBackColor = true;
-            this.BtnCartera.Visible = false;
+            this.DtpFechaR.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpFechaR.Location = new System.Drawing.Point(154, 92);
+            this.DtpFechaR.Name = "DtpFechaR";
+            this.DtpFechaR.Size = new System.Drawing.Size(133, 25);
+            this.DtpFechaR.TabIndex = 6;
+            this.DtpFechaR.Visible = false;
+            // 
+            // LblFechaR
+            // 
+            this.LblFechaR.AutoSize = true;
+            this.LblFechaR.Location = new System.Drawing.Point(55, 98);
+            this.LblFechaR.Name = "LblFechaR";
+            this.LblFechaR.Size = new System.Drawing.Size(83, 17);
+            this.LblFechaR.TabIndex = 5;
+            this.LblFechaR.Text = "Dia de pago";
+            this.LblFechaR.Visible = false;
             // 
             // BtnReporte
             // 
             this.BtnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnReporte.Location = new System.Drawing.Point(113, 95);
+            this.BtnReporte.Location = new System.Drawing.Point(107, 135);
             this.BtnReporte.Name = "BtnReporte";
             this.BtnReporte.Size = new System.Drawing.Size(133, 38);
             this.BtnReporte.TabIndex = 2;
@@ -247,6 +258,50 @@
             this.GbxAs.TabStop = false;
             this.GbxAs.Text = "Asesores";
             // 
+            // GbxGan
+            // 
+            this.GbxGan.Controls.Add(this.RdbMes);
+            this.GbxGan.Controls.Add(this.RdbDia);
+            this.GbxGan.Controls.Add(this.RdbTodos);
+            this.GbxGan.Location = new System.Drawing.Point(183, 144);
+            this.GbxGan.Name = "GbxGan";
+            this.GbxGan.Size = new System.Drawing.Size(155, 116);
+            this.GbxGan.TabIndex = 5;
+            this.GbxGan.TabStop = false;
+            this.GbxGan.Text = "Categoria";
+            // 
+            // RdbMes
+            // 
+            this.RdbMes.AutoSize = true;
+            this.RdbMes.Location = new System.Drawing.Point(22, 84);
+            this.RdbMes.Name = "RdbMes";
+            this.RdbMes.Size = new System.Drawing.Size(91, 21);
+            this.RdbMes.TabIndex = 2;
+            this.RdbMes.Text = "Mensuales";
+            this.RdbMes.UseVisualStyleBackColor = true;
+            // 
+            // RdbDia
+            // 
+            this.RdbDia.AutoSize = true;
+            this.RdbDia.Location = new System.Drawing.Point(22, 54);
+            this.RdbDia.Name = "RdbDia";
+            this.RdbDia.Size = new System.Drawing.Size(70, 21);
+            this.RdbDia.TabIndex = 1;
+            this.RdbDia.Text = "Diarios";
+            this.RdbDia.UseVisualStyleBackColor = true;
+            // 
+            // RdbTodos
+            // 
+            this.RdbTodos.AutoSize = true;
+            this.RdbTodos.Checked = true;
+            this.RdbTodos.Location = new System.Drawing.Point(22, 26);
+            this.RdbTodos.Name = "RdbTodos";
+            this.RdbTodos.Size = new System.Drawing.Size(63, 21);
+            this.RdbTodos.TabIndex = 0;
+            this.RdbTodos.TabStop = true;
+            this.RdbTodos.Text = "Todos";
+            this.RdbTodos.UseVisualStyleBackColor = true;
+            // 
             // BtnRepGan
             // 
             this.BtnRepGan.Location = new System.Drawing.Point(48, 184);
@@ -292,50 +347,6 @@
             this.label2.Size = new System.Drawing.Size(33, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
-            // 
-            // GbxGan
-            // 
-            this.GbxGan.Controls.Add(this.RdbMes);
-            this.GbxGan.Controls.Add(this.RdbDia);
-            this.GbxGan.Controls.Add(this.RdbTodos);
-            this.GbxGan.Location = new System.Drawing.Point(183, 144);
-            this.GbxGan.Name = "GbxGan";
-            this.GbxGan.Size = new System.Drawing.Size(155, 116);
-            this.GbxGan.TabIndex = 5;
-            this.GbxGan.TabStop = false;
-            this.GbxGan.Text = "Categoria";
-            // 
-            // RdbTodos
-            // 
-            this.RdbTodos.AutoSize = true;
-            this.RdbTodos.Checked = true;
-            this.RdbTodos.Location = new System.Drawing.Point(22, 26);
-            this.RdbTodos.Name = "RdbTodos";
-            this.RdbTodos.Size = new System.Drawing.Size(63, 21);
-            this.RdbTodos.TabIndex = 0;
-            this.RdbTodos.TabStop = true;
-            this.RdbTodos.Text = "Todos";
-            this.RdbTodos.UseVisualStyleBackColor = true;
-            // 
-            // RdbDia
-            // 
-            this.RdbDia.AutoSize = true;
-            this.RdbDia.Location = new System.Drawing.Point(22, 54);
-            this.RdbDia.Name = "RdbDia";
-            this.RdbDia.Size = new System.Drawing.Size(70, 21);
-            this.RdbDia.TabIndex = 1;
-            this.RdbDia.Text = "Diarios";
-            this.RdbDia.UseVisualStyleBackColor = true;
-            // 
-            // RdbMes
-            // 
-            this.RdbMes.AutoSize = true;
-            this.RdbMes.Location = new System.Drawing.Point(22, 84);
-            this.RdbMes.Name = "RdbMes";
-            this.RdbMes.Size = new System.Drawing.Size(91, 21);
-            this.RdbMes.TabIndex = 2;
-            this.RdbMes.Text = "Mensuales";
-            this.RdbMes.UseVisualStyleBackColor = true;
             // 
             // Reporte
             // 
@@ -383,7 +394,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox CboMes;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button BtnCartera;
         private System.Windows.Forms.Button BtnComi;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox CboAsesor;
@@ -395,5 +405,7 @@
         private System.Windows.Forms.RadioButton RdbMes;
         private System.Windows.Forms.RadioButton RdbDia;
         private System.Windows.Forms.RadioButton RdbTodos;
+        private System.Windows.Forms.DateTimePicker DtpFechaR;
+        private System.Windows.Forms.Label LblFechaR;
     }
 }

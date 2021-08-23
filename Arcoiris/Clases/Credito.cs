@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using MySql.Data.MySqlClient;
 using System.Windows.Forms;
-using System.Globalization;
 
 namespace Arcoiris.Clases
 {
@@ -1573,7 +1573,7 @@ namespace Arcoiris.Clases
             DataTable Pagos = new DataTable();
             string tipoc;
             string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,Fecha_venci as fechaf from credito where cod_credito =" + cre;
-            string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
+            string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes,capital as capi, interes as inte FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
             tipo = buscar(constipo);
             Pagos = buscar(Consulpagos);
             decimal TotCap = 0;
@@ -1600,46 +1600,109 @@ namespace Arcoiris.Clases
             if (tipoc == "1")
             {
                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100), 2);
-                int dias = 0, cont, Dfin = 0;
-                DateTime Inicio = Fini;
+                int dias = 0, cont, Dfin = 0,pdia=0, pagao=0;
+                DateTime Inicio = Fini, fechaval;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
                 for (cont = 1; cont <= dias; cont++)
                 {
-
-                    Fini = Fini.AddDays(1);
-                    TotG -= (Pcap + Pint);
-                    if (TotG >= 0) Dfin++;
-                    if (Fini.DayOfWeek == DayOfWeek.Saturday || Fini.DayOfWeek == DayOfWeek.Sunday)
+                    pdia++;
+                    fechaval = Fini.AddDays(pdia);
+                    if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
                     }
+                    else {
+
+                    }
                 }
-                dias -= Dfin;
+                         if (TotCap <= 0 && TotInt > 0)
+                        {
+                    while (TotInt>0)
+                    {
+                        TotInt -= Pint;
+                        if (TotInt>=Pint) pagao++;
+                    }
+                        }
+                        else if (TotCap > 0 && TotInt <= 0)
+                        {
+                    while (TotCap>0)
+                    {
+                        TotCap -= Pcap;
+                        if (TotCap >= Pcap) pagao++;
+                    }
+                        }
+                        else if (TotCap > 0 && TotInt > 0)
+                        {
+                    while (TotCap>0 || TotInt>0)
+                    {
+                        TotCap -= Pcap;
+                        TotInt -= Pint;
+                        if (TotCap>=Pcap && TotInt>=Pint)
+                        pagao++;
+                    }
+                        }
+                        else
+                        {
+                          
+                        }
+                pagao++;
+                dias -= (Dfin+pagao);
                 if (dias < 0) dias = 0;
                 Totd = dias;
             }
             else if (tipoc == "2")
             {
-                DateTime final = Convert.ToDateTime(tipo.Rows[0][5]);
-                decimal Pcap = 0;
-                if (Ffin >= final) Pcap = 0;//Math.Round((monto / diasP), 2); 
-                decimal Pint = Math.Round((monto * interes / 100), 2);
-                int dias = 0, cont, Dfin = 0;
-                DateTime Inicio = Fini;
+                decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100), 2);
+                int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
+                DateTime Inicio = Fini, fechaval;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
                 for (cont = 1; cont <= dias; cont++)
                 {
-                    Fini = Fini.AddDays(1);
-                    TotG -= (Pcap + Pint);
-                    if (TotG >= 0) Dfin++;
-                    if (Fini.DayOfWeek == DayOfWeek.Saturday || Fini.DayOfWeek == DayOfWeek.Sunday)
+                    pdia++;
+                    fechaval = Fini.AddDays(pdia);
+                    if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
                     }
+                    else
+                    {
+
+                    }
                 }
-                dias -= Dfin;
+                if (TotCap <= 0 && TotInt > 0)
+                {
+                    while (TotInt > 0)
+                    {
+                        TotInt -= Pint;
+                        if (TotInt >= Pint) pagao++;
+                    }
+                }
+                else if (TotCap > 0 && TotInt <= 0)
+                {
+                    while (TotCap > 0)
+                    {
+                        TotCap -= Pcap;
+                        if (TotCap >= Pcap) pagao++;
+                    }
+                }
+                else if (TotCap > 0 && TotInt > 0)
+                {
+                    while (TotCap > 0 || TotInt > 0)
+                    {
+                        TotCap -= Pcap;
+                        TotInt -= Pint;
+                        if (TotCap >= Pcap && TotInt >= Pint)
+                            pagao++;
+                    }
+                }
+                else
+                {
+
+                }
+                pagao++;
+                dias -= (Dfin + pagao);
                 if (dias < 0) dias = 0;
                 Totd = dias;
             }
@@ -1868,6 +1931,14 @@ namespace Arcoiris.Clases
             if (pagos > dias) pagos = dias;
             if (tipo == "1")
             {
+                if (pagos>=dias)
+                {
+                    pagos = dias;
+                }
+                else
+                {
+                    pagos--;
+                }
                 pcap = Math.Round((monto / dias), 2);
                 pint = Math.Round((monto * inte / 100), 2);
 
@@ -1881,6 +1952,15 @@ namespace Arcoiris.Clases
             }
             else if (tipo == "2")
             {
+
+                if (pagos >= dias)
+                {
+                    pagos = dias;
+                }
+                else
+                {
+                    pagos--;
+                }
                 pcap = 0;
                 if (pagos >= dias) pcap = monto;
                 pint = Math.Round((monto * inte / 100), 2);

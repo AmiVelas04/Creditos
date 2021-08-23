@@ -297,6 +297,12 @@
     </Compile>
     <Compile Include="Reportes\LlenarReport.cs" />
     <Compile Include="Reportes\PagoDesc.cs" />
+    <Compile Include="Reportes\Pagohoy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Pagohoy.Designer.cs">
+      <DependentUpon>Pagohoy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\RepDesem.cs" />
     <Compile Include="Reportes\RepDetalle1.cs" />
     <Compile Include="Reportes\RepDetCli.cs" />
@@ -409,6 +415,10 @@
       <DependentUpon>Ganancias.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Pago.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagohoy.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagohoy.resx">
+      <DependentUpon>Pagohoy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Reporte1.rdlc" />
     <EmbeddedResource Include="Reportes\Resumen.rdlc" />
     <EmbeddedResource Include="Reportes\Resumen.resx">

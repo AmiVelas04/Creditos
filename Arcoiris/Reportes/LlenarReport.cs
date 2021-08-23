@@ -628,7 +628,14 @@ namespace Arcoiris.Reportes
                     //cuota
                     detalle.cuota = cuota;
                     //utlimpag
-                     detalle.utlimpag =DateTime.Parse(fechas.Rows[0][0].ToString() + " 00:00:00");
+                    if (fechas.Rows[0][0] != DBNull.Value)
+                    {
+                        detalle.utlimpag = DateTime.Parse(fechas.Rows[0][0].ToString() + " 00:00:00"); }
+                    else
+                    {
+                        detalle.utlimpag = DateTime.Parse(credito.Rows[cont][5].ToString());
+                    }
+                     
                     //telefono
                     detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
                     Encab.Datos.Add(detalle);
@@ -683,6 +690,172 @@ namespace Arcoiris.Reportes
             Activos.encabezado.Add(enca);
             Activos.Show();
 
+        }
+
+ 
+        public void RepDiaPago(string titulo, string tip, string fech)
+        {
+            EstadoEnc Encab = new EstadoEnc();
+            DataTable credito = new DataTable();
+            Encab.cliente = titulo;
+            string consulta, ConsulAdd = "";
+            if (tip == "Diario")
+            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            else if (tip == "Mensual")
+            { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
+            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito " +
+                       "FROM credito cre " +
+                       "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = cre.COD_CREDITO " +
+                       "INNER JOIN asigna_solicitud aso ON aso.ID_SOLICITUD = ac.ID_SOLICITUD " +
+                       "INNER JOIN cliente cli ON cli.CODIGO_CLI = aso.codigo_cli " +
+                       "WHERE cre.ESTADO = 'Activo' " + ConsulAdd +
+                       "GROUP BY cre.COD_CREDITO " +
+                       "ORDER BY cre.FECHA_CONC";
+            credito = buscar(consulta);
+            int cont, total;
+            total = credito.Rows.Count;
+            for (cont = 0; cont < total; cont++)
+            {
+                int diasatras;
+                decimal cuotac, cuotai, cuota, Ccancelar;
+                DatosCre detalle = new DatosCre();
+                DataTable datoscli = new DataTable();
+                DataTable datcred = new DataTable();
+                DataTable saldos = new DataTable();
+                DataTable canti = new DataTable();
+                DataTable fechas = new DataTable();
+                string codigocli = credito.Rows[cont][8].ToString();
+                string tipo = credito.Rows[cont][9].ToString();
+                string Conscli = "select telefono1,telefono2,telefonocon as telefono from cliente where codigo_cli=" + codigocli;
+                datoscli = buscar(Conscli);
+                string codigocre = credito.Rows[cont][0].ToString();
+                string consfech = "SELECT date_format(Max(fecha),'%d-%M-%Y'), COUNT(*) FROM pagos WHERE cod_credito=" + codigocre + " and estado='Hecho'";
+                fechas = buscar(consfech);
+                saldos = cre.saldosdias(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
+                datcred = cre.datoscre(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
+                canti = cre.cantcre(codigocre, DateTime.Now.Date.ToString());
+                diasatras = cre.diasnopag(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"), credito.Rows[cont][5].ToString());
+                cuotac = decimal.Parse(datcred.Rows[0][4].ToString());
+                cuotai = decimal.Parse(datcred.Rows[0][5].ToString());
+                if (cuotac < 0) cuotac = 0;
+                if (cuotai < 0) cuotai = 0;
+                cuota = cuotac + cuotai;
+                string tipoc = "";
+                if (tipo.Equals("1")) { tipoc = "Diario"; }
+                else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
+                else if (tipo.Equals("3")) { tipoc = "Mensual"; }
+                else if (tipo.Equals("4")) { tipoc = "Mensua-Sobresaldo"; }
+                decimal catras, iatras;
+                catras = decimal.Parse(saldos.Rows[0][0].ToString());
+                if (catras < 0) catras = 0;
+                iatras = decimal.Parse(saldos.Rows[0][1].ToString());
+                if (iatras < 0) iatras = 0;
+                detalle.intatras = iatras;
+                bool fechap=true;
+               int contendi=0, plaz= int.Parse(credito.Rows[cont][3].ToString());
+                DateTime fechaeval = new DateTime();
+                fechaeval= DateTime.Parse(credito.Rows[cont][5].ToString());
+                DateTime fechapag = new DateTime();
+                fechapag = DateTime.Parse(fech);
+                    bool sihayp= false;
+
+                // revisar fecga para los creditos mensuales
+                if (tip.Equals("Diario"))
+
+                {
+                    while (fechapag >= fechaeval.AddDays(contendi))
+                    {
+                        contendi++;
+                        if (fechaeval.AddDays(contendi) ==fechapag)
+                        {
+                            fechap = false;
+                            sihayp = true;
+                        }
+                        else
+                        {
+                            fechap = true;
+                        }
+                    }
+                }
+                // revisar fecga para los creditos mensuales
+                else if(tip.Equals("Mensual"))
+                    {
+                    while (fechapag >= fechaeval.AddMonths(contendi))
+                    {
+                        contendi++;
+                        if (fechaeval.AddMonths(contendi) == fechapag)
+                        {
+                            fechap = false;
+                            sihayp = true;
+                            break;
+                        }
+                        else
+                        {
+                            fechap = true;
+                        }
+                    }
+                }
+
+        
+
+
+
+
+
+                    if (sihayp)
+                    { 
+                    decimal capatras, intatras;
+                    Ccancelar = decimal.Parse(canti.Rows[0][5].ToString()) + decimal.Parse(credito.Rows[cont][7].ToString());
+                    //No credito
+                    detalle.cre = int.Parse(credito.Rows[cont][0].ToString());
+                    //nombre del cliente
+                    detalle.cliente = credito.Rows[cont][1].ToString();
+                    //tipo de credito
+                    detalle.tipo = tipoc;
+                    //Numero de cuotas pagadas
+                    detalle.cuotap = int.Parse(fechas.Rows[0][1].ToString());
+                    //Dias de atraso
+                    detalle.diatras = diasatras;
+                    //Fecha de concesion
+                    detalle.fechaconc = DateTime.Parse(credito.Rows[cont][5].ToString());
+                    //Fecha de Vencimiento
+                    detalle.fechavenc = DateTime.Parse(credito.Rows[cont][6].ToString());
+                    //Tasa del credito
+                    detalle.tasa = credito.Rows[cont][4].ToString();
+                    //Monto
+                    detalle.monto = decimal.Parse(credito.Rows[cont][2].ToString());
+                    //capatras
+                    capatras = decimal.Parse(saldos.Rows[0][0].ToString());
+                    if (capatras < 0) capatras = 0;
+                    detalle.capatras = capatras;
+                    //intatras
+                    intatras = decimal.Parse(saldos.Rows[0][1].ToString());
+                    if (intatras < 0) intatras = 0;
+                    detalle.intatras = intatras;
+                    //cancelar
+                    detalle.cancelar = Ccancelar;
+                    //cuota
+                    detalle.cuota = cuota;
+                    //utlimpag
+
+                    if (fechas.Rows[0][0] != DBNull.Value)
+                    {
+                        detalle.utlimpag = DateTime.Parse(fechas.Rows[0][0].ToString() + " 00:00:00");
+                    }
+                    else
+                    {
+                        detalle.utlimpag = DateTime.Parse(credito.Rows[cont][5].ToString());
+                    }
+                    //telefono
+                    detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
+                    Encab.Datos.Add(detalle);
+                    
+                }
+            }
+            Reportes.Pagohoy formu = new Reportes.Pagohoy();
+            formu.Enca.Add(Encab);
+            formu.Deta = Encab.Datos;
+            formu.Show();
         }
 
         #region "Calculo de Ganacias"

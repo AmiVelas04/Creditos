@@ -35,6 +35,10 @@ namespace Arcoiris.Formularios
                 CboCre.Items.Add("Creditos Vigentes Mensuales");
                 CboCre.Items.Add("Reporte de Mora Creditos Diarios");
                 CboCre.Items.Add("Reporte de Mora Creditos Mensuales");
+                CboCre.Items.Add("Reporte de pagos por dia (Diario)");
+                CboCre.Items.Add("Reporte de pagos por dia (Mensual)");
+
+
 
                 CboCre.SelectedIndex = 0;
                 //BtnCartera.Visible = true;
@@ -51,7 +55,14 @@ namespace Arcoiris.Formularios
                 CboCre.Items.Add("Creditos Atrasados Mensuales");
                 CboCre.Items.Add("Creditos Cancelados Diarios");
                 CboCre.Items.Add("Creditos Cancelados Mensuales");
-                
+                CboCre.Items.Add("Creditos Vigentes Diarios");
+                CboCre.Items.Add("Creditos Vigentes Mensuales");
+                CboCre.Items.Add("Reporte de Mora Creditos Diarios");
+                CboCre.Items.Add("Reporte de Mora Creditos Mensuales");
+                CboCre.Items.Add("Reporte de pagos por dia (Diario)");
+                CboCre.Items.Add("Reporte de pagos por dia (Mensual)");
+             
+
             }
 
 
@@ -97,27 +108,42 @@ namespace Arcoiris.Formularios
              3 Cancelados Mensuales
              4 Vigentes diarios
              5 Vigentes mensuales
+             6 Dia de pago Diario
+             7 Dia de pago Mensual
              */
             string tipo ="",titulo="";
 
             if (CboCre.SelectedIndex == 4)
             {
-                titulo = "Listado de creditos vigentes Diarios";
-                tipo = "Diario";
-                repor.RepCreActi(titulo,tipo);
-            }
+                if (Form1.Cod_U.Equals("3"))
+                {
+                    MessageBox.Show("No tiene autirización de visualizar este reporte","Autorización",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    titulo = "Listado de creditos vigentes Diarios";
+                    tipo = "Diario";
+                    repor.RepCreActi(titulo, tipo);
+                }
+                }
             else if (CboCre.SelectedIndex == 5)
             {
-                titulo = "Listado de creditos vigentes Mensuales";
-                tipo = "Mensual";
-                repor.RepCreActi(titulo,tipo);
-
+                if (Form1.Cod_U.Equals("3"))
+                {
+                    MessageBox.Show("No tiene autirización de visualizar este reporte", "Autorización", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    titulo = "Listado de creditos vigentes Mensuales";
+                    tipo = "Mensual";
+                    repor.RepCreActi(titulo, tipo);
+                }
             }
             else if (CboCre.SelectedIndex == 0)
             {
                 titulo = "Listado Creditos Atrasados Diarios";
                 tipo = "Diario";
-                repor.Venc_ord(titulo,tipo);
+                repor.Venc_ord(titulo, tipo);
                 //repor.Cred_venc(titulo);
 
             }
@@ -145,14 +171,30 @@ namespace Arcoiris.Formularios
             {
                 titulo = "Reporte de mora creditos diarios";
                 tipo = "Diario";
-                repor.ColAct(titulo,tipo);
+                repor.ColAct(titulo, tipo);
             }
             else if (CboCre.SelectedIndex == 7)
             {
                 titulo = "Reporte de mora creditos mensuales";
                 tipo = "Mensual";
-                repor.ColAct(titulo,tipo);
+                repor.ColAct(titulo, tipo);
             }
+            else if (CboCre.SelectedIndex ==8)
+            {
+                titulo = "Reporte de pagos del dia";
+                tipo = "Diario";
+                string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
+                repor.RepDiaPago(titulo, tipo,fecha);
+            }
+            else if (CboCre.SelectedIndex == 9)
+            {
+                titulo = "Reporte de pago del dia";
+                tipo = "Mensual";
+                string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
+                repor.RepDiaPago(titulo, tipo,fecha);
+            }
+
+
 
 
 
@@ -329,10 +371,22 @@ namespace Arcoiris.Formularios
 
         private void CboCre_SelectedIndexChanged(object sender, EventArgs e)
         {
-         /*   if (CboCre.SelectedIndex == 0)
-            { BtnOrden.Visible = true; }
+            /*   if (CboCre.SelectedIndex == 0)
+               { BtnOrden.Visible = true; }
+               else
+               { BtnOrden.Visible = false; }*/
+
+            int indice= CboCre.SelectedIndex;
+            if (indice == 8 || indice == 9)
+            {
+                LblFechaR.Visible = true;
+                DtpFechaR.Visible = true;
+            }
             else
-            { BtnOrden.Visible = false; }*/
+            {
+                LblFechaR.Visible = false;
+                DtpFechaR.Visible = false;
+            }
 
         }
 
