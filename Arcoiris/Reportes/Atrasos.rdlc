@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.42552cm</Width>
+              <Width>1.2584cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.68715cm</Width>
+              <Width>4.1159cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>2.18444cm</Width>
@@ -24,10 +24,10 @@
               <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.81402cm</Width>
+              <Width>1.4436cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.68715cm</Width>
+              <Width>2.50194cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -978,7 +978,7 @@
         <Top>0.10583cm</Top>
         <Left>0.3175cm</Left>
         <Height>2.03813cm</Height>
-        <Width>18.30539cm</Width>
+        <Width>19.0114cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1006,7 +1006,7 @@
                 <TextRun>
                   <Value>=First(Fields!titulo.Value, "Titulo")</Value>
                   <Style>
-                    <FontSize>8pt</FontSize>
+                    <FontSize>12pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
                 </TextRun>
@@ -1017,8 +1017,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Left>6.16162cm</Left>
-          <Height>0.6cm</Height>
+          <Left>8.04016cm</Left>
+          <Height>0.89104cm</Height>
           <Width>4.53729cm</Width>
           <Style>
             <Border>
@@ -1049,8 +1049,8 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox2</rd:DefaultName>
-          <Top>0.76412cm</Top>
-          <Left>13.9004cm</Left>
+          <Top>0.72885cm</Top>
+          <Left>14.26244cm</Left>
           <Height>1.03256cm</Height>
           <Width>4.7225cm</Width>
           <ZIndex>1</ZIndex>

@@ -510,13 +510,13 @@ namespace Arcoiris.Reportes
 
                 if (diasatras > 0)
                 {
-                    interes = calcint(credito.Rows[cont][0].ToString(), diasatras);
+                   // interes = calcint(credito.Rows[cont][0].ToString(), diasatras);
                     capital = calcCap(credito.Rows[cont][0].ToString(), diasatras);
                     decimal inte;
                     inte = Convert.ToDecimal(atras.Rows[0][1].ToString());
                     if (inte < 0) inte = 0;
 
-                    if (interes > 0 || capital > 0)
+                    if (inte > 0 || capital > 0)
                     {
                         detalle.Nombre = credito.Rows[cont][1].ToString();
                         detalle.Monto = Convert.ToDecimal(credito.Rows[cont][2]);

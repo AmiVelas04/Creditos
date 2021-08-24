@@ -1638,7 +1638,7 @@ namespace Arcoiris.Clases
                     {
                         TotCap -= Pcap;
                         TotInt -= Pint;
-                        if (TotCap>=Pcap && TotInt>=Pint)
+                        if (TotCap>=0 || TotInt>=0)
                         pagao++;
                     }
                         }
@@ -1689,11 +1689,11 @@ namespace Arcoiris.Clases
                 }
                 else if (TotCap > 0 && TotInt > 0)
                 {
-                    while (TotCap > 0 || TotInt > 0)
+                    while (TotCap >= 0 || TotInt >= 0)
                     {
                         TotCap -= Pcap;
                         TotInt -= Pint;
-                        if (TotCap >= Pcap && TotInt >= Pint)
+                       // if (TotCap >= Pcap && TotInt >= Pint)
                             pagao++;
                     }
                 }
