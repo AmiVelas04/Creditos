@@ -1843,14 +1843,13 @@ namespace Arcoiris.Clases
                 decimal sint, scap,cuotac;
                 DataTable saldos = new DataTable();
                 saldos = saldosdias(cre, fecha);
-                cuotac = monto / diasP;
+                cuotac = Math.Round((monto / diasP),2);
                 scap = decimal.Parse(saldos.Rows[0][0].ToString());
                 sint = decimal.Parse(saldos.Rows[0][1].ToString());
                 int atraso=0;
                 if (scap <= 0 && sint <= 0)
                 {
-                 
-                    atraso= 0;
+                atraso= 0;
                 }
                 else if (scap > 0 && sint <= 0)
                 {
@@ -1877,7 +1876,7 @@ namespace Arcoiris.Clases
                 {
                     decimal montonew, pagoint;
                     montonew = monto - scap;
-                    pagoint = Math.Round((montonew * interes / 100 / 12),2);
+                    pagoint = Math.Round((monto * interes / 100 / 12),2);
                     while (scap>0 || sint>0)
                     {
                         atraso++;
@@ -1989,6 +1988,8 @@ namespace Arcoiris.Clases
             {
                 int conteo;
                 fechaC = Convert.ToDateTime(datcre.Rows[0][5].ToString());
+                DateTime fechaact= DateTime.Parse(fecha);
+
                 string ConPagosH;
                 ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%d-%M-%Y') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
@@ -2002,8 +2003,8 @@ namespace Arcoiris.Clases
                     //  pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
-                   Boolean pasarpago = false;
-                    decimal cint =  monto * inte / 100 / 12M;
+                    Boolean pasarpago = false;
+                    decimal cint = monto * inte / 100 / 12M;
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     fechap = fechap.AddDays(1);
                     // pint += Math.Round(cint,2);
@@ -2017,7 +2018,7 @@ namespace Arcoiris.Clases
                         if (fechaph > fechap && fechaph <= fechap.AddMonths(2))
                         {
                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                            cint = Math.Round((monto * inte / 100 / 12),2);
+                            cint = Math.Round((monto * inte / 100 / 12), 2);
                             pagado++;
                             ordenpag++;
                             sigpago++;
@@ -2070,7 +2071,7 @@ namespace Arcoiris.Clases
                             if (fechaph >= fechap && fechaph <= fechap.AddMonths(2))
                             {
                                 monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                cint += Math.Round((monto * inte / 100 / 12),2);
+                                cint += Math.Round((monto * inte / 100 / 12), 2);
                                 pagado++;
                                 ordenpag++;
                                 sigpago++;
@@ -2104,12 +2105,20 @@ namespace Arcoiris.Clases
                         }
                         else
                         {
+                            /*  DateTime fecharev = DateTime.Parse(fecha);
+                              if (datosph.Rows.Count==0 && fecharev<fechaC.AddMonths(1))*/
                             sigpago++;
                             monto -= 0;
                             cint = monto * inte / 100 / 12;
                         }
                     }
                 }
+                // Si no hay pagos hechos y si no ha llegado la fecha de pagosi los pagos hechos son mayores a los pagos esperados
+              /*  else if (datosph.Rows.Count==0 && fechaact<fechaC.AddMonths(2))
+                {
+                    pint = 0;
+                    pcap = 0;
+                }*/
                 else
                 {
                     // si los pagos hechos son mayores a los pagos esperados
@@ -2136,7 +2145,7 @@ namespace Arcoiris.Clases
                                 if (fechaph > fechap && fechaph < fechap.AddMonths(2))
                                 {
                                     monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                    cint = Math.Round((monto * inte / 100 / 12),2);
+                                    cint = Math.Round((monto * inte / 100 / 12), 2);
                                     pagado++;
                                     ordenpag++;
                                     if (ordenpag == pagostot)
@@ -2151,7 +2160,7 @@ namespace Arcoiris.Clases
                                     if (cint <= 0)
                                     {
                                         monto -= 0;
-                                        cint =Math.Round((monto * inte / 100 / 12),2);
+                                        cint = Math.Round((monto * inte / 100 / 12), 2);
                                     }
                                 }
                             }
@@ -2160,7 +2169,7 @@ namespace Arcoiris.Clases
                         {
                             sigpago++;
                             monto -= 0;
-                            cint = Math.Round((monto * inte / 100 / 12),2);
+                            cint = Math.Round((monto * inte / 100 / 12), 2);
                         }
                     }
 
