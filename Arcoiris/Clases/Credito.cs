@@ -2467,7 +2467,7 @@ namespace Arcoiris.Clases
                         fechap = fechaC.AddMonths(sigpago);
                     fechap = fechap.AddDays(1);
                         int pagado = 0;
-                        if (ordenpag < pagostot)
+                        if (ordenpag < pagos)
                         {
                             cint = 0;
                             pasarpago = false;
@@ -2476,13 +2476,27 @@ namespace Arcoiris.Clases
                                 fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
                                 if (fechaph > fechap && fechaph < fechap.AddMonths(2))
                                 {
-                                    monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                    cint = monto * inter / 100 / 12;
-                                    pagado++;
-                                    ordenpag++;
-                                    if (ordenpag == pagostot)
+                                    if (decimal.Parse(datosph.Rows[ordenpag][1].ToString()) > 0)
                                     {
-                                        break;
+                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                        cint += Math.Round((monto * inter / 100 / 12), 2);
+                                        pagado++;
+                                        ordenpag++;
+                                        if (ordenpag == pagostot)
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                        ordenpag++;
+                                        cint = 0;// Math.Round((monto * inter / 100 / 12), 2);
+                                        if (ordenpag == pagostot)
+                                        {
+                                            cint = Math.Round((monto * inter / 100 / 12), 2);
+                                            break;
+                                        }
                                     }
                                 }
                                 else
@@ -2492,7 +2506,7 @@ namespace Arcoiris.Clases
                                     if (cint <= 0)
                                     {
                                         monto -= 0;
-                                        cint = monto * inter / 100 / 12;
+                                        cint = Math.Round((monto * inter / 100 / 12),2);
                                     }
                                 }
                             }
@@ -2501,7 +2515,7 @@ namespace Arcoiris.Clases
                         {
                             sigpago++;
                             monto -= 0;
-                            cint = monto * inter / 100 / 12;
+                            cint =Math.Round(( monto * inter / 100 / 12),2);
                         }
                     }
                     cuota = pint;
