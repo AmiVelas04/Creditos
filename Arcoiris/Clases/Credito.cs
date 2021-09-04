@@ -2335,7 +2335,7 @@ namespace Arcoiris.Clases
                 //------------------------------------------- si los pagos hechos son iguales a los pagos requeridos
                 if (pagos == datosph.Rows.Count)
                 {
-                    pagos--;
+                   // pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     decimal cint = Math.Round((monto * inter / 100 / 12), 2);
@@ -2354,17 +2354,32 @@ namespace Arcoiris.Clases
                         if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
                         {
                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                            cint = Math.Round((monto * inter / 100 / 12), 2);
                             ordenpag++;
                             pagado++;
-                            sigpago++;
+
+                            if (ordenpag < datosph.Rows.Count)
+                            {
+                                if ((datosph.Rows[ordenpag][3] != DBNull.Value) && (fechaph.AddMonths(pagado) >= fechap && fechaph.AddMonths(pagado) < fechap.AddMonths(2)))
+                                {
+                                    cint = 0;
+                                    sigpago++;
+                                }
+                                else
+                                {
+                                    cint = Math.Round((monto * inter / 100 / 12), 2);
+                                                                 }
+                            }
+                            else
+                            {
+                                cint = Math.Round((monto * inter / 100 / 12), 2); 
+                            }
                         }
-                        else if (fechaph > fechap.AddMonths(2))
+                     /*   else if (fechaph > fechap.AddMonths(2))
                         {
                             cint = Math.Round((monto * inter / 100 / 12), 2);
                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
                             ordenpag++;
-                            pagado++;
+                           // pagado++;
                             sigpago++;
                         }
                         else if (fechaph < fechap.AddMonths(2))
@@ -2372,9 +2387,9 @@ namespace Arcoiris.Clases
                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
                             cint = Math.Round((monto * inter / 100 / 12), 2);
                             ordenpag++;
-                            pagado++;
+                           // pagado++;
                             sigpago++;
-                        }
+                        }*/
                         else
                         {
                             /*sigpago++;
@@ -2465,7 +2480,7 @@ namespace Arcoiris.Clases
                         pint += Math.Round(cint, 2);
                         // cint = monto * inte / 100 / 12;
                         fechap = fechaC.AddMonths(sigpago);
-                    fechap = fechap.AddDays(1);
+                    fechap = fechap.AddDays(0);
                         int pagado = 0;
                         if (ordenpag < pagos)
                         {
@@ -2474,30 +2489,13 @@ namespace Arcoiris.Clases
                             while (!pasarpago)
                             {
                                 fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                if (fechaph > fechap && fechaph < fechap.AddMonths(2))
+                                if (fechaph > fechap && fechaph <fechap.AddMonths(2))
                                 {
-                                    if (decimal.Parse(datosph.Rows[ordenpag][1].ToString()) > 0)
-                                    {
                                         monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                        cint += Math.Round((monto * inter / 100 / 12), 2);
+                                      cint= Math.Round((monto * inter / 100 / 12), 2);
                                         pagado++;
                                         ordenpag++;
-                                        if (ordenpag == pagostot)
-                                        {
-                                            break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                        ordenpag++;
-                                        cint = 0;// Math.Round((monto * inter / 100 / 12), 2);
-                                        if (ordenpag == pagostot)
-                                        {
-                                            cint = Math.Round((monto * inter / 100 / 12), 2);
-                                            break;
-                                        }
-                                    }
+                                       if (ordenpag == pagostot) break;
                                 }
                                 else
                                 {
@@ -2507,6 +2505,7 @@ namespace Arcoiris.Clases
                                     {
                                         monto -= 0;
                                         cint = Math.Round((monto * inter / 100 / 12),2);
+                                       
                                     }
                                 }
                             }
