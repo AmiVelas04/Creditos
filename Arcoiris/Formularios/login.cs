@@ -19,7 +19,7 @@ namespace Arcoiris.Formularios
 
         }
 
-        private void BtnIngresar_Click(object sender, EventArgs e)
+        private void ingreso()
         {
             string usu;
             string pass;
@@ -27,7 +27,7 @@ namespace Arcoiris.Formularios
             pass = TxtContra.Text;
             if (log.loguearse(usu, pass))
             {
-                MessageBox.Show("Acceso concedido","Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Acceso concedido", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Formularios.Main inicio = new Formularios.Main();
                 inicio.Show();
@@ -36,67 +36,71 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                MessageBox.Show("Acceso Denegado \nVerifique su usuario o contraseña","Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Acceso Denegado \nVerifique su usuario o contraseña", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 limpiar();
 
             }
+        }
 
+        private void BtnIngresar_Click(object sender, EventArgs e)
+        {
+            ingreso();
         }
 
         private void limpiar()
         {
-            TxtContra.ForeColor = Color.FromArgb(210, 210, 210);
-            TxtContra.Text = "Contraseña";
+           // TxtContra.ForeColor = Color.FromArgb(210, 210, 210);
+            TxtContra.Text = "";
             TxtContra.PasswordChar = '\0';
-            TxtUsu.ForeColor = Color.FromArgb(210, 210, 210);
-            TxtUsu.Text = "Usuario";
+           // TxtUsu.ForeColor = Color.FromArgb(210, 210, 210);
+            TxtUsu.Text = "";
 
         }
         private void TxtUsu_MouseEnter(object sender, EventArgs e)
         {
-            Color TextoCol;
+         /*   Color TextoCol;
             TextoCol = Color.FromArgb(0, 0, 0);
             if (TxtUsu.Text == "Usuario")
             {
                 TxtUsu.Text = "";
                 TxtUsu.ForeColor = TextoCol;
-            }
+            }*/
         }
 
         private void TxtUsu_MouseLeave(object sender, EventArgs e)
         {
-            Color TextoCol;
+            /*Color TextoCol;
             TextoCol = Color.FromArgb(210, 210, 210);
             if (TxtUsu.Text == "")
             {
                 TxtUsu.Text = "Usuario";
                 TxtUsu.ForeColor = TextoCol;
-            }
+            }*/
 
         }
 
         private void TxtContra_MouseEnter(object sender, EventArgs e)
         {
-            Color TextoCol;
+           /* Color TextoCol;
             TextoCol = Color.FromArgb(0,0,0);
             if (TxtContra.Text == "Contraseña")
             {
                 TxtContra.Text = "";
                 TxtContra.PasswordChar = Convert .ToChar ("*");
                 TxtContra.ForeColor = TextoCol;
-            }
+            }*/
         }
 
         private void TxtContra_MouseLeave(object sender, EventArgs e)
         {
-            Color TextoCol;
-            TextoCol = Color.FromArgb(210, 210, 210);
+           /* Color TextoCol;
+          TextoCol = Color.FromArgb(210, 210, 210);
             if (TxtContra.Text == "")
             {
                 TxtContra.Text = "Contraseña";
                 TxtContra.PasswordChar = '\0';
-                TxtContra.ForeColor = TextoCol;
-            }
+               TxtContra.ForeColor = TextoCol;
+            }*/
         }
 
         private void TxtContra_TextChanged(object sender, EventArgs e)
@@ -135,6 +139,12 @@ namespace Arcoiris.Formularios
         private void button1_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void TxtContra_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) ingreso();
+            
         }
     }
 }

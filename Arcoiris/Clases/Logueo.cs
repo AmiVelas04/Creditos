@@ -23,9 +23,9 @@ namespace Arcoiris.Clases
                 adap.Fill(datos);
                 return datos;
             }
-            catch (Exception ex)
+            catch (MySqlException ex)
             {
-                MessageBox.Show(ex.ToString());
+                //MessageBox.Show(ex.ToString());
                MessageBox.Show("Error de conexion, consulte con su administrador de sistemas" );   
                return datos;
             }

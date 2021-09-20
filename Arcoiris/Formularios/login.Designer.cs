@@ -94,12 +94,11 @@
             // TxtUsu
             // 
             this.TxtUsu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtUsu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.TxtUsu.ForeColor = System.Drawing.Color.Black;
             this.TxtUsu.Location = new System.Drawing.Point(65, 8);
             this.TxtUsu.Name = "TxtUsu";
             this.TxtUsu.Size = new System.Drawing.Size(252, 29);
             this.TxtUsu.TabIndex = 1;
-            this.TxtUsu.Text = "Usuario";
             this.TxtUsu.Click += new System.EventHandler(this.TxtUsu_Click);
             this.TxtUsu.MouseEnter += new System.EventHandler(this.TxtUsu_MouseEnter);
             this.TxtUsu.MouseLeave += new System.EventHandler(this.TxtUsu_MouseLeave);
@@ -126,13 +125,13 @@
             // TxtContra
             // 
             this.TxtContra.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtContra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(210)))), ((int)(((byte)(210)))));
+            this.TxtContra.ForeColor = System.Drawing.Color.Black;
             this.TxtContra.Location = new System.Drawing.Point(65, 9);
             this.TxtContra.Name = "TxtContra";
             this.TxtContra.Size = new System.Drawing.Size(252, 29);
             this.TxtContra.TabIndex = 1;
-            this.TxtContra.Text = "Contraseña";
             this.TxtContra.TextChanged += new System.EventHandler(this.TxtContra_TextChanged);
+            this.TxtContra.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtContra_KeyDown);
             this.TxtContra.MouseEnter += new System.EventHandler(this.TxtContra_MouseEnter);
             this.TxtContra.MouseLeave += new System.EventHandler(this.TxtContra_MouseLeave);
             // 
