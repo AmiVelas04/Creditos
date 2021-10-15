@@ -1704,7 +1704,7 @@ namespace Arcoiris.Clases
                     {
                         TotCap -= Pcap;
                         TotInt -= Pint;
-                        if (TotCap >= 0 && TotInt >= 0)
+                        if (TotCap >= 0 || TotInt >= 0)
                             pagao++;
                     }
                 }
