@@ -1618,36 +1618,45 @@ namespace Arcoiris.Clases
 
                     }
                 }
-                if (TotCap <= 0 && TotInt > 0)
-                {
-                    while (TotInt > 0)
-                    {
-                        TotInt -= Pint;
-                        if (TotInt >= Pint) pagao++;
-                    }
-                }
-                else if (TotCap > 0 && TotInt <= 0)
-                {
-                    while (TotCap > 0)
-                    {
-                        TotCap -= Pcap;
-                        if (TotCap >= Pcap) pagao++;
-                    }
-                }
-                else if (TotCap > 0 && TotInt > 0)
-                {
-                    while (TotCap > 0 || TotInt > 0)
-                    {
-                        TotCap -= Pcap;
-                        TotInt -= Pint;
-                        if (TotCap >= 0 && TotInt >= 0)
-                            pagao++;
-                    }
-                }
-                else
-                {
 
+                /*  if (TotCap <= 0 && TotInt > 0)
+                  {
+                      while (TotInt > 0)
+                      {
+                          TotInt -= Pint;
+                          if (TotInt >= Pint) pagao++;
+                      }
+                  }
+                  else if (TotCap > 0 && TotInt <= 0)
+                  {
+                      while (TotCap > 0)
+                      {
+                          TotCap -= Pcap;
+                          if (TotCap >= Pcap) pagao++;
+                      }
+                  }
+                  else if (TotCap > 0 && TotInt > 0)
+                  {
+                      while (TotCap > 0 || TotInt > 0)
+                      {
+                          TotCap -= Pcap;
+                          TotInt -= Pint;
+                          if (TotCap >= 0 && TotInt >= 0)
+                              pagao++;
+                      }
+                  }
+                  else
+                  {
+
+                  }*/
+                while (TotCap > 0 || TotInt > 0)
+                {
+                    TotCap -= Pcap;
+                    TotInt -= Pint;
+                    if (TotCap >= 0 && TotInt >= 0)
+                        pagao++;
                 }
+
                 pagao++;
                 dias -= (Dfin + pagao);
                 if (dias < 0) dias = 0;
