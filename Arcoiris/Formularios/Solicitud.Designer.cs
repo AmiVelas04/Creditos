@@ -32,10 +32,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.NupPlazo = new System.Windows.Forms.NumericUpDown();
-            this.LblPlazo = new System.Windows.Forms.Label();
+            this.GbxGarantia = new System.Windows.Forms.GroupBox();
+            this.TxtUbicacion = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.DtpEsc = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
+            this.TxtValu = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.CboTipoGarant = new System.Windows.Forms.ComboBox();
             this.TxtGaran = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.NupPlazo = new System.Windows.Forms.NumericUpDown();
+            this.LblPlazo = new System.Windows.Forms.Label();
             this.CboTipo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.BtnLimpiar = new System.Windows.Forms.Button();
@@ -84,9 +94,13 @@
             this.label12 = new System.Windows.Forms.Label();
             this.CboSoli = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.TxtTipEsc = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.TxtAut = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.GbxGarantia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
             this.Tab2.SuspendLayout();
             this.GBXPrestamo.SuspendLayout();
@@ -121,10 +135,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Khaki;
+            this.groupBox1.Controls.Add(this.GbxGarantia);
             this.groupBox1.Controls.Add(this.NupPlazo);
             this.groupBox1.Controls.Add(this.LblPlazo);
-            this.groupBox1.Controls.Add(this.TxtGaran);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.CboTipo);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.BtnLimpiar);
@@ -150,9 +163,144 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Solicitud de credito";
             // 
+            // GbxGarantia
+            // 
+            this.GbxGarantia.Controls.Add(this.TxtAut);
+            this.GbxGarantia.Controls.Add(this.label24);
+            this.GbxGarantia.Controls.Add(this.TxtTipEsc);
+            this.GbxGarantia.Controls.Add(this.TxtUbicacion);
+            this.GbxGarantia.Controls.Add(this.label23);
+            this.GbxGarantia.Controls.Add(this.label22);
+            this.GbxGarantia.Controls.Add(this.DtpEsc);
+            this.GbxGarantia.Controls.Add(this.label21);
+            this.GbxGarantia.Controls.Add(this.TxtValu);
+            this.GbxGarantia.Controls.Add(this.label20);
+            this.GbxGarantia.Controls.Add(this.label19);
+            this.GbxGarantia.Controls.Add(this.CboTipoGarant);
+            this.GbxGarantia.Controls.Add(this.TxtGaran);
+            this.GbxGarantia.Controls.Add(this.label7);
+            this.GbxGarantia.Location = new System.Drawing.Point(7, 250);
+            this.GbxGarantia.Name = "GbxGarantia";
+            this.GbxGarantia.Size = new System.Drawing.Size(735, 202);
+            this.GbxGarantia.TabIndex = 24;
+            this.GbxGarantia.TabStop = false;
+            this.GbxGarantia.Text = "Garantias";
+            // 
+            // TxtUbicacion
+            // 
+            this.TxtUbicacion.Location = new System.Drawing.Point(512, 106);
+            this.TxtUbicacion.Multiline = true;
+            this.TxtUbicacion.Name = "TxtUbicacion";
+            this.TxtUbicacion.Size = new System.Drawing.Size(164, 46);
+            this.TxtUbicacion.TabIndex = 35;
+            this.TxtUbicacion.Visible = false;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(397, 114);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(68, 17);
+            this.label23.TabIndex = 34;
+            this.label23.Text = "Ubicacion";
+            this.label23.Visible = false;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(393, 65);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(100, 17);
+            this.label22.TabIndex = 32;
+            this.label22.Text = "Fecha Escritura";
+            this.label22.Visible = false;
+            // 
+            // DtpEsc
+            // 
+            this.DtpEsc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpEsc.Location = new System.Drawing.Point(512, 62);
+            this.DtpEsc.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.DtpEsc.Name = "DtpEsc";
+            this.DtpEsc.Size = new System.Drawing.Size(164, 25);
+            this.DtpEsc.TabIndex = 31;
+            this.DtpEsc.Visible = false;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(393, 27);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(93, 17);
+            this.label21.TabIndex = 30;
+            this.label21.Text = "Tipo Escritura";
+            this.label21.Visible = false;
+            // 
+            // TxtValu
+            // 
+            this.TxtValu.Location = new System.Drawing.Point(124, 127);
+            this.TxtValu.Name = "TxtValu";
+            this.TxtValu.Size = new System.Drawing.Size(132, 25);
+            this.TxtValu.TabIndex = 29;
+            this.TxtValu.Text = "0";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(9, 127);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(68, 17);
+            this.label20.TabIndex = 28;
+            this.label20.Text = "Valuacion";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(9, 27);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(92, 17);
+            this.label19.TabIndex = 27;
+            this.label19.Text = "Tipo Garantia";
+            // 
+            // CboTipoGarant
+            // 
+            this.CboTipoGarant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboTipoGarant.FormattingEnabled = true;
+            this.CboTipoGarant.Items.AddRange(new object[] {
+            "Prendaria",
+            "Hipotecária",
+            "Vehiculos",
+            "Fiduciaria",
+            "Compromiso de deuda",
+            "Ninguna"});
+            this.CboTipoGarant.Location = new System.Drawing.Point(124, 24);
+            this.CboTipoGarant.Name = "CboTipoGarant";
+            this.CboTipoGarant.Size = new System.Drawing.Size(176, 25);
+            this.CboTipoGarant.TabIndex = 26;
+            this.CboTipoGarant.SelectedIndexChanged += new System.EventHandler(this.CboTipoGarant_SelectedIndexChanged);
+            // 
+            // TxtGaran
+            // 
+            this.TxtGaran.Location = new System.Drawing.Point(124, 65);
+            this.TxtGaran.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtGaran.MaxLength = 255;
+            this.TxtGaran.Multiline = true;
+            this.TxtGaran.Name = "TxtGaran";
+            this.TxtGaran.Size = new System.Drawing.Size(176, 44);
+            this.TxtGaran.TabIndex = 25;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(9, 68);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 17);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "Detalle Garantia";
+            // 
             // NupPlazo
             // 
-            this.NupPlazo.Location = new System.Drawing.Point(519, 287);
+            this.NupPlazo.Location = new System.Drawing.Point(519, 173);
             this.NupPlazo.Minimum = new decimal(new int[] {
             1,
             0,
@@ -171,38 +319,18 @@
             // LblPlazo
             // 
             this.LblPlazo.AutoSize = true;
-            this.LblPlazo.Location = new System.Drawing.Point(404, 289);
+            this.LblPlazo.Location = new System.Drawing.Point(404, 175);
             this.LblPlazo.Name = "LblPlazo";
             this.LblPlazo.Size = new System.Drawing.Size(89, 17);
             this.LblPlazo.TabIndex = 20;
             this.LblPlazo.Text = "Plazo(Meses)";
             this.LblPlazo.Visible = false;
             // 
-            // TxtGaran
-            // 
-            this.TxtGaran.Location = new System.Drawing.Point(519, 139);
-            this.TxtGaran.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtGaran.MaxLength = 255;
-            this.TxtGaran.Multiline = true;
-            this.TxtGaran.Name = "TxtGaran";
-            this.TxtGaran.Size = new System.Drawing.Size(176, 71);
-            this.TxtGaran.TabIndex = 19;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(404, 170);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 17);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "Garantias";
-            // 
             // CboTipo
             // 
             this.CboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboTipo.FormattingEnabled = true;
-            this.CboTipo.Location = new System.Drawing.Point(519, 240);
+            this.CboTipo.Location = new System.Drawing.Point(519, 129);
             this.CboTipo.Margin = new System.Windows.Forms.Padding(4);
             this.CboTipo.Name = "CboTipo";
             this.CboTipo.Size = new System.Drawing.Size(176, 25);
@@ -212,7 +340,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(404, 243);
+            this.label6.Location = new System.Drawing.Point(404, 132);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 17);
@@ -222,31 +350,37 @@
             // BtnLimpiar
             // 
             this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLimpiar.Location = new System.Drawing.Point(193, 270);
+            this.BtnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimpiar.Image")));
+            this.BtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnLimpiar.Location = new System.Drawing.Point(290, 459);
             this.BtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.Size = new System.Drawing.Size(133, 44);
+            this.BtnLimpiar.Size = new System.Drawing.Size(180, 44);
             this.BtnLimpiar.TabIndex = 15;
             this.BtnLimpiar.Text = "Limpiar Datos";
+            this.BtnLimpiar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnLimpiar.UseVisualStyleBackColor = true;
             this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // BtnAgregar
             // 
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAgregar.Location = new System.Drawing.Point(31, 270);
+            this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
+            this.BtnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAgregar.Location = new System.Drawing.Point(15, 459);
             this.BtnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(139, 44);
+            this.BtnAgregar.Size = new System.Drawing.Size(180, 44);
             this.BtnAgregar.TabIndex = 14;
             this.BtnAgregar.Text = "Agregar Solicitud";
+            this.BtnAgregar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // LblFecha
             // 
             this.LblFecha.AutoSize = true;
-            this.LblFecha.Location = new System.Drawing.Point(98, 221);
+            this.LblFecha.Location = new System.Drawing.Point(98, 205);
             this.LblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblFecha.Name = "LblFecha";
             this.LblFecha.Size = new System.Drawing.Size(43, 17);
@@ -412,7 +546,7 @@
             this.CboTipo2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboTipo2.Enabled = false;
             this.CboTipo2.FormattingEnabled = true;
-            this.CboTipo2.Location = new System.Drawing.Point(184, 259);
+            this.CboTipo2.Location = new System.Drawing.Point(184, 325);
             this.CboTipo2.Name = "CboTipo2";
             this.CboTipo2.Size = new System.Drawing.Size(152, 25);
             this.CboTipo2.TabIndex = 31;
@@ -434,7 +568,7 @@
             // 
             // TxtGastos
             // 
-            this.TxtGastos.Location = new System.Drawing.Point(184, 369);
+            this.TxtGastos.Location = new System.Drawing.Point(184, 435);
             this.TxtGastos.Name = "TxtGastos";
             this.TxtGastos.Size = new System.Drawing.Size(100, 25);
             this.TxtGastos.TabIndex = 29;
@@ -444,7 +578,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(24, 372);
+            this.label18.Location = new System.Drawing.Point(24, 438);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(124, 17);
             this.label18.TabIndex = 28;
@@ -453,7 +587,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(377, 422);
+            this.comboBox1.Location = new System.Drawing.Point(368, 479);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 25);
             this.comboBox1.TabIndex = 27;
@@ -461,7 +595,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(246, 418);
+            this.button1.Location = new System.Drawing.Point(237, 475);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(104, 29);
             this.button1.TabIndex = 26;
@@ -498,7 +632,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(24, 262);
+            this.label17.Location = new System.Drawing.Point(24, 328);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(102, 17);
@@ -541,7 +675,7 @@
             // 
             // TxtInteres
             // 
-            this.TxtInteres.Location = new System.Drawing.Point(184, 323);
+            this.TxtInteres.Location = new System.Drawing.Point(184, 389);
             this.TxtInteres.MaxLength = 4;
             this.TxtInteres.Name = "TxtInteres";
             this.TxtInteres.Size = new System.Drawing.Size(40, 25);
@@ -551,7 +685,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(24, 331);
+            this.label14.Location = new System.Drawing.Point(24, 397);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(65, 17);
             this.label14.TabIndex = 15;
@@ -623,7 +757,7 @@
             // TxtPlazo
             // 
             this.TxtPlazo.Enabled = false;
-            this.TxtPlazo.Location = new System.Drawing.Point(184, 291);
+            this.TxtPlazo.Location = new System.Drawing.Point(184, 357);
             this.TxtPlazo.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPlazo.Name = "TxtPlazo";
             this.TxtPlazo.Size = new System.Drawing.Size(155, 25);
@@ -632,7 +766,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(24, 295);
+            this.label9.Location = new System.Drawing.Point(24, 361);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 17);
@@ -644,8 +778,9 @@
             this.TxtGarantia.Enabled = false;
             this.TxtGarantia.Location = new System.Drawing.Point(184, 222);
             this.TxtGarantia.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtGarantia.Multiline = true;
             this.TxtGarantia.Name = "TxtGarantia";
-            this.TxtGarantia.Size = new System.Drawing.Size(280, 25);
+            this.TxtGarantia.Size = new System.Drawing.Size(280, 84);
             this.TxtGarantia.TabIndex = 7;
             // 
             // label10
@@ -717,6 +852,29 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Solicitudes Pendientes";
             // 
+            // TxtTipEsc
+            // 
+            this.TxtTipEsc.Location = new System.Drawing.Point(512, 24);
+            this.TxtTipEsc.Name = "TxtTipEsc";
+            this.TxtTipEsc.Size = new System.Drawing.Size(164, 25);
+            this.TxtTipEsc.TabIndex = 36;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(397, 172);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 17);
+            this.label24.TabIndex = 37;
+            this.label24.Text = "Autorizó";
+            // 
+            // TxtAut
+            // 
+            this.TxtAut.Location = new System.Drawing.Point(512, 169);
+            this.TxtAut.Name = "TxtAut";
+            this.TxtAut.Size = new System.Drawing.Size(164, 25);
+            this.TxtAut.TabIndex = 38;
+            // 
             // Solicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -735,6 +893,8 @@
             this.Tab1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.GbxGarantia.ResumeLayout(false);
+            this.GbxGarantia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).EndInit();
             this.Tab2.ResumeLayout(false);
             this.GBXPrestamo.ResumeLayout(false);
@@ -762,8 +922,6 @@
         private System.Windows.Forms.TabPage Tab2;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.TextBox TxtGaran;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CboTipo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox GBXPrestamo;
@@ -800,5 +958,20 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.ComboBox CboTipo2;
+        private System.Windows.Forms.GroupBox GbxGarantia;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox CboTipoGarant;
+        private System.Windows.Forms.TextBox TxtGaran;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.DateTimePicker DtpEsc;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox TxtValu;
+        private System.Windows.Forms.TextBox TxtUbicacion;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox TxtTipEsc;
+        private System.Windows.Forms.TextBox TxtAut;
+        private System.Windows.Forms.Label label24;
     }
 }

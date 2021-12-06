@@ -120,11 +120,13 @@ datoscli = cli.Buscar_nom_cli();
         }
         private void añadir()
         {
+
             string asesor="";
             string cliente="";
-
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             string fechaf = fecha.Replace("Fecha de solicitud: ", "");
+            VeriContGar();
+            string TipoG = CboTipoGarant.Text, Valu = TxtValu.Text, TipoEsc = TxtTipEsc.Text, Fesc = DtpEsc.Value.ToString("dd/MM/yyyy"),Aut= TxtAut.Text,Ubi= TxtUbicacion.Text,Gdetall= TxtGaran.Text,Estado="En Posesion";
             if (CboAsesor.SelectedValue == null)
             {
                 MessageBox.Show("No existe el asesor seleccionado", "no hay asesor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -177,7 +179,7 @@ datoscli = cli.Buscar_nom_cli();
             }
 
 
-            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, TxtGaran.Text, asesor, cliente, tipo };
+            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, Gdetall, asesor, cliente, tipo,TipoG,Valu,Gdetall,TipoEsc,Fesc,Aut,Valu,Ubi,Estado};
             if (sol.hayasesor(asesor))
             {
                 if (sol.agregar_soli(datos))
@@ -780,6 +782,41 @@ datoscli = cli.Buscar_nom_cli();
                 cambiar();
             }
 
+        }
+
+        private void CboTipoGarant_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string TipG;
+            TipG = CboTipoGarant.SelectedIndex.ToString();
+            if (TipG.Equals("1"))
+            {
+                label21.Visible = true;
+                label22.Visible = true;
+                label23.Visible = true;
+                TxtTipEsc.Visible = true;
+                //CboTipEsc.Visible = true;
+                DtpEsc.Visible = true;
+                TxtUbicacion.Visible = true;
+                TxtUbicacion.Clear();
+            }
+            else
+            {
+                label21.Visible = false;
+                label22.Visible = false;
+                label23.Visible = false;
+                TxtTipEsc.Visible = false;
+                DtpEsc.Visible = false;
+                TxtUbicacion.Visible = false;
+               
+
+            }
+        }
+
+        private void VeriContGar()
+        {
+            if(TxtUbicacion.Text=="")TxtUbicacion.Text = "N/E";
+            if (TxtAut.Text == "") TxtAut.Text = "N/E";
+            if (TxtTipEsc.Text == "") TxtTipEsc.Text = "N/E";
         }
     }
 }

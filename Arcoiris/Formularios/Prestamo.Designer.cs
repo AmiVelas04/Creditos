@@ -97,6 +97,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
+            this.BtnGarant = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
@@ -237,6 +238,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.BtnGarant);
             this.groupBox3.Controls.Add(this.TxtTasa);
             this.groupBox3.Controls.Add(this.label25);
             this.groupBox3.Controls.Add(this.TxtPlazo);
@@ -851,6 +853,19 @@
             this.DGVPpago.Size = new System.Drawing.Size(743, 420);
             this.DGVPpago.TabIndex = 0;
             // 
+            // BtnGarant
+            // 
+            this.BtnGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnGarant.Image")));
+            this.BtnGarant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnGarant.Location = new System.Drawing.Point(309, 179);
+            this.BtnGarant.Name = "BtnGarant";
+            this.BtnGarant.Size = new System.Drawing.Size(130, 42);
+            this.BtnGarant.TabIndex = 57;
+            this.BtnGarant.Text = "Garantia";
+            this.BtnGarant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnGarant.UseVisualStyleBackColor = true;
+            this.BtnGarant.Click += new System.EventHandler(this.BtnGarant_Click);
+            // 
             // Prestamo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -952,5 +967,6 @@
         private System.Windows.Forms.Button BtnBoleta;
         private System.Windows.Forms.TextBox TxtDepo;
         private System.Windows.Forms.CheckBox ChkDepo;
+        private System.Windows.Forms.Button BtnGarant;
     }
 }

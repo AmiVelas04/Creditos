@@ -163,7 +163,7 @@ namespace Arcoiris.Formularios
             }
             else if (CboCre.SelectedIndex == 3)
             {
-                titulo = "Listado creditos Termnados Mensulaes";
+                titulo = "Listado creditos Terminados Mensulaes";
                 tipo = "Mensual";
                 repor.Cred_ver(tipo, titulo);
             }

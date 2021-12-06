@@ -131,10 +131,12 @@ namespace Arcoiris.Reportes
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (estado == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
-            consulta = "SELECT CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%Y'),DATE_format(cre.FECHA_VENCI,'%d/%m/%Y'), CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos,cli.codigo_cli,cre.cod_credito " +
+            consulta = "SELECT CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%Y'),DATE_format(cre.FECHA_VENCI,'%d/%m/%Y'), CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos,cli.codigo_cli,cre.cod_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias " +
             "FROM cliente cli " +
             "INNER JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
             "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
+            "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = acre.ID_SOLICITUD "+
+            "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
             "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO " +
             "WHERE cre.ESTADO = 'Terminado' " +ConsulAdd  + 
             "Group by Nombre";
@@ -146,6 +148,7 @@ namespace Arcoiris.Reportes
             for (cont = 0; cont <= total - 1; cont++)
             {
                 string ultpag = "Select date_format(Max(fecha),'%d/%m/%Y') from pagos where cod_credito= " + credito.Rows[cont][6].ToString();
+                string Garantia = credito.Rows[cont][7] != DBNull.Value ? credito.Rows[cont][7].ToString() : "Sin Garantia";
                 DataTable cance = new DataTable();
                 cance = buscar(ultpag);
 
@@ -158,6 +161,7 @@ namespace Arcoiris.Reportes
                     detalle.FechaC = cance.Rows[0][0].ToString();
                     detalle.pago = "N/E";
                 detalle.tel = credito.Rows[cont][4].ToString();
+                    detalle.Garantia = Garantia;
                 Enca.detalleC.Add(detalle);
                 }
             }
@@ -478,15 +482,17 @@ namespace Arcoiris.Reportes
             Reportes.AtrasosE Encab = new Reportes.AtrasosE();
             Encab.titulo = titulo;
             string consulta,ConsulAdd="";
-            decimal interes, capital;
+            decimal capital;
             if (tip == "Diario")
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
-            consulta = "SELECT cre.cod_credito,CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/-%m/%y'), cre.FECHA_VENCI, CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos, interes,cre.id_tipo_credito  " +
+            consulta = "SELECT cre.cod_credito,CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%y'), cre.FECHA_VENCI, CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos, interes,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
             "FROM cliente cli " +
             "INNER JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
             "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
+            "LEFT JOIN sol_garant solg ON solg.Id_Solicitud=acre.ID_SOLICITUD "+
+            "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+ 
             "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO " +
             "WHERE cre.ESTADO = 'Activo' "+ ConsulAdd +
             "Group by cre.cod_credito "+
@@ -518,6 +524,7 @@ namespace Arcoiris.Reportes
 
                     if (inte > 0 || capital > 0)
                     {
+                        string Garantia = credito.Rows[cont][8] != DBNull.Value ? credito.Rows[cont][8].ToString() : "Sin Garantia";
                         detalle.Nombre = credito.Rows[cont][1].ToString();
                         detalle.Monto = Convert.ToDecimal(credito.Rows[cont][2]);
                         detalle.Lugar = "Total a cancelar";
@@ -525,6 +532,7 @@ namespace Arcoiris.Reportes
                         detalle.Iatraso =inte;//interes;
                         detalle.dias = diasatras;
                         detalle.Tel = credito.Rows[cont][5].ToString();
+                        detalle.Garant = Garantia;
                         Encab.Detalle.Add(detalle);
                     }
                 }
@@ -545,10 +553,12 @@ namespace Arcoiris.Reportes
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
-            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito " +
+            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
                        "FROM credito cre " +
                        "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = cre.COD_CREDITO " +
                        "INNER JOIN asigna_solicitud aso ON aso.ID_SOLICITUD = ac.ID_SOLICITUD " +
+                       "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = ac.ID_SOLICITUD "+
+                       "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
                        "INNER JOIN cliente cli ON cli.CODIGO_CLI = aso.codigo_cli " +
                        "WHERE cre.ESTADO = 'Activo' " + ConsulAdd +
                        "GROUP BY cre.COD_CREDITO " +
@@ -596,6 +606,7 @@ namespace Arcoiris.Reportes
                 if (catras > 0 || iatras>0)
                 {
                     decimal capatras, intatras;
+                    string Garantia = credito.Rows[cont][10] != DBNull.Value ? credito.Rows[cont][10].ToString() : "Sin Garantia";
                     Ccancelar = decimal.Parse(canti.Rows[0][5].ToString()) + decimal.Parse(credito.Rows[cont][7].ToString());
                     //No credito
                     detalle.cre = int.Parse(credito.Rows[cont][0].ToString());
@@ -638,6 +649,7 @@ namespace Arcoiris.Reportes
                      
                     //telefono
                     detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
+                    detalle.Garantia = Garantia;
                     Encab.Datos.Add(detalle);
                 }
 
@@ -657,11 +669,13 @@ namespace Arcoiris.Reportes
             else if (t == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
 
-            string consulta = "SELECT  cre.COD_CREDITO,cli.NOMBRES,cli.APELLIDOS,cre.Saldo_cap, date_format(cre.FECHA_CONC,'%d/%M/%Y'), date_format(cre.FECHA_venci,'%d/%M/%Y'),cre.id_tipo_credito " +
+            string consulta = "SELECT  cre.COD_CREDITO,cli.NOMBRES,cli.APELLIDOS,cre.Saldo_cap, date_format(cre.FECHA_CONC,'%d/%m/%Y'), date_format(cre.FECHA_venci,'%d/%m/%Y'),cre.id_tipo_credito ,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias " +
                              "FROM credito cre " +
                              "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = cre.COD_CREDITO " +
                              "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = acre.ID_SOLICITUD " +
-                             "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli "+
+                             "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = acre.ID_SOLICITUD "+
+                             "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
+                             "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
                              "WHERE cre.ESTADO='Activo'"+ConsulAdd +
                              "GROUP BY cre.COD_CREDITO";
             int cont, cant;
@@ -676,6 +690,7 @@ namespace Arcoiris.Reportes
                 string tipo = datos.Rows[cont][6].ToString();
                 string codcre= datos.Rows[cont][0].ToString();
                 decimal interes = cre.SaldoDeinteres(codcre,fechahoy,tipo,0);
+                string Garantia = datos.Rows[cont][7] != DBNull.Value ? datos.Rows[cont][7].ToString() : "Sin Garantia";
                 if (interes < 0) interes = 0;
                 detalle.Credito = int.Parse(datos.Rows[cont][0].ToString());
                 detalle.Nombre = datos.Rows[cont][1].ToString() + " " + datos.Rows[cont][2].ToString();
@@ -683,6 +698,7 @@ namespace Arcoiris.Reportes
                 detalle.Sinteres = interes;
                 detalle.Fcons = datos.Rows[cont][4].ToString();
                 detalle.Fvenc = datos.Rows[cont][5].ToString();
+                detalle.Garantia = Garantia;
                 enca.DetalleActi.Add(detalle);
             }
             Credi_Activ Activos = new Credi_Activ();
@@ -703,10 +719,12 @@ namespace Arcoiris.Reportes
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
-            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito " +
+            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
                        "FROM credito cre " +
                        "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = cre.COD_CREDITO " +
                        "INNER JOIN asigna_solicitud aso ON aso.ID_SOLICITUD = ac.ID_SOLICITUD " +
+                       "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = ac.ID_SOLICITUD "+
+                       "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
                        "INNER JOIN cliente cli ON cli.CODIGO_CLI = aso.codigo_cli " +
                        "WHERE cre.ESTADO = 'Activo' " + ConsulAdd +
                        "GROUP BY cre.COD_CREDITO " +
@@ -724,6 +742,7 @@ namespace Arcoiris.Reportes
                 DataTable saldos = new DataTable();
                 DataTable canti = new DataTable();
                 DataTable fechas = new DataTable();
+                string Garantia = credito.Rows[cont][10] != DBNull.Value ? credito.Rows[cont][10].ToString() : "Sin Garantia";
                 string codigocli = credito.Rows[cont][8].ToString();
                 string tipo = credito.Rows[cont][9].ToString();
                 string Conscli = "select telefono1,telefono2,telefonocon as telefono from cliente where codigo_cli=" + codigocli;
@@ -796,12 +815,6 @@ namespace Arcoiris.Reportes
                     }
                 }
 
-        
-
-
-
-
-
                     if (sihayp)
                     { 
                     decimal capatras, intatras;
@@ -848,6 +861,8 @@ namespace Arcoiris.Reportes
                     }
                     //telefono
                     detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
+                    //Garantia 
+                    detalle.Garantia = Garantia;
                     Encab.Datos.Add(detalle);
                     
                 }

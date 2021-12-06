@@ -14,6 +14,7 @@ namespace Arcoiris.Reportes
         public decimal Sinteres { get; set; }
         public string Fcons{ get; set; }
         public string Fvenc { get; set; }
+        public string Garantia { get; set; }
 
     }
 }

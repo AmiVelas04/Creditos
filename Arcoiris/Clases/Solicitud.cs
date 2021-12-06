@@ -168,8 +168,6 @@ namespace Arcoiris.Clases
             com.Connection = conect.conn;
             com.CommandText = consulta;
             com.CommandType = CommandType.Text;
-
-
             try
             {
                 conect.conn.Open();
@@ -178,7 +176,19 @@ namespace Arcoiris.Clases
                 conect.conn.Close();
                 if (asinga_soli(data))
                 {
-                    return true;
+                    string[] Dgaran = new string[10];
+                    Dgaran[0] = datos[10];
+                    Dgaran[1] = datos[11];
+                    Dgaran[2] = datos[12];
+                    Dgaran[3] = datos[13];
+                    Dgaran[4] = datos[14];
+                    Dgaran[5] = datos[15];
+                    Dgaran[6] = datos[16];
+                    Dgaran[7] = datos[17];
+                    Dgaran[8] = datos[18];
+                    Dgaran[9] = datos[0];
+                    return ingre_garant(Dgaran);
+                    //return true;
                 }
                 else
                 {
@@ -210,8 +220,8 @@ namespace Arcoiris.Clases
         {
             string consulta;
             consulta = "Select Concat(cli.Nombres,' ',cli.apellidos) as Nombre, ase.nombre as Asesor, sol.Concepto , Monto,plazo,garantia,Fecha,tipo,cli.Codigo_cli " +
-"from Cliente cli inner join asigna_solicitud asol on asol.codigo_cli = cli.codigo_cli inner join Asesor ase on ase.cod_asesor = asol.cod_asesor inner join solicitud sol on sol.id_solicitud = asol.id_solicitud " +
-"where sol.id_solicitud =" + soli;
+                       "from Cliente cli inner join asigna_solicitud asol on asol.codigo_cli = cli.codigo_cli inner join Asesor ase on ase.cod_asesor = asol.cod_asesor inner join solicitud sol on sol.id_solicitud = asol.id_solicitud " +
+                       "where sol.id_solicitud =" + soli;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -236,6 +246,77 @@ namespace Arcoiris.Clases
                 MessageBox.Show("Error en asignacion de solicitud");
                 MessageBox.Show(ex.ToString());
                 return false;
+            }
+        }
+
+        public bool ingre_garant(string[] val)
+        {
+            int idgarant;
+            idgarant = id_garant();
+            idgarant++;
+
+            string consulta = "Insert into garantia(id_garant,tipo,valuacion,detalle,tipo_esc,Fecha_Esc,Autorizo,Val_banca,Ubicacion,Estado) values(" +
+                              ""+idgarant.ToString()+",'"+val[0]+"',"+val[1]+",'"+val[2]+"','"+val[3]+"','"+val[4]+"','"+val[5]+"',"+val[6]+",'"+val[7]+"','"+val[8]+"')";
+            MySqlCommand com = new MySqlCommand();
+            com.Connection = conect.conn;
+            com.CommandText = consulta;
+            com.CommandType = CommandType.Text;
+            try
+            {
+                string[] valo = new string[2];
+                conect.conn.Open();
+                com.ExecuteNonQuery();
+                conect.conn.Close();
+                valo[0] = idgarant.ToString();
+                valo[1] = val[9];
+                if (asigna_garant(valo))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                conect.conn.Close();
+                MessageBox.Show("Error al ingresar garantia\n" + ex.ToString());
+                MessageBox.Show(consulta);
+                return false;
+
+            }
+
+        }
+
+        private bool asigna_garant(string[] val)
+        {
+            int idgarant;
+            idgarant = id_garant();
+            idgarant++;
+
+            string consulta = "Insert into sol_garant(id_solicitud,id_garant) values(" +
+                              "" + val[1] + "," + val[0] + ")";
+            MySqlCommand com = new MySqlCommand();
+            com.Connection = conect.conn;
+            com.CommandText = consulta;
+            com.CommandType = CommandType.Text;
+            try
+            {
+                
+                conect.conn.Open();
+                com.ExecuteNonQuery();
+                conect.conn.Close();
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                conect.conn.Close();
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show(consulta);
+                return false;
+
             }
         }
 
@@ -433,6 +514,64 @@ namespace Arcoiris.Clases
 
         }
 
-}
+
+        #region Id's
+        private int id_garant()
+        {
+            string consulta;
+            consulta = "SELECT max(gan.id_garant)FROM garantia gan";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                return int.Parse(datos.Rows[0][0].ToString());
+            }
+            else
+            {
+                return 0;
+            }
+
+        }
+
+
+        public string idsolXcred(string cre)
+        {
+            string consulta;
+            consulta = "Select id_solicitud from asigna_credito where cod_credito="+cre;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return (datos.Rows[0][0].ToString());
+
+        }
+        #endregion
+
+        #region Garantias
+
+       public DataTable garantia(string idcre)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT gar.id_garant,gar.Tipo,gar.Valuacion,gar.Detalle,gar.Tipo_Esc,gar.Fecha_Esc,gar.Autorizo,gar.ubicacion,gar.Estado  from  garantia gar "+
+"INNER JOIN sol_garant sga ON sga.id_garant = gar.id_garant "+
+"INNER JOIN solicitud sol ON sol.ID_SOLICITUD = sga.Id_Solicitud "+
+"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD "+
+"INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = sol.ID_SOLICITUD "+
+"INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO "+
+"WHERE cre.COD_CREDITO ="+idcre;
+            datos = buscar(consulta);
+            return datos;
+        }
+
+
+       
+
+        public bool updgarantia(string[] datos)
+        {
+            string consulta;
+            consulta = "Update  garantia set tipo='"+datos[1]+"', valuacion=" + datos[2] +", detalle='"+datos[3] + "', Tipo_esc='"+ datos[4]+"', Fecha_esc='"+datos[5]+ "', Autorizo='" +datos[6] +"', ubicacion='"+datos[7]+"', Estado='"+datos[8]+"' where id_garant=" + datos[0];
+            return (consulta_gen(consulta));
+        }
+        #endregion
     }
+}
 

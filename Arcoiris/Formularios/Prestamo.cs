@@ -13,16 +13,17 @@ namespace Arcoiris.Formularios
 {
     public partial class Prestamo : Form
     {
-        
-        decimal pagof =0;
+
+        decimal pagof = 0;
         Clases.Solicitud soli = new Clases.Solicitud();
         Clases.Credito cre = new Clases.Credito();
         Clases.Cliente cli = new Clases.Cliente();
         Clases.Pago pag = new Clases.Pago();
         Clases.CajaOpe caj = new Clases.CajaOpe();
         Reportes.LlenarReport repo = new Reportes.LlenarReport();
-     
         
+
+
         public Prestamo()
         {
             InitializeComponent();
@@ -42,9 +43,10 @@ namespace Arcoiris.Formularios
             if (ChkCancelado.Checked == false)
             { listacre(); }
             else
-            {cancel();
-               }
-            
+            {
+                cancel();
+            }
+
         }
 
 
@@ -57,22 +59,10 @@ namespace Arcoiris.Formularios
                 BtnEliminar.Enabled = true;
                 BtnEliminarCre.Visible = true;
             }
-            else if (Form1.Nivel == "3")
+            else
             {
                 BtnEliminar.Enabled = false;
                 BtnEliminarCre.Visible = false;
-            }
-            else if (Form1.Nivel == "4")
-            {
-                BtnEliminar.Visible = false;
-                BtnBoleta.Visible = false;
-                BtnPago.Visible = false;
-                BtnCancel.Visible = false;
-                BtnAldia.Visible = false;
-            }
-            else
-            {
-            
             }
             Tab2.Parent = null;
             listacli();
@@ -82,8 +72,8 @@ namespace Arcoiris.Formularios
             int total;
             DataTable datos = new DataTable();
             string valor;
-            if (CboCliNom.Text  =="")
-            { 
+            if (CboCliNom.Text == "")
+            {
                 valor = "-1";
             }
             else
@@ -106,14 +96,14 @@ namespace Arcoiris.Formularios
             else
             {
                 CboPresta.Items.Clear();
-             //   CboPresta.Enabled = false;
+                //   CboPresta.Enabled = false;
             }
         }
 
         private void cancel()
         {
             DataTable dat = new DataTable();
-            dat=cre.cancel(CboCliNom.SelectedValue.ToString ());
+            dat = cre.cancel(CboCliNom.SelectedValue.ToString());
             int cont, total = dat.Rows.Count;
             CboPresta.Items.Clear();
             for (cont = 1; cont <= total; cont++)
@@ -127,37 +117,38 @@ namespace Arcoiris.Formularios
         private void DatosCre()
         {
             DataTable datos = new DataTable();
-            int atras = Convert.ToInt32(cre.dias_atraso(CboPresta.Text,  DtpPago.Value.Date.ToString("yyyy/MM/dd")));
-         
-           //TxtInteres.Text = inteori.ToString();
-            datos = cre.cantcre(CboPresta.Text,DtpPago.Value.ToString ());
+            int atras = Convert.ToInt32(cre.dias_atraso(CboPresta.Text, DtpPago.Value.Date.ToString("yyyy/MM/dd")));
+
+            //TxtInteres.Text = inteori.ToString();
+            datos = cre.cantcre(CboPresta.Text, DtpPago.Value.ToString());
             TxtMonto.Text = datos.Rows[0][0].ToString();
             decimal saldocap = Convert.ToDecimal(datos.Rows[0][1].ToString());
-            decimal inte = Convert.ToDecimal(TxtInteres.Text );
-            decimal monto = Convert.ToDecimal (TxtMonto.Text);
-            decimal interes = Convert.ToDecimal (TxtInteres.Text);
-            decimal interestemp=0;
+            decimal inte = Convert.ToDecimal(TxtInteres.Text);
+            decimal monto = Convert.ToDecimal(TxtMonto.Text);
+            decimal interes = Convert.ToDecimal(TxtInteres.Text);
+            decimal interestemp = 0;
             TxtMonto.Text = TxtMonto.Text;
-            TxtSaldo.Text = Convert.ToString (saldocap);
+            TxtSaldo.Text = Convert.ToString(saldocap);
             TxtSaldInt.Text = datos.Rows[0][5].ToString();
             TxtVenc.Text = datos.Rows[0][2].ToString();
             TxtTipo.Text = datos.Rows[0][3].ToString();
-           // TxtAtraso.Text = cre.dias_atraso(CboPresta.Text,DtpPago .Value.ToString ("yyyy/MM/dd"));
-           if(Convert.ToDecimal (TxtSaldInt.Text )>0)
-            { interestemp = Convert.ToDecimal(TxtSaldInt.Text) ; 
+            // TxtAtraso.Text = cre.dias_atraso(CboPresta.Text,DtpPago .Value.ToString ("yyyy/MM/dd"));
+            if (Convert.ToDecimal(TxtSaldInt.Text) > 0)
+            {
+                interestemp = Convert.ToDecimal(TxtSaldInt.Text);
             }
-            TxtTotalTod.Text = Convert.ToString (Convert.ToDecimal (TxtSaldo .Text ) + interestemp);
-            TxtFechConc .Text = datos.Rows[0][6].ToString();
+            TxtTotalTod.Text = Convert.ToString(Convert.ToDecimal(TxtSaldo.Text) + interestemp);
+            TxtFechConc.Text = datos.Rows[0][6].ToString();
             TxtTasa.Text = datos.Rows[0][7].ToString() + "%";
             TxtPlazo.Text = (datos.Rows[0][8].ToString());
             if (TxtTipo.Text == "1")
             {
-                TxtTipo.Text  = "Diario";
+                TxtTipo.Text = "Diario";
                 int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
-                TxtAtraso.Text = total .ToString () + " Día(s)";
+                TxtAtraso.Text = total.ToString() + " Día(s)";
             }
-            else if(TxtTipo.Text == "2")
-                    {
+            else if (TxtTipo.Text == "2")
+            {
                 TxtTipo.Text = "Diario-Interes";
                 int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = total.ToString() + " Día(s)";
@@ -165,8 +156,8 @@ namespace Arcoiris.Formularios
             else if (TxtTipo.Text == "3")
             {
                 TxtTipo.Text = "Mesual-Fijo";
-                int total=cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
-                TxtAtraso.Text = total+" Día(s)";
+                int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                TxtAtraso.Text = total + " Día(s)";
             }
             else if (TxtTipo.Text == "4")
             {
@@ -178,32 +169,32 @@ namespace Arcoiris.Formularios
             DataTable aldia = new DataTable();
             aldia = cre.saldosdias(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"));
             TxtCapital.Text = aldia.Rows[0][0].ToString();
-           TxtInteres.Text = aldia.Rows[0][1].ToString();
-            decimal intere=0;
+            TxtInteres.Text = aldia.Rows[0][1].ToString();
+            decimal intere = 0;
             if (Convert.ToDecimal(aldia.Rows[0][1]) > 0) intere = Convert.ToDecimal(aldia.Rows[0][1]);
-            decimal capi=0;
+            decimal capi = 0;
             if (Convert.ToDecimal(aldia.Rows[0][0]) > 0) capi = Convert.ToDecimal(aldia.Rows[0][0]);
 
-            TxtCuotaD.Text = (capi+intere).ToString ();
-            }
+            TxtCuotaD.Text = (capi + intere).ToString();
+        }
 
         private void Dcre()
         {
             DataTable datos = new DataTable();
             datos = cre.verfecha(CboPresta.Text);
-            TxtMonto.Text = datos.Rows[0][4].ToString(); 
+            TxtMonto.Text = datos.Rows[0][4].ToString();
             TxtSaldo.Text = "0";
             TxtSaldInt.Text = "0";
             TxtSaldo.Text = "0";
             TxtTotalTod.Text = "0";
             TxtAtraso.Text = "Cancelado";
-           
+
             TxtPlazo.Text = datos.Rows[0][0].ToString();
             TxtTasa.Text = datos.Rows[0][1].ToString() + "%";
             TxtFechConc.Text = datos.Rows[0][2].ToString();
             TxtVenc.Text = datos.Rows[0][3].ToString();
-            
-            
+
+
 
         }
         #endregion
@@ -217,12 +208,12 @@ namespace Arcoiris.Formularios
             CboCliNom.DisplayMember = "Nombre";
             CboCliNom.ValueMember = "Codigo_Cli";
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach(DataRow row in listadocli.Rows)
-           {
-                coleccion.Add(row["Nombre"].ToString ());
+            foreach (DataRow row in listadocli.Rows)
+            {
+                coleccion.Add(row["Nombre"].ToString());
 
             }
-            CboCliNom.AutoCompleteCustomSource  = coleccion;
+            CboCliNom.AutoCompleteCustomSource = coleccion;
             CboCliNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboCliNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
@@ -276,24 +267,24 @@ namespace Arcoiris.Formularios
         private void llenadocajas()
         {
             DataTable datos = new DataTable();
-            datos = cre.datoscre(CboPresta.Text,DtpPago .Value.ToString ("yyyy/MM/dd") );
+            datos = cre.datoscre(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"));
             TxtInteres.Text = datos.Rows[0][0].ToString();
             TxtCuotaD.Text = datos.Rows[0][2].ToString();
             pagof = Convert.ToDecimal(datos.Rows[0][2].ToString());
 
             TxtMora.Text = "0";
-            TxtCapD .Text = datos.Rows[0][4].ToString();
-           TxtIntD .Text = datos.Rows[0][5].ToString();
+            TxtCapD.Text = datos.Rows[0][4].ToString();
+            TxtIntD.Text = datos.Rows[0][5].ToString();
             TxtEfectivo.Text = "";
             decimal cuotaN;
             decimal CapN = Convert.ToDecimal(datos.Rows[0][4].ToString());
             decimal IntM = Convert.ToDecimal(datos.Rows[0][5].ToString());
             cuotaN = CapN + IntM;
-            TxtCuota.Text  = cuotaN.ToString();
+            TxtCuota.Text = cuotaN.ToString();
 
             if (datos.Rows[0][3].ToString().Equals("Terminado"))
             {
-               
+
                 if (CboPresta.Items.Count <= 1)
                 {
                     CboPresta.Enabled = false;
@@ -337,19 +328,19 @@ namespace Arcoiris.Formularios
             {
                 efectivo = Convert.ToDecimal(TxtEfectivo.Text);
             }
-           // TxtTotal.Text = "Q. " + Pago;
+            // TxtTotal.Text = "Q. " + Pago;
             cambio = efectivo - Pago;
             if (cambio < 0)
             {
                 cambio = 0;
             }
-            TxtCambio.Text = "Q. "+cambio.ToString();
+            TxtCambio.Text = "Q. " + cambio.ToString();
 
         }
 
         #endregion
         #region "Manejo cantidades"
-       
+
 
         private void TxtMora_TextChanged(object sender, EventArgs e)
         {
@@ -374,7 +365,7 @@ namespace Arcoiris.Formularios
         private void ingresocaja()
         {
             string deposito = "";
-            if (ChkDepo.Checked) deposito = ", según deposito " + TxtDepo .Text ;
+            if (ChkDepo.Checked) deposito = ", según deposito " + TxtDepo.Text;
 
             string id = Convert.ToString(caj.id_pago() + 1);
             string operacion = "Ingreso";
@@ -383,9 +374,9 @@ namespace Arcoiris.Formularios
             string fecha = DtpPago.Value.ToString("yyyy/MM/dd");
             string estado = "Activo";
             string usuario = Form1.Cod_U;
-            string credito= CboPresta.Text, cliente= CboCliNom.Text;
+            string credito = CboPresta.Text, cliente = CboCliNom.Text;
 
-            String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario,credito,cliente };
+            String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
             if (caj.ingreope(datos))
             {
                 MessageBox.Show("Pago registrado");
@@ -399,18 +390,19 @@ namespace Arcoiris.Formularios
         private void BtnPago_Click(object sender, EventArgs e)
         {
             if (TxtEfectivo.Text == "") TxtEfectivo.Text = TxtCuota.Text;
-            decimal interes= decimal.Parse(TxtIntD.Text);
-            decimal efectivo=decimal .Parse(TxtEfectivo.Text);
-            decimal Mora = decimal.Parse (TxtMora.Text);
+            decimal interes = decimal.Parse(TxtIntD.Text);
+            decimal efectivo = decimal.Parse(TxtEfectivo.Text);
+            decimal Mora = decimal.Parse(TxtMora.Text);
 
             if (efectivo < interes)
-            { TxtIntD.Text = efectivo.ToString();
-                TxtEfectivo.Text = efectivo.ToString ();
+            {
+                TxtIntD.Text = efectivo.ToString();
+                TxtEfectivo.Text = efectivo.ToString();
             }
             TxtIntD.Enabled = false;
             TxtCapD.Enabled = false;
-            string intpag, cappag,morapag, totpag;
-            intpag =TxtIntD.Text;
+            string intpag, cappag, morapag, totpag;
+            intpag = TxtIntD.Text;
             cappag = TxtCapD.Text;
             if (TxtMora.Text != "")
             { morapag = TxtMora.Text; }
@@ -418,13 +410,13 @@ namespace Arcoiris.Formularios
             {
                 morapag = "0";
             }
-            if (decimal.Parse(TxtEfectivo.Text)<(decimal.Parse(morapag)+decimal.Parse(intpag)))
+            if (decimal.Parse(TxtEfectivo.Text) < (decimal.Parse(morapag) + decimal.Parse(intpag)))
             {
-                intpag= (decimal.Parse(TxtEfectivo.Text) - decimal.Parse(morapag)).ToString();
+                intpag = (decimal.Parse(TxtEfectivo.Text) - decimal.Parse(morapag)).ToString();
                 TxtIntD.Text = intpag;
             }
-            totpag = (decimal.Parse(cappag)+decimal.Parse(intpag)+decimal.Parse(morapag)).ToString();
-            if (MessageBox.Show("Se realizará el siguiente pago: \n"+"Capital: Q." + cappag + "\nInteres: Q." + intpag + "\nMora: Q." + morapag + "\nTotal: Q."+totpag + "\n¿Desea proceder con el pago?","¿Realizar pago?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)==DialogResult.Yes)
+            totpag = (decimal.Parse(cappag) + decimal.Parse(intpag) + decimal.Parse(morapag)).ToString();
+            if (MessageBox.Show("Se realizará el siguiente pago: \n" + "Capital: Q." + cappag + "\nInteres: Q." + intpag + "\nMora: Q." + morapag + "\nTotal: Q." + totpag + "\n¿Desea proceder con el pago?", "¿Realizar pago?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 Pago();
                 ingresocaja();
@@ -435,7 +427,7 @@ namespace Arcoiris.Formularios
                 limpiar();
                 CboPresta.Items.Clear();
             }
-            
+
             /*
             if (CboPresta.Text != "")
             {
@@ -447,13 +439,13 @@ namespace Arcoiris.Formularios
         {
             string credito = CboPresta.Text;
             string interes = TxtIntD.Text;
-            string capital = (TxtCapD .Text);
-            string pago = TxtCuota .Text;
-            string fecha = DtpPago.Value.ToString ();
+            string capital = (TxtCapD.Text);
+            string pago = TxtCuota.Text;
+            string fecha = DtpPago.Value.ToString();
             string mora = TxtMora.Text;
             string saldocap = TxtSaldo.Text;
             string saldoint = TxtSaldInt.Text;
-            string[] datos = {credito,interes,capital,pago,fecha,mora,saldocap,saldoint };
+            string[] datos = { credito, interes, capital, pago, fecha, mora, saldocap, saldoint };
             Clases.Pago pagar = new Clases.Pago();
             if (pagar.Hacer_Pago(datos))
             {
@@ -469,19 +461,19 @@ namespace Arcoiris.Formularios
         private void imprimir_bol()
         {
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
-            datosP.boleta = pag .idpago (CboPresta .Text );
-            string dir = cli.Dir_cli(pag.idpago(CboPresta.Text).ToString ());
-            datosP.credito = Convert.ToInt32(CboPresta .Text );
+            datosP.boleta = pag.idpago(CboPresta.Text);
+            string dir = cli.Dir_cli(pag.idpago(CboPresta.Text).ToString());
+            datosP.credito = Convert.ToInt32(CboPresta.Text);
             datosP.cliente = CboCliNom.Text;
             datosP.Fecha = DateTime.Now;
             datosP.direccion = dir;
-            datosP.capital = Convert.ToDecimal(TxtCapD .Text );
-            datosP.interes= Convert.ToDecimal(TxtIntD.Text);
-            datosP.mora= Convert.ToDecimal(TxtMora.Text);
+            datosP.capital = Convert.ToDecimal(TxtCapD.Text);
+            datosP.interes = Convert.ToDecimal(TxtIntD.Text);
+            datosP.mora = Convert.ToDecimal(TxtMora.Text);
             datosP.total = Convert.ToDecimal(TxtCuota.Text);
-            decimal Saldor, valor, saldoint=0,saldot,restacent;
+            decimal Saldor, valor, saldoint = 0, saldot, restacent;
             Saldor = Convert.ToDecimal(TxtSaldo.Text) - Convert.ToDecimal(TxtCapD.Text);
-            datosP.saldo =Saldor ;
+            datosP.saldo = Saldor;
             valor = Convert.ToDecimal(TxtCuota.Text);
             if (decimal.Parse(TxtSaldInt.Text) - decimal.Parse(TxtIntD.Text) > 0) saldoint = decimal.Parse(TxtSaldInt.Text) - decimal.Parse(TxtIntD.Text);
             datosP.saldoi = saldoint;
@@ -489,8 +481,8 @@ namespace Arcoiris.Formularios
             datosP.totalD = saldot;
             int total, cents;
             cents = Convert.ToInt32((valor % 1) * 100);
-            total= int.Parse(Math.Truncate(valor).ToString());
-           // total = Convert.ToInt32(valor - (cents / 100));
+            total = int.Parse(Math.Truncate(valor).ToString());
+            // total = Convert.ToInt32(valor - (cents / 100));
             string letras;
             letras = total.ToWords() + " con " + cents.ToWords();
             if (cents <= 0) letras = total.ToWords() + " exactos";
@@ -502,12 +494,12 @@ namespace Arcoiris.Formularios
 
         private void Re_imprimir()
         {
-            
+
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
             int indice;
             indice = DGVPpago.CurrentRow.Index;
-            string dir = cli.Dir_cli(DGVPpago.Rows[indice].Cells[0].Value.ToString ());
-            datosP.boleta = Convert.ToInt32 (DGVPpago.Rows[indice].Cells[0].Value);
+            string dir = cli.Dir_cli(DGVPpago.Rows[indice].Cells[0].Value.ToString());
+            datosP.boleta = Convert.ToInt32(DGVPpago.Rows[indice].Cells[0].Value);
             datosP.credito = Convert.ToInt32(CboPresta.Text);
             datosP.cliente = CboCliNom.Text;
             datosP.direccion = dir;
@@ -521,17 +513,17 @@ namespace Arcoiris.Formularios
             datosP.saldo = Saldor;
             valor = Convert.ToDecimal(DGVPpago.Rows[indice].Cells[5].Value);
 
-            if (decimal.Parse(TxtSaldInt.Text)>0) saldoint = decimal.Parse (TxtSaldInt.Text);
+            if (decimal.Parse(TxtSaldInt.Text) > 0) saldoint = decimal.Parse(TxtSaldInt.Text);
             datosP.saldoi = saldoint;
             saldot = Saldor + saldoint;
             datosP.totalD = saldot;
             int total, cents;
-            cents = Convert.ToInt32((valor % 1)*100);
+            cents = Convert.ToInt32((valor % 1) * 100);
             total = int.Parse(Math.Truncate(valor).ToString());
-           // total = Convert.ToInt32(valor - (cents / 100));
+            // total = Convert.ToInt32(valor - (cents / 100));
             string letras;
             letras = total.ToWords() + " con " + cents.ToWords();
-            if (cents<=0) letras = total.ToWords() + " exactos";
+            if (cents <= 0) letras = total.ToWords() + " exactos";
             datosP.letras = letras;
             Reportes.BoletaPag boleta = new Reportes.BoletaPag();
             boleta.descripcion.Add(datosP);
@@ -561,6 +553,7 @@ namespace Arcoiris.Formularios
         }
         #endregion
 
+        #region Controles
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
             BtnEliminar.Enabled = false;
@@ -569,13 +562,13 @@ namespace Arcoiris.Formularios
                 int indice;
                 indice = DGVPpago.CurrentRow.Index;
                 string codigoP;
-                codigoP = DGVPpago.Rows[indice].Cells[0].Value .ToString();
+                codigoP = DGVPpago.Rows[indice].Cells[0].Value.ToString();
                 string cap;
                 string inter;
-                cap = DGVPpago.Rows[indice].Cells[2].Value .ToString();
-                inter = DGVPpago.Rows[indice].Cells[3].Value .ToString();
+                cap = DGVPpago.Rows[indice].Cells[2].Value.ToString();
+                inter = DGVPpago.Rows[indice].Cells[3].Value.ToString();
 
-                if (pag.estadopago(codigoP,CboPresta .Text,cap,inter))
+                if (pag.estadopago(codigoP, CboPresta.Text, cap, inter))
                 {
                     MessageBox.Show("El pago ha sido cancelado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     llenarGrid();
@@ -584,13 +577,13 @@ namespace Arcoiris.Formularios
                 {
                     MessageBox.Show("El pago no ha podido ser cancelado", "Problema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
-                }
+            }
         }
 
         private void tabControl1_KeyDown(object sender, KeyEventArgs e)
         {
-            
-            if ( e.KeyCode ==Keys.F12 )
+
+            if (e.KeyCode == Keys.F12)
             {
                 if (Form1.Cod_U == "1" || Form1.Cod_U == "2")
                 {
@@ -607,76 +600,63 @@ namespace Arcoiris.Formularios
                     Autopass pru = new Autopass();
                     pru.verificar += new Autopass.permiso(activar);
                     pru.ShowDialog();
-                 
+
                 }
             }
         }
 
-        public void activar(int nivel)
-        {
-            if (nivel == 1 || nivel == 2)
-            {
-                BtnEliminar.Enabled = true;
-                TxtIntD.Enabled = true;
-                DtpPago.Enabled = true;
-                //TxtCapital.Enabled = true;
-            }
-          
-
-        }
-     
         private void TxtEfectivo_TextChanged(object sender, EventArgs e)
         {
-            if (TxtEfectivo.Text != "" && TxtCapD .Text!="" )
+            if (TxtEfectivo.Text != "" && TxtCapD.Text != "")
             {
                 if (decimal.Parse(TxtIntD.Text) < 0) TxtIntD.Text = "0";
 
 
-                decimal efectivo=Convert.ToDecimal(TxtEfectivo.Text) ;
-                decimal Capital=Convert.ToDecimal(TxtCapD.Text);
-                decimal interes=Convert.ToDecimal(TxtIntD.Text);
+                decimal efectivo = Convert.ToDecimal(TxtEfectivo.Text);
+                decimal Capital = Convert.ToDecimal(TxtCapD.Text);
+                decimal interes = Convert.ToDecimal(TxtIntD.Text);
                 decimal interesDeu = Convert.ToDecimal(TxtInteres.Text);
                 if (interesDeu >= interes)
                 {
                     interes = interesDeu;
                     TxtIntD.Text = interes.ToString();
                 }
-                decimal mora= Convert.ToDecimal(TxtMora.Text);
-                decimal residuo= efectivo -interes;
+                decimal mora = Convert.ToDecimal(TxtMora.Text);
+                decimal residuo = efectivo - interes;
                 decimal cuota = Convert.ToDecimal(TxtCuota.Text);
-                
+
                 residuo -= mora;
                 if (residuo < 0)
                 {
                     residuo = 0;
                 }
-                TxtCapD.Text  = residuo.ToString() ;
+                TxtCapD.Text = residuo.ToString();
                 TxtCuota.Text = TxtEfectivo.Text;
                 if (Convert.ToDecimal(TxtCapD.Text) > Convert.ToDecimal(TxtSaldo.Text))
                 {
                     MessageBox.Show("El monto de capital es mayor a la deuda, porfavor ingrese de nuevo");
-                    TxtCapD.Text ="0";
+                    TxtCapD.Text = "0";
                     TxtIntD.Text = "0";
                     TxtCuota.Text = "0";
                 }
             }
-      
+
             //calculo();
         }
 
         private void DtpPago_ValueChanged(object sender, EventArgs e)
         {
-            if (CboPresta.SelectedIndex >=0)
+            if (CboPresta.SelectedIndex >= 0)
             {
                 llenadocajas();
                 DatosCre();
-             //   calculo();
+                //   calculo();
             }
         }
 
         private void DtpPago_Enter(object sender, EventArgs e)
         {
-           if (CboPresta.SelectedIndex >= 0)
+            if (CboPresta.SelectedIndex >= 0)
             {
                 llenadocajas();
                 DatosCre();
@@ -692,11 +672,12 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                TxtIntD.Text = "0";            }
+                TxtIntD.Text = "0";
+            }
             if (TxtCuotaD.Text != "")
             {
                 TxtCuota.Text = TxtCuotaD.Text;
-                TxtEfectivo.Text= TxtCuotaD.Text;
+                TxtEfectivo.Text = TxtCuotaD.Text;
             }
             else
 
@@ -723,7 +704,7 @@ namespace Arcoiris.Formularios
                     TxtEfectivo.Text = "0";
                 }
                 decimal pago = Convert.ToDecimal(TxtEfectivo.Text);
-                decimal Dinero = Convert.ToDecimal(TxtTotal .Text);
+                decimal Dinero = Convert.ToDecimal(TxtTotal.Text);
                 decimal vuelto = 0;
                 vuelto = Dinero - pago;
                 TxtCambio.Text = "Q. " + vuelto.ToString();
@@ -739,31 +720,11 @@ namespace Arcoiris.Formularios
             if (CboPresta.Text != "")
             {
                 DialogResult resp;
-                resp = MessageBox.Show("¿Desea eliminar el credito definitivamente?","¿Eliminar?",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                if (resp==DialogResult.Yes)
+                resp = MessageBox.Show("¿Desea eliminar el credito definitivamente?", "¿Eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (resp == DialogResult.Yes)
                 {
                     eliminar_credito(CboPresta.Text);
                 }
-            }
-        }
-
-        private void eliminar_credito(string credi)
-        {
-            if (pag.cancelarPagoall(credi))
-            {
-                if (cre.cancelar_cre2(credi))
-                {
-                    MessageBox.Show("Credito cancelado","Cancelado",MessageBoxButtons.OK,MessageBoxIcon.Information);
-
-                }
-                else
-                {
-                    MessageBox.Show("Error al cancelar credito", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Error al cancelar pagos", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -807,7 +768,7 @@ namespace Arcoiris.Formularios
             datos = cre.nombres_cre(Convert.ToInt32(CboPresta.Text));
 
             nombre = CboCliNom.Text;
-            direccion = datos.Rows[0][6].ToString ();
+            direccion = datos.Rows[0][6].ToString();
             tasa = TxtTasa.Text;
             plazo = datos.Rows[0][5].ToString();
             conce = TxtFechConc.Text;
@@ -823,15 +784,15 @@ namespace Arcoiris.Formularios
             encabe.conc = conce;
             encabe.vence = venci;
             encabe.monto = Convert.ToDecimal(monto);
-            encabe.saldocap = Convert.ToDecimal (saldocap);
+            encabe.saldocap = Convert.ToDecimal(saldocap);
             encabe.saldoint = Convert.ToDecimal(saldoint);
             encabe.saldocance = Convert.ToDecimal(saldoT);
 
             int totalp = DGVPpago.Rows.Count;
             int cont;
-           
 
-            for (cont=0;cont<=totalp-1;cont++)
+
+            for (cont = 0; cont <= totalp - 1; cont++)
             {
                 Reportes.EstadoDet detalle = new Reportes.EstadoDet();
                 detalle.fechap = Convert.ToDateTime(DGVPpago.Rows[cont].Cells[1].Value);
@@ -844,11 +805,11 @@ namespace Arcoiris.Formularios
 
             Reportes.CuentayPago cuenta = new Reportes.CuentayPago();
             cuenta.portada.Add(encabe);
-            cuenta.detall=encabe .Detalle;
+            cuenta.detall = encabe.Detalle;
             cuenta.Show();
 
-            
-            
+
+
 
         }
 
@@ -875,11 +836,11 @@ namespace Arcoiris.Formularios
 
         private void BtnCancel_Click(object sender, EventArgs e)
         {
-            TxtIntD.Text ="0";
-            if (Convert.ToDecimal(TxtSaldInt.Text)>0) TxtIntD.Text = TxtSaldInt.Text;
+            TxtIntD.Text = "0";
+            if (Convert.ToDecimal(TxtSaldInt.Text) > 0) TxtIntD.Text = TxtSaldInt.Text;
             TxtCapD.Text = TxtSaldo.Text;
             TxtCuota.Text = TxtTotalTod.Text;
-            TxtEfectivo.Text= TxtTotalTod.Text;
+            TxtEfectivo.Text = TxtTotalTod.Text;
 
         }
 
@@ -896,7 +857,8 @@ namespace Arcoiris.Formularios
                 TxtDepo.Focus();
             }
             else
-            { TxtDepo.Enabled = false;
+            {
+                TxtDepo.Enabled = false;
                 TxtDepo.Text = "";
             }
         }
@@ -910,5 +872,60 @@ namespace Arcoiris.Formularios
         {
 
         }
+
+        private void BtnGarant_Click(object sender, EventArgs e)
+        {
+            if (CboPresta.Text != "")
+            {
+                GarantVer garan = new GarantVer();
+                garan.cliente = CboCliNom.Text;
+                garan.idcre = CboPresta.Text;
+                garan.nivel = Form1.Nivel;
+                garan.ShowDialog();
+
+
+            }
+        }
+        #endregion
+
+
+
+        public void activar(int nivel)
+        {
+            if (nivel == 1 || nivel == 2)
+            {
+                BtnEliminar.Enabled = true;
+                TxtIntD.Enabled = true;
+                DtpPago.Enabled = true;
+                //TxtCapital.Enabled = true;
+            }
+            
+           
+
+
+        }
+
+     
+        private void eliminar_credito(string credi)
+        {
+            if (pag.cancelarPagoall(credi))
+            {
+                if (cre.cancelar_cre2(credi))
+                {
+                    MessageBox.Show("Credito cancelado", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                else
+                {
+                    MessageBox.Show("Error al cancelar credito", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error al cancelar pagos", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+      
     }
 }
