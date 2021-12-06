@@ -93,6 +93,7 @@
             // 
             // TxtUsu
             // 
+            this.TxtUsu.AcceptsTab = true;
             this.TxtUsu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtUsu.ForeColor = System.Drawing.Color.Black;
             this.TxtUsu.Location = new System.Drawing.Point(65, 8);

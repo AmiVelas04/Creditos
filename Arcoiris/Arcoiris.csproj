@@ -171,6 +171,12 @@
     <Compile Include="Formularios\Cliente.Designer.cs">
       <DependentUpon>Cliente.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\GarantVer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\GarantVer.Designer.cs">
+      <DependentUpon>GarantVer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\ListCred.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Cliente.resx">
       <DependentUpon>Cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\GarantVer.resx">
+      <DependentUpon>GarantVer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\ListCred.resx">
       <DependentUpon>ListCred.cs</DependentUpon>

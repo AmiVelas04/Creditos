@@ -122,7 +122,12 @@ namespace Arcoiris.Formularios
 
         private void login_Load(object sender, EventArgs e)
         {
-            BtnIngresar.Focus();
+            //BtnIngresar.Focus();
+            TxtUsu.Focus();
+            TxtUsu.Focus();
+            TxtUsu.Focus();
+            TxtUsu.Focus();
+            TxtUsu.Focus();
         }
 
         private void TxtUsu_Click(object sender, EventArgs e)
