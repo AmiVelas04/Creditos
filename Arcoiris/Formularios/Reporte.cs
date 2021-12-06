@@ -115,7 +115,7 @@ namespace Arcoiris.Formularios
 
             if (CboCre.SelectedIndex == 4)
             {
-                if (Form1.Cod_U.Equals("3"))
+                if (Form1.Cod_U.Equals("3") || Form1.Cod_U.Equals("4"))
                 {
                     MessageBox.Show("No tiene autirización de visualizar este reporte","Autorización",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
@@ -128,7 +128,7 @@ namespace Arcoiris.Formularios
                 }
             else if (CboCre.SelectedIndex == 5)
             {
-                if (Form1.Cod_U.Equals("3"))
+                if (Form1.Cod_U.Equals("3") || Form1.Cod_U.Equals("4"))
                 {
                     MessageBox.Show("No tiene autirización de visualizar este reporte", "Autorización", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }

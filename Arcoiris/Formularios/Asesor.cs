@@ -26,7 +26,7 @@ namespace Arcoiris.Formularios
             string[] datos = {TxtNom.Text ,TxtTel .Text ,TxtDir.Text};
             if (ase.ingresar_asesor(datos))
             {
-                MessageBox.Show("Assesor ingresado con exito");
+                MessageBox.Show("Asesor ingresado con exito");
                 limpiar();
             }
             else

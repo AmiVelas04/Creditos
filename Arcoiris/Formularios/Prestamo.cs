@@ -52,14 +52,27 @@ namespace Arcoiris.Formularios
         //Listar crditos pagina 1
         private void Prestamo_Load(object sender, EventArgs e)
         {
-            if (Form1.Nivel =="1" || Form1.Nivel=="2")
+            if (Form1.Nivel == "1" || Form1.Nivel == "2")
             {
                 BtnEliminar.Enabled = true;
                 BtnEliminarCre.Visible = true;
             }
-            else {
+            else if (Form1.Nivel == "3")
+            {
                 BtnEliminar.Enabled = false;
                 BtnEliminarCre.Visible = false;
+            }
+            else if (Form1.Nivel == "4")
+            {
+                BtnEliminar.Visible = false;
+                BtnBoleta.Visible = false;
+                BtnPago.Visible = false;
+                BtnCancel.Visible = false;
+                BtnAldia.Visible = false;
+            }
+            else
+            {
+            
             }
             Tab2.Parent = null;
             listacli();

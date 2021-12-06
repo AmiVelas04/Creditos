@@ -34,6 +34,19 @@ namespace Arcoiris.Formularios
                 BtnGuardar.Visible = true;
                 BtnAdmin.Visible = true;
             }
+            else if (Form1.Cod_U == "3")
+            {
+
+            }
+            else if (Form1.Cod_U == "4")
+            {
+                BtnAsesor.Visible = false;
+                //BtnReporte.Visible = true;
+                BtnGuardar.Visible = false;
+                BtnAdmin.Visible = false;
+                button1.Visible = false;
+                BtnSolicitud.Visible = false;
+            }
         }
 
         private void BtnCliente_Click(object sender, EventArgs e)

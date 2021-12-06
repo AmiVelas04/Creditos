@@ -13,6 +13,7 @@ namespace Arcoiris.Formularios
     public partial class Usuario : Form
     {
         Clases.Usuario usu = new Clases.Usuario();
+        Clases.ClAsesor ase = new Clases.ClAsesor();
         public Usuario()
         {
             InitializeComponent();
@@ -22,6 +23,7 @@ namespace Arcoiris.Formularios
         {
             CboNivel.Items.Add("Administrador");
             CboNivel.Items.Add("Receptor");
+            CboNivel.Items.Add("Cobrador");
             CboNivel.SelectedIndex = 0;
 
             DataTable dt = new DataTable();
@@ -54,6 +56,7 @@ namespace Arcoiris.Formularios
                 TxtUsu .Text= dt.Rows[0][2].ToString();
                 if (dt.Rows[0][4].ToString()=="2")  CboNivel.SelectedIndex = 0;
                 if (dt.Rows[0][4].ToString() == "3") CboNivel.SelectedIndex = 1;
+                if (dt.Rows[0][4].ToString() == "4") CboNivel.SelectedIndex = 2;
 
 
             }
@@ -88,7 +91,11 @@ namespace Arcoiris.Formularios
             string nivel = "0";
             if (CboNivel.Text == "Administrador")
             { nivel = "2"; }
-            else { nivel = "3"; }
+            else if (CboNivel.Text == "Receptor")
+            { nivel = "3"; }
+            else if (CboNivel.Text == "Cobrador")
+            { nivel = "4"; }
+            else { nivel = "0"; }
             string[] datos = {LblId .Text ,TxtNom.Text ,TxtUsu.Text,TxtPass2.Text,nivel };
             if (usu.existe(LblId.Text))
             {
@@ -106,11 +113,25 @@ namespace Arcoiris.Formularios
              
                 if (usu.ingre(datos))
                 {
-                    MessageBox.Show("Datos del usuario ingresados correctamente");
+
+                    if (nivel == "4")
+                    {
+                        string[] aseso = new string[3];
+                        aseso[0] = datos[1];
+                        aseso[1] = "";
+                        aseso[2] = "";
+
+
+                        if (ase.ingresar_asesor(aseso))
+                        { MessageBox.Show("Datos del cobrador ingresados correctamente","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information); }
+                        else
+                        { MessageBox.Show("Ocurrio un problema al ingresar datos del cobrador","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation); }
+                    }
+                    MessageBox.Show("Datos del usuario ingresados correctamente","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Error al ingresar datos");
+                    MessageBox.Show("Error al ingresar datos del usuario","Error",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
 
             }
