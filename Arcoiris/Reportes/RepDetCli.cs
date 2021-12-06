@@ -18,6 +18,7 @@ namespace Arcoiris.Reportes
         public string FechaC { get; set; }
         public string tel { get; set; }
         public decimal Gadmin { get; set; }
+        public string Garantia { get; set; }
 
     }
 }

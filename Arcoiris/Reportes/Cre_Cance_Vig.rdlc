@@ -6,22 +6,25 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>6.02867cm</Width>
+              <Width>5.31778cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.90643cm</Width>
+              <Width>2.1656cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.40381cm</Width>
+              <Width>2.2186cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.97678cm</Width>
+              <Width>2.32538cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.83544cm</Width>
+              <Width>1.06273cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.31533cm</Width>
+              <Width>2.07721cm</Width>
+            </TablixColumn>
+            <TablixColumn>
+              <Width>4.29917cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -280,6 +283,43 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Textbox5">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>Garantia</Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Textbox5</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <BackgroundColor>Silver</BackgroundColor>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
             <TablixRow>
@@ -497,12 +537,49 @@
                     </Textbox>
                   </CellContents>
                 </TablixCell>
+                <TablixCell>
+                  <CellContents>
+                    <Textbox Name="Garantia">
+                      <CanGrow>true</CanGrow>
+                      <KeepTogether>true</KeepTogether>
+                      <Paragraphs>
+                        <Paragraph>
+                          <TextRuns>
+                            <TextRun>
+                              <Value>=Fields!Garantia.Value</Value>
+                              <Style>
+                                <FontFamily>Segoe UI</FontFamily>
+                                <FontSize>8pt</FontSize>
+                              </Style>
+                            </TextRun>
+                          </TextRuns>
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
+                        </Paragraph>
+                      </Paragraphs>
+                      <rd:DefaultName>Garantia</rd:DefaultName>
+                      <Style>
+                        <Border>
+                          <Color>LightGrey</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                    </Textbox>
+                    <rd:Selected>true</rd:Selected>
+                  </CellContents>
+                </TablixCell>
               </TablixCells>
             </TablixRow>
           </TablixRows>
         </TablixBody>
         <TablixColumnHierarchy>
           <TablixMembers>
+            <TablixMember />
             <TablixMember />
             <TablixMember />
             <TablixMember />
@@ -527,7 +604,7 @@
         <Top>0.17639cm</Top>
         <Left>0.31432cm</Left>
         <Height>1.49049cm</Height>
-        <Width>19.46646cm</Width>
+        <Width>19.46647cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -585,7 +662,7 @@
     <Height>1.13081in</Height>
     <Style />
   </Body>
-  <Width>7.91667in</Width>
+  <Width>7.90092in</Width>
   <Page>
     <PageHeader>
       <Height>2.30187cm</Height>
@@ -613,7 +690,7 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox1</rd:DefaultName>
-          <Left>7.22177cm</Left>
+          <Left>7.53927cm</Left>
           <Height>0.6cm</Height>
           <Width>5.06646cm</Width>
           <Style>
@@ -645,7 +722,7 @@
           </Paragraphs>
           <rd:DefaultName>Textbox14</rd:DefaultName>
           <Top>0.77639cm</Top>
-          <Left>12.15854cm</Left>
+          <Left>13.36557cm</Left>
           <Height>0.6cm</Height>
           <Width>6.41521cm</Width>
           <ZIndex>1</ZIndex>
@@ -756,6 +833,14 @@
         </Field>
         <Field Name="FechaD">
           <DataField>FechaD</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Gadmin">
+          <DataField>Gadmin</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Garantia">
+          <DataField>Garantia</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="pago">

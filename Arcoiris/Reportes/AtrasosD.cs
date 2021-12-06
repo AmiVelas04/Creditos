@@ -15,6 +15,7 @@ namespace Arcoiris.Reportes
         public decimal Iatraso { get; set; }
         public int dias { get; set; }
         public string Tel {get;set;}
+        public string Garant { get; set; }
 
     }
 }

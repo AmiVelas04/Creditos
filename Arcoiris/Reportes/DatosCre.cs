@@ -24,6 +24,7 @@ namespace Arcoiris.Reportes
         public decimal cuota { get; set; }
         public DateTime utlimpag { get; set; }
         public string telefono { get; set; }
+        public string Garantia { get; set; }
 
     }
 }

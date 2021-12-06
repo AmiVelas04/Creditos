@@ -26,6 +26,10 @@ namespace Arcoiris.Reportes
             this.Rpv1.LocalReport.DataSources.Clear();
             this.Rpv1.LocalReport.DataSources.Add(new ReportDataSource("Encabezado", encabezado));
             this.Rpv1.LocalReport.DataSources.Add(new ReportDataSource("Detalle", detalle));
+            this.Rpv1.SetDisplayMode(DisplayMode.PrintLayout);
+            this.Rpv1.ZoomMode = ZoomMode.Percent;
+            //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
+            this.Rpv1.ZoomPercent = 100;
             this.Rpv1.RefreshReport();
         }
     }
