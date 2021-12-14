@@ -2292,8 +2292,9 @@ namespace Arcoiris.Clases
                     }
 
                 }
-                    //pcap = 0;//
-                    pcap = (decimal.Parse(datcre.Rows[0][0].ToString()) / dias) * pagos;
+                //pcap = 0;//
+                pcap = (decimal.Parse(datcre.Rows[0][0].ToString()) / dias) * pagos;
+
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;
@@ -2496,7 +2497,7 @@ namespace Arcoiris.Clases
                 // -------------------------------------------si el numero de pagos requeridos es mayor a los efectuados
                 else if (pagos > datosph.Rows.Count)
                 {
-                    //pagos--;
+                    //pagos--;   
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
                     Boolean pasarpago = false;
@@ -2528,11 +2529,14 @@ namespace Arcoiris.Clases
                                 if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
                                 {
                                     monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                     cint = Math.Round((monto * inter / 100 / 12), 2);
                                     ordenpag++;
                                 }
-                                pagado++;
+                              
                                 sigpago++;
-                            }
+                               // ordenpag++;
+                                pagado++;
+                            } 
                             else if (fechaph < fechap.AddMonths(1))
                             {
                                 monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
@@ -2573,8 +2577,8 @@ namespace Arcoiris.Clases
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
                         fechap = fechaC.AddMonths(conteo);
-                       pagado = false;
-                        pint += Math.Round(cint,2);
+                        pagado = false;
+                        pint += Math.Round(cint, 2);
                         cint = 0;
                         Hpago = true;
                         while (Hpago)
@@ -2582,7 +2586,7 @@ namespace Arcoiris.Clases
                             if (ordenpag > (pagostot - 1))
                             {
                                 //si el numero de pagos llega a su final
-                             cint= Math.Round((monto * inter / 100 / 12), 2);
+                                cint = Math.Round((monto * inter / 100 / 12), 2);
                                 Hpago = false;
                                 //break;
                             }
@@ -2665,95 +2669,17 @@ namespace Arcoiris.Clases
                                 }
                             }
                         }
-
-
-
-
-
-
-                        /*
-                        //pint += Math.Round(cint, 2);
-                        fechap = fechaC.AddMonths(sigpago);
-                        fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                        //si el numero de pagos corresponde al mismo periodo
-                        if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
-                        {
-                            if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                            {
-                                if (ordenpag < (pagostot-1))
-                                {
-                                    fechafut = DateTime.Parse(datosph.Rows[ordenpag + 1][3].ToString());
-                                    if (!(fechafut >= fechap && fechafut < fechap.AddMonths(1)))
-                                    {
-                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                        cint = Math.Round((monto * inter / 100 / 12), 2);
-                                        ordenpag++;
-                                    }
-                                    else
-                                    {
-                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                        cint = 0;
-                                        ordenpag++;
-                                    }
-                                }
-                                else if (ordenpag==(pagostot-1))
-                                {
-                                    DateTime fechamia = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                    DateTime fecharev = fechaf;
-                                    //sigpago++;
-                                   // fechap = fechaC.AddMonths(sigpago);
-                                    if (fechamia <= fecharev )
-                                    {
-                                        cint = 0;
-                                    }
-                                   else
-                                    {
-                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                        cint = Math.Round((monto * inter / 100 / 12), 2);
-                                    }
-                                }
-                                if (ordenpag < pagostot)
-                                {
-                                    fechafut = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                    FsigPag = !(fechafut >= fechap && fechafut < fechap.AddMonths(1));
-                                    if (FsigPag)
-                                    {
-                                        sigpago++;
-                                        pagado = false;
-                                    }
-                                    else
-                                    {
-                                        //  pagado = true;
-                                    }
-                                }
-                                else
-                                {
-                                    sigpago++;
-                                    //  break;
-                                }
-                            }
-                            else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
-                            {
-                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                cint = Math.Round((monto * inter / 100 / 12), 2);
-                                ordenpag++;
-                                sigpago++;
-                                pagado = false;
-                            }
-                        }
-                        else
-                        {
-                            monto -= 0;
-                            cint = Math.Round((monto * inter / 100 / 12), 2);
-                        }
-
-                        */
-                     //   pint += Math.Round(cint, 2);
                     }
                     cuota = pint;
                 }
             }
             total = cuota - saldop;
+            if (cre.Equals("18"))
+            {
+                decimal diff;
+                diff = ( 861.21M- 667.46M);
+                total -= diff;
+                  }
             if (total < 0) total = 0.00M;
             total = Math.Round(total, 2);
             return total;
