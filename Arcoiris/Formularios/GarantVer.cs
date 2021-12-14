@@ -31,15 +31,21 @@ namespace Arcoiris.Formularios
             TxtCli.Text = cliente;
             TxtCre.Text = idcre;
             buscarGarant();
-            if (nivel == "4") {
+            if (nivel == "4" ) {
                 BtnDesbloq.Visible = false;
                 BtnGuardar.Visible = false;
+            }
+            else if (nivel == "3")
+            {
+                BtnGuardar.Visible = true;
+                BtnDesbloq.Visible = false;
             }
             else
             {
                 BtnDesbloq.Visible = true;
                 BtnGuardar.Visible = true;
             }
+
             
 
         }
@@ -47,7 +53,7 @@ namespace Arcoiris.Formularios
         private void buscarGarant()
         {
                     DataTable datos= soli.garantia(idcre);
-            if (datos.Rows.Count>0)
+            if (datos.Rows.Count > 0)
             {
                 var tipo = datos.Rows[0][1].ToString();
                 if (tipo.Equals("Prendaria"))
@@ -72,15 +78,19 @@ namespace Arcoiris.Formularios
                     CboTipGar.Visible = false;
                     label3.Visible = false;
                 }
-                TxtValu.Text= datos.Rows[0][2].ToString();
-                TxtGarDet.Text= datos.Rows[0][3].ToString();
-                TxtTipEsc.Text= datos.Rows[0][4].ToString();
-                TxtFEsc.Text= datos.Rows[0][5].ToString();
-                TxtAut.Text= datos.Rows[0][6].ToString();
-                TxtUbi.Text= datos.Rows[0][7].ToString();
+                TxtValu.Text = datos.Rows[0][2].ToString();
+                TxtGarDet.Text = datos.Rows[0][3].ToString();
+                TxtTipEsc.Text = datos.Rows[0][4].ToString();
+                TxtFEsc.Text = datos.Rows[0][5].ToString();
+                TxtAut.Text = datos.Rows[0][6].ToString();
+                TxtUbi.Text = datos.Rows[0][7].ToString();
                 TxtEstado.Text = datos.Rows[0][8].ToString();
-                LblGarant.Text= datos.Rows[0][0].ToString();
+                LblGarant.Text = datos.Rows[0][0].ToString();
                 mostrar();
+            }
+            else
+            {
+                BtnGuardar.Visible = false;
             }
         }
 
