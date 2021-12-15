@@ -35,6 +35,11 @@ namespace Arcoiris.Formularios
                 BtnDesbloq.Visible = false;
                 BtnGuardar.Visible = false;
             }
+            else if (nivel == "3")
+            {
+                BtnGuardar.Visible = true;
+                BtnDesbloq.Visible = false;
+            }
             else
             {
                 BtnDesbloq.Visible = true;
@@ -81,6 +86,10 @@ namespace Arcoiris.Formularios
                 TxtEstado.Text = datos.Rows[0][8].ToString();
                 LblGarant.Text= datos.Rows[0][0].ToString();
                 mostrar();
+            }
+            else
+            {
+                BtnGuardar.Visible = false;
             }
         }
 
