@@ -207,14 +207,17 @@ namespace Arcoiris.Clases
                     tdias = dias.Days;
                     for (cont = 1; cont <= tdias; cont++)
                     {
+
                         if (fechav.DayOfWeek == DayOfWeek.Saturday || fechav.DayOfWeek == DayOfWeek.Sunday)
                         {
+
                         }
                         else
                         {
                             atra++;
                         }
                         fechav = fechav.AddDays(1);
+
                     }
                     datraso = atra;
                 }
@@ -1994,6 +1997,7 @@ namespace Arcoiris.Clases
                 int conteo;
                 fechaC = Convert.ToDateTime(datcre.Rows[0][5].ToString());
                 DateTime fechaact = DateTime.Parse(fecha);
+
                 string ConPagosH;
                 ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%d-%M-%Y') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
@@ -2007,251 +2011,63 @@ namespace Arcoiris.Clases
                     //  pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
-                    bool pagado = false,Hpago= false;
+                    Boolean pasarpago = false;
                     decimal cint = monto * inte / 100 / 12M;
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     fechap = fechap.AddDays(1);
                     // pint += Math.Round(cint,2);
-                    for (conteo = 0; conteo <= pagos; conteo++)
+                    for (conteo = 0; conteo < pagos; conteo++)
                     {
-
-                        fechap = fechaC.AddMonths(conteo);
-                        pagado = false;
                         pint += Math.Round(cint, 2);
-                        cint = 0;
-                        Hpago = true;
-                        while (Hpago)
+                        // cint = monto * inte / 100 / 12;
+                        fechap = fechaC.AddMonths(sigpago);
+                        int pagado = 0;
+                        fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
+                        if (fechaph > fechap && fechaph <= fechap.AddMonths(2))
                         {
-                            if (ordenpag > (pagostot - 1))
-                            {
-                                //si el numero de pagos llega a su final
-                                cint = Math.Round((monto * inte / 100 / 12), 2);
-                                Hpago = false;
-                                //break;
-                            }
-                            else
-                            {
-                                fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
-                                {
-                                    if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                    {
-                                        if (pagado)
-                                        {
-                                            //si existe un pago ya hecho en este periodo
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inte / 100 / 12), 2);
-                                            ordenpag++;
-                                        }
-                                        else
-                                        {
-                                            //si no existe ningun pago en este periodo cobrar el pago y cambiar de pago 
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inte / 100 / 12), 2);
-                                            ordenpag++;
-                                            pagado = true;
-                                        }
-
-                                    }
-                                    else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
-                                    {
-                                        //si hay pago en el segundo mes permitido
-                                        if (ordenpag > 0)
-                                        {
-                                            // si es el segundo pago hacia arriba para verificar pagos anteriores que cumplen pago del mes anterior
-                                            fechaph = DateTime.Parse(datosph.Rows[ordenpag - 1][3].ToString());
-                                            //si hay pago anterior se cambia el periodo del mes a cobrar
-                                            if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                            {
-                                                Hpago = false;
-                                                pagado = false;
-                                                cint += 0;
-                                            }
-                                            //si no hay pago se realiza como pago desde que no hay cobro anterior y se cambia de pago y periodo
-                                            else
-                                            {
-                                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                                cint += Math.Round((monto * inte / 100 / 12), 2);
-                                                ordenpag++;
-                                                Hpago = false;
-                                                pagado = false;
-
-                                            }
-                                        }
-                                        //Si no se ha hecho ningun pago y estamos en la parte 2 del periodo permitido
-                                        else
-                                        {
-                                            cint += Math.Round((monto * inte / 100 / 12), 2);
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            Hpago = false;
-                                            ordenpag++;
-                                            pagado = false;
-
-                                        }
-                                    }
-                                    //si no hay pago en el periodo permitido, entonces se procede a cobrar mismos intereses
-
-                                    else
-                                    {
-                                        cint += Math.Round((monto * inte / 100 / 12), 2);
-                                        Hpago = false;
-
-                                    }
-                                }
-                                //el pago ya no entra dentro de este periodo, cambiar periodo pero no pago
-                                else
-                                {
-                                    cint += 0;
-                                    Hpago = false;
-                                    pagado = false;
-                                    //ordenpag++;
-                                }
-                            }
+                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                            cint = Math.Round((monto * inte / 100 / 12), 2);
+                            pagado++;
+                            ordenpag++;
+                            sigpago++;
+                        }
+                        else if (fechaph > fechap.AddMonths(2))
+                        {
+                            cint = Math.Round((monto * inte / 100 / 12), 2);
+                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                            ordenpag++;
+                            pagado++;
+                            sigpago++;
+                        }
+                        else if (fechaph < fechap.AddMonths(2))
+                        {
+                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                            cint = Math.Round((monto * inte / 100 / 12), 2);
+                            ordenpag++;
+                            pagado++;
+                            sigpago++;
+                        }
+                        else
+                        {
+                            sigpago++;
+                            monto -= 0;
+                            cint = monto * inte / 100 / 12;
                         }
                     }
-                        /* pint += Math.Round(cint, 2);
-                         // cint = monto * inte / 100 / 12;
-                         fechap = fechaC.AddMonths(sigpago);
-                         int pagado = 0;
-                         fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                         if (fechaph > fechap && fechaph <= fechap.AddMonths(2))
-                         {
-                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                             cint = Math.Round((monto * inte / 100 / 12), 2);
-                             pagado++;
-                             ordenpag++;
-                             sigpago++;
-                         }
-                         else if (fechaph > fechap.AddMonths(2))
-                         {
-                             cint = Math.Round((monto * inte / 100 / 12), 2);
-                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                             ordenpag++;
-                             pagado++;
-                             sigpago++;
-                         }
-                         else if (fechaph < fechap.AddMonths(2))
-                         {
-                             monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                             cint = Math.Round((monto * inte / 100 / 12), 2);
-                             ordenpag++;
-                             pagado++;
-                             sigpago++;
-                         }
-                         else
-                         {
-                             sigpago++;
-                             monto -= 0;
-                             cint = monto * inte / 100 / 12;
-                         }
-                     }*/
-                    }
+                }
                 // -------------------------------------------si el numero de pagos requeridos es mayor a los efectuados
                 else if (pagos > datosph.Rows.Count)
                 {
                     //pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
-                    bool pagado = false,Hpago=false;
+                    Boolean pasarpago = false;
                     decimal cint = Math.Round((monto * inte / 100 / 12), 2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     fechap = fechap.AddDays(1);
                     for (conteo = 0; conteo < pagos; conteo++)
                     {
-                        fechap = fechaC.AddMonths(conteo);
-                        pagado = false;
                         pint += Math.Round(cint, 2);
-                        cint = 0;
-                        Hpago = true;
-                        while (Hpago)
-                        {
-                            if (ordenpag > (pagostot - 1))
-                            {
-                                //si el numero de pagos llega a su final
-                                cint = Math.Round((monto * inte / 100 / 12), 2);
-                                Hpago = false;
-                                //break;
-                            }
-                            else
-                            {
-                                fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
-                                {
-                                    if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                    {
-                                        if (pagado)
-                                        {
-                                            //si existe un pago ya hecho en este periodo
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inte / 100 / 12), 2);
-                                            ordenpag++;
-                                        }
-                                        else
-                                        {
-                                            //si no existe ningun pago en este periodo cobrar el pago y cambiar de pago 
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inte / 100 / 12), 2);
-                                            ordenpag++;
-                                            pagado = true;
-                                        }
-
-                                    }
-                                    else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
-                                    {
-                                        //si hay pago en el segundo mes permitido
-                                        if (ordenpag > 0)
-                                        {
-                                            // si es el segundo pago hacia arriba para verificar pagos anteriores que cumplen pago del mes anterior
-                                            fechaph = DateTime.Parse(datosph.Rows[ordenpag - 1][3].ToString());
-                                            //si hay pago anterior se cambia el periodo del mes a cobrar
-                                            if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                            {
-                                                Hpago = false;
-                                                pagado = false;
-                                                cint += 0;
-                                            }
-                                            //si no hay pago se realiza como pago desde que no hay cobro anterior y se cambia de pago y periodo
-                                            else
-                                            {
-                                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                                cint += Math.Round((monto * inte / 100 / 12), 2);
-                                                ordenpag++;
-                                                Hpago = false;
-                                                pagado = false;
-
-                                            }
-                                        }
-                                        //Si no se ha hecho ningun pago y estamos en la parte 2 del periodo permitido
-                                        else
-                                        {
-                                            cint += Math.Round((monto * inte / 100 / 12), 2);
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            Hpago = false;
-                                            ordenpag++;
-                                            pagado = false;
-
-                                        }
-                                    }
-                                    //si no hay pago en el periodo permitido, entonces se procede a cobrar mismos intereses
-
-                                    else
-                                    {
-                                        cint += Math.Round((monto * inte / 100 / 12), 2);
-                                        Hpago = false;
-
-                                    }
-                                }
-                                //el pago ya no entra dentro de este periodo, cambiar periodo pero no pago
-                                else
-                                {
-                                    cint += 0;
-                                    Hpago = false;
-                                    pagado = false;
-                                    //ordenpag++;
-                                }
-                            }
-                        }
-                        /* pint += Math.Round(cint, 2);
                         // cint = monto * inte / 100 / 12;
                         fechap = fechaC.AddMonths(sigpago);
                         int pagado = 0;
@@ -2299,10 +2115,10 @@ namespace Arcoiris.Clases
                         {
                             /*  DateTime fecharev = DateTime.Parse(fecha);
                               if (datosph.Rows.Count==0 && fecharev<fechaC.AddMonths(1))*/
-                        sigpago++;
+                            sigpago++;
                             monto -= 0;
                             cint = monto * inte / 100 / 12;
-                        //}
+                        }
                     }
                 }
                 // Si no hay pagos hechos y si no ha llegado la fecha de pagosi los pagos hechos son mayores a los pagos esperados
@@ -2418,6 +2234,61 @@ namespace Arcoiris.Clases
                                 }
                             }
                         }
+
+
+
+                        // si los pagos hechos son mayores a los pagos esperados
+                        // pagos--;
+                        /* DateTime fechap = new DateTime();
+                         DateTime fechaph = new DateTime();
+                         Boolean pasarpago = false;
+                         decimal cint = monto * inte / 100 / 12;
+                         int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
+                         for (conteo = 0; conteo < pagos; conteo++)
+                         {
+                             pint += Math.Round(cint, 2);
+                             // cint = monto * inte / 100 / 12;
+                             fechap = fechaC.AddMonths(sigpago);
+                             fechap = fechap.AddDays(1);
+                             int pagado = 0;
+                             if (ordenpag < pagostot)
+                             {
+                                 cint = 0;
+                                 pasarpago = false;
+                                 while (!pasarpago)
+                                 {
+                                     fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
+                                     if (fechaph > fechap && fechaph < fechap.AddMonths(2))
+                                     {
+                                         monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                         cint = Math.Round((monto * inte / 100 / 12), 2);
+                                         pagado++;
+                                         ordenpag++;
+                                         if (ordenpag == pagostot)
+                                         {
+                                             break;
+                                         }
+                                     }
+                                     else
+                                     {
+                                         sigpago++;
+                                         pasarpago = true;
+                                         if (cint <= 0)
+                                         {
+                                             monto -= 0;
+                                             cint = Math.Round((monto * inte / 100 / 12), 2);
+                                         }
+                                     }
+                                 }
+                             }
+                             else
+                             {
+                                 sigpago++;
+                                 monto -= 0;
+                                 cint = Math.Round((monto * inte / 100 / 12), 2);
+                             }
+                         }*/
+
                     }
 
                 }
@@ -2585,7 +2456,7 @@ namespace Arcoiris.Clases
                     // pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
-                    bool pagado=false,Hpago=false;
+                    Boolean pasarpago;
                     decimal cint = Math.Round((monto * inter / 100 / 12), 2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     // fechap = fechap.AddDays(sigpago);
@@ -2593,127 +2464,32 @@ namespace Arcoiris.Clases
                     //pint = Math.Round(cint, 2);
                     for (conteo = 0; conteo < pagostot; conteo++)
                     {
-                        fechap = fechaC.AddMonths(conteo);
-                        pagado = false;
                         pint += Math.Round(cint, 2);
+                        // cint = monto * inte / 100 / 12;
+                        fechap = fechaC.AddMonths(sigpago);
+                        //fechap = fechap.AddDays(1);
+                        int pagado = 0;
                         cint = 0;
-                        Hpago = true;
-                        while (Hpago)
+                        pasarpago = false;
+                        while (!pasarpago)
                         {
-                            if (ordenpag > (pagostot - 1))
+                            if (ordenpag >= pagostot) break;
+                            fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
+                            if (fechaph < fechap.AddMonths(2))
                             {
-                                //si el numero de pagos llega a su final
+                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
                                 cint = Math.Round((monto * inter / 100 / 12), 2);
-                                Hpago = false;
-                                //break;
+                                pagado++;
+                                ordenpag++;
                             }
                             else
                             {
-                                fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
-                                {
-                                    if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                    {
-                                        if (pagado)
-                                        {
-                                            //si existe un pago ya hecho en este periodo
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inter / 100 / 12), 2);
-                                            ordenpag++;
-                                        }
-                                        else
-                                        {
-                                            //si no existe ningun pago en este periodo cobrar el pago y cambiar de pago 
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inter / 100 / 12), 2);
-                                            ordenpag++;
-                                            pagado = true;
-                                        }
-                                    }
-                                    else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
-                                    {
-                                        //si hay pago en el segundo mes permitido
-                                        if (ordenpag > 0)
-                                        {
-                                            // si es el segundo pago hacia arriba para verificar pagos anteriores que cumplen pago del mes anterior
-                                            fechaph = DateTime.Parse(datosph.Rows[ordenpag - 1][3].ToString());
-                                            //si hay pago anterior se cambia el periodo del mes a cobrar
-                                            if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                            {
-                                                Hpago = false;
-                                                pagado = false;
-                                                cint += 0;
-                                            }
-                                            //si no hay pago se realiza como pago desde que no hay cobro anterior y se cambia de pago y periodo
-                                            else
-                                            {
-                                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                                cint += Math.Round((monto * inter / 100 / 12), 2);
-                                                ordenpag++;
-                                                Hpago = false;
-                                                pagado = false;
-
-                                            }
-                                        }
-                                        //Si no se ha hecho ningun pago y estamos en la parte 2 del periodo permitido
-                                        else
-                                        {
-                                            cint += Math.Round((monto * inter / 100 / 12), 2);
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            Hpago = false;
-                                            ordenpag++;
-                                            pagado = false;
-
-                                        }
-                                    }
-                                    //si no hay pago en el periodo permitido, entonces se procede a cobrar mismos intereses
-
-                                    else
-                                    {
-                                        cint += Math.Round((monto * inter / 100 / 12), 2);
-                                        Hpago = false;
-
-                                    }
-                                }
-                                //el pago ya no entra dentro de este periodo, cambiar periodo pero no pago
-                                else
-                                {
-                                    cint += 0;
-                                    Hpago = false;
-                                    pagado = false;
-                                    //ordenpag++;
-                                }
+                                sigpago++;
+                                pasarpago = true;
+                                monto -= 0;
+                                if (cint <= 0) cint = Math.Round((monto * inter / 100 / 12), 2);
                             }
                         }
-
-
-
-                        /* pint += Math.Round(cint, 2);
-                         // cint = monto * inte / 100 / 12;
-                         fechap = fechaC.AddMonths(sigpago);
-                         //fechap = fechap.AddDays(1);
-                         int pagado = 0;
-                         cint = 0;
-                         pasarpago = false;
-                         while (!pasarpago)
-                         {
-                             if (ordenpag >= pagostot) break;
-                             fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                             if (fechaph < fechap.AddMonths(2))
-                             {
-                                 monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                 cint = Math.Round((monto * inter / 100 / 12), 2);
-                                 pagado++;
-                                 ordenpag++;
-                             }
-                             else
-                             {
-                                 sigpago++;
-                                 pasarpago = true;
-                                 monto -= 0;
-                                 if (cint <= 0) cint = Math.Round((monto * inter / 100 / 12), 2);
-                             }
-                         }*/
                     }
                     cuota = pint;
                 }
@@ -2723,107 +2499,12 @@ namespace Arcoiris.Clases
                     //pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
-                    bool pagado = false, Hpago = false;
+                    Boolean pasarpago = false;
                     decimal cint = Math.Round((monto * inter / 100 / 12), 2);
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     fechap = fechap.AddDays(1);
-                    for (conteo = 0; conteo <= pagos; conteo++)
+                    for (conteo = 0; conteo < pagos; conteo++)
                     {
-
-                        fechap = fechaC.AddMonths(conteo);
-                        pagado = false;
-                        pint += Math.Round(cint, 2);
-                        cint = 0;
-                        Hpago = true;
-                        while (Hpago)
-                        {
-                            if (ordenpag > (pagostot - 1))
-                            {
-                                //si el numero de pagos llega a su final
-                                cint = Math.Round((monto * inter / 100 / 12), 2);
-                                Hpago = false;
-                                //break;
-                            }
-                            else
-                            {
-                                fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
-                                if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
-                                {
-                                    if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                    {
-                                        if (pagado)
-                                        {
-                                            //si existe un pago ya hecho en este periodo
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inter / 100 / 12), 2);
-                                            ordenpag++;
-                                        }
-                                        else
-                                        {
-                                            //si no existe ningun pago en este periodo cobrar el pago y cambiar de pago 
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            cint = Math.Round((monto * inter / 100 / 12), 2);
-                                            ordenpag++;
-                                            pagado = true;
-                                        }
-                                    }
-                                    else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
-                                    {
-                                        //si hay pago en el segundo mes permitido
-                                        if (ordenpag > 0)
-                                        {
-                                            // si es el segundo pago hacia arriba para verificar pagos anteriores que cumplen pago del mes anterior
-                                            fechaph = DateTime.Parse(datosph.Rows[ordenpag - 1][3].ToString());
-                                            //si hay pago anterior se cambia el periodo del mes a cobrar
-                                            if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
-                                            {
-                                                Hpago = false;
-                                                pagado = false;
-                                                cint += 0;
-                                            }
-                                            //si no hay pago se realiza como pago desde que no hay cobro anterior y se cambia de pago y periodo
-                                            else
-                                            {
-                                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                                cint += Math.Round((monto * inter / 100 / 12), 2);
-                                                ordenpag++;
-                                                Hpago = false;
-                                                pagado = false;
-
-                                            }
-                                        }
-                                        //Si no se ha hecho ningun pago y estamos en la parte 2 del periodo permitido
-                                        else
-                                        {
-                                            cint += Math.Round((monto * inter / 100 / 12), 2);
-                                            monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
-                                            Hpago = false;
-                                            ordenpag++;
-                                            pagado = false;
-
-                                        }
-                                    }
-                                    //si no hay pago en el periodo permitido, entonces se procede a cobrar mismos intereses
-
-                                    else
-                                    {
-                                        cint += Math.Round((monto * inter / 100 / 12), 2);
-                                        Hpago = false;
-
-                                    }
-                                }
-                                //el pago ya no entra dentro de este periodo, cambiar periodo pero no pago
-                                else
-                                {
-                                    cint += 0;
-                                    Hpago = false;
-                                    pagado = false;
-                                    //ordenpag++;
-                                }
-                            }
-                        }
-
-                        /*
                         pint += Math.Round(cint, 2);
                         // cint = monto * inte / 100 / 12;
                         fechap = fechaC.AddMonths(sigpago);
@@ -2831,10 +2512,6 @@ namespace Arcoiris.Clases
                         int pagado = 0;
                         if (ordenpag < pagostot)
                         {
-                            
-                            
-                            
-                        
                             cint = 0;
                             fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
                             if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
@@ -2877,7 +2554,6 @@ namespace Arcoiris.Clases
                             monto -= 0;
                             cint = Math.Round((monto * inter / 100 / 12), 2);
                         }
-                    */
                     }
                     cuota = pint;
                 }
@@ -2887,6 +2563,8 @@ namespace Arcoiris.Clases
                     // pagos--;
                     DateTime fechap = new DateTime();
                     DateTime fechaph = new DateTime();
+
+
                     decimal cint = monto * inter / 100 / 12;
                     int ordenpag = 0, pagostot = datosph.Rows.Count, sigpago = 0;
                     bool pagado = false, Hpago = true;
@@ -2930,6 +2608,7 @@ namespace Arcoiris.Clases
                                             ordenpag++;
                                             pagado = true;
                                         }
+
                                     }
                                     else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
                                     {
@@ -2986,6 +2665,90 @@ namespace Arcoiris.Clases
                                 }
                             }
                         }
+
+
+
+
+
+
+                        /*
+                        //pint += Math.Round(cint, 2);
+                        fechap = fechaC.AddMonths(sigpago);
+                        fechaph = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
+                        //si el numero de pagos corresponde al mismo periodo
+                        if (fechaph >= fechap && fechaph < fechap.AddMonths(2))
+                        {
+                            if (fechaph >= fechap && fechaph < fechap.AddMonths(1))
+                            {
+                                if (ordenpag < (pagostot-1))
+                                {
+                                    fechafut = DateTime.Parse(datosph.Rows[ordenpag + 1][3].ToString());
+                                    if (!(fechafut >= fechap && fechafut < fechap.AddMonths(1)))
+                                    {
+                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                        cint = Math.Round((monto * inter / 100 / 12), 2);
+                                        ordenpag++;
+                                    }
+                                    else
+                                    {
+                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                        cint = 0;
+                                        ordenpag++;
+                                    }
+                                }
+                                else if (ordenpag==(pagostot-1))
+                                {
+                                    DateTime fechamia = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
+                                    DateTime fecharev = fechaf;
+                                    //sigpago++;
+                                   // fechap = fechaC.AddMonths(sigpago);
+                                    if (fechamia <= fecharev )
+                                    {
+                                        cint = 0;
+                                    }
+                                   else
+                                    {
+                                        monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                        cint = Math.Round((monto * inter / 100 / 12), 2);
+                                    }
+                                }
+                                if (ordenpag < pagostot)
+                                {
+                                    fechafut = DateTime.Parse(datosph.Rows[ordenpag][3].ToString());
+                                    FsigPag = !(fechafut >= fechap && fechafut < fechap.AddMonths(1));
+                                    if (FsigPag)
+                                    {
+                                        sigpago++;
+                                        pagado = false;
+                                    }
+                                    else
+                                    {
+                                        //  pagado = true;
+                                    }
+                                }
+                                else
+                                {
+                                    sigpago++;
+                                    //  break;
+                                }
+                            }
+                            else if (fechaph >= fechap.AddMonths(1) && fechaph < fechap.AddMonths(2))
+                            {
+                                monto -= decimal.Parse(datosph.Rows[ordenpag][0].ToString());
+                                cint = Math.Round((monto * inter / 100 / 12), 2);
+                                ordenpag++;
+                                sigpago++;
+                                pagado = false;
+                            }
+                        }
+                        else
+                        {
+                            monto -= 0;
+                            cint = Math.Round((monto * inter / 100 / 12), 2);
+                        }
+
+                        */
+                     //   pint += Math.Round(cint, 2);
                     }
                     cuota = pint;
                 }
