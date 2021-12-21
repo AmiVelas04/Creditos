@@ -59,6 +59,11 @@ namespace Arcoiris.Formularios
                 BtnEliminar.Enabled = true;
                 BtnEliminarCre.Visible = true;
             }
+            else if (Form1.Nivel == "4")
+            {
+                BtnPago.Visible = false;
+                
+            }
             else
             {
                 BtnEliminar.Enabled = false;
@@ -898,6 +903,10 @@ namespace Arcoiris.Formularios
                 TxtIntD.Enabled = true;
                 DtpPago.Enabled = true;
                 //TxtCapital.Enabled = true;
+            }
+            else if (nivel == 4)
+            {
+                BtnPago.Visible = false;
             }
             
            

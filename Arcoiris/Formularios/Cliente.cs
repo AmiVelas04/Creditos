@@ -130,6 +130,10 @@ namespace Arcoiris.Formularios
             CboScivil.Sorted = true;
             CboScivil.SelectedIndex = 0;
             TabC3.Parent = null;
+            if (Form1.Nivel == "4")
+            { BtnGuardar.Visible = false;
+                BtnUpd.Visible = false;
+            }
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)

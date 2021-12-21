@@ -38,7 +38,7 @@ namespace Arcoiris.Formularios
             else if (nivel == "3")
             {
                 BtnGuardar.Visible = true;
-                BtnDesbloq.Visible = false;
+                //BtnDesbloq.Visible = false;
             }
             else
             {
