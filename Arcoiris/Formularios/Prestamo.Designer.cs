@@ -39,6 +39,7 @@
             this.BtnEliminarCre = new System.Windows.Forms.Button();
             this.BtnListPago = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.BtnGarant = new System.Windows.Forms.Button();
             this.TxtTasa = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.TxtPlazo = new System.Windows.Forms.TextBox();
@@ -97,7 +98,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
-            this.BtnGarant = new System.Windows.Forms.Button();
+            this.LblIdCli = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
@@ -138,6 +139,7 @@
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.LblIdCli);
             this.GbxPago.Controls.Add(this.TxtDepo);
             this.GbxPago.Controls.Add(this.ChkDepo);
             this.GbxPago.Controls.Add(this.BtnCancel);
@@ -266,6 +268,19 @@
             this.groupBox3.TabIndex = 49;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Datos del Prestamo";
+            // 
+            // BtnGarant
+            // 
+            this.BtnGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnGarant.Image")));
+            this.BtnGarant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnGarant.Location = new System.Drawing.Point(309, 179);
+            this.BtnGarant.Name = "BtnGarant";
+            this.BtnGarant.Size = new System.Drawing.Size(130, 42);
+            this.BtnGarant.TabIndex = 57;
+            this.BtnGarant.Text = "Garantia";
+            this.BtnGarant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnGarant.UseVisualStyleBackColor = true;
+            this.BtnGarant.Click += new System.EventHandler(this.BtnGarant_Click);
             // 
             // TxtTasa
             // 
@@ -705,6 +720,7 @@
             this.CboCliNom.Size = new System.Drawing.Size(310, 25);
             this.CboCliNom.TabIndex = 17;
             this.CboCliNom.SelectedIndexChanged += new System.EventHandler(this.CboCliNom_SelectedIndexChanged);
+            this.CboCliNom.SelectedValueChanged += new System.EventHandler(this.CboCliNom_SelectedValueChanged);
             // 
             // BtnPago
             // 
@@ -853,18 +869,15 @@
             this.DGVPpago.Size = new System.Drawing.Size(743, 420);
             this.DGVPpago.TabIndex = 0;
             // 
-            // BtnGarant
+            // LblIdCli
             // 
-            this.BtnGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnGarant.Image")));
-            this.BtnGarant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGarant.Location = new System.Drawing.Point(309, 179);
-            this.BtnGarant.Name = "BtnGarant";
-            this.BtnGarant.Size = new System.Drawing.Size(130, 42);
-            this.BtnGarant.TabIndex = 57;
-            this.BtnGarant.Text = "Garantia";
-            this.BtnGarant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnGarant.UseVisualStyleBackColor = true;
-            this.BtnGarant.Click += new System.EventHandler(this.BtnGarant_Click);
+            this.LblIdCli.AutoSize = true;
+            this.LblIdCli.Location = new System.Drawing.Point(336, 67);
+            this.LblIdCli.Name = "LblIdCli";
+            this.LblIdCli.Size = new System.Drawing.Size(51, 17);
+            this.LblIdCli.TabIndex = 56;
+            this.LblIdCli.Text = "Cliente";
+            this.LblIdCli.Visible = false;
             // 
             // Prestamo
             // 
@@ -968,5 +981,6 @@
         private System.Windows.Forms.TextBox TxtDepo;
         private System.Windows.Forms.CheckBox ChkDepo;
         private System.Windows.Forms.Button BtnGarant;
+        private System.Windows.Forms.Label LblIdCli;
     }
 }

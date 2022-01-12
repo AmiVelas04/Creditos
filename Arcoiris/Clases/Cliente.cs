@@ -164,7 +164,7 @@ namespace Arcoiris.Clases
         {
             DataTable datos = new DataTable();
             String consulta;
-            consulta = "Select Concat(Nombres,' ',apellidos) as Nombre , Codigo_Cli from Cliente";
+            consulta = "Select Concat(Nombres,' ',apellidos) as Nombre , Codigo_Cli from Cliente ORDER BY nombres,apellidos";
             datos=buscar(consulta);
             return datos;
 

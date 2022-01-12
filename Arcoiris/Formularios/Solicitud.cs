@@ -340,6 +340,13 @@ datoscli = cli.Buscar_nom_cli();
             montotep -= saldotemp;
             montotep -= gasto;
             int contid = 1;
+            string[] chrRem = new string[] { ")", "(", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ,"-"};
+            string cli = TxtNomSoli.Text;
+            foreach (var c in chrRem)
+            {
+                cli= cli.Replace(c, string.Empty);
+            }
+          
             //Egreso del monto total
             string id=Convert.ToString  (caj.id_pago()+contid);
             string operacion = "Egreso";
@@ -348,7 +355,7 @@ datoscli = cli.Buscar_nom_cli();
             string fecha = DtpConc.Value.ToString("yyyy/MM/dd");
             string estado = "Activo";
             string usuario = Form1.Cod_U;
-            string credito=cred, cliente=TxtNomSoli .Text ;
+            string credito=cred, cliente=cli ;
             string[] datos = { id,operacion,monto,descripcion,fecha,estado,usuario,credito,cliente};
 
             if (salantes > 0) {

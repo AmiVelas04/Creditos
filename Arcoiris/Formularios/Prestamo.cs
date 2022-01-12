@@ -62,6 +62,7 @@ namespace Arcoiris.Formularios
             else if (Form1.Nivel == "4")
             {
                 BtnPago.Visible = false;
+                BtnEliminar.Visible = false;
                 
             }
             else
@@ -71,6 +72,7 @@ namespace Arcoiris.Formularios
             }
             Tab2.Parent = null;
             listacli();
+            LblIdCli.Text = "0";
         }
         private void listacre()
         {
@@ -83,7 +85,7 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                valor = CboCliNom.SelectedValue.ToString();
+                valor = CboCliNom.SelectedValue.ToString();//LblIdCli.Text;
             }
             datos = cre.creditos_act(valor);
             total = datos.Rows.Count;
@@ -103,6 +105,7 @@ namespace Arcoiris.Formularios
                 CboPresta.Items.Clear();
                 //   CboPresta.Enabled = false;
             }
+
         }
 
         private void cancel()
@@ -216,8 +219,8 @@ namespace Arcoiris.Formularios
             foreach (DataRow row in listadocli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
-
-            }
+                            }
+            
             CboCliNom.AutoCompleteCustomSource = coleccion;
             CboCliNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboCliNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -465,11 +468,17 @@ namespace Arcoiris.Formularios
         }
         private void imprimir_bol()
         {
+            string[] chrRem = new string[] { ")", "(", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+            string nom = CboCliNom.Text;
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
             datosP.boleta = pag.idpago(CboPresta.Text);
             string dir = cli.Dir_cli(pag.idpago(CboPresta.Text).ToString());
             datosP.credito = Convert.ToInt32(CboPresta.Text);
-            datosP.cliente = CboCliNom.Text;
+            foreach (var c in chrRem)
+            {
+                nom = nom.Replace(c, string.Empty);
+            }
+            datosP.cliente = nom;
             datosP.Fecha = DateTime.Now;
             datosP.direccion = dir;
             datosP.capital = Convert.ToDecimal(TxtCapD.Text);
@@ -499,14 +508,19 @@ namespace Arcoiris.Formularios
 
         private void Re_imprimir()
         {
-
+            string[] chrRem = new string[] {")","(","0", "1", "2", "3", "4", "5", "6", "7", "8", "9","-"};
+            string nom = CboCliNom.Text;
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
             int indice;
             indice = DGVPpago.CurrentRow.Index;
             string dir = cli.Dir_cli(DGVPpago.Rows[indice].Cells[0].Value.ToString());
             datosP.boleta = Convert.ToInt32(DGVPpago.Rows[indice].Cells[0].Value);
             datosP.credito = Convert.ToInt32(CboPresta.Text);
-            datosP.cliente = CboCliNom.Text;
+            foreach (var c in chrRem)
+            {
+                nom = nom.Replace(c,string.Empty);
+            }
+            datosP.cliente = nom;
             datosP.direccion = dir;
             datosP.Fecha = Convert.ToDateTime(DGVPpago.Rows[indice].Cells[1].Value);
             datosP.capital = Convert.ToDecimal(DGVPpago.Rows[indice].Cells[2].Value);
@@ -561,28 +575,33 @@ namespace Arcoiris.Formularios
         #region Controles
         private void BtnEliminar_Click(object sender, EventArgs e)
         {
-            BtnEliminar.Enabled = false;
-            if (DGVPpago.RowCount >= 1)
+            var Elim = MessageBox.Show("¿Desea eliminar el pago?", "¿Eliminar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (Elim == DialogResult.Yes)
             {
-                int indice;
-                indice = DGVPpago.CurrentRow.Index;
-                string codigoP;
-                codigoP = DGVPpago.Rows[indice].Cells[0].Value.ToString();
-                string cap;
-                string inter;
-                cap = DGVPpago.Rows[indice].Cells[2].Value.ToString();
-                inter = DGVPpago.Rows[indice].Cells[3].Value.ToString();
+                BtnEliminar.Enabled = false;
+                if (DGVPpago.RowCount >= 1)
+                {
+                    int indice;
+                    indice = DGVPpago.CurrentRow.Index;
+                    string codigoP;
+                    codigoP = DGVPpago.Rows[indice].Cells[0].Value.ToString();
+                    string cap;
+                    string inter;
+                    cap = DGVPpago.Rows[indice].Cells[2].Value.ToString();
+                    inter = DGVPpago.Rows[indice].Cells[3].Value.ToString();
 
-                if (pag.estadopago(codigoP, CboPresta.Text, cap, inter))
-                {
-                    MessageBox.Show("El pago ha sido cancelado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    llenarGrid();
-                }
-                else
-                {
-                    MessageBox.Show("El pago no ha podido ser cancelado", "Problema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    if (pag.estadopago(codigoP, CboPresta.Text, cap, inter))
+                    {
+                        MessageBox.Show("El pago ha sido cancelado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        llenarGrid();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El pago no ha podido ser cancelado", "Problema", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
             }
+            
         }
 
         private void tabControl1_KeyDown(object sender, KeyEventArgs e)
@@ -935,6 +954,9 @@ namespace Arcoiris.Formularios
             }
         }
 
-      
+        private void CboCliNom_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LblIdCli.Text = CboCliNom.SelectedValue.ToString();
+        }
     }
 }
