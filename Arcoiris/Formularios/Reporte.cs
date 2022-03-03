@@ -661,7 +661,7 @@ namespace Arcoiris.Formularios
                     //calculo de interes creditos sobre saldo
                     tipCre = "Mensual-SobreSaldo";
                     DataTable datoscred = new DataTable();
-                    decimal MontoTotCred = Monto,SaldoTotInt=0, CapitalGen,interGen=0;
+                    decimal MontoTotCred = Monto,SaldoTotInt=0;
                     datoscred = cre.PagosSobresaldo(codcre);
                     int conteo1, totaldecredi ;
                     totaldecredi = datoscred.Rows.Count;
