@@ -487,7 +487,9 @@ namespace Arcoiris.Clases
             decimal monto = Convert.ToDecimal(datos.Rows[0][0]);
             decimal interes = Convert.ToDecimal(datos.Rows[0][1]);
             int dias = Convert.ToInt32(datos.Rows[0][2]);
-            DateTime fechai = Convert.ToDateTime(datos.Rows[0][3].ToString());
+         
+            DateTime fechaP = Convert.ToDateTime(datos.Rows[0][3].ToString());
+            DateTime fechai = fechaP; ;
             int diasp = Convert.ToInt32(datos.Rows[0][4]);
 
             total = Math.Round((monto /*+ (monto * interes / 100)*/), 2);
@@ -581,7 +583,8 @@ namespace Arcoiris.Clases
                          {
                              sumfech = 31;
                          }*/
-                        fechai = fechai.AddMonths(sumfech);
+                        fechai = fechaP.AddMonths(sumfech);
+                        sumfech++;
                         #endregion
                         break;
 
@@ -608,7 +611,8 @@ namespace Arcoiris.Clases
                          {
                              sumfech = 31;
                          }*/
-                        fechai = fechai.AddMonths(sumfech);
+                        fechai = fechaP.AddMonths(sumfech);
+                        sumfech++;
                         #endregion
                         break;
                 }
@@ -2423,10 +2427,12 @@ namespace Arcoiris.Clases
             {
                 cuota = Math.Round((monto * inter / 100 / 12), 2);
                 fechacon = fechacon.AddDays(1);
+                DateTime fechapas;
+                fechapas = fechacon;
                 while (fechaf >= fechacon)
                 {
-                    fechacon = fechacon.AddMonths(1);
                     contarpag++;
+                    fechacon = fechapas.AddMonths(contarpag);
                 }
                 // contarpag--;
                 if (contarpag > dias) contarpag = dias;
@@ -2945,6 +2951,66 @@ namespace Arcoiris.Clases
         }
 
         #endregion
+
+
+        #region colocacion de creditos
+
+        public DataTable listadocredi(string f1,string f2,string aseso,string ord)
+        {
+            string consulta="";
+            DataTable datos = new DataTable();
+
+            if (ord.Equals("1"))
+            {
+                consulta = "Select c.COD_CREDITO,c.MONTO,date_format(c.FECHA_CONC,'%d/%m/%y') as fecha,c.id_tipo_credito,cli.CODIGO_CLI,Concat(cli.nombres,' ',cli.apellidos) as Nom " +
+                     "FROM credito c " +
+                     "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = c.COD_CREDITO " +
+                     "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
+                     "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                     "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
+                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso;
+            }
+            else if (ord.Equals("2"))
+            {
+                consulta = "Select c.COD_CREDITO,c.MONTO,date_format(c.FECHA_CONC,'%d/%m/%y') as fecha,c.id_tipo_credito,cli.CODIGO_CLI,Concat(cli.nombres,' ',cli.apellidos) as Nom " +
+                     "FROM credito c " +
+                     "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = c.COD_CREDITO " +
+                     "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
+                     "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                     "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
+                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=1 or c.id_tipo_credito=2)";
+            }
+            else if (ord.Equals("3"))
+            {
+                consulta = "Select c.COD_CREDITO,c.MONTO,date_format(c.FECHA_CONC,'%d/%m/%y') as fecha,c.id_tipo_credito,cli.CODIGO_CLI,Concat(cli.nombres,' ',cli.apellidos) as Nom " +
+                    "FROM credito c " +
+                    "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = c.COD_CREDITO " +
+                    "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
+                    "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                    "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
+                    "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=3 or c.id_tipo_credito=4)";
+            }
+            
+            return buscar(consulta);
+        }
+
+        public bool CrediAnterior(string cli)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = "SELECT c.COD_CREDITO "+
+                       "FROM credito c "+
+                       "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = c.COD_CREDITO "+
+                       "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD "+
+                       "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD "+
+                       "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli "+
+                       "WHERE cli.CODIGO_CLI ="+cli+" AND c.ESTADO != 'Cancelado'";
+            datos = buscar(consulta);
+            return (datos.Rows.Count > 1);
+        }
+        #endregion
+
+
     }
 }
 

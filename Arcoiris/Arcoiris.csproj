@@ -259,6 +259,14 @@
     <Compile Include="Reportes\CajaRep.Designer.cs">
       <DependentUpon>CajaRep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Colocacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Colocacion.Designer.cs">
+      <DependentUpon>Colocacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\ColocDeta.cs" />
+    <Compile Include="Reportes\ColocEnc.cs" />
     <Compile Include="Reportes\ComisionDet.cs" />
     <Compile Include="Reportes\ComisionEnc.cs" />
     <Compile Include="Reportes\Comisiones.cs">
@@ -397,6 +405,10 @@
     <EmbeddedResource Include="Reportes\CajaRep.resx">
       <DependentUpon>CajaRep.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Colocacion.rdlc" />
+    <EmbeddedResource Include="Reportes\Colocacion.resx">
+      <DependentUpon>Colocacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Comisiones.rdlc" />
     <EmbeddedResource Include="Reportes\Comisiones.resx">
       <DependentUpon>Comisiones.cs</DependentUpon>
@@ -447,6 +459,8 @@
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE2.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ColocDeta.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ColocEnc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionDet.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionEnc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Credi_Activity.datasource" />

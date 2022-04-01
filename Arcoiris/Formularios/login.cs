@@ -27,8 +27,7 @@ namespace Arcoiris.Formularios
             pass = TxtContra.Text;
             if (log.loguearse(usu, pass))
             {
-                MessageBox.Show("Acceso concedido", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+               // MessageBox.Show("Acceso concedido", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Formularios.Main inicio = new Formularios.Main();
                 inicio.Show();
                 this.Hide();
@@ -124,10 +123,7 @@ namespace Arcoiris.Formularios
         {
             //BtnIngresar.Focus();
             TxtUsu.Focus();
-            TxtUsu.Focus();
-            TxtUsu.Focus();
-            TxtUsu.Focus();
-            TxtUsu.Focus();
+            
         }
 
         private void TxtUsu_Click(object sender, EventArgs e)

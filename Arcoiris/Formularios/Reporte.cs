@@ -20,7 +20,7 @@ namespace Arcoiris.Formularios
         {
             InitializeComponent();
         }
-
+        #region Controles
         private void Reporte_Load(object sender, EventArgs e)
         {
 
@@ -61,12 +61,66 @@ namespace Arcoiris.Formularios
                 CboCre.Items.Add("Reporte de Mora Creditos Mensuales");
                 CboCre.Items.Add("Reporte de pagos por dia (Diario)");
                 CboCre.Items.Add("Reporte de pagos por dia (Mensual)");
-             
+
 
             }
 
 
         }
+
+
+        private void BtnReporte_Click(object sender, EventArgs e)
+        {
+
+            verreportes();
+
+        }
+
+        private void BtnRepGan_Click(object sender, EventArgs e)
+        {
+
+            if (RdbTodos.Checked)
+            {
+                Rep_gan();
+            }
+            else if (RdbMes.Checked)
+            {
+                Rep_Gan_Mes();
+            }
+            else if (RdbDia.Checked)
+            {
+                Rep_Gan_Di();
+            }
+            else
+            {
+                MessageBox.Show("No se ha selecionado ninguna categoría");
+            }
+
+        }
+
+
+        private void BtnComi_Click(object sender, EventArgs e)
+        {
+            string codase = CboAsesor.SelectedValue.ToString();
+            string fechai, fechaf, asesor;
+            DataTable datos = new DataTable();
+            datos = cre.creditos(codase);
+            asesor = aseso.nom_aseso(codase);
+            fechai = DtpComIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpComiFin.Value.ToString("yyyy/MM/dd");
+
+            calculocomi(datos, asesor, fechai, fechaf);
+
+
+        }
+
+        private void BtnColo_Click(object sender, EventArgs e)
+        {
+            RevCredi();
+        }
+        #endregion
+
+
         private void mes()
         {
             CboMes.Items.Add("Enero");
@@ -93,12 +147,7 @@ namespace Arcoiris.Formularios
             }
             CboAnio.SelectedIndex = 0;
         }
-        private void BtnReporte_Click(object sender, EventArgs e)
-        {
-
-            verreportes();
-            
-        }
+       
         private void verreportes()
         {
             /*
@@ -214,27 +263,7 @@ namespace Arcoiris.Formularios
 
 
         }
-        private void BtnRepGan_Click(object sender, EventArgs e)
-        {
-
-            if (RdbTodos.Checked)
-            {
-                Rep_gan();
-            }
-            else if (RdbMes.Checked)
-            {
-                Rep_Gan_Mes();
-            }
-            else if (RdbDia.Checked)
-            {
-                Rep_Gan_Di();
-            }
-                        else
-            {
-                MessageBox.Show("No se ha selecionado ninguna categoría");
-            }
-            
-        }
+       
         private void Rep_gan()
         {
             //Crear fechas
@@ -378,10 +407,7 @@ namespace Arcoiris.Formularios
             return fecha;
         }
 
-        private void BtnOrden_Click(object sender, EventArgs e)
-        {
-           
-        }
+       
 
         private void CboCre_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -404,10 +430,7 @@ namespace Arcoiris.Formularios
 
         }
 
-        private void BtnCartera_Click(object sender, EventArgs e)
-        {
-           // repor.ColAct();
-        }
+       
 
         private void listarasesores()
         {
@@ -427,20 +450,7 @@ namespace Arcoiris.Formularios
             CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
         }
 
-        private void BtnComi_Click(object sender, EventArgs e)
-        {
-            string codase = CboAsesor.SelectedValue.ToString();
-            string fechai, fechaf,asesor;
-            DataTable datos = new DataTable();
-            datos = cre.creditos(codase);
-            asesor = aseso.nom_aseso(codase);
-            fechai = DtpComIni.Value.ToString("yyyy/MM/dd");
-            fechaf = DtpComiFin.Value.ToString("yyyy/MM/dd");
-            
-        calculocomi(datos,asesor,fechai,fechaf);
-
-
-        }
+      
 
         private void calculocomi(DataTable datos,string asesor, string fechai,string fechaf)
         {
@@ -456,9 +466,7 @@ namespace Arcoiris.Formularios
             datoscomi.Columns.Add("Tipo").DataType = Type.GetType("System.String");
             datoscomi.Columns.Add("PagosH").DataType = Type.GetType("System.String");
             datoscomi.Columns.Add("Comision").DataType = Type.GetType("System.String");
-           
-
-            for (cont = 0; cont < cant; cont++)
+                       for (cont = 0; cont < cant; cont++)
             {
                 string fechaini = datos.Rows[cont][5].ToString();
                 string cliente = datos.Rows[cont][8].ToString() + " " + datos.Rows[cont][9].ToString();
@@ -478,74 +486,7 @@ namespace Arcoiris.Formularios
                 pagosope = totalpagAct;
                 if (tipocre == 1)
                 {
-                    /*  capital = Math.Round((Monto / pagos), 2);
-                      interes = Math.Round(((Monto * Valint) / 100), 2);
-                      tipCre = "Diario";
-                      if (totalpagAct == 0 && estado == "Terminado")
-                      {
-                          pagoscre=0;
-                      }
-                      else if (totalpagAct > 0 && estado == "Activo") {
-
-                          bool bandera = true, Novacuota = true;
-                          cuota = interes;
-
-                          while (Novacuota)
-                          {
-                              if (totalpagAnt < cuota)
-                              {
-                                  Novacuota = false;
-                              }
-                              else
-                              {
-                                  totalpagAnt -= cuota;
-                              }
-                          }
-                          pagosope += totalpagAnt;
-                          while (bandera)
-                          {
-                              if (pagosope < cuota)
-                              {
-                                  bandera = false;
-                              }
-                              else
-                              {
-                                  pagosope -= (cuota);
-                                  pagoscre++;
-                              }
-                          }
-                      }
-                      else if (totalpagAct > 0 && estado == "Terminado")
-                      {
-                          bool bandera = true, Novacuota = true;
-                          cuota = interes;
-                          while (Novacuota)
-                          {
-                              if (totalpagAnt < cuota)
-                              {
-                                  Novacuota = false;
-                              }
-                              else
-                              {
-                                  totalpagAnt -= cuota;
-                              }
-                          }
-                          pagosope += totalpagAnt;
-                          while (bandera)
-                          {
-                              if (pagosope < cuota)
-                              {
-                                  bandera = false;
-                              }
-                              else
-                              {
-                                  pagosope -= (cuota);
-                                  pagoscre++;
-                              }
-                          }
-                      }*/
-
-                    capital = Monto;
+                                      capital = Monto;
                     interes = Math.Round(((Monto * Valint) / 100), 2);
                     cuota = capital + interes;
                     decimal saldado;
@@ -731,5 +672,71 @@ namespace Arcoiris.Formularios
             
 
         }
+
+        private void RevCredi()
+        {
+            string Canter,Tcred="",asesor,fechai,fechaf,ord="";
+            DataTable datos = new DataTable();
+            Reportes.ColocEnc Enc = new Reportes.ColocEnc();
+            Enc.Fecha = DateTime.Now.ToString("dd/MM/yyyy");
+            Enc.Titulo = "Listado de creditos colocados";
+            Enc.Ejecutivo = CboAsesor.Text;
+            asesor = CboAsesor.SelectedValue.ToString();
+            fechai = DtpComIni.Value.ToString("yyyy/MM/dd");
+            fechaf = DtpComiFin.Value.ToString("yyyy/MM/dd");
+            if (RdbPtodos.Checked)
+            { ord = "1"; }
+            else if (RdbPDia.Checked)
+            {
+                ord = "2";
+            }
+            else if (RdbPMens.Checked)
+            {
+                ord = "3";
+            }
+            
+            datos= cre.listadocredi(fechai, fechaf, asesor,ord);
+            for (int i = 0; i < datos.Rows.Count; i++)
+            {
+                Reportes.ColocDeta Deta = new Reportes.ColocDeta();
+                Deta.Credito = int.Parse(datos.Rows[i][0].ToString());
+                Deta.Monto = decimal.Parse(datos.Rows[i][1].ToString());
+                Deta.Fecha = datos.Rows[i][2].ToString();
+                if (cre.CrediAnterior(datos.Rows[i][4].ToString()))
+                {
+                    Canter = "Recurrente";
+                }
+                else
+                {
+                    Canter = "Nuevo";
+                }
+                Deta.Ante = Canter;
+                if (datos.Rows[i][3].ToString()=="1")
+                {
+                    Tcred = "Diario";
+                }
+                else if (datos.Rows[i][3].ToString() == "2")
+                {
+                    Tcred = "Diario-Interes";
+                }
+                else if (datos.Rows[i][3].ToString() == "3")
+                {
+                    Tcred = "Mensual";
+                }
+                else if (datos.Rows[i][3].ToString() == "4")
+                {
+                    Tcred = "Mensual sobre saldo";
+                }
+                Deta.Tipo = Tcred;
+                Deta.Cliente = datos.Rows[i][5].ToString();
+                Enc.detalle.Add(Deta);
+            }
+            Reportes.Colocacion colo = new Reportes.Colocacion();
+            colo.Enca.Add(Enc);
+            colo.Deta = Enc.detalle;
+            colo.Show();
+        }
+
+      
     }
 }
