@@ -105,7 +105,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!Fecha.Value, "Enca")</Value>
+                <Value>=CDate(First(Fields!Fecha.Value, "Enca"))</Value>
                 <Style>
                   <FontFamily>Dubai</FontFamily>
                   <FontWeight>Bold</FontWeight>
@@ -394,7 +394,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Ante</Value>
+                              <Value>Prestamo</Value>
                               <Style>
                                 <FontFamily>Dubai</FontFamily>
                                 <FontWeight>Bold</FontWeight>

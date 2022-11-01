@@ -2968,7 +2968,7 @@ namespace Arcoiris.Clases
                      "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
                      "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
                      "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
-                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso;
+                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and c.Estado<>'Cancelado'";
             }
             else if (ord.Equals("2"))
             {
@@ -2978,7 +2978,7 @@ namespace Arcoiris.Clases
                      "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
                      "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
                      "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
-                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=1 or c.id_tipo_credito=2)";
+                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=1 or c.id_tipo_credito=2) and c.Estado<>'Cancelado'";
             }
             else if (ord.Equals("3"))
             {
@@ -2988,7 +2988,7 @@ namespace Arcoiris.Clases
                     "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
                     "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
                     "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
-                    "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=3 or c.id_tipo_credito=4)";
+                    "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=3 or c.id_tipo_credito=4) and c.Estado<>'Cancelado'";
             }
             
             return buscar(consulta);
