@@ -30,6 +30,11 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.GbxD = new System.Windows.Forms.GroupBox();
+            this.GbxPrest = new System.Windows.Forms.GroupBox();
+            this.RdbPMens = new System.Windows.Forms.RadioButton();
+            this.RdbPDia = new System.Windows.Forms.RadioButton();
+            this.RdbPtodos = new System.Windows.Forms.RadioButton();
+            this.BtnColo = new System.Windows.Forms.Button();
             this.BtnComi = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.CboAsesor = new System.Windows.Forms.ComboBox();
@@ -55,19 +60,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.BtnColo = new System.Windows.Forms.Button();
-            this.GbxPrest = new System.Windows.Forms.GroupBox();
-            this.RdbPtodos = new System.Windows.Forms.RadioButton();
-            this.RdbPDia = new System.Windows.Forms.RadioButton();
-            this.RdbPMens = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
+            this.GbxPrest.SuspendLayout();
             this.panel2.SuspendLayout();
             this.GbxCreditos.SuspendLayout();
             this.panel3.SuspendLayout();
             this.GbxAs.SuspendLayout();
             this.GbxGan.SuspendLayout();
-            this.GbxPrest.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -102,9 +102,63 @@
             this.GbxD.Text = "Calculo de Comisiones";
             this.GbxD.Visible = false;
             // 
+            // GbxPrest
+            // 
+            this.GbxPrest.Controls.Add(this.RdbPMens);
+            this.GbxPrest.Controls.Add(this.RdbPDia);
+            this.GbxPrest.Controls.Add(this.RdbPtodos);
+            this.GbxPrest.Location = new System.Drawing.Point(370, 42);
+            this.GbxPrest.Name = "GbxPrest";
+            this.GbxPrest.Size = new System.Drawing.Size(155, 113);
+            this.GbxPrest.TabIndex = 8;
+            this.GbxPrest.TabStop = false;
+            this.GbxPrest.Text = "Categoria";
+            // 
+            // RdbPMens
+            // 
+            this.RdbPMens.AutoSize = true;
+            this.RdbPMens.Location = new System.Drawing.Point(7, 78);
+            this.RdbPMens.Name = "RdbPMens";
+            this.RdbPMens.Size = new System.Drawing.Size(91, 21);
+            this.RdbPMens.TabIndex = 2;
+            this.RdbPMens.Text = "Mensuales";
+            this.RdbPMens.UseVisualStyleBackColor = true;
+            // 
+            // RdbPDia
+            // 
+            this.RdbPDia.AutoSize = true;
+            this.RdbPDia.Location = new System.Drawing.Point(7, 51);
+            this.RdbPDia.Name = "RdbPDia";
+            this.RdbPDia.Size = new System.Drawing.Size(70, 21);
+            this.RdbPDia.TabIndex = 1;
+            this.RdbPDia.Text = "Diarios";
+            this.RdbPDia.UseVisualStyleBackColor = true;
+            // 
+            // RdbPtodos
+            // 
+            this.RdbPtodos.AutoSize = true;
+            this.RdbPtodos.Checked = true;
+            this.RdbPtodos.Location = new System.Drawing.Point(7, 24);
+            this.RdbPtodos.Name = "RdbPtodos";
+            this.RdbPtodos.Size = new System.Drawing.Size(63, 21);
+            this.RdbPtodos.TabIndex = 0;
+            this.RdbPtodos.TabStop = true;
+            this.RdbPtodos.Text = "Todos";
+            this.RdbPtodos.UseVisualStyleBackColor = true;
+            // 
+            // BtnColo
+            // 
+            this.BtnColo.Location = new System.Drawing.Point(370, 161);
+            this.BtnColo.Name = "BtnColo";
+            this.BtnColo.Size = new System.Drawing.Size(149, 44);
+            this.BtnColo.TabIndex = 7;
+            this.BtnColo.Text = "Colocación de creditos";
+            this.BtnColo.UseVisualStyleBackColor = true;
+            this.BtnColo.Click += new System.EventHandler(this.BtnColo_Click);
+            // 
             // BtnComi
             // 
-            this.BtnComi.Location = new System.Drawing.Point(12, 200);
+            this.BtnComi.Location = new System.Drawing.Point(28, 147);
             this.BtnComi.Name = "BtnComi";
             this.BtnComi.Size = new System.Drawing.Size(149, 39);
             this.BtnComi.TabIndex = 6;
@@ -115,7 +169,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 75);
+            this.label6.Location = new System.Drawing.Point(28, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 17);
             this.label6.TabIndex = 5;
@@ -124,16 +178,17 @@
             // CboAsesor
             // 
             this.CboAsesor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboAsesor.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboAsesor.FormattingEnabled = true;
-            this.CboAsesor.Location = new System.Drawing.Point(12, 95);
+            this.CboAsesor.Location = new System.Drawing.Point(28, 42);
             this.CboAsesor.Name = "CboAsesor";
-            this.CboAsesor.Size = new System.Drawing.Size(175, 25);
+            this.CboAsesor.Size = new System.Drawing.Size(320, 23);
             this.CboAsesor.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(235, 24);
+            this.label5.Location = new System.Drawing.Point(196, 74);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 17);
             this.label5.TabIndex = 3;
@@ -142,7 +197,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 24);
+            this.label4.Location = new System.Drawing.Point(28, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 17);
             this.label4.TabIndex = 2;
@@ -151,7 +206,7 @@
             // DtpComiFin
             // 
             this.DtpComiFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpComiFin.Location = new System.Drawing.Point(216, 44);
+            this.DtpComiFin.Location = new System.Drawing.Point(199, 94);
             this.DtpComiFin.Name = "DtpComiFin";
             this.DtpComiFin.Size = new System.Drawing.Size(149, 25);
             this.DtpComiFin.TabIndex = 1;
@@ -159,7 +214,7 @@
             // DtpComIni
             // 
             this.DtpComIni.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpComIni.Location = new System.Drawing.Point(12, 44);
+            this.DtpComIni.Location = new System.Drawing.Point(28, 94);
             this.DtpComIni.Name = "DtpComIni";
             this.DtpComIni.Size = new System.Drawing.Size(138, 25);
             this.DtpComIni.TabIndex = 0;
@@ -358,60 +413,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
             // 
-            // BtnColo
-            // 
-            this.BtnColo.Location = new System.Drawing.Point(216, 200);
-            this.BtnColo.Name = "BtnColo";
-            this.BtnColo.Size = new System.Drawing.Size(149, 44);
-            this.BtnColo.TabIndex = 7;
-            this.BtnColo.Text = "Colocación de creditos";
-            this.BtnColo.UseVisualStyleBackColor = true;
-            this.BtnColo.Click += new System.EventHandler(this.BtnColo_Click);
-            // 
-            // GbxPrest
-            // 
-            this.GbxPrest.Controls.Add(this.RdbPMens);
-            this.GbxPrest.Controls.Add(this.RdbPDia);
-            this.GbxPrest.Controls.Add(this.RdbPtodos);
-            this.GbxPrest.Location = new System.Drawing.Point(210, 81);
-            this.GbxPrest.Name = "GbxPrest";
-            this.GbxPrest.Size = new System.Drawing.Size(155, 113);
-            this.GbxPrest.TabIndex = 8;
-            this.GbxPrest.TabStop = false;
-            this.GbxPrest.Text = "Categoria";
-            // 
-            // RdbPtodos
-            // 
-            this.RdbPtodos.AutoSize = true;
-            this.RdbPtodos.Checked = true;
-            this.RdbPtodos.Location = new System.Drawing.Point(7, 24);
-            this.RdbPtodos.Name = "RdbPtodos";
-            this.RdbPtodos.Size = new System.Drawing.Size(63, 21);
-            this.RdbPtodos.TabIndex = 0;
-            this.RdbPtodos.TabStop = true;
-            this.RdbPtodos.Text = "Todos";
-            this.RdbPtodos.UseVisualStyleBackColor = true;
-            // 
-            // RdbPDia
-            // 
-            this.RdbPDia.AutoSize = true;
-            this.RdbPDia.Location = new System.Drawing.Point(7, 51);
-            this.RdbPDia.Name = "RdbPDia";
-            this.RdbPDia.Size = new System.Drawing.Size(70, 21);
-            this.RdbPDia.TabIndex = 1;
-            this.RdbPDia.Text = "Diarios";
-            this.RdbPDia.UseVisualStyleBackColor = true;
-            // 
-            // RdbPMens
-            // 
-            this.RdbPMens.AutoSize = true;
-            this.RdbPMens.Location = new System.Drawing.Point(7, 78);
-            this.RdbPMens.Name = "RdbPMens";
-            this.RdbPMens.Size = new System.Drawing.Size(91, 21);
-            this.RdbPMens.TabIndex = 2;
-            this.RdbPMens.Text = "Mensuales";
-            this.RdbPMens.UseVisualStyleBackColor = true;
-            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -430,6 +431,8 @@
             this.panel1.ResumeLayout(false);
             this.GbxD.ResumeLayout(false);
             this.GbxD.PerformLayout();
+            this.GbxPrest.ResumeLayout(false);
+            this.GbxPrest.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.GbxCreditos.ResumeLayout(false);
             this.GbxCreditos.PerformLayout();
@@ -438,8 +441,6 @@
             this.GbxAs.PerformLayout();
             this.GbxGan.ResumeLayout(false);
             this.GbxGan.PerformLayout();
-            this.GbxPrest.ResumeLayout(false);
-            this.GbxPrest.PerformLayout();
             this.ResumeLayout(false);
 
         }

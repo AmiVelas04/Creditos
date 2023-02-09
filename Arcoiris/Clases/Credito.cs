@@ -2937,7 +2937,9 @@ namespace Arcoiris.Clases
                            "INNER JOIN credito c ON c.COD_CREDITO = p.COD_CREDITO " +
                            "WHERE p.FECHA >= '" + fechai + "' AND p.FECHA <= '" + fechaf + "'  and p.Estado = 'Hecho' AND c.COD_CREDITO =" + cre + " AND p.interes>0";
             pagoscre = buscar(consultapgos);
+        
             totalpagmes = Int32.Parse(pagoscre.Rows[0][0].ToString());
+            if (totalpagmes <= 0) return 0;
             totalp = Int32.Parse(datos.Rows[0][6].ToString());
             pagosh = datos.Rows.Count;
             if (pagosh > totalp)
