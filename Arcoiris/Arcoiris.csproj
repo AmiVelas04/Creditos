@@ -77,6 +77,9 @@
       <HintPath>..\packages\Humanizer.Core.2.8.11\lib\netstandard1.0\Humanizer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1357.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -101,9 +104,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.ComponentModel.Fakes">
+      <HintPath>FakesAssemblies\System.ComponentModel.Fakes.dll</HintPath>
+    </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
@@ -450,6 +455,7 @@
       <DependentUpon>Tablapagos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Arcoiris_ClaveTemporal.pfx" />
+    <Fakes Include="Fakes\System.ComponentModel.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD1.datasource" />

@@ -14,7 +14,8 @@ namespace Arcoiris.Clases
     {
      //string cadena_conn= "server=192.168.0.8;  database=arcoiris; user id=Creditos; password=Cre-2020-Sis; port=3306; allow zero Datetime= true";
         
-     string cadena_conn = "server=localhost;  database=arcoiris; user id=Creditos; password=Cre-2020-Sis; allow zero Datetime= true";
+     //string cadena_conn = "server=localhost;  database=arcoiris; user id=Creditos; password=Cre-2020-Sis; allow zero Datetime= true";
+     string cadena_conn = "server=localhost;  database=creditos; user id=root; password=Ami_1532; allow zero Datetime= true";
 
 
         public MySqlConnection  conn = new MySqlConnection();

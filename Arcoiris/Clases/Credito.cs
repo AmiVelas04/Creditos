@@ -1577,7 +1577,7 @@ namespace Arcoiris.Clases
             DataTable tipo = new DataTable();
             DataTable Pagos = new DataTable();
             string tipoc;
-            string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,Fecha_venci as fechaf from credito where cod_credito =" + cre;
+            string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,date_format(Fecha_venci,'%Y/%M/%d') as fechaf from credito where cod_credito =" + cre;
             string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes,capital as capi, interes as inte FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
             tipo = buscar(constipo);
             Pagos = buscar(Consulpagos);
@@ -1599,6 +1599,7 @@ namespace Arcoiris.Clases
             }
 
             DateTime Fini = Convert.ToDateTime(tipo.Rows[0][1].ToString());
+            DateTime FinCe = Convert.ToDateTime(tipo.Rows[0][5].ToString());
             DateTime Ffin = Convert.ToDateTime(fecha);
             TimeSpan dif;
             decimal TotG = TotCap + TotInt;
@@ -1791,7 +1792,7 @@ namespace Arcoiris.Clases
                 }
                 int conteo = 1;
                 DateTime fechaavanz = Fini;
-                while (Ffin > fechaavanz)
+                while (FinCe > fechaavanz)
                 {
                     fechaavanz = Fini.AddMonths(conteo);
                     conteo++;
