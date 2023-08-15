@@ -887,16 +887,6 @@ namespace Arcoiris.Formularios
             }
         }
 
-        private void label21_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TxtAtraso_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void BtnGarant_Click(object sender, EventArgs e)
         {
             if (CboPresta.Text != "")

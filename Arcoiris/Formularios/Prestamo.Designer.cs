@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.GbxPago = new System.Windows.Forms.GroupBox();
+            this.LblIdCli = new System.Windows.Forms.Label();
             this.TxtDepo = new System.Windows.Forms.TextBox();
             this.ChkDepo = new System.Windows.Forms.CheckBox();
             this.BtnCancel = new System.Windows.Forms.Button();
@@ -98,7 +99,6 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
-            this.LblIdCli = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
@@ -172,6 +172,16 @@
             this.GbxPago.TabIndex = 1;
             this.GbxPago.TabStop = false;
             this.GbxPago.Text = "Credito";
+            // 
+            // LblIdCli
+            // 
+            this.LblIdCli.AutoSize = true;
+            this.LblIdCli.Location = new System.Drawing.Point(336, 67);
+            this.LblIdCli.Name = "LblIdCli";
+            this.LblIdCli.Size = new System.Drawing.Size(51, 17);
+            this.LblIdCli.TabIndex = 56;
+            this.LblIdCli.Text = "Cliente";
+            this.LblIdCli.Visible = false;
             // 
             // TxtDepo
             // 
@@ -361,7 +371,6 @@
             this.TxtAtraso.Size = new System.Drawing.Size(130, 25);
             this.TxtAtraso.TabIndex = 41;
             this.TxtAtraso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtAtraso.TextChanged += new System.EventHandler(this.TxtAtraso_TextChanged);
             // 
             // TxtSaldInt
             // 
@@ -379,7 +388,6 @@
             this.label21.Size = new System.Drawing.Size(114, 23);
             this.label21.TabIndex = 47;
             this.label21.Text = "Interés perido";
-            this.label21.Click += new System.EventHandler(this.label21_Click);
             // 
             // label16
             // 
@@ -868,16 +876,6 @@
             this.DGVPpago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVPpago.Size = new System.Drawing.Size(743, 420);
             this.DGVPpago.TabIndex = 0;
-            // 
-            // LblIdCli
-            // 
-            this.LblIdCli.AutoSize = true;
-            this.LblIdCli.Location = new System.Drawing.Point(336, 67);
-            this.LblIdCli.Name = "LblIdCli";
-            this.LblIdCli.Size = new System.Drawing.Size(51, 17);
-            this.LblIdCli.TabIndex = 56;
-            this.LblIdCli.Text = "Cliente";
-            this.LblIdCli.Visible = false;
             // 
             // Prestamo
             // 
