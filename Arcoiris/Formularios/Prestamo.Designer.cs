@@ -206,11 +206,12 @@
             // 
             this.BtnCancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCancel.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.BtnCancel.Location = new System.Drawing.Point(403, 453);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(97, 52);
             this.BtnCancel.TabIndex = 53;
-            this.BtnCancel.Text = "Cancelar Credito";
+            this.BtnCancel.Text = "Pagar todo el credito";
             this.BtnCancel.UseVisualStyleBackColor = false;
             this.BtnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
@@ -473,11 +474,12 @@
             // 
             this.BtnAldia.BackColor = System.Drawing.Color.LimeGreen;
             this.BtnAldia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAldia.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.BtnAldia.Location = new System.Drawing.Point(300, 453);
             this.BtnAldia.Name = "BtnAldia";
             this.BtnAldia.Size = new System.Drawing.Size(97, 52);
             this.BtnAldia.TabIndex = 46;
-            this.BtnAldia.Text = "Poner al dia";
+            this.BtnAldia.Text = "Poner al dia el credito";
             this.BtnAldia.UseVisualStyleBackColor = false;
             this.BtnAldia.Click += new System.EventHandler(this.BtnAldia_Click);
             // 

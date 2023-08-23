@@ -129,6 +129,7 @@ namespace Arcoiris.Formularios
 
             //TxtInteres.Text = inteori.ToString();
             datos = cre.cantcre(CboPresta.Text, DtpPago.Value.ToString());
+            int DiAtraso  = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
             TxtMonto.Text = datos.Rows[0][0].ToString();
             decimal saldocap = Convert.ToDecimal(datos.Rows[0][1].ToString());
             decimal inte = Convert.ToDecimal(TxtInteres.Text);
@@ -152,26 +153,27 @@ namespace Arcoiris.Formularios
             if (TxtTipo.Text == "1")
             {
                 TxtTipo.Text = "Diario";
-                int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
-                TxtAtraso.Text = total.ToString() + " Día(s)";
+               
+                TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
             else if (TxtTipo.Text == "2")
             {
                 TxtTipo.Text = "Diario-Interes";
-                int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
-                TxtAtraso.Text = total.ToString() + " Día(s)";
+              //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
             else if (TxtTipo.Text == "3")
             {
                 TxtTipo.Text = "Mesual-Fijo";
-                int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
-                TxtAtraso.Text = total + " Día(s)";
+               // int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                TxtAtraso.Text = DiAtraso + " Día(s)";
             }
             else if (TxtTipo.Text == "4")
             {
                 TxtTipo.Text = "Mesual-SobreSaldo";
-                int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
-                TxtAtraso.Text = total + " Día(s)";
+              //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                TxtAtraso.Text = DiAtraso + " Día(s)";
+                TxtMora.Text = $"{DiAtraso*10}";
             }
 
             DataTable aldia = new DataTable();

@@ -1312,7 +1312,7 @@ namespace Arcoiris.Clases
             // MessageBox.Show("Numeo de pagos: " + datosp .Rows [0][0].ToString ());
             pagoshoy = Convert.ToInt32(datosp.Rows[0][0].ToString());
             string consultultp;
-            consultultp = "SELECT MAX(id_pago), capital, interes,Date_Format(fecha,'%d/%m/%Y') as fecha FROM pagos WHERE Cod_credito=" + credito;
+            consultultp = "SELECT id_pago, capital, interes,max(Date_Format(fecha,'%d/%m/%Y')) as fecha FROM pagos WHERE Cod_credito=" + credito;
             DataTable UltPag = new DataTable();
             UltPag = buscar(consultultp);
             if (pagoshoy <= 0)
@@ -1832,23 +1832,24 @@ namespace Arcoiris.Clases
         public DataTable saldosdias(string cre, string fecha)
         {
             //parte 1 datos originales
-            string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha,date_format(Fecha_conc,'%d-%M-%Y') as fecha1,saldo_cap from credito where cod_credito=" + cre + " and estado='Activo'";
+            string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha,date_format(Fecha_venci,'%d-%M-%Y') as fecha1,saldo_cap from credito where cod_credito=" + cre + " and estado='Activo'";
             string tipo = "";
             DataTable datcre = new DataTable();
             datcre = buscar(consulCre);
             decimal monto = 0, inte = 0, SaldoC = 0;
-            int dias = 0; DateTime fechaC = DateTime.Now;
+            int dias = 0; DateTime fechaC = DateTime.Now; DateTime FechaVen =DateTime.Now;
             if (datcre.Rows.Count > 0)
             {
                 monto = Convert.ToDecimal(datcre.Rows[0][0]);
                 inte = Convert.ToDecimal(datcre.Rows[0][1]);
                 dias = Convert.ToInt32(datcre.Rows[0][2]);
                 fechaC = Convert.ToDateTime(datcre.Rows[0][4]);
+                FechaVen = Convert.ToDateTime(datcre.Rows[0][5]);
                 tipo = datcre.Rows[0][3].ToString();
                 SaldoC = decimal.Parse(datcre.Rows[0][6].ToString());
+
             }
-
-
+            
             //parte 2 calculo de valores 
             int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo);//revisar numero de pagos que deberia haberse hecho
             int atraso = Convert.ToInt32(dias_atraso(cre, fecha));
@@ -1914,7 +1915,7 @@ namespace Arcoiris.Clases
             {
                 DateTime fechaact = DateTime.Parse(fecha);
                 string ConPagosH;
-                ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%d-%M-%Y') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
+                ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%Y-%M-%d') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
                 datosph = buscar(ConPagosH);
                 string consultultp;
@@ -1924,11 +1925,113 @@ namespace Arcoiris.Clases
                 DateTime fechaUltPag = DateTime.Now;
                 TimeSpan difer = fechaact - fechaUltPag;
                 int diasDif = difer.Days;
-                pint = Math.Round((monto * inte / 100 / 12 / 30), 2); // dependiendo del mes se divide el porcentaje de interes*
-                pint = pint * diasDif;
+                //pint = Math.Round((monto * inte / 100 / 12 / 30), 2); // dependiendo del mes se divide el porcentaje de interes*
+               // pint = pint * diasDif;
                 // los calculos del dia diario 
 
-                pcap = (SaldoC);
+
+                //------------------------------------probar calculo de deuda-------------------------------------------
+                int pagosmade = datosph.Rows.Count;
+                int PagCEsp = 0;
+                DateTime pagultifech;
+                DateTime FechaA = DateTime.Parse(fecha);
+                DateTime Fechamov = fechaC.AddMonths(2);
+                if (FechaA>FechaVen)
+                {
+                    FechaA = FechaVen;
+                }
+
+                if (FechaA < Fechamov)
+                {
+                    pint = 0;
+                }
+                else
+                {
+                    int conteop = 0;
+                    DateTime DatePag;
+                    if (pagosmade > 0)
+                    {
+                        DatePag = DateTime.Parse(datosph.Rows[conteop][2].ToString());
+                    }
+                    else
+                    {
+                        DatePag = FechaA;
+                    }
+
+                    DateTime DatePrim = fechaC;
+                    //revisar que el calcudo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
+                    while (Fechamov.AddDays(-1) < FechaA)
+                    {
+                        //el orden de los pagos hechos sean menor que el toal de los hechos
+                        if (conteop < pagosmade)
+                        {
+                            //revisar todos los pagos de interes para un solo ciclo de pago
+                            if (DatePag < Fechamov)
+                            {
+                                TimeSpan time = DatePag - DatePrim;
+                                int diascobr = time.Days;
+                                if (diascobr < 0) diascobr = 0;
+                                decimal intante;
+                                decimal capante;
+                                intante = Math.Round(  ((monto * inte / 100 / 12 / 30) * diascobr),2);
+                                capante = decimal.Parse(datosph.Rows[conteop][0].ToString());
+                                monto -= capante;
+                             
+                                pint += intante;
+                                DatePrim = DatePag;
+                                conteop++;
+                                if (conteop < pagosmade)
+                                {
+                                    DatePag = DateTime.Parse(datosph.Rows[conteop][2].ToString());
+                                }
+                                else
+                                {
+                                  //  DatePag = FechaA;
+                                }
+                            }
+                            else
+                            {
+                                Fechamov = Fechamov.AddMonths(1);
+                                PagCEsp++;
+
+                                //falta agregar calculos si no existe un ningun pago realizado en el periodo de tiempo estipulado
+
+
+                            }
+                        }
+                        else if (pagosmade == 0)
+                        {
+                            TimeSpan time = DatePag - Fechamov;
+                            int diascobr = time.Days;
+                            if (diascobr < 0) diascobr = 0;
+                            pint = ((monto * inte / 100 / 12 / 30) * diascobr);
+                            break;
+
+                        }
+                        else
+                        {
+                            TimeSpan time =  FechaA.AddMonths(-1)- DatePag ;
+                            int diascobr = time.Days;
+                            if (diascobr < 0) diascobr = 0;
+                            pint += ((monto * inte / 100 / 12 / 30) * diascobr);
+                            break;
+                        }
+
+                    }
+
+                }
+
+
+
+
+
+
+
+
+                //-----------------------------------fin de prueba de calculo de deuda-----------------------------------
+
+
+                //     pcap = ();
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;
@@ -2082,10 +2185,10 @@ namespace Arcoiris.Clases
                 fechaC = Convert.ToDateTime(datosc.Rows[0][0].ToString());
                 fechaC = fechaC.AddDays(1);
                 string ConPagosH;
-                ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%d-%M-%Y') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
+                ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%Y-%M-%d') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
                 datosph = buscar(ConPagosH);
-                
+
                 pcap = Math.Round((monto / dias), 2);
                 // pint= monto * inte / 100 / 12; 
                 PcapO = pcap;
@@ -2093,7 +2196,7 @@ namespace Arcoiris.Clases
                 // pagos++;
 
                 //fecha mov es la fecha del ultimo mes a pagar, es decir el resto del mes completo
-                DateTime fechamov = fechacon;
+                DateTime fechamov = fechacon.AddDays(1);
                 while (fechamov < fechaf)
                 {
                     fechamov = fechamov.AddMonths(1);
@@ -2101,9 +2204,9 @@ namespace Arcoiris.Clases
                 pagos = datosph.Rows.Count;
 
                 // si no hay pagos generar la deuda sobre el total de dias trascurridos sin pago
-                if (pagos<=0)
+                if (pagos <= 0)
                 {
-                    TimeSpan tiempo = fechamov - fechacon;
+                    TimeSpan tiempo = fechamov - fechacon.AddDays(1);
                     int diasnpag = tiempo.Days;
                     pint = ((monto * inter / 100 / 12 / 30) * diasnpag);
                     pagultifech = fechamov;
@@ -2112,33 +2215,54 @@ namespace Arcoiris.Clases
                 else
                 {
                     //------------------------------------------------Calculo de intereses antes de realizar el primer pago-----------------------------------------------------
-
+                    DateTime Fnextpag = fechamov;
                     //------------------------------------------------Fin de calculo de intereses antes del primer pago---------------------------------------------------------
 
-                    DateTime FechaTemp=DateTime.Now;
+
                     //si existe el pago generar un total de interes periodo por el dia de pagos faltantes
                     for (int i = 0; i < pagos; i++)
                     {
                         int diascobr = 0;
-                        DateTime FechaPag = DateTime.Parse(datosph.Rows[i][3].ToString());
-                        while (FechaPag < fechamov)
+                        decimal intante;
+                        decimal intpag;
+                        DateTime FechaPag;
+
+
+                        Fnextpag = DateTime.Parse(datosph.Rows[i][3].ToString());
+                        //fecha tomada como inicio de pago(fechapag) Y final de pago(Fnextpag)
+                        if (i <= 0)
+                        {
+
+                            FechaPag = fechacon;
+                        }
+                        else
+                        {
+
+                            FechaPag = DateTime.Parse(datosph.Rows[i - 1][3].ToString());
+                        }
+                        while (FechaPag < Fnextpag)
                         {
                             diascobr++;
                             FechaPag = FechaPag.AddDays(1);
-                            FechaTemp = FechaPag;
+
                         }
-                        pint += ((monto * inter / 100 / 12 / 30) * diascobr) - (decimal.Parse(datosph.Rows[i][1].ToString()));
+
+                        intante = Math.Round(  ((monto * inter / 100 / 12 / 30) * diascobr),2);
+                        intpag = (decimal.Parse(datosph.Rows[i][1].ToString()));
+                        pint += intante - intpag;
                         monto = monto - decimal.Parse(datosph.Rows[i][0].ToString());
                     }
-                    TimeSpan tiempo2 = fechamov - FechaTemp;
-                    int ultidias = tiempo2.Days;
-                   pint +=Math.Round( ((monto * inter / 100 / 12 / 30) * ultidias),2);
+
+                    //ultimo pago siempre se toma fuera del ciclo para calcular el restante
+                    TimeSpan tiempo2 = fechamov - Fnextpag;
+                    int ultidias = tiempo2.Days-1;
+                    pint += Math.Round(((monto * inter / 100 / 12 / 30) * ultidias), 2);
                 }
 
                 cuota = pint;
                 saldop = 0;
-                
-               
+
+
 
 
 
