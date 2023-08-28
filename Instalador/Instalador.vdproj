@@ -87,6 +87,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_29D0EDF05EF36FC428CB8B1A972EFA7E"
+        "OwnerKey" = "8:_D887B91DAC804D4B873E66784194F4FA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_29D0EDF05EF36FC428CB8B1A972EFA7E"
+        "OwnerKey" = "8:_A9FB3A3113B6835299B8CCE5F28B8F6F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2AC0DD52580895F10F8F4B3256EA120E"
         "OwnerKey" = "8:_D887B91DAC804D4B873E66784194F4FA"
         "MsmSig" = "8:_UNDEFINED"
@@ -358,6 +370,12 @@
         "Entry"
         {
         "MsmKey" = "8:_A7280DCF1B906A3C3F86E4AE4163DA3E"
+        "OwnerKey" = "8:_D887B91DAC804D4B873E66784194F4FA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A9FB3A3113B6835299B8CCE5F28B8F6F"
         "OwnerKey" = "8:_D887B91DAC804D4B873E66784194F4FA"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -695,6 +713,12 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_726FCB851508BAB1A705ACBF4342038F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A9FB3A3113B6835299B8CCE5F28B8F6F"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1057,6 +1081,12 @@
         "OwnerKey" = "8:_E1BDC4B48F8E45347CBB674005C92BF0"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_29D0EDF05EF36FC428CB8B1A972EFA7E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -1414,6 +1444,37 @@
                     }
                 }
             "SourcePath" = "8:Microsoft.ReportViewer.WebForms.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D7277A7DD0704EDBA7CDCAEAE7B57830"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_29D0EDF05EF36FC428CB8B1A972EFA7E"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.QualityTools.Testing.Fakes, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_29D0EDF05EF36FC428CB8B1A972EFA7E"
+                    {
+                    "Name" = "8:Microsoft.QualityTools.Testing.Fakes.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.QualityTools.Testing.Fakes.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D7277A7DD0704EDBA7CDCAEAE7B57830"
@@ -2488,6 +2549,37 @@
                     }
                 }
             "SourcePath" = "8:System.IO.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_D7277A7DD0704EDBA7CDCAEAE7B57830"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A9FB3A3113B6835299B8CCE5F28B8F6F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:System.ComponentModel.Fakes, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0ae41878053f6703, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A9FB3A3113B6835299B8CCE5F28B8F6F"
+                    {
+                    "Name" = "8:System.ComponentModel.Fakes.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.ComponentModel.Fakes.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_D7277A7DD0704EDBA7CDCAEAE7B57830"
@@ -4149,34 +4241,6 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2C2E135634424D37AC6113DDD69CE99B"
-            {
-            "SourcePath" = "8:"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_D7277A7DD0704EDBA7CDCAEAE7B57830"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            "ProjectOutputGroupRegister" = "3:1"
-            "OutputConfiguration" = "8:"
-            "OutputGroupCanonicalName" = "8:RuntimeImplementation"
-            "OutputProjectGuid" = "8:{A3EE7307-6E1F-438E-9E0A-E73D8C0EA597}"
-            "ShowKeyOutput" = "11:TRUE"
-                "ExcludeFilters"
-                {
-                }
-            }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_D887B91DAC804D4B873E66784194F4FA"
             {
             "SourcePath" = "8:..\\Arcoiris\\obj\\Debug\\Arcoiris.exe"

@@ -1831,6 +1831,7 @@ namespace Arcoiris.Clases
         // calculo del interes para poner al dia
         public DataTable saldosdias(string cre, string fecha)
         {
+            //si existe capital o interes adelantado mostrar valor 0
             //parte 1 datos originales
             string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha,date_format(Fecha_venci,'%d-%M-%Y') as fecha1,saldo_cap from credito where cod_credito=" + cre + " and estado='Activo'";
             string tipo = "";
@@ -1932,6 +1933,9 @@ namespace Arcoiris.Clases
 
                 //------------------------------------probar calculo de deuda-------------------------------------------
                 int pagosmade = datosph.Rows.Count;
+                // calculo de  capital pendiente de pagos anteriores incompletos y sumar los faltantes a cuota a pagar, si es posible al presionar boton poner al dia sumar poner al dia y cuota normal de pago
+
+
                 int PagCEsp = 0;
                 DateTime pagultifech;
                 DateTime FechaA = DateTime.Parse(fecha);
@@ -1976,7 +1980,6 @@ namespace Arcoiris.Clases
                                 intante = Math.Round(  ((monto * inte / 100 / 12 / 30) * diascobr),2);
                                 capante = decimal.Parse(datosph.Rows[conteop][0].ToString());
                                 monto -= capante;
-                             
                                 pint += intante;
                                 DatePrim = DatePag;
                                 conteop++;
