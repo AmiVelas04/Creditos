@@ -472,9 +472,9 @@
             // 
             // BtnAldia
             // 
-            this.BtnAldia.BackColor = System.Drawing.Color.LimeGreen;
+            this.BtnAldia.BackColor = System.Drawing.Color.Green;
             this.BtnAldia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAldia.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.BtnAldia.ForeColor = System.Drawing.SystemColors.Info;
             this.BtnAldia.Location = new System.Drawing.Point(300, 453);
             this.BtnAldia.Name = "BtnAldia";
             this.BtnAldia.Size = new System.Drawing.Size(97, 52);

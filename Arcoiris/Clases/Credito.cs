@@ -1462,7 +1462,7 @@ namespace Arcoiris.Clases
                     diashab++;
                 }
             }
-            if (tipo.Equals("3"))
+            if (tipo.Equals("3") || tipo.Equals("4"))
             {
                 diashab = 0;
                 int conteo = 1;
@@ -1474,7 +1474,7 @@ namespace Arcoiris.Clases
                     diashab++;
                 }
             }
-            else if (tipo.Equals("4"))
+            else
             {
                 diashab = dias.Days;
             }
@@ -1831,7 +1831,7 @@ namespace Arcoiris.Clases
         // calculo del interes para poner al dia
         public DataTable saldosdias(string cre, string fecha)
         {
-            //si existe capital o interes adelantado mostrar valor 0
+            //si existe capital o interes adelantado mostrar valor 0 *o solo interes adelantado
             //parte 1 datos originales
             string consulCre = "Select Monto,interes,dias_pago,id_tipo_credito,date_format(Fecha_conc,'%Y-%M-%d') as fecha,date_format(Fecha_venci,'%d-%M-%Y') as fecha1,saldo_cap from credito where cod_credito=" + cre + " and estado='Activo'";
             string tipo = "";
@@ -1933,9 +1933,11 @@ namespace Arcoiris.Clases
 
                 //------------------------------------probar calculo de deuda-------------------------------------------
                 int pagosmade = datosph.Rows.Count;
-                // calculo de  capital pendiente de pagos anteriores incompletos y sumar los faltantes a cuota a pagar, si es posible al presionar boton poner al dia sumar poner al dia y cuota normal de pago
-
-
+                // calculo de  capital pendiente de pagos anteriores incompletos y sumar los faltantes a cuota a pagar, 
+                //si es posible al presionar boton poner al dia sumar poner al dia y cuota normal de pago
+                pcap = Math.Round((monto / dias), 2);
+       
+                pcap *= pagos;
                 int PagCEsp = 0;
                 DateTime pagultifech;
                 DateTime FechaA = DateTime.Parse(fecha);
@@ -1963,7 +1965,7 @@ namespace Arcoiris.Clases
                     }
 
                     DateTime DatePrim = fechaC;
-                    //revisar que el calcudo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
+                    //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
                     while (Fechamov.AddDays(-1) < FechaA)
                     {
                         //el orden de los pagos hechos sean menor que el toal de los hechos
