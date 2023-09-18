@@ -1814,6 +1814,7 @@ namespace Arcoiris.Clases
                 }
                 int conteo = 1;
                 DateTime fechaavanz = Fini;
+                FinCe = Ffin;
                 while (Ffin > fechaavanz)
                 {
                     fechaavanz = Fini.AddMonths(conteo);
