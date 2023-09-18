@@ -455,7 +455,6 @@
       <DependentUpon>Tablapagos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Arcoiris_ClaveTemporal.pfx" />
-    <Fakes Include="Fakes\System.ComponentModel.fakes" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD1.datasource" />
