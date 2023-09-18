@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Atrasos));
             this.AtrasosEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AtrasosDBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Rep1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -67,6 +68,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(668, 333);
             this.Controls.Add(this.Rep1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Atrasos";
             this.Text = "Atrasos";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

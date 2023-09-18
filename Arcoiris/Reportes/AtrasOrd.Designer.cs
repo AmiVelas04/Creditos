@@ -31,12 +31,21 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.Rep1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AtrasOrd));
             this.AtrasosEBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.AtrasosDBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Rep1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.AtrasosEBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AtrasosDBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // AtrasosEBindingSource
+            // 
+            this.AtrasosEBindingSource.DataSource = typeof(Arcoiris.Reportes.AtrasosE);
+            // 
+            // AtrasosDBindingSource
+            // 
+            this.AtrasosDBindingSource.DataSource = typeof(Arcoiris.Reportes.AtrasosD);
             // 
             // Rep1
             // 
@@ -53,14 +62,6 @@
             this.Rep1.Size = new System.Drawing.Size(898, 313);
             this.Rep1.TabIndex = 0;
             // 
-            // AtrasosEBindingSource
-            // 
-            this.AtrasosEBindingSource.DataSource = typeof(Arcoiris.Reportes.AtrasosE);
-            // 
-            // AtrasosDBindingSource
-            // 
-            this.AtrasosDBindingSource.DataSource = typeof(Arcoiris.Reportes.AtrasosD);
-            // 
             // AtrasOrd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -68,6 +69,7 @@
             this.ClientSize = new System.Drawing.Size(898, 313);
             this.Controls.Add(this.Rep1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AtrasOrd";
             this.Text = "Creditos atrasados";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

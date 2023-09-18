@@ -31,12 +31,21 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cre_Cance_Vig));
             this.RepDetCliBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RepEncBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.RepDetCliBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepEncBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // RepDetCliBindingSource
+            // 
+            this.RepDetCliBindingSource.DataSource = typeof(Arcoiris.Reportes.RepDetCli);
+            // 
+            // RepEncBindingSource
+            // 
+            this.RepEncBindingSource.DataSource = typeof(Arcoiris.Reportes.RepEnc);
             // 
             // reportViewer1
             // 
@@ -53,20 +62,13 @@
             this.reportViewer1.Size = new System.Drawing.Size(761, 276);
             this.reportViewer1.TabIndex = 0;
             // 
-            // RepDetCliBindingSource
-            // 
-            this.RepDetCliBindingSource.DataSource = typeof(Arcoiris.Reportes.RepDetCli);
-            // 
-            // RepEncBindingSource
-            // 
-            this.RepEncBindingSource.DataSource = typeof(Arcoiris.Reportes.RepEnc);
-            // 
             // Cre_Cance_Vig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(761, 276);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Cre_Cance_Vig";
             this.Text = "Cre_Cance_Vig";
             this.Load += new System.EventHandler(this.Cre_Cance_Vig_Load);

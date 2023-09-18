@@ -31,12 +31,21 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CajaRep));
             this.RepEncBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.RepDetCliBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.RepEncBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepDetCliBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // RepEncBindingSource
+            // 
+            this.RepEncBindingSource.DataSource = typeof(Arcoiris.Reportes.RepEnc);
+            // 
+            // RepDetCliBindingSource
+            // 
+            this.RepDetCliBindingSource.DataSource = typeof(Arcoiris.Reportes.RepDetCli);
             // 
             // reportViewer1
             // 
@@ -53,20 +62,13 @@
             this.reportViewer1.Size = new System.Drawing.Size(645, 261);
             this.reportViewer1.TabIndex = 0;
             // 
-            // RepEncBindingSource
-            // 
-            this.RepEncBindingSource.DataSource = typeof(Arcoiris.Reportes.RepEnc);
-            // 
-            // RepDetCliBindingSource
-            // 
-            this.RepDetCliBindingSource.DataSource = typeof(Arcoiris.Reportes.RepDetCli);
-            // 
             // CajaRep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 261);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CajaRep";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CajaRep";

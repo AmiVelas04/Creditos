@@ -31,12 +31,21 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.Rp1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Pagohoy));
             this.DatosCreBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.EstadoEncBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Rp1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.DatosCreBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EstadoEncBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // DatosCreBindingSource
+            // 
+            this.DatosCreBindingSource.DataSource = typeof(Arcoiris.Reportes.DatosCre);
+            // 
+            // EstadoEncBindingSource
+            // 
+            this.EstadoEncBindingSource.DataSource = typeof(Arcoiris.Reportes.EstadoEnc);
             // 
             // Rp1
             // 
@@ -53,20 +62,13 @@
             this.Rp1.Size = new System.Drawing.Size(1011, 395);
             this.Rp1.TabIndex = 0;
             // 
-            // DatosCreBindingSource
-            // 
-            this.DatosCreBindingSource.DataSource = typeof(Arcoiris.Reportes.DatosCre);
-            // 
-            // EstadoEncBindingSource
-            // 
-            this.EstadoEncBindingSource.DataSource = typeof(Arcoiris.Reportes.EstadoEnc);
-            // 
             // Pagohoy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1011, 395);
             this.Controls.Add(this.Rp1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Pagohoy";
             this.Text = "Pagohoy";
             this.Load += new System.EventHandler(this.Pagohoy_Load);

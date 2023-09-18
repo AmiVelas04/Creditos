@@ -31,12 +31,21 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.Rpv1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Credi_Activ));
             this.RepEncBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Credi_ActivityBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Rpv1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.RepEncBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Credi_ActivityBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // RepEncBindingSource
+            // 
+            this.RepEncBindingSource.DataSource = typeof(Arcoiris.Reportes.RepEnc);
+            // 
+            // Credi_ActivityBindingSource
+            // 
+            this.Credi_ActivityBindingSource.DataSource = typeof(Arcoiris.Reportes.Credi_Activity);
             // 
             // Rpv1
             // 
@@ -53,20 +62,13 @@
             this.Rpv1.Size = new System.Drawing.Size(791, 351);
             this.Rpv1.TabIndex = 0;
             // 
-            // RepEncBindingSource
-            // 
-            this.RepEncBindingSource.DataSource = typeof(Arcoiris.Reportes.RepEnc);
-            // 
-            // Credi_ActivityBindingSource
-            // 
-            this.Credi_ActivityBindingSource.DataSource = typeof(Arcoiris.Reportes.Credi_Activity);
-            // 
             // Credi_Activ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(791, 351);
             this.Controls.Add(this.Rpv1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Credi_Activ";
             this.Text = "Creditos Activos";
             this.Load += new System.EventHandler(this.Credi_Activ_Load);
