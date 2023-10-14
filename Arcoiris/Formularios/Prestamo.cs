@@ -266,7 +266,7 @@ namespace Arcoiris.Formularios
                 groupBox2.Enabled = false;
                 Dcre();
 
-            }
+            }BtnAldia.Enabled = true;
 
 
 
@@ -678,6 +678,7 @@ namespace Arcoiris.Formularios
                     TxtCapD.Text = "0";
                     TxtIntD.Text = "0";
                     TxtCuota.Text = "0";
+                    TxtEfectivo.Text = "0";
                 }
             }
 
@@ -706,11 +707,14 @@ namespace Arcoiris.Formularios
 
         private void BtnAldia_Click(object sender, EventArgs e)
         {
-            if (TxtInteres.Text != "")
+            decimal mora = 0;
+            BtnAldia.Enabled = false;
+            /*   if (TxtInteres.Text != "")
             {
                 TxtIntD.Text = TxtInteres.Text;
             }
-            else if (decimal.Parse(TxtInteres.Text) > 0)
+            else*/ 
+            if (decimal.Parse(TxtInteres.Text) > 0)
             {
                 TxtIntD.Text = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtInteres.Text)).ToString();
             }
@@ -733,18 +737,23 @@ namespace Arcoiris.Formularios
                 TxtCuota.Text = "0";
             }
 
-            if (TxtCapital.Text != "")
+            /*if (TxtCapital.Text != "")
             {
                 TxtCapD.Text = TxtCapital.Text;
             }
-            else if ((decimal.Parse(TxtCapD.Text) > 0))
+            else */
+            
+            if ((decimal.Parse(TxtCapital.Text) > 0))
             {
-                TxtIntD.Text = (decimal.Parse(TxtCapD.Text) + decimal.Parse(TxtCapital.Text)).ToString();
+                TxtCapD.Text = (decimal.Parse(TxtCapD.Text) + decimal.Parse(TxtCapital.Text)).ToString();
             }
             else
             {
                 
             }
+            decimal.TryParse(TxtMora.Text, out mora);
+
+            TxtCuota.Text = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtCapD.Text) + mora).ToString() ;
         }
 
         private void TxtTotal_TextChanged(object sender, EventArgs e)

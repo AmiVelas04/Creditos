@@ -1312,7 +1312,7 @@ namespace Arcoiris.Clases
             // MessageBox.Show("Numeo de pagos: " + datosp .Rows [0][0].ToString ());
             pagoshoy = Convert.ToInt32(datosp.Rows[0][0].ToString());
             string consultultp;
-            consultultp = "SELECT id_pago, capital, interes,max(Date_Format(fecha,'%d/%m/%Y')) as fecha FROM pagos WHERE Cod_credito=" + credito;
+            consultultp = "SELECT id_pago, capital, interes,(Date_Format(max(fecha),'%d/%m/%Y')) as fecha FROM pagos WHERE Cod_credito=" + credito;
             DataTable UltPag = new DataTable();
             UltPag = buscar(consultultp);
             if (pagoshoy <= 0)
