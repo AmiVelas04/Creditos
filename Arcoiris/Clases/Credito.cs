@@ -1942,7 +1942,7 @@ namespace Arcoiris.Clases
                 int PagCEsp = 0;
                 DateTime pagultifech;
                 DateTime FechaA = DateTime.Parse(fecha);
-                DateTime Fechamov = fechaC.AddMonths(2);
+                DateTime Fechamov = fechaC.AddMonths(1);
                 if (FechaA>FechaVen)
                 {
                     FechaA = FechaVen;

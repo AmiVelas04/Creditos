@@ -33,6 +33,9 @@
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GbxGarantia = new System.Windows.Forms.GroupBox();
+            this.TxtAut = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.TxtTipEsc = new System.Windows.Forms.TextBox();
             this.TxtUbicacion = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
@@ -94,9 +97,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.CboSoli = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.TxtTipEsc = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.TxtAut = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -185,6 +185,29 @@
             this.GbxGarantia.TabIndex = 24;
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
+            // 
+            // TxtAut
+            // 
+            this.TxtAut.Location = new System.Drawing.Point(512, 169);
+            this.TxtAut.Name = "TxtAut";
+            this.TxtAut.Size = new System.Drawing.Size(164, 25);
+            this.TxtAut.TabIndex = 38;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(397, 172);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 17);
+            this.label24.TabIndex = 37;
+            this.label24.Text = "Autorizó";
+            // 
+            // TxtTipEsc
+            // 
+            this.TxtTipEsc.Location = new System.Drawing.Point(512, 24);
+            this.TxtTipEsc.Name = "TxtTipEsc";
+            this.TxtTipEsc.Size = new System.Drawing.Size(164, 25);
+            this.TxtTipEsc.TabIndex = 36;
             // 
             // TxtUbicacion
             // 
@@ -496,7 +519,7 @@
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
             this.Tab2.Size = new System.Drawing.Size(757, 519);
             this.Tab2.TabIndex = 1;
-            this.Tab2.Text = "Cambiar estado de solicutd";
+            this.Tab2.Text = "Cambiar estado de solicitud";
             // 
             // GBXPrestamo
             // 
@@ -851,29 +874,6 @@
             this.label13.Size = new System.Drawing.Size(147, 17);
             this.label13.TabIndex = 0;
             this.label13.Text = "Solicitudes Pendientes";
-            // 
-            // TxtTipEsc
-            // 
-            this.TxtTipEsc.Location = new System.Drawing.Point(512, 24);
-            this.TxtTipEsc.Name = "TxtTipEsc";
-            this.TxtTipEsc.Size = new System.Drawing.Size(164, 25);
-            this.TxtTipEsc.TabIndex = 36;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(397, 172);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(61, 17);
-            this.label24.TabIndex = 37;
-            this.label24.Text = "Autorizó";
-            // 
-            // TxtAut
-            // 
-            this.TxtAut.Location = new System.Drawing.Point(512, 169);
-            this.TxtAut.Name = "TxtAut";
-            this.TxtAut.Size = new System.Drawing.Size(164, 25);
-            this.TxtAut.TabIndex = 38;
             // 
             // Solicitud
             // 

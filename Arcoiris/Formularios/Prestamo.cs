@@ -181,11 +181,15 @@ namespace Arcoiris.Formularios
             decimal intere = 0;
             decimal capi = 0;
             aldia = cre.saldosdias(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"));
-            if (Convert.ToDecimal(aldia.Rows[0][0]) > 0)
-            { capi = Convert.ToDecimal(aldia.Rows[0][0]); }
+          capi = Convert.ToDecimal(aldia.Rows[0][0]); 
         
             if (Convert.ToDecimal(aldia.Rows[0][1]) >= 0)
             { intere = Convert.ToDecimal(aldia.Rows[0][1]);
+                if (DiAtraso > 0)
+                {
+                   // intere += decimal.Parse(TxtIntD.Text);
+                }
+                
             }
             else if(Convert.ToDecimal(aldia.Rows[0][1]) <0) {
                 intere = 0;

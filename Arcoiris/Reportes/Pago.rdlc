@@ -756,7 +756,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Saldo Interes:</Value>
+                <Value> Interes del mes perido:</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>9pt</FontSize>
@@ -770,9 +770,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>8.58994cm</Top>
-        <Left>7.17837cm</Left>
+        <Left>5.88191cm</Left>
         <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
+        <Width>3.79646cm</Width>
         <ZIndex>22</ZIndex>
         <Style>
           <Border>
@@ -791,7 +791,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Total Adeudo:</Value>
+                <Value>Total a pagar:</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>9pt</FontSize>
