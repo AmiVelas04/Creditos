@@ -1312,7 +1312,7 @@ namespace Arcoiris.Clases
             // MessageBox.Show("Numeo de pagos: " + datosp .Rows [0][0].ToString ());
             pagoshoy = Convert.ToInt32(datosp.Rows[0][0].ToString());
             string consultultp;
-            consultultp = "SELECT id_pago, capital, interes,(Date_Format(max(fecha),'%d/%m/%Y')) as fecha FROM pagos WHERE Cod_credito=" + credito;
+            consultultp = $"SELECT id_pago, capital, interes,(Date_Format(max(fecha),'%d/%m/%Y')) as fecha FROM pagos WHERE Cod_credito={credito} and Estado='Hecho'";
             DataTable UltPag = new DataTable();
             UltPag = buscar(consultultp);
             if (pagoshoy <= 0)
@@ -2107,7 +2107,6 @@ namespace Arcoiris.Clases
             consulpag = "Select sum(interes) as interes, sum(capital) as capital from pagos where cod_credito=" + cre + " and estado= 'Hecho'";
             DataTable datosp = new DataTable();
             datosp = buscar(consulpag);
-
             if (datosp.Rows[0][0] == DBNull.Value)
             {
                 saldop = 0;
@@ -2202,7 +2201,7 @@ namespace Arcoiris.Clases
                 // pagos++;
 
                 //fecha mov es la fecha del ultimo mes a pagar, es decir el resto del mes completo
-                DateTime fechamov = fechacon.AddDays(1);
+                DateTime fechamov = fechacon.AddDays(0);
                 while (fechamov < fechaf)
                 {
                     fechamov = fechamov.AddMonths(1);
@@ -2232,18 +2231,14 @@ namespace Arcoiris.Clases
                         decimal intante;
                         decimal intpag;
                         DateTime FechaPag;
-
-
                         Fnextpag = DateTime.Parse(datosph.Rows[i][3].ToString());
                         //fecha tomada como inicio de pago(fechapag) Y final de pago(Fnextpag)
                         if (i <= 0)
                         {
-
                             FechaPag = fechacon;
                         }
                         else
                         {
-
                             FechaPag = DateTime.Parse(datosph.Rows[i - 1][3].ToString());
                         }
                         while (FechaPag < Fnextpag)
@@ -2261,7 +2256,7 @@ namespace Arcoiris.Clases
 
                     //ultimo pago siempre se toma fuera del ciclo para calcular el restante
                     TimeSpan tiempo2 = fechamov - Fnextpag;
-                    int ultidias = tiempo2.Days-1;
+                    int ultidias = tiempo2.Days;
                     pint += Math.Round(((monto * inter / 100 / 12 / 30) * ultidias), 2);
                 }
 
