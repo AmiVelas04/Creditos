@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.34112.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arcoiris", "Arcoiris\Arcoiris.csproj", "{A3EE7307-6E1F-438E-9E0A-E73D8C0EA597}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Instalador", "Instalador\Instalador.vdproj", "{625765C3-4780-4B3F-AA8D-2491B2101BA7}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Instalador", "Instalador\Instalador.vdproj", "{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,13 +23,13 @@ Global
 		{A3EE7307-6E1F-438E-9E0A-E73D8C0EA597}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A3EE7307-6E1F-438E-9E0A-E73D8C0EA597}.Release|Default.ActiveCfg = Release|Any CPU
 		{A3EE7307-6E1F-438E-9E0A-E73D8C0EA597}.Release|Default.Build.0 = Release|Any CPU
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Debug|Any CPU.ActiveCfg = Debug
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Debug|Default.ActiveCfg = Debug
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Debug|Default.Build.0 = Debug
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Release|Any CPU.ActiveCfg = Release
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Release|Any CPU.Build.0 = Release
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Release|Default.ActiveCfg = Release
-		{625765C3-4780-4B3F-AA8D-2491B2101BA7}.Release|Default.Build.0 = Release
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Debug|Any CPU.ActiveCfg = Debug
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Debug|Default.ActiveCfg = Debug
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Debug|Default.Build.0 = Debug
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Release|Any CPU.ActiveCfg = Release
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Release|Any CPU.Build.0 = Release
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Release|Default.ActiveCfg = Release
+		{C66DE418-678F-4FE6-A0EE-CBF5C4AF9AFB}.Release|Default.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

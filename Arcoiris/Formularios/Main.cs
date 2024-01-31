@@ -38,6 +38,10 @@ namespace Arcoiris.Formularios
             {
                 button1.Visible = false;
             }
+            else if (Form1.Cod_U.Equals("5"))
+            {
+
+            }
            
         }
 

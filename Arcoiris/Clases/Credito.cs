@@ -1929,9 +1929,7 @@ namespace Arcoiris.Clases
                 FechaVen = Convert.ToDateTime(datcre.Rows[0][5]);
                 tipo = datcre.Rows[0][3].ToString();
                 SaldoC = decimal.Parse(datcre.Rows[0][6].ToString());
-
             }
-
             //parte 2 calculo de valores 
             int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo);//revisar numero de pagos que deberia haberse hecho
             int atraso = Convert.ToInt32(dias_atraso(cre, fecha));
@@ -1949,7 +1947,6 @@ namespace Arcoiris.Clases
                 }
                 pcap = Math.Round((monto / dias), 2);
                 pint = Math.Round((monto * inte / 100), 2);
-
                 //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
                 pcap *= pagos;
                 pint *= pagos;
@@ -1960,7 +1957,6 @@ namespace Arcoiris.Clases
             }
             else if (tipo == "2")
             {
-
                 if (pagos >= dias)
                 {
                     pagos = dias;
@@ -2019,8 +2015,7 @@ namespace Arcoiris.Clases
                 int PagCEsp = 0;
                 DateTime pagultifech;
                 DateTime FechaA = DateTime.Parse(fecha);
-                DateTime Fechamov = fechaC.AddMonths(1);
-
+                DateTime Fechamov = fechaC.AddMonths(2);
                 if (FechaA > FechaVen)
                 {
                     FechaA = FechaVen;
@@ -2041,7 +2036,6 @@ namespace Arcoiris.Clases
                     {
                         DatePag = FechaA;
                     }
-
                     DateTime DatePrim = fechaC;
                     //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
                     while (Fechamov.AddDays(-1) < FechaA)
@@ -2074,14 +2068,7 @@ namespace Arcoiris.Clases
                             }
                             else
                             {
-
-                                TimeSpan espacio = Fechamov.AddMonths(1) - Fechamov;
-                                int cobro = espacio.Days;
                                 Fechamov = Fechamov.AddMonths(1);
-                                if (Fechamov < DatePag)
-                                {
-                                    pint += ((monto * inte / 100 / 12 / 30) * cobro);
-                                }
                                 PagCEsp++;
                                 //falta agregar calculos si no existe un ningun pago realizado en el periodo de tiempo estipulado
                             }
@@ -2096,7 +2083,7 @@ namespace Arcoiris.Clases
                         }
                         else
                         {
-                            TimeSpan time = FechaA.AddMonths(-1) - DatePag;
+                            TimeSpan time = FechaA - DatePag;
                             int diascobr = time.Days;
                             if (diascobr < 0) diascobr = 0;
                             pint += ((monto * inte / 100 / 12 / 30) * diascobr);
@@ -2130,9 +2117,11 @@ namespace Arcoiris.Clases
             decimal Rint, Rcap, Rtot;
             Rcap = Math.Round((pcap - Scap), 2);
             Rint = Math.Round((pint - Sint), 2);
-            // if (Rint < 0) Rint = 0;
+             if (Rint < 0) Rint = 0;
+            decimal tempcap = 0;
+                if (Rcap > 0) tempcap = Rcap;
 
-            Rtot = Rcap + Rint;
+            Rtot = tempcap + Rint;
             DataTable resp = new DataTable();
             resp.Columns.Add("Capital").DataType = System.Type.GetType("System.String");
             resp.Columns.Add("Interes").DataType = System.Type.GetType("System.String");

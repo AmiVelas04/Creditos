@@ -33,7 +33,7 @@ namespace Arcoiris.Formularios
 
             Tab2.Hide();
             Tab1.Hide();
-            if (Form1.Nivel == "1" || Form1.Nivel == "2")
+            if (Form1.Nivel.Equals("1") || Form1.Nivel.Equals("2") || Form1.Nivel.Equals("5"))
             {
                 Tab2.Parent = tabControl1;
             }

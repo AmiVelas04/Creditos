@@ -720,7 +720,7 @@ namespace Arcoiris.Formularios
             else*/ 
             if (decimal.Parse(TxtInteres.Text) > 0)
             {
-                TxtIntD.Text = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtInteres.Text)).ToString();
+                TxtIntD.Text = TxtInteres.Text;
             }
             else
             {
