@@ -197,10 +197,11 @@ namespace Arcoiris.Formularios
 
             TxtCapital.Text = capi.ToString();//aldia.Rows[0][0].ToString();
             TxtInteres.Text = intere.ToString();//aldia.Rows[0][1].ToString();
-          
 
 
-         
+
+            if (intere < 0) intere = 0;
+            if (capi < 0) capi = 0;
                
 
             TxtCuotaD.Text = (capi + intere).ToString();

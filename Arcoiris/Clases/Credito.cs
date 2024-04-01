@@ -835,7 +835,6 @@ namespace Arcoiris.Clases
                 // MessageBox.Show("6");
             }
 
-
             //7) no hay pagos hoy, hay pago anteriores, es igual a mayor a la fecha y  no hay atraso
             else if (pagoshoy == 0 && pagar > 0 && fechaact >= fechavenc && atraso == 0)
             {
@@ -1597,6 +1596,8 @@ namespace Arcoiris.Clases
 
                     }
                 }
+
+
                 if (TotCap <= 0 && TotInt > 0)
                 {
                     while (TotInt > 0)
@@ -1700,6 +1701,8 @@ namespace Arcoiris.Clases
                         scap -= cuotac;
                     }
                 }
+
+
                 int conteo = 1;
                 DateTime fechaavanz = Fini;
                 while (FinCe > fechaavanz)
@@ -2038,10 +2041,10 @@ namespace Arcoiris.Clases
                     }
                     DateTime DatePrim = fechaC;
                     //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
-                    while (Fechamov.AddDays(-1) < FechaA)
+                    while (DatePag < FechaA)
                     {
                         //el orden de los pagos hechos sean menor que el total de los hechos
-                        if (conteop < pagosmade)
+                        if (conteop <= pagosmade)
                         {
                             //revisar todos los pagos de interes para un solo ciclo de pago
                             if (DatePag < Fechamov)
@@ -2063,7 +2066,7 @@ namespace Arcoiris.Clases
                                 }
                                 else
                                 {
-                                    //  DatePag = FechaA;
+                                      DatePag = FechaA;
                                 }
                             }
                             else
@@ -2091,6 +2094,7 @@ namespace Arcoiris.Clases
                         }
                     }
                 }
+
                 //-----------------------------------fin de prueba de calculo de deuda-----------------------------------
                 //     pcap = ();
                 pcap = Math.Round(pcap, 2);
@@ -2259,9 +2263,12 @@ namespace Arcoiris.Clases
 
                 //fecha mov es la fecha del ultimo mes a pagar, es decir el resto del mes completo
                 DateTime fechamov = fechacon.AddDays(0);
+                int mesadd = 1;
                 while (fechamov < fechaf)
                 {
-                    fechamov = fechamov.AddMonths(1);
+
+                    fechamov = fechacon.AddMonths(mesadd);
+                    mesadd++;
                 }
                 pagos = datosph.Rows.Count;
 
@@ -2307,7 +2314,8 @@ namespace Arcoiris.Clases
 
                         intante = Math.Round(((monto * inter / 100 / 12 / 30) * diascobr), 2);
                         intpag = (decimal.Parse(datosph.Rows[i][1].ToString()));
-                        pint += intante - intpag;
+                        decimal dife= intante - intpag;
+                        pint += dife;
                         monto = monto - decimal.Parse(datosph.Rows[i][0].ToString());
                     }
 
