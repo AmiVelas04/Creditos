@@ -304,12 +304,21 @@ namespace Arcoiris.Formularios
             TxtMora.Text = "0";
             TxtCapD.Text = datos.Rows[0][4].ToString();
             TxtIntD.Text = datos.Rows[0][5].ToString();
+            TxtCapProm.Text= datos.Rows[0][4].ToString();
+            TxtIntProm.Text = "0";
             TxtEfectivo.Text = "";
             decimal cuotaN;
+            decimal cuotaProm;
             decimal CapN = Convert.ToDecimal(datos.Rows[0][4].ToString());
             decimal IntM = Convert.ToDecimal(datos.Rows[0][5].ToString());
+            decimal  Cprom = Convert.ToDecimal(datos.Rows[0][4].ToString());
+            decimal Iprom= Convert.ToDecimal("0");
             cuotaN = CapN + IntM;
             TxtCuota.Text = cuotaN.ToString();
+            cuotaProm = Cprom + Iprom;
+            TxtTotProm.Text = cuotaProm.ToString();
+
+
 
             if (datos.Rows[0][3].ToString().Equals("Terminado"))
             {
@@ -661,11 +670,11 @@ namespace Arcoiris.Formularios
                 decimal Capital = Convert.ToDecimal(TxtCapD.Text);
                 decimal interes = Convert.ToDecimal(TxtIntD.Text);
                 decimal interesDeu = Convert.ToDecimal(TxtInteres.Text);
-                if (interesDeu >= interes)
+                /*if (interesDeu >= interes)
                 {
                     interes = interesDeu;
                     TxtIntD.Text = interes.ToString();
-                }
+                }*/
                 decimal mora = Convert.ToDecimal(TxtMora.Text);
                 decimal residuo = efectivo - interes;
                 decimal cuota = Convert.ToDecimal(TxtCuota.Text);
@@ -721,7 +730,7 @@ namespace Arcoiris.Formularios
             else*/ 
             if (decimal.Parse(TxtInteres.Text) > 0)
             {
-                TxtIntD.Text = TxtInteres.Text;
+                TxtIntD.Text = (decimal.Parse(TxtIntD.Text)+ decimal.Parse(TxtInteres.Text)).ToString();
             }
             else
             {

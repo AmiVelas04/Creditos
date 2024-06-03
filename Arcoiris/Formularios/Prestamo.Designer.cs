@@ -99,6 +99,13 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
+            this.GbxCuotaProm = new System.Windows.Forms.GroupBox();
+            this.TxtCapProm = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TxtIntProm = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.TxtTotProm = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
@@ -109,6 +116,7 @@
             this.GbxPagos.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVPpago)).BeginInit();
+            this.GbxCuotaProm.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -120,7 +128,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(765, 549);
+            this.tabControl1.Size = new System.Drawing.Size(894, 549);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
@@ -132,13 +140,14 @@
             this.Tab1.Margin = new System.Windows.Forms.Padding(4);
             this.Tab1.Name = "Tab1";
             this.Tab1.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab1.Size = new System.Drawing.Size(757, 519);
+            this.Tab1.Size = new System.Drawing.Size(886, 519);
             this.Tab1.TabIndex = 0;
             this.Tab1.Text = "Pago de credito";
             this.Tab1.UseVisualStyleBackColor = true;
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.GbxCuotaProm);
             this.GbxPago.Controls.Add(this.LblIdCli);
             this.GbxPago.Controls.Add(this.TxtDepo);
             this.GbxPago.Controls.Add(this.ChkDepo);
@@ -168,7 +177,7 @@
             this.GbxPago.Margin = new System.Windows.Forms.Padding(4);
             this.GbxPago.Name = "GbxPago";
             this.GbxPago.Padding = new System.Windows.Forms.Padding(4);
-            this.GbxPago.Size = new System.Drawing.Size(749, 511);
+            this.GbxPago.Size = new System.Drawing.Size(878, 511);
             this.GbxPago.TabIndex = 1;
             this.GbxPago.TabStop = false;
             this.GbxPago.Text = "Credito";
@@ -176,7 +185,7 @@
             // LblIdCli
             // 
             this.LblIdCli.AutoSize = true;
-            this.LblIdCli.Location = new System.Drawing.Point(336, 67);
+            this.LblIdCli.Location = new System.Drawing.Point(465, 67);
             this.LblIdCli.Name = "LblIdCli";
             this.LblIdCli.Size = new System.Drawing.Size(51, 17);
             this.LblIdCli.TabIndex = 56;
@@ -186,15 +195,15 @@
             // TxtDepo
             // 
             this.TxtDepo.Enabled = false;
-            this.TxtDepo.Location = new System.Drawing.Point(267, 422);
+            this.TxtDepo.Location = new System.Drawing.Point(417, 422);
             this.TxtDepo.Name = "TxtDepo";
-            this.TxtDepo.Size = new System.Drawing.Size(138, 25);
+            this.TxtDepo.Size = new System.Drawing.Size(117, 25);
             this.TxtDepo.TabIndex = 55;
             // 
             // ChkDepo
             // 
             this.ChkDepo.AutoSize = true;
-            this.ChkDepo.Location = new System.Drawing.Point(267, 399);
+            this.ChkDepo.Location = new System.Drawing.Point(417, 398);
             this.ChkDepo.Name = "ChkDepo";
             this.ChkDepo.Size = new System.Drawing.Size(83, 21);
             this.ChkDepo.TabIndex = 54;
@@ -207,7 +216,7 @@
             this.BtnCancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancel.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.BtnCancel.Location = new System.Drawing.Point(403, 453);
+            this.BtnCancel.Location = new System.Drawing.Point(532, 453);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(97, 52);
             this.BtnCancel.TabIndex = 53;
@@ -218,7 +227,7 @@
             // ChkCancelado
             // 
             this.ChkCancelado.AutoSize = true;
-            this.ChkCancelado.Location = new System.Drawing.Point(216, 26);
+            this.ChkCancelado.Location = new System.Drawing.Point(201, 26);
             this.ChkCancelado.Name = "ChkCancelado";
             this.ChkCancelado.Size = new System.Drawing.Size(90, 21);
             this.ChkCancelado.TabIndex = 52;
@@ -229,7 +238,7 @@
             // 
             this.BtnEliminarCre.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminarCre.Image")));
             this.BtnEliminarCre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEliminarCre.Location = new System.Drawing.Point(428, 57);
+            this.BtnEliminarCre.Location = new System.Drawing.Point(557, 57);
             this.BtnEliminarCre.Name = "BtnEliminarCre";
             this.BtnEliminarCre.Size = new System.Drawing.Size(102, 47);
             this.BtnEliminarCre.TabIndex = 51;
@@ -241,7 +250,7 @@
             // 
             // BtnListPago
             // 
-            this.BtnListPago.Location = new System.Drawing.Point(549, 57);
+            this.BtnListPago.Location = new System.Drawing.Point(678, 57);
             this.BtnListPago.Name = "BtnListPago";
             this.BtnListPago.Size = new System.Drawing.Size(88, 48);
             this.BtnListPago.TabIndex = 50;
@@ -273,7 +282,7 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.TxtSaldo);
             this.groupBox3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.groupBox3.Location = new System.Drawing.Point(288, 110);
+            this.groupBox3.Location = new System.Drawing.Point(417, 110);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(452, 282);
             this.groupBox3.TabIndex = 49;
@@ -475,7 +484,7 @@
             this.BtnAldia.BackColor = System.Drawing.Color.Green;
             this.BtnAldia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAldia.ForeColor = System.Drawing.SystemColors.Info;
-            this.BtnAldia.Location = new System.Drawing.Point(300, 453);
+            this.BtnAldia.Location = new System.Drawing.Point(429, 453);
             this.BtnAldia.Name = "BtnAldia";
             this.BtnAldia.Size = new System.Drawing.Size(97, 52);
             this.BtnAldia.TabIndex = 46;
@@ -494,9 +503,9 @@
             this.groupBox2.Controls.Add(this.TxtCuota);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.ForeColor = System.Drawing.Color.Green;
-            this.groupBox2.Location = new System.Drawing.Point(22, 264);
+            this.groupBox2.Location = new System.Drawing.Point(7, 264);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(238, 180);
+            this.groupBox2.Size = new System.Drawing.Size(224, 180);
             this.groupBox2.TabIndex = 45;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Cuota a pagar";
@@ -567,7 +576,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 132);
+            this.label7.Location = new System.Drawing.Point(19, 134);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 17);
             this.label7.TabIndex = 42;
@@ -582,9 +591,9 @@
             this.groupBox1.Controls.Add(this.TxtInteres);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.ForeColor = System.Drawing.Color.Crimson;
-            this.groupBox1.Location = new System.Drawing.Point(22, 98);
+            this.groupBox1.Location = new System.Drawing.Point(7, 98);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(239, 160);
+            this.groupBox1.Size = new System.Drawing.Size(212, 160);
             this.groupBox1.TabIndex = 44;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cuota para ponerse al dìa";
@@ -644,17 +653,17 @@
             // 
             this.TxtCambio.Enabled = false;
             this.TxtCambio.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCambio.Location = new System.Drawing.Point(620, 453);
+            this.TxtCambio.Location = new System.Drawing.Point(762, 453);
             this.TxtCambio.Multiline = true;
             this.TxtCambio.Name = "TxtCambio";
-            this.TxtCambio.Size = new System.Drawing.Size(120, 36);
+            this.TxtCambio.Size = new System.Drawing.Size(107, 36);
             this.TxtCambio.TabIndex = 33;
             this.TxtCambio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(553, 457);
+            this.label15.Location = new System.Drawing.Point(695, 457);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 17);
             this.label15.TabIndex = 32;
@@ -664,17 +673,17 @@
             // TxtTotal
             // 
             this.TxtTotal.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotal.Location = new System.Drawing.Point(620, 411);
+            this.TxtTotal.Location = new System.Drawing.Point(762, 411);
             this.TxtTotal.Multiline = true;
             this.TxtTotal.Name = "TxtTotal";
-            this.TxtTotal.Size = new System.Drawing.Size(122, 33);
+            this.TxtTotal.Size = new System.Drawing.Size(107, 33);
             this.TxtTotal.TabIndex = 31;
             this.TxtTotal.TextChanged += new System.EventHandler(this.TxtTotal_TextChanged);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(553, 422);
+            this.label14.Location = new System.Drawing.Point(695, 422);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(63, 17);
             this.label14.TabIndex = 30;
@@ -684,7 +693,7 @@
             // TxtEfectivo
             // 
             this.TxtEfectivo.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEfectivo.Location = new System.Drawing.Point(458, 413);
+            this.TxtEfectivo.Location = new System.Drawing.Point(598, 411);
             this.TxtEfectivo.Multiline = true;
             this.TxtEfectivo.Name = "TxtEfectivo";
             this.TxtEfectivo.Size = new System.Drawing.Size(91, 34);
@@ -694,7 +703,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(409, 422);
+            this.label13.Location = new System.Drawing.Point(538, 422);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(44, 17);
             this.label13.TabIndex = 28;
@@ -704,7 +713,7 @@
             // DtpPago
             // 
             this.DtpPago.Enabled = false;
-            this.DtpPago.Location = new System.Drawing.Point(22, 67);
+            this.DtpPago.Location = new System.Drawing.Point(7, 67);
             this.DtpPago.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpPago.Name = "DtpPago";
             this.DtpPago.Size = new System.Drawing.Size(287, 25);
@@ -714,7 +723,7 @@
             // 
             // BtnMostrar
             // 
-            this.BtnMostrar.Location = new System.Drawing.Point(652, 56);
+            this.BtnMostrar.Location = new System.Drawing.Point(781, 56);
             this.BtnMostrar.Name = "BtnMostrar";
             this.BtnMostrar.Size = new System.Drawing.Size(88, 49);
             this.BtnMostrar.TabIndex = 18;
@@ -725,7 +734,7 @@
             // CboCliNom
             // 
             this.CboCliNom.FormattingEnabled = true;
-            this.CboCliNom.Location = new System.Drawing.Point(430, 25);
+            this.CboCliNom.Location = new System.Drawing.Point(559, 25);
             this.CboCliNom.Name = "CboCliNom";
             this.CboCliNom.Size = new System.Drawing.Size(310, 25);
             this.CboCliNom.TabIndex = 17;
@@ -734,7 +743,7 @@
             // 
             // BtnPago
             // 
-            this.BtnPago.Location = new System.Drawing.Point(22, 453);
+            this.BtnPago.Location = new System.Drawing.Point(7, 453);
             this.BtnPago.Name = "BtnPago";
             this.BtnPago.Size = new System.Drawing.Size(272, 52);
             this.BtnPago.TabIndex = 14;
@@ -745,7 +754,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(362, 29);
+            this.label2.Location = new System.Drawing.Point(491, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 17);
             this.label2.TabIndex = 2;
@@ -755,7 +764,7 @@
             // 
             this.CboPresta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboPresta.FormattingEnabled = true;
-            this.CboPresta.Location = new System.Drawing.Point(91, 26);
+            this.CboPresta.Location = new System.Drawing.Point(76, 26);
             this.CboPresta.Name = "CboPresta";
             this.CboPresta.Size = new System.Drawing.Size(111, 25);
             this.CboPresta.TabIndex = 1;
@@ -764,7 +773,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 34);
+            this.label1.Location = new System.Drawing.Point(5, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 0;
@@ -879,12 +888,79 @@
             this.DGVPpago.Size = new System.Drawing.Size(743, 420);
             this.DGVPpago.TabIndex = 0;
             // 
+            // GbxCuotaProm
+            // 
+            this.GbxCuotaProm.Controls.Add(this.TxtTotProm);
+            this.GbxCuotaProm.Controls.Add(this.label17);
+            this.GbxCuotaProm.Controls.Add(this.TxtCapProm);
+            this.GbxCuotaProm.Controls.Add(this.label11);
+            this.GbxCuotaProm.Controls.Add(this.TxtIntProm);
+            this.GbxCuotaProm.Controls.Add(this.label12);
+            this.GbxCuotaProm.ForeColor = System.Drawing.Color.Sienna;
+            this.GbxCuotaProm.Location = new System.Drawing.Point(241, 264);
+            this.GbxCuotaProm.Name = "GbxCuotaProm";
+            this.GbxCuotaProm.Size = new System.Drawing.Size(170, 180);
+            this.GbxCuotaProm.TabIndex = 57;
+            this.GbxCuotaProm.TabStop = false;
+            this.GbxCuotaProm.Text = "Cuota Promedio";
+            // 
+            // TxtCapProm
+            // 
+            this.TxtCapProm.Enabled = false;
+            this.TxtCapProm.Location = new System.Drawing.Point(62, 81);
+            this.TxtCapProm.Name = "TxtCapProm";
+            this.TxtCapProm.Size = new System.Drawing.Size(100, 25);
+            this.TxtCapProm.TabIndex = 53;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 84);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 17);
+            this.label11.TabIndex = 52;
+            this.label11.Text = "Capital";
+            // 
+            // TxtIntProm
+            // 
+            this.TxtIntProm.Enabled = false;
+            this.TxtIntProm.Location = new System.Drawing.Point(62, 33);
+            this.TxtIntProm.Name = "TxtIntProm";
+            this.TxtIntProm.Size = new System.Drawing.Size(100, 25);
+            this.TxtIntProm.TabIndex = 51;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 17);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "Interes";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(4, 132);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 17);
+            this.label17.TabIndex = 54;
+            this.label17.Text = "Cuota";
+            // 
+            // TxtTotProm
+            // 
+            this.TxtTotProm.Enabled = false;
+            this.TxtTotProm.Location = new System.Drawing.Point(62, 129);
+            this.TxtTotProm.Name = "TxtTotProm";
+            this.TxtTotProm.Size = new System.Drawing.Size(100, 25);
+            this.TxtTotProm.TabIndex = 55;
+            // 
             // Prestamo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(765, 549);
+            this.ClientSize = new System.Drawing.Size(894, 549);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -906,6 +982,8 @@
             this.GbxPagos.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVPpago)).EndInit();
+            this.GbxCuotaProm.ResumeLayout(false);
+            this.GbxCuotaProm.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -982,5 +1060,12 @@
         private System.Windows.Forms.CheckBox ChkDepo;
         private System.Windows.Forms.Button BtnGarant;
         private System.Windows.Forms.Label LblIdCli;
+        private System.Windows.Forms.GroupBox GbxCuotaProm;
+        private System.Windows.Forms.TextBox TxtTotProm;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox TxtCapProm;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox TxtIntProm;
+        private System.Windows.Forms.Label label12;
     }
 }

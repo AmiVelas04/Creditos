@@ -121,7 +121,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(737, 549);
+            this.tabControl1.Size = new System.Drawing.Size(894, 549);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -131,7 +131,7 @@
             this.TabC1.Location = new System.Drawing.Point(4, 26);
             this.TabC1.Name = "TabC1";
             this.TabC1.Padding = new System.Windows.Forms.Padding(3);
-            this.TabC1.Size = new System.Drawing.Size(729, 519);
+            this.TabC1.Size = new System.Drawing.Size(886, 519);
             this.TabC1.TabIndex = 0;
             this.TabC1.Text = "Ingreso Cliente";
             this.TabC1.UseVisualStyleBackColor = true;
@@ -175,7 +175,7 @@
             this.GBXCliente.Margin = new System.Windows.Forms.Padding(4);
             this.GBXCliente.Name = "GBXCliente";
             this.GBXCliente.Padding = new System.Windows.Forms.Padding(4);
-            this.GBXCliente.Size = new System.Drawing.Size(723, 513);
+            this.GBXCliente.Size = new System.Drawing.Size(880, 513);
             this.GBXCliente.TabIndex = 1;
             this.GBXCliente.TabStop = false;
             this.GBXCliente.Text = "Datos del cliente";
@@ -846,7 +846,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(737, 549);
+            this.ClientSize = new System.Drawing.Size(894, 549);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

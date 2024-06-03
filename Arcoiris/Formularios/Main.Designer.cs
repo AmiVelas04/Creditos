@@ -214,7 +214,7 @@
             this.PanelSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelSup.Location = new System.Drawing.Point(135, 0);
             this.PanelSup.Name = "PanelSup";
-            this.PanelSup.Size = new System.Drawing.Size(765, 51);
+            this.PanelSup.Size = new System.Drawing.Size(894, 51);
             this.PanelSup.TabIndex = 1;
             this.PanelSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelSup_MouseDown);
             // 
@@ -234,7 +234,7 @@
             this.flowLayoutPanel1.Controls.Add(this.BtnMinimizar);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(625, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(754, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 51);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -271,14 +271,14 @@
             this.PanelCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelCentral.Location = new System.Drawing.Point(135, 51);
             this.PanelCentral.Name = "PanelCentral";
-            this.PanelCentral.Size = new System.Drawing.Size(765, 549);
+            this.PanelCentral.Size = new System.Drawing.Size(894, 549);
             this.PanelCentral.TabIndex = 2;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 600);
+            this.ClientSize = new System.Drawing.Size(1029, 600);
             this.Controls.Add(this.PanelCentral);
             this.Controls.Add(this.PanelSup);
             this.Controls.Add(this.PanelLat);

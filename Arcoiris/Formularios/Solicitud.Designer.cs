@@ -115,7 +115,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(765, 549);
+            this.tabControl1.Size = new System.Drawing.Size(894, 549);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
@@ -127,7 +127,7 @@
             this.Tab1.Margin = new System.Windows.Forms.Padding(4);
             this.Tab1.Name = "Tab1";
             this.Tab1.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab1.Size = new System.Drawing.Size(757, 519);
+            this.Tab1.Size = new System.Drawing.Size(886, 519);
             this.Tab1.TabIndex = 0;
             this.Tab1.Text = "Ingreso de solicitud";
             this.Tab1.UseVisualStyleBackColor = true;
@@ -158,7 +158,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(749, 511);
+            this.groupBox1.Size = new System.Drawing.Size(878, 511);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Solicitud de credito";
@@ -181,14 +181,14 @@
             this.GbxGarantia.Controls.Add(this.label7);
             this.GbxGarantia.Location = new System.Drawing.Point(7, 250);
             this.GbxGarantia.Name = "GbxGarantia";
-            this.GbxGarantia.Size = new System.Drawing.Size(735, 202);
+            this.GbxGarantia.Size = new System.Drawing.Size(850, 202);
             this.GbxGarantia.TabIndex = 24;
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
             // 
             // TxtAut
             // 
-            this.TxtAut.Location = new System.Drawing.Point(512, 169);
+            this.TxtAut.Location = new System.Drawing.Point(638, 169);
             this.TxtAut.Name = "TxtAut";
             this.TxtAut.Size = new System.Drawing.Size(164, 25);
             this.TxtAut.TabIndex = 38;
@@ -196,7 +196,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(397, 172);
+            this.label24.Location = new System.Drawing.Point(523, 172);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(61, 17);
             this.label24.TabIndex = 37;
@@ -204,14 +204,14 @@
             // 
             // TxtTipEsc
             // 
-            this.TxtTipEsc.Location = new System.Drawing.Point(512, 24);
+            this.TxtTipEsc.Location = new System.Drawing.Point(638, 24);
             this.TxtTipEsc.Name = "TxtTipEsc";
             this.TxtTipEsc.Size = new System.Drawing.Size(164, 25);
             this.TxtTipEsc.TabIndex = 36;
             // 
             // TxtUbicacion
             // 
-            this.TxtUbicacion.Location = new System.Drawing.Point(512, 106);
+            this.TxtUbicacion.Location = new System.Drawing.Point(638, 106);
             this.TxtUbicacion.Multiline = true;
             this.TxtUbicacion.Name = "TxtUbicacion";
             this.TxtUbicacion.Size = new System.Drawing.Size(164, 46);
@@ -221,7 +221,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(397, 114);
+            this.label23.Location = new System.Drawing.Point(523, 114);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(68, 17);
             this.label23.TabIndex = 34;
@@ -231,7 +231,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(393, 65);
+            this.label22.Location = new System.Drawing.Point(519, 65);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(100, 17);
             this.label22.TabIndex = 32;
@@ -241,7 +241,7 @@
             // DtpEsc
             // 
             this.DtpEsc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpEsc.Location = new System.Drawing.Point(512, 62);
+            this.DtpEsc.Location = new System.Drawing.Point(638, 62);
             this.DtpEsc.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.DtpEsc.Name = "DtpEsc";
             this.DtpEsc.Size = new System.Drawing.Size(164, 25);
@@ -251,7 +251,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(393, 27);
+            this.label21.Location = new System.Drawing.Point(519, 27);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(93, 17);
             this.label21.TabIndex = 30;
@@ -323,7 +323,7 @@
             // 
             // NupPlazo
             // 
-            this.NupPlazo.Location = new System.Drawing.Point(519, 173);
+            this.NupPlazo.Location = new System.Drawing.Point(648, 173);
             this.NupPlazo.Minimum = new decimal(new int[] {
             1,
             0,
@@ -342,7 +342,7 @@
             // LblPlazo
             // 
             this.LblPlazo.AutoSize = true;
-            this.LblPlazo.Location = new System.Drawing.Point(404, 175);
+            this.LblPlazo.Location = new System.Drawing.Point(533, 175);
             this.LblPlazo.Name = "LblPlazo";
             this.LblPlazo.Size = new System.Drawing.Size(89, 17);
             this.LblPlazo.TabIndex = 20;
@@ -353,7 +353,7 @@
             // 
             this.CboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboTipo.FormattingEnabled = true;
-            this.CboTipo.Location = new System.Drawing.Point(519, 129);
+            this.CboTipo.Location = new System.Drawing.Point(648, 129);
             this.CboTipo.Margin = new System.Windows.Forms.Padding(4);
             this.CboTipo.Name = "CboTipo";
             this.CboTipo.Size = new System.Drawing.Size(176, 25);
@@ -363,7 +363,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(404, 132);
+            this.label6.Location = new System.Drawing.Point(533, 132);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(104, 17);
@@ -442,7 +442,7 @@
             // 
             // TxtConcept
             // 
-            this.TxtConcept.Location = new System.Drawing.Point(519, 36);
+            this.TxtConcept.Location = new System.Drawing.Point(648, 36);
             this.TxtConcept.Margin = new System.Windows.Forms.Padding(4);
             this.TxtConcept.MaxLength = 255;
             this.TxtConcept.Multiline = true;
@@ -453,7 +453,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(404, 47);
+            this.label4.Location = new System.Drawing.Point(533, 47);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 17);
@@ -517,7 +517,7 @@
             this.Tab2.Margin = new System.Windows.Forms.Padding(4);
             this.Tab2.Name = "Tab2";
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab2.Size = new System.Drawing.Size(757, 519);
+            this.Tab2.Size = new System.Drawing.Size(886, 519);
             this.Tab2.TabIndex = 1;
             this.Tab2.Text = "Cambiar estado de solicitud";
             // 
@@ -559,7 +559,7 @@
             this.GBXPrestamo.Margin = new System.Windows.Forms.Padding(4);
             this.GBXPrestamo.Name = "GBXPrestamo";
             this.GBXPrestamo.Padding = new System.Windows.Forms.Padding(4);
-            this.GBXPrestamo.Size = new System.Drawing.Size(749, 511);
+            this.GBXPrestamo.Size = new System.Drawing.Size(878, 511);
             this.GBXPrestamo.TabIndex = 2;
             this.GBXPrestamo.TabStop = false;
             this.GBXPrestamo.Text = "Prestamo";
@@ -880,7 +880,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(765, 549);
+            this.ClientSize = new System.Drawing.Size(894, 549);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

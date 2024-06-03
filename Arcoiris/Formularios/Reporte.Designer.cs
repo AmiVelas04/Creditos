@@ -77,7 +77,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 298);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(765, 251);
+            this.panel1.Size = new System.Drawing.Size(894, 251);
             this.panel1.TabIndex = 0;
             // 
             // GbxD
@@ -96,7 +96,7 @@
             this.GbxD.Margin = new System.Windows.Forms.Padding(4);
             this.GbxD.Name = "GbxD";
             this.GbxD.Padding = new System.Windows.Forms.Padding(4);
-            this.GbxD.Size = new System.Drawing.Size(765, 251);
+            this.GbxD.Size = new System.Drawing.Size(894, 251);
             this.GbxD.TabIndex = 0;
             this.GbxD.TabStop = false;
             this.GbxD.Text = "Calculo de Comisiones";
@@ -299,7 +299,7 @@
             // 
             this.panel3.Controls.Add(this.GbxAs);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(385, 0);
+            this.panel3.Location = new System.Drawing.Point(514, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(380, 298);
@@ -418,7 +418,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(765, 549);
+            this.ClientSize = new System.Drawing.Size(894, 549);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);

@@ -82,7 +82,7 @@
             this.GbxCaja.Margin = new System.Windows.Forms.Padding(4);
             this.GbxCaja.Name = "GbxCaja";
             this.GbxCaja.Padding = new System.Windows.Forms.Padding(4);
-            this.GbxCaja.Size = new System.Drawing.Size(764, 549);
+            this.GbxCaja.Size = new System.Drawing.Size(894, 549);
             this.GbxCaja.TabIndex = 0;
             this.GbxCaja.TabStop = false;
             this.GbxCaja.Text = "Control de Caja";
@@ -213,7 +213,7 @@
             this.DgvMov.RowTemplate.Height = 60;
             this.DgvMov.RowTemplate.ReadOnly = true;
             this.DgvMov.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvMov.Size = new System.Drawing.Size(756, 225);
+            this.DgvMov.Size = new System.Drawing.Size(886, 225);
             this.DgvMov.TabIndex = 10;
             // 
             // BtnActualizar
@@ -330,7 +330,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(764, 549);
+            this.ClientSize = new System.Drawing.Size(894, 549);
             this.Controls.Add(this.GbxCaja);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;

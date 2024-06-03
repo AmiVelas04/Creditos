@@ -1705,7 +1705,7 @@ namespace Arcoiris.Clases
 
                 int conteo = 1;
                 DateTime fechaavanz = Fini;
-                while (FinCe > fechaavanz)
+                while (Ffin > fechaavanz)
                 {
                     fechaavanz = Fini.AddMonths(conteo);
                     conteo++;
@@ -1996,6 +1996,7 @@ namespace Arcoiris.Clases
             {
                 DateTime fechaact = DateTime.Parse(fecha);
                 string ConPagosH;
+                decimal pcaptemp=0;
                 ConPagosH = "Select capital,interes,date_format(fecha,'%Y-%M-%d'),date_format(fecha,'%Y-%M-%d') from pagos p where p.cod_credito=" + cre + " and p.estado='Hecho'";
                 DataTable datosph = new DataTable();
                 datosph = buscar(ConPagosH);
@@ -2013,8 +2014,9 @@ namespace Arcoiris.Clases
                 int pagosmade = datosph.Rows.Count;
                 // calculo de  capital pendiente de pagos anteriores incompletos y sumar los faltantes a cuota a pagar, 
                 //si es posible al presionar boton poner al dia sumar poner al dia y cuota normal de pago
-                pcap = Math.Round((monto / dias), 2);
-                pcap *= pagos;
+               pcaptemp = Math.Round((monto / dias), 2);
+                 pcap = Math.Round((monto / dias), 2);
+                 pcap *= (pagos);
                 int PagCEsp = 0;
                 DateTime pagultifech;
                 DateTime FechaA = DateTime.Parse(fecha);
@@ -2041,6 +2043,7 @@ namespace Arcoiris.Clases
                     }
                     DateTime DatePrim = fechaC;
                     //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
+
                     while (DatePag < FechaA)
                     {
                         //el orden de los pagos hechos sean menor que el total de los hechos
@@ -2055,6 +2058,7 @@ namespace Arcoiris.Clases
                                 decimal intante;
                                 decimal capante;
                                 intante = Math.Round(((monto * inte / 100 / 12 / 30) * diascobr), 2);
+                                
                                 capante = decimal.Parse(datosph.Rows[conteop][0].ToString());
                                 monto -= capante;
                                 pint += intante;
@@ -2089,6 +2093,7 @@ namespace Arcoiris.Clases
                             TimeSpan time = FechaA - DatePag;
                             int diascobr = time.Days;
                             if (diascobr < 0) diascobr = 0;
+                            pcap += pcaptemp / 30 * diascobr;
                             pint += ((monto * inte / 100 / 12 / 30) * diascobr);
                             break;
                         }
@@ -2262,14 +2267,16 @@ namespace Arcoiris.Clases
                 // pagos++;
 
                 //fecha mov es la fecha del ultimo mes a pagar, es decir el resto del mes completo
-                DateTime fechamov = fechacon.AddDays(0);
+                DateTime fechamov = fechacon.AddDays(1);
                 int mesadd = 1;
-                while (fechamov < fechaf)
+                while (fechamov <= fechaf)
                 {
 
-                    fechamov = fechacon.AddMonths(mesadd);
+                    fechamov = fechacon.AddMonths(mesadd).AddDays(1);
                     mesadd++;
                 }
+               // fechamov.AddDays(1);
+
                 pagos = datosph.Rows.Count;
 
                 // si no hay pagos generar la deuda sobre el total de dias trascurridos sin pago
@@ -2305,6 +2312,7 @@ namespace Arcoiris.Clases
                         {
                             FechaPag = DateTime.Parse(datosph.Rows[i - 1][3].ToString());
                         }
+
                         while (FechaPag < Fnextpag)
                         {
                             diascobr++;

@@ -37,6 +37,8 @@ namespace Arcoiris.Reportes
             {
                 enca.CreditoP = "Diario";
             }
+            if (tipo.Equals("3"))
+            { enca.CreditoP = "Mensual";  }
             else
             {
                 enca.CreditoP = "Mensual";
@@ -59,7 +61,6 @@ namespace Arcoiris.Reportes
                 deta.pagodet = Convert.ToDecimal(datosdet.Rows[cont][2]);
                 deta.pagoint = Convert.ToDecimal(datosdet.Rows[cont][3]);
                 deta.saldo = Convert.ToDecimal(datosdet.Rows[cont][4]);
-
                 enca.detalle.Add(deta);
             }
 
