@@ -302,17 +302,18 @@ namespace Arcoiris.Formularios
             pagof = Convert.ToDecimal(datos.Rows[0][2].ToString());
 
             TxtMora.Text = "0";
-            TxtCapD.Text = datos.Rows[0][4].ToString();
+            TxtCapD.Text = datos.Rows[0][7].ToString();
             TxtIntD.Text = datos.Rows[0][5].ToString();
             TxtCapProm.Text= datos.Rows[0][4].ToString();
-            TxtIntProm.Text = "0";
+            TxtIntProm.Text = datos.Rows[0][6].ToString();
             TxtEfectivo.Text = "";
             decimal cuotaN;
             decimal cuotaProm;
-            decimal CapN = Convert.ToDecimal(datos.Rows[0][4].ToString());
+            decimal CapN = Convert.ToDecimal(datos.Rows[0][7].ToString());
             decimal IntM = Convert.ToDecimal(datos.Rows[0][5].ToString());
             decimal  Cprom = Convert.ToDecimal(datos.Rows[0][4].ToString());
-            decimal Iprom= Convert.ToDecimal("0");
+            decimal Iprom = Convert.ToDecimal(datos.Rows[0][6].ToString());
+
             cuotaN = CapN + IntM;
             TxtCuota.Text = cuotaN.ToString();
             cuotaProm = Cprom + Iprom;
