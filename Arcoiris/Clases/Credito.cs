@@ -1824,31 +1824,18 @@ namespace Arcoiris.Clases
                         {
                             string getDate = allpag.Rows[npago][2].ToString();
                             fPago = DateTime.Parse(getDate);
-
                             if (DateChan > fPago)
                             {
                                 pagdone++;
                                 //calculo del capital esperado;
                                 decimal CapEsp = montoTemp / diasP;
                                 capadeu += CapEsp - decimal.Parse(allpag.Rows[npago][0].ToString());
-
-
                                 //calculo del interes esperado
                                 TimeSpan Diastraspag = fPago - DateAnte;
                                 int Dtrasncur = Diastraspag.Days;
                                 decimal IntEsp = Math.Round((montoTemp * interes / 100 / 12 / 30 * Dtrasncur), 2);
                                 intadeu += IntEsp - decimal.Parse(allpag.Rows[npago][1].ToString());
-
-                                if (intadeu <= 0)
-                                {
-                                    Totd = 0; }
-                                else
-                                {
-                                    string diasdeuda = Math.Round((intadeu/(montoTemp * interes / 100 / 12 / 30)), 0).ToString();
-                                    Totd =int.Parse(diasdeuda);
-
-                                }
-
+                              
                                 //resta del pago de capital hecho por el cliente
                                 montoTemp -= decimal.Parse(allpag.Rows[npago][0].ToString());
                                 npago++;
@@ -1858,11 +1845,9 @@ namespace Arcoiris.Clases
                             {
                                 DateChan= DateChan.AddMonths(1);
                             }
-                          
                         }
                         else
                         {
-
                             TimeSpan Diastraspag = Ffin - DateChan;
                             int Dtrasncur = Diastraspag.Days;
                             if (Totd>0)
@@ -1872,7 +1857,17 @@ namespace Arcoiris.Clases
                             break;
                         }
                     }
-                   // Totd = 0;
+                    if (intadeu <= 0)
+                    {
+                        Totd = 0;
+                    }
+                    else
+                    {
+                        string diasdeuda = Math.Round((intadeu / (montoTemp * interes / 100 / 12 / 30)), 0).ToString();
+                        Totd = int.Parse(diasdeuda);
+                    }
+
+                    // Totd = 0;
                 }
 
 
@@ -2050,7 +2045,7 @@ namespace Arcoiris.Clases
                  pcap *= (pagos);
                 int PagCEsp = 0;
                 DateTime pagultifech;
-                DateTime FechaA = DateTime.Parse(fecha);
+                DateTime FechaA = fechaC.AddMonths(pagos); //DateTime.Parse(fecha);
                 DateTime Fechamov = fechaC.AddMonths(2);
                 if (FechaA > FechaVen)
                 {
@@ -2074,7 +2069,6 @@ namespace Arcoiris.Clases
                     }
                     DateTime DatePrim = fechaC;
                     //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
-
                     while (DatePag <= FechaA)
                     {
                         //el orden de los pagos hechos sean menor que el total de los hechos
@@ -2089,7 +2083,6 @@ namespace Arcoiris.Clases
                                 decimal intante;
                                 decimal capante;
                                 intante = Math.Round(((monto * inte / 100 / 12 / 30) * diascobr), 2);
-                                
                                 capante = decimal.Parse(datosph.Rows[conteop][0].ToString());
                                 monto -= capante;
                                 pint += intante;
@@ -2361,6 +2354,7 @@ namespace Arcoiris.Clases
                     //ultimo pago siempre se toma fuera del ciclo para calcular el restante
                     TimeSpan tiempo2 = fechamov - Fnextpag;
                     int ultidias = tiempo2.Days;
+                    ultidias -= 1;
                     pint += Math.Round(((monto * inter / 100 / 12 / 30) * ultidias), 2);
                 }
 

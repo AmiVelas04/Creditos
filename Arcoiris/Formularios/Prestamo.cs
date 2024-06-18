@@ -302,7 +302,7 @@ namespace Arcoiris.Formularios
             pagof = Convert.ToDecimal(datos.Rows[0][2].ToString());
 
             TxtMora.Text = "0";
-            TxtCapD.Text = datos.Rows[0][7].ToString();
+            TxtCapD.Text = datos.Rows[0][4].ToString();
             TxtIntD.Text = datos.Rows[0][5].ToString();
             TxtCapProm.Text= datos.Rows[0][4].ToString();
             TxtIntProm.Text = datos.Rows[0][6].ToString();
@@ -760,7 +760,7 @@ namespace Arcoiris.Formularios
             
             if ((decimal.Parse(TxtCapital.Text) > 0))
             {
-                TxtCapD.Text = (decimal.Parse(TxtCapD.Text) + decimal.Parse(TxtCapital.Text)).ToString();
+                TxtCapD.Text = (decimal.Parse(TxtCapD.Text) + decimal.Parse("0")).ToString();
             }
             else
             {
