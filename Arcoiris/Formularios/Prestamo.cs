@@ -130,7 +130,7 @@ namespace Arcoiris.Formularios
 
             //TxtInteres.Text = inteori.ToString();
             datos = cre.cantcre(CboPresta.Text, DtpPago.Value.ToString());
-            int DiAtraso  = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+            int DiAtraso = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
             TxtMonto.Text = datos.Rows[0][0].ToString();
             decimal saldocap = Convert.ToDecimal(datos.Rows[0][1].ToString());
             decimal inte = Convert.ToDecimal(TxtInteres.Text);
@@ -154,57 +154,62 @@ namespace Arcoiris.Formularios
             if (TxtTipo.Text == "1")
             {
                 TxtTipo.Text = "Diario";
-               
+
                 TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
             else if (TxtTipo.Text == "2")
             {
                 TxtTipo.Text = "Diario-Interes";
-              //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
             else if (TxtTipo.Text == "3")
             {
                 TxtTipo.Text = "Mesual-Fijo";
-               // int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                // int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = DiAtraso + " Día(s)";
             }
             else if (TxtTipo.Text == "4")
             {
                 TxtTipo.Text = "Mesual-SobreSaldo";
-              //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
+                //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = DiAtraso + " Día(s)";
-                TxtMora.Text = $"{DiAtraso*5}";
+                TxtMora.Text = $"{DiAtraso * 5}";
             }
 
             DataTable aldia = new DataTable();
             decimal intere = 0;
             decimal capi = 0;
             aldia = cre.saldosdias(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"));
-          capi = Convert.ToDecimal(aldia.Rows[0][0]); 
-        
+            capi = Convert.ToDecimal(aldia.Rows[0][0]);
+
             if (Convert.ToDecimal(aldia.Rows[0][1]) >= 0)
             { intere = Convert.ToDecimal(aldia.Rows[0][1]);
                 if (DiAtraso > 0)
                 {
-                   // intere += decimal.Parse(TxtIntD.Text);
+                    // intere += decimal.Parse(TxtIntD.Text);
                 }
-                
+
             }
-            else if(Convert.ToDecimal(aldia.Rows[0][1]) <0) {
+            else if (Convert.ToDecimal(aldia.Rows[0][1]) < 0) {
                 intere = 0;
             }
+         
 
             TxtCapital.Text = capi.ToString();//aldia.Rows[0][0].ToString();
-            TxtInteres.Text = intere.ToString();//aldia.Rows[0][1].ToString();
-
+                                               TxtInteres.Text = intere.ToString();//aldia.Rows[0][1].ToString();
+         
 
 
             if (intere < 0) intere = 0;
             if (capi < 0) capi = 0;
-               
-
+            decimal capPago = decimal.Parse(TxtCapD.Text);
+            decimal intpago = decimal.Parse(TxtIntD.Text);
+            decimal moraPago = decimal.Parse(TxtMora.Text);
             TxtCuotaD.Text = (capi + intere).ToString();
+
+            TxtCuota.Text = (capPago + intpago + moraPago).ToString();
+
         }
 
         private void Dcre()
@@ -309,7 +314,7 @@ namespace Arcoiris.Formularios
             TxtEfectivo.Text = "";
             decimal cuotaN;
             decimal cuotaProm;
-            decimal CapN = Convert.ToDecimal(datos.Rows[0][7].ToString());
+            decimal CapN = Convert.ToDecimal(datos.Rows[0][4].ToString());
             decimal IntM = Convert.ToDecimal(datos.Rows[0][5].ToString());
             decimal  Cprom = Convert.ToDecimal(datos.Rows[0][4].ToString());
             decimal Iprom = Convert.ToDecimal(datos.Rows[0][6].ToString());
@@ -731,7 +736,19 @@ namespace Arcoiris.Formularios
             else*/ 
             if (decimal.Parse(TxtInteres.Text) > 0)
             {
-                TxtIntD.Text = (decimal.Parse(TxtIntD.Text)+ decimal.Parse(TxtInteres.Text)).ToString();
+                /*  decimal totintdia = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtInteres.Text));
+                  decimal intperiodo = decimal.Parse(TxtSaldInt.Text);
+                  if (totintdia > intperiodo)
+                  {
+                      TxtIntD.Text = TxtInteres.Text;
+                  }
+                  else
+                  {
+                      TxtIntD.Text = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtInteres.Text)).ToString();
+                  }*/
+                TxtIntD.Text = TxtInteres.Text;
+
+                
             }
             else
             {
@@ -752,11 +769,11 @@ namespace Arcoiris.Formularios
                 TxtCuota.Text = "0";
             }
 
-            /*if (TxtCapital.Text != "")
+             if(decimal.Parse(TxtCapital.Text)>decimal.Parse(TxtCapD.Text))
             {
                 TxtCapD.Text = TxtCapital.Text;
             }
-            else */
+            else
             
             if ((decimal.Parse(TxtCapital.Text) > 0))
             {
