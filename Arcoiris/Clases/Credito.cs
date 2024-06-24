@@ -1356,13 +1356,8 @@ namespace Arcoiris.Clases
             decimal PagoN = Math.Round((((monto / diasp))), 2);
             decimal CapProm = PagoN / 30 * difDias;
             decimal intN = Math.Round((pagoint), 2);
+            if (intN < 0) intN = 0;
             //revisar cuando no existe fecha de pago anterior
-
-
-
-
-
-
 
 
 
@@ -2076,10 +2071,13 @@ namespace Arcoiris.Clases
                         DatePag = FechaA;
                     }
                     DateTime DatePrim = fechaC;
+
                     //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
+                    if (DatePag <= FechaA) { 
                     while (DatePag <= FechaA)
                     {
                         //el orden de los pagos hechos sean menor que el total de los hechos
+                        
                         if (conteop < pagosmade)
                         {
                             //revisar todos los pagos de interes para un solo ciclo de pago
@@ -2098,16 +2096,23 @@ namespace Arcoiris.Clases
                                 conteop++;
                                 if (conteop < pagosmade)
                                 {
-                                    //esta condicion es por si el ultimo pago es despues de la fecha de corte, se cuentan los dias desde el penultimo pago hasta la fecha de corte
-                                    if (DateTime.Parse(datosph.Rows[conteop][2].ToString()) > FechaA)
-                                    {
-                                        DateTime DateAnte= DateTime.Parse(datosph.Rows[conteop - 1][2].ToString());
-                                        TimeSpan diaz = FechaA - DateAnte;
-                                        int diazc = diaz.Days;
-                                        intante = Math.Round((((monto) * inte / 100 / 12 / 30) * diazc), 2);
-                                        pint += intante;
+                                    if ((conteop + 1) == pagosmade)
+                                    { DatePag = DateTime.Parse(datosph.Rows[conteop][2].ToString()); }
+                                    else {
+                                        while (conteop+1<pagosmade)
+                                        {
+                                            //esta condicion es por si el ultimo pago es despues de la fecha de corte, se cuentan los dias desde el penultimo pago hasta la fecha de corte
+                                            if (DateTime.Parse(datosph.Rows[conteop][2].ToString()) > FechaA)
+                                            {
+                                                DateTime DateAnte = DateTime.Parse(datosph.Rows[conteop - 1][2].ToString());
+                                                TimeSpan diaz = FechaA - DateAnte;
+                                                int diazc = diaz.Days;
+                                                intante = Math.Round((((monto) * inte / 100 / 12 / 30) * diazc), 2);
+                                                pint += intante;
+                                            }
+                                            conteop++;
+                                        }
                                     }
-                                    DatePag = DateTime.Parse(datosph.Rows[conteop][2].ToString());
                                 }
                                 else if (conteop == pagosmade)
                                 {
@@ -2141,7 +2146,7 @@ namespace Arcoiris.Clases
                         }
                         else if (pagosmade == 0)
                         {
-                            TimeSpan time = DatePag - Fechamov;
+                            TimeSpan time = DatePag - fechaC;
                             int diascobr = time.Days;
                             if (diascobr < 0) diascobr = 0;
                             pint += ((monto * inte / 100 / 12 / 30) * diascobr);
@@ -2156,6 +2161,20 @@ namespace Arcoiris.Clases
                             pint += ((monto * inte / 100 / 12 / 30) * diascobr);
                             break;
                         }
+                    }
+                    }
+                    else
+                    {
+                        if (pagosmade == 1)
+                        {
+                            TimeSpan time = FechaA - fechaC;
+                            int diascobr = time.Days;
+                            if (diascobr < 0) diascobr = 0;
+                            decimal intprim;
+                            intprim = Math.Round((((monto ) * inte / 100 / 12 / 30) * diascobr), 2);
+                            pint += intprim;
+                        }
+                       
                     }
                 }
 
