@@ -174,7 +174,7 @@ namespace Arcoiris.Formularios
                 TxtTipo.Text = "Mesual-SobreSaldo";
                 //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = DiAtraso + " Día(s)";
-                TxtMora.Text = $"{DiAtraso * 5}";
+                TxtMora.Text = $"{DiAtraso * 5}";//*5
             }
 
             DataTable aldia = new DataTable();
