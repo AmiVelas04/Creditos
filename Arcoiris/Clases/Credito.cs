@@ -229,7 +229,8 @@ namespace Arcoiris.Clases
                 }
                 else if (tipoc.Equals("4"))
                 {
-
+                    datraso = dias.Days;
+                    
                 }
 
 
@@ -2058,6 +2059,10 @@ namespace Arcoiris.Clases
                 if (FechaA > FechaVen)
                 {
                     FechaA = FechaVen;
+                }
+                else if (FechaA<=Fechamov)
+                {
+                 //   Fechamov = fechaC;
                 }
                 if (FechaA < Fechamov)
                 {
