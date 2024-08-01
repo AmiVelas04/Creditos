@@ -1522,7 +1522,7 @@ namespace Arcoiris.Clases
             DataTable tipo = new DataTable();
             DataTable Pagos = new DataTable();
             string tipoc;
-            string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,date_format(Fecha_venci,'%Y/%M/%d') as fechaf from credito where cod_credito =" + cre;
+            string constipo = "Select id_tipo_credito,date_format(Fecha_conc,'%Y/%M/%d'),monto,interes,dias_pago,date_format(Fecha_venci,'%Y/%M/%d') as fechaf,saldo_cap from credito where cod_credito =" + cre;
             string Consulpagos = "Select SUM(capital) AS capital,SUM(interes) AS interes,capital as capi, interes as inte FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
 
             tipo = buscar(constipo);
@@ -1810,7 +1810,7 @@ namespace Arcoiris.Clases
                // sint = decimal.Parse(saldos.Rows[0][1].ToString());
                 string ConsuAllPag = "select capital,interes,date_format(Fecha,'%Y/%M/%d') as fecha FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
                 DataTable allpag = buscar(ConsuAllPag);
-                DateTime DateChan = Fini.AddMonths(2).AddDays(1);
+                DateTime DateChan = Fini.AddMonths(1);
                 int totpagos = allpag.Rows.Count;
                 int atraso = 0;
                 decimal montoTemp = monto;
@@ -1823,118 +1823,48 @@ namespace Arcoiris.Clases
                 }
                 else
                 {
-                    DateTime DateAnte = Fini.AddDays(0);
-                    int npago = 0;
-                    int pagdone = 0;
-                    DateTime fPago;
-                    while (Ffin > DateChan)
+                    DataTable saldoDcre = saldosdias(cre, fecha);
+                    decimal InteSal = decimal.Parse(saldoDcre.Rows[0][1].ToString());
+                        decimal CapSal = decimal.Parse(saldoDcre.Rows[0][0].ToString());
+                    decimal CapUsar = decimal.Parse(tipo.Rows[0][6].ToString());
+                    if (CapSal <= 0 && InteSal <= 0)
                     {
-                        if (totpagos > npago)
+                        atraso = 0;
+                    }
+                    else if (CapSal > 0 && InteSal <= 0)
+                    {
+                        cuotac = monto / diasP / 30;
+                        while (CapSal > 0)
                         {
-                            string getDate = allpag.Rows[npago][2].ToString();
-                            fPago = DateTime.Parse(getDate);
-                            if (DateChan > fPago)
-                            {
-                                pagdone++;
-                                //calculo del capital esperado;
-                                decimal CapEsp = montoTemp / diasP;
-                                capadeu += CapEsp - decimal.Parse(allpag.Rows[npago][0].ToString());
-                                //calculo del interes esperado
-                                TimeSpan Diastraspag = fPago - DateAnte;
-                                int Dtrasncur = Diastraspag.Days;
-                                decimal IntEsp = Math.Round((montoTemp * interes / 100 / 12 / 30 * Dtrasncur), 2);
-                                intadeu += IntEsp - decimal.Parse(allpag.Rows[npago][1].ToString());
-                              
-                                //resta del pago de capital hecho por el cliente
-                                montoTemp -= decimal.Parse(allpag.Rows[npago][0].ToString());
-                                npago++;
-                                DateAnte =fPago;
-                            }
-                            else
-                            {
-                                DateChan= DateChan.AddMonths(1);
-                            }
-                        }
-                        else
-                        {
-                            TimeSpan Diastraspag = Ffin - DateChan;
-                            int Dtrasncur = Diastraspag.Days;
-                            if (Totd>0)
-                            {
-                                Totd += Dtrasncur;
-                            }
-                            break;
+                            atraso++;
+                            CapSal -= cuotac;
                         }
                     }
-                    if (intadeu <= 0)
+                    else if( CapSal <= 0 && InteSal> 0)
                     {
-                        Totd = 0;
+                        decimal pagoint;
+                        pagoint = Math.Round((CapUsar * interes / 100 / 12/30), 2);
+                        while (InteSal > 0)
+                        {
+                            atraso++;
+                            InteSal -= pagoint;
+                        }
                     }
                     else
                     {
-                        string diasdeuda = Math.Round((intadeu / (montoTemp * interes / 100 / 12 / 30)), 0).ToString();
-                        Totd = int.Parse(diasdeuda);
+                        decimal pagoint;
+                        pagoint = Math.Round((CapUsar * interes / 100 / 12), 2);
+                        cuotac = monto / diasP / 30;
+                        while (CapSal > 0 || InteSal > 0)
+                        {
+                            atraso++;
+                            InteSal -= pagoint;
+                            CapSal -= cuotac;
+                        }
                     }
-
-                    // Totd = 0;
+                    Totd = atraso;
                 }
-
-
-
                 //fin de intento nuevo
-
-
-                /*
-                if (scap <= 0 && sint <= 0)
-                {
-                    atraso = 0;
-                }
-                else if (scap > 0 && sint <= 0)
-                {
-
-                    while (scap > 0)
-                    {
-                        atraso++;
-                        scap -= cuotac;
-                    }
-                }
-                else if (scap <= 0 && sint > 0)
-                {
-
-                    decimal montonew, pagoint;
-                    montonew = monto - scap;
-                    pagoint = Math.Round((montonew * interes / 100 / 12), 2);
-                    while (sint > 0)
-                    {
-                        atraso++;
-                        sint -= pagoint;
-                    }
-                }
-                else
-                {
-                    decimal montonew, pagoint;
-                    montonew = monto - scap;
-                    pagoint = Math.Round((monto * interes / 100 ), 2);
-                    while (scap > 0 || sint > 0)
-                    {
-                        atraso++;
-                        sint -= pagoint;
-                        scap -= cuotac;
-                    }
-                }
-                int conteo = 1;
-                DateTime fechaavanz = Fini;
-                FinCe = Ffin;
-                while (Ffin > fechaavanz)
-                {
-                    fechaavanz = Fini.AddMonths(conteo);
-                    conteo++;
-                }
-                fechaavanz = fechaavanz.AddMonths(-atraso);
-                dif = Ffin - fechaavanz;
-                Totd = dif.Days;
-
-                */
             }
 
 
@@ -2062,7 +1992,7 @@ namespace Arcoiris.Clases
                 }
                 else if (FechaA<=Fechamov)
                 {
-                 //   Fechamov = fechaC;
+                  Fechamov = fechaC;
                 }
                 if (FechaA < Fechamov)
                 {
@@ -2080,6 +2010,11 @@ namespace Arcoiris.Clases
                     {
                         DatePag = FechaA;
                     }
+                    if (DatePag > FechaA)
+                    {
+                       DatePag = FechaA;
+                    }
+
                     DateTime DatePrim = fechaC;
                     //revisar que el calculo de saldos de interes para poner al dia se cambio al dia del pago, no un dia despues
                     while (DatePag <= FechaA)

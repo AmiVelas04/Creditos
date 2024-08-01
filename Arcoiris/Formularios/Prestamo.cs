@@ -174,7 +174,7 @@ namespace Arcoiris.Formularios
                 TxtTipo.Text = "Mesual-SobreSaldo";
                 //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = DiAtraso + " Día(s)";
-                TxtMora.Text = $"{DiAtraso * 5}";//*5
+                TxtMora.Text = $"{DiAtraso * 0}";//*5
             }
 
             DataTable aldia = new DataTable();
@@ -645,10 +645,20 @@ namespace Arcoiris.Formularios
 
             if (e.KeyCode == Keys.F12)
             {
-                if (Form1.Cod_U == "1" || Form1.Cod_U == "2")
+                if (Form1.Cod_U == "1" || Form1.Cod_U == "2" )
                 {
                     MessageBox.Show("Elementos activados", "Administrador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     BtnEliminar.Enabled = true;
+                    //TxtInteres.Enabled = true;
+                    //TxtCapital.Enabled = true;
+                    TxtIntD.Enabled = true;
+                    //TxtCapD.Enabled = true;
+                    DtpPago.Enabled = true;
+                }
+                if (Form1.Cod_U == "5")
+                {
+                    MessageBox.Show("Elementos activados", "Administrador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   // BtnEliminar.Enabled = true;
                     //TxtInteres.Enabled = true;
                     //TxtCapital.Enabled = true;
                     TxtIntD.Enabled = true;
