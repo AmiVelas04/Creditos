@@ -190,6 +190,8 @@
     <Compile Include="Clases\conexion.cs" />
     <Compile Include="Clases\Credito.cs" />
     <Compile Include="Clases\Logueo.cs" />
+    <Compile Include="Clases\Modelos\DeparamentoModel.cs" />
+    <Compile Include="Clases\Modelos\MunicipioModel.cs" />
     <Compile Include="Clases\Pago.cs" />
     <Compile Include="Clases\Solicitud.cs" />
     <Compile Include="Clases\Usuario.cs" />
@@ -327,6 +329,91 @@
     <Compile Include="Reportes\Comisiones.Designer.cs">
       <DependentUpon>Comisiones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 1.Designer.cs">
+      <DependentUpon>Contrato 1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 10.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 10.Designer.cs">
+      <DependentUpon>Contrato 10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 11.Designer.cs">
+      <DependentUpon>Contrato 11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 12.Designer.cs">
+      <DependentUpon>Contrato 12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 2.Designer.cs">
+      <DependentUpon>Contrato 2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 3.Designer.cs">
+      <DependentUpon>Contrato 3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 4.Designer.cs">
+      <DependentUpon>Contrato 4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 5.Designer.cs">
+      <DependentUpon>Contrato 5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 6.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 6.Designer.cs">
+      <DependentUpon>Contrato 6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 7.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 7.Designer.cs">
+      <DependentUpon>Contrato 7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 8.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 8.Designer.cs">
+      <DependentUpon>Contrato 8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 9.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato 9.Designer.cs">
+      <DependentUpon>Contrato 9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato A.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato A.Designer.cs">
+      <DependentUpon>Contrato A.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato B.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\Contratos\Contrato B.Designer.cs">
+      <DependentUpon>Contrato B.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\Contratos\ContratoDatos.cs" />
     <Compile Include="Reportes\CreCartera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -465,6 +552,12 @@
     <EmbeddedResource Include="Reportes\Comisiones.resx">
       <DependentUpon>Comisiones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 1.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 2.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 3.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 4.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 5.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 6.rdlc" />
     <EmbeddedResource Include="Reportes\CreCartera.rdlc" />
     <EmbeddedResource Include="Reportes\CreCartera.resx">
       <DependentUpon>CreCartera.cs</DependentUpon>
@@ -515,6 +608,7 @@
     <None Include="Properties\DataSources\Arcoiris.Reportes.ColocEnc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionDet.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionEnc.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.Contratos.ContratoDatos.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Credi_Activity.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.Cre_Cance_Vig_D1.datasource" />
@@ -601,6 +695,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

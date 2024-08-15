@@ -14,6 +14,8 @@ namespace Arcoiris.Clases
     {
         
         conexion conect = new conexion();
+
+        string depas = "";
         #region "General"
         private DataTable buscar(string consulta)
         {
@@ -76,6 +78,39 @@ namespace Arcoiris.Clases
         }
         #endregion
 
+        #region Depar-Munis
+        public List<Modelos.DeparamentoModel> Depar()
+        {
+            List<Modelos.DeparamentoModel> depas= new List<Modelos.DeparamentoModel>();
+            string consulta = "Select * from departamento";
+            DataTable datos = buscar(consulta);
+            int tot = datos.Rows.Count;
+            for (int i = 0; i <tot; i++)            {
+                Modelos.DeparamentoModel temp = new Modelos.DeparamentoModel();
+                temp.Id = int.Parse(datos.Rows[i][0].ToString());
+                temp.Nombre = datos.Rows[i][1].ToString();
+                depas.Add(temp);
+            }
+            return depas;
+        }
+
+        public List<Modelos.MunicipioModel> Munis(string id)
+        {
+            List<Modelos.MunicipioModel> muni = new List<Modelos.MunicipioModel>();
+            string consulta = $"Select * from municipio where Departamento_id={id}";
+            DataTable datos = buscar(consulta);
+            int tot = datos.Rows.Count;
+            for (int i = 0; i < tot; i++)
+            {
+                Modelos.MunicipioModel temp = new Modelos.MunicipioModel();
+                temp.Id = int.Parse(datos.Rows[i][0].ToString());
+                temp.Nombre = datos.Rows[i][2].ToString();
+                muni.Add(temp);
+            }
+            return muni;
+        }
+        #endregion
+
         #region "cliente"
         public int idCli(string nombre)
         {
@@ -114,11 +149,10 @@ namespace Arcoiris.Clases
             string consultab;
             consultab = "select count(*) from cliente";
             string[] fiddatos = { datos[12], datos[13], datos[14] };
-            int idfid;
-            idfid=agregarfiador(fiddatos );
+           // int idfid;
+          //  idfid=agregarfiador(fiddatos);
             int id=buscarid(consultab)+1;
-             consulta= "Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,id_fiador)" +
-               " values("+ id +",'" + datos[0] + "','" + datos[1] + "','" + datos[2] + "','" + datos[3] + "','" + datos[4] + "','" + datos[5] + "','" + datos[6] + "','" + datos[7] + "','" + datos[8] + "','"+ datos[9 ] + "','" + datos[10] + "','"+datos[11] + "','" +datos[15] + "',"+idfid +")";
+             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad) values({id},'{datos[0]}','{datos[1]}','{datos[2]}','{datos[3]}','{datos[4]}','{datos[5]}','{datos[6]}','{datos[7]}','{datos[8]}','{datos[9]}','{datos[10]}','{datos[11]}','{datos[15]}','{datos[16]}','{datos[17]}',{datos[18]})";
            // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
             com.Connection = conect .conn ;

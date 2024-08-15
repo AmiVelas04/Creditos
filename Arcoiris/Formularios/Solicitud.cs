@@ -805,6 +805,20 @@ datoscli = cli.Buscar_nom_cli();
                 DtpEsc.Visible = true;
                 TxtUbicacion.Visible = true;
                 TxtUbicacion.Clear();
+              //  GbxGarantias.Visible = true;
+
+            }
+          else if (TipG.Equals("3"))
+            {
+                label21.Visible = true;
+                label22.Visible = true;
+                label23.Visible = true;
+                TxtTipEsc.Visible = true;
+                //CboTipEsc.Visible = true;
+                DtpEsc.Visible = true;
+                TxtUbicacion.Visible = true;
+                TxtUbicacion.Clear();
+               // GbxGarantias.Visible = true;
             }
             else
             {
@@ -814,8 +828,7 @@ datoscli = cli.Buscar_nom_cli();
                 TxtTipEsc.Visible = false;
                 DtpEsc.Visible = false;
                 TxtUbicacion.Visible = false;
-               
-
+               // GbxGarantias.Visible = false;
             }
         }
 
@@ -824,6 +837,104 @@ datoscli = cli.Buscar_nom_cli();
             if(TxtUbicacion.Text=="")TxtUbicacion.Text = "N/E";
             if (TxtAut.Text == "") TxtAut.Text = "N/E";
             if (TxtTipEsc.Text == "") TxtTipEsc.Text = "N/E";
+        }
+
+        private void RdbSnGaran_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+       void mostrarGarant()
+        {
+
+        }
+
+        private void CboTipPresta_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboTipPresta.SelectedIndex == 0) {
+                MostrarPrestaIndi();
+            }
+            else
+            {
+                MostrarPrestaFiad();
+            }
+        }
+
+        private void MostrarPrestaIndi()
+        {
+            RdbSnGaran.Checked = true;
+            RdbGarant2.Visible = false;
+            RdbGarant3.Visible = false;
+            ChkFirma2.Visible = false;
+            RdbGarant1.Text = "Garantia";
+            ChkTesti2.Checked = false;
+
+        }
+
+        private void MostrarPrestaFiad()
+        {
+            RdbSnGaran.Checked = true;
+            RdbGarant2.Visible = true;
+            RdbGarant3.Visible = true;
+            ChkFirma2.Visible = true;
+            RdbGarant1.Text = "Garantia Deudor";
+            RdbGarant1.Text = "Garantia Fiador";
+            RdbGarant3.Text = "Garantia Total";
+
+        }
+
+        private void ChkFirma1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CboTipPresta.SelectedIndex==0)
+            {
+                ChkFirma2.Checked = false;
+                if (ChkFirma1.Checked)
+                {
+                    ChkTesti1.Checked = false;
+                }
+                else
+                {
+                    ChkTesti1.Checked = true;
+                }
+            }
+            else
+            {
+                if (ChkFirma1.Checked && ChkFirma2.Checked)
+                {
+                    ChkTesti1.Checked = false;
+                    ChkTesti2.Checked = false;
+                }
+                else if (ChkFirma1.Checked || ChkFirma2.Checked)
+                {
+                    ChkTesti1.Checked = true;
+                    ChkTesti2.Checked = false;
+                }
+                else
+                {
+                    ChkTesti1.Checked = true;
+                    ChkTesti2.Checked = true;
+                }
+            }
+
+        }
+
+        private void ChkFirma2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkFirma1.Checked && ChkFirma2.Checked)
+            {
+                ChkTesti1.Checked = false;
+                ChkTesti2.Checked = false;
+            }
+            else if (ChkFirma1.Checked || ChkFirma2.Checked)
+            {
+                ChkTesti1.Checked = true;
+                ChkTesti2.Checked = false;
+            }
+            else
+            {
+                ChkTesti1.Checked = true;
+                ChkTesti2.Checked = true;
+            }
         }
     }
 }

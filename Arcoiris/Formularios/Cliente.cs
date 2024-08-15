@@ -25,7 +25,13 @@ namespace Arcoiris.Formularios
 
 
 
-
+        private void cargarDepas()
+        {
+            List<Clases.Modelos.DeparamentoModel> todos = clien.Depar();
+            CboDepa.DataSource = todos;
+            CboDepa.DisplayMember = "Nombre";
+            CboDepa.ValueMember = "Id";
+        }
 
         private void guardar()
         {
@@ -41,11 +47,14 @@ namespace Arcoiris.Formularios
             string Ape_cony = TxtApecony.Text;
             string telcon = TxtConTel.Text;
             string refe = TxtRef.Text;
-            string fiad = TxtFiador.Text;
-            string tfiad = TxtFtel.Text;
-            string dfiad = TxtFdir.Text;
+         string fiad = "";// TxtFiador.Text;
+            string tfiad = "";// TxtFtel.Text;
+            string dfiad = "";// TxtFdir.Text;
+            string depa = CboDepa.Text;
+            string muni = CboMuni.Text;
+            string edad = NudEdad.Value.ToString();
             string fecha = DateTime.Today.ToString("yyyy/MM/dd");
-            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe, fiad, tfiad, dfiad, fecha };
+            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe, fiad, tfiad, dfiad, fecha,depa,muni,edad };
             //   int idcli;
             //   idcli = clien.agregar_cliente(datos);
             if (clien.agregar_cliente(datos))
@@ -87,7 +96,6 @@ namespace Arcoiris.Formularios
             TxtRef.Clear();
             TxtCTel1.Clear();
             CboScivil.SelectedIndex = 0;
-
         }
 
 
@@ -114,19 +122,19 @@ namespace Arcoiris.Formularios
             TxtApecony.Clear();
             TxtConTel.Clear();
             TxtRef.Clear();
-            TxtFiador.Clear();
-            TxtFdir.Clear();
-            TxtFtel.Clear();
+           // TxtFiador.Clear();
+            //TxtFdir.Clear();
+            //TxtFtel.Clear();
         }
 
         private void Cliente_Load(object sender, EventArgs e)
         {
             CboScivil.Items.Add("Soltero");
-            CboCivil2.Items.Add("Soltero");
+          //  CboCivil2.Items.Add("Soltero");
             CboScivil.Items.Add("Casado");
-            CboCivil2.Items.Add("Casado");
+            //CboCivil2.Items.Add("Casado");
             CboScivil.Items.Add("Viudo");
-            CboCivil2.Items.Add("Viudo");
+           // CboCivil2.Items.Add("Viudo");
             CboScivil.Sorted = true;
             CboScivil.SelectedIndex = 0;
             TabC3.Parent = null;
@@ -135,6 +143,7 @@ namespace Arcoiris.Formularios
                 BtnGuardar.Visible = false;
                 BtnUpd.Visible = false;
             }
+            cargarDepas();
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
@@ -257,6 +266,17 @@ namespace Arcoiris.Formularios
             }
 
 
+        }
+
+        private void CboDepa_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CboDepa.SelectedValue != null && !CboDepa.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
+            {
+                string id = CboDepa.SelectedValue.ToString();
+                CboMuni.DataSource = clien.Munis(id);
+                CboMuni.DisplayMember = "Nombre";
+                CboMuni.ValueMember = "Id";
+            }
         }
     }
 }
