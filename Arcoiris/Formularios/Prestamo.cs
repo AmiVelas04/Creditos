@@ -975,8 +975,6 @@ namespace Arcoiris.Formularios
                 garan.idcre = CboPresta.Text;
                 garan.nivel = Form1.Nivel;
                 garan.ShowDialog();
-
-
             }
         }
         #endregion

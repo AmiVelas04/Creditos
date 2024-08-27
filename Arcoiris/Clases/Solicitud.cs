@@ -547,11 +547,12 @@ namespace Arcoiris.Clases
 
         #region Garantias
 
+       
        public DataTable garantia(string idcre)
         {
             string consulta;
             DataTable datos = new DataTable();
-            consulta = "SELECT gar.id_garant,gar.Tipo,gar.Valuacion,gar.Detalle,gar.Tipo_Esc,gar.Fecha_Esc,gar.Autorizo,gar.ubicacion,gar.Estado  from  garantia gar "+
+            consulta = "SELECT gar.id_garant,gar.Tipo,gar.Valuacion,gar.Detalle,gar.Tipo_Esc,gar.Fecha_Esc,gar.Autorizo,gar.ubicacion,gar.Estado, gar.contratotip, gar.FiadorNom1,gar.FiadorCui,gar.FiadorGene,gar.FiadorMuni,gar.FiadorDepa,gar.FiadorDire,gar.FiadorTel,gar.FiadorEdad,gar.FiadorEstCiv  from  garantia gar " +
 "INNER JOIN sol_garant sga ON sga.id_garant = gar.id_garant "+
 "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = sga.Id_Solicitud "+
 "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD "+
@@ -562,8 +563,37 @@ namespace Arcoiris.Clases
             return datos;
         }
 
+        public DataTable Clibycred(string idcre)
+        {
+            string consulta;
+            consulta = "Select c.Nombres,C.apellidos,c.Departamento,c.municipio,c.Domicilio,c.Edad,c.Genero,c.dpi,c.Estado_civil,c.profesion,c.Nacionalidad from cliente c " +
+            "inner join asigna_solicitud asol on asol.codigo_cli = c.CODIGO_CLI " +
+            "inner join solicitud sol on sol.ID_SOLICITUD = asol.ID_SOLICITUD " +
+            "inner join asigna_credito ac on ac.ID_SOLICITUD = sol.ID_SOLICITUD " +
+            "inner join credito cre on cre.COD_CREDITO = ac.COD_CREDITO " +
+            "where cre.COD_CREDITO=" + idcre;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
 
-       
+        public DataTable CreditoOne(string idcre)
+        {
+            string consulta;
+            consulta = "Select * from credito " +
+            "where COD_CREDITO=" + idcre;
+           return buscar(consulta);
+        }
+
+        public DataTable SolibyCredi(string idcre)
+        {
+            string consulta;
+            consulta = "SELECT* FROM solicitud sol " +
+                       "JOIN asigna_credito ac ON sol.ID_SOLICITUD = ac.ID_SOLICITUD AND ac.COD_CREDITO =" + idcre;
+            return buscar(consulta);
+           
+        }
+
 
         public bool updgarantia(string[] datos)
         {

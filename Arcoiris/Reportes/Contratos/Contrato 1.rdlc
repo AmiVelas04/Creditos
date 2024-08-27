@@ -106,6 +106,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -133,7 +135,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!EdadLDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> años de edad, </Value>
@@ -148,10 +153,38 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!EstCivil.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
-                <Value>, guatemalteca, </Value>
+                <Value>, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Nacionalidad.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>,</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -163,7 +196,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Profesion.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>, con domicilio en el departamento de </Value>
@@ -178,10 +214,31 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Departamento.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
-                <Value>, y residencia en el cantón Vípila del municipio de </Value>
+                <Value>, y residencia en </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Direccion.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  del municipio de </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -193,7 +250,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Municipio.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>, departamento de </Value>
@@ -208,7 +268,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Departamento.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>, me identifico con el Documento Personal de Identificación, con código único de identificación CUI, número; </Value>
@@ -223,7 +286,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CuiLDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> (</Value>
@@ -238,7 +304,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CuiDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>),extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quien en adelante se le denominará </Value>
@@ -309,6 +378,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -358,7 +429,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CantidadLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> exactos </Value>
@@ -384,7 +458,11 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Cantidad.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>) </Value>
@@ -432,7 +510,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!PlazoLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> contados a partir de la fecha de suscribir el presente documento privado </Value>
@@ -469,7 +550,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!PagosLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> cuotas, cada una en forma </Value>
@@ -484,7 +568,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Periodo.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>, vencidas,  y consecutivas según tabla de pagos ampliamente conocida por la parte deudora,  la primera cuota se hará efectiva un mes después de haberse realizado la entrega de fondos, hasta el vencimiento del préstamo, </Value>
@@ -543,7 +630,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!PorcentLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> por ciento (</Value>
@@ -558,7 +648,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Porcent.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>%) anual flat </Value>
@@ -627,7 +720,25 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>: el crédito se destinará para capital de trabajo aceptando la parte deudora de no utilizar los fondos para otro uso o destino diferente al convenido; </Value>
+                <Value>: el crédito se destinará para </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!UsoPresta.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> aceptando la parte deudora de no utilizar los fondos para otro uso o destino diferente al convenido; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -715,29 +826,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> acepto que el derecho de crédito que incorpora este título ejecutivo sea cedible, </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>sin previo consentimiento de la parte deudora, con efectos legales desde la notificación o al mostrarse sabedor de la parte deudora de ello</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>.</Value>
+                <Value> acepto que el derecho de crédito que incorpora este título ejecutivo sea cedible, sin previo consentimiento de la parte deudora, con efectos legales desde la notificación o al mostrarse sabedor de la parte deudora de ello.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -816,6 +905,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1047,43 +1138,11 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
+                <Value>                   Diego Salomón Brito Pérez                                </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>General</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>                   Diego Salomón Brito Pérez                                 </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve">     </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -1092,6 +1151,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1260,6 +1321,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1276,7 +1339,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CuiLDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> (</Value>
@@ -1291,7 +1357,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CuiDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>), extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica</Value>
@@ -1351,6 +1420,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1528,6 +1599,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1536,7 +1609,7 @@
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>12pt</FontSize>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
@@ -1731,38 +1804,8 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
-      <Textbox Name="Textbox2">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style />
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>34.20745cm</Top>
-        <Left>5.89703cm</Left>
-        <Height>0.6cm</Height>
-        <Width>2.5cm</Width>
-        <ZIndex>1</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
     </ReportItems>
-    <Height>14.55in</Height>
+    <Height>12.74791in</Height>
     <Style />
   </Body>
   <Width>8.1in</Width>
@@ -1770,7 +1813,7 @@
     <PageHeight>33cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>
     <LeftMargin>0.5cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
+    <RightMargin>0.5cm</RightMargin>
     <TopMargin>0.5cm</TopMargin>
     <BottomMargin>0.5cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
@@ -1821,6 +1864,10 @@
           <DataField>Deudor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="DeudorDomi">
+          <DataField>DeudorDomi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Direccion">
           <DataField>Direccion</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1845,12 +1892,20 @@
           <DataField>EstCivil</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FechaLet">
+          <DataField>FechaLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="GarantDeudor">
           <DataField>GarantDeudor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="GarantFiador">
           <DataField>GarantFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Genero">
+          <DataField>Genero</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Municipio">
@@ -1883,6 +1938,34 @@
         </Field>
         <Field Name="Profesion">
           <DataField>Profesion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testgo1">
+          <DataField>Testgo1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testgo2">
+          <DataField>Testgo2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi1Cui">
+          <DataField>Testi1Cui</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi1CuiLet">
+          <DataField>Testi1CuiLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi2Cui">
+          <DataField>Testi2Cui</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi2CuiLet">
+          <DataField>Testi2CuiLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UsoPresta">
+          <DataField>UsoPresta</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
       </Fields>

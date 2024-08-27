@@ -401,18 +401,6 @@
     <Compile Include="Reportes\Contratos\Contrato 9.Designer.cs">
       <DependentUpon>Contrato 9.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reportes\Contratos\Contrato A.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\Contratos\Contrato A.Designer.cs">
-      <DependentUpon>Contrato A.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reportes\Contratos\Contrato B.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Reportes\Contratos\Contrato B.Designer.cs">
-      <DependentUpon>Contrato B.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reportes\Contratos\ContratoDatos.cs" />
     <Compile Include="Reportes\CreCartera.cs">
       <SubType>Form</SubType>
@@ -553,11 +541,54 @@
       <DependentUpon>Comisiones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Contratos\Contrato 1.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 1.resx">
+      <DependentUpon>Contrato 1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 10.resx">
+      <DependentUpon>Contrato 10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 11.resx">
+      <DependentUpon>Contrato 11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 12.resx">
+      <DependentUpon>Contrato 12.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Contratos\Contrato 2.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 2.resx">
+      <DependentUpon>Contrato 2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Contratos\Contrato 3.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 3.resx">
+      <DependentUpon>Contrato 3.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Contratos\Contrato 4.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 4.resx">
+      <DependentUpon>Contrato 4.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Contratos\Contrato 5.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 5.resx">
+      <DependentUpon>Contrato 5.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Contratos\Contrato 6.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 6.resx">
+      <DependentUpon>Contrato 6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 7.resx">
+      <DependentUpon>Contrato 7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 8.resx">
+      <DependentUpon>Contrato 8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato 9.resx">
+      <DependentUpon>Contrato 9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Contratos\Contrato10.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato11.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato12.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato13.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato7.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato8.rdlc" />
+    <EmbeddedResource Include="Reportes\Contratos\Contrato9.rdlc" />
     <EmbeddedResource Include="Reportes\CreCartera.rdlc" />
     <EmbeddedResource Include="Reportes\CreCartera.resx">
       <DependentUpon>CreCartera.cs</DependentUpon>

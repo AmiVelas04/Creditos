@@ -9,96 +9,6 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>General</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>General</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>General</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>General</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>General</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
                 <Value>Reconocimiento de deuda.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -117,7 +27,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>En el municipio de Nebaj, del departamento de Quiché, el día dieciséis de octubre del año dos mil veintitrés; </Value>
+                <Value>En el municipio de Nebaj, del departamento de Quiché, el día doce de julio del año dos mil veintitrés; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -161,7 +71,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, de treinta y cinco años de edad,  casado, guatemalteco, perito contador, con domicilio en el departamento de Quiché, y residencia en el cantón Batzbacà del municipio de Nebaj, departamento de Quiche, me identifico con el Documento Personal de Identificación con código único de identificación CUI, número; mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quien en adelante se le denominará  </Value>
+                <Value>, de treinta y cinco años de edad,  casado, guatemalteco, perito contador, con domicilio en el departamento de Quiché, y residencia en el cantón Batzbacà del municipio de Nebaj, departamento de Quiché, me identifico con el Documento Personal de Identificación con código único de identificación CUI, número; mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quien en adelante se le denominará  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -200,7 +110,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>,</Value>
+                <Value>, </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -211,7 +121,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> de </Value>
+                <Value>de </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -241,7 +151,22 @@
                 <Style />
               </TextRun>
               <TextRun>
-                <Value>, guatemalteca, </Value>
+                <Value>, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Nacionalidad.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -256,52 +181,7 @@
                 <Style />
               </TextRun>
               <TextRun>
-                <Value>, con domicilio en el departamento de </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Departamento.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>, y residencia en el cantón Vípila del municipio de </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Municipio.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>, departamento de </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Departamento.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>, me identifico con el Documento Personal de Identificación, con código único de identificación CUI, número; </Value>
+                <Value>, con domicilio en el departamento de DEPA, y residencia en DIR del municipio de MUNI, departamento de DEPA, me identifico con el Documento Personal de Identificación, con código único de identificación CUI, número; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -313,7 +193,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CuiLDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> (</Value>
@@ -328,10 +211,13 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CuiDeudor.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
-                <Value>),extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quien en adelante se le denominará </Value>
+                <Value>), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, (Parte deudora )</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -342,7 +228,195 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>“La Parte Deudora”</Value>
+                <Value> y </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>  de </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!EdadLFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value> años de edad, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!EstCivFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!NacioFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!ProfFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, con domicilio en el departamento de </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!DeparFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, y residencia en </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!FiadorDomi.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value> del municipio de </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!MuniFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, departamento de  </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!DeparFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, me identifico con el Documento Personal de Identificación, con código único de identificación CUI, número; </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!CuiLFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value> (</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!CuiFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>)</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>, extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quienes en adelante se les denominará </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>“La Parte Fiadora”</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -386,7 +460,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> Primera: YO: </Value>
+                <Value>Primera: YO:  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -399,6 +473,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -448,7 +524,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!CantidadLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> exactos </Value>
@@ -474,7 +553,11 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Cantidad.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>) </Value>
@@ -522,7 +605,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!PlazoLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> contados a partir de la fecha de suscribir el presente documento privado </Value>
@@ -559,7 +645,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!PagosLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> cuotas, cada una en forma </Value>
@@ -574,7 +663,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Periodo.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>, vencidas,  y consecutivas según tabla de pagos ampliamente conocida por la parte deudora,  la primera cuota se hará efectiva un mes después de haberse realizado la entrega de fondos, hasta el vencimiento del préstamo, </Value>
@@ -633,7 +725,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!PorcentLet.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value> por ciento (</Value>
@@ -648,7 +743,10 @@
               </TextRun>
               <TextRun>
                 <Value>=First(Fields!Porcent.Value, "Datos")</Value>
-                <Style />
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
               </TextRun>
               <TextRun>
                 <Value>%) anual flat </Value>
@@ -717,7 +815,25 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>: el crédito se destinará para capital de trabajo aceptando la parte deudora de no utilizar los fondos para otro uso o destino diferente al convenido; </Value>
+                <Value>: el crédito se destinará para </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!UsoPresta.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> aceptando la parte deudora de no utilizar los fondos para otro uso o destino diferente al convenido; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -805,7 +921,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> acepto que el derecho de crédito que incorpora este título ejecutivo sea cedible, </Value>
+                <Value> acepto que el derecho de crédito que incorpora este título ejecutivo sea cedible, sin previo consentimiento de la parte deudora, con efectos legales desde la notificación o al mostrarse sabedor de la parte deudora de ello.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -816,18 +932,48 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>sin previo consentimiento de la parte deudora, con efectos legales desde la notificación o al mostrarse sabedor de la parte deudora de ello</Value>
+                <Value>  Segunda:</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>.</Value>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>Red</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>DEL FIADOR: Yo </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, manifiesto que en forma expresa me constituyo en fiador mancomunado y solidario de: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -838,7 +984,57 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> Segunda:</Value>
+                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> para garantizar el cumplimiento del monto total de la obligación que comprende el capital, intereses, mora, costas reembolsables; y además renuncio al beneficio de orden y excusión de bienes, renunciando al fuero de mi domicilio aceptando someterme a la competencia territorial del juzgado que “</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>LA PARTE ACREEDORA”</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> elija. </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Tercera:</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -893,17 +1089,6 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
@@ -921,7 +1106,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> garantizo el cumplimiento de la presente obligación, con los derechos que me asisten y tengo sobre |un bien inmueble sin inscripción registral y matricula fiscal, cuya área, rumbo, medidas lineales, colindancias, ubicación, nombre, dirección, extensión y demás condiciones constan en el primer testimonio de la escritura pública número ciento treinta y seis (136), de fecha catorce de febrero del año dos mil dieciséis, autorizado por el abogado y notario Sergio Neftalí Orozco Velásquez, en el municipio de Nebaj departamento del Quiché; | obligándome expresamente a no enajenar ni gravar el bien dejado en garantía por todo el tiempo que constituye el plazo del presente crédito hasta su pago total, y declaro que hasta este momento sobre el bien dejado en garantía no existen gravámenes, anotaciones o limitaciones de ninguna naturaleza y que afecten los derechos de la parte acreedora, en todo caso me someto a saneamiento de ley. </Value>
+                <Value> garantizo el cumplimiento de la presente obligación, con todos mis bienes presentes y futuros enajenables incluyendo cuentas bancarias a mi nombre. </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -932,7 +1117,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Yo</Value>
+                <Value>Yo, </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -943,107 +1128,10 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve"> </Value>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
                 <Style>
-                  <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Tercera: Otras condiciones; 1).</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> La parte deudora acepta expresamente que la parte acreedora le descuente del desembolso del préstamo la cantidad de doscientos setenta y cinco quetzales exactos sobre el monto concedido, por concepto de gastos administrativos</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>. 2).</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> La parte deudora acepta expresamente que la parte acreedora le cobre una comisión por cobranza sobre saldos vencidos de la presente obligación y por las gestiones de cobro en que se incurra; el monto de tal comisión será de cincuenta quetzales. La parte deudora se obliga a pagar la cuota del préstamo como mínimo en la fecha iniciada en el plan de pagos y cuando el mismo sea día inhábil deberá pagar el último día hábil que corresponda, de lo contrario se efectuarán los cargos de comisión por cobranza correspondientes.  </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Cuarta: Aceptación: NOSOTROS</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, en las calidades con que comparecemos aceptamos expresamente el reconocimiento de deuda contenido en este documento privado y sus estipulaciones. Leído lo escrito y enterado de su contenido, validez y efectos legales lo aceptamos, ratificamos, firma únicamente el acreedor </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Diego Salomón Brito Pérez, </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>no así  el deudor </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
-                <Style>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1059,7 +1147,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> quien por no saber firmar deja su impresión dactilar del dedo pulgar de la mano derecha firmando a su ruego la testigo </Value>
+                <Value> garantizo el cumplimiento de la presente obligación, con todos mis bienes presentes y futuros enajenables incluyendo cuentas bancarias a mi nombre. </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1070,7 +1158,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Sindy Magaly Pérez Ceto, </Value>
+                <Value>Cuarta.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1081,7 +1169,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> quien se identifica con el documento personal de identificación DPI número: dos mil novecientos diecinueve, espacio, veintiún mil setecientos veintiocho, espacio, mil cuatrocientos trece (2919 21728 1413) extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica,  personas civilmente capaces, hábiles e idóneas para este acto.</Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1091,18 +1179,107 @@
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>General</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
               <TextRun>
-                <Value />
+                <Value>Otras condiciones: 1</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>) La parte deudora acepta expresamente que la acreedora le descuente del desembolso del préstamo doscientos setenta y cinco quetzales exactos (Q.275.00) sobre el monto concedido, por concepto de gastos administrativos</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>. 2) </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>La parte deudora acepta expresamente que la acreedora le cobre una comisión por cobranza sobre saldos vencidos de la presente obligación y por las gestiones de cobro en que se incurra; el monto de tal comisión será de cincuenta quetzales. La parte deudora se obliga a pagar la cuota del préstamo como mínimo en la fecha iniciada en el plan de pagos y cuando el mismo sea día inhábil deberá pagar el último día hábil que corresponda. </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Quinta</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>: </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Aceptación:</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>NOSOTROS</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, en las calidades con que comparecemos aceptamos expresamente el reconocimiento de deuda contenido en este documento privado y sus estipulaciones. Leído lo escrito y enterado de su contenido, validez y efectos legales lo aceptamos, ratificamos, firmamos y dejamos la impresión dactilar del dedo pulgar de la mano derecha.</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1144,7 +1321,28 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez         </Value>
+                <Value />
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Diego Salomón Brito Pérez           </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1157,11 +1355,13 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve">               </Value>
+                <Value xml:space="preserve">           </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1172,15 +1372,16 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!Testgo1.Value, "Datos")</Value>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
+            <LeftIndent>0cm</LeftIndent>
             <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
             <Style>
               <TextAlign>Left</TextAlign>
               <LineHeight>18pt</LineHeight>
@@ -1189,17 +1390,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>              Acreedor                </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Deudor                                 Testigo</Value>
+                <Value>               Acreedor                                                 La Parte Deudora                                                                     Fiador</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1210,31 +1401,9 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
+            <LeftIndent>0cm</LeftIndent>
             <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
+            <HangingIndent>0cm</HangingIndent>
             <Style>
               <TextAlign>Left</TextAlign>
               <LineHeight>18pt</LineHeight>
@@ -1264,82 +1433,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>AUTÉNTICA NOTARIAL: </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>En el municipio de Nebaj, departamento de Quiché, el día el día doce de marzo del año dos mil veinticuatro, </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Como Notario, DOY FE:</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
+                <Value>En el municipio de Nebaj, departamento de Quiché, el día doce de julio del año dos mil veintitrés yo, el Notario, doy fe: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1372,7 +1466,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>“SON AUTÉNTICAS”</Value>
+                <Value>AUTENTICAS</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1383,251 +1477,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> por haber sido rubricas y puestas en mi presencia el día de hoy por; </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Diego Salomón Brito Pérez, </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>quien se identifican con el Documento Personal de Identificación (DPI) con Código Único de Identificación número; mil novecientos ochenta y cuatro, espacio, quince mil doscientos cuarenta y nueve, espacio, mil cuatrocientos trece (1984 15249 1413)</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica; </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>quien se identifica con el Documento Personal de Identificación con Código Único de Identificación número; : </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!CuiLDeudor.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value> (</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!CuiDeudor.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>) </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica,</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Testgo1.Value, "Datos")</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>,</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>  testigo civilmente capaz e idónea, quien se identifica con el Documento Personal de Identificación con Código Único de Identificación número</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Testi1CuiLet.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value> (</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Testi1Cui.Value, "Datos")</Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>) </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, quien firma a ruego del señor </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>b).</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> Las firmas que se legalizan y que están puestas en el presente instrumento, consiste en un “CONTRATO DE RECONOCIMIENTO DE DEUDA” otorgado por </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
-                <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> a favor del señor </Value>
+                <Value>, por haber sido puestas el día de hoy en mi presencia por </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1649,17 +1499,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>con las condiciones ya descritas. </Value>
+                <Value>, quien se identifica con el Documento Personal de Identificación (DPI) con los códigos únicos de identificación número; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1670,7 +1510,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>c).</Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1681,7 +1521,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> En fe de lo anterior vuelve a firmar únicamente </Value>
+                <Value>mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413) extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica, </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1692,18 +1532,15 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez, no así Juan Santiago Santiago, quien,</Value>
+                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
-                  <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> por no saber firmar, vuelve a dejar la impresión dactilar del dedo pulgar de su mano derecha, firmando a su ruego </Value>
+                <Value> quien se identifica con el Documento Personal de Identificación (DPI) con los códigos únicos de identificación número; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1714,13 +1551,43 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!Testgo1.Value, "Datos")</Value>
+                <Value>=First(Fields!CuiLDeudor.Value, "Datos")</Value>
                 <Style>
-                  <FontWeight>Bold</FontWeight>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, como</Value>
+                <Value> (</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!CuiDeudor.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>), extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> y </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1731,7 +1598,168 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> testigo para la presente Acta de Legalización de Firmas. </Value>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, quien se identifica con el Documento Personal de Identificación (DPI) con los códigos únicos de identificación número; </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!CuiLFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value> (</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!CuiFiador.Value, "Datos")</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value>)</Value>
+                <Style />
+              </TextRun>
+              <TextRun>
+                <Value> , extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica. </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>b).</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> Las firmas que se legalizan y que están puestas en el presente instrumento consiste en: “</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>CONTRATO DE RECONOCIMIENTO DE DEUDA”</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> otorgado por </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> y </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
+                <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> a favor de </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Diego Salomón Brito Pérez </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>con las condiciones ya descritas </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>c.)</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> En fe de lo anterior los signatarios firman nuevamente y vuelven a dejar la impresión dactilar del dedo pulgar de la mano derecha en la presente acta de legalización de firmas. </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1826,7 +1854,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez       </Value>
+                <Value>Diego Salomón Brito Pérez                     </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1839,6 +1867,8 @@
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
@@ -1854,26 +1884,16 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!Testgo1.Value, "Datos")</Value>
+                <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
                 <Style>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
                 </Style>
               </TextRun>
             </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
+            <LeftIndent>0cm</LeftIndent>
             <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
             <Style>
               <TextAlign>Left</TextAlign>
               <LineHeight>18pt</LineHeight>
@@ -1882,61 +1902,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>           Areedor                                        </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Deudor                           Testigo </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
+                <Value>Acreedor                                                             La Parte Deudora                                                                Fiador</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1949,6 +1915,7 @@
             </TextRuns>
             <LeftIndent>0cm</LeftIndent>
             <RightIndent>0cm</RightIndent>
+            <HangingIndent>0cm</HangingIndent>
             <Style>
               <TextAlign>Left</TextAlign>
               <LineHeight>18pt</LineHeight>
@@ -2014,28 +1981,7 @@
             <RightIndent>0cm</RightIndent>
             <Style>
               <TextAlign>Left</TextAlign>
-              <LineHeight>24pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>24pt</LineHeight>
+              <LineHeight>18pt</LineHeight>
             </Style>
           </Paragraph>
           <Paragraph>
@@ -2066,7 +2012,7 @@
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
+                  <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
@@ -2095,13 +2041,13 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>14.55in</Height>
+    <Height>12.56042in</Height>
     <Style />
   </Body>
-  <Width>8.1in</Width>
+  <Width>7.98541in</Width>
   <Page>
     <PageHeight>33cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
+    <PageWidth>21.59cm</PageWidth>
     <LeftMargin>0.5cm</LeftMargin>
     <RightMargin>0.5cm</RightMargin>
     <TopMargin>0.5cm</TopMargin>
@@ -2110,6 +2056,202 @@
     <Style />
   </Page>
   <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="ArcoirisReportesContratos">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>9204f2f4-671e-47c3-94f2-67d033b65545</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Datos">
+      <Query>
+        <DataSourceName>ArcoirisReportesContratos</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Acreedor">
+          <DataField>Acreedor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Cantidad">
+          <DataField>Cantidad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CantidadLet">
+          <DataField>CantidadLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuiDeudor">
+          <DataField>CuiDeudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuiFiador">
+          <DataField>CuiFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuiLDeudor">
+          <DataField>CuiLDeudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuiLFiador">
+          <DataField>CuiLFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DeparFiador">
+          <DataField>DeparFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Departamento">
+          <DataField>Departamento</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Deudor">
+          <DataField>Deudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Direccion">
+          <DataField>Direccion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EdadAcre">
+          <DataField>EdadAcre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EdadDeudor">
+          <DataField>EdadDeudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EdadFiador">
+          <DataField>EdadFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EdadLAcre">
+          <DataField>EdadLAcre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EdadLDeudor">
+          <DataField>EdadLDeudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EdadLFiador">
+          <DataField>EdadLFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EstCivFiador">
+          <DataField>EstCivFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EstCivil">
+          <DataField>EstCivil</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaLet">
+          <DataField>FechaLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FiadorDomi">
+          <DataField>FiadorDomi</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GarantDeudor">
+          <DataField>GarantDeudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="GarantFiador">
+          <DataField>GarantFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Genero">
+          <DataField>Genero</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Municipio">
+          <DataField>Municipio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MuniFiador">
+          <DataField>MuniFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NacioFiador">
+          <DataField>NacioFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Nacionalidad">
+          <DataField>Nacionalidad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NomFiador">
+          <DataField>NomFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PagosLet">
+          <DataField>PagosLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Periodo">
+          <DataField>Periodo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PlazoLet">
+          <DataField>PlazoLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Porcent">
+          <DataField>Porcent</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PorcentLet">
+          <DataField>PorcentLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Profesion">
+          <DataField>Profesion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProfFiador">
+          <DataField>ProfFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testgo1">
+          <DataField>Testgo1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testgo2">
+          <DataField>Testgo2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi1Cui">
+          <DataField>Testi1Cui</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi1CuiLet">
+          <DataField>Testi1CuiLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi2Cui">
+          <DataField>Testi2Cui</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Testi2CuiLet">
+          <DataField>Testi2CuiLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="UsoPresta">
+          <DataField>UsoPresta</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Arcoiris.Reportes.Contratos</rd:DataSetName>
+        <rd:TableName>ContratoDatos</rd:TableName>
+        <rd:ObjectDataSourceType>Arcoiris.Reportes.Contratos.ContratoDatos, Arcoiris, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>de3a9569-7b6d-4d6f-9b6a-95c0b3ff2d40</rd:ReportID>
 </Report>

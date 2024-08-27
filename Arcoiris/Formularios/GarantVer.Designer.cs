@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GarantVer));
             this.PanCentral = new System.Windows.Forms.Panel();
+            this.TxtEstado = new System.Windows.Forms.TextBox();
+            this.CboEstado = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.ChkChanFecha = new System.Windows.Forms.CheckBox();
             this.CboTipGar = new System.Windows.Forms.ComboBox();
             this.BtnDesbloq = new System.Windows.Forms.Button();
             this.DtpFecha = new System.Windows.Forms.DateTimePicker();
@@ -52,15 +56,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ChkChanFecha = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.CboEstado = new System.Windows.Forms.ComboBox();
-            this.TxtEstado = new System.Windows.Forms.TextBox();
+            this.CmdContra = new System.Windows.Forms.Button();
             this.PanCentral.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanCentral
             // 
+            this.PanCentral.Controls.Add(this.CmdContra);
             this.PanCentral.Controls.Add(this.TxtEstado);
             this.PanCentral.Controls.Add(this.CboEstado);
             this.PanCentral.Controls.Add(this.label10);
@@ -94,6 +96,45 @@
             this.PanCentral.Size = new System.Drawing.Size(886, 333);
             this.PanCentral.TabIndex = 0;
             // 
+            // TxtEstado
+            // 
+            this.TxtEstado.Enabled = false;
+            this.TxtEstado.Location = new System.Drawing.Point(697, 223);
+            this.TxtEstado.Name = "TxtEstado";
+            this.TxtEstado.Size = new System.Drawing.Size(143, 25);
+            this.TxtEstado.TabIndex = 29;
+            // 
+            // CboEstado
+            // 
+            this.CboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboEstado.FormattingEnabled = true;
+            this.CboEstado.Items.AddRange(new object[] {
+            "En Posesión",
+            "Entregado"});
+            this.CboEstado.Location = new System.Drawing.Point(536, 221);
+            this.CboEstado.Name = "CboEstado";
+            this.CboEstado.Size = new System.Drawing.Size(142, 25);
+            this.CboEstado.TabIndex = 28;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(445, 226);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 17);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Estado";
+            // 
+            // ChkChanFecha
+            // 
+            this.ChkChanFecha.AutoSize = true;
+            this.ChkChanFecha.Location = new System.Drawing.Point(149, 298);
+            this.ChkChanFecha.Name = "ChkChanFecha";
+            this.ChkChanFecha.Size = new System.Drawing.Size(115, 21);
+            this.ChkChanFecha.TabIndex = 26;
+            this.ChkChanFecha.Text = "Cambiar fecha";
+            this.ChkChanFecha.UseVisualStyleBackColor = true;
+            // 
             // CboTipGar
             // 
             this.CboTipGar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -114,7 +155,7 @@
             // 
             // BtnDesbloq
             // 
-            this.BtnDesbloq.Location = new System.Drawing.Point(725, 274);
+            this.BtnDesbloq.Location = new System.Drawing.Point(594, 274);
             this.BtnDesbloq.Name = "BtnDesbloq";
             this.BtnDesbloq.Size = new System.Drawing.Size(115, 45);
             this.BtnDesbloq.TabIndex = 24;
@@ -166,7 +207,7 @@
             // 
             this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
             this.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGuardar.Location = new System.Drawing.Point(536, 274);
+            this.BtnGuardar.Location = new System.Drawing.Point(473, 274);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(115, 45);
             this.BtnGuardar.TabIndex = 18;
@@ -313,44 +354,18 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Credito";
             // 
-            // ChkChanFecha
+            // CmdContra
             // 
-            this.ChkChanFecha.AutoSize = true;
-            this.ChkChanFecha.Location = new System.Drawing.Point(149, 298);
-            this.ChkChanFecha.Name = "ChkChanFecha";
-            this.ChkChanFecha.Size = new System.Drawing.Size(115, 21);
-            this.ChkChanFecha.TabIndex = 26;
-            this.ChkChanFecha.Text = "Cambiar fecha";
-            this.ChkChanFecha.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(445, 226);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 17);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Estado";
-            // 
-            // CboEstado
-            // 
-            this.CboEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboEstado.FormattingEnabled = true;
-            this.CboEstado.Items.AddRange(new object[] {
-            "En Posesión",
-            "Entregado"});
-            this.CboEstado.Location = new System.Drawing.Point(536, 221);
-            this.CboEstado.Name = "CboEstado";
-            this.CboEstado.Size = new System.Drawing.Size(142, 25);
-            this.CboEstado.TabIndex = 28;
-            // 
-            // TxtEstado
-            // 
-            this.TxtEstado.Enabled = false;
-            this.TxtEstado.Location = new System.Drawing.Point(697, 223);
-            this.TxtEstado.Name = "TxtEstado";
-            this.TxtEstado.Size = new System.Drawing.Size(143, 25);
-            this.TxtEstado.TabIndex = 29;
+            this.CmdContra.Image = ((System.Drawing.Image)(resources.GetObject("CmdContra.Image")));
+            this.CmdContra.Location = new System.Drawing.Point(725, 274);
+            this.CmdContra.Name = "CmdContra";
+            this.CmdContra.Size = new System.Drawing.Size(115, 45);
+            this.CmdContra.TabIndex = 30;
+            this.CmdContra.Text = "Contrato";
+            this.CmdContra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CmdContra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CmdContra.UseVisualStyleBackColor = true;
+            this.CmdContra.Click += new System.EventHandler(this.CmdContra_Click);
             // 
             // GarantVer
             // 
@@ -401,5 +416,6 @@
         private System.Windows.Forms.ComboBox CboEstado;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox TxtEstado;
+        private System.Windows.Forms.Button CmdContra;
     }
 }

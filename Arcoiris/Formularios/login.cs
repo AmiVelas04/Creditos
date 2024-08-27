@@ -121,20 +121,13 @@ namespace Arcoiris.Formularios
 
         private void login_Load(object sender, EventArgs e)
         {
-            //BtnIngresar.Focus();
-            TxtUsu.Focus();
-            
+           
+
         }
 
         private void TxtUsu_Click(object sender, EventArgs e)
         {
-            Color TextoCol;
-            TextoCol = Color.FromArgb(0, 0, 0);
-            if (TxtUsu.Text == "Usuario")
-            {
-                TxtUsu.Text = "";
-                TxtUsu.ForeColor = TextoCol;
-            }
+         
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -145,7 +138,17 @@ namespace Arcoiris.Formularios
         private void TxtContra_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) ingreso();
-            
+        }
+
+        private void login_Shown(object sender, EventArgs e)
+        {
+            if (!TxtUsu.Focused)
+            {
+                TxtUsu.Focus();
+                // TxtUsu.Text += e.KeyChar;
+                // Move el cursor al final
+                TxtUsu.SelectionStart = TxtUsu.Text.Length;
+            }
         }
     }
 }
