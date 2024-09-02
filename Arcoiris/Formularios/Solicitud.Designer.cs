@@ -35,22 +35,14 @@
             this.GbxGarantia = new System.Windows.Forms.GroupBox();
             this.CboTipPresta = new System.Windows.Forms.ComboBox();
             this.GbxGarantias = new System.Windows.Forms.GroupBox();
+            this.ChkTesti2 = new System.Windows.Forms.CheckBox();
+            this.ChkFirma2 = new System.Windows.Forms.CheckBox();
+            this.ChkTesti1 = new System.Windows.Forms.CheckBox();
+            this.ChkFirma1 = new System.Windows.Forms.CheckBox();
+            this.RdbGarant3 = new System.Windows.Forms.RadioButton();
+            this.RdbGarant2 = new System.Windows.Forms.RadioButton();
             this.RdbGarant1 = new System.Windows.Forms.RadioButton();
             this.RdbSnGaran = new System.Windows.Forms.RadioButton();
-            this.TxtAut = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.TxtTipEsc = new System.Windows.Forms.TextBox();
-            this.TxtUbicacion = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.DtpEsc = new System.Windows.Forms.DateTimePicker();
-            this.label21 = new System.Windows.Forms.Label();
-            this.TxtValu = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.CboTipoGarant = new System.Windows.Forms.ComboBox();
-            this.TxtGaran = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.NupPlazo = new System.Windows.Forms.NumericUpDown();
             this.LblPlazo = new System.Windows.Forms.Label();
             this.CboTipo = new System.Windows.Forms.ComboBox();
@@ -101,12 +93,26 @@
             this.label12 = new System.Windows.Forms.Label();
             this.CboSoli = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.RdbGarant2 = new System.Windows.Forms.RadioButton();
-            this.RdbGarant3 = new System.Windows.Forms.RadioButton();
-            this.ChkFirma1 = new System.Windows.Forms.CheckBox();
-            this.ChkFirma2 = new System.Windows.Forms.CheckBox();
-            this.ChkTesti2 = new System.Windows.Forms.CheckBox();
-            this.ChkTesti1 = new System.Windows.Forms.CheckBox();
+            this.GbxDataFiad = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.TxtNomF = new System.Windows.Forms.TextBox();
+            this.TxtDpiF = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.CboMuniF = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.CboDepaF = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.NudEdadF = new System.Windows.Forms.NumericUpDown();
+            this.label23 = new System.Windows.Forms.Label();
+            this.CboGeneF = new System.Windows.Forms.ComboBox();
+            this.TxtDirF = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.TxtEstCivilF = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.TxtProfFiad = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.BtnAddGarant = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -115,6 +121,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
             this.Tab2.SuspendLayout();
             this.GBXPrestamo.SuspendLayout();
+            this.GbxDataFiad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -176,25 +184,13 @@
             // 
             // GbxGarantia
             // 
+            this.GbxGarantia.Controls.Add(this.BtnAddGarant);
+            this.GbxGarantia.Controls.Add(this.GbxDataFiad);
             this.GbxGarantia.Controls.Add(this.CboTipPresta);
             this.GbxGarantia.Controls.Add(this.GbxGarantias);
-            this.GbxGarantia.Controls.Add(this.TxtAut);
-            this.GbxGarantia.Controls.Add(this.label24);
-            this.GbxGarantia.Controls.Add(this.TxtTipEsc);
-            this.GbxGarantia.Controls.Add(this.TxtUbicacion);
-            this.GbxGarantia.Controls.Add(this.label23);
-            this.GbxGarantia.Controls.Add(this.label22);
-            this.GbxGarantia.Controls.Add(this.DtpEsc);
-            this.GbxGarantia.Controls.Add(this.label21);
-            this.GbxGarantia.Controls.Add(this.TxtValu);
-            this.GbxGarantia.Controls.Add(this.label20);
-            this.GbxGarantia.Controls.Add(this.label19);
-            this.GbxGarantia.Controls.Add(this.CboTipoGarant);
-            this.GbxGarantia.Controls.Add(this.TxtGaran);
-            this.GbxGarantia.Controls.Add(this.label7);
             this.GbxGarantia.Location = new System.Drawing.Point(7, 250);
             this.GbxGarantia.Name = "GbxGarantia";
-            this.GbxGarantia.Size = new System.Drawing.Size(850, 202);
+            this.GbxGarantia.Size = new System.Drawing.Size(864, 202);
             this.GbxGarantia.TabIndex = 24;
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
@@ -230,6 +226,72 @@
             this.GbxGarantias.TabStop = false;
             this.GbxGarantias.Text = "Garantias Deudor";
             // 
+            // ChkTesti2
+            // 
+            this.ChkTesti2.AutoSize = true;
+            this.ChkTesti2.Enabled = false;
+            this.ChkTesti2.Location = new System.Drawing.Point(160, 93);
+            this.ChkTesti2.Name = "ChkTesti2";
+            this.ChkTesti2.Size = new System.Drawing.Size(72, 17);
+            this.ChkTesti2.TabIndex = 43;
+            this.ChkTesti2.Text = "Testigo 2";
+            this.ChkTesti2.UseVisualStyleBackColor = true;
+            // 
+            // ChkFirma2
+            // 
+            this.ChkFirma2.AutoSize = true;
+            this.ChkFirma2.Location = new System.Drawing.Point(160, 70);
+            this.ChkFirma2.Name = "ChkFirma2";
+            this.ChkFirma2.Size = new System.Drawing.Size(91, 17);
+            this.ChkFirma2.TabIndex = 6;
+            this.ChkFirma2.Text = "Firma Fiador";
+            this.ChkFirma2.UseVisualStyleBackColor = true;
+            this.ChkFirma2.CheckedChanged += new System.EventHandler(this.ChkFirma2_CheckedChanged);
+            // 
+            // ChkTesti1
+            // 
+            this.ChkTesti1.AutoSize = true;
+            this.ChkTesti1.Enabled = false;
+            this.ChkTesti1.Location = new System.Drawing.Point(6, 93);
+            this.ChkTesti1.Name = "ChkTesti1";
+            this.ChkTesti1.Size = new System.Drawing.Size(72, 17);
+            this.ChkTesti1.TabIndex = 42;
+            this.ChkTesti1.Text = "Testigo 1";
+            this.ChkTesti1.UseVisualStyleBackColor = true;
+            // 
+            // ChkFirma1
+            // 
+            this.ChkFirma1.AutoSize = true;
+            this.ChkFirma1.Location = new System.Drawing.Point(6, 70);
+            this.ChkFirma1.Name = "ChkFirma1";
+            this.ChkFirma1.Size = new System.Drawing.Size(97, 17);
+            this.ChkFirma1.TabIndex = 5;
+            this.ChkFirma1.Text = "Firma Deudor";
+            this.ChkFirma1.UseVisualStyleBackColor = true;
+            this.ChkFirma1.CheckedChanged += new System.EventHandler(this.ChkFirma1_CheckedChanged);
+            // 
+            // RdbGarant3
+            // 
+            this.RdbGarant3.AutoSize = true;
+            this.RdbGarant3.Location = new System.Drawing.Point(160, 47);
+            this.RdbGarant3.Name = "RdbGarant3";
+            this.RdbGarant3.Size = new System.Drawing.Size(90, 17);
+            this.RdbGarant3.TabIndex = 4;
+            this.RdbGarant3.Text = "Garantia 1y2";
+            this.RdbGarant3.UseVisualStyleBackColor = true;
+            this.RdbGarant3.CheckedChanged += new System.EventHandler(this.RdbGarant3_CheckedChanged);
+            // 
+            // RdbGarant2
+            // 
+            this.RdbGarant2.AutoSize = true;
+            this.RdbGarant2.Location = new System.Drawing.Point(6, 47);
+            this.RdbGarant2.Name = "RdbGarant2";
+            this.RdbGarant2.Size = new System.Drawing.Size(78, 17);
+            this.RdbGarant2.TabIndex = 3;
+            this.RdbGarant2.Text = "Garantia 2";
+            this.RdbGarant2.UseVisualStyleBackColor = true;
+            this.RdbGarant2.CheckedChanged += new System.EventHandler(this.RdbGarant2_CheckedChanged);
+            // 
             // RdbGarant1
             // 
             this.RdbGarant1.AutoSize = true;
@@ -239,6 +301,7 @@
             this.RdbGarant1.TabIndex = 2;
             this.RdbGarant1.Text = "Garantia 1";
             this.RdbGarant1.UseVisualStyleBackColor = true;
+            this.RdbGarant1.CheckedChanged += new System.EventHandler(this.RdbGarant1_CheckedChanged);
             // 
             // RdbSnGaran
             // 
@@ -252,140 +315,6 @@
             this.RdbSnGaran.Text = "Sin Garantia";
             this.RdbSnGaran.UseVisualStyleBackColor = true;
             this.RdbSnGaran.CheckedChanged += new System.EventHandler(this.RdbSnGaran_CheckedChanged);
-            // 
-            // TxtAut
-            // 
-            this.TxtAut.Location = new System.Drawing.Point(726, 169);
-            this.TxtAut.Name = "TxtAut";
-            this.TxtAut.Size = new System.Drawing.Size(115, 25);
-            this.TxtAut.TabIndex = 38;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(607, 174);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(61, 17);
-            this.label24.TabIndex = 37;
-            this.label24.Text = "Autorizó";
-            // 
-            // TxtTipEsc
-            // 
-            this.TxtTipEsc.Location = new System.Drawing.Point(726, 24);
-            this.TxtTipEsc.Name = "TxtTipEsc";
-            this.TxtTipEsc.Size = new System.Drawing.Size(115, 25);
-            this.TxtTipEsc.TabIndex = 36;
-            // 
-            // TxtUbicacion
-            // 
-            this.TxtUbicacion.Location = new System.Drawing.Point(726, 106);
-            this.TxtUbicacion.Multiline = true;
-            this.TxtUbicacion.Name = "TxtUbicacion";
-            this.TxtUbicacion.Size = new System.Drawing.Size(115, 46);
-            this.TxtUbicacion.TabIndex = 35;
-            this.TxtUbicacion.Visible = false;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(607, 116);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(68, 17);
-            this.label23.TabIndex = 34;
-            this.label23.Text = "Ubicacion";
-            this.label23.Visible = false;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(603, 67);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(100, 17);
-            this.label22.TabIndex = 32;
-            this.label22.Text = "Fecha Escritura";
-            this.label22.Visible = false;
-            // 
-            // DtpEsc
-            // 
-            this.DtpEsc.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpEsc.Location = new System.Drawing.Point(726, 62);
-            this.DtpEsc.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.DtpEsc.Name = "DtpEsc";
-            this.DtpEsc.Size = new System.Drawing.Size(115, 25);
-            this.DtpEsc.TabIndex = 31;
-            this.DtpEsc.Visible = false;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(603, 29);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(93, 17);
-            this.label21.TabIndex = 30;
-            this.label21.Text = "Tipo Escritura";
-            this.label21.Visible = false;
-            // 
-            // TxtValu
-            // 
-            this.TxtValu.Location = new System.Drawing.Point(462, 129);
-            this.TxtValu.Name = "TxtValu";
-            this.TxtValu.Size = new System.Drawing.Size(90, 25);
-            this.TxtValu.TabIndex = 29;
-            this.TxtValu.Text = "0";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(346, 129);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(68, 17);
-            this.label20.TabIndex = 28;
-            this.label20.Text = "Valuacion";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(346, 29);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(92, 17);
-            this.label19.TabIndex = 27;
-            this.label19.Text = "Tipo Garantia";
-            // 
-            // CboTipoGarant
-            // 
-            this.CboTipoGarant.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboTipoGarant.FormattingEnabled = true;
-            this.CboTipoGarant.Items.AddRange(new object[] {
-            "Prendaria",
-            "Hipotecária",
-            "Vehiculos",
-            "Fiduciaria",
-            "Compromiso de deuda"});
-            this.CboTipoGarant.Location = new System.Drawing.Point(462, 26);
-            this.CboTipoGarant.Name = "CboTipoGarant";
-            this.CboTipoGarant.Size = new System.Drawing.Size(134, 25);
-            this.CboTipoGarant.TabIndex = 26;
-            this.CboTipoGarant.SelectedIndexChanged += new System.EventHandler(this.CboTipoGarant_SelectedIndexChanged);
-            // 
-            // TxtGaran
-            // 
-            this.TxtGaran.Location = new System.Drawing.Point(462, 67);
-            this.TxtGaran.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtGaran.MaxLength = 255;
-            this.TxtGaran.Multiline = true;
-            this.TxtGaran.Name = "TxtGaran";
-            this.TxtGaran.Size = new System.Drawing.Size(134, 44);
-            this.TxtGaran.TabIndex = 25;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(346, 70);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(108, 17);
-            this.label7.TabIndex = 24;
-            this.label7.Text = "Detalle Garantia";
             // 
             // NupPlazo
             // 
@@ -941,69 +870,230 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Solicitudes Pendientes";
             // 
-            // RdbGarant2
+            // GbxDataFiad
             // 
-            this.RdbGarant2.AutoSize = true;
-            this.RdbGarant2.Location = new System.Drawing.Point(6, 47);
-            this.RdbGarant2.Name = "RdbGarant2";
-            this.RdbGarant2.Size = new System.Drawing.Size(78, 17);
-            this.RdbGarant2.TabIndex = 3;
-            this.RdbGarant2.Text = "Garantia 2";
-            this.RdbGarant2.UseVisualStyleBackColor = true;
+            this.GbxDataFiad.Controls.Add(this.TxtProfFiad);
+            this.GbxDataFiad.Controls.Add(this.label26);
+            this.GbxDataFiad.Controls.Add(this.TxtEstCivilF);
+            this.GbxDataFiad.Controls.Add(this.label25);
+            this.GbxDataFiad.Controls.Add(this.TxtDirF);
+            this.GbxDataFiad.Controls.Add(this.label24);
+            this.GbxDataFiad.Controls.Add(this.CboGeneF);
+            this.GbxDataFiad.Controls.Add(this.label23);
+            this.GbxDataFiad.Controls.Add(this.NudEdadF);
+            this.GbxDataFiad.Controls.Add(this.label22);
+            this.GbxDataFiad.Controls.Add(this.CboMuniF);
+            this.GbxDataFiad.Controls.Add(this.label20);
+            this.GbxDataFiad.Controls.Add(this.CboDepaF);
+            this.GbxDataFiad.Controls.Add(this.label21);
+            this.GbxDataFiad.Controls.Add(this.TxtDpiF);
+            this.GbxDataFiad.Controls.Add(this.label19);
+            this.GbxDataFiad.Controls.Add(this.TxtNomF);
+            this.GbxDataFiad.Controls.Add(this.label7);
+            this.GbxDataFiad.Location = new System.Drawing.Point(278, 13);
+            this.GbxDataFiad.Name = "GbxDataFiad";
+            this.GbxDataFiad.Size = new System.Drawing.Size(580, 181);
+            this.GbxDataFiad.TabIndex = 42;
+            this.GbxDataFiad.TabStop = false;
+            this.GbxDataFiad.Text = "Datos del fiador";
             // 
-            // RdbGarant3
+            // label7
             // 
-            this.RdbGarant3.AutoSize = true;
-            this.RdbGarant3.Location = new System.Drawing.Point(160, 47);
-            this.RdbGarant3.Name = "RdbGarant3";
-            this.RdbGarant3.Size = new System.Drawing.Size(90, 17);
-            this.RdbGarant3.TabIndex = 4;
-            this.RdbGarant3.Text = "Garantia 1y2";
-            this.RdbGarant3.UseVisualStyleBackColor = true;
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(18, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Nombre";
             // 
-            // ChkFirma1
+            // TxtNomF
             // 
-            this.ChkFirma1.AutoSize = true;
-            this.ChkFirma1.Location = new System.Drawing.Point(6, 70);
-            this.ChkFirma1.Name = "ChkFirma1";
-            this.ChkFirma1.Size = new System.Drawing.Size(97, 17);
-            this.ChkFirma1.TabIndex = 5;
-            this.ChkFirma1.Text = "Firma Deudor";
-            this.ChkFirma1.UseVisualStyleBackColor = true;
-            this.ChkFirma1.CheckedChanged += new System.EventHandler(this.ChkFirma1_CheckedChanged);
+            this.TxtNomF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNomF.Location = new System.Drawing.Point(6, 41);
+            this.TxtNomF.Name = "TxtNomF";
+            this.TxtNomF.Size = new System.Drawing.Size(219, 23);
+            this.TxtNomF.TabIndex = 1;
             // 
-            // ChkFirma2
+            // TxtDpiF
             // 
-            this.ChkFirma2.AutoSize = true;
-            this.ChkFirma2.Location = new System.Drawing.Point(160, 70);
-            this.ChkFirma2.Name = "ChkFirma2";
-            this.ChkFirma2.Size = new System.Drawing.Size(91, 17);
-            this.ChkFirma2.TabIndex = 6;
-            this.ChkFirma2.Text = "Firma Fiador";
-            this.ChkFirma2.UseVisualStyleBackColor = true;
-            this.ChkFirma2.CheckedChanged += new System.EventHandler(this.ChkFirma2_CheckedChanged);
+            this.TxtDpiF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDpiF.Location = new System.Drawing.Point(6, 85);
+            this.TxtDpiF.MaxLength = 13;
+            this.TxtDpiF.Name = "TxtDpiF";
+            this.TxtDpiF.Size = new System.Drawing.Size(188, 23);
+            this.TxtDpiF.TabIndex = 3;
             // 
-            // ChkTesti2
+            // label19
             // 
-            this.ChkTesti2.AutoSize = true;
-            this.ChkTesti2.Enabled = false;
-            this.ChkTesti2.Location = new System.Drawing.Point(160, 93);
-            this.ChkTesti2.Name = "ChkTesti2";
-            this.ChkTesti2.Size = new System.Drawing.Size(72, 17);
-            this.ChkTesti2.TabIndex = 43;
-            this.ChkTesti2.Text = "Testigo 2";
-            this.ChkTesti2.UseVisualStyleBackColor = true;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(18, 67);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(26, 15);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Dpi";
             // 
-            // ChkTesti1
+            // CboMuniF
             // 
-            this.ChkTesti1.AutoSize = true;
-            this.ChkTesti1.Enabled = false;
-            this.ChkTesti1.Location = new System.Drawing.Point(6, 93);
-            this.ChkTesti1.Name = "ChkTesti1";
-            this.ChkTesti1.Size = new System.Drawing.Size(72, 17);
-            this.ChkTesti1.TabIndex = 42;
-            this.ChkTesti1.Text = "Testigo 1";
-            this.ChkTesti1.UseVisualStyleBackColor = true;
+            this.CboMuniF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboMuniF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboMuniF.FormattingEnabled = true;
+            this.CboMuniF.Location = new System.Drawing.Point(231, 85);
+            this.CboMuniF.Name = "CboMuniF";
+            this.CboMuniF.Size = new System.Drawing.Size(138, 23);
+            this.CboMuniF.TabIndex = 41;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(240, 67);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 15);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "Municipio";
+            // 
+            // CboDepaF
+            // 
+            this.CboDepaF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboDepaF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboDepaF.FormattingEnabled = true;
+            this.CboDepaF.Location = new System.Drawing.Point(231, 41);
+            this.CboDepaF.Name = "CboDepaF";
+            this.CboDepaF.Size = new System.Drawing.Size(138, 23);
+            this.CboDepaF.TabIndex = 39;
+            this.CboDepaF.SelectedValueChanged += new System.EventHandler(this.CboDepaF_SelectedValueChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(240, 21);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(89, 15);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "Departamento";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(18, 115);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 15);
+            this.label22.TabIndex = 42;
+            this.label22.Text = "Edad";
+            // 
+            // NudEdadF
+            // 
+            this.NudEdadF.Location = new System.Drawing.Point(6, 133);
+            this.NudEdadF.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.NudEdadF.Minimum = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            this.NudEdadF.Name = "NudEdadF";
+            this.NudEdadF.Size = new System.Drawing.Size(83, 25);
+            this.NudEdadF.TabIndex = 43;
+            this.NudEdadF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NudEdadF.Value = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(109, 115);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(49, 15);
+            this.label23.TabIndex = 44;
+            this.label23.Text = "Genero";
+            // 
+            // CboGeneF
+            // 
+            this.CboGeneF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboGeneF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboGeneF.FormattingEnabled = true;
+            this.CboGeneF.Items.AddRange(new object[] {
+            "Masculino",
+            "Femenino"});
+            this.CboGeneF.Location = new System.Drawing.Point(95, 133);
+            this.CboGeneF.Name = "CboGeneF";
+            this.CboGeneF.Size = new System.Drawing.Size(99, 23);
+            this.CboGeneF.TabIndex = 45;
+            // 
+            // TxtDirF
+            // 
+            this.TxtDirF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDirF.Location = new System.Drawing.Point(231, 133);
+            this.TxtDirF.Name = "TxtDirF";
+            this.TxtDirF.Size = new System.Drawing.Size(308, 23);
+            this.TxtDirF.TabIndex = 47;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(233, 113);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(60, 15);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Direccion";
+            // 
+            // TxtEstCivilF
+            // 
+            this.TxtEstCivilF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstCivilF.Location = new System.Drawing.Point(391, 41);
+            this.TxtEstCivilF.Name = "TxtEstCivilF";
+            this.TxtEstCivilF.Size = new System.Drawing.Size(148, 23);
+            this.TxtEstCivilF.TabIndex = 49;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(393, 21);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(69, 15);
+            this.label25.TabIndex = 48;
+            this.label25.Text = "Estado Civil";
+            // 
+            // TxtProfFiad
+            // 
+            this.TxtProfFiad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProfFiad.Location = new System.Drawing.Point(391, 85);
+            this.TxtProfFiad.Name = "TxtProfFiad";
+            this.TxtProfFiad.Size = new System.Drawing.Size(148, 23);
+            this.TxtProfFiad.TabIndex = 51;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(393, 65);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(60, 15);
+            this.label26.TabIndex = 50;
+            this.label26.Text = "Profesion";
+            // 
+            // BtnAddGarant
+            // 
+            this.BtnAddGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddGarant.Image")));
+            this.BtnAddGarant.Location = new System.Drawing.Point(197, 24);
+            this.BtnAddGarant.Name = "BtnAddGarant";
+            this.BtnAddGarant.Size = new System.Drawing.Size(75, 41);
+            this.BtnAddGarant.TabIndex = 43;
+            this.BtnAddGarant.UseVisualStyleBackColor = true;
+            this.BtnAddGarant.Click += new System.EventHandler(this.BtnAddGarant_Click);
             // 
             // Solicitud
             // 
@@ -1024,13 +1114,15 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.GbxGarantia.ResumeLayout(false);
-            this.GbxGarantia.PerformLayout();
             this.GbxGarantias.ResumeLayout(false);
             this.GbxGarantias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).EndInit();
             this.Tab2.ResumeLayout(false);
             this.GBXPrestamo.ResumeLayout(false);
             this.GBXPrestamo.PerformLayout();
+            this.GbxDataFiad.ResumeLayout(false);
+            this.GbxDataFiad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1091,20 +1183,6 @@
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.ComboBox CboTipo2;
         private System.Windows.Forms.GroupBox GbxGarantia;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ComboBox CboTipoGarant;
-        private System.Windows.Forms.TextBox TxtGaran;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.DateTimePicker DtpEsc;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox TxtValu;
-        private System.Windows.Forms.TextBox TxtUbicacion;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox TxtTipEsc;
-        private System.Windows.Forms.TextBox TxtAut;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.GroupBox GbxGarantias;
         private System.Windows.Forms.RadioButton RdbSnGaran;
         private System.Windows.Forms.ComboBox CboTipPresta;
@@ -1115,5 +1193,25 @@
         private System.Windows.Forms.RadioButton RdbGarant2;
         private System.Windows.Forms.CheckBox ChkTesti2;
         private System.Windows.Forms.CheckBox ChkTesti1;
+        private System.Windows.Forms.GroupBox GbxDataFiad;
+        private System.Windows.Forms.TextBox TxtDpiF;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TxtNomF;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox CboMuniF;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox CboDepaF;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox TxtDirF;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox CboGeneF;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.NumericUpDown NudEdadF;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox TxtEstCivilF;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox TxtProfFiad;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Button BtnAddGarant;
     }
 }

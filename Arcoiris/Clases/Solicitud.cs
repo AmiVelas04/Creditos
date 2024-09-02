@@ -12,6 +12,8 @@ namespace Arcoiris.Clases
     class Solicitud
     {
         conexion conect = new conexion();
+        
+
 
         #region "General"
         private DataTable buscar(string consulta)
@@ -154,7 +156,7 @@ namespace Arcoiris.Clases
         }
         #endregion
 
-
+     
         public bool agregar_soli(string[] datos)
         {
             conect.iniciar();
@@ -172,21 +174,21 @@ namespace Arcoiris.Clases
             {
                 conect.conn.Open();
                 com.ExecuteNonQuery();
-
                 conect.conn.Close();
                 if (asinga_soli(data))
                 {
                     string[] Dgaran = new string[10];
-                    Dgaran[0] = datos[10];
-                    Dgaran[1] = datos[11];
-                    Dgaran[2] = datos[12];
-                    Dgaran[3] = datos[13];
-                    Dgaran[4] = datos[14];
-                    Dgaran[5] = datos[15];
-                    Dgaran[6] = datos[16];
-                    Dgaran[7] = datos[17];
-                    Dgaran[8] = datos[18];
-                    Dgaran[9] = datos[0];
+                    Dgaran[0] = datos[10]; //contrato
+                    Dgaran[1] = datos[11];//valuacion
+                    Dgaran[2] = datos[12];//Garantia
+                    Dgaran[3] = datos[13];//Nom fiador
+                    Dgaran[4] = datos[14];//Municipio fiador
+                    Dgaran[5] = datos[15];//Departamento Fiador
+                    Dgaran[6] = datos[16];//Proffiador
+                    Dgaran[7] = datos[17];//Edad Fiador
+                    Dgaran[8] = datos[18];//Estado civil fiador
+                    Dgaran[9] = datos[19];//Garant Fiador
+                    Dgaran[10] = datos[0];
                     return ingre_garant(Dgaran);
                     //return true;
                 }
@@ -194,7 +196,6 @@ namespace Arcoiris.Clases
                 {
                     return false;
                 }
-
             }
             catch (Exception ex)
             {
@@ -202,7 +203,6 @@ namespace Arcoiris.Clases
                 MessageBox.Show(ex.ToString());
                 MessageBox.Show(consulta);
                 return false;
-
             }
 
         }
@@ -255,7 +255,7 @@ namespace Arcoiris.Clases
             idgarant = id_garant();
             idgarant++;
 
-            string consulta = "Insert into garantia(id_garant,tipo,valuacion,detalle,tipo_esc,Fecha_Esc,Autorizo,Val_banca,Ubicacion,Estado) values(" +
+            string consulta = "Insert into garantia(id_garant,tipo,ContratoTip,valuacion,detalle,FiadorNom1,FiadorCui,FiadorGene,FiadorMuni,FioadorDepa,FiadorDire,FiadorTel,FiadorEdad,FiadorEstCiv,Fdetalle,FValuacion) values(" +
                               ""+idgarant.ToString()+",'"+val[0]+"',"+val[1]+",'"+val[2]+"','"+val[3]+"','"+val[4]+"','"+val[5]+"',"+val[6]+",'"+val[7]+"','"+val[8]+"')";
             MySqlCommand com = new MySqlCommand();
             com.Connection = conect.conn;
@@ -268,7 +268,7 @@ namespace Arcoiris.Clases
                 com.ExecuteNonQuery();
                 conect.conn.Close();
                 valo[0] = idgarant.ToString();
-                valo[1] = val[9];
+                valo[1] = val[10];
                 if (asigna_garant(valo))
                 {
                     return true;
@@ -277,7 +277,6 @@ namespace Arcoiris.Clases
                 {
                     return false;
                 }
-
             }
             catch (Exception ex)
             {

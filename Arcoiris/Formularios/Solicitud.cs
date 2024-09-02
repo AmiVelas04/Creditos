@@ -20,8 +20,14 @@ namespace Arcoiris.Formularios
         Clases.CajaOpe caj = new Clases.CajaOpe();
         Clases.Logueo log = new Clases.Logueo();
         Reportes.LlenarReport repo = new Reportes.LlenarReport();
+        Reportes.Contratos.ContratoDatos datosgaran = new Reportes.Contratos.ContratoDatos();
+        int cantigarant = 0;
+        List<string> DetaGaran = new List<string>();
         private int cod_credi;
         private decimal salantes=0;
+        string contrato = "0";
+
+
         public Solicitud()
         {
             InitializeComponent();
@@ -40,7 +46,6 @@ namespace Arcoiris.Formularios
             else
             {
                 Tab2.Parent = null;
-                
             }
            
            
@@ -96,6 +101,8 @@ datoscli = cli.Buscar_nom_cli();
             CboTipo.SelectedIndex = 0;
 
 
+            cargarDepas();
+
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -108,7 +115,7 @@ datoscli = cli.Buscar_nom_cli();
             CboAsesor.SelectedIndex = 0;
             TxtNoSol.Clear();
             TxtConcept.Clear();
-            TxtGaran.Clear();
+          //  TxtGaran.Clear();
             TxtMonto.Clear();
             TxtNoSol.Text = sol.id_solicitud().ToString();
                
@@ -120,13 +127,22 @@ datoscli = cli.Buscar_nom_cli();
         }
         private void añadir()
         {
+            datosgaran.NomFiador = TxtNomF.Text;
+            datosgaran.DeparFiador = CboDepaF.Text;
+            datosgaran.MuniFiador = CboMuniF.Text;
+            datosgaran.ProfFiador = TxtProfFiad.Text;
+            datosgaran.EdadFiador = NudEdadF.Value.ToString();
+            datosgaran.EstCivFiador = TxtEstCivilF.Text;
+            
+
 
             string asesor="";
             string cliente="";
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             string fechaf = fecha.Replace("Fecha de solicitud: ", "");
             VeriContGar();
-            string TipoG = CboTipoGarant.Text, Valu = TxtValu.Text, TipoEsc = TxtTipEsc.Text, Fesc = DtpEsc.Value.ToString("dd/MM/yyyy"),Aut= TxtAut.Text,Ubi= TxtUbicacion.Text,Gdetall= TxtGaran.Text,Estado="En Posesion";
+
+            string Valu = "0", DetaGarantD=datosgaran.GarantDeudor;
             if (CboAsesor.SelectedValue == null)
             {
                 MessageBox.Show("No existe el asesor seleccionado", "no hay asesor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -153,7 +169,6 @@ datoscli = cli.Buscar_nom_cli();
             {
                 tipo = "1";
                 plazo = "30";
-
             }
             else if (CboTipo.Text == "Diario - Intereses")
             {
@@ -164,8 +179,6 @@ datoscli = cli.Buscar_nom_cli();
             {
                 tipo = "3";
                 plazo = Convert.ToString(NupPlazo.Value);
-
-
             }
             else if (CboTipo.Text == "Mensual - Sobre Saldo")
             {
@@ -179,7 +192,7 @@ datoscli = cli.Buscar_nom_cli();
             }
 
 
-            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, Gdetall, asesor, cliente, tipo,TipoG,Valu,Gdetall,TipoEsc,Fesc,Aut,Valu,Ubi,Estado};
+            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo,contrato,Valu,"0",datosgaran.GarantDeudor,datosgaran.NomFiador,datosgaran.MuniFiador,datosgaran.DeparFiador,datosgaran.ProfFiador,datosgaran.EdadFiador,datosgaran.EstCivFiador,datosgaran.GarantFiador};
             if (sol.hayasesor(asesor))
             {
                 if (sol.agregar_soli(datos))
@@ -551,17 +564,13 @@ datoscli = cli.Buscar_nom_cli();
                     pago[2] = "0";
                     if (cuotaint >0) pago[1] = cuotaint.ToString();
                     if (cuotacapital>0) pago[2] = cuotacapital.ToString();
-                    
                     pago[3] = (decimal.Parse(pago[1]) + decimal.Parse(pago[2])).ToString();
                     pago[4] = "";
                     pago[5] = "";
                     pago[6] = "";
                     pago[7] =cuotaint.ToString();
-
-
                     //Registrar pago
                     pagocancelacion(pago);
-
                     if (cre.cancelar_cre(cod_credi.ToString () ))
                         {
                         MessageBox.Show("Se canceló el credito anterior: ", " cancelado");
@@ -596,7 +605,6 @@ datoscli = cli.Buscar_nom_cli();
                 }
                 else
                 {
-
                     //  MessageBox.Show("Credito: " + Creact.Rows[cont][0].ToString() + " cancelado");                }
                 }
             }
@@ -788,55 +796,36 @@ datoscli = cli.Buscar_nom_cli();
                 bloquear();
                 cambiar();
             }
-
         }
 
         private void CboTipoGarant_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string TipG;
-            TipG = CboTipoGarant.SelectedIndex.ToString();
-            if (TipG.Equals("1"))
+            string TipPresta;
+            TipPresta =CboTipPresta.SelectedIndex.ToString();
+            if (TipPresta.Equals("1"))
             {
-                label21.Visible = true;
-                label22.Visible = true;
-                label23.Visible = true;
-                TxtTipEsc.Visible = true;
-                //CboTipEsc.Visible = true;
-                DtpEsc.Visible = true;
-                TxtUbicacion.Visible = true;
-                TxtUbicacion.Clear();
-              //  GbxGarantias.Visible = true;
-
-            }
-          else if (TipG.Equals("3"))
-            {
-                label21.Visible = true;
-                label22.Visible = true;
-                label23.Visible = true;
-                TxtTipEsc.Visible = true;
-                //CboTipEsc.Visible = true;
-                DtpEsc.Visible = true;
-                TxtUbicacion.Visible = true;
-                TxtUbicacion.Clear();
-               // GbxGarantias.Visible = true;
+            
             }
             else
             {
                 label21.Visible = false;
                 label22.Visible = false;
                 label23.Visible = false;
-                TxtTipEsc.Visible = false;
-                DtpEsc.Visible = false;
-                TxtUbicacion.Visible = false;
+              //  TxtTipEsc.Visible = false;
+              //  DtpEsc.Visible = false;
+              //  TxtUbicacion.Visible = false;
                // GbxGarantias.Visible = false;
             }
         }
 
         private void VeriContGar()
         {
-            if(TxtUbicacion.Text=="")TxtUbicacion.Text = "N/E";
-            if (TxtAut.Text == "") TxtAut.Text = "N/E";
-            if (TxtTipEsc.Text == "") TxtTipEsc.Text = "N/E";
+            if (TxtNomF.Text == "") TxtNomF.Text = "S/N";
+            if (TxtDpiF.Text == "") TxtDpiF.Text = "S/D";
+            if (TxtEstCivilF.Text == "") TxtEstCivilF.Text = "S/E";
+            if (TxtDirF.Text == "") TxtDirF.Text = "S/D";
+
+
         }
 
         private void RdbSnGaran_CheckedChanged(object sender, EventArgs e)
@@ -853,10 +842,15 @@ datoscli = cli.Buscar_nom_cli();
         {
             if (CboTipPresta.SelectedIndex == 0) {
                 MostrarPrestaIndi();
+                GbxDataFiad.Visible = false;
+
             }
             else
             {
+              
                 MostrarPrestaFiad();
+                GbxDataFiad.Visible = true;
+               
             }
         }
 
@@ -936,6 +930,69 @@ datoscli = cli.Buscar_nom_cli();
                 ChkTesti2.Checked = true;
             }
         }
+
+        private void cargarDepas()
+        {
+            List<Clases.Modelos.DeparamentoModel> todos = cli.Depar();
+            CboDepaF.DataSource = todos;
+            CboDepaF.DisplayMember = "Nombre";
+            CboDepaF.ValueMember = "Id";
+        }
+
+
+        private void CboDepaF_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CboDepaF.SelectedValue != null && !CboDepaF.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
+            {
+                string id = CboDepaF.SelectedValue.ToString();
+                CboMuniF.DataSource = cli.Munis(id);
+                CboMuniF.DisplayMember = "Nombre";
+                CboMuniF.ValueMember = "Id";
+            }
+        }
+
+        private void BtnAddGarant_Click(object sender, EventArgs e)
+        {
+            SubForms.IngresoGarantia esta = new SubForms.IngresoGarantia();
+            esta.garant = cantigarant;
+            esta.RegresarGarant += new SubForms.IngresoGarantia.Garantia(cargarGarant);
+            // lol.RegresarGarant += new lol.RegresarGarant(datosgaran);
+            esta.ShowDialog();
+        }
+
+     
+
+        private void RdbGarant1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbGarant1.Checked)
+            {
+                cantigarant = 1;
+            }
+
+        }
+
+        private void RdbGarant2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbGarant2.Checked)
+            {
+                cantigarant = 2;
+            }
+        }
+
+        private void RdbGarant3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbGarant3.Checked)
+            {
+                cantigarant = 3;
+            }
+        }
+
+        private void cargarGarant(Reportes.Contratos.ContratoDatos garantis)
+        {
+            datosgaran = garantis;
+        }
+
+
     }
 }
 

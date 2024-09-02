@@ -279,6 +279,12 @@
     <Compile Include="Formularios\Solicitud.Designer.cs">
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\SubForms\IngresoGarantia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SubForms\IngresoGarantia.Designer.cs">
+      <DependentUpon>IngresoGarantia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\Usuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -504,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Solicitud.resx">
       <DependentUpon>Solicitud.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SubForms\IngresoGarantia.resx">
+      <DependentUpon>IngresoGarantia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>
