@@ -152,7 +152,7 @@ namespace Arcoiris.Clases
            // int idfid;
           //  idfid=agregarfiador(fiddatos);
             int id=buscarid(consultab)+1;
-             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad) values({id},'{datos[0]}','{datos[1]}','{datos[2]}','{datos[3]}','{datos[4]}','{datos[5]}','{datos[6]}','{datos[7]}','{datos[8]}','{datos[9]}','{datos[10]}','{datos[11]}','{datos[15]}','{datos[16]}','{datos[17]}',{datos[18]})";
+             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad,genero,nacionalidad) values({id},'{datos[0]}','{datos[1]}','{datos[2]}','{datos[3]}','{datos[4]}','{datos[5]}','{datos[6]}','{datos[7]}','{datos[8]}','{datos[9]}','{datos[10]}','{datos[11]}','{datos[15]}','{datos[16]}','{datos[17]}',{datos[18]},'{datos[19]}','{datos[20]}')";
            // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
             com.Connection = conect .conn ;
@@ -183,12 +183,10 @@ namespace Arcoiris.Clases
         {
             conect.iniciar();
             string consulta;
-            consulta = "SELECT codigo_cli,CONCAT(cli.Nombres, ' ', cli.Apellidos) AS Nombre, cli.Telefono1,cli.Telefono2, cli.Domicilio ,referencia, concat(cli.Nombre_cony, ' ', cli.Apellido_cony)AS Conyuge, cli.TelefonoCon AS Conyuge_Telefono,F.Nombre AS Fiador, f.telefono AS Fiador_telefono, f.Direccion AS Direccion_fiador " +
+            consulta = "SELECT codigo_cli,CONCAT(cli.Nombres, ' ', cli.Apellidos) AS Nombre, cli.edad,cli.estado_civil,cli.Telefono1,cli.Telefono2,cli.Departamento,cli.Municipio, cli.Domicilio ,referencia, concat(cli.Nombre_cony, ' ', cli.Apellido_cony)AS Conyuge, cli.TelefonoCon AS Conyuge_Telefono " +
             "FROM cliente cli " +
-            "INNER JOIN fiador f ON cli.ID_fiador = f.id_fiador " +
-            "WHERE Cli.nombres LIKE '%" + nombre + "%' or cli.apellidos like '%" + nombre + "%' " +
+            $"WHERE Cli.nombres LIKE '%{nombre}%' or cli.apellidos like '%{nombre}%' " +
             "order by cli.Nombres";
-
             MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conect.conn);
             DataTable datos = new DataTable();
             adap.Fill(datos);
@@ -206,7 +204,7 @@ namespace Arcoiris.Clases
         public DataTable clientebusca(string idcli)
         {
             string consulta;
-            consulta = "SELECT Nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,nombre_cony,apellido_cony,telefonocon,referencia,estado_civil " +
+            consulta = "SELECT Nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,nombre_cony,apellido_cony,telefonocon,referencia,estado_civil,edad,Departamento,Municipio,Genero,Nacionalidad " +
                         "FROM cliente " +
                         "WHERE codigo_cli ="+ idcli ;
             DataTable datos = new DataTable();
@@ -264,8 +262,8 @@ namespace Arcoiris.Clases
         public bool updatecliente(string id,string[] datos)
         {
             string consulta;
-            consulta = "update cliente set nombres='" + datos[0] + "', apellidos='" + datos[1] + "', domicilio='" + datos[2] + "', dpi='" + datos[3] + "', telefono1='" + datos[4] + "', telefono2='" + datos[5] + "', profesion='" + datos[6] + "', nombre_cony='" + datos[8] + "', apellido_cony='" + datos[9] + "', telefonocon='" + datos[10] + "', referencia='" + datos[11] + "', estado_civil='" + datos[7] +
-                "' where codigo_cli=" + id;
+            consulta = $"update cliente set nombres='{datos[0]}', apellidos='{datos[1]}', domicilio='{datos[2]}', dpi='{datos[3]}', telefono1='{datos[4]}', telefono2='{datos[5]}', profesion='{datos[6]}', nombre_cony='{datos[8]}', apellido_cony='{datos[9]}', telefonocon='{datos[10]}', referencia='{datos[11]}', estado_civil='{datos[7]}',edad='{datos[12]}',genero='{datos[13]}'" +
+                $" where codigo_cli={id}";
             if (Consulgeneral(consulta))
             {
                 return true;

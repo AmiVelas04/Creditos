@@ -22,9 +22,10 @@ namespace Arcoiris.Formularios
         Reportes.LlenarReport repo = new Reportes.LlenarReport();
         Reportes.Contratos.ContratoDatos datosgaran = new Reportes.Contratos.ContratoDatos();
         int cantigarant = 0;
+        int Contratotip = 0;
         List<string> DetaGaran = new List<string>();
         private int cod_credi;
-        private decimal salantes=0;
+        private decimal salantes = 0;
         string contrato = "0";
 
 
@@ -47,8 +48,8 @@ namespace Arcoiris.Formularios
             {
                 Tab2.Parent = null;
             }
-           
-           
+
+
             /*  for (c1 = 0; c1 <= totalas - 1; c1++)
               {
                   CboAsesor.Items.Add (datosas.Rows[c1][0]);
@@ -60,12 +61,12 @@ namespace Arcoiris.Formularios
 
             //Agregar datos al combo box cliente
             DataTable datoscli = new DataTable();
-datoscli = cli.Buscar_nom_cli();
-            CboCliente.DataSource = datoscli ;
+            datoscli = cli.Buscar_nom_cli();
+            CboCliente.DataSource = datoscli;
             CboCliente.DisplayMember = "Nombre";
             CboCliente.ValueMember = "Codigo_Cli";
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            foreach (DataRow row in datoscli .Rows)
+            foreach (DataRow row in datoscli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
 
@@ -92,8 +93,8 @@ datoscli = cli.Buscar_nom_cli();
 
 
 
-            LblFecha.Text  = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
-            TxtNoSol.Text = sol.id_solicitud().ToString ();
+            LblFecha.Text = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
+            TxtNoSol.Text = sol.id_solicitud().ToString();
             CboTipo.Items.Add("Diario");
             CboTipo.Items.Add("Diario - Intereses");
             CboTipo.Items.Add("Mensual - Cuota Fija");
@@ -102,6 +103,8 @@ datoscli = cli.Buscar_nom_cli();
 
 
             cargarDepas();
+
+            CboGeneF.SelectedIndex = 0;
 
         }
 
@@ -115,10 +118,10 @@ datoscli = cli.Buscar_nom_cli();
             CboAsesor.SelectedIndex = 0;
             TxtNoSol.Clear();
             TxtConcept.Clear();
-          //  TxtGaran.Clear();
+            //  TxtGaran.Clear();
             TxtMonto.Clear();
             TxtNoSol.Text = sol.id_solicitud().ToString();
-               
+
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
@@ -133,16 +136,15 @@ datoscli = cli.Buscar_nom_cli();
             datosgaran.ProfFiador = TxtProfFiad.Text;
             datosgaran.EdadFiador = NudEdadF.Value.ToString();
             datosgaran.EstCivFiador = TxtEstCivilF.Text;
-            
-
-
-            string asesor="";
-            string cliente="";
+            datosgaran.CuiFiador = TxtDpiF.Text;
+            datosgaran.FiadorDomi = TxtDirF.Text;
+            string asesor = "";
+            string cliente = "";
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             string fechaf = fecha.Replace("Fecha de solicitud: ", "");
             VeriContGar();
 
-            string Valu = "0", DetaGarantD=datosgaran.GarantDeudor;
+            string Valu = "0", DetaGarantD = datosgaran.GarantDeudor;
             if (CboAsesor.SelectedValue == null)
             {
                 MessageBox.Show("No existe el asesor seleccionado", "no hay asesor", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -162,7 +164,7 @@ datoscli = cli.Buscar_nom_cli();
             {
                 cliente = CboCliente.SelectedValue.ToString();
             }
-          
+
             string tipo = "";
             string plazo;
             if (CboTipo.Text == "Diario")
@@ -191,8 +193,7 @@ datoscli = cli.Buscar_nom_cli();
                 plazo = "0";
             }
 
-
-            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo,contrato,Valu,"0",datosgaran.GarantDeudor,datosgaran.NomFiador,datosgaran.MuniFiador,datosgaran.DeparFiador,datosgaran.ProfFiador,datosgaran.EdadFiador,datosgaran.EstCivFiador,datosgaran.GarantFiador};
+            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo, Contratotip.ToString(), Valu, "0", datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador,datosgaran.CuiFiador,datosgaran.FiadorDomi };
             if (sol.hayasesor(asesor))
             {
                 if (sol.agregar_soli(datos))
@@ -231,7 +232,7 @@ datoscli = cli.Buscar_nom_cli();
                 comboBox1.Items.Add("3");
                 comboBox1.Items.Add("4");
                 comboBox1.SelectedIndex = 0;
-                
+
             }
         }
         private void solicitudes()
@@ -263,7 +264,7 @@ datoscli = cli.Buscar_nom_cli();
                 solicitud = CboSoli.Text;
                 datos = sol.busca_datos(solicitud);
                 LblCodCli.Text = datos.Rows[0][8].ToString();
-                TxtNomSoli.Text  = datos.Rows[0][0].ToString();
+                TxtNomSoli.Text = datos.Rows[0][0].ToString();
                 TxtNomAseso.Text = datos.Rows[0][1].ToString();
                 TxtConcepto.Text = datos.Rows[0][2].ToString();
                 TxtMonto2.Text = datos.Rows[0][3].ToString();
@@ -284,13 +285,13 @@ datoscli = cli.Buscar_nom_cli();
                     CboTipo2.SelectedIndex = 0;
                     label14.Text = "Interes Diario";
                 }
-                else if(tipo==2)
+                else if (tipo == 2)
                 {
                     //TxtTipo.Text = "Diario - Intereses";
                     CboTipo2.SelectedIndex = 1;
                     label14.Text = "Interes Diario";
                 }
-               else if (tipo == 3)
+                else if (tipo == 3)
                 {
                     //TxtTipo.Text = "Mensual - Cuota Fija"
                     CboTipo2.SelectedIndex = 2;
@@ -322,7 +323,7 @@ datoscli = cli.Buscar_nom_cli();
             TxtNomAseso.Enabled = false;
             TxtNomSoli.Enabled = false;
             CboTipo2.Enabled = false;
-               
+
 
         }
         private void desbloquear()
@@ -340,56 +341,58 @@ datoscli = cli.Buscar_nom_cli();
 
         private void ingresocaja(string cred)
         {
-            decimal saldotemp = 0, gasto= Convert.ToDecimal (TxtGastos .Text) ;
-            
-         
-            decimal montotep= Convert.ToDecimal(TxtMonto2.Text);
-            
+            decimal saldotemp = 0, gasto = Convert.ToDecimal(TxtGastos.Text);
+
+
+            decimal montotep = Convert.ToDecimal(TxtMonto2.Text);
+
             if (LblRef.Text.Equals("1"))
             {
-                saldotemp = montotep+montotep-salantes;
+                saldotemp = montotep + montotep - salantes;
             }
 
             montotep -= saldotemp;
             montotep -= gasto;
             int contid = 1;
-            string[] chrRem = new string[] { ")", "(", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ,"-"};
+            string[] chrRem = new string[] { ")", "(", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "-" };
             string cli = TxtNomSoli.Text;
             foreach (var c in chrRem)
             {
-                cli= cli.Replace(c, string.Empty);
+                cli = cli.Replace(c, string.Empty);
             }
-          
+
             //Egreso del monto total
-            string id=Convert.ToString  (caj.id_pago()+contid);
+            string id = Convert.ToString(caj.id_pago() + contid);
             string operacion = "Egreso";
             string monto = Convert.ToDecimal(TxtMonto2.Text).ToString();
             string descripcion = "Desembolso";
             string fecha = DtpConc.Value.ToString("yyyy/MM/dd");
             string estado = "Activo";
             string usuario = Form1.Cod_U;
-            string credito=cred, cliente=cli ;
-            string[] datos = { id,operacion,monto,descripcion,fecha,estado,usuario,credito,cliente};
+            string credito = cred, cliente = cli;
+            string[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
 
-            if (salantes > 0) {
+            if (salantes > 0)
+            {
                 contid++;
             }
             //ingreso de Saldo anterior
             id = Convert.ToString(caj.id_pago() + contid);
             operacion = "Ingreso";
-            monto = salantes.ToString ();
+            monto = salantes.ToString();
             descripcion = "Cancelacion de credito anterior";
             fecha = DtpConc.Value.ToString("yyyy/MM/dd");
             estado = "Activo";
             usuario = Form1.Cod_U;
-            credito = cod_credi.ToString ();
+            credito = cod_credi.ToString();
             cliente = TxtNomSoli.Text;
             string[] datos2 = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
 
 
-            if (gasto > 0) {
+            if (gasto > 0)
+            {
                 contid++;
-                
+
             }
             //ingreso de Gastos admin
             id = Convert.ToString(caj.id_pago() + contid);
@@ -402,7 +405,7 @@ datoscli = cli.Buscar_nom_cli();
             credito = cred;
             cliente = TxtNomSoli.Text;
             string[] datos3 = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
-            
+
 
             if (caj.ingreope(datos))
             {
@@ -410,23 +413,23 @@ datoscli = cli.Buscar_nom_cli();
                 {
                     caj.ingreope(datos2);
                 }
-                if ( gasto>0)
+                if (gasto > 0)
                 {
                     caj.ingreope(datos3);
-                                     
+
                 }
 
-               
-             MessageBox.Show("Desembolso Registrado", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
-             }
+
+                MessageBox.Show("Desembolso Registrado", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             else
             {
                 MessageBox.Show("No se realizo el registro del desembolso", "Registro", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
-                
+
         }
-       private void BntCambiar_Click(object sender, EventArgs e)
+        private void BntCambiar_Click(object sender, EventArgs e)
         {
             cambiar_estado();
             limpiar2();
@@ -434,7 +437,7 @@ datoscli = cli.Buscar_nom_cli();
             cambiar();
         }
 
-      
+
         private int totdias(string fechac, int dias)
         {
             DateTime Fini = Convert.ToDateTime(fechac);
@@ -454,44 +457,44 @@ datoscli = cli.Buscar_nom_cli();
             }
             return diasc;
         }
-        private string fechaf(string fechac,int dias)
+        private string fechaf(string fechac, int dias)
         {
-            DateTime Fini = Convert.ToDateTime (fechac);
-            DateTime Ffin=Convert.ToDateTime(fechac);//cambiar esta fecha para el final
+            DateTime Fini = Convert.ToDateTime(fechac);
+            DateTime Ffin = Convert.ToDateTime(fechac);//cambiar esta fecha para el final
             int diasc = 0;
-            while (diasc<dias)
+            while (diasc < dias)
             {
-               Ffin = Ffin.AddDays(1);
+                Ffin = Ffin.AddDays(1);
                 if (Ffin.DayOfWeek == DayOfWeek.Saturday || Ffin.DayOfWeek == DayOfWeek.Sunday)
                 {
-                  
+
                 }
                 else
                 {
                     diasc++;
                 }
             }
-            return Ffin.ToString ("yyyy/MM/dd");
-           
+            return Ffin.ToString("yyyy/MM/dd");
+
         }
         private void cambiar_estado()
         {
-            string tipo="";
-            string fecha_conc = DtpConc.Value.ToString ("yyyy/MM/dd");
-            string fecha_fin="";
-            int dias=0;
+            string tipo = "";
+            string fecha_conc = DtpConc.Value.ToString("yyyy/MM/dd");
+            string fecha_fin = "";
+            int dias = 0;
             string solicitud = CboSoli.Text;
             string monto = TxtMonto2.Text;
             string plazo = TxtPlazo.Text;
             string interes = TxtInteres.Text;
             string estado = CboEstado.Text;
             decimal cuotaint = 0, cuotacapital; ;
-            if (CboTipo2.SelectedIndex  == 0)
+            if (CboTipo2.SelectedIndex == 0)
             {
                 tipo = "1";
-              dias = Convert.ToInt32(TxtPlazo.Text);
+                dias = Convert.ToInt32(TxtPlazo.Text);
                 fecha_fin = fechaf(fecha_conc, dias);
-               
+
             }
             else if (CboTipo2.SelectedIndex == 1)
             {
@@ -502,24 +505,24 @@ datoscli = cli.Buscar_nom_cli();
             else if (CboTipo2.SelectedIndex == 2)
             {
                 tipo = "3";
-              dias = Convert.ToInt32(TxtPlazo.Text);
-               fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
+                dias = Convert.ToInt32(TxtPlazo.Text);
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
             }
             else if (CboTipo2.SelectedIndex == 3)
             {
                 tipo = "4";
-               dias = Convert.ToInt32(TxtPlazo.Text);
-             fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
+                dias = Convert.ToInt32(TxtPlazo.Text);
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
             }
-            
-       
- 
+
+
+
             DataTable Creact = new DataTable();
             int cod_cli = sol.cod_cliente(CboSoli.Text);
-            Creact = cre.creditos_act(Convert.ToString (cod_cli));
+            Creact = cre.creditos_act(Convert.ToString(cod_cli));
             int totalcre;
             totalcre = Creact.Rows.Count;
-            string[] datos= new string[11];
+            string[] datos = new string[11];
             //Comprueba si cancelas creditos anteriores o se crea solamente un nuevo credito
             if (totalcre >= 1 && CboEstado.Text == "Autorizado")
             {
@@ -527,17 +530,17 @@ datoscli = cli.Buscar_nom_cli();
                 {
                     ListCred Lista = new ListCred();
                     Lista.cod_cli = cod_cli.ToString();
-                    Lista.nombre = TxtNomSoli .Text;
+                    Lista.nombre = TxtNomSoli.Text;
                     Lista.Mostrarcre += new ListCred.permiso(cod_cred);
                     Lista.ShowDialog();
                     if (cod_credi == 0) return;
                     LblRef.Text = "1";
                     DataTable datosint = new DataTable();
                     datosint = cre.datoscre(cod_credi.ToString(), DateTime.Now.ToString("yyyy/MM/dd"));
-//                    datos = cre.cantcre(CboPresta.Text, DtpPago.Value.ToString());
+                    //                    datos = cre.cantcre(CboPresta.Text, DtpPago.Value.ToString());
                     string nTipo = cre.tipoC(cod_credi.ToString());
                     decimal SaldAnt = cre.saldoant(cod_cli.ToString(), cod_credi.ToString());
-                    decimal IntAnt = cre.SaldoDeinteres(cod_credi.ToString(), DateTime.Now.ToString("yyyy/MM/dd"), nTipo, 0); 
+                    decimal IntAnt = cre.SaldoDeinteres(cod_credi.ToString(), DateTime.Now.ToString("yyyy/MM/dd"), nTipo, 0);
                     if (IntAnt < 0) IntAnt = 0;
                     salantes = SaldAnt + IntAnt;
                     datos[0] = solicitud;
@@ -558,27 +561,27 @@ datoscli = cli.Buscar_nom_cli();
                     datosfi = cre.cantcre(cod_credi.ToString(), DateTime.Now.ToString("dd/MM/yyyy"));
                     // cuotaint = cre.SaldoDeinteres(cod_credi.ToString(), DateTime.Now.ToString("dd/MM/yyyy"),nTipo, 0);
                     cuotaint = decimal.Parse(datosfi.Rows[0][5].ToString());
-                    string[] pago =new string[8];
+                    string[] pago = new string[8];
                     pago[0] = cod_credi.ToString();
                     pago[1] = "0";
                     pago[2] = "0";
-                    if (cuotaint >0) pago[1] = cuotaint.ToString();
-                    if (cuotacapital>0) pago[2] = cuotacapital.ToString();
+                    if (cuotaint > 0) pago[1] = cuotaint.ToString();
+                    if (cuotacapital > 0) pago[2] = cuotacapital.ToString();
                     pago[3] = (decimal.Parse(pago[1]) + decimal.Parse(pago[2])).ToString();
                     pago[4] = "";
                     pago[5] = "";
                     pago[6] = "";
-                    pago[7] =cuotaint.ToString();
+                    pago[7] = cuotaint.ToString();
                     //Registrar pago
                     pagocancelacion(pago);
-                    if (cre.cancelar_cre(cod_credi.ToString () ))
-                        {
+                    if (cre.cancelar_cre(cod_credi.ToString()))
+                    {
                         MessageBox.Show("Se canceló el credito anterior: ", " cancelado");
                     }
-                        else
-                        {
-                            //  MessageBox.Show("Credito: " + Creact.Rows[cont][0].ToString() + " cancelado");
-                        }
+                    else
+                    {
+                        //  MessageBox.Show("Credito: " + Creact.Rows[cont][0].ToString() + " cancelado");
+                    }
                 }
                 else
                 {
@@ -623,22 +626,22 @@ datoscli = cli.Buscar_nom_cli();
                 datos[9] = totdias(fecha_conc, dias).ToString();
                 datos[10] = TxtGastos.Text;
 
-            } 
-            
+            }
+
             if (sol.camb_estado(datos))
             {
                 if (estado == "Autorizado")
                 {
                     MessageBox.Show("El credito ha sido autorizado con exito");
                     int credit = cre.id_credit(solicitud);
-                    ingresocaja(credit.ToString ());
+                    ingresocaja(credit.ToString());
                 }
                 else
                 {
                     MessageBox.Show("El credito ha sido denegado");
                 }
 
-                    hoja_pagos(datos[0],datos[6],datos[8]);
+                hoja_pagos(datos[0], datos[6], datos[8]);
             }
             else
             {
@@ -647,9 +650,9 @@ datoscli = cli.Buscar_nom_cli();
 
         }
         //Listadop de pa0gos por dia
-            public void hoja_pagos(string soli,string tipo,string SaldAnte)
+        public void hoja_pagos(string soli, string tipo, string SaldAnte)
         {
-          
+
             Clases.Credito cre = new Clases.Credito();
             int credi;
             credi = cre.id_credit(soli);
@@ -662,21 +665,21 @@ datoscli = cli.Buscar_nom_cli();
             Thread hilo1 = new Thread(new ParameterizedThreadStart(LLenRep));
             string[] datos = { credi.ToString(), tipo };
             hilo1.Start(datos);
-           repo.ResumenDesem(credi, tipo, TxtGastos.Text,dpi,SaldAnte);
+            repo.ResumenDesem(credi, tipo, TxtGastos.Text, dpi, SaldAnte);
             //repo.llenar_rep(credi,tipo);
         }
 
-        private void pagocancelacion(string [] valores)
+        private void pagocancelacion(string[] valores)
         {
             string credito = valores[0];
             string interes = valores[1];
             string capital = valores[2];
             string pago = valores[3];
-            string fecha = DateTime.Now .ToString ("yyyy/MM/dd");
+            string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             string mora = "0";
-            string capital2 ="0";
+            string capital2 = "0";
             string interes2 = valores[7];
-            string[] datos = { credito, interes2, capital, pago, fecha, mora,capital2,interes2 };
+            string[] datos = { credito, interes2, capital, pago, fecha, mora, capital2, interes2 };
             Clases.Pago pagar = new Clases.Pago();
             if (pagar.Hacer_Pago(datos))
             {
@@ -691,31 +694,31 @@ datoscli = cli.Buscar_nom_cli();
 
         private void LLenRep(object parametros)
         {
-           string[] datos = (string[])parametros;
+            string[] datos = (string[])parametros;
             int credi = int.Parse(datos[0]);
-          if (InvokeRequired)
-               Invoke (new Action(()=>repo.llenar_rep(credi, datos [1])));
+            if (InvokeRequired)
+                Invoke(new Action(() => repo.llenar_rep(credi, datos[1])));
         }
 
         //listado de pagos por mes
         private void CboPlaz_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CboTipo.SelectedIndex == 0 || CboTipo .SelectedIndex ==1)
+            if (CboTipo.SelectedIndex == 0 || CboTipo.SelectedIndex == 1)
             {
                 LblPlazo.Visible = false;
-                NupPlazo .Visible = false;
-              
+                NupPlazo.Visible = false;
+
             }
             else
             {
                 LblPlazo.Visible = true;
-                NupPlazo .Visible = true;
-      
+                NupPlazo.Visible = true;
+
 
             }
         }
 
-           public void cod_cred(string credi)
+        public void cod_cred(string credi)
         {
             cod_credi = Convert.ToInt32(credi);
         }
@@ -728,19 +731,19 @@ datoscli = cli.Buscar_nom_cli();
             TxtGarantia.Clear();
             //TxtTipo.Clear();
             TxtPlazo.Clear();
-          
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             sol.cambiodias();
-           // sol.cambiofechas(comboBox1 .Text);
+            // sol.cambiofechas(comboBox1 .Text);
         }
 
         private void Solicitud_KeyDown(object sender, KeyEventArgs e)
         {
-          //  MessageBox.Show("LOL");
-           
+            //  MessageBox.Show("LOL");
+
         }
 
         private void tabControl1_KeyDown(object sender, KeyEventArgs e)
@@ -749,15 +752,15 @@ datoscli = cli.Buscar_nom_cli();
             {
                 if (log.nivel("admin") == 1)
                 {
-                  
-                   comboBox1.Visible = true;
-                 button1.Visible = true;
+
+                    comboBox1.Visible = true;
+                    button1.Visible = true;
                 }
             }
             if (e.KeyCode == Keys.F11)
             {
                 comboBox1.Visible = false;
-               button1.Visible = false;
+                button1.Visible = false;
             }
         }
 
@@ -784,12 +787,12 @@ datoscli = cli.Buscar_nom_cli();
                     TxtGastos.Text = "0";
                 }
             }
-            
+
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            if ((sol.denegarsol(CboSoli.Text )))
+            if ((sol.denegarsol(CboSoli.Text)))
             {
                 MessageBox.Show("Se cancelo la solicitud de credito", " cancelado");
                 limpiar2();
@@ -801,20 +804,20 @@ datoscli = cli.Buscar_nom_cli();
         private void CboTipoGarant_SelectedIndexChanged(object sender, EventArgs e)
         {
             string TipPresta;
-            TipPresta =CboTipPresta.SelectedIndex.ToString();
+            TipPresta = CboTipPresta.SelectedIndex.ToString();
             if (TipPresta.Equals("1"))
             {
-            
+
             }
             else
             {
                 label21.Visible = false;
                 label22.Visible = false;
                 label23.Visible = false;
-              //  TxtTipEsc.Visible = false;
-              //  DtpEsc.Visible = false;
-              //  TxtUbicacion.Visible = false;
-               // GbxGarantias.Visible = false;
+                //  TxtTipEsc.Visible = false;
+                //  DtpEsc.Visible = false;
+                //  TxtUbicacion.Visible = false;
+                // GbxGarantias.Visible = false;
             }
         }
 
@@ -830,27 +833,30 @@ datoscli = cli.Buscar_nom_cli();
 
         private void RdbSnGaran_CheckedChanged(object sender, EventArgs e)
         {
-            
+            EstabContrato();
         }
 
-       void mostrarGarant()
+        void mostrarGarant()
         {
 
         }
 
         private void CboTipPresta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CboTipPresta.SelectedIndex == 0) {
+            if (CboTipPresta.SelectedIndex == 0)
+            {
                 MostrarPrestaIndi();
                 GbxDataFiad.Visible = false;
-
+                llenarCajasSin();
+                EstabContrato();
             }
             else
             {
-              
                 MostrarPrestaFiad();
                 GbxDataFiad.Visible = true;
-               
+                EstabContrato();
+
+
             }
         }
 
@@ -879,7 +885,7 @@ datoscli = cli.Buscar_nom_cli();
 
         private void ChkFirma1_CheckedChanged(object sender, EventArgs e)
         {
-            if (CboTipPresta.SelectedIndex==0)
+            if (CboTipPresta.SelectedIndex == 0)
             {
                 ChkFirma2.Checked = false;
                 if (ChkFirma1.Checked)
@@ -890,6 +896,7 @@ datoscli = cli.Buscar_nom_cli();
                 {
                     ChkTesti1.Checked = true;
                 }
+                EstabContrato();
             }
             else
             {
@@ -908,6 +915,7 @@ datoscli = cli.Buscar_nom_cli();
                     ChkTesti1.Checked = true;
                     ChkTesti2.Checked = true;
                 }
+                EstabContrato();
             }
 
         }
@@ -960,14 +968,16 @@ datoscli = cli.Buscar_nom_cli();
             esta.ShowDialog();
         }
 
-     
+
 
         private void RdbGarant1_CheckedChanged(object sender, EventArgs e)
         {
             if (RdbGarant1.Checked)
             {
                 cantigarant = 1;
+                EstabContrato();
             }
+;
 
         }
 
@@ -976,6 +986,7 @@ datoscli = cli.Buscar_nom_cli();
             if (RdbGarant2.Checked)
             {
                 cantigarant = 2;
+                EstabContrato();
             }
         }
 
@@ -984,12 +995,71 @@ datoscli = cli.Buscar_nom_cli();
             if (RdbGarant3.Checked)
             {
                 cantigarant = 3;
+                EstabContrato();
             }
         }
 
         private void cargarGarant(Reportes.Contratos.ContratoDatos garantis)
         {
             datosgaran = garantis;
+        }
+
+        private void EstabContrato()
+        {
+            if (CboTipPresta.SelectedIndex == 0)
+            {
+                if (RdbSnGaran.Checked && ChkFirma1.Checked == false)
+                {
+                    Contratotip = 1;
+                }
+                else if (RdbGarant1.Checked && ChkFirma1.Checked == true)
+                { Contratotip = 2; }
+                else if (RdbGarant1.Checked && ChkFirma1.Checked == false)
+                { Contratotip = 3; }
+            }
+            else if (CboTipPresta.SelectedIndex == 1)
+            {
+                if (RdbSnGaran.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
+                {
+                    Contratotip = 4;
+                }
+                else if (RdbGarant1.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
+                { Contratotip = 5; }
+                else if (RdbGarant2.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
+                { Contratotip = 6; }
+                else if (RdbSnGaran.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
+                { Contratotip = 7; }
+                else if (RdbGarant1.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
+                { Contratotip = 8; }
+                else if (RdbGarant2.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
+                { Contratotip = 9; }
+                else if (RdbSnGaran.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
+                { Contratotip = 10; }
+                else if (RdbGarant1.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked)
+                { Contratotip = 11; }
+                else if (RdbGarant1.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
+                { Contratotip = 12; }
+                else if (RdbGarant2.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
+                { Contratotip = 13; }
+
+            }
+        }
+
+        private void llenarCajasSin() {
+            TxtNomF.Text = "Sin Nom";
+            TxtProfFiad.Text = "Sin Prof";
+            TxtDpiF.Text = "0000000000000";
+            TxtEstCivilF.Text = "Sin Estado";
+            TxtDirF.Text = "Sin Dir";
+        }
+
+        private void LimpiarCajaFiad()
+        {
+            TxtNomF.Clear();
+            TxtProfFiad.Clear();
+            TxtDpiF.Clear();
+            TxtEstCivilF.Clear();
+            TxtDirF.Clear();
         }
 
 

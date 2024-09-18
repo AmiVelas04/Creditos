@@ -177,18 +177,36 @@ namespace Arcoiris.Clases
                 conect.conn.Close();
                 if (asinga_soli(data))
                 {
-                    string[] Dgaran = new string[10];
+                    string[] Dgaran = new string[16];
                     Dgaran[0] = datos[10]; //contrato
-                    Dgaran[1] = datos[11];//valuacion
-                    Dgaran[2] = datos[12];//Garantia
-                    Dgaran[3] = datos[13];//Nom fiador
-                    Dgaran[4] = datos[14];//Municipio fiador
-                    Dgaran[5] = datos[15];//Departamento Fiador
-                    Dgaran[6] = datos[16];//Proffiador
-                    Dgaran[7] = datos[17];//Edad Fiador
-                    Dgaran[8] = datos[18];//Estado civil fiador
-                    Dgaran[9] = datos[19];//Garant Fiador
+                    Dgaran[1] = datos[12];//valuacion
+                    if (datos[13] != null)
+                    { Dgaran[2] = datos[13];//Garantia 
+                    }
+                    else
+                    {
+                        Dgaran[2] ="Sn garantia";//Garantia 
+                    }
+
+
+
+                        Dgaran[3] = datos[14];//Nom fiador
+                    Dgaran[4] = datos[15];//Municipio fiador
+                    Dgaran[5] = datos[16];//Departamento Fiador
+                    Dgaran[6] = datos[17];//ProfFiador
+                    Dgaran[7] = datos[18];//Edad Fiador
+                    Dgaran[8] = datos[19];//Estado civil fiador
+                    if (datos[20] != null)
+                    { Dgaran[9] = datos[20]; }
+                    else
+                    { Dgaran[9] = "Sin Garantia F"; }
+                    //Garant Fiador
                     Dgaran[10] = datos[0];
+                    Dgaran[11] = datos[21]; //cui fiador
+                    Dgaran[12] = datos[22];// dir fiador
+                    Dgaran[13] = "sin genero"; //genero
+                    Dgaran[14] = "0";//valuacion garant fiador
+                    Dgaran[15] = "00000000";//Telefono fiador
                     return ingre_garant(Dgaran);
                     //return true;
                 }
@@ -255,8 +273,8 @@ namespace Arcoiris.Clases
             idgarant = id_garant();
             idgarant++;
 
-            string consulta = "Insert into garantia(id_garant,tipo,ContratoTip,valuacion,detalle,FiadorNom1,FiadorCui,FiadorGene,FiadorMuni,FioadorDepa,FiadorDire,FiadorTel,FiadorEdad,FiadorEstCiv,Fdetalle,FValuacion) values(" +
-                              ""+idgarant.ToString()+",'"+val[0]+"',"+val[1]+",'"+val[2]+"','"+val[3]+"','"+val[4]+"','"+val[5]+"',"+val[6]+",'"+val[7]+"','"+val[8]+"')";
+            string consulta = "Insert into garantia(id_garant,ContratoTip,valuacion,detalle,FiadorNom1,FiadorCui,FiadorGene,FiadorMuni,FiadorDepa,FiadorDire,FiadorTel,FiadorEdad,FiadorEstCiv,Fdetalle,FValuacion) values(" +
+                              $"{idgarant},'{val[0]}',{val[1]},'{val[2]}','{val[3]}','{val[11]}','{val[13]}','{val[4]}','{val[5]}','{val[12]}','{val[15]}','{val[7]}','{val[8]}','{val[8]}','{val[14]}')";
             MySqlCommand com = new MySqlCommand();
             com.Connection = conect.conn;
             com.CommandText = consulta;

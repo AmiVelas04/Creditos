@@ -31,10 +31,24 @@ namespace Arcoiris.Formularios
             CboDepa.DataSource = todos;
             CboDepa.DisplayMember = "Nombre";
             CboDepa.ValueMember = "Id";
+            CboDepaEdit.DataSource = todos;
+            CboDepaEdit.ValueMember = "Id";
+            CboDepaEdit.DisplayMember = "Nombre";
         }
 
         private void guardar()
         {
+            string Nacionalidad = "";
+            string genero = "";
+
+            if (CboGene.SelectedIndex == 0)
+            { Nacionalidad = "Guatemalteco";
+                genero = "M";
+            }
+            else
+            { Nacionalidad = "Guatemalteca";
+                genero = "F";
+            }
             string nom = TxtNom.Text;
             string ape = TxtApe.Text;
             string dir = TxtDir.Text;
@@ -53,8 +67,10 @@ namespace Arcoiris.Formularios
             string depa = CboDepa.Text;
             string muni = CboMuni.Text;
             string edad = NudEdad.Value.ToString();
+           
+            
             string fecha = DateTime.Today.ToString("yyyy/MM/dd");
-            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe, fiad, tfiad, dfiad, fecha,depa,muni,edad };
+            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe, fiad, tfiad, dfiad, fecha,depa,muni,edad,genero, Nacionalidad };
             //   int idcli;
             //   idcli = clien.agregar_cliente(datos);
             if (clien.agregar_cliente(datos))
@@ -130,12 +146,13 @@ namespace Arcoiris.Formularios
         private void Cliente_Load(object sender, EventArgs e)
         {
             CboScivil.Items.Add("Soltero");
-          //  CboCivil2.Items.Add("Soltero");
+            CboCivil2.Items.Add("Soltero");
             CboScivil.Items.Add("Casado");
-            //CboCivil2.Items.Add("Casado");
+            CboCivil2.Items.Add("Casado");
             CboScivil.Items.Add("Viudo");
-           // CboCivil2.Items.Add("Viudo");
+           CboCivil2.Items.Add("Viudo");
             CboScivil.Sorted = true;
+            CboGene.SelectedIndex = 0;
             CboScivil.SelectedIndex = 0;
             TabC3.Parent = null;
             if (Form1.Nivel == "4")
@@ -148,62 +165,7 @@ namespace Arcoiris.Formularios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-
-            if (DGVCliente.Rows.Count > 0)
-            {
-                try
-                {
-                    if (DGVCliente.CurrentRow.Index == -1)
-                    {
-
-                    }
-                    else
-                    {
-                        DataTable fiad = new DataTable();
-                        idcli = Convert.ToString(DGVCliente.CurrentRow.Cells[0].Value);
-                        fiad = clien.idfiad(idcli);
-                        idfiad = fiad.Rows[0][0].ToString();
-                        TxtFiadNom2.Text = fiad.Rows[0][1].ToString();
-                        TxtFiadDir2.Text = fiad.Rows[0][2].ToString();
-                        TxtFiadTel2.Text = fiad.Rows[0][3].ToString();
-                        DataTable cliedit = new DataTable();
-                        cliedit = clien.clientebusca(idcli);
-                        TabC3.Parent = tabControl1;
-                        tabControl1.SelectedIndex = 2;
-                        TxtNom2.Text = cliedit.Rows[0][0].ToString();
-                        TxtApe2.Text = cliedit.Rows[0][1].ToString();
-                        TxtDir2.Text = cliedit.Rows[0][2].ToString();
-                        TxtDpi2.Text = cliedit.Rows[0][3].ToString();
-                        TxtTel2_1.Text = cliedit.Rows[0][4].ToString();
-                        TxtTel2_2.Text = cliedit.Rows[0][5].ToString();
-                        TxtProf2.Text = cliedit.Rows[0][6].ToString();
-                        TxtNomCony2.Text = cliedit.Rows[0][7].ToString();
-                        TxtApeCony2.Text = cliedit.Rows[0][8].ToString();
-                        TxtTelCony2.Text = cliedit.Rows[0][9].ToString();
-                        TxtRef2.Text = cliedit.Rows[0][10].ToString();
-                        if (cliedit.Rows[0][11].ToString() == "Soltero")
-                        {
-                            CboCivil2.SelectedIndex = 0;
-                        }
-                        else if (cliedit.Rows[0][11].ToString() == "Casado")
-                        {
-                            CboCivil2.SelectedIndex = 1;
-                        }
-                        else if (cliedit.Rows[0][11].ToString() == "Viudo")
-                        {
-
-                            CboCivil2.SelectedIndex = 2;
-                        }
-
-                    }
-                }
-                catch (Exception)
-                {
-
-                    MessageBox.Show("Seleccione un elemento de la lista");
-                }
-              
-            }
+            cargarparaeditar();
         }
         private void limpiargrid()
         {
@@ -230,35 +192,42 @@ namespace Arcoiris.Formularios
 
         private void guardar2()
         {
+            string gene = "";
+            if (CboGeneEdit.SelectedIndex == 0)
+            { gene = "M"; }
+            else
+            { gene = "F"; }
 
             string nom = TxtNom2.Text;
             string ape = TxtApe2.Text;
             string dir = TxtDir2.Text;
             string dpi = TxtDpi2.Text;
-            string tel1 = TxtTel2_1.Text;
-            string tel2 = TxtTel2_2.Text;
+            string tel1 = TxtTel1Edit.Text;
+          string tel2 = TxtTel2Edit.Text;
             string prof = TxtProf2.Text;
             string Est_civil = CboCivil2.Text;
             string Nom_cony = TxtNomCony2.Text;
             string Ape_cony = TxtApeCony2.Text;
             string telcon = TxtTelCony2.Text;
             string refe = TxtRef2.Text;
-            string fiad = TxtFiadNom2.Text;
-            string tfiad = TxtFiadTel2.Text;
-            string dfiad = TxtFiadDir2.Text;
-            string[] cliente = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe };
-            string[] fiador = { fiad, dfiad, tfiad };
+            // string fiad = TxtFiadNom2.Text;
+            //   string tfiad = TxtFiadTel2.Text;
+            //    string dfiad = TxtFiadDir2.Text;
+            string depa = CboDepa.Text;
+            string muni = CboMuni.Text;
+            string edad = NudEdad.Value.ToString();
+      
+            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe,edad,gene };
+          //  string[] fiador = { fiad, dfiad, tfiad };
 
             if (clien.updatecliente(idcli, cliente))
             {
-                if (clien.updatefiad(idfiad, fiador))
-                {
-                    MessageBox.Show("Datos Actualizados");
-                }
+                MessageBox.Show("Datos Actualizados");
+                TabC3.Parent = null;
+                /*if (clien.updatefiad(idfiad, fiador))
+                {                                 }
                 else
-                {
-                    MessageBox.Show("Error al actualizar datos del fiador");
-                }
+                {                    MessageBox.Show("Error al actualizar datos del fiador");                }*/
             }
             else
             {
@@ -277,6 +246,105 @@ namespace Arcoiris.Formularios
                 CboMuni.DisplayMember = "Nombre";
                 CboMuni.ValueMember = "Id";
             }
+        }
+
+        private void DGVCliente_DoubleClick(object sender, EventArgs e)
+        {
+            cargarparaeditar();
+        }
+
+        private void cargarparaeditar()
+        {
+            if (DGVCliente.Rows.Count > 0)
+            {
+                try
+                {
+                    if (DGVCliente.CurrentRow.Index == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        DataTable fiad = new DataTable();
+                        idcli = Convert.ToString(DGVCliente.CurrentRow.Cells[0].Value);
+                       // fiad = clien.idfiad(idcli);
+                       // idfiad = fiad.Rows[0][0].ToString();
+                        //  TxtFiadNom2.Text = fiad.Rows[0][1].ToString();
+                        //   TxtFiadDir2.Text = fiad.Rows[0][2].ToString();
+                        //     TxtFiadTel2.Text = fiad.Rows[0][3].ToString();
+                        DataTable cliedit = new DataTable();
+                        cliedit = clien.clientebusca(idcli);
+                        TabC3.Parent = tabControl1;
+                        tabControl1.SelectedIndex = 2;
+                        TxtNom2.Text = cliedit.Rows[0][0].ToString();
+                        TxtApe2.Text = cliedit.Rows[0][1].ToString();
+                        TxtDir2.Text = cliedit.Rows[0][2].ToString();
+                        TxtDpi2.Text = cliedit.Rows[0][3].ToString();
+                        TxtTel1Edit.Text = cliedit.Rows[0][4].ToString();
+                        TxtTel2Edit.Text = cliedit.Rows[0][5].ToString();
+                        TxtProf2.Text = cliedit.Rows[0][6].ToString();
+                        TxtNomCony2.Text = cliedit.Rows[0][7].ToString();
+                        TxtApeCony2.Text = cliedit.Rows[0][8].ToString();
+                        TxtTelCony2.Text = cliedit.Rows[0][9].ToString();
+                        TxtRef2.Text = cliedit.Rows[0][10].ToString();
+
+                        if (cliedit.Rows[0][11].ToString() == "Soltero")
+                        {
+                            CboCivil2.SelectedIndex = 0;
+                        }
+                        else if (cliedit.Rows[0][11].ToString() == "Casado")
+                        {
+                            CboCivil2.SelectedIndex = 1;
+                        }
+                        else if (cliedit.Rows[0][11].ToString() == "Viudo")
+                        {
+                            CboCivil2.SelectedIndex = 2;
+                        }
+                        //12 edad
+                        NudEdadEdit.Value = decimal.Parse(cliedit.Rows[0][12].ToString());
+                        //13 departamento
+                        //14 municipio
+                        //15 genero
+                        if (cliedit.Rows[0][15].ToString().Equals("M"))
+                        {
+                            CboGeneEdit.SelectedIndex = 0; }
+                        else
+                        {
+                            CboGeneEdit.SelectedIndex = 1;
+                        }
+                        //16 nacionalidad
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Seleccione un elemento de la lista\n {ex}","Se presento un problema",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                }
+
+            }
+        }
+
+        private void CboDepaEdit_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CboDepaEdit.SelectedValue != null && !CboDepaEdit.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
+            {
+                string id = CboDepaEdit.SelectedValue.ToString();
+                CboMunEdit.DataSource = clien.Munis(id);
+                CboMunEdit.DisplayMember = "Nombre";
+                CboMunEdit.ValueMember = "Id";
+            }
+        }
+
+        private void TxtNomBus_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buscar_cli();
+            }
+        }
+
+        private void BtnClean_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
