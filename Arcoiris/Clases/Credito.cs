@@ -1977,7 +1977,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             int totdia = dias.Days;
             int cont;
             int diashab = 0;
-            if (totdia >= 30) totdia = totdia;
+            if (totdia >= 30) //totdia = totdia;
             for (cont = 1; cont <= totdia; cont++)
             {
                 fechacambio = fechacambio.AddDays(1);
@@ -1999,6 +1999,30 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 {
                     conteo++;
                     fechap = fechai.AddMonths(conteo);
+                    diashab++;
+                }
+            }
+            else if (tipo.Equals("5"))
+            {
+                diashab = 0;
+                int conteo = 7;
+                fechap = fechai.AddDays(conteo);
+                while (fechaa > fechap)
+                {
+                    conteo+=7;
+                    fechap = fechai.AddDays(conteo);
+                    diashab++;
+                }
+            }
+            else if (tipo.Equals("6"))
+            {
+                diashab = 0;
+                int conteo = 14;
+                fechap = fechai.AddDays(conteo);
+                while (fechaa > fechap)
+                {
+                    conteo+=14;
+                    fechap = fechai.AddDays(conteo);
                     diashab++;
                 }
             }
@@ -2609,6 +2633,34 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 pint = Math.Round(pint, 2);
                 ptot = pcap + pint;
             }
+            else if (tipo == "5")
+            {
+                // pagos--;
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100 *5), 2);
+                //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
+                pcap *= pagos;
+                pint *= pagos;
+                //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+            else if (tipo == "6")
+            {
+                // pagos--;
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100 *10), 2);
+                //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
+                pcap *= pagos;
+                pint *= pagos;
+                //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+
+
 
             //Paso 3 obtener total de pagos hechos
             string consulpagoH = "Select sum(capital) as capital, sum(interes) as interes from pagos where cod_credito=" + cre + " and estado='Hecho'";
