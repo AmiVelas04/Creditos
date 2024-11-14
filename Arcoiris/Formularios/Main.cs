@@ -27,20 +27,21 @@ namespace Arcoiris.Formularios
         private void Main_Load(object sender, EventArgs e)
         {
             LbUsuario.Text = "Usuario: " + Form1.Nombre;
-            if (Form1.Cod_U == "1" || Form1.Cod_U == "2")
+            if (Form1.Nivel== "1" || Form1.Nivel == "2")
             {
                 BtnAsesor.Visible = true;
-                //BtnReporte.Visible = true;
+                BtnReporte.Visible = true;
                 BtnGuardar.Visible = true;
                 BtnAdmin.Visible = true;
             }
-            else if (Form1.Cod_U == "4")
+            else if (Form1.Nivel == "4")
             {
-                button1.Visible = false;
+                BtnReporte.Visible = true;
+                BtnCaja.Visible=false;
             }
-            else if (Form1.Cod_U.Equals("5"))
+            else if (Form1.Nivel.Equals("5"))
             {
-
+                //BtnReporte.Visible = true;
             }
            
         }
@@ -110,14 +111,18 @@ namespace Arcoiris.Formularios
 
         private void button1_Click(object sender, EventArgs e)
         {
+          
+        }
+
+        private void mostracaja()
+        {
             PanelCentral.Controls.Clear();
-            Formularios.Caja  caj = new Formularios.Caja ();
+            Formularios.Caja caj = new Formularios.Caja();
             caj.TopLevel = false;
             PanelCentral.Controls.Add(caj);
             PanelCentral.Tag = caj;
             caj.Show();
         }
-
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             Formularios.Respaldo resp = new Formularios.Respaldo();
@@ -143,6 +148,11 @@ namespace Arcoiris.Formularios
             PanelCentral.Controls.Add(usu);
             PanelCentral.Tag = usu;
             usu.Show();
+        }
+
+        private void BtnCaja_Click(object sender, EventArgs e)
+        {
+            mostracaja();
         }
     }
 }

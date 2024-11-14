@@ -60,6 +60,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.CboAseRepo = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.GbxPrest.SuspendLayout();
@@ -231,6 +233,8 @@
             // 
             // GbxCreditos
             // 
+            this.GbxCreditos.Controls.Add(this.CboAseRepo);
+            this.GbxCreditos.Controls.Add(this.label7);
             this.GbxCreditos.Controls.Add(this.DtpFechaR);
             this.GbxCreditos.Controls.Add(this.LblFechaR);
             this.GbxCreditos.Controls.Add(this.BtnReporte);
@@ -249,7 +253,7 @@
             // DtpFechaR
             // 
             this.DtpFechaR.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFechaR.Location = new System.Drawing.Point(154, 92);
+            this.DtpFechaR.Location = new System.Drawing.Point(153, 157);
             this.DtpFechaR.Name = "DtpFechaR";
             this.DtpFechaR.Size = new System.Drawing.Size(133, 25);
             this.DtpFechaR.TabIndex = 6;
@@ -258,7 +262,7 @@
             // LblFechaR
             // 
             this.LblFechaR.AutoSize = true;
-            this.LblFechaR.Location = new System.Drawing.Point(55, 98);
+            this.LblFechaR.Location = new System.Drawing.Point(54, 163);
             this.LblFechaR.Name = "LblFechaR";
             this.LblFechaR.Size = new System.Drawing.Size(83, 17);
             this.LblFechaR.TabIndex = 5;
@@ -268,7 +272,7 @@
             // BtnReporte
             // 
             this.BtnReporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnReporte.Location = new System.Drawing.Point(107, 135);
+            this.BtnReporte.Location = new System.Drawing.Point(106, 200);
             this.BtnReporte.Name = "BtnReporte";
             this.BtnReporte.Size = new System.Drawing.Size(133, 38);
             this.BtnReporte.TabIndex = 2;
@@ -279,7 +283,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 29);
+            this.label1.Location = new System.Drawing.Point(25, 93);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
             this.label1.TabIndex = 1;
@@ -289,7 +293,7 @@
             // 
             this.CboCre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboCre.FormattingEnabled = true;
-            this.CboCre.Location = new System.Drawing.Point(28, 49);
+            this.CboCre.Location = new System.Drawing.Point(28, 113);
             this.CboCre.Name = "CboCre";
             this.CboCre.Size = new System.Drawing.Size(296, 25);
             this.CboCre.TabIndex = 0;
@@ -328,7 +332,7 @@
             this.GbxGan.Controls.Add(this.RdbMes);
             this.GbxGan.Controls.Add(this.RdbDia);
             this.GbxGan.Controls.Add(this.RdbTodos);
-            this.GbxGan.Location = new System.Drawing.Point(183, 144);
+            this.GbxGan.Location = new System.Drawing.Point(183, 163);
             this.GbxGan.Name = "GbxGan";
             this.GbxGan.Size = new System.Drawing.Size(155, 116);
             this.GbxGan.TabIndex = 5;
@@ -369,7 +373,7 @@
             // 
             // BtnRepGan
             // 
-            this.BtnRepGan.Location = new System.Drawing.Point(48, 163);
+            this.BtnRepGan.Location = new System.Drawing.Point(48, 210);
             this.BtnRepGan.Name = "BtnRepGan";
             this.BtnRepGan.Size = new System.Drawing.Size(120, 35);
             this.BtnRepGan.TabIndex = 4;
@@ -381,7 +385,7 @@
             // 
             this.CboAnio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboAnio.FormattingEnabled = true;
-            this.CboAnio.Location = new System.Drawing.Point(128, 92);
+            this.CboAnio.Location = new System.Drawing.Point(100, 137);
             this.CboAnio.Name = "CboAnio";
             this.CboAnio.Size = new System.Drawing.Size(210, 25);
             this.CboAnio.TabIndex = 3;
@@ -389,7 +393,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 95);
+            this.label3.Location = new System.Drawing.Point(16, 140);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(33, 17);
             this.label3.TabIndex = 2;
@@ -399,7 +403,7 @@
             // 
             this.CboMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboMes.FormattingEnabled = true;
-            this.CboMes.Location = new System.Drawing.Point(128, 45);
+            this.CboMes.Location = new System.Drawing.Point(100, 98);
             this.CboMes.Name = "CboMes";
             this.CboMes.Size = new System.Drawing.Size(210, 25);
             this.CboMes.TabIndex = 1;
@@ -407,11 +411,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 48);
+            this.label2.Location = new System.Drawing.Point(16, 101);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(33, 17);
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
+            // 
+            // CboAseRepo
+            // 
+            this.CboAseRepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboAseRepo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboAseRepo.FormattingEnabled = true;
+            this.CboAseRepo.Location = new System.Drawing.Point(28, 52);
+            this.CboAseRepo.Name = "CboAseRepo";
+            this.CboAseRepo.Size = new System.Drawing.Size(296, 23);
+            this.CboAseRepo.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 17);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Asesor";
             // 
             // Reporte
             // 
@@ -479,5 +502,7 @@
         private System.Windows.Forms.RadioButton RdbPMens;
         private System.Windows.Forms.RadioButton RdbPDia;
         private System.Windows.Forms.RadioButton RdbPtodos;
+        private System.Windows.Forms.ComboBox CboAseRepo;
+        private System.Windows.Forms.Label label7;
     }
 }

@@ -28,7 +28,6 @@ namespace Arcoiris.Clases
             string mensaje;
             conn.ConnectionString = cadena_conn;
             try
-
             {
                 conn.Open();
                 conn.Close();

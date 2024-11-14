@@ -69,7 +69,6 @@ namespace Arcoiris.Formularios
                 conect.conn.Open();
                 respaldo.ExportToFile(destino);
                 conect.conn.Close();
-
                 MessageBox.Show("El respaldo se ha realizado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TxtRuta.Clear();
             }

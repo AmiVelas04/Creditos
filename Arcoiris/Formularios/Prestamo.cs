@@ -16,6 +16,7 @@ namespace Arcoiris.Formularios
 
         decimal pagof = 0;
         decimal interessaldgen = 0;
+        string Nomasesor = "";
         Clases.Solicitud soli = new Clases.Solicitud();
         Clases.Credito cre = new Clases.Credito();
         Clases.Cliente cli = new Clases.Cliente();
@@ -59,12 +60,13 @@ namespace Arcoiris.Formularios
             {
                 BtnEliminar.Enabled = true;
                 BtnEliminarCre.Visible = true;
+                AddNota.Visible = true;
             }
             else if (Form1.Nivel == "4")
             {
                 BtnPago.Visible = false;
                 BtnEliminar.Visible = false;
-                
+                AddNota.Visible = true;
             }
             else
             {
@@ -86,7 +88,7 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                valor = CboCliNom.SelectedValue.ToString();//LblIdCli.Text;
+                valor = LblIdCli.Text;//CboCliNom.SelectedValue.ToString();
             }
             datos = cre.creditos_act(valor);
             total = datos.Rows.Count;
@@ -106,7 +108,6 @@ namespace Arcoiris.Formularios
                 CboPresta.Items.Clear();
                 //   CboPresta.Enabled = false;
             }
-
         }
 
         private void cancel()
@@ -154,7 +155,6 @@ namespace Arcoiris.Formularios
             if (TxtTipo.Text == "1")
             {
                 TxtTipo.Text = "Diario";
-
                 TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
             else if (TxtTipo.Text == "2")
@@ -175,6 +175,16 @@ namespace Arcoiris.Formularios
                 //  int total = cre.diasnopag(CboPresta.Text, DtpPago.Value.ToString("yyyy/MM/dd"), datos.Rows[0][6].ToString());
                 TxtAtraso.Text = DiAtraso + " Día(s)";
                 TxtMora.Text = $"{DiAtraso * 0}";//*5
+            }
+            else if (TxtTipo.Text == "1")
+            {
+                TxtTipo.Text = "Semanal";
+                TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
+            }
+            else if (TxtTipo.Text == "1")
+            {
+                TxtTipo.Text = "Quincenal";
+                TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
 
             DataTable aldia = new DataTable();
@@ -266,6 +276,7 @@ namespace Arcoiris.Formularios
                 DatosCre();
                 activaDia();
                 //  calculo();
+                cargaAseso();
             }
             else if (CboPresta.Text != "" && ChkCancelado.Checked == true)
             {
@@ -275,8 +286,10 @@ namespace Arcoiris.Formularios
                 groupBox1.Enabled = false;
                 groupBox2.Enabled = false;
                 Dcre();
+                cargaAseso();
 
-            }BtnAldia.Enabled = true;
+            }
+            BtnAldia.Enabled = true;
 
 
 
@@ -318,14 +331,10 @@ namespace Arcoiris.Formularios
             decimal IntM = Convert.ToDecimal(datos.Rows[0][5].ToString());
             decimal  Cprom = Convert.ToDecimal(datos.Rows[0][4].ToString());
             decimal Iprom = Convert.ToDecimal(datos.Rows[0][6].ToString());
-
             cuotaN = CapN + IntM;
             TxtCuota.Text = cuotaN.ToString();
             cuotaProm = Cprom + Iprom;
             TxtTotProm.Text = cuotaProm.ToString();
-
-
-
             if (datos.Rows[0][3].ToString().Equals("Terminado"))
             {
 
@@ -347,7 +356,6 @@ namespace Arcoiris.Formularios
                 //TxtInteres.Text = datos.Rows[0][0].ToString();
                 TxtCapital.Text = datos.Rows[0][1].ToString();
             }
-
         }
 
         private void llenarGrid()
@@ -655,7 +663,7 @@ namespace Arcoiris.Formularios
                     //TxtCapD.Enabled = true;
                     DtpPago.Enabled = true;
                 }
-                if (Form1.Cod_U == "5")
+              else if (Form1.Cod_U == "5")
                 {
                     MessageBox.Show("Elementos activados", "Administrador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                    // BtnEliminar.Enabled = true;
@@ -1024,6 +1032,74 @@ namespace Arcoiris.Formularios
         private void CboCliNom_SelectedValueChanged(object sender, EventArgs e)
         {
             LblIdCli.Text = CboCliNom.SelectedValue.ToString();
+        }
+
+        private void cargaAseso()
+        {
+            string idcred = CboPresta.Text;
+            string asesor = cre.CrediAseso(idcred);
+            LblAseso.Text = $"Asesor: {asesor}";
+            Nomasesor = asesor;
+        }
+
+        private void RdbNom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbNom.Checked)
+            {
+                LblCliEtiqueta.Text ="Cliente";
+                CboCliNom.Visible =true;
+                TxtDpiBusc.Visible = false;
+                LblNomCliDisplay.Visible = false;
+                LblNomCliDisplay.Text = "";
+                TxtDpiBusc.Clear();
+               
+            }
+            
+            
+        }
+
+        private void RdbDpi_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RdbDpi.Checked)
+            {
+                LblCliEtiqueta.Text = "DPI";
+                CboCliNom.Visible = false;
+                TxtDpiBusc.Visible = true;
+                LblNomCliDisplay.Visible = true;
+                LblNomCliDisplay.Text = "Cliente";
+                //TxtDpiBusc.Clear();
+
+            }
+        }
+
+        private void RdbDpi_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TxtDpiBusc_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return)
+            {
+                DataTable datos = cli.IdByDpi(TxtDpiBusc.Text);
+                LblIdCli.Text = datos.Rows[0][0].ToString();
+                string nom = $"{datos.Rows[0][1].ToString()} {datos.Rows[0][2].ToString()}";
+                LblNomCliDisplay.Text = $"Cliente: {nom}";
+            }
+        }
+
+        private void AddNota_Click(object sender, EventArgs e)
+        {
+            if (CboPresta.Text == "")
+            { }
+            else
+            {
+                SubForms.IngresoNota Nota = new SubForms.IngresoNota();
+                Nota.Asesor = Form1.Nombre;
+                Nota.credi = CboPresta.Text;
+                Nota.Show();
+            }
+
         }
     }
 }

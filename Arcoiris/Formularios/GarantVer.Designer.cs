@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GarantVer));
             this.PanCentral = new System.Windows.Forms.Panel();
+            this.CmdContra = new System.Windows.Forms.Button();
             this.TxtEstado = new System.Windows.Forms.TextBox();
             this.CboEstado = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.CmdContra = new System.Windows.Forms.Button();
             this.PanCentral.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -95,6 +95,19 @@
             this.PanCentral.Name = "PanCentral";
             this.PanCentral.Size = new System.Drawing.Size(886, 333);
             this.PanCentral.TabIndex = 0;
+            // 
+            // CmdContra
+            // 
+            this.CmdContra.Image = ((System.Drawing.Image)(resources.GetObject("CmdContra.Image")));
+            this.CmdContra.Location = new System.Drawing.Point(725, 274);
+            this.CmdContra.Name = "CmdContra";
+            this.CmdContra.Size = new System.Drawing.Size(115, 45);
+            this.CmdContra.TabIndex = 30;
+            this.CmdContra.Text = "Contrato";
+            this.CmdContra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.CmdContra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.CmdContra.UseVisualStyleBackColor = true;
+            this.CmdContra.Click += new System.EventHandler(this.CmdContra_Click);
             // 
             // TxtEstado
             // 
@@ -155,6 +168,7 @@
             // 
             // BtnDesbloq
             // 
+            this.BtnDesbloq.Enabled = false;
             this.BtnDesbloq.Location = new System.Drawing.Point(594, 274);
             this.BtnDesbloq.Name = "BtnDesbloq";
             this.BtnDesbloq.Size = new System.Drawing.Size(115, 45);
@@ -162,6 +176,7 @@
             this.BtnDesbloq.Text = "Desbloquear";
             this.BtnDesbloq.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnDesbloq.UseVisualStyleBackColor = true;
+            this.BtnDesbloq.Visible = false;
             this.BtnDesbloq.Click += new System.EventHandler(this.BtnDesbloq_Click);
             // 
             // DtpFecha
@@ -205,6 +220,7 @@
             // 
             // BtnGuardar
             // 
+            this.BtnGuardar.Enabled = false;
             this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
             this.BtnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnGuardar.Location = new System.Drawing.Point(473, 274);
@@ -353,19 +369,6 @@
             this.label1.Size = new System.Drawing.Size(53, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Credito";
-            // 
-            // CmdContra
-            // 
-            this.CmdContra.Image = ((System.Drawing.Image)(resources.GetObject("CmdContra.Image")));
-            this.CmdContra.Location = new System.Drawing.Point(725, 274);
-            this.CmdContra.Name = "CmdContra";
-            this.CmdContra.Size = new System.Drawing.Size(115, 45);
-            this.CmdContra.TabIndex = 30;
-            this.CmdContra.Text = "Contrato";
-            this.CmdContra.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.CmdContra.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.CmdContra.UseVisualStyleBackColor = true;
-            this.CmdContra.Click += new System.EventHandler(this.CmdContra_Click);
             // 
             // GarantVer
             // 

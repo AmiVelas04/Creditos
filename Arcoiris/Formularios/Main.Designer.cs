@@ -32,7 +32,6 @@
             this.PanelLat = new System.Windows.Forms.Panel();
             this.BtnAdmin = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.BtnAsesor = new System.Windows.Forms.Button();
             this.BtnReporte = new System.Windows.Forms.Button();
             this.BtnCredito = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.PanelCentral = new System.Windows.Forms.Panel();
+            this.BtnCaja = new System.Windows.Forms.Button();
             this.PanelLat.SuspendLayout();
             this.PanelSup.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -52,9 +52,9 @@
             // PanelLat
             // 
             this.PanelLat.BackColor = System.Drawing.Color.SteelBlue;
+            this.PanelLat.Controls.Add(this.BtnCaja);
             this.PanelLat.Controls.Add(this.BtnAdmin);
             this.PanelLat.Controls.Add(this.BtnGuardar);
-            this.PanelLat.Controls.Add(this.button1);
             this.PanelLat.Controls.Add(this.BtnAsesor);
             this.PanelLat.Controls.Add(this.BtnReporte);
             this.PanelLat.Controls.Add(this.BtnCredito);
@@ -102,23 +102,6 @@
             this.BtnGuardar.UseVisualStyleBackColor = true;
             this.BtnGuardar.Visible = false;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(0, 228);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 34);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Caja";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // BtnAsesor
             // 
@@ -274,6 +257,23 @@
             this.PanelCentral.Size = new System.Drawing.Size(894, 549);
             this.PanelCentral.TabIndex = 2;
             // 
+            // BtnCaja
+            // 
+            this.BtnCaja.FlatAppearance.BorderSize = 0;
+            this.BtnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCaja.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCaja.ForeColor = System.Drawing.Color.White;
+            this.BtnCaja.Image = ((System.Drawing.Image)(resources.GetObject("BtnCaja.Image")));
+            this.BtnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCaja.Location = new System.Drawing.Point(3, 227);
+            this.BtnCaja.Name = "BtnCaja";
+            this.BtnCaja.Size = new System.Drawing.Size(132, 42);
+            this.BtnCaja.TabIndex = 7;
+            this.BtnCaja.Text = "Caja";
+            this.BtnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnCaja.UseVisualStyleBackColor = true;
+            this.BtnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -310,8 +310,8 @@
         private System.Windows.Forms.Button BtnCerrar;
         private System.Windows.Forms.Button BtnMinimizar;
         private System.Windows.Forms.Label LbUsuario;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button BtnAdmin;
+        private System.Windows.Forms.Button BtnCaja;
     }
 }

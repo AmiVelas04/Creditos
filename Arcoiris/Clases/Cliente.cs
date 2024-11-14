@@ -290,7 +290,16 @@ namespace Arcoiris.Clases
             }
         }
 
-
+        public DataTable IdByDpi(string dpi)
+        {
+            string consulta;
+            consulta = "SELECT Codigo_cli, nombres, apellidos " +
+                        "FROM cliente " +
+                        $"WHERE dpi='{dpi}'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
 
         public string Dir_cli(string pago)
         {

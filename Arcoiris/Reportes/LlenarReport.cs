@@ -31,17 +31,21 @@ namespace Arcoiris.Reportes
             DataTable datosdet = new DataTable();
             datosenc = cre.nombres_cre(credito);
             datosdet = cre.detalle_cre(credito, tipo);
-
             Reportes.TablaEnc enca = new Reportes.TablaEnc();
             if (tipo.Equals("1") || tipo.Equals("2"))
             {
                 enca.CreditoP = "Diario";
             }
-            if (tipo.Equals("3"))
-            { enca.CreditoP = "Mensual";  }
-            else
+           else if (tipo.Equals("3") || tipo.Equals("4"))
             {
-                enca.CreditoP = "Mensual";
+                enca.CreditoP = "Mensual";  }
+            else if (tipo.Equals("5"))
+            {
+                enca.CreditoP = "Semanal";
+            }
+            else if (tipo.Equals("6"))
+            {
+                enca.CreditoP = "Quincenal";
             }
             enca.NoCredito = credito;
             enca.cliente = datosenc.Rows[0][1].ToString() + ", " + datosenc.Rows[0][0].ToString();
@@ -84,10 +88,18 @@ namespace Arcoiris.Reportes
             {
                 enca.CreditoP = "Diario";
             }
-            else
+            else if (tipo.Equals("3") || tipo.Equals("4"))
             {
                 enca.CreditoP = "Mensual";
             }
+            else if (tipo.Equals("5"))
+            {
+                enca.CreditoP = "Semanal"; }
+            else if (tipo.Equals("6"))
+            {
+                enca.CreditoP = "Quincenal"; }
+
+
             enca.NoCredito = credito;
             enca.cliente = datosenc.Rows[0][0].ToString() + ", " + datosenc.Rows[0][1].ToString();
             enca.fechaV = datosenc.Rows[0][2].ToString();
@@ -124,7 +136,7 @@ namespace Arcoiris.Reportes
             return datos;
         }
 
-        public void Cred_ver(string estado, string titulo)
+        public void Cred_ver(string estado, string titulo, string asesor)
         {
             Reportes.RepEnc Enca = new Reportes.RepEnc();
             string consulta,ConsulAdd = "";
@@ -188,10 +200,19 @@ namespace Arcoiris.Reportes
             { return false; }
 
         }
-        public void Cred_venc(string tip)
+        public void Cred_venc(string tip, string aseso)
         {
             Reportes.AtrasosE Encab = new Reportes.AtrasosE();
             Encab.titulo = "Creditos Atrasados";
+            string ConsulAdd2 = "";
+            if (aseso.Equals("0"))
+            {
+                ConsulAdd2 = "";
+            }
+            else
+            {
+                ConsulAdd2 = $"and asol.Cod_Asesor={aseso} ";
+            }
             string consulta;
             decimal interes, capital;
             consulta = "SELECT cre.cod_credito,CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/-%m/%y'), cre.FECHA_VENCI, CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos, interes,cre.id_tipo_credito  " +
@@ -199,7 +220,7 @@ namespace Arcoiris.Reportes
             "INNER JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
             "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
             "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO " +
-            "WHERE cre.ESTADO = 'Activo' order by cli.nombres and cli.apellidos";
+            "WHERE cre.ESTADO = 'Activo' order by cli.nombres and cli.apellidos "+ConsulAdd2;
             DataTable credito = new DataTable();
             credito = buscar(consulta);
             int cont, total;
@@ -327,7 +348,6 @@ namespace Arcoiris.Reportes
                 { res = saldoI; }
                 else
                 { res = monto * interes / 100 * dias; }
-
             }
             else if (tipo == "3")
             {
@@ -345,11 +365,9 @@ namespace Arcoiris.Reportes
                 {
                     res = monto * interes / 100/12 * retraso;
                 }
-
             }
             else if (tipo == "4")
             {
-
                 int retraso = 0;
                 retraso++;
                 diferencia = hoy - FechaI;
@@ -365,7 +383,27 @@ namespace Arcoiris.Reportes
                     res = monto * interes / 100 * retraso;
                 }
             }
+            else if (tipo == "5")
+            {
+                diferencia = hoy - FechaI;
+                dias = diferencia.Days;
+                dias = DiasSinFin(dias, FechaI);
+                if (pasado)
+                { res = saldoI; }
+                else
+                { res = monto * interes / 100 * dias; }
 
+            }
+            else if (tipo == "6")
+            {
+                diferencia = hoy - FechaI;
+                dias = diferencia.Days;
+                dias = DiasSinFin(dias, FechaI);
+                if (pasado)
+                { res = saldoI; }
+                else
+                { res = monto * interes / 100 * dias; }
+            }
             return res;
         }
 
@@ -478,16 +516,25 @@ namespace Arcoiris.Reportes
 
         }
 
-        public void Venc_ord(string titulo,string tip)
+        public void Venc_ord(string titulo,string tip, string aseso)
         {
             Reportes.AtrasosE Encab = new Reportes.AtrasosE();
             Encab.titulo = titulo;
             string consulta,ConsulAdd="";
+            string ConsulAdd2 = "";
             decimal capital;
             if (tip == "Diario")
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
+            if (aseso.Equals("0"))
+            {
+                ConsulAdd2 = "";
+            }
+            else
+            {
+                ConsulAdd2 = $"and asol.Cod_Asesor={aseso} ";
+            }
             consulta = "SELECT cre.cod_credito,CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%y'), cre.FECHA_VENCI, CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos, interes,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
             "FROM cliente cli " +
             "INNER JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
@@ -495,7 +542,7 @@ namespace Arcoiris.Reportes
             "LEFT JOIN sol_garant solg ON solg.Id_Solicitud=acre.ID_SOLICITUD "+
             "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+ 
             "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO " +
-            "WHERE cre.ESTADO = 'Activo' "+ ConsulAdd +
+            "WHERE cre.ESTADO = 'Activo' "+ ConsulAdd + ConsulAdd2 +
             "Group by cre.cod_credito "+
             "order by cli.nombres and cli.apellidos";
             DataTable credito = new DataTable();
@@ -544,16 +591,26 @@ namespace Arcoiris.Reportes
             formu.Show();
         }
 
-        public void ColAct(string titulo, string tip)
+        public void ColAct(string titulo, string tip, string aseso)
         {
             EstadoEnc Encab = new EstadoEnc();
             DataTable credito = new DataTable();
             Encab.cliente  = titulo;
             string consulta,ConsulAdd="";
+            string ConsulAdd2 = "";
+
             if (tip == "Diario")
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
+            if (aseso.Equals("0"))
+            {
+                ConsulAdd2 = "";
+            }
+            else
+            {
+                ConsulAdd2 = $"and aso.Cod_Asesor={aseso} ";
+            }
             consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
                        "FROM credito cre " +
                        "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = cre.COD_CREDITO " +
@@ -561,7 +618,7 @@ namespace Arcoiris.Reportes
                        "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = ac.ID_SOLICITUD "+
                        "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
                        "INNER JOIN cliente cli ON cli.CODIGO_CLI = aso.codigo_cli " +
-                       "WHERE cre.ESTADO = 'Activo' " + ConsulAdd +
+                       "WHERE cre.ESTADO = 'Activo' " + ConsulAdd + ConsulAdd2 +
                        "GROUP BY cre.COD_CREDITO " +
                        "ORDER BY cre.FECHA_CONC";
             credito = buscar(consulta);
@@ -661,15 +718,23 @@ namespace Arcoiris.Reportes
             formu.Show();
         }
 
-        public void RepCreActi(string titulo,string t)
+        public void RepCreActi(string titulo,string t,string aseso)
         {
             DataTable datos = new DataTable();
-            string ConsulAdd="";
+            string ConsulAdd1="";
+            string ConsulAdd2 = "";
             if (t == "Diario")
-            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            { ConsulAdd1 = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
             else if (t == "Mensual")
-            { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
+            { ConsulAdd1 = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
 
+            if (aseso.Equals("0")) {
+                ConsulAdd2 = "";
+            }
+            else
+            {
+                ConsulAdd2 = $"and asol.Cod_Asesor={aseso} ";
+            }
             string consulta = "SELECT  cre.COD_CREDITO,cli.NOMBRES,cli.APELLIDOS,cre.Saldo_cap, date_format(cre.FECHA_CONC,'%d/%m/%Y'), date_format(cre.FECHA_venci,'%d/%m/%Y'),cre.id_tipo_credito ,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias " +
                              "FROM credito cre " +
                              "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = cre.COD_CREDITO " +
@@ -677,7 +742,7 @@ namespace Arcoiris.Reportes
                              "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = acre.ID_SOLICITUD "+
                              "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
                              "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
-                             "WHERE cre.ESTADO='Activo'"+ConsulAdd +
+                             "WHERE cre.ESTADO='Activo'"+ConsulAdd1 +ConsulAdd2+
                              "GROUP BY cre.COD_CREDITO";
             int cont, cant;
             datos = buscar(consulta);
@@ -781,7 +846,6 @@ namespace Arcoiris.Reportes
 
                 // revisar fecga para los creditos mensuales
                 if (tip.Equals("Diario"))
-
                 {
                     while (fechapag >= fechaeval.AddDays(contendi))
                     {

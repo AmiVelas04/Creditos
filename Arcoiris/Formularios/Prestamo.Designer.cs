@@ -32,6 +32,20 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.GbxPago = new System.Windows.Forms.GroupBox();
+            this.AddNota = new System.Windows.Forms.Button();
+            this.LblNomCliDisplay = new System.Windows.Forms.Label();
+            this.GbxSearch = new System.Windows.Forms.GroupBox();
+            this.RdbDpi = new System.Windows.Forms.RadioButton();
+            this.RdbNom = new System.Windows.Forms.RadioButton();
+            this.TxtDpiBusc = new System.Windows.Forms.TextBox();
+            this.LblAseso = new System.Windows.Forms.Label();
+            this.GbxCuotaProm = new System.Windows.Forms.GroupBox();
+            this.TxtTotProm = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.TxtCapProm = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TxtIntProm = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.LblIdCli = new System.Windows.Forms.Label();
             this.TxtDepo = new System.Windows.Forms.TextBox();
             this.ChkDepo = new System.Windows.Forms.CheckBox();
@@ -88,7 +102,7 @@
             this.BtnMostrar = new System.Windows.Forms.Button();
             this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.BtnPago = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.LblCliEtiqueta = new System.Windows.Forms.Label();
             this.CboPresta = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Tab2 = new System.Windows.Forms.TabPage();
@@ -99,16 +113,11 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
-            this.GbxCuotaProm = new System.Windows.Forms.GroupBox();
-            this.TxtCapProm = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TxtIntProm = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.TxtTotProm = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
+            this.GbxSearch.SuspendLayout();
+            this.GbxCuotaProm.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -116,7 +125,6 @@
             this.GbxPagos.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVPpago)).BeginInit();
-            this.GbxCuotaProm.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -147,6 +155,11 @@
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.AddNota);
+            this.GbxPago.Controls.Add(this.LblNomCliDisplay);
+            this.GbxPago.Controls.Add(this.GbxSearch);
+            this.GbxPago.Controls.Add(this.TxtDpiBusc);
+            this.GbxPago.Controls.Add(this.LblAseso);
             this.GbxPago.Controls.Add(this.GbxCuotaProm);
             this.GbxPago.Controls.Add(this.LblIdCli);
             this.GbxPago.Controls.Add(this.TxtDepo);
@@ -169,7 +182,7 @@
             this.GbxPago.Controls.Add(this.BtnMostrar);
             this.GbxPago.Controls.Add(this.CboCliNom);
             this.GbxPago.Controls.Add(this.BtnPago);
-            this.GbxPago.Controls.Add(this.label2);
+            this.GbxPago.Controls.Add(this.LblCliEtiqueta);
             this.GbxPago.Controls.Add(this.CboPresta);
             this.GbxPago.Controls.Add(this.label1);
             this.GbxPago.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -182,10 +195,154 @@
             this.GbxPago.TabStop = false;
             this.GbxPago.Text = "Credito";
             // 
+            // AddNota
+            // 
+            this.AddNota.Image = ((System.Drawing.Image)(resources.GetObject("AddNota.Image")));
+            this.AddNota.Location = new System.Drawing.Point(272, 18);
+            this.AddNota.Name = "AddNota";
+            this.AddNota.Size = new System.Drawing.Size(127, 74);
+            this.AddNota.TabIndex = 61;
+            this.AddNota.Text = "Agregar nota de seguimiento";
+            this.AddNota.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.AddNota.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.AddNota.UseVisualStyleBackColor = true;
+            this.AddNota.Visible = false;
+            this.AddNota.Click += new System.EventHandler(this.AddNota_Click);
+            // 
+            // LblNomCliDisplay
+            // 
+            this.LblNomCliDisplay.Location = new System.Drawing.Point(225, 178);
+            this.LblNomCliDisplay.Name = "LblNomCliDisplay";
+            this.LblNomCliDisplay.Size = new System.Drawing.Size(183, 69);
+            this.LblNomCliDisplay.TabIndex = 60;
+            this.LblNomCliDisplay.Text = "Cliente";
+            this.LblNomCliDisplay.Visible = false;
+            // 
+            // GbxSearch
+            // 
+            this.GbxSearch.Controls.Add(this.RdbDpi);
+            this.GbxSearch.Controls.Add(this.RdbNom);
+            this.GbxSearch.Location = new System.Drawing.Point(405, 18);
+            this.GbxSearch.Name = "GbxSearch";
+            this.GbxSearch.Size = new System.Drawing.Size(89, 66);
+            this.GbxSearch.TabIndex = 59;
+            this.GbxSearch.TabStop = false;
+            this.GbxSearch.Text = "Busqueda";
+            // 
+            // RdbDpi
+            // 
+            this.RdbDpi.AutoSize = true;
+            this.RdbDpi.Location = new System.Drawing.Point(5, 39);
+            this.RdbDpi.Name = "RdbDpi";
+            this.RdbDpi.Size = new System.Drawing.Size(48, 21);
+            this.RdbDpi.TabIndex = 1;
+            this.RdbDpi.Text = "Dpi";
+            this.RdbDpi.UseVisualStyleBackColor = true;
+            this.RdbDpi.CheckedChanged += new System.EventHandler(this.RdbDpi_CheckedChanged);
+            this.RdbDpi.Click += new System.EventHandler(this.RdbDpi_Click);
+            // 
+            // RdbNom
+            // 
+            this.RdbNom.AutoSize = true;
+            this.RdbNom.Checked = true;
+            this.RdbNom.Location = new System.Drawing.Point(5, 18);
+            this.RdbNom.Name = "RdbNom";
+            this.RdbNom.Size = new System.Drawing.Size(78, 21);
+            this.RdbNom.TabIndex = 0;
+            this.RdbNom.TabStop = true;
+            this.RdbNom.Text = "Nombre";
+            this.RdbNom.UseVisualStyleBackColor = true;
+            this.RdbNom.CheckedChanged += new System.EventHandler(this.RdbNom_CheckedChanged);
+            // 
+            // TxtDpiBusc
+            // 
+            this.TxtDpiBusc.Location = new System.Drawing.Point(559, 26);
+            this.TxtDpiBusc.MaxLength = 13;
+            this.TxtDpiBusc.Name = "TxtDpiBusc";
+            this.TxtDpiBusc.Size = new System.Drawing.Size(283, 25);
+            this.TxtDpiBusc.TabIndex = 44;
+            this.TxtDpiBusc.Visible = false;
+            this.TxtDpiBusc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDpiBusc_KeyDown);
+            // 
+            // LblAseso
+            // 
+            this.LblAseso.Location = new System.Drawing.Point(228, 110);
+            this.LblAseso.Name = "LblAseso";
+            this.LblAseso.Size = new System.Drawing.Size(183, 68);
+            this.LblAseso.TabIndex = 58;
+            this.LblAseso.Text = "Asesor";
+            // 
+            // GbxCuotaProm
+            // 
+            this.GbxCuotaProm.Controls.Add(this.TxtTotProm);
+            this.GbxCuotaProm.Controls.Add(this.label17);
+            this.GbxCuotaProm.Controls.Add(this.TxtCapProm);
+            this.GbxCuotaProm.Controls.Add(this.label11);
+            this.GbxCuotaProm.Controls.Add(this.TxtIntProm);
+            this.GbxCuotaProm.Controls.Add(this.label12);
+            this.GbxCuotaProm.ForeColor = System.Drawing.Color.Sienna;
+            this.GbxCuotaProm.Location = new System.Drawing.Point(241, 264);
+            this.GbxCuotaProm.Name = "GbxCuotaProm";
+            this.GbxCuotaProm.Size = new System.Drawing.Size(170, 180);
+            this.GbxCuotaProm.TabIndex = 57;
+            this.GbxCuotaProm.TabStop = false;
+            this.GbxCuotaProm.Text = "Cuota Promedio";
+            // 
+            // TxtTotProm
+            // 
+            this.TxtTotProm.Enabled = false;
+            this.TxtTotProm.Location = new System.Drawing.Point(62, 129);
+            this.TxtTotProm.Name = "TxtTotProm";
+            this.TxtTotProm.Size = new System.Drawing.Size(100, 25);
+            this.TxtTotProm.TabIndex = 55;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(4, 132);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(44, 17);
+            this.label17.TabIndex = 54;
+            this.label17.Text = "Cuota";
+            // 
+            // TxtCapProm
+            // 
+            this.TxtCapProm.Enabled = false;
+            this.TxtCapProm.Location = new System.Drawing.Point(62, 81);
+            this.TxtCapProm.Name = "TxtCapProm";
+            this.TxtCapProm.Size = new System.Drawing.Size(100, 25);
+            this.TxtCapProm.TabIndex = 53;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(5, 84);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(51, 17);
+            this.label11.TabIndex = 52;
+            this.label11.Text = "Capital";
+            // 
+            // TxtIntProm
+            // 
+            this.TxtIntProm.Enabled = false;
+            this.TxtIntProm.Location = new System.Drawing.Point(62, 33);
+            this.TxtIntProm.Name = "TxtIntProm";
+            this.TxtIntProm.Size = new System.Drawing.Size(100, 25);
+            this.TxtIntProm.TabIndex = 51;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(4, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(52, 17);
+            this.label12.TabIndex = 50;
+            this.label12.Text = "Interes";
+            // 
             // LblIdCli
             // 
             this.LblIdCli.AutoSize = true;
-            this.LblIdCli.Location = new System.Drawing.Point(465, 67);
+            this.LblIdCli.Location = new System.Drawing.Point(500, 67);
             this.LblIdCli.Name = "LblIdCli";
             this.LblIdCli.Size = new System.Drawing.Size(51, 17);
             this.LblIdCli.TabIndex = 56;
@@ -227,7 +384,7 @@
             // ChkCancelado
             // 
             this.ChkCancelado.AutoSize = true;
-            this.ChkCancelado.Location = new System.Drawing.Point(201, 26);
+            this.ChkCancelado.Location = new System.Drawing.Point(175, 25);
             this.ChkCancelado.Name = "ChkCancelado";
             this.ChkCancelado.Size = new System.Drawing.Size(90, 21);
             this.ChkCancelado.TabIndex = 52;
@@ -716,7 +873,7 @@
             this.DtpPago.Location = new System.Drawing.Point(7, 67);
             this.DtpPago.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             this.DtpPago.Name = "DtpPago";
-            this.DtpPago.Size = new System.Drawing.Size(287, 25);
+            this.DtpPago.Size = new System.Drawing.Size(259, 25);
             this.DtpPago.TabIndex = 27;
             this.DtpPago.ValueChanged += new System.EventHandler(this.DtpPago_ValueChanged);
             this.DtpPago.Enter += new System.EventHandler(this.DtpPago_Enter);
@@ -751,22 +908,22 @@
             this.BtnPago.UseVisualStyleBackColor = true;
             this.BtnPago.Click += new System.EventHandler(this.BtnPago_Click);
             // 
-            // label2
+            // LblCliEtiqueta
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(491, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Cliente";
+            this.LblCliEtiqueta.AutoSize = true;
+            this.LblCliEtiqueta.Location = new System.Drawing.Point(500, 29);
+            this.LblCliEtiqueta.Name = "LblCliEtiqueta";
+            this.LblCliEtiqueta.Size = new System.Drawing.Size(51, 17);
+            this.LblCliEtiqueta.TabIndex = 2;
+            this.LblCliEtiqueta.Text = "Cliente";
             // 
             // CboPresta
             // 
             this.CboPresta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboPresta.FormattingEnabled = true;
-            this.CboPresta.Location = new System.Drawing.Point(76, 26);
+            this.CboPresta.Location = new System.Drawing.Point(65, 26);
             this.CboPresta.Name = "CboPresta";
-            this.CboPresta.Size = new System.Drawing.Size(111, 25);
+            this.CboPresta.Size = new System.Drawing.Size(104, 25);
             this.CboPresta.TabIndex = 1;
             this.CboPresta.SelectedIndexChanged += new System.EventHandler(this.CboPresta_SelectedIndexChanged);
             // 
@@ -786,7 +943,7 @@
             this.Tab2.Margin = new System.Windows.Forms.Padding(4);
             this.Tab2.Name = "Tab2";
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab2.Size = new System.Drawing.Size(757, 519);
+            this.Tab2.Size = new System.Drawing.Size(886, 519);
             this.Tab2.TabIndex = 1;
             this.Tab2.Text = "Estado de prestamos";
             this.Tab2.UseVisualStyleBackColor = true;
@@ -801,7 +958,7 @@
             this.GbxPagos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxPagos.Location = new System.Drawing.Point(4, 4);
             this.GbxPagos.Name = "GbxPagos";
-            this.GbxPagos.Size = new System.Drawing.Size(749, 511);
+            this.GbxPagos.Size = new System.Drawing.Size(878, 511);
             this.GbxPagos.TabIndex = 0;
             this.GbxPagos.TabStop = false;
             this.GbxPagos.Text = "Control de pagos";
@@ -864,7 +1021,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(3, 88);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(743, 420);
+            this.panel1.Size = new System.Drawing.Size(872, 420);
             this.panel1.TabIndex = 24;
             // 
             // DGVPpago
@@ -885,75 +1042,8 @@
             this.DGVPpago.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.DGVPpago.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.DGVPpago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVPpago.Size = new System.Drawing.Size(743, 420);
+            this.DGVPpago.Size = new System.Drawing.Size(872, 420);
             this.DGVPpago.TabIndex = 0;
-            // 
-            // GbxCuotaProm
-            // 
-            this.GbxCuotaProm.Controls.Add(this.TxtTotProm);
-            this.GbxCuotaProm.Controls.Add(this.label17);
-            this.GbxCuotaProm.Controls.Add(this.TxtCapProm);
-            this.GbxCuotaProm.Controls.Add(this.label11);
-            this.GbxCuotaProm.Controls.Add(this.TxtIntProm);
-            this.GbxCuotaProm.Controls.Add(this.label12);
-            this.GbxCuotaProm.ForeColor = System.Drawing.Color.Sienna;
-            this.GbxCuotaProm.Location = new System.Drawing.Point(241, 264);
-            this.GbxCuotaProm.Name = "GbxCuotaProm";
-            this.GbxCuotaProm.Size = new System.Drawing.Size(170, 180);
-            this.GbxCuotaProm.TabIndex = 57;
-            this.GbxCuotaProm.TabStop = false;
-            this.GbxCuotaProm.Text = "Cuota Promedio";
-            // 
-            // TxtCapProm
-            // 
-            this.TxtCapProm.Enabled = false;
-            this.TxtCapProm.Location = new System.Drawing.Point(62, 81);
-            this.TxtCapProm.Name = "TxtCapProm";
-            this.TxtCapProm.Size = new System.Drawing.Size(100, 25);
-            this.TxtCapProm.TabIndex = 53;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(5, 84);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(51, 17);
-            this.label11.TabIndex = 52;
-            this.label11.Text = "Capital";
-            // 
-            // TxtIntProm
-            // 
-            this.TxtIntProm.Enabled = false;
-            this.TxtIntProm.Location = new System.Drawing.Point(62, 33);
-            this.TxtIntProm.Name = "TxtIntProm";
-            this.TxtIntProm.Size = new System.Drawing.Size(100, 25);
-            this.TxtIntProm.TabIndex = 51;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 35);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(52, 17);
-            this.label12.TabIndex = 50;
-            this.label12.Text = "Interes";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(4, 132);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(44, 17);
-            this.label17.TabIndex = 54;
-            this.label17.Text = "Cuota";
-            // 
-            // TxtTotProm
-            // 
-            this.TxtTotProm.Enabled = false;
-            this.TxtTotProm.Location = new System.Drawing.Point(62, 129);
-            this.TxtTotProm.Name = "TxtTotProm";
-            this.TxtTotProm.Size = new System.Drawing.Size(100, 25);
-            this.TxtTotProm.TabIndex = 55;
             // 
             // Prestamo
             // 
@@ -972,6 +1062,10 @@
             this.Tab1.ResumeLayout(false);
             this.GbxPago.ResumeLayout(false);
             this.GbxPago.PerformLayout();
+            this.GbxSearch.ResumeLayout(false);
+            this.GbxSearch.PerformLayout();
+            this.GbxCuotaProm.ResumeLayout(false);
+            this.GbxCuotaProm.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -982,8 +1076,6 @@
             this.GbxPagos.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVPpago)).EndInit();
-            this.GbxCuotaProm.ResumeLayout(false);
-            this.GbxCuotaProm.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -994,7 +1086,7 @@
         private System.Windows.Forms.TabPage Tab1;
         private System.Windows.Forms.GroupBox GbxPago;
         private System.Windows.Forms.TabPage Tab2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label LblCliEtiqueta;
         private System.Windows.Forms.ComboBox CboPresta;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnPago;
@@ -1067,5 +1159,12 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox TxtIntProm;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label LblAseso;
+        private System.Windows.Forms.GroupBox GbxSearch;
+        private System.Windows.Forms.RadioButton RdbDpi;
+        private System.Windows.Forms.RadioButton RdbNom;
+        private System.Windows.Forms.TextBox TxtDpiBusc;
+        private System.Windows.Forms.Label LblNomCliDisplay;
+        private System.Windows.Forms.Button AddNota;
     }
 }

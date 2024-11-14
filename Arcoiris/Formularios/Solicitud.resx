@@ -197,30 +197,30 @@
   </data>
   <data name="BtnAgregar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
-        Jwb8ATHxxaqylNEcAAAAAElFTkSuQmCC
+        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
+        AAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="Tab2.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

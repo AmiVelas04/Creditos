@@ -33,6 +33,12 @@
             this.panelInf = new System.Windows.Forms.Panel();
             this.DGVAsesor = new System.Windows.Forms.DataGridView();
             this.panelSup = new System.Windows.Forms.Panel();
+            this.CboUsu = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.LblId = new System.Windows.Forms.Label();
+            this.GbxEstado = new System.Windows.Forms.GroupBox();
+            this.RdbDesact = new System.Windows.Forms.RadioButton();
+            this.RdbAct = new System.Windows.Forms.RadioButton();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.TxtDir = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,6 +54,7 @@
             this.panelInf.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVAsesor)).BeginInit();
             this.panelSup.SuspendLayout();
+            this.GbxEstado.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,10 +76,10 @@
             // 
             this.panelInf.Controls.Add(this.DGVAsesor);
             this.panelInf.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelInf.Location = new System.Drawing.Point(4, 175);
+            this.panelInf.Location = new System.Drawing.Point(4, 223);
             this.panelInf.Margin = new System.Windows.Forms.Padding(4);
             this.panelInf.Name = "panelInf";
-            this.panelInf.Size = new System.Drawing.Size(729, 370);
+            this.panelInf.Size = new System.Drawing.Size(729, 322);
             this.panelInf.TabIndex = 1;
             // 
             // DGVAsesor
@@ -88,11 +95,16 @@
             this.DGVAsesor.Name = "DGVAsesor";
             this.DGVAsesor.ReadOnly = true;
             this.DGVAsesor.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVAsesor.Size = new System.Drawing.Size(729, 370);
+            this.DGVAsesor.Size = new System.Drawing.Size(729, 322);
             this.DGVAsesor.TabIndex = 0;
+            this.DGVAsesor.DoubleClick += new System.EventHandler(this.DGVAsesor_DoubleClick);
             // 
             // panelSup
             // 
+            this.panelSup.Controls.Add(this.CboUsu);
+            this.panelSup.Controls.Add(this.label4);
+            this.panelSup.Controls.Add(this.LblId);
+            this.panelSup.Controls.Add(this.GbxEstado);
             this.panelSup.Controls.Add(this.BtnBuscar);
             this.panelSup.Controls.Add(this.TxtDir);
             this.panelSup.Controls.Add(this.label3);
@@ -105,8 +117,70 @@
             this.panelSup.Location = new System.Drawing.Point(4, 22);
             this.panelSup.Margin = new System.Windows.Forms.Padding(4);
             this.panelSup.Name = "panelSup";
-            this.panelSup.Size = new System.Drawing.Size(729, 153);
+            this.panelSup.Size = new System.Drawing.Size(729, 201);
             this.panelSup.TabIndex = 0;
+            // 
+            // CboUsu
+            // 
+            this.CboUsu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboUsu.FormattingEnabled = true;
+            this.CboUsu.Location = new System.Drawing.Point(278, 158);
+            this.CboUsu.Name = "CboUsu";
+            this.CboUsu.Size = new System.Drawing.Size(241, 25);
+            this.CboUsu.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(282, 138);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 17);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Usuario Asignado";
+            // 
+            // LblId
+            // 
+            this.LblId.AutoSize = true;
+            this.LblId.Location = new System.Drawing.Point(364, 85);
+            this.LblId.Name = "LblId";
+            this.LblId.Size = new System.Drawing.Size(15, 17);
+            this.LblId.TabIndex = 9;
+            this.LblId.Text = "0";
+            this.LblId.Visible = false;
+            // 
+            // GbxEstado
+            // 
+            this.GbxEstado.Controls.Add(this.RdbDesact);
+            this.GbxEstado.Controls.Add(this.RdbAct);
+            this.GbxEstado.Location = new System.Drawing.Point(27, 135);
+            this.GbxEstado.Name = "GbxEstado";
+            this.GbxEstado.Size = new System.Drawing.Size(215, 59);
+            this.GbxEstado.TabIndex = 8;
+            this.GbxEstado.TabStop = false;
+            this.GbxEstado.Text = "Estado";
+            // 
+            // RdbDesact
+            // 
+            this.RdbDesact.AutoSize = true;
+            this.RdbDesact.Checked = true;
+            this.RdbDesact.Location = new System.Drawing.Point(105, 24);
+            this.RdbDesact.Name = "RdbDesact";
+            this.RdbDesact.Size = new System.Drawing.Size(75, 21);
+            this.RdbDesact.TabIndex = 1;
+            this.RdbDesact.TabStop = true;
+            this.RdbDesact.Text = "Inactivo";
+            this.RdbDesact.UseVisualStyleBackColor = true;
+            // 
+            // RdbAct
+            // 
+            this.RdbAct.AutoSize = true;
+            this.RdbAct.Location = new System.Drawing.Point(18, 24);
+            this.RdbAct.Name = "RdbAct";
+            this.RdbAct.Size = new System.Drawing.Size(65, 21);
+            this.RdbAct.TabIndex = 0;
+            this.RdbAct.TabStop = true;
+            this.RdbAct.Text = "Activo";
+            this.RdbAct.UseVisualStyleBackColor = true;
             // 
             // BtnBuscar
             // 
@@ -185,32 +259,35 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(557, 0);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(172, 153);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(172, 201);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
             // BtnGuardar
             // 
             this.BtnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
             this.BtnGuardar.Location = new System.Drawing.Point(4, 4);
             this.BtnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnGuardar.Name = "BtnGuardar";
             this.BtnGuardar.Size = new System.Drawing.Size(156, 43);
             this.BtnGuardar.TabIndex = 0;
             this.BtnGuardar.Text = "Guardar";
+            this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnGuardar.UseVisualStyleBackColor = true;
             this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // BtnEditar
             // 
             this.BtnEditar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditar.Image")));
             this.BtnEditar.Location = new System.Drawing.Point(4, 55);
             this.BtnEditar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnEditar.Name = "BtnEditar";
             this.BtnEditar.Size = new System.Drawing.Size(156, 37);
             this.BtnEditar.TabIndex = 1;
-            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.Text = "Modificar";
+            this.BtnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnEditar.UseVisualStyleBackColor = true;
-            this.BtnEditar.Visible = false;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnEliminar
@@ -237,11 +314,14 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Asesor";
             this.Text = "Asesor";
+            this.Load += new System.EventHandler(this.Asesor_Load);
             this.GBXAsesor.ResumeLayout(false);
             this.panelInf.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DGVAsesor)).EndInit();
             this.panelSup.ResumeLayout(false);
             this.panelSup.PerformLayout();
+            this.GbxEstado.ResumeLayout(false);
+            this.GbxEstado.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -264,5 +344,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtNom;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox GbxEstado;
+        private System.Windows.Forms.RadioButton RdbDesact;
+        private System.Windows.Forms.RadioButton RdbAct;
+        private System.Windows.Forms.Label LblId;
+        private System.Windows.Forms.ComboBox CboUsu;
+        private System.Windows.Forms.Label label4;
     }
 }

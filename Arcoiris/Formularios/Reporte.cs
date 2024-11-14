@@ -23,10 +23,12 @@ namespace Arcoiris.Formularios
         #region Controles
         private void Reporte_Load(object sender, EventArgs e)
         {
+            listarasesores();
+            ListaAsesoAll();
 
-            if (Form1.Cod_U == "1" || Form1.Cod_U == "2")
+            if (Form1.Nivel == "1" || Form1.Nivel == "2" 
+                || Form1.Nivel == "3")
             {
-
                 CboCre.Items.Add("Creditos Atrasados Diarios");
                 CboCre.Items.Add("Creditos Atrasados Mensuales");
                 CboCre.Items.Add("Creditos Cancelados Diarios");
@@ -37,35 +39,48 @@ namespace Arcoiris.Formularios
                 CboCre.Items.Add("Reporte de Mora Creditos Mensuales");
                 CboCre.Items.Add("Reporte de pagos por dia (Diario)");
                 CboCre.Items.Add("Reporte de pagos por dia (Mensual)");
-
-
-
                 CboCre.SelectedIndex = 0;
                 //BtnCartera.Visible = true;
                 mes();
                 anio();
-                listarasesores();
+               // listarasesores();
+               // ListaAsesoAll();
                 CboAsesor.SelectedIndex = 0;
-                GbxD.Visible = true;
+                GbxD.Visible = false;
+                if (Form1.Nivel.Equals("3"))
+                { GbxD.Visible = false;
+                    GbxAs.Visible = false;
+                }
+                
             }
-            else
+            else if (Form1.Nivel.Equals("4"))
             {
-                GbxAs.Visible = false;
-                CboCre.Items.Add("Creditos Atrasados Diarios");
-                CboCre.Items.Add("Creditos Atrasados Mensuales");
-                CboCre.Items.Add("Creditos Cancelados Diarios");
-                CboCre.Items.Add("Creditos Cancelados Mensuales");
-                CboCre.Items.Add("Creditos Vigentes Diarios");
-                CboCre.Items.Add("Creditos Vigentes Mensuales");
-                CboCre.Items.Add("Reporte de Mora Creditos Diarios");
-                CboCre.Items.Add("Reporte de Mora Creditos Mensuales");
-                CboCre.Items.Add("Reporte de pagos por dia (Diario)");
-                CboCre.Items.Add("Reporte de pagos por dia (Mensual)");
-
-
+                try
+                {
+                    DataTable data = aseso.Usuario_Asesor(Form1.Cod_U);
+                    int ido = int.Parse(data.Rows[0][1].ToString());
+                    GbxAs.Visible = false;
+                    GbxD.Visible = false;
+                    CboCre.Items.Add("Creditos Atrasados Diarios");
+                    CboCre.Items.Add("Creditos Atrasados Mensuales");
+                    CboCre.Items.Add("Creditos Cancelados Diarios");
+                    CboCre.Items.Add("Creditos Cancelados Mensuales");
+                    CboCre.Items.Add("Creditos Vigentes Diarios");
+                    CboCre.Items.Add("Creditos Vigentes Mensuales");
+                    CboCre.Items.Add("Reporte de Mora Creditos Diarios");
+                    CboCre.Items.Add("Reporte de Mora Creditos Mensuales");
+                    CboCre.Items.Add("Reporte de pagos por dia (Diario)");
+                    CboCre.Items.Add("Reporte de pagos por dia (Mensual)");
+                    CboAseRepo.SelectedValue = ido;
+                    CboAseRepo.Enabled = false;
+                    GbxD.Visible = false;
+                    GbxAs.Visible = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un problema al buscar asesor","Algo salio mal",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                }
             }
-
-
         }
 
 
@@ -160,19 +175,24 @@ namespace Arcoiris.Formularios
              6 Dia de pago Diario
              7 Dia de pago Mensual
              */
-            string tipo ="",titulo="";
-
+            string tipo ="",titulo="", TitAseso="Todos los asesores";
+            if (!CboAseRepo.SelectedValue.ToString().Equals("0"))
+            {
+                TitAseso = CboAseRepo.Text;
+            }
+            string ases = CboAseRepo.SelectedValue.ToString();
             if (CboCre.SelectedIndex == 4)
             {
+               
                 if (Form1.Cod_U.Equals("3") || Form1.Nivel.Equals("4"))
                 {
                     MessageBox.Show("No tiene autorización de visualizar este reporte","Autorización",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
                 else
                 {
-                    titulo = "Listado de creditos vigentes Diarios";
+                    titulo = $"Listado de creditos vigentes Diarios \n{TitAseso}";
                     tipo = "Diario";
-                    repor.RepCreActi(titulo, tipo);
+                    repor.RepCreActi(titulo, tipo,ases);
                 }
                 }
             else if (CboCre.SelectedIndex == 5)
@@ -183,24 +203,27 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                    titulo = "Listado de creditos vigentes Mensuales";
+                   
+                    titulo = $"Listado de creditos vigentes Mensuales \n{TitAseso}";
                     tipo = "Mensual";
-                    repor.RepCreActi(titulo, tipo);
+                    repor.RepCreActi(titulo, tipo,ases);
                 }
             }
             else if (CboCre.SelectedIndex == 0)
             {
-                titulo = "Listado Creditos Atrasados Diarios";
+               
+                titulo = $"Listado Creditos Atrasados Diarios \n{TitAseso}";
                 tipo = "Diario";
-                repor.Venc_ord(titulo, tipo);
+                repor.Venc_ord(titulo, tipo,ases);
                 //repor.Cred_venc(titulo);
 
             }
             else if (CboCre.SelectedIndex == 1)
             {
-                titulo = "Listado Credito Atrasados Mensual";
+               
+                titulo = $"Listado Credito Atrasados Mensual \n{TitAseso}";
                 tipo = "Mensual";
-                repor.Venc_ord(titulo, tipo);
+                repor.Venc_ord(titulo, tipo,ases);
                 //repor.Cred_venc(titulo);
 
             }
@@ -212,9 +235,9 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                    titulo = "Listado creditos Terminados diarios";
+                    titulo = $"Listado creditos Terminados diarios \n{TitAseso}";
                     tipo = "Diario";
-                    repor.Cred_ver(tipo, titulo);
+                    repor.Cred_ver(tipo, titulo,ases);
                 }
             }
             else if (CboCre.SelectedIndex == 3)
@@ -225,33 +248,37 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                    titulo = "Listado creditos Terminados Mensulaes";
+                   
+
+                    titulo = $"Listado creditos Terminados Mensulaes \n{TitAseso}";
                     tipo = "Mensual";
-                    repor.Cred_ver(tipo, titulo);
+                    repor.Cred_ver(tipo, titulo,ases);
                 }
             }
             else if (CboCre.SelectedIndex == 6)
             {
-                titulo = "Reporte de mora creditos diarios";
+                
+                titulo = $"Reporte de mora creditos diarios \n{TitAseso}";
                 tipo = "Diario";
-                repor.ColAct(titulo, tipo);
+                repor.ColAct(titulo,tipo,ases);
             }
             else if (CboCre.SelectedIndex == 7)
             {
-                titulo = "Reporte de mora creditos mensuales";
+              
+                titulo = $"Reporte de mora creditos mensuales \n{TitAseso}";
                 tipo = "Mensual";
-                repor.ColAct(titulo, tipo);
+                repor.ColAct(titulo, tipo,ases);
             }
             else if (CboCre.SelectedIndex ==8)
             {
-                titulo = "Reporte de pagos del dia";
+                titulo = $"Reporte de pagos del dia \n{TitAseso}";
                 tipo = "Diario";
                 string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
                 repor.RepDiaPago(titulo, tipo,fecha);
             }
             else if (CboCre.SelectedIndex == 9)
             {
-                titulo = "Reporte de pago del dia";
+                titulo = $"Reporte de pago del dia \n{TitAseso}";
                 tipo = "Mensual";
                 string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
                 repor.RepDiaPago(titulo, tipo,fecha);
@@ -435,9 +462,24 @@ namespace Arcoiris.Formularios
         private void listarasesores()
         {
             DataTable datosas = new DataTable();
+            DataTable tempo= aseso.busca_asesor_nom();
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
-            datosas = aseso.busca_asesor_nom();
-            CboAsesor.DataSource = datosas;
+           /* datosas.Columns.Add("Nombre").DataType = Type.GetType("System.String");
+            datosas.Columns.Add("Codigo").DataType = Type.GetType("System.String"); ;
+            DataRow fila = datosas.NewRow();
+            fila["Nombre"] = "Todos";
+            fila["Codigo"] = "0";
+            datosas.Rows.Add(fila);
+            int conteo = tempo.Rows.Count;
+            for (int i = 0; i < conteo; i++)
+            {
+                DataRow filatemp = datosas.NewRow();
+                filatemp["Nombre"] = tempo.Rows[i][0].ToString();
+                filatemp["Codigo"] = tempo.Rows[i][1].ToString();
+                datosas.Rows.Add(filatemp);
+            }*/
+
+            CboAsesor.DataSource = tempo;
             CboAsesor.DisplayMember = "Nombre";
             CboAsesor.ValueMember = "Codigo";
            /* foreach (DataRow row in datosas.Rows)
@@ -450,7 +492,40 @@ namespace Arcoiris.Formularios
             CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
         }
 
-      
+        private void ListaAsesoAll()
+        {
+            DataTable datosas = new DataTable();
+            DataTable tempo = aseso.busca_asesor_nom();
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            datosas.Columns.Add("Nombre").DataType = Type.GetType("System.String");
+            datosas.Columns.Add("Codigo").DataType = Type.GetType("System.String"); ;
+            DataRow fila = datosas.NewRow();
+            fila["Nombre"] = "Todos";
+            fila["Codigo"] = "0";
+            datosas.Rows.Add(fila);
+            int conteo = tempo.Rows.Count;
+            for (int i = 0; i < conteo; i++)
+            {
+                DataRow filatemp = datosas.NewRow();
+                filatemp["Nombre"] = tempo.Rows[i][0].ToString();
+                filatemp["Codigo"] = tempo.Rows[i][1].ToString();
+                datosas.Rows.Add(filatemp);
+            }
+
+            CboAseRepo.DataSource = datosas;
+            CboAseRepo.DisplayMember = "Nombre";
+            CboAseRepo.ValueMember = "Codigo";
+            /* foreach (DataRow row in datosas.Rows)
+             {
+                 coleccion.Add(row["Nombre"].ToString());
+
+             }
+             CboAsesor.AutoCompleteCustomSource = coleccion;
+             CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+             CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
+        }
+
+
 
         private void calculocomi(DataTable datos,string asesor, string fechai,string fechaf)
         {

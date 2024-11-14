@@ -50,7 +50,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Icono Gen.ico</ApplicationIcon>
+    <ApplicationIcon>icono.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>2A61A4251B0EEE2AA4F058FC81335B77CDCCF78D</ManifestCertificateThumbprint>
@@ -184,6 +184,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\Bitacora.cs" />
     <Compile Include="Clases\CajaOpe.cs" />
     <Compile Include="Clases\ClAsesor.cs" />
     <Compile Include="Clases\Cliente.cs" />
@@ -279,11 +280,29 @@
     <Compile Include="Formularios\Solicitud.Designer.cs">
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\SubForms\EditGarant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SubForms\EditGarant.Designer.cs">
+      <DependentUpon>EditGarant.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\SubForms\IngresoGarantia.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Formularios\SubForms\IngresoGarantia.Designer.cs">
       <DependentUpon>IngresoGarantia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\SubForms\IngresoNota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SubForms\IngresoNota.Designer.cs">
+      <DependentUpon>IngresoNota.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\SubForms\ListaBitacora.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SubForms\ListaBitacora.Designer.cs">
+      <DependentUpon>ListaBitacora.cs</DependentUpon>
     </Compile>
     <Compile Include="Formularios\Usuario.cs">
       <SubType>Form</SubType>
@@ -511,8 +530,17 @@
     <EmbeddedResource Include="Formularios\Solicitud.resx">
       <DependentUpon>Solicitud.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SubForms\EditGarant.resx">
+      <DependentUpon>EditGarant.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\SubForms\IngresoGarantia.resx">
       <DependentUpon>IngresoGarantia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SubForms\IngresoNota.resx">
+      <DependentUpon>IngresoNota.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SubForms\ListaBitacora.resx">
+      <DependentUpon>ListaBitacora.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Usuario.resx">
       <DependentUpon>Usuario.cs</DependentUpon>
@@ -709,6 +737,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icono Gen.ico" />
+    <Content Include="icono.ico" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

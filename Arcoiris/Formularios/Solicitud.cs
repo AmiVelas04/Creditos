@@ -97,6 +97,8 @@ namespace Arcoiris.Formularios
             TxtNoSol.Text = sol.id_solicitud().ToString();
             CboTipo.Items.Add("Diario");
             CboTipo.Items.Add("Diario - Intereses");
+            CboTipo.Items.Add("Semanal");
+            CboTipo.Items.Add("Quincenal");
             CboTipo.Items.Add("Mensual - Cuota Fija");
             CboTipo.Items.Add("Mensual - Sobre Saldo");
             CboTipo.SelectedIndex = 0;
@@ -187,6 +189,16 @@ namespace Arcoiris.Formularios
                 tipo = "4";
                 plazo = Convert.ToString(NupPlazo.Value);
             }
+            else if (CboTipo.Text == "Semanal")
+            {
+                tipo = "5";
+                plazo = Convert.ToString(NupPlazo.Value);
+            }
+            else if (CboTipo.Text == "Quincenal")
+            {
+                tipo = "6";
+                plazo = Convert.ToString(NupPlazo.Value);
+            }
             else
             {
                 tipo = "0";
@@ -275,6 +287,8 @@ namespace Arcoiris.Formularios
                 CboTipo2.Items.Clear();
                 CboTipo2.Items.Add("Diario");
                 CboTipo2.Items.Add("Diario - Intereses");
+                CboTipo2.Items.Add("Semanal");
+                CboTipo2.Items.Add("Quincenal");
                 CboTipo2.Items.Add("Mensual - Cuota Fija");
                 CboTipo2.Items.Add("Mensual - Sobre Saldo");
 
@@ -283,27 +297,38 @@ namespace Arcoiris.Formularios
                 {
                     //TxtTipo.Text = "Diario";
                     CboTipo2.SelectedIndex = 0;
-                    label14.Text = "Interes Diario";
+                    label14.Text = "Interes";
                 }
                 else if (tipo == 2)
                 {
                     //TxtTipo.Text = "Diario - Intereses";
                     CboTipo2.SelectedIndex = 1;
-                    label14.Text = "Interes Diario";
+                    label14.Text = "Interes";
                 }
                 else if (tipo == 3)
                 {
                     //TxtTipo.Text = "Mensual - Cuota Fija"
-                    CboTipo2.SelectedIndex = 2;
-                    label14.Text = "Interes Anual";
+                    CboTipo2.SelectedIndex = 4;
+                    label14.Text = "Interes";
                 }
                 else if (tipo == 4)
                 {
                     //TxtTipo.Text = "Mensual - Sobre Saldo";
-                    CboTipo2.SelectedIndex = 3;
-                    label14.Text = "Interes Anual";
+                    CboTipo2.SelectedIndex = 5;
+                    label14.Text = "Interes";
                 }
-
+                else if (tipo == 5)
+                {
+                    //TxtTipo.Text = "Mensual - Sobre Saldo";
+                    CboTipo2.SelectedIndex = 2;
+                    label14.Text = "Interes";
+                }
+                else if (tipo == 6)
+                {
+                    //TxtTipo.Text = "Mensual - Sobre Saldo";
+                    CboTipo2.SelectedIndex = 3;
+                    label14.Text = "Interes";
+                }
             }
         }
 
@@ -494,27 +519,43 @@ namespace Arcoiris.Formularios
                 tipo = "1";
                 dias = Convert.ToInt32(TxtPlazo.Text);
                 fecha_fin = fechaf(fecha_conc, dias);
-
+                label9.Text = "Plazo (Dias)";
             }
             else if (CboTipo2.SelectedIndex == 1)
             {
                 tipo = "2";
                 dias = Convert.ToInt32(TxtPlazo.Text);
                 fecha_fin = fechaf(fecha_conc, dias);
+                label9.Text = "Plazo (Dias)";
             }
             else if (CboTipo2.SelectedIndex == 2)
+            {
+                tipo = "5";
+                dias = Convert.ToInt32(TxtPlazo.Text);
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
+                label9.Text = "Plazo (Meses)";
+            }
+            else if (CboTipo2.SelectedIndex == 3)
+            {
+                tipo = "6";
+                dias = Convert.ToInt32(TxtPlazo.Text);
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
+                label9.Text = "Plazo (Meses)";
+            }
+            else if (CboTipo2.SelectedIndex == 4)
             {
                 tipo = "3";
                 dias = Convert.ToInt32(TxtPlazo.Text);
                 fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
+                label9.Text = "Plazo (Meses)";
             }
-            else if (CboTipo2.SelectedIndex == 3)
+            else if (CboTipo2.SelectedIndex == 5)
             {
                 tipo = "4";
                 dias = Convert.ToInt32(TxtPlazo.Text);
                 fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
+                label9.Text = "Plazo (Meses)";
             }
-
 
 
             DataTable Creact = new DataTable();
@@ -554,7 +595,6 @@ namespace Arcoiris.Formularios
                     datos[8] = salantes.ToString();
                     datos[9] = totdias(fecha_conc, dias).ToString();
                     datos[10] = TxtGastos.Text;
-
                     DataTable datosfi = new DataTable();
                     //calculo de cuotas finales
                     cuotacapital = cre.saldoant(cod_cli.ToString(), cod_credi.ToString());
@@ -597,7 +637,6 @@ namespace Arcoiris.Formularios
                     datos[8] = "0";
                     datos[9] = totdias(fecha_conc, dias).ToString();
                     datos[10] = TxtGastos.Text;
-
                 }
             }
             else if (totalcre >= 1 && CboEstado.Text == "Denegado")
@@ -625,7 +664,6 @@ namespace Arcoiris.Formularios
                 datos[8] = "0";
                 datos[9] = totdias(fecha_conc, dias).ToString();
                 datos[10] = TxtGastos.Text;
-
             }
 
             if (sol.camb_estado(datos))
@@ -640,7 +678,6 @@ namespace Arcoiris.Formularios
                 {
                     MessageBox.Show("El credito ha sido denegado");
                 }
-
                 hoja_pagos(datos[0], datos[6], datos[8]);
             }
             else
@@ -707,7 +744,6 @@ namespace Arcoiris.Formularios
             {
                 LblPlazo.Visible = false;
                 NupPlazo.Visible = false;
-
             }
             else
             {
@@ -1062,7 +1098,26 @@ namespace Arcoiris.Formularios
             TxtDirF.Clear();
         }
 
+        private void CboTipo2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboTipo2.SelectedIndex == 0)
+            {
+                label9.Text = "Plazo (Dias)";
+            }
+            else if (CboTipo2.SelectedIndex == 2)
+            {
+                label9.Text = "Plazo (Dias)";
+            }
+            else if (CboTipo2.SelectedIndex == 3)
+            { label9.Text = "Plazo (Meses)"; }
+            else if (CboTipo2.SelectedIndex == 4)
+            { label9.Text = "Plazo (Meses)"; }
+            else if (CboTipo2.SelectedIndex == 5)
+            { label9.Text = "Plazo (Meses)"; }
+            else if (CboTipo2.SelectedIndex == 6)
+            { label9.Text = "Plazo (Meses)"; }
 
+        }
     }
 }
 

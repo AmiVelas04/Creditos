@@ -33,6 +33,26 @@
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.GbxGarantia = new System.Windows.Forms.GroupBox();
+            this.BtnAddGarant = new System.Windows.Forms.Button();
+            this.GbxDataFiad = new System.Windows.Forms.GroupBox();
+            this.TxtProfFiad = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.TxtEstCivilF = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.TxtDirF = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.CboGeneF = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.NudEdadF = new System.Windows.Forms.NumericUpDown();
+            this.label22 = new System.Windows.Forms.Label();
+            this.CboMuniF = new System.Windows.Forms.ComboBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.CboDepaF = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.TxtDpiF = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtNomF = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.CboTipPresta = new System.Windows.Forms.ComboBox();
             this.GbxGarantias = new System.Windows.Forms.GroupBox();
             this.ChkTesti2 = new System.Windows.Forms.CheckBox();
@@ -93,36 +113,16 @@
             this.label12 = new System.Windows.Forms.Label();
             this.CboSoli = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.GbxDataFiad = new System.Windows.Forms.GroupBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.TxtNomF = new System.Windows.Forms.TextBox();
-            this.TxtDpiF = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.CboMuniF = new System.Windows.Forms.ComboBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.CboDepaF = new System.Windows.Forms.ComboBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.NudEdadF = new System.Windows.Forms.NumericUpDown();
-            this.label23 = new System.Windows.Forms.Label();
-            this.CboGeneF = new System.Windows.Forms.ComboBox();
-            this.TxtDirF = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.TxtEstCivilF = new System.Windows.Forms.TextBox();
-            this.label25 = new System.Windows.Forms.Label();
-            this.TxtProfFiad = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.BtnAddGarant = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.GbxGarantia.SuspendLayout();
+            this.GbxDataFiad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).BeginInit();
             this.GbxGarantias.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
             this.Tab2.SuspendLayout();
             this.GBXPrestamo.SuspendLayout();
-            this.GbxDataFiad.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -194,6 +194,231 @@
             this.GbxGarantia.TabIndex = 24;
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
+            // 
+            // BtnAddGarant
+            // 
+            this.BtnAddGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddGarant.Image")));
+            this.BtnAddGarant.Location = new System.Drawing.Point(197, 24);
+            this.BtnAddGarant.Name = "BtnAddGarant";
+            this.BtnAddGarant.Size = new System.Drawing.Size(75, 41);
+            this.BtnAddGarant.TabIndex = 43;
+            this.BtnAddGarant.UseVisualStyleBackColor = true;
+            this.BtnAddGarant.Click += new System.EventHandler(this.BtnAddGarant_Click);
+            // 
+            // GbxDataFiad
+            // 
+            this.GbxDataFiad.Controls.Add(this.TxtProfFiad);
+            this.GbxDataFiad.Controls.Add(this.label26);
+            this.GbxDataFiad.Controls.Add(this.TxtEstCivilF);
+            this.GbxDataFiad.Controls.Add(this.label25);
+            this.GbxDataFiad.Controls.Add(this.TxtDirF);
+            this.GbxDataFiad.Controls.Add(this.label24);
+            this.GbxDataFiad.Controls.Add(this.CboGeneF);
+            this.GbxDataFiad.Controls.Add(this.label23);
+            this.GbxDataFiad.Controls.Add(this.NudEdadF);
+            this.GbxDataFiad.Controls.Add(this.label22);
+            this.GbxDataFiad.Controls.Add(this.CboMuniF);
+            this.GbxDataFiad.Controls.Add(this.label20);
+            this.GbxDataFiad.Controls.Add(this.CboDepaF);
+            this.GbxDataFiad.Controls.Add(this.label21);
+            this.GbxDataFiad.Controls.Add(this.TxtDpiF);
+            this.GbxDataFiad.Controls.Add(this.label19);
+            this.GbxDataFiad.Controls.Add(this.TxtNomF);
+            this.GbxDataFiad.Controls.Add(this.label7);
+            this.GbxDataFiad.Location = new System.Drawing.Point(278, 13);
+            this.GbxDataFiad.Name = "GbxDataFiad";
+            this.GbxDataFiad.Size = new System.Drawing.Size(580, 181);
+            this.GbxDataFiad.TabIndex = 42;
+            this.GbxDataFiad.TabStop = false;
+            this.GbxDataFiad.Text = "Datos del fiador";
+            // 
+            // TxtProfFiad
+            // 
+            this.TxtProfFiad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProfFiad.Location = new System.Drawing.Point(391, 85);
+            this.TxtProfFiad.Name = "TxtProfFiad";
+            this.TxtProfFiad.Size = new System.Drawing.Size(148, 23);
+            this.TxtProfFiad.TabIndex = 51;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(393, 65);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(60, 15);
+            this.label26.TabIndex = 50;
+            this.label26.Text = "Profesion";
+            // 
+            // TxtEstCivilF
+            // 
+            this.TxtEstCivilF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtEstCivilF.Location = new System.Drawing.Point(391, 41);
+            this.TxtEstCivilF.Name = "TxtEstCivilF";
+            this.TxtEstCivilF.Size = new System.Drawing.Size(148, 23);
+            this.TxtEstCivilF.TabIndex = 49;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(393, 21);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(69, 15);
+            this.label25.TabIndex = 48;
+            this.label25.Text = "Estado Civil";
+            // 
+            // TxtDirF
+            // 
+            this.TxtDirF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDirF.Location = new System.Drawing.Point(231, 133);
+            this.TxtDirF.Name = "TxtDirF";
+            this.TxtDirF.Size = new System.Drawing.Size(308, 23);
+            this.TxtDirF.TabIndex = 47;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(233, 113);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(60, 15);
+            this.label24.TabIndex = 46;
+            this.label24.Text = "Direccion";
+            // 
+            // CboGeneF
+            // 
+            this.CboGeneF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboGeneF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboGeneF.FormattingEnabled = true;
+            this.CboGeneF.Items.AddRange(new object[] {
+            "Masculino",
+            "Femenino"});
+            this.CboGeneF.Location = new System.Drawing.Point(95, 133);
+            this.CboGeneF.Name = "CboGeneF";
+            this.CboGeneF.Size = new System.Drawing.Size(99, 23);
+            this.CboGeneF.TabIndex = 45;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(109, 115);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(49, 15);
+            this.label23.TabIndex = 44;
+            this.label23.Text = "Genero";
+            // 
+            // NudEdadF
+            // 
+            this.NudEdadF.Location = new System.Drawing.Point(6, 133);
+            this.NudEdadF.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.NudEdadF.Minimum = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            this.NudEdadF.Name = "NudEdadF";
+            this.NudEdadF.Size = new System.Drawing.Size(83, 25);
+            this.NudEdadF.TabIndex = 43;
+            this.NudEdadF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NudEdadF.Value = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(18, 115);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(33, 15);
+            this.label22.TabIndex = 42;
+            this.label22.Text = "Edad";
+            // 
+            // CboMuniF
+            // 
+            this.CboMuniF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboMuniF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboMuniF.FormattingEnabled = true;
+            this.CboMuniF.Location = new System.Drawing.Point(231, 85);
+            this.CboMuniF.Name = "CboMuniF";
+            this.CboMuniF.Size = new System.Drawing.Size(138, 23);
+            this.CboMuniF.TabIndex = 41;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(240, 67);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 15);
+            this.label20.TabIndex = 40;
+            this.label20.Text = "Municipio";
+            // 
+            // CboDepaF
+            // 
+            this.CboDepaF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboDepaF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboDepaF.FormattingEnabled = true;
+            this.CboDepaF.Location = new System.Drawing.Point(231, 41);
+            this.CboDepaF.Name = "CboDepaF";
+            this.CboDepaF.Size = new System.Drawing.Size(138, 23);
+            this.CboDepaF.TabIndex = 39;
+            this.CboDepaF.SelectedValueChanged += new System.EventHandler(this.CboDepaF_SelectedValueChanged);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(240, 21);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(89, 15);
+            this.label21.TabIndex = 38;
+            this.label21.Text = "Departamento";
+            // 
+            // TxtDpiF
+            // 
+            this.TxtDpiF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDpiF.Location = new System.Drawing.Point(6, 85);
+            this.TxtDpiF.MaxLength = 13;
+            this.TxtDpiF.Name = "TxtDpiF";
+            this.TxtDpiF.Size = new System.Drawing.Size(188, 23);
+            this.TxtDpiF.TabIndex = 3;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(18, 67);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(26, 15);
+            this.label19.TabIndex = 2;
+            this.label19.Text = "Dpi";
+            // 
+            // TxtNomF
+            // 
+            this.TxtNomF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNomF.Location = new System.Drawing.Point(6, 41);
+            this.TxtNomF.Name = "TxtNomF";
+            this.TxtNomF.Size = new System.Drawing.Size(219, 23);
+            this.TxtNomF.TabIndex = 1;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(18, 21);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 15);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Nombre";
             // 
             // CboTipPresta
             // 
@@ -361,9 +586,9 @@
             this.label6.Location = new System.Drawing.Point(533, 132);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(104, 17);
+            this.label6.Size = new System.Drawing.Size(98, 17);
             this.label6.TabIndex = 16;
-            this.label6.Text = "Tipo Prestamos";
+            this.label6.Text = "Tipo Prestamo";
             // 
             // BtnLimpiar
             // 
@@ -568,6 +793,7 @@
             this.CboTipo2.Name = "CboTipo2";
             this.CboTipo2.Size = new System.Drawing.Size(152, 25);
             this.CboTipo2.TabIndex = 31;
+            this.CboTipo2.SelectedIndexChanged += new System.EventHandler(this.CboTipo2_SelectedIndexChanged);
             // 
             // BtnCancelar
             // 
@@ -870,231 +1096,6 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Solicitudes Pendientes";
             // 
-            // GbxDataFiad
-            // 
-            this.GbxDataFiad.Controls.Add(this.TxtProfFiad);
-            this.GbxDataFiad.Controls.Add(this.label26);
-            this.GbxDataFiad.Controls.Add(this.TxtEstCivilF);
-            this.GbxDataFiad.Controls.Add(this.label25);
-            this.GbxDataFiad.Controls.Add(this.TxtDirF);
-            this.GbxDataFiad.Controls.Add(this.label24);
-            this.GbxDataFiad.Controls.Add(this.CboGeneF);
-            this.GbxDataFiad.Controls.Add(this.label23);
-            this.GbxDataFiad.Controls.Add(this.NudEdadF);
-            this.GbxDataFiad.Controls.Add(this.label22);
-            this.GbxDataFiad.Controls.Add(this.CboMuniF);
-            this.GbxDataFiad.Controls.Add(this.label20);
-            this.GbxDataFiad.Controls.Add(this.CboDepaF);
-            this.GbxDataFiad.Controls.Add(this.label21);
-            this.GbxDataFiad.Controls.Add(this.TxtDpiF);
-            this.GbxDataFiad.Controls.Add(this.label19);
-            this.GbxDataFiad.Controls.Add(this.TxtNomF);
-            this.GbxDataFiad.Controls.Add(this.label7);
-            this.GbxDataFiad.Location = new System.Drawing.Point(278, 13);
-            this.GbxDataFiad.Name = "GbxDataFiad";
-            this.GbxDataFiad.Size = new System.Drawing.Size(580, 181);
-            this.GbxDataFiad.TabIndex = 42;
-            this.GbxDataFiad.TabStop = false;
-            this.GbxDataFiad.Text = "Datos del fiador";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(18, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(53, 15);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Nombre";
-            // 
-            // TxtNomF
-            // 
-            this.TxtNomF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNomF.Location = new System.Drawing.Point(6, 41);
-            this.TxtNomF.Name = "TxtNomF";
-            this.TxtNomF.Size = new System.Drawing.Size(219, 23);
-            this.TxtNomF.TabIndex = 1;
-            // 
-            // TxtDpiF
-            // 
-            this.TxtDpiF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDpiF.Location = new System.Drawing.Point(6, 85);
-            this.TxtDpiF.MaxLength = 13;
-            this.TxtDpiF.Name = "TxtDpiF";
-            this.TxtDpiF.Size = new System.Drawing.Size(188, 23);
-            this.TxtDpiF.TabIndex = 3;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(18, 67);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(26, 15);
-            this.label19.TabIndex = 2;
-            this.label19.Text = "Dpi";
-            // 
-            // CboMuniF
-            // 
-            this.CboMuniF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboMuniF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboMuniF.FormattingEnabled = true;
-            this.CboMuniF.Location = new System.Drawing.Point(231, 85);
-            this.CboMuniF.Name = "CboMuniF";
-            this.CboMuniF.Size = new System.Drawing.Size(138, 23);
-            this.CboMuniF.TabIndex = 41;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(240, 67);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(61, 15);
-            this.label20.TabIndex = 40;
-            this.label20.Text = "Municipio";
-            // 
-            // CboDepaF
-            // 
-            this.CboDepaF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboDepaF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboDepaF.FormattingEnabled = true;
-            this.CboDepaF.Location = new System.Drawing.Point(231, 41);
-            this.CboDepaF.Name = "CboDepaF";
-            this.CboDepaF.Size = new System.Drawing.Size(138, 23);
-            this.CboDepaF.TabIndex = 39;
-            this.CboDepaF.SelectedValueChanged += new System.EventHandler(this.CboDepaF_SelectedValueChanged);
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(240, 21);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(89, 15);
-            this.label21.TabIndex = 38;
-            this.label21.Text = "Departamento";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(18, 115);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(33, 15);
-            this.label22.TabIndex = 42;
-            this.label22.Text = "Edad";
-            // 
-            // NudEdadF
-            // 
-            this.NudEdadF.Location = new System.Drawing.Point(6, 133);
-            this.NudEdadF.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.NudEdadF.Minimum = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
-            this.NudEdadF.Name = "NudEdadF";
-            this.NudEdadF.Size = new System.Drawing.Size(83, 25);
-            this.NudEdadF.TabIndex = 43;
-            this.NudEdadF.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.NudEdadF.Value = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(109, 115);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(49, 15);
-            this.label23.TabIndex = 44;
-            this.label23.Text = "Genero";
-            // 
-            // CboGeneF
-            // 
-            this.CboGeneF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboGeneF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboGeneF.FormattingEnabled = true;
-            this.CboGeneF.Items.AddRange(new object[] {
-            "Masculino",
-            "Femenino"});
-            this.CboGeneF.Location = new System.Drawing.Point(95, 133);
-            this.CboGeneF.Name = "CboGeneF";
-            this.CboGeneF.Size = new System.Drawing.Size(99, 23);
-            this.CboGeneF.TabIndex = 45;
-            // 
-            // TxtDirF
-            // 
-            this.TxtDirF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDirF.Location = new System.Drawing.Point(231, 133);
-            this.TxtDirF.Name = "TxtDirF";
-            this.TxtDirF.Size = new System.Drawing.Size(308, 23);
-            this.TxtDirF.TabIndex = 47;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(233, 113);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(60, 15);
-            this.label24.TabIndex = 46;
-            this.label24.Text = "Direccion";
-            // 
-            // TxtEstCivilF
-            // 
-            this.TxtEstCivilF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEstCivilF.Location = new System.Drawing.Point(391, 41);
-            this.TxtEstCivilF.Name = "TxtEstCivilF";
-            this.TxtEstCivilF.Size = new System.Drawing.Size(148, 23);
-            this.TxtEstCivilF.TabIndex = 49;
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(393, 21);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(69, 15);
-            this.label25.TabIndex = 48;
-            this.label25.Text = "Estado Civil";
-            // 
-            // TxtProfFiad
-            // 
-            this.TxtProfFiad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProfFiad.Location = new System.Drawing.Point(391, 85);
-            this.TxtProfFiad.Name = "TxtProfFiad";
-            this.TxtProfFiad.Size = new System.Drawing.Size(148, 23);
-            this.TxtProfFiad.TabIndex = 51;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(393, 65);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(60, 15);
-            this.label26.TabIndex = 50;
-            this.label26.Text = "Profesion";
-            // 
-            // BtnAddGarant
-            // 
-            this.BtnAddGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddGarant.Image")));
-            this.BtnAddGarant.Location = new System.Drawing.Point(197, 24);
-            this.BtnAddGarant.Name = "BtnAddGarant";
-            this.BtnAddGarant.Size = new System.Drawing.Size(75, 41);
-            this.BtnAddGarant.TabIndex = 43;
-            this.BtnAddGarant.UseVisualStyleBackColor = true;
-            this.BtnAddGarant.Click += new System.EventHandler(this.BtnAddGarant_Click);
-            // 
             // Solicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1114,15 +1115,15 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.GbxGarantia.ResumeLayout(false);
+            this.GbxDataFiad.ResumeLayout(false);
+            this.GbxDataFiad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).EndInit();
             this.GbxGarantias.ResumeLayout(false);
             this.GbxGarantias.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).EndInit();
             this.Tab2.ResumeLayout(false);
             this.GBXPrestamo.ResumeLayout(false);
             this.GBXPrestamo.PerformLayout();
-            this.GbxDataFiad.ResumeLayout(false);
-            this.GbxDataFiad.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).EndInit();
             this.ResumeLayout(false);
 
         }

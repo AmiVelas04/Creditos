@@ -65,7 +65,7 @@ namespace Arcoiris.Clases
         public int id_solicitud()
         {
             string consulta;
-            consulta = "Select count(*) from solicitud";
+            consulta = "Select max(id_solicitud) from solicitud";
             DataTable datos = new DataTable();
 
             datos = buscar(consulta);
@@ -384,11 +384,9 @@ namespace Arcoiris.Clases
             //MessageBox.Show("Tipo de credito: " + datos[6].ToString ());
             if (datos[6] == "1" || datos[6] == "2")
             {
-
                 saldoI = Math.Round((saldoC * interes / 100 * diasp), 2);
             }
             else if (datos[6] == "3")
-
             {
                 int plaz;
                 plaz = Convert.ToInt32(datos[2].ToString());
@@ -410,18 +408,30 @@ namespace Arcoiris.Clases
                 }
                 saldoI = SumI;
             }
+            else if (datos[6] == "5")
+            {
+                int plaz;
+                plaz = Convert.ToInt32(datos[2].ToString());
+                diasp = plaz * 4;
+                saldoI = Math.Round((saldoC * interes / 100 * diasp*7), 2);
+            }
+            else if (datos[6] == "6")
+            {
+                int plaz;
+                plaz = Convert.ToInt32(datos[2].ToString());
+                diasp = plaz * 2;
+                saldoI = Math.Round((saldoC * interes / 100 * diasp*14), 2);
+            }
 
 
             string consultaingcre;
             consultaingcre = "insert into Credito(cod_credito,id_tipo_credito, monto,plazo, interes, fecha_conc,fecha_venci, estado,dias_pago,saldo_cap,saldo_int,saldo_ant,gastos_admin) values(" + idcredito + "," + datos[6] + "," + datos[1] + ",'" +/*CAmbiar por datos 2 si es necesario*/ datos[9] + "'," + datos[3] + ",'" + datos[4] + "','" + datos[5] + "','Activo'," + diasp + "," + saldoC + "," + saldoI + "," + datos[8] + ","+datos[10]+")";
             if (consulta_gen(consultaingcre))
             {
-
                 if (asigna_credito(datos[0], idcredito))
                 {
                     return true;
                     //agregar a caja
-
                 }
                 else
                 {
@@ -431,7 +441,6 @@ namespace Arcoiris.Clases
             else {
                 return false;
             }
-
         }
 
 

@@ -31,7 +31,6 @@ namespace Arcoiris.Formularios
                 Formularios.Main inicio = new Formularios.Main();
                 inicio.Show();
                 this.Hide();
-
             }
             else
             {

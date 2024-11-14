@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuario));
             this.GbxUsuario = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.LstUsu = new System.Windows.Forms.ListBox();
             this.BtnNuevo = new System.Windows.Forms.Button();
             this.TxtPass2 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -43,13 +46,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.TxtNom = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.CboUser = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.GbxUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // GbxUsuario
             // 
+            this.GbxUsuario.Controls.Add(this.button1);
+            this.GbxUsuario.Controls.Add(this.LstUsu);
             this.GbxUsuario.Controls.Add(this.BtnNuevo);
             this.GbxUsuario.Controls.Add(this.TxtPass2);
             this.GbxUsuario.Controls.Add(this.label6);
@@ -64,7 +68,6 @@
             this.GbxUsuario.Controls.Add(this.label3);
             this.GbxUsuario.Controls.Add(this.TxtNom);
             this.GbxUsuario.Controls.Add(this.label2);
-            this.GbxUsuario.Controls.Add(this.CboUser);
             this.GbxUsuario.Controls.Add(this.label1);
             this.GbxUsuario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxUsuario.Location = new System.Drawing.Point(0, 0);
@@ -74,13 +77,35 @@
             this.GbxUsuario.TabStop = false;
             this.GbxUsuario.Text = "Usuario";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(172, 475);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(124, 49);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "LOL";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            // 
+            // LstUsu
+            // 
+            this.LstUsu.FormattingEnabled = true;
+            this.LstUsu.ItemHeight = 17;
+            this.LstUsu.Location = new System.Drawing.Point(31, 94);
+            this.LstUsu.Name = "LstUsu";
+            this.LstUsu.Size = new System.Drawing.Size(252, 259);
+            this.LstUsu.TabIndex = 16;
+            this.LstUsu.DoubleClick += new System.EventHandler(this.LstUsu_DoubleClick);
+            // 
             // BtnNuevo
             // 
-            this.BtnNuevo.Location = new System.Drawing.Point(174, 121);
+            this.BtnNuevo.Image = ((System.Drawing.Image)(resources.GetObject("BtnNuevo.Image")));
+            this.BtnNuevo.Location = new System.Drawing.Point(549, 467);
             this.BtnNuevo.Name = "BtnNuevo";
-            this.BtnNuevo.Size = new System.Drawing.Size(124, 49);
+            this.BtnNuevo.Size = new System.Drawing.Size(185, 65);
             this.BtnNuevo.TabIndex = 15;
-            this.BtnNuevo.Text = "Limpiar";
+            this.BtnNuevo.Text = "Limpiar Datos";
+            this.BtnNuevo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnNuevo.UseVisualStyleBackColor = true;
             this.BtnNuevo.Click += new System.EventHandler(this.BtnNuevo_Click);
             // 
@@ -104,7 +129,7 @@
             // LblId
             // 
             this.LblId.AutoSize = true;
-            this.LblId.Location = new System.Drawing.Point(609, 475);
+            this.LblId.Location = new System.Drawing.Point(343, 66);
             this.LblId.Name = "LblId";
             this.LblId.Size = new System.Drawing.Size(15, 17);
             this.LblId.TabIndex = 12;
@@ -113,21 +138,26 @@
             // 
             // BtnEditar
             // 
-            this.BtnEditar.Location = new System.Drawing.Point(44, 121);
+            this.BtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditar.Image")));
+            this.BtnEditar.Location = new System.Drawing.Point(546, 385);
             this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(124, 49);
+            this.BtnEditar.Size = new System.Drawing.Size(188, 66);
             this.BtnEditar.TabIndex = 11;
-            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.Text = "Actualizar Datos";
+            this.BtnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnEditar.UseVisualStyleBackColor = true;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnAgegar
             // 
-            this.BtnAgegar.Location = new System.Drawing.Point(466, 396);
+            this.BtnAgegar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgegar.Image")));
+            this.BtnAgegar.Location = new System.Drawing.Point(343, 385);
             this.BtnAgegar.Name = "BtnAgegar";
-            this.BtnAgegar.Size = new System.Drawing.Size(124, 49);
+            this.BtnAgegar.Size = new System.Drawing.Size(185, 65);
             this.BtnAgegar.TabIndex = 10;
-            this.BtnAgegar.Text = "Guardar";
+            this.BtnAgegar.Text = "Guardar Nuevo Usuario";
+            this.BtnAgegar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnAgegar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnAgegar.UseVisualStyleBackColor = true;
             this.BtnAgegar.Click += new System.EventHandler(this.BtnAgegar_Click);
             // 
@@ -198,15 +228,6 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Nombre";
             // 
-            // CboUser
-            // 
-            this.CboUser.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboUser.FormattingEnabled = true;
-            this.CboUser.Location = new System.Drawing.Point(35, 66);
-            this.CboUser.Name = "CboUser";
-            this.CboUser.Size = new System.Drawing.Size(261, 25);
-            this.CboUser.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -238,7 +259,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox GbxUsuario;
-        private System.Windows.Forms.ComboBox CboUser;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BtnAgegar;
@@ -254,5 +274,7 @@
         private System.Windows.Forms.TextBox TxtPass2;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button BtnNuevo;
+        private System.Windows.Forms.ListBox LstUsu;
+        private System.Windows.Forms.Button button1;
     }
 }

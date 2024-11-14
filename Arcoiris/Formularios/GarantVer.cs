@@ -286,11 +286,28 @@ namespace Arcoiris.Formularios
 
         private void CmdContra_Click(object sender, EventArgs e)
         {
+            selectContrato();
+        }
+
+        private string LetrasCui(string Cui)
+        {
+            string Parte1 = int.Parse(Cui.Substring(0,4)).ToWords();
+            string Parte2 = int.Parse(Cui.Substring(4, 5)).ToWords();
+            string Parte3 = int.Parse(Cui.Substring(9, 4)).ToWords();
+            return $"{Parte1} {Parte2} {Parte3}";
+        }
+
+        private void selectContrato()
+        {
             DataTable datoscli = soli.Clibycred(idcre);
             DataTable datoscred = soli.CreditoOne(idcre);
             DataTable datosSoli = soli.SolibyCredi(idcre);
             List<Reportes.Contratos.ContratoDatos> Valores = new List<Reportes.Contratos.ContratoDatos>();
-           //Solo Deudor, Si firma, sin Garantia
+            //Solo Deudor, Si firma, sin Garantia
+            int ente=0, deci=0;
+            decimal intere = decimal.Parse(datoscred.Rows[0][4].ToString());
+            deci = Convert.ToInt32((intere % 1) * 100);
+            ente = int.Parse( Math.Truncate(intere).ToString());
             if (CliGaranDatos.Rows[0][9].ToString().Equals("1"))
             {
                 string Plazo = "";
@@ -315,13 +332,26 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
+                //Temp.PlazoLet = ;
                 Temp.Periodo = Plazo;
-                Temp.Porcent= $"{datoscred.Rows[0][4]}";
-               // Temp.PorcentLet= int.Parse().ToWords();
+                Temp.Porcent = $"{datoscred.Rows[0][4]}";
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}" ;
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
-                Temp.Profesion= $"{datoscli.Rows[0][9]}";
-                Temp.Nacionalidad= $"{datoscli.Rows[0][10]}";
+                Temp.Profesion = $"{datoscli.Rows[0][9]}";
+                Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
                 Valores.Add(Temp);
                 Contrato.datos = Valores;
                 Contrato.Show();
@@ -351,10 +381,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
-                // Temp.PorcentLet= int.Parse().ToWords();
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
@@ -387,10 +429,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
-                // Temp.PorcentLet= int.Parse().ToWords();
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
@@ -423,10 +477,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
-                // Temp.PorcentLet= int.Parse().ToWords();
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
@@ -470,10 +536,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
-                // Temp.PorcentLet= int.Parse().ToWords();
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
@@ -506,10 +584,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
-                // Temp.PorcentLet= int.Parse().ToWords();
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
@@ -542,10 +632,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
-                // Temp.PorcentLet= int.Parse().ToWords();
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
@@ -590,9 +692,22 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
+                if (deci > 0)
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()} punto {deci.ToWords()}";
+                }
+                else
+                {
+                    Temp.PorcentLet = $"{ente.ToWords()}";
+                }
                 // Temp.PorcentLet= int.Parse().ToWords();
                 Temp.EstCivil = $"{datoscli.Rows[0][8]}";
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
@@ -626,7 +741,12 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
                 // Temp.PorcentLet= int.Parse().ToWords();
@@ -662,7 +782,12 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
                 // Temp.PorcentLet= int.Parse().ToWords();
@@ -698,7 +823,12 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
                 // Temp.PorcentLet= int.Parse().ToWords();
@@ -734,7 +864,12 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
                 // Temp.PorcentLet= int.Parse().ToWords();
@@ -769,7 +904,12 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
-                Temp.PlazoLet = Plazo;
+                if (Plazo.Equals("diario"))
+                { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
+                else
+                {
+                    Temp.PlazoLet = $"{Temp.PagosLet} meses";
+                }
                 Temp.Periodo = Plazo;
                 Temp.Porcent = $"{datoscred.Rows[0][4]}";
                 // Temp.PorcentLet= int.Parse().ToWords();
@@ -777,21 +917,9 @@ namespace Arcoiris.Formularios
                 Temp.Profesion = $"{datoscli.Rows[0][9]}";
                 Temp.Nacionalidad = $"{datoscli.Rows[0][10]}";
                 Valores.Add(Temp);
-           
             }
             else
             { }
-          
-
-
-        }
-
-        private string LetrasCui(string Cui)
-        {
-            string Parte1 = int.Parse(Cui.Substring(0,4)).ToWords();
-            string Parte2 = int.Parse(Cui.Substring(4, 5)).ToWords();
-            string Parte3 = int.Parse(Cui.Substring(9, 4)).ToWords();
-            return $"{Parte1} {Parte2} {Parte3}";
         }
     }
 }

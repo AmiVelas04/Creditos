@@ -1167,7 +1167,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>              Acreedor                                                  Deudora                                                 </Value>
+                <Value>              Acreedor                     La Parte Deudora                                                 </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
