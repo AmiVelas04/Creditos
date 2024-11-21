@@ -135,7 +135,7 @@ namespace Arcoiris.Clases
             //MessageBox.Show("dias totales: "+ c + "\nFines de semana:" +fines  );
             if (diasp > 22)
             {
-                diasp = 22;
+               // diasp = 22;
             }
             return diasp;
         }
@@ -412,31 +412,24 @@ namespace Arcoiris.Clases
             {
                 int plaz;
                 plaz = Convert.ToInt32(datos[2].ToString());
-                diasp = plaz * 4;
-                saldoI = Math.Round((saldoC * interes / 100 * diasp*7), 2);
+                diasp = plaz;
+                saldoI = Math.Round((saldoC * interes / 100 * diasp), 2);
             }
             else if (datos[6] == "6")
             {
                 int plaz;
                 plaz = Convert.ToInt32(datos[2].ToString());
-                diasp = plaz * 2;
-                saldoI = Math.Round((saldoC * interes / 100 * diasp*14), 2);
+                diasp = plaz;
+                saldoI = Math.Round((saldoC * interes / 100 * diasp), 2);
             }
 
 
             string consultaingcre;
-            consultaingcre = "insert into Credito(cod_credito,id_tipo_credito, monto,plazo, interes, fecha_conc,fecha_venci, estado,dias_pago,saldo_cap,saldo_int,saldo_ant,gastos_admin) values(" + idcredito + "," + datos[6] + "," + datos[1] + ",'" +/*CAmbiar por datos 2 si es necesario*/ datos[9] + "'," + datos[3] + ",'" + datos[4] + "','" + datos[5] + "','Activo'," + diasp + "," + saldoC + "," + saldoI + "," + datos[8] + ","+datos[10]+")";
+            consultaingcre = "insert into Credito(cod_credito,id_tipo_credito, monto,plazo, interes, fecha_conc,fecha_venci, estado,dias_pago,saldo_cap,saldo_int,saldo_ant,gastos_admin) " +
+                $"values({idcredito},{datos[6]},{datos[1]},'{datos[9]}',{datos[3]},'{datos[4]}','{datos[5]}','Activo',{diasp},{saldoC},{saldoI},{datos[8]},+{datos[10]})";
             if (consulta_gen(consultaingcre))
             {
-                if (asigna_credito(datos[0], idcredito))
-                {
-                    return true;
-                    //agregar a caja
-                }
-                else
-                {
-                    return false;
-                }
+                return asigna_credito(datos[0], idcredito);
             }
             else {
                 return false;

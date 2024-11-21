@@ -492,7 +492,6 @@ namespace Arcoiris.Formularios
                 Ffin = Ffin.AddDays(1);
                 if (Ffin.DayOfWeek == DayOfWeek.Saturday || Ffin.DayOfWeek == DayOfWeek.Sunday)
                 {
-
                 }
                 else
                 {
@@ -532,15 +531,15 @@ namespace Arcoiris.Formularios
             {
                 tipo = "5";
                 dias = Convert.ToInt32(TxtPlazo.Text);
-                fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
-                label9.Text = "Plazo (Meses)";
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddDays(dias*7).ToString("yyyy/MM/dd");
+                label9.Text = "Plazo(Semanas)";
             }
             else if (CboTipo2.SelectedIndex == 3)
             {
                 tipo = "6";
                 dias = Convert.ToInt32(TxtPlazo.Text);
-                fecha_fin = Convert.ToDateTime(fecha_conc).AddMonths(dias).ToString("yyyy/MM/dd");
-                label9.Text = "Plazo (Meses)";
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddDays(dias*14).ToString("yyyy/MM/dd");
+                label9.Text = "Plazo (Quincenas)";
             }
             else if (CboTipo2.SelectedIndex == 4)
             {
@@ -745,12 +744,25 @@ namespace Arcoiris.Formularios
                 LblPlazo.Visible = false;
                 NupPlazo.Visible = false;
             }
-            else
+            else if (CboTipo.SelectedIndex == 2 || CboTipo.SelectedIndex == 3)
             {
                 LblPlazo.Visible = true;
                 NupPlazo.Visible = true;
 
-
+                if (CboTipo.SelectedIndex==2)
+                {
+                    LblPlazo.Text = "Plazo(Semanas)";
+                }
+                else
+                {
+                    LblPlazo.Text = "Plazo(Quincenas)";
+                }
+            }
+            else
+            {
+                LblPlazo.Text = "Plazo(Meses)";
+                LblPlazo.Visible = true;
+                NupPlazo.Visible = true;
             }
         }
 
@@ -1109,9 +1121,9 @@ namespace Arcoiris.Formularios
                 label9.Text = "Plazo (Dias)";
             }
             else if (CboTipo2.SelectedIndex == 3)
-            { label9.Text = "Plazo (Meses)"; }
+            { label9.Text = "Plazo (Semanas)"; }
             else if (CboTipo2.SelectedIndex == 4)
-            { label9.Text = "Plazo (Meses)"; }
+            { label9.Text = "Plazo (Quincenas)"; }
             else if (CboTipo2.SelectedIndex == 5)
             { label9.Text = "Plazo (Meses)"; }
             else if (CboTipo2.SelectedIndex == 6)

@@ -27,7 +27,7 @@ namespace Arcoiris.Formularios
             ListaAsesoAll();
 
             if (Form1.Nivel == "1" || Form1.Nivel == "2" 
-                || Form1.Nivel == "3")
+                )
             {
                 CboCre.Items.Add("Creditos Atrasados Diarios");
                 CboCre.Items.Add("Creditos Atrasados Mensuales");
@@ -46,12 +46,11 @@ namespace Arcoiris.Formularios
                // listarasesores();
                // ListaAsesoAll();
                 CboAsesor.SelectedIndex = 0;
-                GbxD.Visible = false;
+                GbxD.Visible = true;
                 if (Form1.Nivel.Equals("3"))
                 { GbxD.Visible = false;
                     GbxAs.Visible = false;
                 }
-                
             }
             else if (Form1.Nivel.Equals("4"))
             {
@@ -220,12 +219,10 @@ namespace Arcoiris.Formularios
             }
             else if (CboCre.SelectedIndex == 1)
             {
-               
                 titulo = $"Listado Credito Atrasados Mensual \n{TitAseso}";
                 tipo = "Mensual";
                 repor.Venc_ord(titulo, tipo,ases);
                 //repor.Cred_venc(titulo);
-
             }
             else if (CboCre.SelectedIndex == 2)
             {
@@ -248,8 +245,6 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                   
-
                     titulo = $"Listado creditos Terminados Mensulaes \n{TitAseso}";
                     tipo = "Mensual";
                     repor.Cred_ver(tipo, titulo,ases);
@@ -257,7 +252,6 @@ namespace Arcoiris.Formularios
             }
             else if (CboCre.SelectedIndex == 6)
             {
-                
                 titulo = $"Reporte de mora creditos diarios \n{TitAseso}";
                 tipo = "Diario";
                 repor.ColAct(titulo,tipo,ases);

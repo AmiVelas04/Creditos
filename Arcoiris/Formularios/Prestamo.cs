@@ -176,12 +176,12 @@ namespace Arcoiris.Formularios
                 TxtAtraso.Text = DiAtraso + " Día(s)";
                 TxtMora.Text = $"{DiAtraso * 0}";//*5
             }
-            else if (TxtTipo.Text == "1")
+            else if (TxtTipo.Text == "5")
             {
                 TxtTipo.Text = "Semanal";
                 TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";
             }
-            else if (TxtTipo.Text == "1")
+            else if (TxtTipo.Text == "6")
             {
                 TxtTipo.Text = "Quincenal";
                 TxtAtraso.Text = DiAtraso.ToString() + " Día(s)";

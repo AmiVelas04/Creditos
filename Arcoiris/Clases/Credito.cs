@@ -87,7 +87,7 @@ namespace Arcoiris.Clases
         public DataTable detalle_cre(int credito, string tipo)
         {
             string consulta;
-            consulta = "Select Monto,interes,dias_pago,date_format(Fecha_conc,'%Y/%m/%d'),plazo from credito where cod_credito=" + credito;
+            consulta = "Select Monto,interes,dias_pago,date_format(Fecha_conc,'%Y/%m/%d'),plazo,date_format(Fecha_venci,'%Y/%m/%d') from credito where cod_credito=" + credito;
             DataTable datos = new DataTable();
             DataTable pagos = new DataTable();
             datos = buscar(consulta);
@@ -598,6 +598,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             int diasp = Convert.ToInt32(datos.Rows[0][4]);
             DateTime FechaTranci = fechaP;
             total = Math.Round((monto /*+ (monto * interes / 100)*/), 2);
+            DateTime FechaFin = Convert.ToDateTime(datos.Rows[0][5].ToString());
             decimal pago = total;
             int cont;
             pagos.Columns.Add("orden").DataType = System.Type.GetType("System.String");
@@ -623,7 +624,6 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 decimal pagocap = Math.Round((total / dias), 2);
                 decimal cuota = Math.Round((pagocap + pagoint), 2);
                 
-
                 switch (tipo)
                 {
                     case "1":
@@ -651,18 +651,19 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                     case "2":
                         #region "Calculo 2"
 
-                        pagoint = Math.Round((total * interes / 100), 2);
-                        pagocap = 0;
+                        pagoint = Math.Round((total * interes / 100*dias), 2);
+                        pagocap = monto;
                         cuota = Math.Round((pagocap + pagoint), 2);
+                        cont =1 ;
+                        dias = 0;
 
-                        if (cont >= dias)
+                        /*if (cont >= dias)
                         {
                             pagocap = total;
                             pago = 0;
+                        }*/
 
-                        }
-
-                        fechai = fechai.AddDays(sumfech);
+                        fechai = FechaFin; //fechai.AddDays(sumfech);
                         #endregion
                         break;
 
@@ -1978,6 +1979,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             int cont;
             int diashab = 0;
             if (totdia >= 30) //totdia = totdia;
+
             for (cont = 1; cont <= totdia; cont++)
             {
                 fechacambio = fechacambio.AddDays(1);
@@ -1989,6 +1991,10 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 {
                     diashab++;
                 }
+                    if (tipo.Equals("2") && totdia>=0) 
+                    {
+                        diashab = 1;
+                    }
             }
             if (tipo.Equals("3") || tipo.Equals("4"))
             {
@@ -2103,9 +2109,11 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             {
                 decimal Pcap = Math.Round((monto / diasP), 2), Pint = Math.Round((monto * interes / 100), 2);
                 int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
-                DateTime Inicio = Fini, fechaval;
+                //DateTime Inicio = Fini, fechaval;
+                DateTime Inicio = FinCe, fechaval;
                 dif = Ffin - Inicio;
                 dias = dif.Days;
+                if (dias <= 0) return 0;
                 for (cont = 1; cont <= dias; cont++)
                 {
                     pdia++;
@@ -2119,7 +2127,6 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
 
                     }
                 }
-
 
                 if (TotCap <= 0 && TotInt > 0)
                 {
@@ -2429,6 +2436,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             if (pagos > dias) pagos = dias;
             if (tipo == "1")
             {
+             
                 if (pagos >= dias)
                 {
                     pagos = dias;
@@ -2453,9 +2461,10 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             }
             else if (tipo == "2")
             {
-                if (pagos >= dias)
+                int pagos2 = pagproy(FechaVen.ToString("yyyy/MM/dd"), fecha, tipo);
+                if (pagos2 >=0)
                 {
-                    pagos = dias;
+                    pagos = 1;
                 }
                 else
                 {
@@ -2463,10 +2472,10 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 }
                 pcap = 0;
                 if (pagos >= dias) pcap = monto;
-                pint = Math.Round((monto * inte / 100), 2);
+                pint = Math.Round((monto * inte / 100*dias), 2);
                 //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
                 pcap *= 1;
-                pint *= pagos;
+                pint *= 1;// pagos;
                 //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);

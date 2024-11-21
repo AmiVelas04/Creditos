@@ -265,12 +265,6 @@
     <Compile Include="Formularios\Reporte.Designer.cs">
       <DependentUpon>Reporte.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\ReportesGen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Formularios\ReportesGen.Designer.cs">
-      <DependentUpon>ReportesGen.cs</DependentUpon>
-    </Compile>
     <Compile Include="Formularios\Respaldo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -523,9 +517,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Reporte.resx">
       <DependentUpon>Reporte.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Formularios\ReportesGen.resx">
-      <DependentUpon>ReportesGen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Formularios\Respaldo.resx">
       <DependentUpon>Respaldo.cs</DependentUpon>
