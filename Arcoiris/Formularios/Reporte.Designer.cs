@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reporte));
             this.panel1 = new System.Windows.Forms.Panel();
             this.GbxD = new System.Windows.Forms.GroupBox();
             this.GbxPrest = new System.Windows.Forms.GroupBox();
@@ -44,6 +45,8 @@
             this.DtpComIni = new System.Windows.Forms.DateTimePicker();
             this.panel2 = new System.Windows.Forms.Panel();
             this.GbxCreditos = new System.Windows.Forms.GroupBox();
+            this.CboAseRepo = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.DtpFechaR = new System.Windows.Forms.DateTimePicker();
             this.LblFechaR = new System.Windows.Forms.Label();
             this.BtnReporte = new System.Windows.Forms.Button();
@@ -60,8 +63,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.CboAseRepo = new System.Windows.Forms.ComboBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.GbxPrest.SuspendLayout();
@@ -250,6 +251,25 @@
             this.GbxCreditos.TabStop = false;
             this.GbxCreditos.Text = "Creditos";
             // 
+            // CboAseRepo
+            // 
+            this.CboAseRepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboAseRepo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboAseRepo.FormattingEnabled = true;
+            this.CboAseRepo.Location = new System.Drawing.Point(28, 52);
+            this.CboAseRepo.Name = "CboAseRepo";
+            this.CboAseRepo.Size = new System.Drawing.Size(296, 23);
+            this.CboAseRepo.TabIndex = 9;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(25, 22);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(49, 17);
+            this.label7.TabIndex = 8;
+            this.label7.Text = "Asesor";
+            // 
             // DtpFechaR
             // 
             this.DtpFechaR.Format = System.Windows.Forms.DateTimePickerFormat.Short;
@@ -417,25 +437,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
             // 
-            // CboAseRepo
-            // 
-            this.CboAseRepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboAseRepo.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CboAseRepo.FormattingEnabled = true;
-            this.CboAseRepo.Location = new System.Drawing.Point(28, 52);
-            this.CboAseRepo.Name = "CboAseRepo";
-            this.CboAseRepo.Size = new System.Drawing.Size(296, 23);
-            this.CboAseRepo.TabIndex = 9;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(25, 22);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 17);
-            this.label7.TabIndex = 8;
-            this.label7.Text = "Asesor";
-            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -447,6 +448,7 @@
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Reporte";
             this.Text = "Reporte";
