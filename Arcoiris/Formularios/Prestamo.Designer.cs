@@ -113,6 +113,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
+            this.BtnPagProm = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
@@ -155,6 +156,7 @@
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.BtnPagProm);
             this.GbxPago.Controls.Add(this.AddNota);
             this.GbxPago.Controls.Add(this.LblNomCliDisplay);
             this.GbxPago.Controls.Add(this.GbxSearch);
@@ -373,7 +375,7 @@
             this.BtnCancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancel.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.BtnCancel.Location = new System.Drawing.Point(532, 453);
+            this.BtnCancel.Location = new System.Drawing.Point(454, 453);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(97, 52);
             this.BtnCancel.TabIndex = 53;
@@ -641,7 +643,7 @@
             this.BtnAldia.BackColor = System.Drawing.Color.Green;
             this.BtnAldia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAldia.ForeColor = System.Drawing.SystemColors.Info;
-            this.BtnAldia.Location = new System.Drawing.Point(429, 453);
+            this.BtnAldia.Location = new System.Drawing.Point(351, 453);
             this.BtnAldia.Name = "BtnAldia";
             this.BtnAldia.Size = new System.Drawing.Size(97, 52);
             this.BtnAldia.TabIndex = 46;
@@ -747,7 +749,7 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.TxtInteres);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.ForeColor = System.Drawing.Color.Crimson;
+            this.groupBox1.ForeColor = System.Drawing.Color.DarkViolet;
             this.groupBox1.Location = new System.Drawing.Point(7, 98);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(212, 160);
@@ -1045,6 +1047,20 @@
             this.DGVPpago.Size = new System.Drawing.Size(872, 420);
             this.DGVPpago.TabIndex = 0;
             // 
+            // BtnPagProm
+            // 
+            this.BtnPagProm.BackColor = System.Drawing.Color.Sienna;
+            this.BtnPagProm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPagProm.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPagProm.ForeColor = System.Drawing.SystemColors.MenuBar;
+            this.BtnPagProm.Location = new System.Drawing.Point(562, 453);
+            this.BtnPagProm.Name = "BtnPagProm";
+            this.BtnPagProm.Size = new System.Drawing.Size(97, 52);
+            this.BtnPagProm.TabIndex = 62;
+            this.BtnPagProm.Text = "Pagar a la fecha promedio";
+            this.BtnPagProm.UseVisualStyleBackColor = false;
+            this.BtnPagProm.Click += new System.EventHandler(this.BtnPagProm_Click);
+            // 
             // Prestamo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1167,5 +1183,6 @@
         private System.Windows.Forms.TextBox TxtDpiBusc;
         private System.Windows.Forms.Label LblNomCliDisplay;
         private System.Windows.Forms.Button AddNota;
+        private System.Windows.Forms.Button BtnPagProm;
     }
 }

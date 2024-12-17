@@ -1115,19 +1115,29 @@ namespace Arcoiris.Formularios
             if (CboTipo2.SelectedIndex == 0)
             {
                 label9.Text = "Plazo (Dias)";
+                label14.Text = "Interes % diario";
             }
-            else if (CboTipo2.SelectedIndex == 2)
+            else if (CboTipo2.SelectedIndex == 1)
             {
                 label9.Text = "Plazo (Dias)";
+                label14.Text = "Interes % diario";
+            }
+            else if (CboTipo2.SelectedIndex == 2)
+            { label9.Text = "Plazo (Semanas)";
+                label14.Text = "Interes % semanal";
             }
             else if (CboTipo2.SelectedIndex == 3)
-            { label9.Text = "Plazo (Semanas)"; }
+            { label9.Text = "Plazo (Quincenas)";
+                label14.Text = "Interes % quincenal";
+            }
             else if (CboTipo2.SelectedIndex == 4)
-            { label9.Text = "Plazo (Quincenas)"; }
+            { label9.Text = "Plazo (Meses)";
+                label14.Text = "Interes % anual";
+            }
             else if (CboTipo2.SelectedIndex == 5)
-            { label9.Text = "Plazo (Meses)"; }
-            else if (CboTipo2.SelectedIndex == 6)
-            { label9.Text = "Plazo (Meses)"; }
+            { label9.Text = "Plazo (Meses)";
+                label14.Text = "Interes % anual";
+            }
 
         }
     }

@@ -26,7 +26,7 @@ namespace Arcoiris.Formularios
             listarasesores();
             ListaAsesoAll();
 
-            if (Form1.Nivel == "1" || Form1.Nivel == "2" 
+            if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "3" 
                 )
             {
                 CboCre.Items.Add("Creditos Atrasados Diarios");
@@ -85,9 +85,7 @@ namespace Arcoiris.Formularios
 
         private void BtnReporte_Click(object sender, EventArgs e)
         {
-
             verreportes();
-
         }
 
         private void BtnRepGan_Click(object sender, EventArgs e)
@@ -122,10 +120,7 @@ namespace Arcoiris.Formularios
             asesor = aseso.nom_aseso(codase);
             fechai = DtpComIni.Value.ToString("yyyy/MM/dd");
             fechaf = DtpComiFin.Value.ToString("yyyy/MM/dd");
-
             calculocomi(datos, asesor, fechai, fechaf);
-
-
         }
 
         private void BtnColo_Click(object sender, EventArgs e)
@@ -551,7 +546,6 @@ namespace Arcoiris.Formularios
                 pagoscre = 0;
                 tipocre = int.Parse(datos.Rows[cont][7].ToString());
                 totpagos = cre.pagosfutu(fechaini, fechahoy, tipocre.ToString());
-               
                 pagosope = totalpagAct;
                 if (tipocre == 1)
                 {
@@ -563,7 +557,6 @@ namespace Arcoiris.Formularios
                     //pagosope = totalpagAnt + totalpagAct;
                     pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
                     tipCre = "Diario";
-
                     if (!/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado != "Terminado")
                     {
                         pagoscre = 0;
@@ -601,7 +594,6 @@ namespace Arcoiris.Formularios
                     //pagosope = totalpagAnt + totalpagAct;
                     pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
                     tipCre = "Diario - Interes";
-
                     if (!/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado!="Terminado")
                     {
                         pagoscre = 0;
@@ -698,7 +690,80 @@ namespace Arcoiris.Formularios
                     }
                     pagoscre = cre.PagosTot(codcre, fechai, fechaf);
                 }
-
+                else if (tipocre == 5)
+                {
+                    capital = Monto;
+                    interes = Math.Round(((Monto * Valint) / 100), 2);
+                    cuota = capital + interes;
+                    decimal saldado;
+                    saldado = Monto + (interes * pagos);
+                    //pagosope = totalpagAnt + totalpagAct;
+                    pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
+                    tipCre = "Semanal";
+                    if (!/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado != "Terminado")
+                    {
+                        pagoscre = 0;
+                    }
+                    else if (/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado == "Terminado")
+                    {
+                        bool bandera = true;
+                        pagosope -= capital;
+                        while (bandera)
+                        {
+                            if (pagosope >= interes)
+                            {
+                                pagosope -= interes;
+                                pagoscre++;
+                            }
+                            else
+                            {
+                                bandera = false;
+                            }
+                        }
+                        if (pagoscre > pagos) pagoscre = pagos;
+                    }
+                    else
+                    {
+                        pagoscre = 0;
+                    }
+                }
+                else if (tipocre == 6)
+                {
+                    capital = Monto;
+                    interes = Math.Round(((Monto * Valint) / 100), 2);
+                    cuota = capital + interes;
+                    decimal saldado;
+                    saldado = Monto + (interes * pagos);
+                    //pagosope = totalpagAnt + totalpagAct;
+                    pagosope = cre.totalGenAnt(codcre, fechai, fechaf);
+                    tipCre = "Quincenal";
+                    if (!/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado != "Terminado")
+                    {
+                        pagoscre = 0;
+                    }
+                    else if (/*cre.UltpCredi*/cre.PagosCredCance(codcre, fechai, fechaf) && estado == "Terminado")
+                    {
+                        bool bandera = true;
+                        pagosope -= capital;
+                        while (bandera)
+                        {
+                            if (pagosope >= interes)
+                            {
+                                pagosope -= interes;
+                                pagoscre++;
+                            }
+                            else
+                            {
+                                bandera = false;
+                            }
+                        }
+                        if (pagoscre > pagos) pagoscre = pagos;
+                    }
+                    else
+                    {
+                        pagoscre = 0;
+                    }
+                }
                 if (pagoscre > pagos) pagoscre = pagos;                
                 comi = pagoscre;
                 DataRow fila = datoscomi.NewRow();

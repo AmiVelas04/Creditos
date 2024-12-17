@@ -173,9 +173,39 @@ namespace Arcoiris.Clases
                 }
 
             }
-          
+            else if (tCredit == "5")
+            {
+                Sinteres -= interes;
+                Scapital -= capital;
+                if (Scapital <= 0 && Sinteres <= 0)
+                {
 
-            
+                    estado = "Terminado";
+
+                }
+                else
+                {
+                    estado = "Activo";
+                }
+            }
+            else if (tCredit == "5")
+            {
+                Sinteres -= interes;
+                Scapital -= capital;
+                if (Scapital <= 0 && Sinteres <= 0)
+                {
+
+                    estado = "Terminado";
+
+                }
+                else
+                {
+                    estado = "Activo";
+                }
+            }
+
+
+
             int numpago=pagoorden (datos[0]);
             string consulPago = "Insert into pagos (id_pago,Cod_credito,Fecha, Capital, Interes,mora, Total,estado) values (" +
                 numpago + "," + datos[0] + ",'" + fecha + "'," + capital + "," + interes + "," + mora + ","+ pago + ",'Hecho')";

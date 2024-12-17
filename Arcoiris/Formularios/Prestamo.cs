@@ -445,7 +445,6 @@ namespace Arcoiris.Formularios
             decimal interes = decimal.Parse(TxtIntD.Text);
             decimal efectivo = decimal.Parse(TxtEfectivo.Text);
             decimal Mora = decimal.Parse(TxtMora.Text);
-
             if (efectivo < interes)
             {
                 TxtIntD.Text = efectivo.ToString();
@@ -479,7 +478,6 @@ namespace Arcoiris.Formularios
                 limpiar();
                 CboPresta.Items.Clear();
             }
-
             /*
             if (CboPresta.Text != "")
             {
@@ -1100,6 +1098,45 @@ namespace Arcoiris.Formularios
                 Nota.Show();
             }
 
+        }
+
+        private void BtnPagProm_Click(object sender, EventArgs e)
+        {
+            decimal mora = 0;
+           // BtnAldia.Enabled = false;
+            if (decimal.Parse(TxtIntProm.Text) > 0)
+            {
+                TxtIntD.Text = TxtIntProm.Text;
+            }
+            else
+            {
+            }
+            if (TxtCuotaD.Text != "")
+            {
+            }
+            else if ((decimal.Parse(TxtIntProm.Text) > 0))
+            {
+            }
+            else
+            {
+                TxtCuota.Text = "0";
+            }
+            if (decimal.Parse(TxtCapProm.Text) > decimal.Parse(TxtCapD.Text))
+            {
+                TxtCapD.Text = TxtCapProm.Text;
+            }
+      
+
+           if ((decimal.Parse(TxtCapProm.Text) > 0))
+            {
+                TxtCapD.Text = (decimal.Parse(TxtCapD.Text) + decimal.Parse("0")).ToString();
+            }
+            else
+            {
+
+            }
+            decimal.TryParse(TxtMora.Text, out mora);
+            TxtCuota.Text = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtCapD.Text) + mora).ToString();
         }
     }
 }
