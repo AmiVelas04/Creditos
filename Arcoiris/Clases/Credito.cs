@@ -2390,14 +2390,14 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                     {
                     }
                 }
-                while (TotCap > 0 || TotInt > 0)
+                while ((TotCap > 0 || TotInt > 0))
                 {
                     TotCap -= Pcap;
                     TotInt -= Pint;
                     if (TotCap >= 0 && TotInt >= 0)
                         pagao++;
                 }
-                pagao++;
+               // pagao++;
                 dias -= (Dfin + pagao);
                 dias *= 10;
                 if (dias < 0) dias = 0;
