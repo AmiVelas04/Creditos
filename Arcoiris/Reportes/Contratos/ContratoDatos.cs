@@ -8,6 +8,7 @@ namespace Arcoiris.Reportes.Contratos
 {
     class ContratoDatos
     {
+        public DateTime FechaContrato { get; set; }
         public string Acreedor { get; set; }
         public string EdadAcre { get; set; }
         public string EdadLAcre { get; set; }
@@ -41,7 +42,6 @@ namespace Arcoiris.Reportes.Contratos
         public string GarantFiador { get; set; }
         public string Profesion { get; set; }
         public string EstCivil { get; set; }
-
         public string Periodo { get; set; }
         public string FechaLet { get; set; }
         public string Genero { get; set; }

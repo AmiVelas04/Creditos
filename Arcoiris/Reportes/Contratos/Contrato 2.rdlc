@@ -27,7 +27,24 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>En el municipio de Nebaj, del departamento de Quiché, el día dieciséis de octubre del año dos mil veintitrés; </Value>
+                <Value>En el municipio de Nebaj, del departamento de Quiché, el día </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!FechaContrato.Value, "Datos")</Value>
+                <Style>
+                  <Format>d 'de' MMMM 'de' yyyy</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -60,6 +77,28 @@
                 </Style>
               </TextRun>
               <TextRun>
+                <Value>CREDIARCOIRIS S.A.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> y su represntante legal: </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
                 <Value>Diego Salomón Brito Pérez</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -71,7 +110,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, de treinta y cinco años de edad,  casado, guatemalteco, perito contador, con domicilio en el departamento de Quiché, y residencia en el cantón Batzbacà del municipio de Nebaj, departamento de Quiche, me identifico con el Documento Personal de Identificación con código único de identificación CUI, número; mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quien en adelante se le denominará  </Value>
+                <Value>, a quien en adelante se le denominará  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1784,9 +1823,9 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
-        <Top>1.05833cm</Top>
+        <Top>0.58208cm</Top>
         <Left>0.76729cm</Left>
-        <Height>31.03033cm</Height>
+        <Height>30.52762cm</Height>
         <Width>18.96004cm</Width>
         <Style>
           <Border>
@@ -1799,7 +1838,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>12.85208in</Height>
+    <Height>12.38333in</Height>
     <Style />
   </Body>
   <Width>8.1in</Width>
@@ -1846,8 +1885,20 @@
           <DataField>CuiDeudor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="CuiFiador">
+          <DataField>CuiFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="CuiLDeudor">
           <DataField>CuiLDeudor</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CuiLFiador">
+          <DataField>CuiLFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DeparFiador">
+          <DataField>DeparFiador</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Departamento">
@@ -1856,10 +1907,6 @@
         </Field>
         <Field Name="Deudor">
           <DataField>Deudor</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="DeudorDomi">
-          <DataField>DeudorDomi</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Direccion">
@@ -1874,6 +1921,10 @@
           <DataField>EdadDeudor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="EdadFiador">
+          <DataField>EdadFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="EdadLAcre">
           <DataField>EdadLAcre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1882,12 +1933,28 @@
           <DataField>EdadLDeudor</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="EdadLFiador">
+          <DataField>EdadLFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EstCivFiador">
+          <DataField>EstCivFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="EstCivil">
           <DataField>EstCivil</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FechaContrato">
+          <DataField>FechaContrato</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="FechaLet">
           <DataField>FechaLet</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FiadorDomi">
+          <DataField>FiadorDomi</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="GarantDeudor">
@@ -1906,8 +1973,20 @@
           <DataField>Municipio</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="MuniFiador">
+          <DataField>MuniFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NacioFiador">
+          <DataField>NacioFiador</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="Nacionalidad">
           <DataField>Nacionalidad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NomFiador">
+          <DataField>NomFiador</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="PagosLet">
@@ -1932,6 +2011,10 @@
         </Field>
         <Field Name="Profesion">
           <DataField>Profesion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProfFiador">
+          <DataField>ProfFiador</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="Testgo1">

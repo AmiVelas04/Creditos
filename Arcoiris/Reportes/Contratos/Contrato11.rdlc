@@ -27,7 +27,25 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>En el municipio de Nebaj, del departamento de Quiché, el día doce de julio del año dos mil veintitrés; </Value>
+                <Value>En el municipio de Nebaj, del departamento de Quiché, el día </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!FechaContrato.Value, "Datos")</Value>
+                <Style>
+                  <FontSize>10.5pt</FontSize>
+                  <Format>d 'de' MMMM 'de' yyyy</Format>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -60,6 +78,28 @@
                 </Style>
               </TextRun>
               <TextRun>
+                <Value>CREDIARCOIRIS S.A.</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> y su represntante legal: </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
                 <Value>Diego Salomón Brito Pérez</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -71,7 +111,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, de treinta y cinco años de edad,  casado, guatemalteco, perito contador, con domicilio en el departamento de Quiché, y residencia en el cantón Batzbacà del municipio de Nebaj, departamento de Quiché, me identifico con el Documento Personal de Identificación con código único de identificación CUI, número; mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, a quien en adelante se le denominará  </Value>
+                <Value>, a quien en adelante se le denominará   </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1596,7 +1636,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>La parte Fiadora</Value>
+                <Value>Fiador(a)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1625,7 +1665,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>La Parte Deudora</Value>
+                <Value>Deudor(a)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2156,7 +2196,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>La parte Fiadora</Value>
+                <Value>Fiador(a)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2175,7 +2215,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>              Testigo                       </Value>
+                <Value>              Testigo                       D</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2185,7 +2225,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>La Parte Deudora</Value>
+                <Value>eudor(a)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>

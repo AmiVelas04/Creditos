@@ -308,6 +308,7 @@ namespace Arcoiris.Formularios
             decimal intere = decimal.Parse(datoscred.Rows[0][4].ToString());
             deci = Convert.ToInt32((intere % 1) * 100);
             ente = int.Parse( Math.Truncate(intere).ToString());
+            DateTime fech = DateTime.Parse(datoscli.Rows[0][10].ToString());
             if (CliGaranDatos.Rows[0][9].ToString().Equals("1"))
             {
                 string Plazo = "";
@@ -332,6 +333,7 @@ namespace Arcoiris.Formularios
                 Temp.CuiDeudor = $"{datoscli.Rows[0][7]}";
                 Temp.Acreedor = "Diego Salomón Brito Pérez";
                 Temp.PagosLet = int.Parse(datoscred.Rows[0][3].ToString()).ToWords();
+                Temp.FechaContrato = fech;
                 if (Plazo.Equals("diario"))
                 { Temp.PlazoLet = $"{Temp.PagosLet} dias"; }
                 else
@@ -369,6 +371,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -417,6 +420,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -464,6 +468,7 @@ namespace Arcoiris.Formularios
                 decimal porcent = decimal.Parse($"{datoscred.Rows[0][4]}");
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
+                Temp.FechaContrato = fech;
                 canti = canti.Remove(canti.Length - 3, 3);
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
@@ -524,6 +529,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -572,6 +578,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -619,6 +626,7 @@ namespace Arcoiris.Formularios
                 decimal porcent = decimal.Parse($"{datoscred.Rows[0][4]}");
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
+                Temp.FechaContrato = fech;
                 canti = canti.Remove(canti.Length - 3, 3);
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
@@ -680,6 +688,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -729,6 +738,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -769,6 +779,7 @@ namespace Arcoiris.Formularios
                 decimal porcent = decimal.Parse($"{datoscred.Rows[0][4]}");
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
+                Temp.FechaContrato = fech;
                 canti = canti.Remove(canti.Length - 3, 3);
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
@@ -811,6 +822,7 @@ namespace Arcoiris.Formularios
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
                 canti = canti.Remove(canti.Length - 3, 3);
+                Temp.FechaContrato = fech;
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
                 Temp.Municipio = $"{datoscli.Rows[0][3]}";
@@ -851,6 +863,7 @@ namespace Arcoiris.Formularios
                 decimal porcent = decimal.Parse($"{datoscred.Rows[0][4]}");
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
+                Temp.FechaContrato = fech;
                 canti = canti.Remove(canti.Length - 3, 3);
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
@@ -891,6 +904,7 @@ namespace Arcoiris.Formularios
                 decimal porcent = decimal.Parse($"{datoscred.Rows[0][4]}");
                 Reportes.Contratos.ContratoDatos Temp = new Reportes.Contratos.ContratoDatos();
                 string canti = datoscred.Rows[0][2].ToString();
+                Temp.FechaContrato = fech;
                 canti = canti.Remove(canti.Length - 3, 3);
                 Temp.Deudor = $"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
                 Temp.Departamento = $"{datoscli.Rows[0][2]}";
