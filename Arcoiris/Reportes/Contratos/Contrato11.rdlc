@@ -2406,6 +2406,10 @@
           <DataField>EstCivil</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FechaContrato">
+          <DataField>FechaContrato</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="FechaLet">
           <DataField>FechaLet</DataField>
           <rd:TypeName>System.String</rd:TypeName>

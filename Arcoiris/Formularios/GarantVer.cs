@@ -308,7 +308,7 @@ namespace Arcoiris.Formularios
             decimal intere = decimal.Parse(datoscred.Rows[0][4].ToString());
             deci = Convert.ToInt32((intere % 1) * 100);
             ente = int.Parse( Math.Truncate(intere).ToString());
-            DateTime fech = DateTime.Parse(datoscli.Rows[0][10].ToString());
+            DateTime fech = DateTime.Now; // DateTime.Parse(datoscred.Rows[0][10].ToString());
             if (CliGaranDatos.Rows[0][9].ToString().Equals("1"))
             {
                 string Plazo = "";

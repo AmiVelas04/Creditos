@@ -100,11 +100,10 @@ namespace Arcoiris.Clases
                
                 Sinteres -= interes;
                 Scapital -= capital;
-                if (Scapital <= 0 /*&& Sinteres <= 0*/)
+                if (Scapital <= 0 && Sinteres <= 0)
                 {
                     estado = "Terminado";
                     Sinteres = 0;
-
                 }
                 else
                 {
@@ -117,9 +116,7 @@ namespace Arcoiris.Clases
                 Scapital -= capital;
                 if (Scapital <= 0 && Sinteres <= 0)
                 {
-
                     estado = "Terminado";
-
                 }
                 else
                 {
@@ -179,25 +176,21 @@ namespace Arcoiris.Clases
                 Scapital -= capital;
                 if (Scapital <= 0 && Sinteres <= 0)
                 {
-
                     estado = "Terminado";
-
                 }
                 else
                 {
                     estado = "Activo";
                 }
             }
-            else if (tCredit == "5")
+            else if (tCredit == "6")
             {
                 Sinteres -= interes;
                 Scapital -= capital;
                 if (Scapital <= 0 && Sinteres <= 0)
                 {
-
-                    estado = "Terminado";
-
-                }
+                                        estado = "Terminado";
+                 }
                 else
                 {
                     estado = "Activo";
@@ -231,11 +224,6 @@ namespace Arcoiris.Clases
                 MessageBox.Show("No se guardo el pago");
                 return false;
             }
-
-
-           
-            
-
         }
 
         private int Tpagos(string credito)

@@ -330,7 +330,7 @@ namespace Arcoiris.Clases
                 }
                 if (tipoc.Equals("5"))
                 {
-                    for (cont = 1; cont <= diastraso; cont++)
+                    for (cont = 1; cont <= dif.Days; cont++)
                     {
                         if (fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Saturday || fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Sunday)
                         {
@@ -345,7 +345,7 @@ namespace Arcoiris.Clases
                 }
                 if (tipoc.Equals("6"))
                 {
-                    for (cont = 1; cont <= diastraso; cont++)
+                    for (cont = 1; cont <= dif.Days; cont++)
                     {
                         if (fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Saturday || fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Sunday)
                         {
