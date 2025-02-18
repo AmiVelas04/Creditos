@@ -13,8 +13,8 @@ namespace Arcoiris.Reportes
 {
     partial class Ganancias : Form
     {
-       public List<Reportes.RepDetCli> Deta = new List<Reportes.RepDetCli>();
-        public List<Reportes.RepEnc> Enc = new List<Reportes.RepEnc>();
+       public List<GanaciaDet> Deta = new List<GanaciaDet>();
+        public List<RepEnc> Enc = new List<Reportes.RepEnc>();
         public Ganancias()
         {
             InitializeComponent();
@@ -23,7 +23,7 @@ namespace Arcoiris.Reportes
         private void Ganancias_Load(object sender, EventArgs e)
         {
             this.reportViewer1.LocalReport .DataSources.Clear();
-            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Detalle", Deta));
+            this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("DetalleGan", Deta));
             this.reportViewer1.LocalReport.DataSources.Add(new ReportDataSource("Encabezado", Enc));
             this.reportViewer1.SetDisplayMode(DisplayMode.PrintLayout);
             this.reportViewer1.ZoomMode = ZoomMode.Percent;

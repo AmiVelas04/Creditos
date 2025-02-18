@@ -200,6 +200,7 @@
             this.CboGene.Name = "CboGene";
             this.CboGene.Size = new System.Drawing.Size(140, 25);
             this.CboGene.TabIndex = 41;
+            this.CboGene.SelectedIndexChanged += new System.EventHandler(this.CboGene_SelectedIndexChanged);
             // 
             // label21
             // 
@@ -662,6 +663,7 @@
             this.CboGeneEdit.Name = "CboGeneEdit";
             this.CboGeneEdit.Size = new System.Drawing.Size(140, 25);
             this.CboGeneEdit.TabIndex = 47;
+            this.CboGeneEdit.SelectedIndexChanged += new System.EventHandler(this.CboGeneEdit_SelectedIndexChanged);
             // 
             // label33
             // 

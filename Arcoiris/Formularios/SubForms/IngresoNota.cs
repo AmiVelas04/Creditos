@@ -15,6 +15,7 @@ namespace Arcoiris.Formularios.SubForms
 
         public string credi { get; set; }
         public string Asesor { get; set; }
+        public int nivel { get; set; }
         Clases.Bitacora Bita = new Clases.Bitacora();
 
 
@@ -45,6 +46,9 @@ namespace Arcoiris.Formularios.SubForms
         private void IngresoNota_Load(object sender, EventArgs e)
         {
             TxtCred.Text = credi;
+            if (nivel == 0)
+            { BtnSave.Enabled = false; }
+            else { BtnSave.Enabled = true; }
         }
 
         private void BtnList_Click(object sender, EventArgs e)

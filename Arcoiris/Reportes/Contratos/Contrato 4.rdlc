@@ -77,28 +77,6 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>CREDIARCOIRIS S.A.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> y su represntante legal: </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
                 <Value>Diego Salomón Brito Pérez</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -110,7 +88,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, a quien en adelante se le denominará  </Value>
+                <Value>, de treinta y seis años de edad,  casado, guatemalteco, perito contador, con domicilio en el departamento de Quiché, y residencia en el cantón Batzbacà del municipio de Nebaj, departamento de Quiché, me identifico con el Documento Personal de Identificación con código único de identificación CUI, número; mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, actúo en mi calidad de ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL de la entidad CREDIINVERSIONES BRITO COBO, SOCIEDAD ANÓNIMA, representación que acredito con el Acta Notarial de Nombramiento, de fecha diecinueve de agosto del año dos mil veinticuatro, autorizada por el Notario Pedro José Orozco Morales, en el municipio de Santa María Nebaj, departamento del Quiché, nombramiento que se encuentra debidamente inscrito en el Registro Mercantil General de la República, Registro número: SETECIENTOS CINCUENTA Y SIETE MIL DOSCIENTOS TREINTA Y TRES (757233), Folio: NOVECIENTOS DOCE (912), Libro: OCHOCIENTOS TREINTA Y SEIS (836), de auxiliares de Comercio, según Razonamiento de Acta, extendida por el Registro General Mercantil de la República, de fecha seis de septiembre del año dos mil veinticuatro, a quien en adelante se le denominará  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -529,7 +507,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> por medio del presente documento privado me reconozco lisa y llana deudora del señor </Value>
+                <Value> por medio del presente documento privado me reconozco lisa y llana deudora de Crediinversiones Brito Cobo Sociedad Anónima</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -540,7 +518,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez,</Value>
+                <Value>,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1381,7 +1359,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez           </Value>
+                <Value>Diego Salomón Brito Pérez                </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1429,7 +1407,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>               Acreedor                                                 Deudor(a)                                                                     Fiador</Value>
+                <Value>               Acreedor/Rep Legal                                                 Deudor(a)                                                 Fiador</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1531,14 +1509,23 @@
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, quien se identifica con el Documento Personal de Identificación (DPI) con los códigos únicos de identificación número; </Value>
+                <Value>, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>quien se identifica con el Documento Personal de Identificación (DPI) con los códigos únicos de identificación número; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1560,7 +1547,28 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413) extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica, </Value>
+                <Value>mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413) extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica,</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> Centroamérica </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>quien actúa en su calidad de ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL de la entidad CREDIINVERSIONES BRITO COBO, SOCIEDAD ANÓNIMA, representación que acredito con el Acta Notarial de Nombramiento, de fecha diecinueve de agosto del año dos mil veinticuatro, autorizada por el Notario Pedro José Orozco Morales, en el municipio de Santa María Nebaj, departamento del Quiché, nombramiento que se encuentra debidamente inscrito en el Registro Mercantil General de la República, Registro número: SETECIENTOS CINCUENTA Y SIETE MIL DOSCIENTOS TREINTA Y TRES (757233), Folio: NOVECIENTOS DOCE (912), Libro: OCHOCIENTOS TREINTA Y SEIS (836), de auxiliares de Comercio, según Razonamiento de Acta, extendida por el Registro General Mercantil de la República, de fecha seis de septiembre del año dos mil veinticuatro, </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1765,7 +1773,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez </Value>
+                <Value>Crediinverisones Brito Cobo Sociedad Anónima </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1941,7 +1949,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Acreedor                                                             Deudor(a)                                                                Fiador</Value>
+                <Value>Acreedor/Rep Legal                                                Deudor(a)                                          Fiador</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2000,67 +2008,6 @@
             <Style>
               <TextAlign>Left</TextAlign>
               <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>11pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
             </Style>
           </Paragraph>
         </Paragraphs>

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Globalization;
+
 namespace Arcoiris.Reportes
 {
     class LlenarReport
@@ -141,7 +143,7 @@ namespace Arcoiris.Reportes
             Reportes.RepEnc Enca = new Reportes.RepEnc();
             string consulta,ConsulAdd = "";
             if (estado == "Diario")
-            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (estado == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
             consulta = "SELECT CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%Y'),DATE_format(cre.FECHA_VENCI,'%d/%m/%Y'), CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos,cli.codigo_cli,cre.cod_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias " +
@@ -233,7 +235,7 @@ namespace Arcoiris.Reportes
                 string cod = credito.Rows[cont][0].ToString();
                 string tipo= credito.Rows[cont][7].ToString();
                 string etiqueta;
-                if (tipo == "1" || tipo == "2") { etiqueta = "(D)"; }
+                if (tipo == "1" || tipo == "2" || tipo == "5" || tipo == "6" ) { etiqueta = "(D)"; }
                 else { etiqueta = "(M)"; }
                 int diasatras = 0;
                 diasatras = cre.diasnopag(cod, DateTime.Now.Date.ToString("yyyyy/MM/dd"), credito.Rows[0][3].ToString());
@@ -494,6 +496,42 @@ namespace Arcoiris.Reportes
                 }
 
             }
+            else if (tipo == "5")
+            {
+                int retraso = 0;
+                // retraso++;
+                diferencia = hoy - FechaI;
+                FechaI = FechaI.AddDays(retraso);
+                while (FechaI.AddDays(retraso) < hoy)
+                {
+                    retraso+=7;
+                }
+                if (pasado)
+                { res = saldoC; }
+                else
+                {
+                    res = monto / plazo * (retraso/7);
+                }
+            }
+            else if (tipo == "6")
+            {
+
+                int retraso = 0;
+                retraso++;
+                diferencia = hoy - FechaI;
+                FechaI = FechaI.AddDays(retraso);
+                while (FechaI.AddDays(retraso) < hoy)
+                {
+                    retraso+=14;
+                }
+                if (pasado)
+                { res = saldoC; }
+                else
+                {
+                    res = monto / plazo  * (retraso/14);
+                }
+
+            }
 
             return res;
         }
@@ -524,7 +562,7 @@ namespace Arcoiris.Reportes
             string ConsulAdd2 = "";
             decimal capital;
             if (tip == "Diario")
-            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
             if (aseso.Equals("0"))
@@ -572,8 +610,15 @@ namespace Arcoiris.Reportes
 
                     if (inte > 0 || capital > 0)
                     {
+                        string tipoc = "";
+                        if (tipo.Equals("1")) { tipoc = "Diario"; }
+                        else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
+                        else if (tipo.Equals("3")) { tipoc = "Mensual"; }
+                        else if (tipo.Equals("4")) { tipoc = "Mensual-Sobresaldo"; }
+                        else if (tipo.Equals("5")) { tipoc = "Semanal"; }
+                        else if (tipo.Equals("6")) { tipoc = "Quincenal"; }
                         string Garantia = credito.Rows[cont][8] != DBNull.Value ? credito.Rows[cont][8].ToString() : "Sin Garantia";
-                        detalle.Nombre = credito.Rows[cont][1].ToString();
+                        detalle.Nombre = $"{credito.Rows[cont][1]}/{tipoc}";
                         detalle.Monto = Convert.ToDecimal(credito.Rows[cont][2]);
                         detalle.Lugar = "Total a cancelar";
                         detalle.Catraso = Convert.ToDecimal(atras.Rows[0][0].ToString()); //capital;
@@ -600,7 +645,7 @@ namespace Arcoiris.Reportes
             string ConsulAdd2 = "";
 
             if (tip == "Diario")
-            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
             if (aseso.Equals("0"))
@@ -654,7 +699,9 @@ namespace Arcoiris.Reportes
                 if (tipo.Equals("1")) { tipoc = "Diario"; }
                 else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
                 else if (tipo.Equals("3")) { tipoc = "Mensual"; }
-                else if (tipo.Equals("4")) { tipoc = "Mensua-Sobresaldo"; }
+                else if (tipo.Equals("4")) { tipoc = "Mensual-Sobresaldo"; }
+                else if (tipo.Equals("5")) { tipoc = "Semanal"; }
+                else if (tipo.Equals("6")) { tipoc = "Quincenal"; }
                 decimal catras, iatras;
                 catras = decimal.Parse(saldos.Rows[0][0].ToString());
                 if (catras < 0) catras = 0;
@@ -724,7 +771,9 @@ namespace Arcoiris.Reportes
             string ConsulAdd1="";
             string ConsulAdd2 = "";
             if (t == "Diario")
-            { ConsulAdd1 = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            {
+                ConsulAdd1 = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) ";
+            }
             else if (t == "Mensual")
             { ConsulAdd1 = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
 
@@ -752,14 +801,23 @@ namespace Arcoiris.Reportes
             enca.Titulo = titulo;
             for (cont = 0; cont < cant; cont++)
             {
+               
                 Credi_Activity detalle = new Credi_Activity();
+               
                 string tipo = datos.Rows[cont][6].ToString();
+                string tipoc = "";
+                if (tipo.Equals("1")) { tipoc = "(D)"; }
+                else if (tipo.Equals("2")) { tipoc = "(DI)"; }
+                else if (tipo.Equals("3")) { tipoc = "(M)"; }
+                else if (tipo.Equals("4")) { tipoc = "(MS)"; }
+                else if (tipo.Equals("5")) { tipoc = "(S)"; }
+                else if (tipo.Equals("6")) { tipoc = "(Q)"; }
                 string codcre= datos.Rows[cont][0].ToString();
                 decimal interes = cre.SaldoDeinteres(codcre,fechahoy,tipo,0);
                 string Garantia = datos.Rows[cont][7] != DBNull.Value ? datos.Rows[cont][7].ToString() : "Sin Garantia";
                 if (interes < 0) interes = 0;
                 detalle.Credito = int.Parse(datos.Rows[cont][0].ToString());
-                detalle.Nombre = datos.Rows[cont][1].ToString() + " " + datos.Rows[cont][2].ToString();
+                detalle.Nombre = $"{datos.Rows[cont][1]}  {datos.Rows[cont][2].ToString()} /{tipoc}";
                 detalle.Scapital = decimal.Parse(datos.Rows[cont][3].ToString());
                 detalle.Sinteres = interes;
                 detalle.Fcons = datos.Rows[cont][4].ToString();
@@ -782,7 +840,7 @@ namespace Arcoiris.Reportes
             Encab.cliente = titulo;
             string consulta, ConsulAdd = "";
             if (tip == "Diario")
-            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) "; }
+            { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
             consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
@@ -958,9 +1016,10 @@ namespace Arcoiris.Reportes
             datos = buscar(consulta);
             int total, cont;
             total = datos.Rows.Count;
+            List<GanaciaDet> TotalDetas = new List<GanaciaDet>();
             for (cont = 1; cont <= total; cont++)
             {
-                RepDetCli detall = new RepDetCli();
+                GanaciaDet detall = new GanaciaDet();
                 string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
                 string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
                 string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
@@ -972,20 +1031,17 @@ namespace Arcoiris.Reportes
                 if (decimal.Parse(pago) != capicalc) pago = capicalc.ToString();
                 if (decimal.Parse(capi) != intecalc) capi = intecalc.ToString();
                 if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
-
-
-
                 detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
-                detall.Credito = datos.Rows[cont - 1][1].ToString();
-                detall.pago = pago;
-                detall.Total = Convert.ToDecimal(capi);
-                detall.tel = inte;
-                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
-                Encab.detalleC.Add(detall);
+                detall.Monto = decimal.Parse($"{datos.Rows[cont - 1][1]}");
+                detall.Mora = decimal.Parse(pago);
+                detall.Capital = decimal.Parse(capi);
+                detall.Interes = decimal.Parse(inte);
+                detall.Gastos = cre.gasadmin(codigocre, Fechai, Fechaf);
+                TotalDetas.Add(detall);
             }
             Reportes.Ganancias Gan = new Reportes.Ganancias();
             Gan.Enc.Add(Encab);
-            Gan.Deta = Encab.detalleC;
+            Gan.Deta = TotalDetas;
             Gan.Show();
             //faltaln datos en form ganacias
         }
@@ -1002,16 +1058,17 @@ namespace Arcoiris.Reportes
                      "inner JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
                      "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO  and cre.estado!='Cancelado' " +
                      "LEFT JOIN pagos pag on cre.COD_CREDITO = pag.COD_CREDITO  and pag.estado='Hecho' " +
-                     "WHERE ((pag.FECHA >= '" + Fechai + "' AND pag.FECHA <= '" + Fechaf + "' and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2) ) OR (cre.FECHA_CONC>='" + Fechai + "' AND cre.FECHA_CONC<='" + Fechaf + "' AND cre.Gastos_admin>0 and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2))) " +
+                     "WHERE ((pag.FECHA >= '" + Fechai + "' AND pag.FECHA <= '" + Fechaf + "' and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6 ) ) OR (cre.FECHA_CONC>='" + Fechai + "' AND cre.FECHA_CONC<='" + Fechaf + "' AND cre.Gastos_admin>0 and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2))) " +
                      "GROUP BY cre.cod_credito " +
                      "Order by cli.nombres";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             int total, cont;
             total = datos.Rows.Count;
+            List<GanaciaDet> TotalDetas = new List<GanaciaDet>();
             for (cont = 1; cont <= total; cont++)
             {
-                RepDetCli detall = new RepDetCli();
+                GanaciaDet detall = new GanaciaDet();
                 string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
                 string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
                 string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
@@ -1027,16 +1084,16 @@ namespace Arcoiris.Reportes
 
 
                 detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
-                detall.Credito = datos.Rows[cont - 1][1].ToString();
-                detall.pago = pago;
-                detall.Total = Convert.ToDecimal(capi);
-                detall.tel = inte;
-                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
-                Encab.detalleC.Add(detall);
+                detall.Monto = decimal.Parse($"{datos.Rows[cont - 1][1]}");
+                detall.Mora = decimal.Parse(pago, CultureInfo.GetCultureInfo("es-GT"));
+                detall.Capital = decimal.Parse(capi);
+                detall.Interes = decimal.Parse(inte);
+                detall.Gastos = cre.gasadmin(codigocre, Fechai, Fechaf);
+                TotalDetas.Add(detall);
             }
             Reportes.Ganancias Gan = new Reportes.Ganancias();
             Gan.Enc.Add(Encab);
-            Gan.Deta = Encab.detalleC;
+            Gan.Deta = TotalDetas;
             Gan.Show();
             //faltaln datos en form ganacias
 
@@ -1061,9 +1118,10 @@ namespace Arcoiris.Reportes
             datos = buscar(consulta);
             int total, cont;
             total = datos.Rows.Count;
+            List<GanaciaDet> TotalDetas = new List<GanaciaDet>();
             for (cont = 1; cont <= total; cont++)
             {
-                RepDetCli detall = new RepDetCli();
+                GanaciaDet detall = new GanaciaDet();
                 string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
                 string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
                 string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
@@ -1076,19 +1134,17 @@ namespace Arcoiris.Reportes
                 if (decimal.Parse(capi) != intecalc) capi = intecalc.ToString();
                 if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
 
-
-
                 detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
-                detall.Credito = datos.Rows[cont - 1][1].ToString();
-                detall.pago = pago;
-                detall.Total = Convert.ToDecimal(capi);
-                detall.tel = inte;
-                detall.Gadmin = cre.gasadmin(codigocre, Fechai, Fechaf);
-                Encab.detalleC.Add(detall);
+                detall.Monto = decimal.Parse($"{datos.Rows[cont - 1][1]}");
+                detall.Mora = decimal.Parse(pago);
+                detall.Capital = decimal.Parse(capi);
+                detall.Interes = decimal.Parse(inte);
+                detall.Gastos = cre.gasadmin(codigocre, Fechai, Fechaf);
+                TotalDetas.Add(detall);
             }
             Reportes.Ganancias Gan = new Reportes.Ganancias();
             Gan.Enc.Add(Encab);
-            Gan.Deta = Encab.detalleC;
+            Gan.Deta = TotalDetas;
             Gan.Show();
             //faltaln datos en form ganacias
 

@@ -68,6 +68,12 @@ namespace Arcoiris.Formularios
                 BtnEliminar.Visible = false;
                 AddNota.Visible = true;
             }
+            else if (Form1.Nivel=="3")
+            {
+                BtnEliminar.Enabled = false;
+                BtnEliminarCre.Visible = false;
+                AddNota.Visible = true;
+            }
             else
             {
                 BtnEliminar.Enabled = false;
@@ -1092,9 +1098,13 @@ namespace Arcoiris.Formularios
             { }
             else
             {
+                int nivel = 0;
+                if (!Form1.Nivel.Equals("3"))
+                { nivel = 1; }
                 SubForms.IngresoNota Nota = new SubForms.IngresoNota();
                 Nota.Asesor = Form1.Nombre;
                 Nota.credi = CboPresta.Text;
+                Nota.nivel = nivel;
                 Nota.Show();
             }
 

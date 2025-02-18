@@ -197,7 +197,6 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                   
                     titulo = $"Listado de creditos vigentes Mensuales \n{TitAseso}";
                     tipo = "Mensual";
                     repor.RepCreActi(titulo, tipo,ases);
@@ -205,12 +204,10 @@ namespace Arcoiris.Formularios
             }
             else if (CboCre.SelectedIndex == 0)
             {
-               
                 titulo = $"Listado Creditos Atrasados Diarios \n{TitAseso}";
                 tipo = "Diario";
                 repor.Venc_ord(titulo, tipo,ases);
                 //repor.Cred_venc(titulo);
-
             }
             else if (CboCre.SelectedIndex == 1)
             {
@@ -272,12 +269,6 @@ namespace Arcoiris.Formularios
                 string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
                 repor.RepDiaPago(titulo, tipo,fecha);
             }
-
-
-
-
-
-
         }
        
         private void Rep_gan()

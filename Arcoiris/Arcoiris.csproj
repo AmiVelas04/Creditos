@@ -452,6 +452,7 @@
     <Compile Include="Reportes\DatosCre.cs" />
     <Compile Include="Reportes\EstadoDet.cs" />
     <Compile Include="Reportes\EstadoEnc.cs" />
+    <Compile Include="Reportes\GanaciaDet.cs" />
     <Compile Include="Reportes\Ganancias.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -688,6 +689,7 @@
     <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc2.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.EstadoEnc3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.GanaciaDet.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc2.datasource" />

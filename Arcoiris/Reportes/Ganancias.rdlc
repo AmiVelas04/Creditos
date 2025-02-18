@@ -304,7 +304,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=RowNumber("Detalle")</Value>
+                              <Value>=RowNumber("DetalleGan")</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -374,7 +374,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDec(Fields!Credito.Value)</Value>
+                              <Value>=CDec(FormatCurrency(Fields!Credito.Value,2))</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -411,7 +411,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDec(Fields!pago.Value)</Value>
+                              <Value>=(Fields!pago.Value)</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -448,7 +448,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDec(Fields!Total.Value)</Value>
+                              <Value>=(Fields!Total.Value)</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -485,7 +485,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDec(Fields!tel.Value)</Value>
+                              <Value>=(Fields!tel.Value)</Value>
                               <Style>
                                 <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
@@ -892,7 +892,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Sum(CDec(Fields!pago.Value), "Detalle")</Value>
+                <Value>=Sum((Fields!pago.Value), "Detalle")</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>9pt</FontSize>
@@ -948,7 +948,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Sum(CDec(Fields!tel.Value), "Detalle")+Sum(Fields!Gadmin.Value, "Detalle")+Sum(Fields!Total.Value, "Detalle")</Value>
+                <Value>=Sum((Fields!tel.Value), "Detalle")+Sum(Fields!Gadmin.Value, "Detalle")+Sum(Fields!Total.Value, "Detalle")</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>9pt</FontSize>
@@ -1002,7 +1002,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=Sum(CDec(Fields!pago.Value), "Detalle")+Sum(Fields!Total.Value, "Detalle")+Sum(CDec(Fields!tel.Value), "Detalle")+Sum(Fields!Gadmin.Value, "Detalle")</Value>
+                <Value>=Sum((Fields!pago.Value), "Detalle")+Sum(Fields!Total.Value, "Detalle")+Sum((Fields!tel.Value), "Detalle")+Sum(Fields!Gadmin.Value, "Detalle")</Value>
                 <Style>
                   <FontFamily>Segoe UI</FontFamily>
                   <FontSize>9pt</FontSize>
@@ -1034,7 +1034,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>1.09619in</Height>
+    <Height>2.49202in</Height>
     <Style />
   </Body>
   <Width>7.45175in</Width>
@@ -1135,7 +1135,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.80229cm</Height>
+      <Height>2.23104cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -1205,6 +1205,13 @@
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>8b8b075d-bd42-43ec-b30b-fe17b7101ea0</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="ArcoirisReportes2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6fd40bae-9285-490e-b6d1-bf028f08966b</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
@@ -1280,6 +1287,43 @@
         <rd:DataSetName>Arcoiris.Reportes</rd:DataSetName>
         <rd:TableName>RepEnc</rd:TableName>
         <rd:ObjectDataSourceType>Arcoiris.Reportes.RepEnc, Arcoiris, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DetalleGan">
+      <Query>
+        <DataSourceName>ArcoirisReportes2</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Capital">
+          <DataField>Capital</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Cliente">
+          <DataField>Cliente</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Gastos">
+          <DataField>Gastos</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Interes">
+          <DataField>Interes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Monto">
+          <DataField>Monto</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Mora">
+          <DataField>Mora</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Arcoiris.Reportes</rd:DataSetName>
+        <rd:TableName>GanaciaDet</rd:TableName>
+        <rd:ObjectDataSourceType>Arcoiris.Reportes.GanaciaDet, Arcoiris, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

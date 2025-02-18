@@ -78,28 +78,6 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>CREDIARCOIRIS S.A.</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value> y su represntante legal: </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
                 <Value>Diego Salomón Brito Pérez</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -111,7 +89,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, a quien en adelante se le denominará   </Value>
+                <Value>, de treinta y seis años de edad,  casado, guatemalteco, perito contador, con domicilio en el departamento de Quiché, y residencia en el cantón Batzbacà del municipio de Nebaj, departamento de Quiché, me identifico con el Documento Personal de Identificación con código único de identificación CUI, número; mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 15249 1413), extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, actúo en mi calidad de ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL de la entidad CREDIINVERSIONES BRITO COBO, SOCIEDAD ANÓNIMA, representación que acredito con el Acta Notarial de Nombramiento, de fecha diecinueve de agosto del año dos mil veinticuatro, autorizada por el Notario Pedro José Orozco Morales, en el municipio de Santa María Nebaj, departamento del Quiché, nombramiento que se encuentra debidamente inscrito en el Registro Mercantil General de la República, Registro número: SETECIENTOS CINCUENTA Y SIETE MIL DOSCIENTOS TREINTA Y TRES (757233), Folio: NOVECIENTOS DOCE (912), Libro: OCHOCIENTOS TREINTA Y SEIS (836), de auxiliares de Comercio, según Razonamiento de Acta, extendida por el Registro General Mercantil de la República, de fecha seis de septiembre del año dos mil veinticuatro, a quien en adelante se le denominará   </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -652,7 +630,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> por medio del presente documento privado me reconozco lisa y llana deudora del señor </Value>
+                <Value> por medio del presente documento privado me reconozco lisa y llana deudora de Crediinversiones Brito Cobo Sociedad Anónima</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -663,7 +641,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez,</Value>
+                <Value>,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1335,7 +1313,28 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, en las calidades con que comparecemos aceptamos expresamente el reconocimiento de deuda contenido en este documento privado y sus estipulaciones. Leído lo escrito y enterado de su contenido, validez y efectos legales lo aceptamos, ratificamos, firma únicamente el acreedor </Value>
+                <Value>, en las calidades con que comparecemos aceptamos expresamente el reconocimiento de deuda contenido en este documento privado y sus estipulaciones. Leído lo escrito y enterado de su contenido, validez y efectos legales lo aceptamos, ratificamos, firma únicamente el </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Representante legal</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1543,7 +1542,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>      Sindy Magaly Pérez Ceto     </Value>
+                <Value>        Sindy Magaly Pérez Ceto       </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1572,7 +1571,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>        Acreedor                   Deudor(a)  </Value>
+                <Value>   Acreedor/Rep Legal               Deudor(a)  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1868,7 +1867,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez, </Value>
+                <Value>Diego Salomón Brito Pérez</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1879,7 +1878,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>quien se identifican con el Documento Personal de Identificación (DPI) con Código Único de Ia</Value>
+                <Value>, quien se identifica con el Documento Personal de Identificación (DPI) con los códigos únicos de </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1901,29 +1900,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>dentificación número; mil novecientos ochenta y cuatro, espacio, quince mil doscientos cuarenta y nueve, espacio, mil cuatrocientos trece</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>(1984 15249 1413)</Value>
+                <Value>identificación número; </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1934,25 +1911,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica; </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!Deudor.Value, "Datos")</Value>
-                <Style>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>, </Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1963,7 +1922,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>quien se identifica</Value>
+                <Value>mil novecientos ochenta y cuatro espacio quince mil doscientos cuarenta y nueve espacio mil cuatrocientos trece (1984 </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1985,7 +1944,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>con el Documento Personal de Identificación con Código Único de Identificación número; </Value>
+                <Value>15249 1413) extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -1996,14 +1955,17 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>=First(Fields!CuiLDeudor.Value, "Datos")</Value>
+                <Value> Centroamérica </Value>
                 <Style>
+                  <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> (</Value>
+                <Value>quien actúa en su </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2011,34 +1973,6 @@
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>=First(Fields!CuiDeudor.Value, "Datos")</Value>
-                <Style>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>) </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>extendido por el Registro Nacional de las</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -2053,7 +1987,150 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Personas de la República de Guatemala Centroamérica,</Value>
+                <Value>calidad de ADMINISTRADOR ÚNICO Y REPRESENTANTE LEGAL de la entidad CREDIINVERSIONES BRITO COBO, SOCIEDAD </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>ANÓNIMA, representación que acredito con el Acta Notarial de Nombramiento, de fecha diecinueve de agosto del año dos mil veinticuatro, </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>autorizada por el Notario Pedro José Orozco Morales, en el municipio de Santa María Nebaj, departamento del Quiché, nombramiento que se </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>encuentra debidamente inscrito en el Registro Mercantil General de la República, Registro número: SETECIENTOS CINCUENTA Y SIETE MIL </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>DOSCIENTOS TREINTA Y TRES (757233), Folio: NOVECIENTOS DOCE (912), Libro: OCHOCIENTOS TREINTA Y SEIS (836), de </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>auxiliares de Comercio, según Razonamiento de Acta, extendida por el Registro General Mercantil de la República, de fecha seis de septiembre </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>del año dos mil veinticuatro</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2085,7 +2162,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> quien se identifica con el documento personal de</Value>
+                <Value> quien se identifica con el documento personal de identificación DPI número: dos mil </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2107,29 +2184,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>identificación DPI número: dos mil novecientos diecinueve, espacio, veintiún mil setecientos veintiocho, espacio,  mil cuatrocientos trece (2919</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>21728 1413) </Value>
+                <Value>novecientos diecinueve, espacio, veintiún mil setecientos veintiocho, espacio,  mil cuatrocientos trece (2919 21728 1413) </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2140,7 +2195,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, quien firma a ruego de la señora</Value>
+                <Value>extendido por el Registro </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2160,6 +2215,16 @@
           </Paragraph>
           <Paragraph>
             <TextRuns>
+              <TextRun>
+                <Value>Nacional de las Personas de la República de Guatemala Centroamérica, quien firma a ruego de la señora </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                </Style>
+              </TextRun>
               <TextRun>
                 <Value>=First(Fields!NomFiador.Value, "Datos")</Value>
                 <Style>
@@ -2180,7 +2245,29 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> quien se identifica con el Documento Personal de dentificación con Código Único de Identificación número:  </Value>
+                <Value> quien se identifica con el </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Documento Personal de dentificación con Código Único de Identificación número:  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2219,7 +2306,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, extendido</Value>
+                <Value>, extendido por el Registro Nacional de las </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2241,7 +2328,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica,</Value>
+                <Value> personas de la República de Guatemala, Centroamérica,</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2263,7 +2350,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> quien se identifica con</Value>
+                <Value> quien se identifica  con el documento personal de </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2285,7 +2372,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>el documento personal de identificación DPI número: tres mil cuatrocientos tres, espacio, treinta y ocho mil setenta y cinco, espacio, mil</Value>
+                <Value>identificación DPI número: tres mil cuatrocientos tres, espacio, treinta y ocho mil setenta y cinco, espacio, mil cuatrocientos trece (3403 38075 1413)</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2307,39 +2394,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>cuatrocientos trece (3403 38075 1413) </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, quien </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>firma a ruego de la señora </Value>
+                <Value>extendido por el Registro Nacional de las Personas de la República de Guatemala Centroamérica, quien firma a ruego de la señora </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2368,7 +2423,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> quien se identifica con el Documento Personal de dentificación con Código Único de Identificación número:</Value>
+                <Value> quien </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2390,7 +2445,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value xml:space="preserve"> </Value>
+                <Value>se identifica con el Documento Personal de dentificación con Código Único de Identificación número: </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2429,7 +2484,29 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>, extendido por el Registro Nacional de las Personas de la República de Guatemala, Centroamérica  </Value>
+                <Value>, extendido por el Registro </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Nacional de las Personas de la República de Guatemala, Centroamérica  </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2451,7 +2528,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> Las firmas que se </Value>
+                <Value> Las firmas que se legalizan y que están puestas en el presente </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2473,7 +2550,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>legalizan y que están puestas en el presente instrumento, consiste en un “CONTRATO DE RECONOCIMIENTO DE DEUDA” otorgado por </Value>
+                <Value>instrumento, consiste en un “CONTRATO DE RECONOCIMIENTO DE DEUDA” otorgado por </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2483,17 +2560,6 @@
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
@@ -2530,7 +2596,29 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>Diego Salomón Brito Pérez</Value>
+                <Value>Diego </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Salomón Brito Pérez</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2573,29 +2661,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value> En fe de lo anterior vuelve a firmar</Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>únicamente </Value>
+                <Value> En fe de lo anterior vuelve a firmar únicamente </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2616,6 +2682,17 @@
                   <Color>#000000</Color>
                 </Style>
               </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
               <TextRun>
                 <Value>=First(Fields!Deudor.Value, "Datos")</Value>
                 <Style>
@@ -2663,12 +2740,23 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>quienes, por no  saber firmar, vuelven a dejar la impresión dactilar del </Value>
+                <Value>quienes, por no  saber firmar, vuelven a dejar la impresión dactilar del dedo pulgar de su mano derecha, firma a su ruego </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
                   <FontSize>10.5pt</FontSize>
                   <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Sindy </Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                   <TextDecoration>None</TextDecoration>
                   <Color>#000000</Color>
                 </Style>
@@ -2685,18 +2773,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>dedo pulgar de su mano derecha, firma a su ruego </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-              <TextRun>
-                <Value>Sindy Magaly Pérez Ceto y Marta Feliciana Santiago Pérez, </Value>
+                <Value>Magaly Pérez Ceto y Marta Feliciana Santiago Pérez, </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2707,29 +2784,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>como testigos para la </Value>
-                <Style>
-                  <FontStyle>Normal</FontStyle>
-                  <FontFamily>Arial Narrow</FontFamily>
-                  <FontSize>10.5pt</FontSize>
-                  <FontWeight>Normal</FontWeight>
-                  <TextDecoration>None</TextDecoration>
-                  <Color>#000000</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <LeftIndent>0cm</LeftIndent>
-            <RightIndent>0cm</RightIndent>
-            <HangingIndent>-35.45pt</HangingIndent>
-            <Style>
-              <TextAlign>Left</TextAlign>
-              <LineHeight>18pt</LineHeight>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>presente Acta de Legalización de Firmas. </Value>
+                <Value>como testigos para la presente Acta de Legalización de Firmas. </Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2843,7 +2898,7 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>              Testigo                       La parte Fiadora</Value>
+                <Value>              Testigo                  La parte Fiadora</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
                   <FontFamily>Arial Narrow</FontFamily>
@@ -2942,7 +2997,29 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <LeftIndent>1.2506cm</LeftIndent>
+            <LeftIndent>0cm</LeftIndent>
+            <RightIndent>0cm</RightIndent>
+            <HangingIndent>-35.45pt</HangingIndent>
+            <Style>
+              <TextAlign>Left</TextAlign>
+              <LineHeight>18pt</LineHeight>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>ANTE MI</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontFamily>Arial Narrow</FontFamily>
+                  <FontSize>10.5pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <LeftIndent>0cm</LeftIndent>
             <RightIndent>0cm</RightIndent>
             <HangingIndent>-35.45pt</HangingIndent>
             <Style>

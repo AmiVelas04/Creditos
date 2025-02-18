@@ -346,6 +346,50 @@ namespace Arcoiris.Formularios
         {
 
         }
+
+        private void CboGene_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            CboScivil.Items.Clear();
+
+            if (CboGene.SelectedIndex == 0)
+            {
+                CboScivil.Items.Add("Soltero");
+                               CboScivil.Items.Add("Casado");
+                               CboScivil.Items.Add("Viudo");
+                               CboScivil.Sorted = true;
+            }
+            else
+            {
+                CboScivil.Items.Add("Soltera");
+                               CboScivil.Items.Add("Casada");
+                               CboScivil.Items.Add("Viuda");
+                               CboScivil.Sorted = true;
+            }
+           
+        }
+
+        private void CboGeneEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CboCivil2.Items.Clear();
+           
+
+            if (CboGeneEdit.SelectedIndex == 0)
+            {
+               
+                CboCivil2.Items.Add("Soltero");
+                CboCivil2.Items.Add("Casado");
+                CboCivil2.Items.Add("Viudo");
+                CboCivil2.Sorted = true;
+            }
+            else
+            {
+                CboCivil2.Items.Add("Soltera");
+                CboCivil2.Items.Add("Casada");
+                CboCivil2.Items.Add("Viuda");
+                CboCivil2.Sorted = true;
+            }
+        }
     }
 }
 

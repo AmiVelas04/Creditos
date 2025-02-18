@@ -2345,11 +2345,11 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
                 DateTime Inicio = Fini, fechaval;
                 dif = Ffin - Inicio;
-                dias = dif.Days / 7;
+                dias = dif.Days;
                 for (cont = 1; cont <= dias; cont++)
                 {
                     pdia++;
-                    fechaval = Fini.AddDays(pdia * 7);
+                    fechaval = Fini.AddDays(pdia);
                     if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
@@ -2358,6 +2358,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                     {
                     }
                 }
+
                 while (TotCap > 0 || TotInt > 0)
                 {
                     TotCap -= Pcap;
@@ -2366,8 +2367,8 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                         pagao++;
                 }
                 pagao++;
-                dias -= (Dfin + pagao);
-                dias *= 5;
+                dias -= (Dfin + (pagao*5));
+                //dias *= 5;
                 if (dias < 0) dias = 0;
                 Totd = dias;
             }
