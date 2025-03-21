@@ -429,7 +429,8 @@ namespace Arcoiris.Formularios
             string operacion = "Ingreso";
             string monto = TxtCuota.Text;
             string descripcion = "Pago de credito" + deposito;
-            string fecha = DtpPago.Value.ToString("yyyy/MM/dd");
+            //Solicitude de fehca 11/03.2025 de diego de que el pago sea registrado con la fecha actual y no la fehca de la ventana de prestamo
+            string fecha = DateTime.Now.ToString("yyyy/MM/dd"); //DtpPago.Value.ToString("yyyy/MM/dd");
             string estado = "Activo";
             string usuario = Form1.Cod_U;
             string credito = CboPresta.Text, cliente = CboCliNom.Text;

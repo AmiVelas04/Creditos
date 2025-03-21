@@ -201,6 +201,18 @@ namespace Arcoiris.Clases
             return datos;
 
         }
+
+        public DataTable AllCli()
+        {
+            DataTable datos = new DataTable();
+            String consulta;
+            consulta = "Select Codigo_cli,Concat(Nombres,' ',apellidos) as Nombre ,Domicilio, Telefono1, ESTADO_CIVIL, PROFESION, DPI, EDAD, DEPARTAMENTO, MUNICIPIO, GENERO, NACIONALIDAD from Cliente ORDER BY nombres,apellidos";
+            datos = buscar(consulta);
+            return datos;
+        }
+
+
+
         public DataTable clientebusca(string idcli)
         {
             string consulta;

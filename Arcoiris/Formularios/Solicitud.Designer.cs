@@ -51,7 +51,6 @@
             this.label21 = new System.Windows.Forms.Label();
             this.TxtDpiF = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.TxtNomF = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.CboTipPresta = new System.Windows.Forms.ComboBox();
             this.GbxGarantias = new System.Windows.Forms.GroupBox();
@@ -113,6 +112,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.CboSoli = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -207,6 +207,7 @@
             // 
             // GbxDataFiad
             // 
+            this.GbxDataFiad.Controls.Add(this.CboCliNom);
             this.GbxDataFiad.Controls.Add(this.TxtProfFiad);
             this.GbxDataFiad.Controls.Add(this.label26);
             this.GbxDataFiad.Controls.Add(this.TxtEstCivilF);
@@ -223,7 +224,6 @@
             this.GbxDataFiad.Controls.Add(this.label21);
             this.GbxDataFiad.Controls.Add(this.TxtDpiF);
             this.GbxDataFiad.Controls.Add(this.label19);
-            this.GbxDataFiad.Controls.Add(this.TxtNomF);
             this.GbxDataFiad.Controls.Add(this.label7);
             this.GbxDataFiad.Location = new System.Drawing.Point(278, 13);
             this.GbxDataFiad.Name = "GbxDataFiad";
@@ -234,6 +234,7 @@
             // 
             // TxtProfFiad
             // 
+            this.TxtProfFiad.Enabled = false;
             this.TxtProfFiad.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProfFiad.Location = new System.Drawing.Point(391, 85);
             this.TxtProfFiad.Name = "TxtProfFiad";
@@ -252,6 +253,7 @@
             // 
             // TxtEstCivilF
             // 
+            this.TxtEstCivilF.Enabled = false;
             this.TxtEstCivilF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtEstCivilF.Location = new System.Drawing.Point(391, 41);
             this.TxtEstCivilF.Name = "TxtEstCivilF";
@@ -270,6 +272,7 @@
             // 
             // TxtDirF
             // 
+            this.TxtDirF.Enabled = false;
             this.TxtDirF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDirF.Location = new System.Drawing.Point(231, 133);
             this.TxtDirF.Name = "TxtDirF";
@@ -289,6 +292,7 @@
             // CboGeneF
             // 
             this.CboGeneF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboGeneF.Enabled = false;
             this.CboGeneF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboGeneF.FormattingEnabled = true;
             this.CboGeneF.Items.AddRange(new object[] {
@@ -311,6 +315,7 @@
             // 
             // NudEdadF
             // 
+            this.NudEdadF.Enabled = false;
             this.NudEdadF.Location = new System.Drawing.Point(6, 133);
             this.NudEdadF.Maximum = new decimal(new int[] {
             200,
@@ -345,6 +350,7 @@
             // CboMuniF
             // 
             this.CboMuniF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboMuniF.Enabled = false;
             this.CboMuniF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboMuniF.FormattingEnabled = true;
             this.CboMuniF.Location = new System.Drawing.Point(231, 85);
@@ -365,6 +371,7 @@
             // CboDepaF
             // 
             this.CboDepaF.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboDepaF.Enabled = false;
             this.CboDepaF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboDepaF.FormattingEnabled = true;
             this.CboDepaF.Location = new System.Drawing.Point(231, 41);
@@ -385,6 +392,7 @@
             // 
             // TxtDpiF
             // 
+            this.TxtDpiF.Enabled = false;
             this.TxtDpiF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDpiF.Location = new System.Drawing.Point(6, 85);
             this.TxtDpiF.MaxLength = 13;
@@ -401,14 +409,6 @@
             this.label19.Size = new System.Drawing.Size(26, 15);
             this.label19.TabIndex = 2;
             this.label19.Text = "Dpi";
-            // 
-            // TxtNomF
-            // 
-            this.TxtNomF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNomF.Location = new System.Drawing.Point(6, 41);
-            this.TxtNomF.Name = "TxtNomF";
-            this.TxtNomF.Size = new System.Drawing.Size(219, 23);
-            this.TxtNomF.TabIndex = 1;
             // 
             // label7
             // 
@@ -1096,6 +1096,15 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Solicitudes Pendientes";
             // 
+            // CboCliNom
+            // 
+            this.CboCliNom.FormattingEnabled = true;
+            this.CboCliNom.Location = new System.Drawing.Point(6, 39);
+            this.CboCliNom.Name = "CboCliNom";
+            this.CboCliNom.Size = new System.Drawing.Size(219, 25);
+            this.CboCliNom.TabIndex = 52;
+            this.CboCliNom.SelectedValueChanged += new System.EventHandler(this.CboCliNom_SelectedValueChanged);
+            // 
             // Solicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1198,7 +1207,6 @@
         private System.Windows.Forms.GroupBox GbxDataFiad;
         private System.Windows.Forms.TextBox TxtDpiF;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox TxtNomF;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox CboMuniF;
         private System.Windows.Forms.Label label20;
@@ -1215,5 +1223,6 @@
         private System.Windows.Forms.TextBox TxtProfFiad;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button BtnAddGarant;
+        private System.Windows.Forms.ComboBox CboCliNom;
     }
 }

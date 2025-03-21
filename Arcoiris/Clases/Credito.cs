@@ -885,7 +885,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             decimal cuota;
             int atraso = Convert.ToInt32(dias_atraso(credito, fecha));
             int pagar = num_pagos(credito);
-            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo);
+            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo,dias);
 
             //Revisar si se hizo el pago de hoy
             string consulp;
@@ -1049,7 +1049,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
         //calculo 2
         private DataTable interesPrim(string credito, string fecha, string tipo)
         {
-            string consulta = "Select Saldo_cap,saldo_int, monto,plazo, interes,dias_pago, id_tipo_credito,Date_Format(Fecha_venci,'%d-%M-%Y') from credito where COD_CREDITO =" + credito;
+            string consulta = "Select Saldo_cap,saldo_int, monto,plazo, interes,dias_pago, id_tipo_credito,Date_Format(Fecha_venci,'%d-%M-%Y'),Date_Format(fecha_conc,'%d-%M-%Y') from credito where COD_CREDITO =" + credito;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
 
@@ -1060,6 +1060,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             int diasp = Convert.ToInt32(datos.Rows[0][5]);
             decimal interes = Convert.ToDecimal(datos.Rows[0][4]);
             DateTime fechavenc = convertirfecha(datos.Rows[0][7].ToString());
+            DateTime fechacon= convertirfecha(datos.Rows[0][8].ToString());
             DateTime fechaact = convertirfecha(fecha);
             //  interes *= dias;
             decimal pagoint = 0;
@@ -1081,8 +1082,10 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             DataTable UltPag = new DataTable();
             UltPag = buscar(consultultp);
             string[] saldosante = saldos(credito, "1");
-            decimal PagoN = 0;
-            decimal intN = Math.Round(((monto * interes / 100)), 2);
+            int pagosproyfalso = pagproy(fechacon.AddDays(1).ToString(), fechaact.AddDays(1).ToString(), "1", dias);
+            decimal PagoN =monto/dias*pagosproyfalso ;
+          
+            decimal intN = Math.Round(((monto * interes / 100*pagosproyfalso)), 2);
 
             // 1) si no se ha hecho ningun pago sin atrasos
             if (pagoshoy == 0 && pagar == 0 && atraso == 0)
@@ -1271,7 +1274,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             //  3) hay pagos hoy,  es igual a mayor a la fecha y  no hay atraso
             else if (pagoshoy > 0 && fechaact >= fechavenc && atraso == 0)
             {
-                pagarfutu = pagproy(UltPag.Rows[0][3].ToString(), fechaact.ToString(), tipo);
+                pagarfutu = pagproy(UltPag.Rows[0][3].ToString(), fechaact.ToString(), tipo,dias);
                 DifCap = difcapital(credito, PagoN, pagarfutu);
                 DifInt = difint(credito, intN, pagarfutu);
 
@@ -1285,7 +1288,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             //4) no se ha hecho un pago hoy , si existen anteriores, no se ha pasado de la fehca y  hay atraso
             else if (pagoshoy == 0 && pagar > 0 && fechaact < fechavenc && atraso > 0)
             {
-                pagarfutu = pagproy(UltPag.Rows[0][3].ToString(), fechaact.ToString(), tipo);
+                pagarfutu = pagproy(UltPag.Rows[0][3].ToString(), fechaact.ToString(), tipo,dias);
                 DifCap = difcapital(credito, PagoN, pagarfutu);
                 DifInt = difint(credito, intN, pagarfutu);
 
@@ -1555,7 +1558,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             decimal cuota;
             int atraso = Convert.ToInt32(dias_atraso(credito, fecha));
             int pagar = num_pagos(credito);
-            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo);
+            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo,dias);
 
             //Revisar si se hizo el pago de hoy
             string consulp;
@@ -1733,7 +1736,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             decimal cuota;
             int atraso = Convert.ToInt32(dias_atraso(credito, fecha));
             int pagar = num_pagos(credito);
-            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo);
+            int pagarfutu = pagproy(datos.Rows[0][8].ToString(), fechaact.ToString("yyyy/MM/dd"), tipo,dias);
 
             //Revisar si se hizo el pago de hoy
             string consulp;
@@ -1966,19 +1969,18 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             datos = buscar(consulta);
             return Convert.ToInt32(datos.Rows[0][0].ToString());
         }
-        private int pagproy(string fechaini, string fechaAct, string tipo)
+        private int pagproy(string fechaini, string fechaAct, string tipo,int diasp)
         {
             //limitar pagos a num de pagso maximos
             DateTime fechai = Convert.ToDateTime(fechaini);
             DateTime fechaa = Convert.ToDateTime(fechaAct);
             DateTime fechacambio = fechai;
             DateTime fechap;
-
             TimeSpan dias = fechaa - fechai;
             int totdia = dias.Days;
             int cont;
             int diashab = 0;
-            if (totdia >= 30) //totdia = totdia;
+            //if (totdia>diasp) totdia = diasp;
 
             for (cont = 1; cont <= totdia; cont++)
             {
@@ -1991,12 +1993,22 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 {
                     diashab++;
                 }
-                    if (tipo.Equals("2") && totdia>=0) 
-                    {
-                        diashab = 1;
-                    }
+                    
             }
-            if (tipo.Equals("3") || tipo.Equals("4"))
+            if (tipo.Equals("1"))
+            { // se coloca el if para que dias hab tenga el mismo valor antes calcilado
+            }
+            else if (tipo.Equals("2"))
+            {
+                if (diashab > diasp)
+                {
+                    diashab = diasp;
+                }
+                else
+                { diashab = 0; }
+                
+            }
+            else if (tipo.Equals("3") || tipo.Equals("4"))
             {
                 diashab = 0;
                 int conteo = 1;
@@ -2007,6 +2019,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                     fechap = fechai.AddMonths(conteo);
                     diashab++;
                 }
+               
             }
             else if (tipo.Equals("5"))
             {
@@ -2015,7 +2028,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 fechap = fechai.AddDays(conteo);
                 while (fechaa > fechap)
                 {
-                    conteo+=7;
+                    conteo += 7;
                     fechap = fechai.AddDays(conteo);
                     diashab++;
                 }
@@ -2027,15 +2040,14 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 fechap = fechai.AddDays(conteo);
                 while (fechaa > fechap)
                 {
-                    conteo+=14;
+                    conteo += 14;
                     fechap = fechai.AddDays(conteo);
                     diashab++;
                 }
             }
-            else
-            {
-                //diashab = dias.Days;
-            }
+
+
+            if (diashab> diasp) diashab = diasp;
 
 
             return diashab;
@@ -2116,8 +2128,9 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 if (dias <= 0) return 0;
                 for (cont = 1; cont <= dias; cont++)
                 {
-                    pdia++;
+                   
                     fechaval = Fini.AddDays(pdia);
+                    pdia++;
                     if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
                     {
                         Dfin++;
@@ -2158,7 +2171,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 {
 
                 }
-                pagao++;
+                //pagao++;
                 dias -= (Dfin + pagao);
                 if (dias < 0) dias = 0;
                 Totd = dias;
@@ -2431,7 +2444,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 SaldoC = decimal.Parse(datcre.Rows[0][6].ToString());
             }
             //parte 2 calculo de valores 
-            int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo);//revisar numero de pagos que deberia haberse hecho
+            int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo,dias);//revisar numero de pagos que deberia haberse hecho
             int atraso = Convert.ToInt32(dias_atraso(cre, fecha));
             decimal pint = 0, pcap = 0, ptot = 0, PcapO = 0;
             if (pagos > dias) pagos = dias;
@@ -2462,21 +2475,27 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             }
             else if (tipo == "2")
             {
-                int pagos2 = pagproy(FechaVen.ToString("yyyy/MM/dd"), fecha, tipo);
+                int pagos2 = pagproy(FechaVen.ToString("yyyy/MM/dd"), fecha, tipo,dias);
                 if (pagos2 >=0)
                 {
-                    pagos = 1;
+                  //  pagos = 0;
                 }
                 else
                 {
-                    pagos--;
+                   // pagos--;
                 }
                 pcap = 0;
-                if (pagos >= dias) pcap = monto;
-                pint = Math.Round((monto * inte / 100*dias), 2);
+                pint = 0;
+
+                if (pagos >= dias)
+                {
+                    pcap = monto;
+                    pint = Math.Round((monto * inte / 100 * dias), 2);
+                }
+                   
                 //   MessageBox.Show("Capital atrasado: " + capatra + "\nInteres Atrasado: "+intatra );
-                pcap *= 1;
-                pint *= 1;// pagos;
+               // pcap *= 1;
+               // pint *= 1;// pagos;
                 //    MessageBox.Show("Capital proyectado: " + capatra + "\nInteres proyectado: " + intatra);
                 pcap = Math.Round(pcap, 2);
                 pint = Math.Round(pint, 2);
@@ -3250,9 +3269,9 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             }
         }
 
-        public int pagosfutu(string fechai, string fechaAct, string tipo)
+        public int pagosfutu(string fechai, string fechaAct, string tipo,int dias)
         {
-            return pagproy(fechai, fechaAct, tipo);
+            return pagproy(fechai, fechaAct, tipo,dias);
         }
 
 
@@ -3386,7 +3405,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                      "INNER JOIN solicitud sol ON sol.ID_SOLICITUD = acre.ID_SOLICITUD " +
                      "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
                      "INNER JOIN cliente cli ON asol.codigo_cli= cli.CODIGO_CLI " +
-                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=1 or c.id_tipo_credito=2) and c.Estado<>'Cancelado'";
+                     "WHERE c.FECHA_CONC>='" + f1 + "' AND c.FECHA_CONC<='" + f2 + "' and asol.COD_ASESOR=" + aseso + " and (c.id_tipo_credito=1 or c.id_tipo_credito=2 or c.id_tipo_credito=5 or c.id_tipo_credito=6) and c.Estado<>'Cancelado'";
             }
             else if (ord.Equals("3"))
             {

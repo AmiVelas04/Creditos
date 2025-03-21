@@ -708,6 +708,18 @@ namespace Arcoiris.Reportes
                 iatras = decimal.Parse(saldos.Rows[0][1].ToString());
                 if (iatras < 0) iatras = 0;
                 detalle.intatras = iatras;
+                //Condicion de 
+                DateTime fechi = DateTime.Parse($"{credito.Rows[cont][6]} 23:59:59");
+                if (tipo.Equals("2"))
+                {
+                    catras = 0;
+                    iatras = 0;
+                    if ((DateTime.Now > fechi))
+                    {
+                        catras = decimal.Parse(saldos.Rows[0][0].ToString());
+                        iatras = decimal.Parse(saldos.Rows[0][1].ToString());
+                    }
+                }
                 if (catras > 0 || iatras>0)
                 {
                     decimal capatras, intatras;
@@ -751,7 +763,6 @@ namespace Arcoiris.Reportes
                     {
                         detalle.utlimpag = DateTime.Parse(credito.Rows[cont][5].ToString());
                     }
-                     
                     //telefono
                     detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
                     detalle.Garantia = Garantia;
@@ -1020,22 +1031,22 @@ namespace Arcoiris.Reportes
             for (cont = 1; cont <= total; cont++)
             {
                 GanaciaDet detall = new GanaciaDet();
-                string pago = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
-                string capi = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
-                string inte = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
+                string capi = datos.Rows[cont - 1][2] != DBNull.Value ? datos.Rows[cont - 1][2].ToString() : "0";
+                string inte = datos.Rows[cont - 1][3] != DBNull.Value ? datos.Rows[cont - 1][3].ToString() : "0";
+                string pago = datos.Rows[cont - 1][4] != DBNull.Value ? datos.Rows[cont - 1][4].ToString() : "0";
                 string codigocre = datos.Rows[cont - 1][5].ToString();
                 decimal capicalc, intecalc, moracalc;
                 capicalc = pag.totalcapi(Fechai, Fechaf, codigocre);
                 intecalc = pag.totalinte(Fechai, Fechaf, codigocre);
                 moracalc = pag.totalmora(Fechai, Fechaf, codigocre);
-                if (decimal.Parse(pago) != capicalc) pago = capicalc.ToString();
-                if (decimal.Parse(capi) != intecalc) capi = intecalc.ToString();
-                if (decimal.Parse(inte) != moracalc) inte = moracalc.ToString();
+                if (decimal.Parse(pago) != capicalc) capi= capicalc.ToString();
+                if (decimal.Parse(capi) != intecalc) inte = intecalc.ToString();
+                if (decimal.Parse(inte) != moracalc) pago = moracalc.ToString();
                 detall.Cliente = datos.Rows[cont - 1][0].ToString() + "\nCredito: " + codigocre;
                 detall.Monto = decimal.Parse($"{datos.Rows[cont - 1][1]}");
-                detall.Mora = decimal.Parse(pago);
+                detall.Mora = decimal.Parse(pago); // se cambio interes
                 detall.Capital = decimal.Parse(capi);
-                detall.Interes = decimal.Parse(inte);
+                detall.Interes = decimal.Parse(inte); //se cambio por mora
                 detall.Gastos = cre.gasadmin(codigocre, Fechai, Fechaf);
                 TotalDetas.Add(detall);
             }

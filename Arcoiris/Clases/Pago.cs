@@ -70,9 +70,10 @@ namespace Arcoiris.Clases
             decimal interes = Convert.ToDecimal (datos[1]);
             decimal capital = Convert.ToDecimal(datos[2]);
             decimal pago = Convert.ToDecimal(datos[3]);
-            string fecha = Convert.ToDateTime (datos[4]).ToString ("yyyy/MM/dd");
+            //solicitude 11/03/2025 de diego de que el pago sea realizado en la fecha presente, no en la fecha de la ventana de presatamo
+            //string fecha = Convert.ToDateTime (datos[4]).ToString ("yyyy/MM/dd");
             decimal mora = Convert.ToDecimal(datos[5].ToString ());
-            //string fecha = DateTime.Now.ToString("yyyy/MM/dd");
+            string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             DataTable credito = new DataTable();
             string consulta;
             consulta = "Select Saldo_int,Saldo_cap,plazo,monto,interes from credito where cod_credito =" + datos[0];

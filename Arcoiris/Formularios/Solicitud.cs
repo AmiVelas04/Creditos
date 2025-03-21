@@ -20,6 +20,9 @@ namespace Arcoiris.Formularios
         Clases.CajaOpe caj = new Clases.CajaOpe();
         Clases.Logueo log = new Clases.Logueo();
         Reportes.LlenarReport repo = new Reportes.LlenarReport();
+        DataTable AllCli = new DataTable();
+        List<Clases.Modelos.DeparamentoModel> AllDepas;
+        List<Clases.Modelos.MunicipioModel> AllMunis;
         Reportes.Contratos.ContratoDatos datosgaran = new Reportes.Contratos.ContratoDatos();
         int cantigarant = 0;
         int Contratotip = 0;
@@ -32,6 +35,25 @@ namespace Arcoiris.Formularios
         public Solicitud()
         {
             InitializeComponent();
+
+        }
+
+        private void listCliFia()
+        {
+            DataTable listadocli = new DataTable();
+            listadocli = cli.AllCli();
+            CboCliNom.DataSource = listadocli;
+            AllCli = listadocli;
+            CboCliNom.DisplayMember = "Nombre";
+            CboCliNom.ValueMember = "Codigo_Cli";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in listadocli.Rows)
+            {
+                coleccion.Add(row["Nombre"].ToString());
+            }
+            CboCliNom.AutoCompleteCustomSource = coleccion;
+            CboCliNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboCliNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
         }
 
@@ -91,6 +113,8 @@ namespace Arcoiris.Formularios
             CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
+            //Lista de fiadores
+            listCliFia();
 
 
             LblFecha.Text = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
@@ -132,7 +156,7 @@ namespace Arcoiris.Formularios
         }
         private void añadir()
         {
-            datosgaran.NomFiador = TxtNomF.Text;
+            datosgaran.NomFiador = CboCliNom.Text;
             datosgaran.DeparFiador = CboDepaF.Text;
             datosgaran.MuniFiador = CboMuniF.Text;
             datosgaran.ProfFiador = TxtProfFiad.Text;
@@ -871,7 +895,7 @@ namespace Arcoiris.Formularios
 
         private void VeriContGar()
         {
-            if (TxtNomF.Text == "") TxtNomF.Text = "S/N";
+           // if (TxtNomF.Text == "") TxtNomF.Text = "S/N";
             if (TxtDpiF.Text == "") TxtDpiF.Text = "S/D";
             if (TxtEstCivilF.Text == "") TxtEstCivilF.Text = "S/E";
             if (TxtDirF.Text == "") TxtDirF.Text = "S/D";
@@ -991,6 +1015,7 @@ namespace Arcoiris.Formularios
         {
             List<Clases.Modelos.DeparamentoModel> todos = cli.Depar();
             CboDepaF.DataSource = todos;
+            AllDepas = todos;
             CboDepaF.DisplayMember = "Nombre";
             CboDepaF.ValueMember = "Id";
         }
@@ -1002,6 +1027,7 @@ namespace Arcoiris.Formularios
             {
                 string id = CboDepaF.SelectedValue.ToString();
                 CboMuniF.DataSource = cli.Munis(id);
+                AllMunis = cli.Munis(id);
                 CboMuniF.DisplayMember = "Nombre";
                 CboMuniF.ValueMember = "Id";
             }
@@ -1094,7 +1120,7 @@ namespace Arcoiris.Formularios
         }
 
         private void llenarCajasSin() {
-            TxtNomF.Text = "Sin Nom";
+            //TxtNomF.Text = "Sin Nom";
             TxtProfFiad.Text = "Sin Prof";
             TxtDpiF.Text = "0000000000000";
             TxtEstCivilF.Text = "Sin Estado";
@@ -1103,7 +1129,7 @@ namespace Arcoiris.Formularios
 
         private void LimpiarCajaFiad()
         {
-            TxtNomF.Clear();
+            //TxtNomF.Clear();
             TxtProfFiad.Clear();
             TxtDpiF.Clear();
             TxtEstCivilF.Clear();
@@ -1140,6 +1166,61 @@ namespace Arcoiris.Formularios
             }
 
         }
+
+        private void CboCliNom_SelectedValueChanged(object sender, EventArgs e)
+        {
+            SelUnNom();
+        }
+
+        private void SelUnNom()
+        {
+            if (AllCli.Rows.Count <= 0) return;
+
+            string id = CboCliNom.SelectedValue.ToString();
+            int idCod = 0;
+            try
+            {
+                idCod = int.Parse(id);
+                var ToList = (from emp in AllCli.AsEnumerable()
+                              where emp.Field<int>("Codigo_Cli") == idCod
+                              select new
+                              {
+                                  Domicilio= emp.ItemArray[2].ToString(),
+                                  Telefono = emp.ItemArray[3].ToString(),
+                                  EstadoCiv = emp.ItemArray[4].ToString(),
+                                  Profesion = emp.ItemArray[5].ToString(),
+                                  Dpi = emp.ItemArray[6].ToString(),
+                                    Edad = emp.ItemArray[7],
+                                     Municipio = emp.ItemArray[9].ToString(),
+                                     Departamento= emp.ItemArray[8].ToString(),
+                                       Genero = emp.ItemArray[10].ToString(),
+                                  Nacionalidad = emp.ItemArray[11].ToString(),
+
+                              }).ToList();
+
+                int filas =ToList.Count;
+                TxtDpiF.Text = ToList[0].Dpi.ToString();
+                TxtProfFiad.Text = ToList[0].Profesion;
+                NudEdadF.Value = int.Parse(ToList[0].Edad.ToString());
+                TxtEstCivilF.Text = ToList[0].EstadoCiv;
+                TxtDirF.Text = ToList[0].Domicilio;
+                var Depauni = AllDepas.Where(o => o.Nombre.Equals(ToList[0].Departamento.ToString())).ToList();
+              int idDepa = Depauni[0].Id;
+                CboDepaF.SelectedValue = idDepa;
+                var MuniUni = AllMunis.Where(l=>l.Nombre.Equals(ToList[0].Municipio.ToString())).ToList();
+                int idMuni = MuniUni[0].Id;
+                CboMuniF.SelectedValue = idMuni;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+           
+          
+            
+        }
+
     }
 }
 

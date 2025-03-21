@@ -178,7 +178,7 @@ namespace Arcoiris.Formularios
             if (CboCre.SelectedIndex == 4)
             {
                
-                if (Form1.Cod_U.Equals("3") || Form1.Nivel.Equals("4"))
+                if (Form1.Cod_U.Equals("3"))
                 {
                     MessageBox.Show("No tiene autorización de visualizar este reporte","Autorización",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
@@ -191,7 +191,7 @@ namespace Arcoiris.Formularios
                 }
             else if (CboCre.SelectedIndex == 5)
             {
-                if (Form1.Nivel.Equals("3") || Form1.Nivel.Equals("4"))
+                if (Form1.Nivel.Equals("3"))
                 {
                     MessageBox.Show("No tiene autorización de visualizar este reporte", "Autorización", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
@@ -536,7 +536,8 @@ namespace Arcoiris.Formularios
                 Valint = decimal.Parse(datos.Rows[cont][2].ToString());
                 pagoscre = 0;
                 tipocre = int.Parse(datos.Rows[cont][7].ToString());
-                totpagos = cre.pagosfutu(fechaini, fechahoy, tipocre.ToString());
+                
+                totpagos = cre.pagosfutu(fechaini, fechahoy, tipocre.ToString(),pagos);
                 pagosope = totalpagAct;
                 if (tipocre == 1)
                 {
@@ -851,6 +852,14 @@ namespace Arcoiris.Formularios
                 else if (datos.Rows[i][3].ToString() == "4")
                 {
                     Tcred = "Mensual sobre saldo";
+                }
+                else if (datos.Rows[i][3].ToString() == "5")
+                {
+                    Tcred = "Semanal";
+                }
+                else if (datos.Rows[i][3].ToString() == "6")
+                {
+                    Tcred = "Quincenal";
                 }
                 Deta.Tipo = Tcred;
                 Deta.Cliente = datos.Rows[i][5].ToString();
