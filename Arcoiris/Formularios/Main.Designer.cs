@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanelLat = new System.Windows.Forms.Panel();
+            this.BtnCaja = new System.Windows.Forms.Button();
             this.BtnAdmin = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.BtnAsesor = new System.Windows.Forms.Button();
@@ -43,7 +44,7 @@
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.PanelCentral = new System.Windows.Forms.Panel();
-            this.BtnCaja = new System.Windows.Forms.Button();
+            this.BtnInv = new System.Windows.Forms.Button();
             this.PanelLat.SuspendLayout();
             this.PanelSup.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -52,6 +53,7 @@
             // PanelLat
             // 
             this.PanelLat.BackColor = System.Drawing.Color.SteelBlue;
+            this.PanelLat.Controls.Add(this.BtnInv);
             this.PanelLat.Controls.Add(this.BtnCaja);
             this.PanelLat.Controls.Add(this.BtnAdmin);
             this.PanelLat.Controls.Add(this.BtnGuardar);
@@ -67,6 +69,23 @@
             this.PanelLat.TabIndex = 0;
             this.PanelLat.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelLat_Paint);
             // 
+            // BtnCaja
+            // 
+            this.BtnCaja.FlatAppearance.BorderSize = 0;
+            this.BtnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCaja.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnCaja.ForeColor = System.Drawing.Color.White;
+            this.BtnCaja.Image = ((System.Drawing.Image)(resources.GetObject("BtnCaja.Image")));
+            this.BtnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCaja.Location = new System.Drawing.Point(3, 272);
+            this.BtnCaja.Name = "BtnCaja";
+            this.BtnCaja.Size = new System.Drawing.Size(132, 42);
+            this.BtnCaja.TabIndex = 7;
+            this.BtnCaja.Text = "Caja";
+            this.BtnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnCaja.UseVisualStyleBackColor = true;
+            this.BtnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
+            // 
             // BtnAdmin
             // 
             this.BtnAdmin.FlatAppearance.BorderSize = 0;
@@ -75,7 +94,7 @@
             this.BtnAdmin.ForeColor = System.Drawing.Color.White;
             this.BtnAdmin.Image = ((System.Drawing.Image)(resources.GetObject("BtnAdmin.Image")));
             this.BtnAdmin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAdmin.Location = new System.Drawing.Point(3, 367);
+            this.BtnAdmin.Location = new System.Drawing.Point(3, 412);
             this.BtnAdmin.Name = "BtnAdmin";
             this.BtnAdmin.Size = new System.Drawing.Size(132, 42);
             this.BtnAdmin.TabIndex = 6;
@@ -111,9 +130,9 @@
             this.BtnAsesor.ForeColor = System.Drawing.Color.White;
             this.BtnAsesor.Image = ((System.Drawing.Image)(resources.GetObject("BtnAsesor.Image")));
             this.BtnAsesor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAsesor.Location = new System.Drawing.Point(-6, 326);
+            this.BtnAsesor.Location = new System.Drawing.Point(3, 371);
             this.BtnAsesor.Name = "BtnAsesor";
-            this.BtnAsesor.Size = new System.Drawing.Size(141, 33);
+            this.BtnAsesor.Size = new System.Drawing.Size(129, 33);
             this.BtnAsesor.TabIndex = 4;
             this.BtnAsesor.Text = "Asesor";
             this.BtnAsesor.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -129,9 +148,9 @@
             this.BtnReporte.ForeColor = System.Drawing.Color.White;
             this.BtnReporte.Image = ((System.Drawing.Image)(resources.GetObject("BtnReporte.Image")));
             this.BtnReporte.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReporte.Location = new System.Drawing.Point(-6, 275);
+            this.BtnReporte.Location = new System.Drawing.Point(3, 320);
             this.BtnReporte.Name = "BtnReporte";
-            this.BtnReporte.Size = new System.Drawing.Size(141, 37);
+            this.BtnReporte.Size = new System.Drawing.Size(132, 37);
             this.BtnReporte.TabIndex = 3;
             this.BtnReporte.Text = "Reportes";
             this.BtnReporte.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -163,9 +182,9 @@
             this.BtnCliente.ForeColor = System.Drawing.Color.White;
             this.BtnCliente.Image = ((System.Drawing.Image)(resources.GetObject("BtnCliente.Image")));
             this.BtnCliente.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCliente.Location = new System.Drawing.Point(-6, 77);
+            this.BtnCliente.Location = new System.Drawing.Point(3, 77);
             this.BtnCliente.Name = "BtnCliente";
-            this.BtnCliente.Size = new System.Drawing.Size(141, 31);
+            this.BtnCliente.Size = new System.Drawing.Size(132, 31);
             this.BtnCliente.TabIndex = 1;
             this.BtnCliente.Text = "Cliente";
             this.BtnCliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -180,9 +199,9 @@
             this.BtnSolicitud.ForeColor = System.Drawing.Color.White;
             this.BtnSolicitud.Image = ((System.Drawing.Image)(resources.GetObject("BtnSolicitud.Image")));
             this.BtnSolicitud.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnSolicitud.Location = new System.Drawing.Point(0, 124);
+            this.BtnSolicitud.Location = new System.Drawing.Point(3, 124);
             this.BtnSolicitud.Name = "BtnSolicitud";
-            this.BtnSolicitud.Size = new System.Drawing.Size(135, 42);
+            this.BtnSolicitud.Size = new System.Drawing.Size(132, 42);
             this.BtnSolicitud.TabIndex = 0;
             this.BtnSolicitud.Text = "Solicitud";
             this.BtnSolicitud.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -257,22 +276,22 @@
             this.PanelCentral.Size = new System.Drawing.Size(894, 549);
             this.PanelCentral.TabIndex = 2;
             // 
-            // BtnCaja
+            // BtnInv
             // 
-            this.BtnCaja.FlatAppearance.BorderSize = 0;
-            this.BtnCaja.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCaja.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnCaja.ForeColor = System.Drawing.Color.White;
-            this.BtnCaja.Image = ((System.Drawing.Image)(resources.GetObject("BtnCaja.Image")));
-            this.BtnCaja.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnCaja.Location = new System.Drawing.Point(3, 227);
-            this.BtnCaja.Name = "BtnCaja";
-            this.BtnCaja.Size = new System.Drawing.Size(132, 42);
-            this.BtnCaja.TabIndex = 7;
-            this.BtnCaja.Text = "Caja";
-            this.BtnCaja.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnCaja.UseVisualStyleBackColor = true;
-            this.BtnCaja.Click += new System.EventHandler(this.BtnCaja_Click);
+            this.BtnInv.FlatAppearance.BorderSize = 0;
+            this.BtnInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnInv.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnInv.ForeColor = System.Drawing.Color.White;
+            this.BtnInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnInv.Image")));
+            this.BtnInv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnInv.Location = new System.Drawing.Point(3, 224);
+            this.BtnInv.Name = "BtnInv";
+            this.BtnInv.Size = new System.Drawing.Size(132, 42);
+            this.BtnInv.TabIndex = 8;
+            this.BtnInv.Text = "Inversiones";
+            this.BtnInv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnInv.UseVisualStyleBackColor = true;
+            this.BtnInv.Click += new System.EventHandler(this.BtnInv_Click);
             // 
             // Main
             // 
@@ -313,5 +332,6 @@
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button BtnAdmin;
         private System.Windows.Forms.Button BtnCaja;
+        private System.Windows.Forms.Button BtnInv;
     }
 }

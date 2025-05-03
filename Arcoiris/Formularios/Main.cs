@@ -154,5 +154,10 @@ namespace Arcoiris.Formularios
         {
             mostracaja();
         }
+
+        private void BtnInv_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Esta area se encuentra en construccion","En construccion",MessageBoxButtons.OK,MessageBoxIcon.Information);
+        }
     }
 }

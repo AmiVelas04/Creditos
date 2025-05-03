@@ -187,10 +187,7 @@ namespace Arcoiris.Clases
                     {
                         Dgaran[2] ="Sn garantia";//Garantia 
                     }
-
-
-
-                        Dgaran[3] = datos[14];//Nom fiador
+                    Dgaran[3] = datos[14];//Nom fiador
                     Dgaran[4] = datos[15];//Municipio fiador
                     Dgaran[5] = datos[16];//Departamento Fiador
                     Dgaran[6] = datos[17];//ProfFiador
@@ -223,6 +220,12 @@ namespace Arcoiris.Clases
                 return false;
             }
 
+        }
+
+        public bool addFiad(string[] datos)
+        {
+            string consulta = $"insert into sol_fiad(id_sol,id_fia) values({datos[0]},{ datos[1]})";
+            return consulta_gen(consulta);
         }
 
 
@@ -621,6 +624,28 @@ namespace Arcoiris.Clases
             return (consulta_gen(consulta));
         }
         #endregion
+
+        public DataTable solicitud(string cred)
+        {
+           
+            string consulta = "SELECT sol.ID_SOLICITUD, cre.COD_CREDITO " +
+                             "from solicitud sol " +
+                            "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                            "inner JOIN asigna_credito acre ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                            "INNER JOIN credito cre ON acre.COD_CREDITO = cre.COD_CREDITO " +
+                            $"WHERE acre.COD_CREDITO = {cred} AND sol.ID_SOLICITUD = acre.ID_SOLICITUD";
+           return buscar(consulta);
+        }
+
+        public DataTable BuscaFiadPorSol(string sol)
+        {
+            string consulta = "SELECT cli.nombres,cli.apellidos,cli.municipio,cli.departamento, cli.domicilio,cli.estado_civil,cli.profesion,cli.telefono1,cli.telefono2,cli.genero "+
+                              "FROM cliente cli "+
+                              "INNER JOIN sol_fiad sfia ON sfia.Id_Fia = cli.CODIGO_CLI "+
+                              $"WHERE sfia.Id_sol ={sol}";
+            return buscar(consulta);
+        }
+
     }
 }
 

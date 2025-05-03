@@ -35,6 +35,7 @@
             this.GbxGarantia = new System.Windows.Forms.GroupBox();
             this.BtnAddGarant = new System.Windows.Forms.Button();
             this.GbxDataFiad = new System.Windows.Forms.GroupBox();
+            this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.TxtProfFiad = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.TxtEstCivilF = new System.Windows.Forms.TextBox();
@@ -112,7 +113,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.CboSoli = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.CboCliNom = new System.Windows.Forms.ComboBox();
+            this.Tab3 = new System.Windows.Forms.TabPage();
+            this.Tab4 = new System.Windows.Forms.TabPage();
+            this.GbxInv = new System.Windows.Forms.GroupBox();
+            this.GbxInvRev = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -123,12 +127,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
             this.Tab2.SuspendLayout();
             this.GBXPrestamo.SuspendLayout();
+            this.Tab3.SuspendLayout();
+            this.Tab4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.Tab1);
             this.tabControl1.Controls.Add(this.Tab2);
+            this.tabControl1.Controls.Add(this.Tab3);
+            this.tabControl1.Controls.Add(this.Tab4);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -148,7 +156,7 @@
             this.Tab1.Padding = new System.Windows.Forms.Padding(4);
             this.Tab1.Size = new System.Drawing.Size(886, 519);
             this.Tab1.TabIndex = 0;
-            this.Tab1.Text = "Ingreso de solicitud";
+            this.Tab1.Text = "Solicitud de Prestamo";
             this.Tab1.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -231,6 +239,15 @@
             this.GbxDataFiad.TabIndex = 42;
             this.GbxDataFiad.TabStop = false;
             this.GbxDataFiad.Text = "Datos del fiador";
+            // 
+            // CboCliNom
+            // 
+            this.CboCliNom.FormattingEnabled = true;
+            this.CboCliNom.Location = new System.Drawing.Point(6, 39);
+            this.CboCliNom.Name = "CboCliNom";
+            this.CboCliNom.Size = new System.Drawing.Size(219, 25);
+            this.CboCliNom.TabIndex = 52;
+            this.CboCliNom.SelectedValueChanged += new System.EventHandler(this.CboCliNom_SelectedValueChanged);
             // 
             // TxtProfFiad
             // 
@@ -739,7 +756,7 @@
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
             this.Tab2.Size = new System.Drawing.Size(886, 519);
             this.Tab2.TabIndex = 1;
-            this.Tab2.Text = "Cambiar estado de solicitud";
+            this.Tab2.Text = "Revisar solicitud de Prestamo";
             // 
             // GBXPrestamo
             // 
@@ -1096,14 +1113,45 @@
             this.label13.TabIndex = 0;
             this.label13.Text = "Solicitudes Pendientes";
             // 
-            // CboCliNom
+            // Tab3
             // 
-            this.CboCliNom.FormattingEnabled = true;
-            this.CboCliNom.Location = new System.Drawing.Point(6, 39);
-            this.CboCliNom.Name = "CboCliNom";
-            this.CboCliNom.Size = new System.Drawing.Size(219, 25);
-            this.CboCliNom.TabIndex = 52;
-            this.CboCliNom.SelectedValueChanged += new System.EventHandler(this.CboCliNom_SelectedValueChanged);
+            this.Tab3.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.Tab3.Controls.Add(this.GbxInv);
+            this.Tab3.Location = new System.Drawing.Point(4, 26);
+            this.Tab3.Name = "Tab3";
+            this.Tab3.Size = new System.Drawing.Size(886, 519);
+            this.Tab3.TabIndex = 2;
+            this.Tab3.Text = "Solicitud de Inversion";
+            // 
+            // Tab4
+            // 
+            this.Tab4.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.Tab4.Controls.Add(this.GbxInvRev);
+            this.Tab4.Location = new System.Drawing.Point(4, 26);
+            this.Tab4.Name = "Tab4";
+            this.Tab4.Size = new System.Drawing.Size(886, 519);
+            this.Tab4.TabIndex = 3;
+            this.Tab4.Text = "Revisar solicitud de Inversion";
+            // 
+            // GbxInv
+            // 
+            this.GbxInv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GbxInv.Location = new System.Drawing.Point(0, 0);
+            this.GbxInv.Name = "GbxInv";
+            this.GbxInv.Size = new System.Drawing.Size(886, 519);
+            this.GbxInv.TabIndex = 0;
+            this.GbxInv.TabStop = false;
+            this.GbxInv.Text = "En construccion";
+            // 
+            // GbxInvRev
+            // 
+            this.GbxInvRev.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GbxInvRev.Location = new System.Drawing.Point(0, 0);
+            this.GbxInvRev.Name = "GbxInvRev";
+            this.GbxInvRev.Size = new System.Drawing.Size(886, 519);
+            this.GbxInvRev.TabIndex = 0;
+            this.GbxInvRev.TabStop = false;
+            this.GbxInvRev.Text = "En cosntruccion";
             // 
             // Solicitud
             // 
@@ -1134,6 +1182,8 @@
             this.Tab2.ResumeLayout(false);
             this.GBXPrestamo.ResumeLayout(false);
             this.GBXPrestamo.PerformLayout();
+            this.Tab3.ResumeLayout(false);
+            this.Tab4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1224,5 +1274,9 @@
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Button BtnAddGarant;
         private System.Windows.Forms.ComboBox CboCliNom;
+        private System.Windows.Forms.TabPage Tab3;
+        private System.Windows.Forms.TabPage Tab4;
+        private System.Windows.Forms.GroupBox GbxInv;
+        private System.Windows.Forms.GroupBox GbxInvRev;
     }
 }

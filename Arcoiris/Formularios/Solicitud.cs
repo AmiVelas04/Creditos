@@ -230,12 +230,25 @@ namespace Arcoiris.Formularios
             }
 
             string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo, Contratotip.ToString(), Valu, "0", datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador,datosgaran.CuiFiador,datosgaran.FiadorDomi };
-            if (sol.hayasesor(asesor))
+            string[] datos2 = {TxtNoSol.Text,CboCliNom.SelectedValue.ToString()};
+            if (sol.hayasesor(asesor) )
             {
                 if (sol.agregar_soli(datos))
                 {
-                    MessageBox.Show("Solicitud ingresada correctamente");
-                    limpiar();
+                    bool addfiad = false;
+                    if (CboTipPresta.SelectedIndex == 1)
+                    { addfiad = sol.addFiad(datos2);  }
+                    else { addfiad = true; }
+                    
+                    if (addfiad)
+                    {
+                        MessageBox.Show("Solicitud ingresada correctamente", "Ingresada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No fue posible asignar fiador a cliente!", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                 }
                 else
                 {
@@ -1213,7 +1226,7 @@ namespace Arcoiris.Formularios
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return;
             }
            
