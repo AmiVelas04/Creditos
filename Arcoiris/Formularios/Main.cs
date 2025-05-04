@@ -157,7 +157,13 @@ namespace Arcoiris.Formularios
 
         private void BtnInv_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Esta area se encuentra en construccion","En construccion",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            //MessageBox.Show("Esta area se encuentra en construccion","En construccion",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            PanelCentral.Controls.Clear();
+            Formularios.Inversion  Inv = new Formularios.Inversion();
+            Inv.TopLevel = false;
+            PanelCentral.Controls.Add(Inv);
+            PanelCentral.Tag = Inv;
+            Inv.Show();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Arcoiris.Formularios
 {
@@ -19,6 +20,7 @@ namespace Arcoiris.Formularios
         Clases.Credito cre = new Clases.Credito();
         Clases.CajaOpe caj = new Clases.CajaOpe();
         Clases.Logueo log = new Clases.Logueo();
+        Clases.Inversion Inver = new Clases.Inversion();
         Reportes.LlenarReport repo = new Reportes.LlenarReport();
         DataTable AllCli = new DataTable();
         List<Clases.Modelos.DeparamentoModel> AllDepas;
@@ -83,19 +85,40 @@ namespace Arcoiris.Formularios
 
             //Agregar datos al combo box cliente
             DataTable datoscli = new DataTable();
+            
             datoscli = cli.Buscar_nom_cli();
+            DataTable datos2 = datoscli.Copy();
             CboCliente.DataSource = datoscli;
             CboCliente.DisplayMember = "Nombre";
             CboCliente.ValueMember = "Codigo_Cli";
+            CboCliInv.DataSource = datoscli;
+            CboCliInv.DisplayMember = "Nombre";
+            CboCliInv.ValueMember = "Codigo_Cli";
+            CboBenef.DataSource = datos2;
+            CboBenef.DisplayMember = "Nombre";
+            CboBenef.ValueMember = "Codigo_Cli";
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection coleccion2 = new AutoCompleteStringCollection();
             foreach (DataRow row in datoscli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
+                coleccion2.Add(row["Nombre"].ToString());
 
             }
             CboCliente.AutoCompleteCustomSource = coleccion;
             CboCliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboCliInv.AutoCompleteCustomSource = coleccion;
+            CboCliInv.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboCliInv.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboBenef.AutoCompleteCustomSource = coleccion2;
+            CboBenef.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboBenef.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+
+
+            //Agregar cliente a inversiones
+
 
 
             //Agregar datos de asesores
@@ -104,6 +127,9 @@ namespace Arcoiris.Formularios
             CboAsesor.DataSource = datosas;
             CboAsesor.DisplayMember = "Nombre";
             CboAsesor.ValueMember = "Codigo";
+            CboAsesorInv.DataSource = datosas;
+            CboAsesorInv.DisplayMember = "Nombre";
+            CboAsesorInv.ValueMember = "Codigo";
             foreach (DataRow row in datosas.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
@@ -112,6 +138,7 @@ namespace Arcoiris.Formularios
             CboAsesor.AutoCompleteCustomSource = coleccion;
             CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            
 
             //Lista de fiadores
             listCliFia();
@@ -229,17 +256,17 @@ namespace Arcoiris.Formularios
                 plazo = "0";
             }
 
-            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo, Contratotip.ToString(), Valu, "0", datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador,datosgaran.CuiFiador,datosgaran.FiadorDomi };
-            string[] datos2 = {TxtNoSol.Text,CboCliNom.SelectedValue.ToString()};
-            if (sol.hayasesor(asesor) )
+            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo, Contratotip.ToString(), Valu, "0", datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador, datosgaran.CuiFiador, datosgaran.FiadorDomi };
+            string[] datos2 = { TxtNoSol.Text, CboCliNom.SelectedValue.ToString() };
+            if (sol.hayasesor(asesor))
             {
                 if (sol.agregar_soli(datos))
                 {
                     bool addfiad = false;
                     if (CboTipPresta.SelectedIndex == 1)
-                    { addfiad = sol.addFiad(datos2);  }
+                    { addfiad = sol.addFiad(datos2); }
                     else { addfiad = true; }
-                    
+
                     if (addfiad)
                     {
                         MessageBox.Show("Solicitud ingresada correctamente", "Ingresada", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -568,14 +595,14 @@ namespace Arcoiris.Formularios
             {
                 tipo = "5";
                 dias = Convert.ToInt32(TxtPlazo.Text);
-                fecha_fin = Convert.ToDateTime(fecha_conc).AddDays(dias*7).ToString("yyyy/MM/dd");
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddDays(dias * 7).ToString("yyyy/MM/dd");
                 label9.Text = "Plazo(Semanas)";
             }
             else if (CboTipo2.SelectedIndex == 3)
             {
                 tipo = "6";
                 dias = Convert.ToInt32(TxtPlazo.Text);
-                fecha_fin = Convert.ToDateTime(fecha_conc).AddDays(dias*14).ToString("yyyy/MM/dd");
+                fecha_fin = Convert.ToDateTime(fecha_conc).AddDays(dias * 14).ToString("yyyy/MM/dd");
                 label9.Text = "Plazo (Quincenas)";
             }
             else if (CboTipo2.SelectedIndex == 4)
@@ -786,7 +813,7 @@ namespace Arcoiris.Formularios
                 LblPlazo.Visible = true;
                 NupPlazo.Visible = true;
 
-                if (CboTipo.SelectedIndex==2)
+                if (CboTipo.SelectedIndex == 2)
                 {
                     LblPlazo.Text = "Plazo(Semanas)";
                 }
@@ -908,7 +935,7 @@ namespace Arcoiris.Formularios
 
         private void VeriContGar()
         {
-           // if (TxtNomF.Text == "") TxtNomF.Text = "S/N";
+            // if (TxtNomF.Text == "") TxtNomF.Text = "S/N";
             if (TxtDpiF.Text == "") TxtDpiF.Text = "S/D";
             if (TxtEstCivilF.Text == "") TxtEstCivilF.Text = "S/E";
             if (TxtDirF.Text == "") TxtDirF.Text = "S/D";
@@ -1198,29 +1225,29 @@ namespace Arcoiris.Formularios
                               where emp.Field<int>("Codigo_Cli") == idCod
                               select new
                               {
-                                  Domicilio= emp.ItemArray[2].ToString(),
+                                  Domicilio = emp.ItemArray[2].ToString(),
                                   Telefono = emp.ItemArray[3].ToString(),
                                   EstadoCiv = emp.ItemArray[4].ToString(),
                                   Profesion = emp.ItemArray[5].ToString(),
                                   Dpi = emp.ItemArray[6].ToString(),
-                                    Edad = emp.ItemArray[7],
-                                     Municipio = emp.ItemArray[9].ToString(),
-                                     Departamento= emp.ItemArray[8].ToString(),
-                                       Genero = emp.ItemArray[10].ToString(),
+                                  Edad = emp.ItemArray[7],
+                                  Municipio = emp.ItemArray[9].ToString(),
+                                  Departamento = emp.ItemArray[8].ToString(),
+                                  Genero = emp.ItemArray[10].ToString(),
                                   Nacionalidad = emp.ItemArray[11].ToString(),
 
                               }).ToList();
 
-                int filas =ToList.Count;
+                int filas = ToList.Count;
                 TxtDpiF.Text = ToList[0].Dpi.ToString();
                 TxtProfFiad.Text = ToList[0].Profesion;
                 NudEdadF.Value = int.Parse(ToList[0].Edad.ToString());
                 TxtEstCivilF.Text = ToList[0].EstadoCiv;
                 TxtDirF.Text = ToList[0].Domicilio;
                 var Depauni = AllDepas.Where(o => o.Nombre.Equals(ToList[0].Departamento.ToString())).ToList();
-              int idDepa = Depauni[0].Id;
+                int idDepa = Depauni[0].Id;
                 CboDepaF.SelectedValue = idDepa;
-                var MuniUni = AllMunis.Where(l=>l.Nombre.Equals(ToList[0].Municipio.ToString())).ToList();
+                var MuniUni = AllMunis.Where(l => l.Nombre.Equals(ToList[0].Municipio.ToString())).ToList();
                 int idMuni = MuniUni[0].Id;
                 CboMuniF.SelectedValue = idMuni;
             }
@@ -1229,11 +1256,95 @@ namespace Arcoiris.Formularios
                 //MessageBox.Show(ex.Message);
                 return;
             }
-           
-          
-            
+
+
+
         }
 
+        private void BtnIngInv_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxtMontoInv.Text))
+            {
+                MessageBox.Show("No se ha definido el monto de la inversion", "Vacio", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (!Comprobanumero(TxtMontoInv.Text))
+            {
+                MessageBox.Show("No se ha Ingresado un monto valido, intentelo de nuevo", "Montor incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if ((int.Parse(NudPlazoInv.Value.ToString()))<6)
+                {
+                MessageBox.Show("Se necesita un plazo minimo de 6 meses para ingresar la inversiono, intentelo de nuevo", "Plazo incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);            }
+            else if (string.IsNullOrEmpty(TxtOrigenMonto.Text))
+            {
+                MessageBox.Show("No se ha definido el origen del monto de la inversion", "Origen Vacio", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else if (CboCliInv.SelectedValue == CboBenef.SelectedValue)
+            {
+                MessageBox.Show("El cliente y el beneficiario no pueden ser la misma persona", "Beneficiario incorrector", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                ingresarInv();
+            }
+
+        }
+
+        private void ingresarInv()
+        {
+            string plazo = NudPlazoInv.Value.ToString();
+            decimal Interes = InteInv(TxtMonto.Text, plazo);
+            DateTime Ffin = DateTime.Now.AddMonths(int.Parse(plazo));
+            decimal incent = Incentiv(plazo);
+            string idcli = CboCliInv.SelectedValue.ToString();
+           string asesor=CboAsesorInv.SelectedValue.ToString();
+            string bene = CboBenef.SelectedValue.ToString();
+
+            
+            string[] datos = { TxtMontoInv.Text, Interes.ToString(), plazo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), Ffin.ToString("yyyy/MM/dd HH:mm:ss"), "Activo",incent.ToString(),TxtOrigenMonto.Text,idcli,asesor,bene };
+            if (Inver.crear_Inv(datos))
+            { MessageBox.Show("La inversion fue ingresada correctamente!", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+            else
+            { MessageBox.Show("No se pudo ingresar la inversion", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+
+        }
+
+        private bool Comprobanumero(string input)
+        {
+            return Regex.IsMatch(input, @"^\d+(\.\d+)?$");
+
+        }
+
+        private decimal InteInv(string cadena,string plazo)
+            {
+            decimal total = decimal.Parse(cadena);
+            int tiempo = int.Parse(plazo);
+            if (tiempo < 12)
+            { return 0.12M; }
+            else if (tiempo < 24)
+            {
+                return 0.14M;
+            }
+            else
+            {
+                return 0.17M;
+            }
+        }
+
+        private decimal Incentiv(string plazo)
+        {
+            int valor = int.Parse(plazo);
+            if (valor < 24)
+            {
+                return 500.00M;
+            }
+            else
+            {
+                return 1000.00M;
+            }
+        }
+
+        
     }
 }
 

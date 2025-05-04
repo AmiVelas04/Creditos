@@ -193,6 +193,7 @@
     <Compile Include="Clases\Cliente.cs" />
     <Compile Include="Clases\conexion.cs" />
     <Compile Include="Clases\Credito.cs" />
+    <Compile Include="Clases\Inversion.cs" />
     <Compile Include="Clases\Logueo.cs" />
     <Compile Include="Clases\Modelos\DeparamentoModel.cs" />
     <Compile Include="Clases\Modelos\MunicipioModel.cs" />
