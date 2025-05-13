@@ -139,11 +139,12 @@ namespace Arcoiris.Clases
         {
             string consulta;
             DataTable datos = new DataTable();
-            consulta = $"SELECT Ase.Nombre,Concat(Cli.Nombres,' ',Cli.APELLIDOS) AS Identificacion "+
-                        "FROM asesor Ase " +
-                        "INNER JOIN asigna_inversion ainv ON ainv.Cod_Asesor = Ase.COD_ASESOR "+
-                        "INNER JOIN cliente Cli ON Cli.CODIGO_CLI = ainv.Codigo_Cli " +
-                        $"WHERE ainv.Id_Inv = {Inv}";
+            consulta = $"SELECT Ase.Nombre,Concat(Cli.Nombres,' ',Cli.APELLIDOS) AS Identificacion " +
+                    "FROM asesor Ase " +
+                    "INNER JOIN asigna_inversion ainv ON ainv.Cod_Asesor = Ase.COD_ASESOR " +
+                    "INNER JOIN benefiinver beni ON beni.Id_Inv = ainv.Id_Inv " +
+                    "INNER JOIN cliente Cli ON Cli.CODIGO_CLI = beni.Id_Benef " +
+                    $"WHERE ainv.Id_Inv = {Inv}";
             datos = buscar(consulta);
             return datos;
         }

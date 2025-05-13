@@ -92,6 +92,7 @@ namespace Arcoiris.Formularios
             DataTable nombre = Inver.AsesoAndBenefByinv(inversi);
             decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
             decimal montoregalo = Math.Round(decimal.Parse($"{datos.Rows[0][1]}") * decimal.Parse($"{datos.Rows[0][9]}"), 2);
+            decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
             TxtMonto.Text = $"{datos.Rows[0][1]}";
 
             TxtPlazo.Text = $"{datos.Rows[0][2]} Meses";
@@ -102,7 +103,7 @@ namespace Arcoiris.Formularios
             TxtIncent.Text = $"Q.{datos.Rows[0][7]}";
             TxtOrigen.Text = $"{datos.Rows[0][8]}";
             TxtRegalo.Text = $"Q.{montoregalo}";
-
+            TxtGanGen.Text = $"Q.{IntGene}";
             //reparar consulta para recuperar nombre de beneficiario, no de cliente
             TxtAseso.Text = $"{nombre.Rows[0][0]}";
             TxtBenef.Text = $"{nombre.Rows[0][1]}";
@@ -133,7 +134,14 @@ namespace Arcoiris.Formularios
 
         private void BtnSearchInv_Click(object sender, EventArgs e)
         {
-            MostrarDatosInv();
+
+            if (CboInv.SelectedIndex != -1)
+            {
+                MostrarDatosInv();
+            }
+
+
+
         }
         private int PeriodoCurrido(string Dada)
         {

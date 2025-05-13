@@ -41,6 +41,7 @@ namespace Arcoiris.Formularios
 
         private void BtnMostrar_Click(object sender, EventArgs e)
         {
+            LblCred.Text = "0";
             DtpPago.Value = DateTime.Now;
             if (ChkCancelado.Checked == false)
             { listacre(); }
@@ -274,6 +275,7 @@ namespace Arcoiris.Formularios
         {
             if (CboPresta.Text != "" && ChkCancelado.Checked == false)
             {
+                LblCred.Text = CboPresta.Text;
                 BtnPago.Enabled = true;
                 groupBox1.Enabled = true;
                 groupBox2.Enabled = true;
@@ -286,6 +288,7 @@ namespace Arcoiris.Formularios
             }
             else if (CboPresta.Text != "" && ChkCancelado.Checked == true)
             {
+                LblCred.Text = CboPresta.Text;
                 limpiar();
                 BtnPago.Enabled = false;
                 TxtEfectivo.Enabled = false;
@@ -433,7 +436,7 @@ namespace Arcoiris.Formularios
             string fecha = DateTime.Now.ToString("yyyy/MM/dd"); //DtpPago.Value.ToString("yyyy/MM/dd");
             string estado = "Activo";
             string usuario = Form1.Cod_U;
-            string credito = CboPresta.Text, cliente = CboCliNom.Text;
+            string credito = LblCred.Text, cliente = CboCliNom.Text;
 
             String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
             if (caj.ingreope(datos))
@@ -494,7 +497,7 @@ namespace Arcoiris.Formularios
 
         private void Pago()
         {
-            string credito = CboPresta.Text;
+            string credito = LblCred.Text;
             string interes = TxtIntD.Text;
             string capital = (TxtCapD.Text);
             string pago = TxtCuota.Text;
@@ -521,7 +524,7 @@ namespace Arcoiris.Formularios
             string nom = CboCliNom.Text;
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
             datosP.boleta = pag.idpago(CboPresta.Text);
-            string dir = cli.Dir_cli(pag.idpago(CboPresta.Text).ToString());
+            string dir = cli.Dir_cli(pag.idpago(LblCred.Text).ToString());
             datosP.credito = Convert.ToInt32(CboPresta.Text);
             foreach (var c in chrRem)
             {
@@ -1037,6 +1040,8 @@ namespace Arcoiris.Formularios
         private void CboCliNom_SelectedValueChanged(object sender, EventArgs e)
         {
             LblIdCli.Text = CboCliNom.SelectedValue.ToString();
+            
+
         }
 
         private void cargaAseso()

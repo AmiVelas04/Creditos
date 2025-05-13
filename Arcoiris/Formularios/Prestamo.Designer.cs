@@ -32,6 +32,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.GbxPago = new System.Windows.Forms.GroupBox();
+            this.BtnPagProm = new System.Windows.Forms.Button();
             this.AddNota = new System.Windows.Forms.Button();
             this.LblNomCliDisplay = new System.Windows.Forms.Label();
             this.GbxSearch = new System.Windows.Forms.GroupBox();
@@ -113,7 +114,7 @@
             this.BtnEliminar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.DGVPpago = new System.Windows.Forms.DataGridView();
-            this.BtnPagProm = new System.Windows.Forms.Button();
+            this.LblCred = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxPago.SuspendLayout();
@@ -156,6 +157,7 @@
             // 
             // GbxPago
             // 
+            this.GbxPago.Controls.Add(this.LblCred);
             this.GbxPago.Controls.Add(this.BtnPagProm);
             this.GbxPago.Controls.Add(this.AddNota);
             this.GbxPago.Controls.Add(this.LblNomCliDisplay);
@@ -196,6 +198,20 @@
             this.GbxPago.TabIndex = 1;
             this.GbxPago.TabStop = false;
             this.GbxPago.Text = "Credito";
+            // 
+            // BtnPagProm
+            // 
+            this.BtnPagProm.BackColor = System.Drawing.Color.Sienna;
+            this.BtnPagProm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPagProm.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnPagProm.ForeColor = System.Drawing.SystemColors.MenuBar;
+            this.BtnPagProm.Location = new System.Drawing.Point(562, 453);
+            this.BtnPagProm.Name = "BtnPagProm";
+            this.BtnPagProm.Size = new System.Drawing.Size(97, 52);
+            this.BtnPagProm.TabIndex = 62;
+            this.BtnPagProm.Text = "Pagar a la fecha promedio";
+            this.BtnPagProm.UseVisualStyleBackColor = false;
+            this.BtnPagProm.Click += new System.EventHandler(this.BtnPagProm_Click);
             // 
             // AddNota
             // 
@@ -344,7 +360,7 @@
             // LblIdCli
             // 
             this.LblIdCli.AutoSize = true;
-            this.LblIdCli.Location = new System.Drawing.Point(500, 67);
+            this.LblIdCli.Location = new System.Drawing.Point(502, 47);
             this.LblIdCli.Name = "LblIdCli";
             this.LblIdCli.Size = new System.Drawing.Size(51, 17);
             this.LblIdCli.TabIndex = 56;
@@ -1047,19 +1063,15 @@
             this.DGVPpago.Size = new System.Drawing.Size(872, 420);
             this.DGVPpago.TabIndex = 0;
             // 
-            // BtnPagProm
+            // LblCred
             // 
-            this.BtnPagProm.BackColor = System.Drawing.Color.Sienna;
-            this.BtnPagProm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPagProm.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnPagProm.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.BtnPagProm.Location = new System.Drawing.Point(562, 453);
-            this.BtnPagProm.Name = "BtnPagProm";
-            this.BtnPagProm.Size = new System.Drawing.Size(97, 52);
-            this.BtnPagProm.TabIndex = 62;
-            this.BtnPagProm.Text = "Pagar a la fecha promedio";
-            this.BtnPagProm.UseVisualStyleBackColor = false;
-            this.BtnPagProm.Click += new System.EventHandler(this.BtnPagProm_Click);
+            this.LblCred.AutoSize = true;
+            this.LblCred.Location = new System.Drawing.Point(502, 67);
+            this.LblCred.Name = "LblCred";
+            this.LblCred.Size = new System.Drawing.Size(16, 17);
+            this.LblCred.TabIndex = 63;
+            this.LblCred.Text = "0";
+            this.LblCred.Visible = false;
             // 
             // Prestamo
             // 
@@ -1184,5 +1196,6 @@
         private System.Windows.Forms.Label LblNomCliDisplay;
         private System.Windows.Forms.Button AddNota;
         private System.Windows.Forms.Button BtnPagProm;
+        private System.Windows.Forms.Label LblCred;
     }
 }
