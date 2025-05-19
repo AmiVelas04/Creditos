@@ -260,14 +260,16 @@ namespace Arcoiris.Formularios
                 titulo = $"Reporte de pagos del dia \n{TitAseso}";
                 tipo = "Diario";
                 string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
-                repor.RepDiaPago(titulo, tipo,fecha);
+                if (CboAseRepo.SelectedIndex == 0) ases = "0";
+                repor.RepDiaPago(titulo, tipo,fecha,ases);
             }
             else if (CboCre.SelectedIndex == 9)
             {
                 titulo = $"Reporte de pago del dia \n{TitAseso}";
                 tipo = "Mensual";
+                if (CboAseRepo.SelectedIndex == 0) ases = "0";
                 string fecha = DtpFechaR.Value.ToString("dd/MM/yyyy");
-                repor.RepDiaPago(titulo, tipo,fecha);
+                repor.RepDiaPago(titulo, tipo,fecha,ases);
             }
         }
        
@@ -871,6 +873,9 @@ namespace Arcoiris.Formularios
             colo.Show();
         }
 
-      
+        private void BtnInver_Click(object sender, EventArgs e)
+        {
+            repor.Inversiones();
+        }
     }
 }

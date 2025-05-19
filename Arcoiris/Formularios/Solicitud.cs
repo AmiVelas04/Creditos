@@ -1295,7 +1295,7 @@ namespace Arcoiris.Formularios
             string plazo = NudPlazoInv.Value.ToString();
             decimal Interes = InteInv(TxtMonto.Text, plazo);
             DateTime Ffin = DateTime.Now.AddMonths(int.Parse(plazo));
-            decimal incent = Incentiv(plazo);
+            decimal incent = Incentiv(TxtMonto.Text,plazo);
             string idcli = CboCliInv.SelectedValue.ToString();
            string asesor=CboAsesorInv.SelectedValue.ToString();
             string bene = CboBenef.SelectedValue.ToString();
@@ -1331,16 +1331,17 @@ namespace Arcoiris.Formularios
             }
         }
 
-        private decimal Incentiv(string plazo)
+        private decimal Incentiv(string monto,string plazo)
         {
-            int valor = int.Parse(plazo);
-            if (valor < 24)
+            int meses = int.Parse(plazo);
+            decimal total = decimal.Parse(monto);
+            if ( meses< 24)
             {
-                return 500.00M;
+                return total * 0.25M;
             }
             else
             {
-                return 1000.00M;
+                return total * 0.5M;
             }
         }
 

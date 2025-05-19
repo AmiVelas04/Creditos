@@ -14,7 +14,9 @@ namespace Arcoiris.Formularios
     {
         Clases.Cliente cli = new Clases.Cliente();
         Clases.Inversion Inver = new Clases.Inversion();
+        Clases.CajaOpe caj = new Clases.CajaOpe();
         private int idinvUniver = 0;
+       
         public Inversion()
         {
             InitializeComponent();
@@ -90,9 +92,11 @@ namespace Arcoiris.Formularios
             string inversi = CboInv.Text;
             DataTable datos = Inver.detalle_Inv(inversi);
             DataTable nombre = Inver.AsesoAndBenefByinv(inversi);
+            decimal monto = decimal.Parse($"{datos.Rows[0][1]}");
             decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
             decimal montoregalo = Math.Round(decimal.Parse($"{datos.Rows[0][1]}") * decimal.Parse($"{datos.Rows[0][9]}"), 2);
-            decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
+            decimal IntGene = Math.Round( (interespuesto/100 * PeriodoCurrido(datos.Rows[0][4].ToString()) *monto/12),2);
+            
             TxtMonto.Text = $"{datos.Rows[0][1]}";
 
             TxtPlazo.Text = $"{datos.Rows[0][2]} Meses";
@@ -138,6 +142,7 @@ namespace Arcoiris.Formularios
             if (CboInv.SelectedIndex != -1)
             {
                 MostrarDatosInv();
+                BtnGanAct.Enabled = true;
             }
 
 
@@ -155,6 +160,99 @@ namespace Arcoiris.Formularios
                 FechaIni = FechaIni.AddMonths(1);
             }
             return conteo;
+        }
+
+        private void BtnGanAct_Click(object sender, EventArgs e)
+        {
+            if (CboInv.SelectedIndex != -1)
+            {
+                TxtMontoRetir.Text = "0";
+                //Busqueda de los dato generales
+                                string inversi = CboInv.Text;
+                DataTable datos = Inver.detalle_Inv(inversi);
+
+                //Condicion de cierre de calculo
+                int plazo = int.Parse($"{datos.Rows[0][2]}");
+                decimal capital = decimal.Parse($"{datos.Rows[0][1]}");
+                int plazotrans = PeriodoCurrido($"{datos.Rows[0][4]}");
+                decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
+                decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
+                if (plazotrans < plazo)
+                {
+                    if (plazo >= 12)
+                    {
+                        IntGene = Math.Round(((IntGene / 2) + capital), 2);
+                    }
+                    else
+                    {
+                        IntGene = Math.Round(capital, 2);
+                    }
+                }
+                else
+                {
+                    IntGene = Math.Round((IntGene+capital));
+                }
+
+               
+                TxtMontoRetir.Text = $"{IntGene}";
+            }
+        }
+
+        private void CboInv_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BtnGanAct.Enabled = false;
+        }
+
+        private void DtpFecha1_ValueChanged(object sender, EventArgs e)
+        {
+            BtnGanAct.Enabled = false;
+        }
+
+        private void BtnRetiro_Click(object sender, EventArgs e)
+        {
+            if(DialogResult.Yes==MessageBox.Show("Desea realizar el retiro de la inversion?, Esto dara la inversion como terminada","Realizar retiro?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)) retiro();
+            
+        }
+        private void retiro()
+        {
+            string[] datos = { CboInv.Text, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), TxtMontoRetir.Text, Form1.Cod_U };
+            if (Inver.Hacer_Retiro(datos))
+            {
+                MessageBox.Show("Retiro realizado correctamente", "Hecho", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ingresocaja();
+                TxtMontoRetir.Text = "0";
+            }
+            else
+            {
+                MessageBox.Show("El pago no pudo realizarse", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                TxtMontoRetir.Text = "0";
+            }
+        }
+
+        private void ingresocaja()
+        {
+                                   string id = Convert.ToString(caj.id_pago() + 1);
+            string operacion = "Egreso";
+            string monto = TxtMontoRetir.Text;
+            string descripcion = $"Retiro de Inversion No.{CboInv.Text}";
+            //Solicitude de fehca 11/03.2025 de diego de que el pago sea registrado con la fecha actual y no la fehca de la ventana de prestamo
+            string fecha = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"); //DtpPago.Value.ToString("yyyy/MM/dd");
+            string estado = "Activo";
+            string usuario = Form1.Cod_U;
+            string credito = "N/E";
+            string cliente = CboCliNom.Text;
+            
+
+            String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
+            if (caj.ingreope(datos))
+            {
+                MessageBox.Show("Pago registrado con exito","Hecho",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("El pago no pudo realizarse", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
         }
     }
 }

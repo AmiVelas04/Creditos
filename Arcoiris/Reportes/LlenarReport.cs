@@ -844,12 +844,13 @@ namespace Arcoiris.Reportes
         }
 
  
-        public void RepDiaPago(string titulo, string tip, string fech)
+        public void RepDiaPago(string titulo, string tip, string fech, string aseso)
         {
             EstadoEnc Encab = new EstadoEnc();
             DataTable credito = new DataTable();
             Encab.cliente = titulo;
-            string consulta, ConsulAdd = "";
+            string consulta, ConsulAdd = "",addAseso="";
+            if (!aseso.Equals("0")) addAseso = $"AND aso.COD_ASESOR={aseso}";
             if (tip == "Diario")
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (tip == "Mensual")
@@ -861,7 +862,7 @@ namespace Arcoiris.Reportes
                        "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = ac.ID_SOLICITUD "+
                        "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
                        "INNER JOIN cliente cli ON cli.CODIGO_CLI = aso.codigo_cli " +
-                       "WHERE cre.ESTADO = 'Activo' " + ConsulAdd +
+                       $"WHERE cre.ESTADO = 'Activo' {addAseso} {ConsulAdd} "+
                        "GROUP BY cre.COD_CREDITO " +
                        "ORDER BY cre.FECHA_CONC";
             credito = buscar(consulta);
@@ -1161,6 +1162,59 @@ namespace Arcoiris.Reportes
 
         }
 
+        #endregion
+
+        #region Inversiones
+
+        public void Inversiones()
+        {
+            Reportes.InvEnc Enca = new InvEnc();
+            List<Reportes.InvDet> Deta = new List<InvDet>();
+            DataTable datos = new DataTable();
+            string consulta = "SELECT  inv.Id_Inv,cli.CODIGO_CLI,Concat(cli.NOMBRES,' ',cli.APELLIDOS),cli.DOMICILIO,cli.TELEFONO1 ,inv.Monto,inv.Plazo,Date_format(inv.FechaIn,'%Y/%m/%d'),Date_format(inv.FechaFin,'%Y/%m/%d'),inv.Interes " +
+"FROM inversion inv "+
+"inner JOIN asigna_inversion ainv ON inv.Id_Inv = ainv.Id_Inv "+
+"INNER JOIN cliente cli ON ainv.Codigo_Cli = cli.CODIGO_CLI "+
+"WHERE inv.Estado = 'Activo'";
+            datos = buscar(consulta);
+            int cont, cant;
+            cant = datos.Rows.Count;
+            Enca.Titulo = "Reporte de Inversiones";
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.InvDet Temp = new InvDet();
+                string ConsulBenef = "SELECT CONCAT(cli.nombres,' ' ,cli.apellidos) AS Nombre, cli.telefono1,cli.telefono2 " +
+"FROM cliente cli " +
+"INNER JOIN benefiinver binv ON cli.CODIGO_CLI = binv.Id_Benef " +
+$"WHERE binv.Id_Inv = {datos.Rows[cont][0]}";
+
+                DataTable benefi = buscar(ConsulBenef);
+                Temp.Monto = decimal.Parse($"{datos.Rows[cont][5]}");
+                Temp.Plazo = int.Parse($"{datos.Rows[cont][6]}");
+                Temp.Precorr = 0;
+                Temp.Por = decimal.Parse($"{datos.Rows[cont][9]}") * 100;
+                Temp.FI = DateTime.Parse($"{datos.Rows[cont][7]}");
+                Temp.FF = DateTime.Parse($"{datos.Rows[cont][8]}");
+                Temp.Cliente = ($"{datos.Rows[cont][2]}");
+                Temp.No_inv = int.Parse($"{datos.Rows[cont][0]}");
+                Temp.Telefono = ($"{datos.Rows[cont][4]}");
+                Temp.Direccion = ($"{datos.Rows[cont][3]}");
+                Temp.BenefTel= $"{benefi.Rows[0][1]}";
+                Temp.Benef = $"{benefi.Rows[0][0]}";
+
+                Deta.Add(Temp);
+                cont += 1;
+                int lol = cont;
+            }
+            Reportes.Inversiones nuevo = new Inversiones();
+            nuevo.Encabezado.Add(Enca);
+            nuevo.Detalle = Deta;
+            nuevo.Show();
+
+            
+
+
+        }
         #endregion
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PanelLat = new System.Windows.Forms.Panel();
+            this.BtnInv = new System.Windows.Forms.Button();
             this.BtnCaja = new System.Windows.Forms.Button();
             this.BtnAdmin = new System.Windows.Forms.Button();
             this.BtnGuardar = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.PanelCentral = new System.Windows.Forms.Panel();
-            this.BtnInv = new System.Windows.Forms.Button();
             this.PanelLat.SuspendLayout();
             this.PanelSup.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -68,6 +68,23 @@
             this.PanelLat.Size = new System.Drawing.Size(135, 600);
             this.PanelLat.TabIndex = 0;
             this.PanelLat.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelLat_Paint);
+            // 
+            // BtnInv
+            // 
+            this.BtnInv.FlatAppearance.BorderSize = 0;
+            this.BtnInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnInv.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnInv.ForeColor = System.Drawing.Color.White;
+            this.BtnInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnInv.Image")));
+            this.BtnInv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnInv.Location = new System.Drawing.Point(3, 224);
+            this.BtnInv.Name = "BtnInv";
+            this.BtnInv.Size = new System.Drawing.Size(132, 42);
+            this.BtnInv.TabIndex = 8;
+            this.BtnInv.Text = "Inversiones";
+            this.BtnInv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnInv.UseVisualStyleBackColor = true;
+            this.BtnInv.Click += new System.EventHandler(this.BtnInv_Click);
             // 
             // BtnCaja
             // 
@@ -275,23 +292,6 @@
             this.PanelCentral.Name = "PanelCentral";
             this.PanelCentral.Size = new System.Drawing.Size(894, 549);
             this.PanelCentral.TabIndex = 2;
-            // 
-            // BtnInv
-            // 
-            this.BtnInv.FlatAppearance.BorderSize = 0;
-            this.BtnInv.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnInv.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnInv.ForeColor = System.Drawing.Color.White;
-            this.BtnInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnInv.Image")));
-            this.BtnInv.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnInv.Location = new System.Drawing.Point(3, 224);
-            this.BtnInv.Name = "BtnInv";
-            this.BtnInv.Size = new System.Drawing.Size(132, 42);
-            this.BtnInv.TabIndex = 8;
-            this.BtnInv.Text = "Inversiones";
-            this.BtnInv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnInv.UseVisualStyleBackColor = true;
-            this.BtnInv.Click += new System.EventHandler(this.BtnInv_Click);
             // 
             // Main
             // 

@@ -99,7 +99,7 @@ namespace Arcoiris.Clases
                           "FROM Inversion Inv " +
                           "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
                           "INNER JOIN cliente cli ON cli.CODIGO_CLI = AInv.codigo_cli " +
-                           $"WHERE cli.CODIGO_CLI={Cli} and Inv.Estado!='Cancelado' " +
+                           $"WHERE cli.CODIGO_CLI={Cli} and Inv.Estado!='Retirado' " +
                           "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo asc";
             DataTable datos = new DataTable();
             return buscar(consulta);
@@ -113,7 +113,7 @@ namespace Arcoiris.Clases
                           "FROM Inversion Inv " +
                           "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
                           "INNER JOIN Asesor ase  ON ase.COD_ASESOR = AInv.Cod_Asesor " +
-                           $"WHERE ase.COD_ASESOR={Aseso} and Inv.Estado!='Cancelado' " +
+                           $"WHERE ase.COD_ASESOR={Aseso} and Inv.Estado!='Retirado' " +
                           "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo asc";
             DataTable datos = new DataTable();
             return buscar(consulta);
@@ -197,10 +197,49 @@ namespace Arcoiris.Clases
             return consulta_gen(consulAsesoInv);
         }
 
-        
+
 
 
 
         #endregion
+
+        #region Retiros
+        public int idRetiro(string inv)
+        {
+            string consulta = "SELECT COUNT(*) "+
+            "FROM retiros re "+
+            "WHERE re.Id_Inv = " + inv;
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return Convert.ToInt32(datos.Rows[0][0]);
+
+        }
+
+        public bool Hacer_Retiro(string[] datos)
+        {
+            string estado = "Retirado";
+            //interes y capital  y pago para ingresar en cada pago;
+            DataTable credit = new DataTable();
+            int id = idRetiro(datos[0]) + 1;
+            string consulReritro = "Insert into retiros (id_retiro,Id_inv,Fecha, Monto, Estado,Cod_Usuario) values" +
+                $"({id},{datos[0]} ,'{datos[1]}',{datos[2]},'{estado}',{datos[3]})";
+
+            if (consulta_gen(consulReritro))
+            {
+                string consulUpdInv = "Update Inversion set Estado='Retirado' where id_inv=" + datos[0];
+                return (consulta_gen(consulUpdInv));
+            }
+            else
+            {
+                return false;
+            }
+         
+           
+        }
+
+       
+        #endregion
+
+
     }
 }

@@ -63,6 +63,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.GbxInver = new System.Windows.Forms.GroupBox();
+            this.BtnInver = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.GbxPrest.SuspendLayout();
@@ -71,6 +73,7 @@
             this.panel3.SuspendLayout();
             this.GbxAs.SuspendLayout();
             this.GbxGan.SuspendLayout();
+            this.GbxInver.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,6 +88,7 @@
             // 
             // GbxD
             // 
+            this.GbxD.Controls.Add(this.GbxInver);
             this.GbxD.Controls.Add(this.GbxPrest);
             this.GbxD.Controls.Add(this.BtnColo);
             this.GbxD.Controls.Add(this.BtnComi);
@@ -393,7 +397,7 @@
             // 
             // BtnRepGan
             // 
-            this.BtnRepGan.Location = new System.Drawing.Point(48, 210);
+            this.BtnRepGan.Location = new System.Drawing.Point(37, 182);
             this.BtnRepGan.Name = "BtnRepGan";
             this.BtnRepGan.Size = new System.Drawing.Size(120, 35);
             this.BtnRepGan.TabIndex = 4;
@@ -437,6 +441,26 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
             // 
+            // GbxInver
+            // 
+            this.GbxInver.Controls.Add(this.BtnInver);
+            this.GbxInver.Location = new System.Drawing.Point(600, 25);
+            this.GbxInver.Name = "GbxInver";
+            this.GbxInver.Size = new System.Drawing.Size(283, 214);
+            this.GbxInver.TabIndex = 9;
+            this.GbxInver.TabStop = false;
+            this.GbxInver.Text = "Inversiones";
+            // 
+            // BtnInver
+            // 
+            this.BtnInver.Location = new System.Drawing.Point(24, 38);
+            this.BtnInver.Name = "BtnInver";
+            this.BtnInver.Size = new System.Drawing.Size(136, 31);
+            this.BtnInver.TabIndex = 0;
+            this.BtnInver.Text = "Inversiones";
+            this.BtnInver.UseVisualStyleBackColor = true;
+            this.BtnInver.Click += new System.EventHandler(this.BtnInver_Click);
+            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -466,6 +490,7 @@
             this.GbxAs.PerformLayout();
             this.GbxGan.ResumeLayout(false);
             this.GbxGan.PerformLayout();
+            this.GbxInver.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -506,5 +531,7 @@
         private System.Windows.Forms.RadioButton RdbPtodos;
         private System.Windows.Forms.ComboBox CboAseRepo;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox GbxInver;
+        private System.Windows.Forms.Button BtnInver;
     }
 }

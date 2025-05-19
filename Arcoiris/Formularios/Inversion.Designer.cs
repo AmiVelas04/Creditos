@@ -32,7 +32,28 @@
             this.TbcInversion = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ChkRetirado = new System.Windows.Forms.CheckBox();
+            this.BtnSearchInv = new System.Windows.Forms.Button();
+            this.GbxRetiro = new System.Windows.Forms.GroupBox();
+            this.BtnRetiro = new System.Windows.Forms.Button();
+            this.BtnGanAct = new System.Windows.Forms.Button();
+            this.TxtMontoRetir = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.GbxDatosInv = new System.Windows.Forms.GroupBox();
+            this.TxtOrigen = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.TxtAseso = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.TxtBenef = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.TxtGanGen = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TxtIncent = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.TxtInt = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.TxtRegalo = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.TxtPlazo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.TxtTranscu = new System.Windows.Forms.TextBox();
@@ -49,31 +70,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.GbxRetiro = new System.Windows.Forms.GroupBox();
-            this.TxtMontoRetir = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.BtnGanAct = new System.Windows.Forms.Button();
-            this.BtnRetiro = new System.Windows.Forms.Button();
-            this.BtnSearchInv = new System.Windows.Forms.Button();
-            this.TxtRegalo = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.TxtInt = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.TxtIncent = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.TxtGanGen = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.TxtBenef = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.TxtAseso = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.TxtOrigen = new System.Windows.Forms.TextBox();
             this.TbcInversion.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.GbxDatosInv.SuspendLayout();
             this.GbxRetiro.SuspendLayout();
+            this.GbxDatosInv.SuspendLayout();
             this.SuspendLayout();
             // 
             // TbcInversion
@@ -100,6 +101,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ChkRetirado);
             this.groupBox1.Controls.Add(this.BtnSearchInv);
             this.groupBox1.Controls.Add(this.GbxRetiro);
             this.groupBox1.Controls.Add(this.GbxDatosInv);
@@ -116,6 +118,85 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos generales";
+            // 
+            // ChkRetirado
+            // 
+            this.ChkRetirado.AutoSize = true;
+            this.ChkRetirado.Location = new System.Drawing.Point(153, 91);
+            this.ChkRetirado.Name = "ChkRetirado";
+            this.ChkRetirado.Size = new System.Drawing.Size(85, 21);
+            this.ChkRetirado.TabIndex = 13;
+            this.ChkRetirado.Text = "Retirados";
+            this.ChkRetirado.UseVisualStyleBackColor = true;
+            // 
+            // BtnSearchInv
+            // 
+            this.BtnSearchInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchInv.Image")));
+            this.BtnSearchInv.Location = new System.Drawing.Point(670, 24);
+            this.BtnSearchInv.Name = "BtnSearchInv";
+            this.BtnSearchInv.Size = new System.Drawing.Size(183, 72);
+            this.BtnSearchInv.TabIndex = 12;
+            this.BtnSearchInv.Text = "Mostrar Detalles";
+            this.BtnSearchInv.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnSearchInv.UseVisualStyleBackColor = true;
+            this.BtnSearchInv.Click += new System.EventHandler(this.BtnSearchInv_Click);
+            // 
+            // GbxRetiro
+            // 
+            this.GbxRetiro.Controls.Add(this.BtnRetiro);
+            this.GbxRetiro.Controls.Add(this.BtnGanAct);
+            this.GbxRetiro.Controls.Add(this.TxtMontoRetir);
+            this.GbxRetiro.Controls.Add(this.label9);
+            this.GbxRetiro.ForeColor = System.Drawing.Color.Brown;
+            this.GbxRetiro.Location = new System.Drawing.Point(6, 329);
+            this.GbxRetiro.Name = "GbxRetiro";
+            this.GbxRetiro.Size = new System.Drawing.Size(868, 178);
+            this.GbxRetiro.TabIndex = 7;
+            this.GbxRetiro.TabStop = false;
+            this.GbxRetiro.Text = "Retiro";
+            // 
+            // BtnRetiro
+            // 
+            this.BtnRetiro.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetiro.Image")));
+            this.BtnRetiro.Location = new System.Drawing.Point(724, 39);
+            this.BtnRetiro.Name = "BtnRetiro";
+            this.BtnRetiro.Size = new System.Drawing.Size(123, 104);
+            this.BtnRetiro.TabIndex = 11;
+            this.BtnRetiro.Text = "Realizar Retiro de Fondos";
+            this.BtnRetiro.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnRetiro.UseVisualStyleBackColor = true;
+            this.BtnRetiro.Click += new System.EventHandler(this.BtnRetiro_Click);
+            // 
+            // BtnGanAct
+            // 
+            this.BtnGanAct.Image = ((System.Drawing.Image)(resources.GetObject("BtnGanAct.Image")));
+            this.BtnGanAct.Location = new System.Drawing.Point(330, 39);
+            this.BtnGanAct.Name = "BtnGanAct";
+            this.BtnGanAct.Size = new System.Drawing.Size(177, 55);
+            this.BtnGanAct.TabIndex = 10;
+            this.BtnGanAct.Text = "Ganacias Actuales";
+            this.BtnGanAct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnGanAct.UseVisualStyleBackColor = true;
+            this.BtnGanAct.Click += new System.EventHandler(this.BtnGanAct_Click);
+            // 
+            // TxtMontoRetir
+            // 
+            this.TxtMontoRetir.Enabled = false;
+            this.TxtMontoRetir.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtMontoRetir.Location = new System.Drawing.Point(15, 51);
+            this.TxtMontoRetir.Name = "TxtMontoRetir";
+            this.TxtMontoRetir.Size = new System.Drawing.Size(246, 35);
+            this.TxtMontoRetir.TabIndex = 9;
+            this.TxtMontoRetir.Text = "0";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(17, 31);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 17);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "Monto";
             // 
             // GbxDatosInv
             // 
@@ -150,6 +231,133 @@
             this.GbxDatosInv.TabIndex = 6;
             this.GbxDatosInv.TabStop = false;
             this.GbxDatosInv.Text = "Datos de Inversion";
+            // 
+            // TxtOrigen
+            // 
+            this.TxtOrigen.Enabled = false;
+            this.TxtOrigen.Location = new System.Drawing.Point(676, 91);
+            this.TxtOrigen.Multiline = true;
+            this.TxtOrigen.Name = "TxtOrigen";
+            this.TxtOrigen.Size = new System.Drawing.Size(181, 83);
+            this.TxtOrigen.TabIndex = 23;
+            this.TxtOrigen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(721, 71);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(50, 17);
+            this.label16.TabIndex = 22;
+            this.label16.Text = "Origen";
+            // 
+            // TxtAseso
+            // 
+            this.TxtAseso.Enabled = false;
+            this.TxtAseso.Location = new System.Drawing.Point(301, 149);
+            this.TxtAseso.Name = "TxtAseso";
+            this.TxtAseso.Size = new System.Drawing.Size(275, 25);
+            this.TxtAseso.TabIndex = 21;
+            this.TxtAseso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(303, 129);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(49, 17);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "Asesor";
+            // 
+            // TxtBenef
+            // 
+            this.TxtBenef.Enabled = false;
+            this.TxtBenef.Location = new System.Drawing.Point(6, 149);
+            this.TxtBenef.Name = "TxtBenef";
+            this.TxtBenef.Size = new System.Drawing.Size(275, 25);
+            this.TxtBenef.TabIndex = 19;
+            this.TxtBenef.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(8, 129);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(81, 17);
+            this.label14.TabIndex = 18;
+            this.label14.Text = "Beneficiario";
+            // 
+            // TxtGanGen
+            // 
+            this.TxtGanGen.Enabled = false;
+            this.TxtGanGen.Location = new System.Drawing.Point(647, 42);
+            this.TxtGanGen.Name = "TxtGanGen";
+            this.TxtGanGen.Size = new System.Drawing.Size(153, 25);
+            this.TxtGanGen.TabIndex = 17;
+            this.TxtGanGen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(649, 22);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(130, 17);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "Ganacias Generadas";
+            // 
+            // TxtIncent
+            // 
+            this.TxtIncent.Enabled = false;
+            this.TxtIncent.Location = new System.Drawing.Point(351, 91);
+            this.TxtIncent.Name = "TxtIncent";
+            this.TxtIncent.Size = new System.Drawing.Size(149, 25);
+            this.TxtIncent.TabIndex = 15;
+            this.TxtIncent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(362, 70);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(65, 17);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Incentivo";
+            // 
+            // TxtInt
+            // 
+            this.TxtInt.Enabled = false;
+            this.TxtInt.Location = new System.Drawing.Point(186, 42);
+            this.TxtInt.Name = "TxtInt";
+            this.TxtInt.Size = new System.Drawing.Size(75, 25);
+            this.TxtInt.TabIndex = 13;
+            this.TxtInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(188, 22);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(50, 17);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Interes";
+            // 
+            // TxtRegalo
+            // 
+            this.TxtRegalo.Enabled = false;
+            this.TxtRegalo.Location = new System.Drawing.Point(520, 91);
+            this.TxtRegalo.Name = "TxtRegalo";
+            this.TxtRegalo.Size = new System.Drawing.Size(149, 25);
+            this.TxtRegalo.TabIndex = 11;
+            this.TxtRegalo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(526, 71);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(105, 17);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "Valor de Regalo";
             // 
             // TxtPlazo
             // 
@@ -249,6 +457,7 @@
             this.CboInv.Name = "CboInv";
             this.CboInv.Size = new System.Drawing.Size(121, 25);
             this.CboInv.TabIndex = 5;
+            this.CboInv.SelectedIndexChanged += new System.EventHandler(this.CboInv_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -261,10 +470,12 @@
             // 
             // DtpFecha1
             // 
+            this.DtpFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpFecha1.Location = new System.Drawing.Point(392, 41);
             this.DtpFecha1.Name = "DtpFecha1";
-            this.DtpFecha1.Size = new System.Drawing.Size(245, 25);
+            this.DtpFecha1.Size = new System.Drawing.Size(149, 25);
             this.DtpFecha1.TabIndex = 3;
+            this.DtpFecha1.ValueChanged += new System.EventHandler(this.DtpFecha1_ValueChanged);
             // 
             // label2
             // 
@@ -294,198 +505,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
             // 
-            // GbxRetiro
-            // 
-            this.GbxRetiro.Controls.Add(this.BtnRetiro);
-            this.GbxRetiro.Controls.Add(this.BtnGanAct);
-            this.GbxRetiro.Controls.Add(this.TxtMontoRetir);
-            this.GbxRetiro.Controls.Add(this.label9);
-            this.GbxRetiro.ForeColor = System.Drawing.Color.Brown;
-            this.GbxRetiro.Location = new System.Drawing.Point(6, 329);
-            this.GbxRetiro.Name = "GbxRetiro";
-            this.GbxRetiro.Size = new System.Drawing.Size(868, 178);
-            this.GbxRetiro.TabIndex = 7;
-            this.GbxRetiro.TabStop = false;
-            this.GbxRetiro.Text = "Retiro";
-            // 
-            // TxtMontoRetir
-            // 
-            this.TxtMontoRetir.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoRetir.Location = new System.Drawing.Point(15, 51);
-            this.TxtMontoRetir.Name = "TxtMontoRetir";
-            this.TxtMontoRetir.Size = new System.Drawing.Size(246, 35);
-            this.TxtMontoRetir.TabIndex = 9;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 31);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 17);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "Monto";
-            // 
-            // BtnGanAct
-            // 
-            this.BtnGanAct.Image = ((System.Drawing.Image)(resources.GetObject("BtnGanAct.Image")));
-            this.BtnGanAct.Location = new System.Drawing.Point(330, 39);
-            this.BtnGanAct.Name = "BtnGanAct";
-            this.BtnGanAct.Size = new System.Drawing.Size(177, 55);
-            this.BtnGanAct.TabIndex = 10;
-            this.BtnGanAct.Text = "Ganacias Actuales";
-            this.BtnGanAct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnGanAct.UseVisualStyleBackColor = true;
-            // 
-            // BtnRetiro
-            // 
-            this.BtnRetiro.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetiro.Image")));
-            this.BtnRetiro.Location = new System.Drawing.Point(724, 39);
-            this.BtnRetiro.Name = "BtnRetiro";
-            this.BtnRetiro.Size = new System.Drawing.Size(123, 104);
-            this.BtnRetiro.TabIndex = 11;
-            this.BtnRetiro.Text = "Realizar Retiro de Fondos";
-            this.BtnRetiro.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.BtnRetiro.UseVisualStyleBackColor = true;
-            // 
-            // BtnSearchInv
-            // 
-            this.BtnSearchInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchInv.Image")));
-            this.BtnSearchInv.Location = new System.Drawing.Point(670, 24);
-            this.BtnSearchInv.Name = "BtnSearchInv";
-            this.BtnSearchInv.Size = new System.Drawing.Size(183, 72);
-            this.BtnSearchInv.TabIndex = 12;
-            this.BtnSearchInv.Text = "Mostrar Detalles";
-            this.BtnSearchInv.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
-            this.BtnSearchInv.UseVisualStyleBackColor = true;
-            this.BtnSearchInv.Click += new System.EventHandler(this.BtnSearchInv_Click);
-            // 
-            // TxtRegalo
-            // 
-            this.TxtRegalo.Enabled = false;
-            this.TxtRegalo.Location = new System.Drawing.Point(520, 91);
-            this.TxtRegalo.Name = "TxtRegalo";
-            this.TxtRegalo.Size = new System.Drawing.Size(149, 25);
-            this.TxtRegalo.TabIndex = 11;
-            this.TxtRegalo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(526, 71);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(105, 17);
-            this.label10.TabIndex = 10;
-            this.label10.Text = "Valor de Regalo";
-            // 
-            // TxtInt
-            // 
-            this.TxtInt.Enabled = false;
-            this.TxtInt.Location = new System.Drawing.Point(186, 42);
-            this.TxtInt.Name = "TxtInt";
-            this.TxtInt.Size = new System.Drawing.Size(75, 25);
-            this.TxtInt.TabIndex = 13;
-            this.TxtInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(188, 22);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(50, 17);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Interes";
-            // 
-            // TxtIncent
-            // 
-            this.TxtIncent.Enabled = false;
-            this.TxtIncent.Location = new System.Drawing.Point(351, 91);
-            this.TxtIncent.Name = "TxtIncent";
-            this.TxtIncent.Size = new System.Drawing.Size(149, 25);
-            this.TxtIncent.TabIndex = 15;
-            this.TxtIncent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(362, 70);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(65, 17);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Incentivo";
-            // 
-            // TxtGanGen
-            // 
-            this.TxtGanGen.Enabled = false;
-            this.TxtGanGen.Location = new System.Drawing.Point(647, 42);
-            this.TxtGanGen.Name = "TxtGanGen";
-            this.TxtGanGen.Size = new System.Drawing.Size(153, 25);
-            this.TxtGanGen.TabIndex = 17;
-            this.TxtGanGen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(649, 22);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(130, 17);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Ganacias Generadas";
-            // 
-            // TxtBenef
-            // 
-            this.TxtBenef.Enabled = false;
-            this.TxtBenef.Location = new System.Drawing.Point(6, 149);
-            this.TxtBenef.Name = "TxtBenef";
-            this.TxtBenef.Size = new System.Drawing.Size(275, 25);
-            this.TxtBenef.TabIndex = 19;
-            this.TxtBenef.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 129);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(81, 17);
-            this.label14.TabIndex = 18;
-            this.label14.Text = "Beneficiario";
-            // 
-            // TxtAseso
-            // 
-            this.TxtAseso.Enabled = false;
-            this.TxtAseso.Location = new System.Drawing.Point(301, 149);
-            this.TxtAseso.Name = "TxtAseso";
-            this.TxtAseso.Size = new System.Drawing.Size(275, 25);
-            this.TxtAseso.TabIndex = 21;
-            this.TxtAseso.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(303, 129);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(49, 17);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "Asesor";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(721, 71);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(50, 17);
-            this.label16.TabIndex = 22;
-            this.label16.Text = "Origen";
-            // 
-            // TxtOrigen
-            // 
-            this.TxtOrigen.Enabled = false;
-            this.TxtOrigen.Location = new System.Drawing.Point(676, 91);
-            this.TxtOrigen.Multiline = true;
-            this.TxtOrigen.Name = "TxtOrigen";
-            this.TxtOrigen.Size = new System.Drawing.Size(181, 83);
-            this.TxtOrigen.TabIndex = 23;
-            this.TxtOrigen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // Inversion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -500,10 +519,10 @@
             this.tabPage1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.GbxDatosInv.ResumeLayout(false);
-            this.GbxDatosInv.PerformLayout();
             this.GbxRetiro.ResumeLayout(false);
             this.GbxRetiro.PerformLayout();
+            this.GbxDatosInv.ResumeLayout(false);
+            this.GbxDatosInv.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -550,5 +569,6 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox TxtOrigen;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox ChkRetirado;
     }
 }
