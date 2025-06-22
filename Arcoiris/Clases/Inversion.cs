@@ -83,6 +83,24 @@ namespace Arcoiris.Clases
             }
 
         }
+
+        public int id_InvAct()
+        {
+            string consulta;
+            consulta = "SELECT MAX(id_inv) FROM retiros";
+            DataTable datos = new DataTable();
+            try
+            {
+                datos = buscar(consulta);
+                return Convert.ToInt32(datos.Rows[0][0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                return 0;
+            }
+
+        }
         //retorna el detalle de los creditos
         public DataTable detalle_Inv(string Inv)
         {
@@ -149,7 +167,19 @@ namespace Arcoiris.Clases
             return datos;
         }
 
-       
+        public DataTable AllDatosBenefByInv(string Inv)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = $"SELECT Ase.Nombre,Concat(Cli.Nombres,' ',Cli.APELLIDOS) AS Identificacion, Telefono1, telefono2 " +
+                    "FROM asesor Ase " +
+                    "INNER JOIN asigna_inversion ainv ON ainv.Cod_Asesor = Ase.COD_ASESOR " +
+                    "INNER JOIN benefiinver beni ON beni.Id_Inv = ainv.Id_Inv " +
+                    "INNER JOIN cliente Cli ON Cli.CODIGO_CLI = beni.Id_Benef " +
+                    $"WHERE ainv.Id_Inv = {Inv}";
+            datos = buscar(consulta);
+            return datos;
+        }
 
 
 
@@ -221,8 +251,8 @@ namespace Arcoiris.Clases
             //interes y capital  y pago para ingresar en cada pago;
             DataTable credit = new DataTable();
             int id = idRetiro(datos[0]) + 1;
-            string consulReritro = "Insert into retiros (id_retiro,Id_inv,Fecha, Monto, Estado,Cod_Usuario) values" +
-                $"({id},{datos[0]} ,'{datos[1]}',{datos[2]},'{estado}',{datos[3]})";
+            string consulReritro = "Insert into retiros (id_retiro,Id_inv,Fecha, Monto,Interes,Total, Estado,Cod_Usuario) values" +
+                $"({id},{datos[0]} ,'{datos[1]}',{datos[2]},{datos[3]},{datos[4]}, '{estado}',{datos[5]})";
 
             if (consulta_gen(consulReritro))
             {

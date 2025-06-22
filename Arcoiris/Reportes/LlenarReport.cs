@@ -1203,7 +1203,7 @@ $"WHERE binv.Id_Inv = {datos.Rows[cont][0]}";
                 Temp.Benef = $"{benefi.Rows[0][0]}";
 
                 Deta.Add(Temp);
-                cont += 1;
+                
                 int lol = cont;
             }
             Reportes.Inversiones nuevo = new Inversiones();
@@ -1215,6 +1215,9 @@ $"WHERE binv.Id_Inv = {datos.Rows[cont][0]}";
 
 
         }
+
+
+
         #endregion
     }
 }

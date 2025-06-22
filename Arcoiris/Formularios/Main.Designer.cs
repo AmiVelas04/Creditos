@@ -84,6 +84,7 @@
             this.BtnInv.Text = "Inversiones";
             this.BtnInv.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnInv.UseVisualStyleBackColor = true;
+            this.BtnInv.Visible = false;
             this.BtnInv.Click += new System.EventHandler(this.BtnInv_Click);
             // 
             // BtnCaja

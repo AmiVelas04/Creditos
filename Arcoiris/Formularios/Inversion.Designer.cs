@@ -157,6 +157,7 @@
             // 
             // BtnRetiro
             // 
+            this.BtnRetiro.Enabled = false;
             this.BtnRetiro.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetiro.Image")));
             this.BtnRetiro.Location = new System.Drawing.Point(724, 39);
             this.BtnRetiro.Name = "BtnRetiro";
@@ -174,7 +175,7 @@
             this.BtnGanAct.Name = "BtnGanAct";
             this.BtnGanAct.Size = new System.Drawing.Size(177, 55);
             this.BtnGanAct.TabIndex = 10;
-            this.BtnGanAct.Text = "Ganacias Actuales";
+            this.BtnGanAct.Text = "Realizar Operacion";
             this.BtnGanAct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnGanAct.UseVisualStyleBackColor = true;
             this.BtnGanAct.Click += new System.EventHandler(this.BtnGanAct_Click);
@@ -301,9 +302,9 @@
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(649, 22);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(130, 17);
+            this.label13.Size = new System.Drawing.Size(138, 17);
             this.label13.TabIndex = 16;
-            this.label13.Text = "Ganacias Generadas";
+            this.label13.Text = "Ganancias Generadas";
             // 
             // TxtIncent
             // 
@@ -409,9 +410,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(456, 22);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 17);
+            this.label6.Size = new System.Drawing.Size(143, 17);
             this.label6.TabIndex = 4;
-            this.label6.Text = "Fecha de Termino";
+            this.label6.Text = "Fecha de Vencimiento";
             // 
             // TxtFingre
             // 

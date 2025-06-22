@@ -33,6 +33,7 @@ namespace Arcoiris.Formularios
                 BtnReporte.Visible = true;
                 BtnGuardar.Visible = true;
                 BtnAdmin.Visible = true;
+                BtnInv.Visible = true;
             }
             else if (Form1.Nivel == "4")
             {

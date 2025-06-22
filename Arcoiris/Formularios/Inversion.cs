@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Humanizer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -143,6 +144,7 @@ namespace Arcoiris.Formularios
             {
                 MostrarDatosInv();
                 BtnGanAct.Enabled = true;
+                BtnRetiro.Enabled = true;
             }
 
 
@@ -215,16 +217,43 @@ namespace Arcoiris.Formularios
         }
         private void retiro()
         {
-            string[] datos = { CboInv.Text, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), TxtMontoRetir.Text, Form1.Cod_U };
-            if (Inver.Hacer_Retiro(datos))
+            //Condicion de cierre de calculo
+            string inversi = CboInv.Text;
+            DataTable datos = Inver.detalle_Inv(inversi);
+            int plazo = int.Parse($"{datos.Rows[0][2]}");
+            decimal capital = decimal.Parse($"{datos.Rows[0][1]}");
+            int plazotrans = PeriodoCurrido($"{datos.Rows[0][4]}");
+            decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
+            decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
+            if (plazotrans < plazo)
             {
-                MessageBox.Show("Retiro realizado correctamente", "Hecho", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ingresocaja();
-                TxtMontoRetir.Text = "0";
+                if (plazo >= 12)
+                {
+                    IntGene = Math.Round(((IntGene / 2)), 2);
+                }
+                else
+                {
+                    IntGene = Math.Round(0.000M, 2);
+                }
             }
             else
             {
-                MessageBox.Show("El pago no pudo realizarse", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                IntGene = Math.Round((IntGene));
+            }
+
+
+            string[] valos = { CboInv.Text, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),TxtMonto.Text,IntGene.ToString(), TxtMontoRetir.Text, Form1.Cod_U };
+            if (Inver.Hacer_Retiro(valos))
+            {
+                MessageBox.Show("Retiro realizado correctamente", "Hecho", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ingresocaja();
+                imprimir(valos );
+                TxtMontoRetir.Text = "0";
+
+            }
+            else
+            {
+                MessageBox.Show("El retiro no pudo realizarse", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 TxtMontoRetir.Text = "0";
             }
         }
@@ -246,12 +275,43 @@ namespace Arcoiris.Formularios
             String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
             if (caj.ingreope(datos))
             {
-                MessageBox.Show("Pago registrado con exito","Hecho",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Retiro registrado con exito","Hecho",MessageBoxButtons.OK,MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("El pago no pudo realizarse", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El retiro no pudo realizarse", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+        }
+
+        private void imprimir(string[] datos)
+        {
+            List<Reportes.RetDet> detalle = new List<Reportes.RetDet>();
+            Reportes.RetDet Temp = new Reportes.RetDet();
+            int total, cents;
+            decimal valor = decimal.Parse(datos[2]) + decimal.Parse(datos[3]);
+            cents = Convert.ToInt32((valor % 1) * 100);
+            total = int.Parse(Math.Truncate(valor).ToString());
+            // total = Convert.ToInt32(valor - (cents / 100));
+            string letras;
+            letras = total.ToWords() + " con " + cents.ToWords();
+            if (cents <= 0) letras = total.ToWords() + " exactos";
+            Temp.Inversion = int.Parse(datos[0]);
+            Temp.Fecha = DateTime.Parse(datos[1]);
+            Temp.Monto = decimal.Parse(datos[2]);
+            Temp.interes = decimal.Parse(datos[3]);
+            Temp.Cliente = CboCliNom.Text;
+            decimal tot=Temp.Monto + Temp.interes;
+            Temp.Retiro = Inver.id_InvAct();
+            Temp.TotalL = letras;
+            Temp.Dir = "Sin";
+            detalle.Add(Temp);
+            Reportes.Retiro ret = new Reportes.Retiro();
+            ret.Deta = detalle;
+            ret.Show();
+
+
+
 
         }
     }
