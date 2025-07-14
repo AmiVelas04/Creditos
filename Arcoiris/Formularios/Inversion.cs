@@ -17,6 +17,7 @@ namespace Arcoiris.Formularios
         Clases.Inversion Inver = new Clases.Inversion();
         Clases.CajaOpe caj = new Clases.CajaOpe();
         private int idinvUniver = 0;
+        private string DpiCli;
        
         public Inversion()
         {
@@ -69,6 +70,7 @@ namespace Arcoiris.Formularios
             int c1;
             if (total > 0)
             {
+                TxtDpiCli.Text = $"{datos.Rows[0][8]}";
                 BtnSearchInv.Enabled = true;
                 CboInv.Enabled = true;
                 CboInv.Items.Clear();
@@ -79,6 +81,45 @@ namespace Arcoiris.Formularios
             }
             else
             {
+                CboInv.Items.Clear();
+                BtnSearchInv.Enabled = false;
+                //   CboPresta.Enabled = false;
+            }
+
+        }
+
+        private void listaInvDPI(string dpi)
+        {
+            int total;
+            //DtpFecha1.
+            DataTable datos = new DataTable();
+            string valor;
+            if (CboCliNom.Text == "")
+            {
+                valor = "-1";
+            }
+            else
+            {
+                valor = idinvUniver.ToString();
+            }
+            datos = Inver.InverByDPI(dpi);
+            total = datos.Rows.Count;
+            CboInv.Items.Clear();
+            int c1;
+            if (total > 0)
+            {
+                BtnSearchInv.Enabled = true;
+                CboCliNom.Text = datos.Rows[0][8].ToString();
+                CboInv.Enabled = true;
+                CboInv.Items.Clear();
+                for (c1 = 0; c1 <= total - 1; c1++)
+                {
+                    CboInv.Items.Add(datos.Rows[c1][0]);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No existen inversiones para el dpi ingresado", "sin inversiones!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 CboInv.Items.Clear();
                 BtnSearchInv.Enabled = false;
                 //   CboPresta.Enabled = false;
@@ -313,6 +354,26 @@ namespace Arcoiris.Formularios
 
 
 
+        }
+
+        private void TxtDpiCli_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                string dpi = "0";
+                DpiCli = "0";
+                if (string.IsNullOrEmpty(TxtDpiCli.Text))
+                {
+                    MessageBox.Show("Ingrese el numero de dpi del cliente", "Vacio!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                   dpi = TxtDpiCli.Text;
+                    DpiCli = dpi;
+                    listaInvDPI(DpiCli);
+                }
+               
+            }
         }
     }
 }

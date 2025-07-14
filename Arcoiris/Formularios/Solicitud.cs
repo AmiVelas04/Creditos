@@ -1292,18 +1292,32 @@ namespace Arcoiris.Formularios
 
         private void ingresarInv()
         {
+            List<string> cajaop=new List<string>();
             string plazo = NudPlazoInv.Value.ToString();
-            decimal Interes = InteInv(TxtMonto.Text, plazo);
+            decimal Interes = NudInt.Value; //InteInv(TxtMonto.Text, plazo);
             DateTime Ffin = DateTime.Now.AddMonths(int.Parse(plazo));
             decimal incent = Incentiv(TxtMonto.Text,plazo);
             string idcli = CboCliInv.SelectedValue.ToString();
            string asesor=CboAsesorInv.SelectedValue.ToString();
             string bene = CboBenef.SelectedValue.ToString();
+            cajaop.Add(caj.id_pago() + 1.ToString());
+            cajaop.Add("Ingreso");
+            cajaop.Add(TxtMonto.Text);
+            cajaop.Add($"Ingreso de inversion a nombre de {CboCliente.Text}");
+            cajaop.Add(DateTime.Now.ToString("yyyy/MM/dd"));
+            cajaop.Add("Activo");
+            cajaop.Add(Form1.Cod_U.ToString());
+            cajaop.Add("0");
+            cajaop.Add(CboCliente.Text);
+
+            string[] valor = {cajaop[0],cajaop[1], cajaop[2], cajaop[3], cajaop[4], cajaop[5], cajaop[6], cajaop[7], cajaop[8] };
+
 
             
             string[] datos = { TxtMontoInv.Text, Interes.ToString(), plazo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), Ffin.ToString("yyyy/MM/dd HH:mm:ss"), "Activo",incent.ToString(),TxtOrigenMonto.Text,idcli,asesor,bene };
-            if (Inver.crear_Inv(datos))
-            { MessageBox.Show("La inversion fue ingresada correctamente!", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+            if (Inver.crear_Inv(datos) && caj.ingreope(valor))
+            {
+                MessageBox.Show("La inversion fue ingresada correctamente!", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             else
             { MessageBox.Show("No se pudo ingresar la inversion", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
 
@@ -1345,7 +1359,27 @@ namespace Arcoiris.Formularios
             }
         }
 
-        
+        private void TxtMontoInv_TextChanged(object sender, EventArgs e)
+        {
+            decimal monto;
+            int plazo;
+            bool montoT = (decimal.TryParse(TxtMonto.Text, out monto) && int.TryParse(NudPlazoInv.Value.ToString() , out plazo));
+            if (montoT)
+            {
+                NudInt.Value = InteInv(TxtMonto.Text, NudPlazoInv.Value.ToString());
+            }
+        }
+
+        private void NudPlazoInv_ValueChanged(object sender, EventArgs e)
+        {
+            decimal monto;
+            int plazo;
+            bool montoT = (decimal.TryParse(TxtMonto.Text, out monto) && int.TryParse(NudPlazoInv.Value.ToString(), out plazo));
+            if (montoT)
+            {
+                NudInt.Value = InteInv(TxtMonto.Text, NudPlazoInv.Value.ToString());
+            }
+        }
     }
 }
 

@@ -70,6 +70,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.TxtDpiBen = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TxtDpiCli = new System.Windows.Forms.TextBox();
             this.TbcInversion.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -101,6 +105,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtDpiCli);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.ChkRetirado);
             this.groupBox1.Controls.Add(this.BtnSearchInv);
             this.groupBox1.Controls.Add(this.GbxRetiro);
@@ -122,7 +128,7 @@
             // ChkRetirado
             // 
             this.ChkRetirado.AutoSize = true;
-            this.ChkRetirado.Location = new System.Drawing.Point(153, 91);
+            this.ChkRetirado.Location = new System.Drawing.Point(552, 102);
             this.ChkRetirado.Name = "ChkRetirado";
             this.ChkRetirado.Size = new System.Drawing.Size(85, 21);
             this.ChkRetirado.TabIndex = 13;
@@ -148,20 +154,21 @@
             this.GbxRetiro.Controls.Add(this.TxtMontoRetir);
             this.GbxRetiro.Controls.Add(this.label9);
             this.GbxRetiro.ForeColor = System.Drawing.Color.Brown;
-            this.GbxRetiro.Location = new System.Drawing.Point(6, 329);
+            this.GbxRetiro.Location = new System.Drawing.Point(6, 404);
             this.GbxRetiro.Name = "GbxRetiro";
-            this.GbxRetiro.Size = new System.Drawing.Size(868, 178);
+            this.GbxRetiro.Size = new System.Drawing.Size(868, 103);
             this.GbxRetiro.TabIndex = 7;
             this.GbxRetiro.TabStop = false;
             this.GbxRetiro.Text = "Retiro";
             // 
             // BtnRetiro
             // 
+            this.BtnRetiro.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtnRetiro.Enabled = false;
             this.BtnRetiro.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetiro.Image")));
-            this.BtnRetiro.Location = new System.Drawing.Point(724, 39);
+            this.BtnRetiro.Location = new System.Drawing.Point(724, 24);
             this.BtnRetiro.Name = "BtnRetiro";
-            this.BtnRetiro.Size = new System.Drawing.Size(123, 104);
+            this.BtnRetiro.Size = new System.Drawing.Size(123, 73);
             this.BtnRetiro.TabIndex = 11;
             this.BtnRetiro.Text = "Realizar Retiro de Fondos";
             this.BtnRetiro.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -170,8 +177,9 @@
             // 
             // BtnGanAct
             // 
+            this.BtnGanAct.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtnGanAct.Image = ((System.Drawing.Image)(resources.GetObject("BtnGanAct.Image")));
-            this.BtnGanAct.Location = new System.Drawing.Point(330, 39);
+            this.BtnGanAct.Location = new System.Drawing.Point(306, 42);
             this.BtnGanAct.Name = "BtnGanAct";
             this.BtnGanAct.Size = new System.Drawing.Size(177, 55);
             this.BtnGanAct.TabIndex = 10;
@@ -182,9 +190,10 @@
             // 
             // TxtMontoRetir
             // 
+            this.TxtMontoRetir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.TxtMontoRetir.Enabled = false;
             this.TxtMontoRetir.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoRetir.Location = new System.Drawing.Point(15, 51);
+            this.TxtMontoRetir.Location = new System.Drawing.Point(11, 62);
             this.TxtMontoRetir.Name = "TxtMontoRetir";
             this.TxtMontoRetir.Size = new System.Drawing.Size(246, 35);
             this.TxtMontoRetir.TabIndex = 9;
@@ -192,8 +201,9 @@
             // 
             // label9
             // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(17, 31);
+            this.label9.Location = new System.Drawing.Point(13, 42);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 17);
             this.label9.TabIndex = 8;
@@ -201,6 +211,8 @@
             // 
             // GbxDatosInv
             // 
+            this.GbxDatosInv.Controls.Add(this.TxtDpiBen);
+            this.GbxDatosInv.Controls.Add(this.label17);
             this.GbxDatosInv.Controls.Add(this.TxtOrigen);
             this.GbxDatosInv.Controls.Add(this.label16);
             this.GbxDatosInv.Controls.Add(this.TxtAseso);
@@ -228,7 +240,7 @@
             this.GbxDatosInv.ForeColor = System.Drawing.Color.DarkGreen;
             this.GbxDatosInv.Location = new System.Drawing.Point(6, 129);
             this.GbxDatosInv.Name = "GbxDatosInv";
-            this.GbxDatosInv.Size = new System.Drawing.Size(868, 194);
+            this.GbxDatosInv.Size = new System.Drawing.Size(868, 262);
             this.GbxDatosInv.TabIndex = 6;
             this.GbxDatosInv.TabStop = false;
             this.GbxDatosInv.Text = "Datos de Inversion";
@@ -239,7 +251,7 @@
             this.TxtOrigen.Location = new System.Drawing.Point(676, 91);
             this.TxtOrigen.Multiline = true;
             this.TxtOrigen.Name = "TxtOrigen";
-            this.TxtOrigen.Size = new System.Drawing.Size(181, 83);
+            this.TxtOrigen.Size = new System.Drawing.Size(181, 143);
             this.TxtOrigen.TabIndex = 23;
             this.TxtOrigen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -454,7 +466,7 @@
             // 
             this.CboInv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboInv.FormattingEnabled = true;
-            this.CboInv.Location = new System.Drawing.Point(6, 89);
+            this.CboInv.Location = new System.Drawing.Point(392, 100);
             this.CboInv.Name = "CboInv";
             this.CboInv.Size = new System.Drawing.Size(121, 25);
             this.CboInv.TabIndex = 5;
@@ -463,7 +475,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 69);
+            this.label3.Location = new System.Drawing.Point(404, 80);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 17);
             this.label3.TabIndex = 4;
@@ -505,6 +517,42 @@
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
+            // 
+            // TxtDpiBen
+            // 
+            this.TxtDpiBen.Enabled = false;
+            this.TxtDpiBen.Location = new System.Drawing.Point(6, 209);
+            this.TxtDpiBen.Name = "TxtDpiBen";
+            this.TxtDpiBen.Size = new System.Drawing.Size(275, 25);
+            this.TxtDpiBen.TabIndex = 25;
+            this.TxtDpiBen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(8, 189);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(107, 17);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "DPI Beneficiario";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(18, 69);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(77, 17);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Dpi Cliente";
+            // 
+            // TxtDpiCli
+            // 
+            this.TxtDpiCli.Location = new System.Drawing.Point(6, 89);
+            this.TxtDpiCli.Name = "TxtDpiCli";
+            this.TxtDpiCli.Size = new System.Drawing.Size(275, 25);
+            this.TxtDpiCli.TabIndex = 28;
+            this.TxtDpiCli.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtDpiCli.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDpiCli_KeyDown);
             // 
             // Inversion
             // 
@@ -571,5 +619,9 @@
         private System.Windows.Forms.TextBox TxtOrigen;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox ChkRetirado;
+        private System.Windows.Forms.TextBox TxtDpiCli;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TxtDpiBen;
+        private System.Windows.Forms.Label label17;
     }
 }

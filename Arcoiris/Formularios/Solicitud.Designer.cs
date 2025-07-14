@@ -115,19 +115,21 @@
             this.label13 = new System.Windows.Forms.Label();
             this.Tab3 = new System.Windows.Forms.TabPage();
             this.GbxInv = new System.Windows.Forms.GroupBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.CboCliInv = new System.Windows.Forms.ComboBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.TxtMontoInv = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.NudPlazoInv = new System.Windows.Forms.NumericUpDown();
-            this.TxtOrigenMonto = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.BtnIngInv = new System.Windows.Forms.Button();
-            this.CboAsesorInv = new System.Windows.Forms.ComboBox();
-            this.label31 = new System.Windows.Forms.Label();
             this.CboBenef = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
+            this.CboAsesorInv = new System.Windows.Forms.ComboBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.BtnIngInv = new System.Windows.Forms.Button();
+            this.TxtOrigenMonto = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.NudPlazoInv = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
+            this.TxtMontoInv = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.CboCliInv = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.NudInt = new System.Windows.Forms.NumericUpDown();
+            this.label33 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -141,6 +143,7 @@
             this.Tab3.SuspendLayout();
             this.GbxInv.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudPlazoInv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudInt)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1136,7 +1139,9 @@
             // 
             // GbxInv
             // 
-            this.GbxInv.BackColor = System.Drawing.Color.Olive;
+            this.GbxInv.BackColor = System.Drawing.Color.DarkKhaki;
+            this.GbxInv.Controls.Add(this.NudInt);
+            this.GbxInv.Controls.Add(this.label33);
             this.GbxInv.Controls.Add(this.CboBenef);
             this.GbxInv.Controls.Add(this.label32);
             this.GbxInv.Controls.Add(this.CboAsesorInv);
@@ -1158,51 +1163,75 @@
             this.GbxInv.TabStop = false;
             this.GbxInv.Text = "Datos de la inversion";
             // 
-            // label27
+            // CboBenef
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(35, 31);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(51, 17);
-            this.label27.TabIndex = 0;
-            this.label27.Text = "Cliente";
+            this.CboBenef.FormattingEnabled = true;
+            this.CboBenef.Location = new System.Drawing.Point(22, 102);
+            this.CboBenef.Name = "CboBenef";
+            this.CboBenef.Size = new System.Drawing.Size(269, 25);
+            this.CboBenef.TabIndex = 12;
             // 
-            // CboCliInv
+            // label32
             // 
-            this.CboCliInv.FormattingEnabled = true;
-            this.CboCliInv.Location = new System.Drawing.Point(22, 51);
-            this.CboCliInv.Name = "CboCliInv";
-            this.CboCliInv.Size = new System.Drawing.Size(269, 25);
-            this.CboCliInv.TabIndex = 1;
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(35, 82);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(81, 17);
+            this.label32.TabIndex = 11;
+            this.label32.Text = "Beneficiario";
             // 
-            // label28
+            // CboAsesorInv
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(35, 244);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(49, 17);
-            this.label28.TabIndex = 2;
-            this.label28.Text = "Monto";
+            this.CboAsesorInv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboAsesorInv.FormattingEnabled = true;
+            this.CboAsesorInv.Location = new System.Drawing.Point(22, 161);
+            this.CboAsesorInv.Name = "CboAsesorInv";
+            this.CboAsesorInv.Size = new System.Drawing.Size(269, 25);
+            this.CboAsesorInv.TabIndex = 10;
             // 
-            // TxtMontoInv
+            // label31
             // 
-            this.TxtMontoInv.Location = new System.Drawing.Point(22, 264);
-            this.TxtMontoInv.Name = "TxtMontoInv";
-            this.TxtMontoInv.Size = new System.Drawing.Size(149, 25);
-            this.TxtMontoInv.TabIndex = 3;
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(35, 141);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(49, 17);
+            this.label31.TabIndex = 9;
+            this.label31.Text = "Asesor";
             // 
-            // label29
+            // BtnIngInv
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(35, 301);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(89, 17);
-            this.label29.TabIndex = 4;
-            this.label29.Text = "Plazo(Meses)";
+            this.BtnIngInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnIngInv.Image")));
+            this.BtnIngInv.Location = new System.Drawing.Point(610, 51);
+            this.BtnIngInv.Name = "BtnIngInv";
+            this.BtnIngInv.Size = new System.Drawing.Size(172, 76);
+            this.BtnIngInv.TabIndex = 8;
+            this.BtnIngInv.Text = "Ingresar Inversion";
+            this.BtnIngInv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnIngInv.UseVisualStyleBackColor = true;
+            this.BtnIngInv.Click += new System.EventHandler(this.BtnIngInv_Click);
+            // 
+            // TxtOrigenMonto
+            // 
+            this.TxtOrigenMonto.Location = new System.Drawing.Point(22, 421);
+            this.TxtOrigenMonto.MaxLength = 250;
+            this.TxtOrigenMonto.Multiline = true;
+            this.TxtOrigenMonto.Name = "TxtOrigenMonto";
+            this.TxtOrigenMonto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtOrigenMonto.Size = new System.Drawing.Size(253, 81);
+            this.TxtOrigenMonto.TabIndex = 7;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(35, 401);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(50, 17);
+            this.label30.TabIndex = 6;
+            this.label30.Text = "Origen";
             // 
             // NudPlazoInv
             // 
-            this.NudPlazoInv.Location = new System.Drawing.Point(22, 330);
+            this.NudPlazoInv.Location = new System.Drawing.Point(22, 287);
             this.NudPlazoInv.Maximum = new decimal(new int[] {
             5000,
             0,
@@ -1223,72 +1252,79 @@
             0,
             0,
             0});
+            this.NudPlazoInv.ValueChanged += new System.EventHandler(this.NudPlazoInv_ValueChanged);
             // 
-            // TxtOrigenMonto
+            // label29
             // 
-            this.TxtOrigenMonto.Location = new System.Drawing.Point(22, 399);
-            this.TxtOrigenMonto.MaxLength = 250;
-            this.TxtOrigenMonto.Multiline = true;
-            this.TxtOrigenMonto.Name = "TxtOrigenMonto";
-            this.TxtOrigenMonto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtOrigenMonto.Size = new System.Drawing.Size(253, 103);
-            this.TxtOrigenMonto.TabIndex = 7;
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(35, 265);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(89, 17);
+            this.label29.TabIndex = 4;
+            this.label29.Text = "Plazo(Meses)";
             // 
-            // label30
+            // TxtMontoInv
             // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(35, 379);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(50, 17);
-            this.label30.TabIndex = 6;
-            this.label30.Text = "Origen";
+            this.TxtMontoInv.Location = new System.Drawing.Point(22, 224);
+            this.TxtMontoInv.Name = "TxtMontoInv";
+            this.TxtMontoInv.Size = new System.Drawing.Size(149, 25);
+            this.TxtMontoInv.TabIndex = 3;
+            this.TxtMontoInv.TextChanged += new System.EventHandler(this.TxtMontoInv_TextChanged);
             // 
-            // BtnIngInv
+            // label28
             // 
-            this.BtnIngInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnIngInv.Image")));
-            this.BtnIngInv.Location = new System.Drawing.Point(610, 51);
-            this.BtnIngInv.Name = "BtnIngInv";
-            this.BtnIngInv.Size = new System.Drawing.Size(172, 76);
-            this.BtnIngInv.TabIndex = 8;
-            this.BtnIngInv.Text = "Ingresar Inversion";
-            this.BtnIngInv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnIngInv.UseVisualStyleBackColor = true;
-            this.BtnIngInv.Click += new System.EventHandler(this.BtnIngInv_Click);
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(35, 204);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(49, 17);
+            this.label28.TabIndex = 2;
+            this.label28.Text = "Monto";
             // 
-            // CboAsesorInv
+            // CboCliInv
             // 
-            this.CboAsesorInv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboAsesorInv.FormattingEnabled = true;
-            this.CboAsesorInv.Location = new System.Drawing.Point(22, 177);
-            this.CboAsesorInv.Name = "CboAsesorInv";
-            this.CboAsesorInv.Size = new System.Drawing.Size(269, 25);
-            this.CboAsesorInv.TabIndex = 10;
+            this.CboCliInv.FormattingEnabled = true;
+            this.CboCliInv.Location = new System.Drawing.Point(22, 51);
+            this.CboCliInv.Name = "CboCliInv";
+            this.CboCliInv.Size = new System.Drawing.Size(269, 25);
+            this.CboCliInv.TabIndex = 1;
             // 
-            // label31
+            // label27
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(35, 157);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(49, 17);
-            this.label31.TabIndex = 9;
-            this.label31.Text = "Asesor";
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(35, 31);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(51, 17);
+            this.label27.TabIndex = 0;
+            this.label27.Text = "Cliente";
             // 
-            // CboBenef
+            // NudInt
             // 
-            this.CboBenef.FormattingEnabled = true;
-            this.CboBenef.Location = new System.Drawing.Point(22, 114);
-            this.CboBenef.Name = "CboBenef";
-            this.CboBenef.Size = new System.Drawing.Size(269, 25);
-            this.CboBenef.TabIndex = 12;
+            this.NudInt.DecimalPlaces = 2;
+            this.NudInt.Location = new System.Drawing.Point(22, 346);
+            this.NudInt.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudInt.Name = "NudInt";
+            this.NudInt.ReadOnly = true;
+            this.NudInt.Size = new System.Drawing.Size(120, 25);
+            this.NudInt.TabIndex = 14;
+            this.NudInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NudInt.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // label32
+            // label33
             // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(35, 94);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(81, 17);
-            this.label32.TabIndex = 11;
-            this.label32.Text = "Beneficiario";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(35, 326);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(71, 17);
+            this.label33.TabIndex = 13;
+            this.label33.Text = "Interes(%)";
             // 
             // Solicitud
             // 
@@ -1323,6 +1359,7 @@
             this.GbxInv.ResumeLayout(false);
             this.GbxInv.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudPlazoInv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudInt)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1428,5 +1465,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.ComboBox CboBenef;
         private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.NumericUpDown NudInt;
+        private System.Windows.Forms.Label label33;
     }
 }

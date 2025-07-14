@@ -113,11 +113,24 @@ namespace Arcoiris.Clases
         public DataTable InverByCli(string Cli)
         {
             string consulta;
-            consulta = "SELECT Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo " +
+            consulta = "SELECT Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo,cli.dpi " +
                           "FROM Inversion Inv " +
                           "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
                           "INNER JOIN cliente cli ON cli.CODIGO_CLI = AInv.codigo_cli " +
                            $"WHERE cli.CODIGO_CLI={Cli} and Inv.Estado!='Retirado' " +
+                          "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo,cli.dpi asc";
+            DataTable datos = new DataTable();
+            return buscar(consulta);
+        }
+
+        public DataTable InverByDPI(string DPI)
+        {
+            string consulta;
+            consulta = "SELECT Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo,Concat(Cli.Nombres,' ',Cli.APELLIDOS) AS Nom " +
+                          "FROM Inversion Inv " +
+                          "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
+                          "INNER JOIN cliente cli ON cli.CODIGO_CLI = AInv.codigo_cli " +
+                           $"WHERE cli.DPI={DPI} and Inv.Estado!='Retirado' " +
                           "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo asc";
             DataTable datos = new DataTable();
             return buscar(consulta);

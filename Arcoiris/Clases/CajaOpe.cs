@@ -53,14 +53,7 @@ namespace Arcoiris.Clases
             string consulta;
             consulta = "Insert into caja(id_ope,operacion,monto,descripcion,fecha,estado,cod_usuario,credito,cliente) values(" +
                 datos[0]+ ",'" + datos[1] + "'," + datos [2] + ",'" + datos [3] + "','" + datos[4] + "','" + datos[5] + "'," + datos[6] +",'" +datos[7] +"','" + datos[8]+ "')" ;
-            if (consulta_gen(consulta))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return (consulta_gen(consulta));
         }
 
         public int id_pago()
@@ -68,7 +61,7 @@ namespace Arcoiris.Clases
             string consulta = "Select Max(id_ope) from caja";
             DataTable id = new DataTable();
             id = buscar(consulta);
-            return Convert.ToInt32(id.Rows [0][0].ToString ());
+            return Convert.ToInt32(id.Rows[0][0].ToString ());
         }
         public decimal liquido(string fecha)
         {
