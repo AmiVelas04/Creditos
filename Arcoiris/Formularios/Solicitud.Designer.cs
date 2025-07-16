@@ -115,6 +115,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.Tab3 = new System.Windows.Forms.TabPage();
             this.GbxInv = new System.Windows.Forms.GroupBox();
+            this.NudInt = new System.Windows.Forms.NumericUpDown();
+            this.label33 = new System.Windows.Forms.Label();
             this.CboBenef = new System.Windows.Forms.ComboBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CboAsesorInv = new System.Windows.Forms.ComboBox();
@@ -128,8 +130,8 @@
             this.label28 = new System.Windows.Forms.Label();
             this.CboCliInv = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.NudInt = new System.Windows.Forms.NumericUpDown();
-            this.label33 = new System.Windows.Forms.Label();
+            this.CboTutor = new System.Windows.Forms.ComboBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -142,8 +144,8 @@
             this.GBXPrestamo.SuspendLayout();
             this.Tab3.SuspendLayout();
             this.GbxInv.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudPlazoInv)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudInt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPlazoInv)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1140,6 +1142,8 @@
             // GbxInv
             // 
             this.GbxInv.BackColor = System.Drawing.Color.DarkKhaki;
+            this.GbxInv.Controls.Add(this.CboTutor);
+            this.GbxInv.Controls.Add(this.label34);
             this.GbxInv.Controls.Add(this.NudInt);
             this.GbxInv.Controls.Add(this.label33);
             this.GbxInv.Controls.Add(this.CboBenef);
@@ -1162,6 +1166,35 @@
             this.GbxInv.TabIndex = 0;
             this.GbxInv.TabStop = false;
             this.GbxInv.Text = "Datos de la inversion";
+            // 
+            // NudInt
+            // 
+            this.NudInt.DecimalPlaces = 2;
+            this.NudInt.Location = new System.Drawing.Point(22, 346);
+            this.NudInt.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.NudInt.Name = "NudInt";
+            this.NudInt.ReadOnly = true;
+            this.NudInt.Size = new System.Drawing.Size(120, 25);
+            this.NudInt.TabIndex = 14;
+            this.NudInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.NudInt.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(35, 326);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(71, 17);
+            this.label33.TabIndex = 13;
+            this.label33.Text = "Interes(%)";
             // 
             // CboBenef
             // 
@@ -1201,7 +1234,7 @@
             // BtnIngInv
             // 
             this.BtnIngInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnIngInv.Image")));
-            this.BtnIngInv.Location = new System.Drawing.Point(610, 51);
+            this.BtnIngInv.Location = new System.Drawing.Point(676, 51);
             this.BtnIngInv.Name = "BtnIngInv";
             this.BtnIngInv.Size = new System.Drawing.Size(172, 76);
             this.BtnIngInv.TabIndex = 8;
@@ -1287,6 +1320,7 @@
             this.CboCliInv.Name = "CboCliInv";
             this.CboCliInv.Size = new System.Drawing.Size(269, 25);
             this.CboCliInv.TabIndex = 1;
+            this.CboCliInv.SelectedValueChanged += new System.EventHandler(this.CboCliInv_SelectedValueChanged);
             // 
             // label27
             // 
@@ -1297,34 +1331,24 @@
             this.label27.TabIndex = 0;
             this.label27.Text = "Cliente";
             // 
-            // NudInt
+            // CboTutor
             // 
-            this.NudInt.DecimalPlaces = 2;
-            this.NudInt.Location = new System.Drawing.Point(22, 346);
-            this.NudInt.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
-            this.NudInt.Name = "NudInt";
-            this.NudInt.ReadOnly = true;
-            this.NudInt.Size = new System.Drawing.Size(120, 25);
-            this.NudInt.TabIndex = 14;
-            this.NudInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.NudInt.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.CboTutor.FormattingEnabled = true;
+            this.CboTutor.Location = new System.Drawing.Point(338, 51);
+            this.CboTutor.Name = "CboTutor";
+            this.CboTutor.Size = new System.Drawing.Size(269, 25);
+            this.CboTutor.TabIndex = 16;
+            this.CboTutor.Visible = false;
             // 
-            // label33
+            // label34
             // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(35, 326);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(71, 17);
-            this.label33.TabIndex = 13;
-            this.label33.Text = "Interes(%)";
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(351, 31);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(41, 17);
+            this.label34.TabIndex = 15;
+            this.label34.Text = "Tutor";
+            this.label34.Visible = false;
             // 
             // Solicitud
             // 
@@ -1358,8 +1382,8 @@
             this.Tab3.ResumeLayout(false);
             this.GbxInv.ResumeLayout(false);
             this.GbxInv.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudPlazoInv)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudInt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudPlazoInv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1467,5 +1491,7 @@
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.NumericUpDown NudInt;
         private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.ComboBox CboTutor;
+        private System.Windows.Forms.Label label34;
     }
 }

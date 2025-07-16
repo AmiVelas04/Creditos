@@ -31,6 +31,8 @@ namespace Arcoiris
             // Clases .conexion  estado = new Clases.conexion ();
             // MessageBox.Show(estado .probar_conn ());
             Tmr1.Enabled = true;
+            //var versi = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+            LblVer.Text = $"{Application.ProductName} Version:{Application.ProductVersion}";
 
         }
 

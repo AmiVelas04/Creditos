@@ -25,6 +25,7 @@ namespace Arcoiris.Formularios
         DataTable AllCli = new DataTable();
         List<Clases.Modelos.DeparamentoModel> AllDepas;
         List<Clases.Modelos.MunicipioModel> AllMunis;
+        DataTable AllCliInv = new DataTable();
         Reportes.Contratos.ContratoDatos datosgaran = new Reportes.Contratos.ContratoDatos();
         int cantigarant = 0;
         int Contratotip = 0;
@@ -87,6 +88,7 @@ namespace Arcoiris.Formularios
             DataTable datoscli = new DataTable();
             
             datoscli = cli.Buscar_nom_cli();
+            AllCliInv = cli.AllCli();
             DataTable datos2 = datoscli.Copy();
             CboCliente.DataSource = datoscli;
             CboCliente.DisplayMember = "Nombre";
@@ -99,10 +101,13 @@ namespace Arcoiris.Formularios
             CboBenef.ValueMember = "Codigo_Cli";
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
             AutoCompleteStringCollection coleccion2 = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection colecTutor = new AutoCompleteStringCollection();
+
             foreach (DataRow row in datoscli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
                 coleccion2.Add(row["Nombre"].ToString());
+                colecTutor.Add(row["Nombre"].ToString());
 
             }
             CboCliente.AutoCompleteCustomSource = coleccion;
@@ -114,7 +119,13 @@ namespace Arcoiris.Formularios
             CboBenef.AutoCompleteCustomSource = coleccion2;
             CboBenef.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboBenef.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
+            CboTutor.AutoCompleteCustomSource = colecTutor;
+            CboTutor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboTutor.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboTutor.DataSource = AllCliInv;
+            CboTutor.DisplayMember = "Nombre";
+            CboTutor.ValueMember = "Codigo_cli";
+            
 
 
             //Agregar cliente a inversiones
@@ -1300,21 +1311,23 @@ namespace Arcoiris.Formularios
             string idcli = CboCliInv.SelectedValue.ToString();
            string asesor=CboAsesorInv.SelectedValue.ToString();
             string bene = CboBenef.SelectedValue.ToString();
+            string tutor = CboTutor.SelectedValue.ToString();
             cajaop.Add(caj.id_pago() + 1.ToString());
             cajaop.Add("Ingreso");
-            cajaop.Add(TxtMonto.Text);
+            cajaop.Add(TxtMontoInv.Text);
             cajaop.Add($"Ingreso de inversion a nombre de {CboCliente.Text}");
             cajaop.Add(DateTime.Now.ToString("yyyy/MM/dd"));
             cajaop.Add("Activo");
             cajaop.Add(Form1.Cod_U.ToString());
             cajaop.Add("0");
             cajaop.Add(CboCliente.Text);
+            
 
             string[] valor = {cajaop[0],cajaop[1], cajaop[2], cajaop[3], cajaop[4], cajaop[5], cajaop[6], cajaop[7], cajaop[8] };
 
 
             
-            string[] datos = { TxtMontoInv.Text, Interes.ToString(), plazo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), Ffin.ToString("yyyy/MM/dd HH:mm:ss"), "Activo",incent.ToString(),TxtOrigenMonto.Text,idcli,asesor,bene };
+            string[] datos = { TxtMontoInv.Text, Interes.ToString(), plazo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), Ffin.ToString("yyyy/MM/dd HH:mm:ss"), "Activo",incent.ToString(),TxtOrigenMonto.Text,idcli,asesor,bene, tutor};
             if (Inver.crear_Inv(datos) && caj.ingreope(valor))
             {
                 MessageBox.Show("La inversion fue ingresada correctamente!", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information); }
@@ -1378,6 +1391,36 @@ namespace Arcoiris.Formularios
             if (montoT)
             {
                 NudInt.Value = InteInv(TxtMonto.Text, NudPlazoInv.Value.ToString());
+            }
+        }
+
+        private void CboCliInv_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (CboCliInv.SelectedValue != null && CboCliInv.SelectedValue.ToString() != "System.Data.DataRowView")
+            {
+                CboTutor.SelectedValue = CboCliInv.SelectedValue;
+                string id = CboCliInv.SelectedValue.ToString();
+                DataRow[] valor = AllCliInv.Select($"codigo_cli={id}");
+
+
+
+
+                int edad = int.Parse(valor[0][7].ToString());
+                if (edad < 18)
+                {
+                    MessageBox.Show("El cliente es menor de edad por lo que es necesario un tutor para aceptar la inversion");
+                    label33.Visible = true;
+                    CboTutor.Visible = true;
+
+                }
+                else
+                {
+                   // MessageBox.Show("El cliente es menor de edad por lo que es necesario un tutor para aceptar la inversion");
+                    label33.Visible = false;
+                    CboTutor.Visible = false;
+
+                }
+
             }
         }
     }

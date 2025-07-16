@@ -32,6 +32,8 @@
             this.TbcInversion = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtDpiCli = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.ChkRetirado = new System.Windows.Forms.CheckBox();
             this.BtnSearchInv = new System.Windows.Forms.Button();
             this.GbxRetiro = new System.Windows.Forms.GroupBox();
@@ -40,6 +42,12 @@
             this.TxtMontoRetir = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.GbxDatosInv = new System.Windows.Forms.GroupBox();
+            this.TxtTutorDPI = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.TxtTutorNom = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.TxtDpiBen = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.TxtOrigen = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.TxtAseso = new System.Windows.Forms.TextBox();
@@ -70,10 +78,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.TxtDpiBen = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.TxtDpiCli = new System.Windows.Forms.TextBox();
             this.TbcInversion.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -125,10 +129,29 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos generales";
             // 
+            // TxtDpiCli
+            // 
+            this.TxtDpiCli.Enabled = false;
+            this.TxtDpiCli.Location = new System.Drawing.Point(6, 89);
+            this.TxtDpiCli.Name = "TxtDpiCli";
+            this.TxtDpiCli.Size = new System.Drawing.Size(275, 25);
+            this.TxtDpiCli.TabIndex = 28;
+            this.TxtDpiCli.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TxtDpiCli.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDpiCli_KeyDown);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(18, 69);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(103, 17);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Dpi/Cui Cliente";
+            // 
             // ChkRetirado
             // 
             this.ChkRetirado.AutoSize = true;
-            this.ChkRetirado.Location = new System.Drawing.Point(552, 102);
+            this.ChkRetirado.Location = new System.Drawing.Point(552, 89);
             this.ChkRetirado.Name = "ChkRetirado";
             this.ChkRetirado.Size = new System.Drawing.Size(85, 21);
             this.ChkRetirado.TabIndex = 13;
@@ -138,9 +161,9 @@
             // BtnSearchInv
             // 
             this.BtnSearchInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchInv.Image")));
-            this.BtnSearchInv.Location = new System.Drawing.Point(670, 24);
+            this.BtnSearchInv.Location = new System.Drawing.Point(682, 24);
             this.BtnSearchInv.Name = "BtnSearchInv";
-            this.BtnSearchInv.Size = new System.Drawing.Size(183, 72);
+            this.BtnSearchInv.Size = new System.Drawing.Size(171, 62);
             this.BtnSearchInv.TabIndex = 12;
             this.BtnSearchInv.Text = "Mostrar Detalles";
             this.BtnSearchInv.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
@@ -154,9 +177,9 @@
             this.GbxRetiro.Controls.Add(this.TxtMontoRetir);
             this.GbxRetiro.Controls.Add(this.label9);
             this.GbxRetiro.ForeColor = System.Drawing.Color.Brown;
-            this.GbxRetiro.Location = new System.Drawing.Point(6, 404);
+            this.GbxRetiro.Location = new System.Drawing.Point(6, 424);
             this.GbxRetiro.Name = "GbxRetiro";
-            this.GbxRetiro.Size = new System.Drawing.Size(868, 103);
+            this.GbxRetiro.Size = new System.Drawing.Size(868, 83);
             this.GbxRetiro.TabIndex = 7;
             this.GbxRetiro.TabStop = false;
             this.GbxRetiro.Text = "Retiro";
@@ -166,12 +189,12 @@
             this.BtnRetiro.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtnRetiro.Enabled = false;
             this.BtnRetiro.Image = ((System.Drawing.Image)(resources.GetObject("BtnRetiro.Image")));
-            this.BtnRetiro.Location = new System.Drawing.Point(724, 24);
+            this.BtnRetiro.Location = new System.Drawing.Point(676, 22);
             this.BtnRetiro.Name = "BtnRetiro";
-            this.BtnRetiro.Size = new System.Drawing.Size(123, 73);
+            this.BtnRetiro.Size = new System.Drawing.Size(171, 55);
             this.BtnRetiro.TabIndex = 11;
             this.BtnRetiro.Text = "Realizar Retiro de Fondos";
-            this.BtnRetiro.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnRetiro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnRetiro.UseVisualStyleBackColor = true;
             this.BtnRetiro.Click += new System.EventHandler(this.BtnRetiro_Click);
             // 
@@ -179,7 +202,7 @@
             // 
             this.BtnGanAct.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtnGanAct.Image = ((System.Drawing.Image)(resources.GetObject("BtnGanAct.Image")));
-            this.BtnGanAct.Location = new System.Drawing.Point(306, 42);
+            this.BtnGanAct.Location = new System.Drawing.Point(306, 22);
             this.BtnGanAct.Name = "BtnGanAct";
             this.BtnGanAct.Size = new System.Drawing.Size(177, 55);
             this.BtnGanAct.TabIndex = 10;
@@ -193,7 +216,7 @@
             this.TxtMontoRetir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.TxtMontoRetir.Enabled = false;
             this.TxtMontoRetir.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtMontoRetir.Location = new System.Drawing.Point(11, 62);
+            this.TxtMontoRetir.Location = new System.Drawing.Point(11, 42);
             this.TxtMontoRetir.Name = "TxtMontoRetir";
             this.TxtMontoRetir.Size = new System.Drawing.Size(246, 35);
             this.TxtMontoRetir.TabIndex = 9;
@@ -203,7 +226,7 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(13, 42);
+            this.label9.Location = new System.Drawing.Point(13, 22);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 17);
             this.label9.TabIndex = 8;
@@ -211,6 +234,10 @@
             // 
             // GbxDatosInv
             // 
+            this.GbxDatosInv.Controls.Add(this.TxtTutorDPI);
+            this.GbxDatosInv.Controls.Add(this.label18);
+            this.GbxDatosInv.Controls.Add(this.TxtTutorNom);
+            this.GbxDatosInv.Controls.Add(this.label20);
             this.GbxDatosInv.Controls.Add(this.TxtDpiBen);
             this.GbxDatosInv.Controls.Add(this.label17);
             this.GbxDatosInv.Controls.Add(this.TxtOrigen);
@@ -238,12 +265,66 @@
             this.GbxDatosInv.Controls.Add(this.TxtMonto);
             this.GbxDatosInv.Controls.Add(this.label4);
             this.GbxDatosInv.ForeColor = System.Drawing.Color.DarkGreen;
-            this.GbxDatosInv.Location = new System.Drawing.Point(6, 129);
+            this.GbxDatosInv.Location = new System.Drawing.Point(6, 120);
             this.GbxDatosInv.Name = "GbxDatosInv";
-            this.GbxDatosInv.Size = new System.Drawing.Size(868, 262);
+            this.GbxDatosInv.Size = new System.Drawing.Size(868, 298);
             this.GbxDatosInv.TabIndex = 6;
             this.GbxDatosInv.TabStop = false;
             this.GbxDatosInv.Text = "Datos de Inversion";
+            // 
+            // TxtTutorDPI
+            // 
+            this.TxtTutorDPI.Enabled = false;
+            this.TxtTutorDPI.Location = new System.Drawing.Point(298, 252);
+            this.TxtTutorDPI.Name = "TxtTutorDPI";
+            this.TxtTutorDPI.Size = new System.Drawing.Size(275, 25);
+            this.TxtTutorDPI.TabIndex = 29;
+            this.TxtTutorDPI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(303, 232);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(67, 17);
+            this.label18.TabIndex = 28;
+            this.label18.Text = "DPI Tutor";
+            // 
+            // TxtTutorNom
+            // 
+            this.TxtTutorNom.Enabled = false;
+            this.TxtTutorNom.Location = new System.Drawing.Point(298, 198);
+            this.TxtTutorNom.Name = "TxtTutorNom";
+            this.TxtTutorNom.Size = new System.Drawing.Size(275, 25);
+            this.TxtTutorNom.TabIndex = 27;
+            this.TxtTutorNom.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(303, 172);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(41, 17);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "Tutor";
+            // 
+            // TxtDpiBen
+            // 
+            this.TxtDpiBen.Enabled = false;
+            this.TxtDpiBen.Location = new System.Drawing.Point(6, 198);
+            this.TxtDpiBen.Name = "TxtDpiBen";
+            this.TxtDpiBen.Size = new System.Drawing.Size(275, 25);
+            this.TxtDpiBen.TabIndex = 25;
+            this.TxtDpiBen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(8, 178);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(107, 17);
+            this.label17.TabIndex = 24;
+            this.label17.Text = "DPI Beneficiario";
             // 
             // TxtOrigen
             // 
@@ -267,7 +348,7 @@
             // TxtAseso
             // 
             this.TxtAseso.Enabled = false;
-            this.TxtAseso.Location = new System.Drawing.Point(301, 149);
+            this.TxtAseso.Location = new System.Drawing.Point(298, 144);
             this.TxtAseso.Name = "TxtAseso";
             this.TxtAseso.Size = new System.Drawing.Size(275, 25);
             this.TxtAseso.TabIndex = 21;
@@ -276,7 +357,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(303, 129);
+            this.label15.Location = new System.Drawing.Point(300, 124);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(49, 17);
             this.label15.TabIndex = 20;
@@ -285,7 +366,7 @@
             // TxtBenef
             // 
             this.TxtBenef.Enabled = false;
-            this.TxtBenef.Location = new System.Drawing.Point(6, 149);
+            this.TxtBenef.Location = new System.Drawing.Point(3, 144);
             this.TxtBenef.Name = "TxtBenef";
             this.TxtBenef.Size = new System.Drawing.Size(275, 25);
             this.TxtBenef.TabIndex = 19;
@@ -294,7 +375,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(8, 129);
+            this.label14.Location = new System.Drawing.Point(5, 124);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(81, 17);
             this.label14.TabIndex = 18;
@@ -466,7 +547,7 @@
             // 
             this.CboInv.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CboInv.FormattingEnabled = true;
-            this.CboInv.Location = new System.Drawing.Point(392, 100);
+            this.CboInv.Location = new System.Drawing.Point(385, 89);
             this.CboInv.Name = "CboInv";
             this.CboInv.Size = new System.Drawing.Size(121, 25);
             this.CboInv.TabIndex = 5;
@@ -475,7 +556,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(404, 80);
+            this.label3.Location = new System.Drawing.Point(397, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 17);
             this.label3.TabIndex = 4;
@@ -484,7 +565,7 @@
             // DtpFecha1
             // 
             this.DtpFecha1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFecha1.Location = new System.Drawing.Point(392, 41);
+            this.DtpFecha1.Location = new System.Drawing.Point(371, 38);
             this.DtpFecha1.Name = "DtpFecha1";
             this.DtpFecha1.Size = new System.Drawing.Size(149, 25);
             this.DtpFecha1.TabIndex = 3;
@@ -493,7 +574,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(413, 21);
+            this.label2.Location = new System.Drawing.Point(392, 18);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 17);
             this.label2.TabIndex = 2;
@@ -517,42 +598,6 @@
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
-            // 
-            // TxtDpiBen
-            // 
-            this.TxtDpiBen.Enabled = false;
-            this.TxtDpiBen.Location = new System.Drawing.Point(6, 209);
-            this.TxtDpiBen.Name = "TxtDpiBen";
-            this.TxtDpiBen.Size = new System.Drawing.Size(275, 25);
-            this.TxtDpiBen.TabIndex = 25;
-            this.TxtDpiBen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(8, 189);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(107, 17);
-            this.label17.TabIndex = 24;
-            this.label17.Text = "DPI Beneficiario";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(18, 69);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(77, 17);
-            this.label19.TabIndex = 14;
-            this.label19.Text = "Dpi Cliente";
-            // 
-            // TxtDpiCli
-            // 
-            this.TxtDpiCli.Location = new System.Drawing.Point(6, 89);
-            this.TxtDpiCli.Name = "TxtDpiCli";
-            this.TxtDpiCli.Size = new System.Drawing.Size(275, 25);
-            this.TxtDpiCli.TabIndex = 28;
-            this.TxtDpiCli.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.TxtDpiCli.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtDpiCli_KeyDown);
             // 
             // Inversion
             // 
@@ -623,5 +668,9 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox TxtDpiBen;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox TxtTutorDPI;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox TxtTutorNom;
+        private System.Windows.Forms.Label label20;
     }
 }

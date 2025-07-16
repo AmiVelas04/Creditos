@@ -50,8 +50,8 @@ namespace Arcoiris.Clases
 
         public int idpago(string credito)
         {
-            string consulta = "SELECT max(id_pago) FROM pagos p "+
-            "INNER JOIN credito cre ON p.COD_CREDITO = cre.COD_CREDITO "+
+            string consulta = "SELECT max(id_pago) FROM pagos p " +
+            "INNER JOIN credito cre ON p.COD_CREDITO = cre.COD_CREDITO " +
             "WHERE cre.COD_CREDITO =" + credito;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
@@ -61,33 +61,33 @@ namespace Arcoiris.Clases
 
         public bool Hacer_Pago(string[] datos)
         {
-            string estado="";
+            string estado = "";
             //interes y capital  y pago para ingresar en cada pago;
             DataTable credit = new DataTable();
             string tCredit;
-            tCredit = cre.tipoC (datos[0]);
+            tCredit = cre.tipoC(datos[0]);
             //string tipoC = credit.Rows[0][0].ToString();
-            decimal interes = Convert.ToDecimal (datos[1]);
+            decimal interes = Convert.ToDecimal(datos[1]);
             decimal capital = Convert.ToDecimal(datos[2]);
             decimal pago = Convert.ToDecimal(datos[3]);
             //solicitude 11/03/2025 de diego de que el pago sea realizado en la fecha presente, no en la fecha de la ventana de presatamo
             //string fecha = Convert.ToDateTime (datos[4]).ToString ("yyyy/MM/dd");
-            decimal mora = Convert.ToDecimal(datos[5].ToString ());
+            decimal mora = Convert.ToDecimal(datos[5].ToString());
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             DataTable credito = new DataTable();
             string consulta;
             consulta = "Select Saldo_int,Saldo_cap,plazo,monto,interes from credito where cod_credito =" + datos[0];
             credito = buscar(consulta);
             //interes y capital para actualizar el credito
-            decimal Sinteres = Convert.ToDecimal (datos[7]);
+            decimal Sinteres = Convert.ToDecimal(datos[7]);
             decimal Scapital = Convert.ToDecimal(datos[6]);
-            decimal interesoriginal= Convert.ToDecimal(credito.Rows[0][4].ToString());
-          
+            decimal interesoriginal = Convert.ToDecimal(credito.Rows[0][4].ToString());
+
             if (tCredit == "1")
             {
                 Sinteres -= interes;
                 Scapital -= capital;
-                if (Scapital <= 0 && Sinteres<=0)
+                if (Scapital <= 0 && Sinteres <= 0)
                 {
                     estado = "Terminado";
                 }
@@ -98,7 +98,7 @@ namespace Arcoiris.Clases
             }
             else if (tCredit == "2")
             {
-               
+
                 Sinteres -= interes;
                 Scapital -= capital;
                 if (Scapital <= 0 && Sinteres <= 0)
@@ -126,39 +126,39 @@ namespace Arcoiris.Clases
             }
             else if (tCredit == "4")
             {
-               /* Scapital -= capital;
-                int plazo;
-                plazo = Convert.ToInt32 (credito.Rows[0][2].ToString());
-                int pagpend;
-                int tpago;
-                tpago = Tpagos(datos[0]);
-                pagpend = (plazo - tpago)-1;
-                int cont;
-                decimal montoOriginal;
-                montoOriginal = Convert.ToDecimal (credito.Rows[0][3].ToString());
-                decimal tCapital;
-                tCapital = capital;
-                decimal pagomonet;
-                pagomonet = montoOriginal  / plazo ;
-                decimal CapCamb=Scapital ;
-                decimal IntNuevo=0;
-                for (cont = 1; cont <= pagpend; cont++)
-                {
+                /* Scapital -= capital;
+                 int plazo;
+                 plazo = Convert.ToInt32 (credito.Rows[0][2].ToString());
+                 int pagpend;
+                 int tpago;
+                 tpago = Tpagos(datos[0]);
+                 pagpend = (plazo - tpago)-1;
+                 int cont;
+                 decimal montoOriginal;
+                 montoOriginal = Convert.ToDecimal (credito.Rows[0][3].ToString());
+                 decimal tCapital;
+                 tCapital = capital;
+                 decimal pagomonet;
+                 pagomonet = montoOriginal  / plazo ;
+                 decimal CapCamb=Scapital ;
+                 decimal IntNuevo=0;
+                 for (cont = 1; cont <= pagpend; cont++)
+                 {
 
-                    IntNuevo  += (CapCamb * interesoriginal / 100 / 12);
-                    CapCamb -= pagomonet;
-                }
-                
-                Sinteres = IntNuevo;
-                if (Scapital <=0 && Sinteres <=0)
-                {
-                    estado = "Terminado";
-                   
-                }
-                else
-                {
-                    estado = "Activo";
-                }*/
+                     IntNuevo  += (CapCamb * interesoriginal / 100 / 12);
+                     CapCamb -= pagomonet;
+                 }
+
+                 Sinteres = IntNuevo;
+                 if (Scapital <=0 && Sinteres <=0)
+                 {
+                     estado = "Terminado";
+
+                 }
+                 else
+                 {
+                     estado = "Activo";
+                 }*/
                 Sinteres -= interes;
                 Scapital -= capital;
                 if (Scapital <= 0 && Sinteres <= 0)
@@ -190,8 +190,8 @@ namespace Arcoiris.Clases
                 Scapital -= capital;
                 if (Scapital <= 0 && Sinteres <= 0)
                 {
-                                        estado = "Terminado";
-                 }
+                    estado = "Terminado";
+                }
                 else
                 {
                     estado = "Activo";
@@ -200,23 +200,25 @@ namespace Arcoiris.Clases
 
 
 
-            int numpago=pagoorden (datos[0]);
+            int numpago = pagoorden(datos[0]);
             string consulPago = "Insert into pagos (id_pago,Cod_credito,Fecha, Capital, Interes,mora, Total,estado) values (" +
-                numpago + "," + datos[0] + ",'" + fecha + "'," + capital + "," + interes + "," + mora + ","+ pago + ",'Hecho')";
+                numpago + "," + datos[0] + ",'" + fecha + "'," + capital + "," + interes + "," + mora + "," + pago + ",'Hecho')";
             if (consulta_gen(consulPago))
-                {
+            {
 
 
-               // MessageBox.Show("Si se guardo el pago");
-                string consulActual="Update Credito set Saldo_cap=" + Scapital + ", Saldo_int=" + Sinteres + ", estado='"+estado  +"' where cod_credito=" + datos[0];
+                // MessageBox.Show("Si se guardo el pago");
+                string consulActual = "Update Credito set Saldo_cap=" + Scapital + ", Saldo_int=" + Sinteres + ", estado='" + estado + "' where cod_credito=" + datos[0];
                 if (consulta_gen(consulActual))
                 {
-                    if (estado.Equals("Terminado")) { 
-                    MessageBox.Show("El credito ha sido saldado", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (estado.Equals("Terminado"))
+                    {
+                        MessageBox.Show("El credito ha sido saldado", "Completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     return true;
                 }
-                else {
+                else
+                {
                     return false;
                 }
             }
@@ -233,7 +235,7 @@ namespace Arcoiris.Clases
             consulta = "select Count(*) from pagos where cod_credito= " + credito;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
-            return Convert.ToInt32(datos.Rows[0][0].ToString ());
+            return Convert.ToInt32(datos.Rows[0][0].ToString());
         }
 
         private int pagoorden(string credito)
@@ -242,14 +244,14 @@ namespace Arcoiris.Clases
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             int nPago;
-            nPago = Convert.ToInt32 (datos.Rows[0][0].ToString());
+            nPago = Convert.ToInt32(datos.Rows[0][0].ToString());
             nPago += 1;
             return nPago;
         }
 
         public DataTable Pagoscre(string credito)
         {
-            DataTable datos =new  DataTable();
+            DataTable datos = new DataTable();
             string consulta;
             consulta = "SELECT id_pago AS Documento,Date_format(Fecha,'%d/%M/%Y') as Fecha,Capital, Interes, Mora,Total from pagos WHERE Estado= 'Hecho' and cod_credito='" + credito + "'";
             datos = buscar(consulta);
@@ -257,10 +259,11 @@ namespace Arcoiris.Clases
 
         }
 
-        public bool estadopago(string codigop,string cred, string cap, string inter)        {
+        public bool estadopago(string codigop, string cred, string cap, string inter)
+        {
             string consulta;
             consulta = "Update pagos set estado='Cancelado' where id_pago=" + codigop;
-            if (regresarsaldo(cred, cap,inter))
+            if (regresarsaldo(cred, cap, inter))
             {
                 if (consulta_gen(consulta))
                 {
@@ -283,8 +286,8 @@ namespace Arcoiris.Clases
             consulta = "Select saldo_cap,saldo_int from credito where cod_credito=" + credi;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
-            decimal capital=Convert.ToDecimal (datos.Rows [0][0]);
-            decimal interes=Convert.ToDecimal(datos.Rows[0][1]);
+            decimal capital = Convert.ToDecimal(datos.Rows[0][0]);
+            decimal interes = Convert.ToDecimal(datos.Rows[0][1]);
             capital += Convert.ToDecimal(cap);
             interes += Convert.ToDecimal(inter);
             string consuupd;
@@ -297,13 +300,13 @@ namespace Arcoiris.Clases
             {
                 return false;
             }
-            
+
         }
 
         public bool cancelarPagoall(string credi)
         {
             string consulta;
-            consulta = "Update pagos set estado='Cancelado' where cod_credito=" +credi ;
+            consulta = "Update pagos set estado='Cancelado' where cod_credito=" + credi;
             if (consulta_gen(consulta))
             {
                 return true;
@@ -340,9 +343,9 @@ namespace Arcoiris.Clases
 
         public decimal totalinte(string fechai, string fechaf, string codcre)
         {
-            string consulta= "SELECT SUM(p.interes) " +
-                             "FROM pagos p "+
-                             "WHERE p.COD_CREDITO ="+codcre+" AND p.FECHA >= '"+fechai+"' AND p.FECHA <= '"+fechaf+"' AND p.Estado = 'Hecho'";
+            string consulta = "SELECT SUM(p.interes) " +
+                             "FROM pagos p " +
+                             "WHERE p.COD_CREDITO =" + codcre + " AND p.FECHA >= '" + fechai + "' AND p.FECHA <= '" + fechaf + "' AND p.Estado = 'Hecho'";
             decimal total;
             DataTable datos = new DataTable();
             datos = buscar(consulta);
@@ -350,7 +353,7 @@ namespace Arcoiris.Clases
             { total = decimal.Parse(datos.Rows[0][0].ToString()); }
             else
             { total = 0; }
-           
+
             return total;
         }
 
@@ -358,7 +361,7 @@ namespace Arcoiris.Clases
         {
             string consulta = "SELECT SUM(p.capital) " +
                              "FROM pagos p " +
-                             "WHERE p.COD_CREDITO ="+codcre+" AND p.FECHA >= '"+fechai+"' AND p.FECHA <= '"+fechaf+"' AND p.Estado = 'Hecho'";
+                             "WHERE p.COD_CREDITO =" + codcre + " AND p.FECHA >= '" + fechai + "' AND p.FECHA <= '" + fechaf + "' AND p.Estado = 'Hecho'";
             decimal total;
             DataTable datos = new DataTable();
             datos = buscar(consulta);

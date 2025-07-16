@@ -2254,14 +2254,14 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 else
                 {
                     DateTime FechaNoPag = DateChan;
-                    
-                    decimal saldinio1 = 0,saldinio2=0;
-                     while (saldinio1 <=0 && saldinio2<=0)
-                        {
-                         DataTable SaldNoPag = saldosdias(cre, FechaNoPag.ToString("yyyy/MM/dd"));
+
+                    decimal saldinio1 = 0, saldinio2 = 0;
+                    while (saldinio1 <= 0 && saldinio2 <= 0)
+                    {
+                        DataTable SaldNoPag = saldosdias(cre, FechaNoPag.ToString("yyyy/MM/dd"));
                         saldinio1 = decimal.Parse(SaldNoPag.Rows[0][0].ToString());
                         saldinio2 = decimal.Parse(SaldNoPag.Rows[0][1].ToString());
-                        if (saldinio1 <= 0 && saldinio2<=0)
+                        if (saldinio1 <= 0 && saldinio2 <= 0)
                         {
                             FechaNoPag = FechaNoPag.AddMonths(1);
                         }
@@ -2273,7 +2273,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                         {
                             break;
                         }
-                        }
+                    }
                     DateTime FechaHoy = DateTime.Parse(fecha);
                     TimeSpan dias = FechaHoy - FechaNoPag;
                     Totd = dias.Days;

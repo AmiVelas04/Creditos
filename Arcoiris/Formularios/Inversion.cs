@@ -16,6 +16,7 @@ namespace Arcoiris.Formularios
         Clases.Cliente cli = new Clases.Cliente();
         Clases.Inversion Inver = new Clases.Inversion();
         Clases.CajaOpe caj = new Clases.CajaOpe();
+        DataTable AllCli = new DataTable();
         private int idinvUniver = 0;
         private string DpiCli;
        
@@ -37,6 +38,7 @@ namespace Arcoiris.Formularios
         {
             DataTable listadocli = new DataTable();
             listadocli = cli.Buscar_nom_cli();
+            AllCli = cli.AllCli();
             CboCliNom.DataSource = listadocli;
             CboCliNom.DisplayMember = "Nombre";
             CboCliNom.ValueMember = "Codigo_Cli";
@@ -133,12 +135,30 @@ namespace Arcoiris.Formularios
 
             string inversi = CboInv.Text;
             DataTable datos = Inver.detalle_Inv(inversi);
+            
+            DataTable refe = Inver.ReferenciaInversion(inversi);
             DataTable nombre = Inver.AsesoAndBenefByinv(inversi);
             decimal monto = decimal.Parse($"{datos.Rows[0][1]}");
             decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
             decimal montoregalo = Math.Round(decimal.Parse($"{datos.Rows[0][1]}") * decimal.Parse($"{datos.Rows[0][9]}"), 2);
             decimal IntGene = Math.Round( (interespuesto/100 * PeriodoCurrido(datos.Rows[0][4].ToString()) *monto/12),2);
-            
+            DataRow[] DataTutor = (AllCli.Select($"codigo_cli={refe.Rows[0][2]}"));
+            DataRow[] DataCli = AllCli.Select($"codigo_cli={refe.Rows[0][0]}");
+           
+
+            int edad = int.Parse($"{DataCli[0][7]}");
+            if (edad < 18)
+            {
+                TxtTutorDPI.Visible = false;
+                TxtTutorNom.Visible = false;
+            }
+            else
+            {
+                TxtTutorDPI.Visible = false;
+                TxtTutorNom.Visible = false;
+            }
+            TxtTutorNom.Text = $"{DataTutor[0][2]}";
+            TxtTutorDPI.Text = $"{DataTutor[0][6]}";
             TxtMonto.Text = $"{datos.Rows[0][1]}";
 
             TxtPlazo.Text = $"{datos.Rows[0][2]} Meses";
@@ -180,16 +200,12 @@ namespace Arcoiris.Formularios
 
         private void BtnSearchInv_Click(object sender, EventArgs e)
         {
-
             if (CboInv.SelectedIndex != -1)
             {
                 MostrarDatosInv();
                 BtnGanAct.Enabled = true;
                 BtnRetiro.Enabled = true;
             }
-
-
-
         }
         private int PeriodoCurrido(string Dada)
         {
@@ -213,18 +229,18 @@ namespace Arcoiris.Formularios
                 //Busqueda de los dato generales
                                 string inversi = CboInv.Text;
                 DataTable datos = Inver.detalle_Inv(inversi);
-
                 //Condicion de cierre de calculo
                 int plazo = int.Parse($"{datos.Rows[0][2]}");
                 decimal capital = decimal.Parse($"{datos.Rows[0][1]}");
                 int plazotrans = PeriodoCurrido($"{datos.Rows[0][4]}");
                 decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
-                decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
+                decimal IntGene=  Math.Round((interespuesto / 100 * PeriodoCurrido(datos.Rows[0][4].ToString()) * capital / 12), 2);
+               // decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
                 if (plazotrans < plazo)
                 {
                     if (plazo >= 12)
                     {
-                        IntGene = Math.Round(((IntGene / 2) + capital), 2);
+                        IntGene = Math.Round(( capital), 2);
                     }
                     else
                     {
@@ -233,10 +249,8 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                    IntGene = Math.Round((IntGene+capital));
+                    IntGene = Math.Round((IntGene+capital),2);
                 }
-
-               
                 TxtMontoRetir.Text = $"{IntGene}";
             }
         }
@@ -254,23 +268,35 @@ namespace Arcoiris.Formularios
         private void BtnRetiro_Click(object sender, EventArgs e)
         {
             if(DialogResult.Yes==MessageBox.Show("Desea realizar el retiro de la inversion?, Esto dara la inversion como terminada","Realizar retiro?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)) retiro();
-            
         }
         private void retiro()
         {
+            decimal monto;
             //Condicion de cierre de calculo
+            if (decimal.TryParse(TxtMonto.Text, out monto))
+            {
+                if (monto <= 0)
+                { MessageBox.Show("El monto a retirar es incorrecto, por favor revise nuevamente el monto","Monto incorrecto",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            else
+            { MessageBox.Show("El formato de monto no es valido, por favor revise cargue nuevamente los datos", "Monto incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             string inversi = CboInv.Text;
             DataTable datos = Inver.detalle_Inv(inversi);
             int plazo = int.Parse($"{datos.Rows[0][2]}");
             decimal capital = decimal.Parse($"{datos.Rows[0][1]}");
             int plazotrans = PeriodoCurrido($"{datos.Rows[0][4]}");
             decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
-            decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
+            decimal IntGene = Math.Round((interespuesto / 100 * PeriodoCurrido(datos.Rows[0][4].ToString()) * capital / 12), 2);
+            // decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
             if (plazotrans < plazo)
             {
                 if (plazo >= 12)
                 {
-                    IntGene = Math.Round(((IntGene / 2)), 2);
+                    IntGene = (0);
                 }
                 else
                 {
@@ -279,11 +305,11 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                IntGene = Math.Round((IntGene));
+                IntGene = Math.Round((IntGene),2);
             }
-
-
+           
             string[] valos = { CboInv.Text, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"),TxtMonto.Text,IntGene.ToString(), TxtMontoRetir.Text, Form1.Cod_U };
+
             if (Inver.Hacer_Retiro(valos))
             {
                 MessageBox.Show("Retiro realizado correctamente", "Hecho", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -311,9 +337,8 @@ namespace Arcoiris.Formularios
             string usuario = Form1.Cod_U;
             string credito = "N/E";
             string cliente = CboCliNom.Text;
-            
 
-            String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
+            string[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
             if (caj.ingreope(datos))
             {
                 MessageBox.Show("Retiro registrado con exito","Hecho",MessageBoxButtons.OK,MessageBoxIcon.Information);
@@ -350,10 +375,6 @@ namespace Arcoiris.Formularios
             Reportes.Retiro ret = new Reportes.Retiro();
             ret.Deta = detalle;
             ret.Show();
-
-
-
-
         }
 
         private void TxtDpiCli_KeyDown(object sender, KeyEventArgs e)
@@ -372,7 +393,6 @@ namespace Arcoiris.Formularios
                     DpiCli = dpi;
                     listaInvDPI(DpiCli);
                 }
-               
             }
         }
     }

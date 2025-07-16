@@ -180,6 +180,17 @@ namespace Arcoiris.Clases
             return datos;
         }
 
+        public DataTable ReferenciaInversion(string Inv)
+        {
+            string consulta;
+            DataTable datos = new DataTable();
+            consulta = $"SELECT Id_inv,Codigo_cli,Cod_asesor,Cod_tutor from asigna_inversion where id_inv={Inv} ";
+            datos = buscar(consulta);
+            return datos;
+        }
+
+
+
         public DataTable AllDatosBenefByInv(string Inv)
         {
             string consulta;
@@ -219,17 +230,17 @@ namespace Arcoiris.Clases
                 $"values({idInv},{datos[0]},{datos[1]},{datos[2]},'{datos[3]}','{datos[4]}','{datos[5]}',{datos[6]},'{datos[7]}')";
             if (consulta_gen(consultaingInv))
             {
-                return ((AsignaAsesoInv(idInv.ToString(),datos[8],datos[9])) && (AsignaBenef(idInv.ToString(),datos[8],datos[10])));
+                return ((AsignaAsesoInv(idInv.ToString(),datos[8],datos[9],datos[10])) && (AsignaBenef(idInv.ToString(),datos[8],datos[10])));
             }
             else
             { return false; }
         }
 
-        private bool AsignaAsesoInv(string inv,string cli, string aseso)
+        private bool AsignaAsesoInv(string inv,string cli, string aseso,string tutor)
         {
             
-                        string consulAsesoInv = "insert into Asigna_Inversion(id_inv,Codigo_Cli,Cod_Asesor) " +
-                $"values({inv},{cli},{aseso})";
+                        string consulAsesoInv = "insert into Asigna_Inversion(id_inv,Codigo_Cli,Cod_Asesor, cod_tutor) " +
+                $"values({inv},{cli},{aseso},{tutor})";
             return consulta_gen(consulAsesoInv);
         }
 
@@ -249,9 +260,8 @@ namespace Arcoiris.Clases
         #region Retiros
         public int idRetiro(string inv)
         {
-            string consulta = "SELECT COUNT(*) "+
-            "FROM retiros re "+
-            "WHERE re.Id_Inv = " + inv;
+            string consulta = "SELECT COUNT(*) " +
+            "FROM retiros";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return Convert.ToInt32(datos.Rows[0][0]);
@@ -264,7 +274,7 @@ namespace Arcoiris.Clases
             //interes y capital  y pago para ingresar en cada pago;
             DataTable credit = new DataTable();
             int id = idRetiro(datos[0]) + 1;
-            string consulReritro = "Insert into retiros (id_retiro,Id_inv,Fecha, Monto,Interes,Total, Estado,Cod_Usuario) values" +
+            string consulReritro = "Insert into retiros(id_retiro,Id_inv,Fecha, Monto,Interes,Total, Estado,Cod_Usuario) values" +
                 $"({id},{datos[0]} ,'{datos[1]}',{datos[2]},{datos[3]},{datos[4]}, '{estado}',{datos[5]})";
 
             if (consulta_gen(consulReritro))
