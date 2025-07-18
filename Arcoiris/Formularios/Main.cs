@@ -44,7 +44,8 @@ namespace Arcoiris.Formularios
             {
                 //BtnReporte.Visible = true;
             }
-           
+            LblVer.Text = $"{Application.ProductName}  Version: {Application.ProductVersion}";
+
         }
 
         private void BtnCliente_Click(object sender, EventArgs e)

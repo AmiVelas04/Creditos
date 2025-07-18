@@ -45,6 +45,7 @@
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.PanelCentral = new System.Windows.Forms.Panel();
+            this.LblVer = new System.Windows.Forms.Label();
             this.PanelLat.SuspendLayout();
             this.PanelSup.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -229,6 +230,7 @@
             // PanelSup
             // 
             this.PanelSup.BackColor = System.Drawing.Color.Silver;
+            this.PanelSup.Controls.Add(this.LblVer);
             this.PanelSup.Controls.Add(this.LbUsuario);
             this.PanelSup.Controls.Add(this.flowLayoutPanel1);
             this.PanelSup.Dock = System.Windows.Forms.DockStyle.Top;
@@ -294,6 +296,16 @@
             this.PanelCentral.Size = new System.Drawing.Size(894, 549);
             this.PanelCentral.TabIndex = 2;
             // 
+            // LblVer
+            // 
+            this.LblVer.AutoSize = true;
+            this.LblVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVer.Location = new System.Drawing.Point(568, 20);
+            this.LblVer.Name = "LblVer";
+            this.LblVer.Size = new System.Drawing.Size(51, 16);
+            this.LblVer.TabIndex = 2;
+            this.LblVer.Text = "label1";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,5 +346,6 @@
         private System.Windows.Forms.Button BtnAdmin;
         private System.Windows.Forms.Button BtnCaja;
         private System.Windows.Forms.Button BtnInv;
+        private System.Windows.Forms.Label LblVer;
     }
 }
