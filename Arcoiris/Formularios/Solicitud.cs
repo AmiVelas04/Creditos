@@ -33,6 +33,7 @@ namespace Arcoiris.Formularios
         private int cod_credi;
         private decimal salantes = 0;
         string contrato = "0";
+        decimal interescalc = 1;
 
 
         public Solicitud()
@@ -68,10 +69,12 @@ namespace Arcoiris.Formularios
             if (Form1.Nivel.Equals("1") || Form1.Nivel.Equals("2") || Form1.Nivel.Equals("5"))
             {
                 Tab2.Parent = tabControl1;
+                Tab3.Parent = tabControl1;
             }
             else
             {
                 Tab2.Parent = null;
+                Tab3.Parent = null;
             }
 
 
@@ -1305,14 +1308,15 @@ namespace Arcoiris.Formularios
         {
             List<string> cajaop=new List<string>();
             string plazo = NudPlazoInv.Value.ToString();
-            decimal Interes = NudInt.Value; //InteInv(TxtMonto.Text, plazo);
+            decimal Interes = Math.Round((NudInt.Value/100),2);
             DateTime Ffin = DateTime.Now.AddMonths(int.Parse(plazo));
             decimal incent = Incentiv(TxtMonto.Text,plazo);
             string idcli = CboCliInv.SelectedValue.ToString();
            string asesor=CboAsesorInv.SelectedValue.ToString();
             string bene = CboBenef.SelectedValue.ToString();
             string tutor = CboTutor.SelectedValue.ToString();
-            cajaop.Add(caj.id_pago() + 1.ToString());
+            int idp = caj.id_pago() + 1;
+            cajaop.Add($"{idp}");
             cajaop.Add("Ingreso");
             cajaop.Add(TxtMontoInv.Text);
             cajaop.Add($"Ingreso de inversion a nombre de {CboCliente.Text}");
@@ -1347,14 +1351,14 @@ namespace Arcoiris.Formularios
             decimal total = decimal.Parse(cadena);
             int tiempo = int.Parse(plazo);
             if (tiempo < 12)
-            { return 0.12M; }
+            { return 0.12M*100; }
             else if (tiempo < 24)
             {
-                return 0.14M;
+                return 0.14M*100;
             }
             else
             {
-                return 0.17M;
+                return 0.15M*100;
             }
         }
 
@@ -1401,27 +1405,43 @@ namespace Arcoiris.Formularios
                 CboTutor.SelectedValue = CboCliInv.SelectedValue;
                 string id = CboCliInv.SelectedValue.ToString();
                 DataRow[] valor = AllCliInv.Select($"codigo_cli={id}");
-
-
-
-
                 int edad = int.Parse(valor[0][7].ToString());
                 if (edad < 18)
                 {
                     MessageBox.Show("El cliente es menor de edad por lo que es necesario un tutor para aceptar la inversion");
-                    label33.Visible = true;
+                    label32.Visible = true;
                     CboTutor.Visible = true;
 
                 }
                 else
                 {
                    // MessageBox.Show("El cliente es menor de edad por lo que es necesario un tutor para aceptar la inversion");
-                    label33.Visible = false;
+                    label32.Visible = false;
                     CboTutor.Visible = false;
 
                 }
 
             }
+        }
+
+        private void NudInt_ValueChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TxtMontoInv.Text))
+            {
+                MessageBox.Show("No se ha definido el monto de la inversion", "Vacio", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+            }
+            else if (!Comprobanumero(TxtMontoInv.Text))
+            {
+                MessageBox.Show("No se ha Ingresado un monto valido, intentelo de nuevo", "Montor incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+
+            }
+          
+          
+           
         }
     }
 }

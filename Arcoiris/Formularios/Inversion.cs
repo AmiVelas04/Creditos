@@ -90,6 +90,45 @@ namespace Arcoiris.Formularios
 
         }
 
+        //lista inversiones retiradas
+        private void listaInvRet()
+        {
+            int total;
+            //DtpFecha1.
+            DataTable datos = new DataTable();
+            string valor;
+            if (CboCliNom.Text == "")
+            {
+                valor = "-1";
+            }
+            else
+            {
+                valor = idinvUniver.ToString();
+            }
+            datos = Inver.InverByCliRet(valor);
+            total = datos.Rows.Count;
+            CboInv.Items.Clear();
+            int c1;
+            if (total > 0)
+            {
+                TxtDpiCli.Text = $"{datos.Rows[0][8]}";
+                BtnSearchInv.Enabled = true;
+                CboInv.Enabled = true;
+                CboInv.Items.Clear();
+                for (c1 = 0; c1 <= total - 1; c1++)
+                {
+                    CboInv.Items.Add(datos.Rows[c1][0]);
+                }
+            }
+            else
+            {
+                CboInv.Items.Clear();
+                BtnSearchInv.Enabled = false;
+                //   CboPresta.Enabled = false;
+            }
+
+        }
+
         private void listaInvDPI(string dpi)
         {
             int total;
@@ -190,7 +229,14 @@ namespace Arcoiris.Formularios
         {
             if (int.TryParse(CboCliNom.SelectedValue.ToString(), out idinvUniver))
             {
-                listaInv();
+                if (ChkRetirado.Checked) {
+                    listaInvRet();
+                    GbxRetiro.Enabled = false;
+                }
+                else
+                { listaInv();
+                    GbxRetiro.Enabled = true;
+                }
             }
             else
             {
@@ -271,6 +317,11 @@ namespace Arcoiris.Formularios
         }
         private void retiro()
         {
+            if (decimal.Parse(TxtMontoRetir.Text) <= 0)
+            {
+                MessageBox.Show("El monto a retirar es incorrecto, por favor revise nuevamente el monto", "Monto incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             decimal monto;
             //Condicion de cierre de calculo
             if (decimal.TryParse(TxtMonto.Text, out monto))
@@ -377,6 +428,35 @@ namespace Arcoiris.Formularios
             ret.Show();
         }
 
+        //reimpresion boleta
+        private void Reimprimir(string inv)
+        {
+            List<Reportes.RetDet> detalle = new List<Reportes.RetDet>();
+            Reportes.RetDet Temp = new Reportes.RetDet();
+            int total, cents;
+            DataTable datos = Inver.searchRetiro(inv);
+            decimal valor = decimal.Parse($"{datos.Rows[0][3]}") + decimal.Parse($"{datos.Rows[0][6]}");
+            cents = Convert.ToInt32((valor % 1) * 100);
+            total = int.Parse(Math.Truncate(valor).ToString());
+            // total = Convert.ToInt32(valor - (cents / 100));
+            string letras;
+            letras = total.ToWords() + " con " + cents.ToWords();
+            if (cents <= 0) letras = total.ToWords() + " exactos";
+            Temp.Inversion = int.Parse($"{datos.Rows[0][1]}");
+            Temp.Fecha = DateTime.Parse($"{datos.Rows[0][2]}");
+            Temp.Monto = decimal.Parse($"{datos.Rows[0][3]}");
+            Temp.interes = decimal.Parse($"{datos.Rows[0][6]}");
+            Temp.Cliente = CboCliNom.Text;
+            decimal tot = Temp.Monto + Temp.interes;
+            Temp.Retiro =int.Parse($"{datos.Rows[0][0]}");
+            Temp.TotalL = letras;
+            Temp.Dir = "Sin";
+            detalle.Add(Temp);
+            Reportes.Retiro ret = new Reportes.Retiro();
+            ret.Deta = detalle;
+            ret.Show();
+        }
+
         private void TxtDpiCli_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -394,6 +474,29 @@ namespace Arcoiris.Formularios
                     listaInvDPI(DpiCli);
                 }
             }
+        }
+
+        private void ChkRetirado_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ChkRetirado.Checked)
+            {
+                BtnBoletaReImp.Visible = true;
+                listaInvRet();
+            }
+            else
+            {
+                BtnBoletaReImp.Visible = false;
+            }
+        }
+
+        private void BtnBoletaReImp_Click(object sender, EventArgs e)
+        {
+            if (CboInv.Text == null || CboInv.Text == "")
+            {
+                MessageBox.Show("No se ha seleccionado ninguna inversion", "Sin Inversion!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            Reimprimir(CboInv.Text);
         }
     }
 }

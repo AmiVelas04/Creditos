@@ -58,7 +58,7 @@ namespace Arcoiris.Clases
 
         public int id_pago()
         {
-            string consulta = "Select Max(id_ope) from caja";
+            string consulta = "Select count(id_ope) from caja";
             DataTable id = new DataTable();
             id = buscar(consulta);
             return Convert.ToInt32(id.Rows[0][0].ToString ());

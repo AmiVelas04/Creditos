@@ -714,7 +714,12 @@ namespace Arcoiris.Formularios
                                 bandera = false;
                             }
                         }
-                        if (pagoscre > pagos) pagoscre = pagos;
+                        if (pagoscre > pagos)
+                        { pagoscre = pagos * 5; }
+                        else
+                        { pagoscre = pagoscre * 5; }
+                           
+                        
                     }
                     else
                     {
@@ -751,14 +756,18 @@ namespace Arcoiris.Formularios
                                 bandera = false;
                             }
                         }
-                        if (pagoscre > pagos) pagoscre = pagos;
+                        if (pagoscre > pagos)
+                        { pagoscre = pagos * 10; }
+                        else
+                        { pagoscre = pagoscre * 10; }
                     }
                     else
                     {
                         pagoscre = 0;
                     }
                 }
-                if (pagoscre > pagos) pagoscre = pagos;                
+            //    if (pagoscre > pagos) pagoscre = pagos;  
+                
                 comi = pagoscre;
                 DataRow fila = datoscomi.NewRow();
                 fila["Credito"] = codcre;

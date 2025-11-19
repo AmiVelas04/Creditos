@@ -115,6 +115,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.Tab3 = new System.Windows.Forms.TabPage();
             this.GbxInv = new System.Windows.Forms.GroupBox();
+            this.CboTutor = new System.Windows.Forms.ComboBox();
+            this.label34 = new System.Windows.Forms.Label();
             this.NudInt = new System.Windows.Forms.NumericUpDown();
             this.label33 = new System.Windows.Forms.Label();
             this.CboBenef = new System.Windows.Forms.ComboBox();
@@ -130,8 +132,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.CboCliInv = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.CboTutor = new System.Windows.Forms.ComboBox();
-            this.label34 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -255,6 +255,7 @@
             this.GbxDataFiad.TabIndex = 42;
             this.GbxDataFiad.TabStop = false;
             this.GbxDataFiad.Text = "Datos del fiador";
+            this.GbxDataFiad.Visible = false;
             // 
             // CboCliNom
             // 
@@ -1167,9 +1168,33 @@
             this.GbxInv.TabStop = false;
             this.GbxInv.Text = "Datos de la inversion";
             // 
+            // CboTutor
+            // 
+            this.CboTutor.FormattingEnabled = true;
+            this.CboTutor.Location = new System.Drawing.Point(338, 51);
+            this.CboTutor.Name = "CboTutor";
+            this.CboTutor.Size = new System.Drawing.Size(269, 25);
+            this.CboTutor.TabIndex = 16;
+            this.CboTutor.Visible = false;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(351, 31);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(41, 17);
+            this.label34.TabIndex = 15;
+            this.label34.Text = "Tutor";
+            this.label34.Visible = false;
+            // 
             // NudInt
             // 
             this.NudInt.DecimalPlaces = 2;
+            this.NudInt.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
             this.NudInt.Location = new System.Drawing.Point(22, 346);
             this.NudInt.Maximum = new decimal(new int[] {
             10000,
@@ -1177,7 +1202,6 @@
             0,
             0});
             this.NudInt.Name = "NudInt";
-            this.NudInt.ReadOnly = true;
             this.NudInt.Size = new System.Drawing.Size(120, 25);
             this.NudInt.TabIndex = 14;
             this.NudInt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1186,6 +1210,7 @@
             0,
             0,
             0});
+            this.NudInt.ValueChanged += new System.EventHandler(this.NudInt_ValueChanged);
             // 
             // label33
             // 
@@ -1330,25 +1355,6 @@
             this.label27.Size = new System.Drawing.Size(51, 17);
             this.label27.TabIndex = 0;
             this.label27.Text = "Cliente";
-            // 
-            // CboTutor
-            // 
-            this.CboTutor.FormattingEnabled = true;
-            this.CboTutor.Location = new System.Drawing.Point(338, 51);
-            this.CboTutor.Name = "CboTutor";
-            this.CboTutor.Size = new System.Drawing.Size(269, 25);
-            this.CboTutor.TabIndex = 16;
-            this.CboTutor.Visible = false;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(351, 31);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(41, 17);
-            this.label34.TabIndex = 15;
-            this.label34.Text = "Tutor";
-            this.label34.Visible = false;
             // 
             // Solicitud
             // 

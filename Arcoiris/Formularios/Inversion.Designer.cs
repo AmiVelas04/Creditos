@@ -78,6 +78,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.BtnBoletaReImp = new System.Windows.Forms.Button();
             this.TbcInversion.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -109,6 +110,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.BtnBoletaReImp);
             this.groupBox1.Controls.Add(this.TxtDpiCli);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.ChkRetirado);
@@ -151,22 +153,23 @@
             // ChkRetirado
             // 
             this.ChkRetirado.AutoSize = true;
-            this.ChkRetirado.Location = new System.Drawing.Point(552, 89);
+            this.ChkRetirado.Location = new System.Drawing.Point(552, 93);
             this.ChkRetirado.Name = "ChkRetirado";
             this.ChkRetirado.Size = new System.Drawing.Size(85, 21);
             this.ChkRetirado.TabIndex = 13;
             this.ChkRetirado.Text = "Retirados";
             this.ChkRetirado.UseVisualStyleBackColor = true;
+            this.ChkRetirado.CheckedChanged += new System.EventHandler(this.ChkRetirado_CheckedChanged);
             // 
             // BtnSearchInv
             // 
             this.BtnSearchInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchInv.Image")));
-            this.BtnSearchInv.Location = new System.Drawing.Point(682, 24);
+            this.BtnSearchInv.Location = new System.Drawing.Point(713, 18);
             this.BtnSearchInv.Name = "BtnSearchInv";
-            this.BtnSearchInv.Size = new System.Drawing.Size(171, 62);
+            this.BtnSearchInv.Size = new System.Drawing.Size(140, 68);
             this.BtnSearchInv.TabIndex = 12;
             this.BtnSearchInv.Text = "Mostrar Detalles";
-            this.BtnSearchInv.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
+            this.BtnSearchInv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnSearchInv.UseVisualStyleBackColor = true;
             this.BtnSearchInv.Click += new System.EventHandler(this.BtnSearchInv_Click);
             // 
@@ -332,7 +335,7 @@
             this.TxtOrigen.Location = new System.Drawing.Point(676, 91);
             this.TxtOrigen.Multiline = true;
             this.TxtOrigen.Name = "TxtOrigen";
-            this.TxtOrigen.Size = new System.Drawing.Size(181, 143);
+            this.TxtOrigen.Size = new System.Drawing.Size(181, 122);
             this.TxtOrigen.TabIndex = 23;
             this.TxtOrigen.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -599,6 +602,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
             // 
+            // BtnBoletaReImp
+            // 
+            this.BtnBoletaReImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnBoletaReImp.Image")));
+            this.BtnBoletaReImp.Location = new System.Drawing.Point(535, 18);
+            this.BtnBoletaReImp.Name = "BtnBoletaReImp";
+            this.BtnBoletaReImp.Size = new System.Drawing.Size(172, 68);
+            this.BtnBoletaReImp.TabIndex = 29;
+            this.BtnBoletaReImp.Text = "Reimprimir Boleta de retiro";
+            this.BtnBoletaReImp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnBoletaReImp.UseVisualStyleBackColor = true;
+            this.BtnBoletaReImp.Visible = false;
+            this.BtnBoletaReImp.Click += new System.EventHandler(this.BtnBoletaReImp_Click);
+            // 
             // Inversion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -672,5 +688,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox TxtTutorNom;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button BtnBoletaReImp;
     }
 }

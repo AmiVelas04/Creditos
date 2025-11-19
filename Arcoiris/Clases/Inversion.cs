@@ -117,11 +117,25 @@ namespace Arcoiris.Clases
                           "FROM Inversion Inv " +
                           "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
                           "INNER JOIN cliente cli ON cli.CODIGO_CLI = AInv.codigo_cli " +
-                           $"WHERE cli.CODIGO_CLI={Cli} and Inv.Estado!='Retirado' " +
+                           $"WHERE cli.CODIGO_CLI={Cli} and Inv.Estado='Activo' " +
                           "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo,cli.dpi asc";
             DataTable datos = new DataTable();
             return buscar(consulta);
         }
+
+        public DataTable InverByCliRet(string Cli)
+        {
+            string consulta;
+            consulta = "SELECT Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo,cli.dpi " +
+                          "FROM Inversion Inv " +
+                          "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
+                          "INNER JOIN cliente cli ON cli.CODIGO_CLI = AInv.codigo_cli " +
+                           $"WHERE cli.CODIGO_CLI={Cli} and Inv.Estado='Retirado' " +
+                          "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo,cli.dpi asc";
+            DataTable datos = new DataTable();
+            return buscar(consulta);
+        }
+
 
         public DataTable InverByDPI(string DPI)
         {
@@ -130,7 +144,7 @@ namespace Arcoiris.Clases
                           "FROM Inversion Inv " +
                           "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
                           "INNER JOIN cliente cli ON cli.CODIGO_CLI = AInv.codigo_cli " +
-                           $"WHERE cli.DPI={DPI} and Inv.Estado!='Retirado' " +
+                           $"WHERE cli.DPI={DPI} and Inv.Estado='Activo' " +
                           "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo asc";
             DataTable datos = new DataTable();
             return buscar(consulta);
@@ -144,7 +158,7 @@ namespace Arcoiris.Clases
                           "FROM Inversion Inv " +
                           "INNER JOIN asigna_Inversion AInv  ON AInv.Id_Inv = Inv.Id_Inv " +
                           "INNER JOIN Asesor ase  ON ase.COD_ASESOR = AInv.Cod_Asesor " +
-                           $"WHERE ase.COD_ASESOR={Aseso} and Inv.Estado!='Retirado' " +
+                           $"WHERE ase.COD_ASESOR={Aseso} and Inv.Estado='Activo' " +
                           "ORDER BY Inv.id_inv,Inv.Monto,Inv.Interes,Inv.Plazo,Inv.FechaIn,Inv.FechaFin,Inv.Estado,Inv.Incentivo asc";
             DataTable datos = new DataTable();
             return buscar(consulta);
@@ -155,7 +169,7 @@ namespace Arcoiris.Clases
         {
             string consulta;
             DataTable datos = new DataTable();
-            consulta = $"Select FechaIn,FechaFin from Inversion where Id_Inv={Inv}" ;
+            consulta = $"Select FechaIn,FechaFin from Inversion where Id_Inv={Inv}";
             datos = buscar(consulta);
             return datos;
 
@@ -217,34 +231,34 @@ namespace Arcoiris.Clases
             string consultaid;
             consultaid = "Select count(*) from Inversion";
             DataTable Inver = new DataTable();
-          Inver = buscar(consultaid);
+            Inver = buscar(consultaid);
             int idInv = 0;
             if (Inver.Rows.Count > 0)
             { idInv = Convert.ToInt32(Inver.Rows[0][0]) + 1; }
             else { idInv = 1; }
             // posicion 8 es cliente, posicion 9 es asesor, posicion 10 es beneficiario
 
-            
+
             string consultaingInv;
             consultaingInv = "insert into Inversion(id_inv,Monto,Interes,Plazo,FechaIn,FechaFin,Estado,Incentivo,Origen) " +
                 $"values({idInv},{datos[0]},{datos[1]},{datos[2]},'{datos[3]}','{datos[4]}','{datos[5]}',{datos[6]},'{datos[7]}')";
             if (consulta_gen(consultaingInv))
             {
-                return ((AsignaAsesoInv(idInv.ToString(),datos[8],datos[9],datos[10])) && (AsignaBenef(idInv.ToString(),datos[8],datos[10])));
+                return ((AsignaAsesoInv(idInv.ToString(), datos[8], datos[9], datos[10])) && (AsignaBenef(idInv.ToString(), datos[8], datos[10])));
             }
             else
             { return false; }
         }
 
-        private bool AsignaAsesoInv(string inv,string cli, string aseso,string tutor)
+        private bool AsignaAsesoInv(string inv, string cli, string aseso, string tutor)
         {
-            
-                        string consulAsesoInv = "insert into Asigna_Inversion(id_inv,Codigo_Cli,Cod_Asesor, cod_tutor) " +
-                $"values({inv},{cli},{aseso},{tutor})";
+
+            string consulAsesoInv = "insert into Asigna_Inversion(id_inv,Codigo_Cli,Cod_Asesor, cod_tutor) " +
+    $"values({inv},{cli},{aseso},{tutor})";
             return consulta_gen(consulAsesoInv);
         }
 
-        private bool AsignaBenef(string inv,string cli, string benef)
+        private bool AsignaBenef(string inv, string cli, string benef)
         {
             string consulAsesoInv = "insert into BenefiInver(id_inv,Codigo_Cli,Id_benef) " +
               $"values({inv},{cli},{benef})";
@@ -266,6 +280,15 @@ namespace Arcoiris.Clases
             datos = buscar(consulta);
             return Convert.ToInt32(datos.Rows[0][0]);
 
+        }
+
+        public DataTable searchRetiro(string inv)
+        {
+            string consulta;
+            consulta = "SELECT id_retiro,id_inv,date_format(fecha,'%d/%M/%Y %H:%m'),monto,estado,cod_usuario,interes,total FROM retiros "+
+                       $"WHERE Id_Inv = {inv}";
+            DataTable datos = new DataTable();
+            return buscar(consulta);
         }
 
         public bool Hacer_Retiro(string[] datos)

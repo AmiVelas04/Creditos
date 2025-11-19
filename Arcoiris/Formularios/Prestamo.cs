@@ -57,7 +57,7 @@ namespace Arcoiris.Formularios
         //Listar crditos pagina 1
         private void Prestamo_Load(object sender, EventArgs e)
         {
-            if (Form1.Nivel == "1" || Form1.Nivel == "2")
+            if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "5")
             {
                 BtnEliminar.Enabled = true;
                 BtnEliminarCre.Visible = true;
