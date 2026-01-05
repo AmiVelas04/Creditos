@@ -2184,7 +2184,7 @@
                   </Style>
                 </TextRun>
                 <TextRun>
-                  <Value>=(((Sum(Fields!capatras.Value, "Detalle")+Sum(Fields!intatras.Value, "Detalle"))*100)/(Sum(Fields!monto.Value, "Detalle"))/100)</Value>
+                  <Value>=(((Sum(Fields!capatras.Value, "Detalle")+Sum(Fields!intatras.Value, "Detalle"))*100)/(Sum(Fields!monto.Value, "Encabezado"))/100)</Value>
                   <Style>
                     <FontWeight>Bold</FontWeight>
                     <Format>#,0.00 %</Format>

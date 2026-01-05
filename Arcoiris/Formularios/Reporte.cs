@@ -93,15 +93,15 @@ namespace Arcoiris.Formularios
 
             if (RdbTodos.Checked)
             {
-                Rep_gan();
+                Rep_gan($"{CboRepoA.SelectedValue}",CboRepoA.Text);
             }
             else if (RdbMes.Checked)
             {
-                Rep_Gan_Mes();
+                Rep_Gan_Mes($"{CboRepoA.SelectedValue}", CboRepoA.Text);
             }
             else if (RdbDia.Checked)
             {
-                Rep_Gan_Di();
+                Rep_Gan_Di($"{CboRepoA.SelectedValue}", CboRepoA.Text);
             }
             else
             {
@@ -273,33 +273,33 @@ namespace Arcoiris.Formularios
             }
         }
        
-        private void Rep_gan()
+        private void Rep_gan(string id, string nombre)
         {
             //Crear fechas
             string Finicio = FechaI(CboMes.Text, CboAnio.Text);
             string Ffin= FechaF (CboMes.Text, CboAnio.Text);
             string nomfecha;
             nomfecha = CboMes.Text + " de " + CboAnio.Text;
-            repor.Ganancia(Finicio, Ffin,nomfecha);
+            repor.Ganancia(Finicio, Ffin,nomfecha,id,nombre);
 
         }
 
-        private void Rep_Gan_Di()
+        private void Rep_Gan_Di(string id, string nombre)
         {
             string Finicio = FechaI(CboMes.Text, CboAnio.Text);
             string Ffin = FechaF(CboMes.Text, CboAnio.Text);
             string nomfecha;
             nomfecha = "\nCreditos Diarios\n"+CboMes.Text + " de " + CboAnio.Text;
-            repor.GanaciaDi(Finicio, Ffin, nomfecha);
+            repor.GanaciaDi(Finicio, Ffin, nomfecha,id,nombre);
         }
 
-        private void Rep_Gan_Mes()
+        private void Rep_Gan_Mes(string id, string nombre)
         {
             string Finicio = FechaI(CboMes.Text, CboAnio.Text);
             string Ffin = FechaF(CboMes.Text, CboAnio.Text);
             string nomfecha;
             nomfecha = "\nCreditos Mensuales\n"+CboMes.Text + " de " + CboAnio.Text;
-            repor.GanaciaMes(Finicio, Ffin, nomfecha);
+            repor.GanaciaMes(Finicio, Ffin, nomfecha,id,nombre);
         }
 
         private string FechaI(string Mes, string anio)
@@ -464,14 +464,16 @@ namespace Arcoiris.Formularios
             CboAsesor.DataSource = tempo;
             CboAsesor.DisplayMember = "Nombre";
             CboAsesor.ValueMember = "Codigo";
-           /* foreach (DataRow row in datosas.Rows)
-            {
-                coleccion.Add(row["Nombre"].ToString());
 
-            }
-            CboAsesor.AutoCompleteCustomSource = coleccion;
-            CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
+          
+            /* foreach (DataRow row in datosas.Rows)
+             {
+                 coleccion.Add(row["Nombre"].ToString());
+
+             }
+             CboAsesor.AutoCompleteCustomSource = coleccion;
+             CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+             CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;*/
         }
 
         private void ListaAsesoAll()
@@ -497,6 +499,9 @@ namespace Arcoiris.Formularios
             CboAseRepo.DataSource = datosas;
             CboAseRepo.DisplayMember = "Nombre";
             CboAseRepo.ValueMember = "Codigo";
+            CboRepoA.DataSource = datosas;
+            CboRepoA.DisplayMember = "Nombre";
+            CboRepoA.ValueMember = "Codigo";
             /* foreach (DataRow row in datosas.Rows)
              {
                  coleccion.Add(row["Nombre"].ToString());
@@ -885,6 +890,11 @@ namespace Arcoiris.Formularios
         private void BtnInver_Click(object sender, EventArgs e)
         {
             repor.Inversiones();
+        }
+
+        private void CboAseRepoGan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
