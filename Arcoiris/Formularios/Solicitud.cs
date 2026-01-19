@@ -25,6 +25,7 @@ namespace Arcoiris.Formularios
         DataTable AllCli = new DataTable();
         List<Clases.Modelos.DeparamentoModel> AllDepas;
         List<Clases.Modelos.MunicipioModel> AllMunis;
+        private List<Formularios.SubClases.Cuenta> listaCuentas = new List<Formularios.SubClases.Cuenta>();
         DataTable AllCliInv = new DataTable();
         Reportes.Contratos.ContratoDatos datosgaran = new Reportes.Contratos.ContratoDatos();
         int cantigarant = 0;
@@ -1442,6 +1443,315 @@ namespace Arcoiris.Formularios
           
           
            
+        }
+
+        private void BtnAddCuenta_Click(object sender, EventArgs e)
+        {
+            agregarCuenta();
+            calcEstadoFin();
+        }
+
+        private void agregarCuenta()
+        {
+            // Validar que se seleccionó algo en el ComboBox
+            if (CboCuenta.SelectedItem == null)
+            {
+                MessageBox.Show("Por favor, seleccione un nombre del ComboBox",
+                               "Advertencia",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validar que el valor numérico sea válido
+            // Si usas NumericUpDown:
+            if (NudMontoCuenta.Value <= 0)  // Ajusta según tus necesidades
+            {
+                MessageBox.Show("Por favor, ingrese un valor numérico válido",
+                               "Advertencia",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Crear nueva cuenta
+            string NombreC = "";
+       
+            SubClases.Cuenta nuevaCuenta = new Formularios.SubClases.Cuenta
+            {
+                NomCuenta = CboCuenta.SelectedItem.ToString(),
+                Valor = Math.Round(NudMontoCuenta.Value, 2),
+                tipo=!(CboCuenta.SelectedItem.ToString().Equals("Prestamos"))// Convierte a int
+            };
+
+            // Verificar si ya existe en la lista
+            bool existe = false;
+            foreach (SubClases.Cuenta cuenta in LstCuentas.Items)
+            {
+                if (cuenta.Equals(nuevaCuenta))
+                {
+                    existe = true;
+                    break;
+                }
+            }
+
+            foreach (SubClases.Cuenta cuenta in LstPasiv.Items)
+            {
+                if (cuenta.Equals(nuevaCuenta))
+                {
+                    existe = true;
+                    break;
+                }
+            }
+
+            // Otra forma más corta con LINQ:
+            // bool existe = listBox1.Items.Cast<Cuenta>().Any(c => c.Equals(nuevaCuenta));
+
+            if (!existe)
+            {
+                // Opcional: También agregar a la lista auxiliar
+                listaCuentas.Add(nuevaCuenta);
+                if (nuevaCuenta.tipo)
+                {  // Agregar al ListBox
+                    LstCuentas.Items.Add(nuevaCuenta);
+
+                  
+                }
+                else
+                {
+                    LstPasiv.Items.Add(nuevaCuenta);
+                }
+
+                // Opcional: Limpiar campos después de agregar
+                CboCuenta.SelectedIndex = -1;
+                NudMontoCuenta.Value = NudMontoCuenta.Minimum;
+            }
+            else
+            {
+                MessageBox.Show("Esta cuenta ya existe en la lista",
+                               "Elemento duplicado",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Information);
+            }
+        }
+
+        private void EliminarCuenta()
+        {
+            // Verificar si hay algún elemento seleccionado en el ListBox
+            if (LstCuentas.SelectedIndex == -1)
+            {
+                MessageBox.Show("Por favor, seleccione un elemento para eliminar",
+                               "Advertencia",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Confirmar eliminación
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro de eliminar el elemento seleccionado?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (resultado == DialogResult.Yes)
+            {
+                // Obtener el elemento seleccionado
+                SubClases.Cuenta cuentaSeleccionada = (SubClases.Cuenta)LstCuentas.SelectedItem;
+
+                // Eliminar del ListBox
+               LstCuentas.Items.RemoveAt(LstCuentas.SelectedIndex);
+
+                // Opcional: También eliminar de la lista auxiliar
+                listaCuentas.Remove(cuentaSeleccionada);
+
+                // Opcional: Mostrar mensaje de confirmación
+                // MessageBox.Show("Elemento eliminado correctamente", 
+                //                "Éxito", 
+                //                MessageBoxButtons.OK, 
+                //                MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnElimCuenta_Click(object sender, EventArgs e)
+        {
+            EliminarCuenta();
+            calcEstadoFin();
+        }
+
+        private void calcEstadoFin()
+        {
+            decimal total=0.00M;
+            foreach (SubClases.Cuenta cuenta in listaCuentas)
+            {
+                if (cuenta.tipo)
+                { total += cuenta.Valor; }
+                else
+                {
+                    total -= cuenta.Valor;
+                }
+            }
+            if (total > 0)
+            {
+                TxtPatri.BackColor = Color.Green;
+                //TxtPatri.ForeColor = Color.White;
+            }
+            else
+            {
+                TxtPatri.BackColor = Color.DarkRed;
+              //  TxtPatri.ForeColor = Color.White;
+            }
+            TxtPatri.Text = $"Q.{total}";
+        }
+
+        private void DgvIngMen_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            int fila = e.RowIndex;
+            DgvIngMen.Rows[fila-1].Cells[1].Value = "0";
+            DgvIngMen.Rows[fila - 1].Cells[2].Value = "0.00";
+            DgvIngMen.Rows[fila - 1].Cells[3].Value = "0.00";
+            DgvIngMen.Rows[fila - 1].Cells[4].Value = "0.00";
+        }
+
+        private void DgvEngMen_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            int fila = e.RowIndex;
+            DgvEngMen.Rows[fila - 1].Cells[1].Value = "0";
+            DgvEngMen.Rows[fila - 1].Cells[2].Value = "Empresa";
+            DgvEngMen.Rows[fila - 1].Cells[3].Value = "0.00";
+        }
+
+        private void BtnElimIng_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show($"{DgvIngMen.Rows.Count}");
+            EliminarIngreso();
+        }
+
+        private void EliminarIngreso()
+        {
+            try
+            {
+                int indice = DgvIngMen.CurrentRow.Index;
+                DgvIngMen.Rows.RemoveAt(indice);
+                MessageBox.Show("La fila fue eliminada correctamente","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se pudo eliminar el ingreso de la lista \n{ex.Message}", "Algo salio mal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void EliminarEgreso()
+        {
+            try
+            {
+                int indice = DgvEngMen.CurrentRow.Index;
+                DgvEngMen.Rows.RemoveAt(indice);
+                MessageBox.Show("La fila fue eliminada correctamente", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se pudo eliminar el egreso de la lista \n{ex.Message}", "Algo salio mal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnPrueba_Click(object sender, EventArgs e)
+        {
+            List<string> datos = new List<string>();
+            List<SubClases.Egreso> egresos = new List<SubClases.Egreso>();
+            List<SubClases.Ingreso> ingresos = new List<SubClases.Ingreso>();
+            foreach (var item in listaCuentas)
+            {
+                datos.Add(item.NomCuenta);
+                datos.Add(item.Valor.ToString());
+                datos.Add(item.tipo.ToString());
+            }
+
+
+            //comprobacion de valores para ingresos
+            foreach (DataGridViewRow item in DgvIngMen.Rows)
+            {
+                // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
+                if (item.IsNewRow) continue;
+
+                // 2. Obtener valores de las celdas (manejando posibles nulos)
+                var val0 = item.Cells[0].Value?.ToString();
+                var val1 = item.Cells[1].Value?.ToString();
+                var val2 = item.Cells[2].Value?.ToString();
+                var val3 = item.Cells[3].Value?.ToString();
+                var val4 = item.Cells[4].Value?.ToString();
+               
+
+                // 3. Comprobaciones de validación
+                bool esInt1Valido = int.TryParse(val1, out _);
+                bool esString1Valido = !string.IsNullOrWhiteSpace(val0);
+                bool esDecimal1Valido = decimal.TryParse(val2, out _);
+                bool esDecimal2Valido = decimal.TryParse(val3, out _);
+                bool esDecimal3Valido = decimal.TryParse(val4, out _);
+
+                // 4. Solo si todo es válido, se agregan a la lista
+                if (esInt1Valido && esString1Valido && esDecimal1Valido && esDecimal2Valido && esDecimal3Valido)
+                {
+                    SubClases.Ingreso temp = new SubClases.Ingreso();
+                    temp.Producto = val0;
+                    temp.Cantidad = int.Parse(val1);
+                    temp.Costo = decimal.Parse(val2);
+                    temp.Venta = decimal.Parse(val3);
+                        temp.Ganacia = decimal.Parse(val4);
+                    ingresos.Add(temp);
+                    
+                }
+                else
+                {
+                    MessageBox.Show($"La fila {item.Index} de ingresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+
+            //Comprobacion de valores para egresos
+
+            foreach (DataGridViewRow item in DgvEngMen.Rows)
+            {
+                // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
+                if (item.IsNewRow) continue;
+
+                // 2. Obtener valores de las celdas (manejando posibles nulos)
+                var valE0 = item.Cells[0].Value?.ToString();
+                var valE1 = item.Cells[1].Value?.ToString();
+                var valE2 = item.Cells[2].Value?.ToString();
+                var valE3 = item.Cells[3].Value?.ToString();
+               
+
+                // 3. Comprobaciones de validación
+                bool esIntValido = int.TryParse(valE1, out _);
+                bool esString1Valido = !string.IsNullOrWhiteSpace(valE0);
+                bool esString2Valido = !string.IsNullOrWhiteSpace(valE2);
+                bool esDecimalValido = decimal.TryParse(valE3, out _);
+
+                // 4. Solo si todo es válido, se agregan a la lista
+                if (esIntValido && esString1Valido && esString2Valido && esDecimalValido)
+                {
+                    SubClases.Egreso TempE = new SubClases.Egreso();
+                    TempE.Detalle = valE0;
+                    TempE.Cantidad = int.Parse(valE1);
+                    TempE.Empresa = valE2;
+                    TempE.Cuota_men = decimal.Parse(valE3);
+                    egresos.Add(TempE);
+                }
+                else
+                {
+                    MessageBox.Show($"La fila {item.Index} de egresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+            }
+            if ((sol.IngresoEstadoFinan(listaCuentas, "1") && sol.IngresoMen(ingresos, "1") && sol.EgresoMen(egresos, "1")))
+            {
+                MessageBox.Show("Correcto", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Stop);
+            }
+            else
+            {
+                MessageBox.Show("Incorrecto", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+            }
         }
     }
 }

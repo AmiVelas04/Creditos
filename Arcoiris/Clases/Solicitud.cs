@@ -59,6 +59,26 @@ namespace Arcoiris.Clases
             return true;
         }
 
+        private bool Consulta_tipo2(MySqlCommand comando)
+        {
+            conect.iniciar();
+            comando.Connection = conect.conn;
+            try
+            {
+                conect.conn.Open();
+                comando.ExecuteNonQuery();
+                conect.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                conect.conn.Close();
+                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion {ex.Message}");
+                
+                return false;
+            }
+            return true;
+        }
+
         #endregion
         #region "Datos Solicitud"
 
@@ -439,7 +459,6 @@ namespace Arcoiris.Clases
             }
         }
 
-
         private bool asigna_credito(string soli, int credito)
         {
             string consulta_asignacre;
@@ -645,6 +664,191 @@ namespace Arcoiris.Clases
                               $"WHERE sfia.Id_sol ={sol}";
             return buscar(consulta);
         }
+
+
+        #region Solicitud etapa2
+        private int id_EstadoFin()
+        {
+            string consulta;
+            consulta = "SELECT max(id_estfin) FROM estadofin";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                return int.Parse(datos.Rows[0][0].ToString());
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        private int id_IngresoMensual()
+        {
+            string consulta;
+            consulta = "SELECT max(id_ingmen) FROM ingresocli";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                return int.Parse(datos.Rows[0][0].ToString());
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        private int id_EgresoMensual()
+        {
+            string consulta;
+            consulta = "SELECT max(id_egrmen) FROM egresocli";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            if (datos.Rows[0][0] != DBNull.Value)
+            {
+                return int.Parse(datos.Rows[0][0].ToString());
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public bool IngresoEstadoFinan(List<Formularios.SubClases.Cuenta> datos,string sol)
+        {
+            if (datos == null || !datos.Any()) return false;
+            bool respuesta = false;
+            int id = id_EstadoFin();
+            string consulta = $"Insert into estadofin(Id_estfin,cuenta,valor,tipo) values(?id_estfin,?cuenta,?valor,?tipo)";
+            MySqlCommand com1 = new MySqlCommand();
+            com1.CommandText = consulta;
+            com1.CommandType = CommandType.Text;
+
+            com1.Parameters.Add("?id_estfin", MySqlDbType.Int32);
+            com1.Parameters.Add("?cuenta", MySqlDbType.VarChar);
+            com1.Parameters.Add("?valor", MySqlDbType.VarChar);
+            com1.Parameters.Add("?tipo", MySqlDbType.Bit);
+
+            foreach (var item in datos)
+            {
+                id++;
+                com1.Parameters["?id_estfin"].Value = id;
+                com1.Parameters["?cuenta"].Value = item.NomCuenta;
+                com1.Parameters["?valor"].Value = item.Valor;
+                com1.Parameters["?tipo"].Value = item.tipo;
+                List<string> ValorAsoc = new List<string> {id.ToString() ,sol};
+                respuesta= (Consulta_tipo2(com1) && AsocEstadoSoli(ValorAsoc));
+                if (!respuesta) return false;
+            }
+            return respuesta;
+        }
+
+        public bool AsocEstadoSoli(List<string> datos)
+        {
+            string consulta = $"Insert into estfin_sol(Id_estfin,id_sol) values(?id_estfin,?id_sol)";
+            MySqlCommand com1 = new MySqlCommand();
+            com1.CommandText = consulta;
+            com1.Parameters.Add("?id_estfin", MySqlDbType.Int32).Value =int.Parse(datos[0]);
+            com1.Parameters.Add("?id_Sol", MySqlDbType.Int32).Value = datos[1];
+            com1.CommandType = CommandType.Text;
+            return Consulta_tipo2(com1);
+        }
+
+        public bool IngresoMen(List<Formularios.SubClases.Ingreso> datos,string sol)
+        {
+            bool respuesta = false;
+            string consulta = $"Insert into ingresocli(Id_ingmen,cantidad,producto,costo,venta,ganancia) values(?id_ingmen,?cantidad,?producto,?costo,?venta,?ganancia)";
+            int id = id_IngresoMensual();
+            MySqlCommand com1 = new MySqlCommand();
+            com1.CommandText = consulta;
+            com1.CommandType = CommandType.Text;
+
+            com1.Parameters.Add("?id_ingmen", MySqlDbType.Int32);
+            com1.Parameters.Add("?cantidad", MySqlDbType.Int32);
+            com1.Parameters.Add("?producto", MySqlDbType.VarChar);
+            com1.Parameters.Add("?costo", MySqlDbType.Decimal);
+            com1.Parameters.Add("?venta", MySqlDbType.Decimal);
+            com1.Parameters.Add("?ganancia", MySqlDbType.Decimal);
+
+
+            foreach (var item in datos)
+            {
+                id++;
+                com1.Parameters["?id_ingmen"].Value = id;
+                com1.Parameters["?cantidad"].Value = item.Cantidad;
+                com1.Parameters["?producto"].Value = item.Producto;
+                com1.Parameters["?costo"].Value = item.Costo;
+                com1.Parameters["?venta"].Value = item.Venta;
+                com1.Parameters["?ganancia"].Value = item.Ganacia;
+               
+                List<string> ValorAsoc = new List<string> { id.ToString(), sol };
+                respuesta =(Consulta_tipo2(com1) && IngresoSoli(ValorAsoc));
+                if (respuesta == false)
+                {
+                    return false;
+                }
+            }
+            return respuesta;
+        }
+        public bool IngresoSoli(List<string> datos)
+        {
+            string consulta = $"Insert into ingreso_sol(Id_ingmen,id_sol) values(?id_ingmen,?id_sol)";
+            MySqlCommand com1 = new MySqlCommand();
+            com1.CommandText = consulta;
+            com1.Parameters.Add("?id_ingmen", MySqlDbType.Int32).Value = (datos[0]);
+            com1.Parameters.Add("?id_Sol", MySqlDbType.Int32).Value = datos[1];
+            com1.CommandType = CommandType.Text;
+            return Consulta_tipo2(com1);
+        }
+
+        public bool EgresoMen(List<Formularios.SubClases.Egreso> datos, string sol)
+        {
+            bool respuesta = false;
+            string consulta = $"Insert into egresocli(Id_egrMen,cantidad,detalle,empresa,cuota_men) values(?id_egrmen,?cantidad,?detalle,?empresa,?cuota_men)";
+            int id = id_EgresoMensual();
+            MySqlCommand com1 = new MySqlCommand();
+            com1.CommandText = consulta;
+            com1.CommandType = CommandType.Text;
+
+            com1.Parameters.Add("?id_egrmen", MySqlDbType.Int32);
+            com1.Parameters.Add("?cantidad", MySqlDbType.Int32);
+            com1.Parameters.Add("?detalle", MySqlDbType.VarChar);
+            com1.Parameters.Add("?empresa", MySqlDbType.VarChar);
+            com1.Parameters.Add("?cuota_men", MySqlDbType.Decimal);
+
+            foreach (var item in datos)
+            {
+               
+                id++;
+                com1.Parameters["?id_egrmen"].Value = id;
+                com1.Parameters["?cantidad"].Value = item.Cantidad;
+                com1.Parameters["?detalle"].Value = item.Detalle;
+                com1.Parameters["?empresa"].Value = item.Empresa;
+                com1.Parameters["?cuota_men"].Value = item.Cuota_men;
+                
+                List<string> ValorAsoc = new List<string> { id.ToString(), sol };
+                respuesta = (Consulta_tipo2(com1) && EgresoSoli(ValorAsoc));
+                if (respuesta == false) return false;
+            }
+            return respuesta;
+        }
+
+
+        public bool EgresoSoli(List<string> datos)
+        {
+            string consulta = $"Insert into egreso_sol(id_egrmen,id_sol) values(?id_egrmen,?id_sol)";
+            MySqlCommand com1 = new MySqlCommand();
+            com1.CommandText = consulta;
+            com1.Parameters.Add("?id_egrmen", MySqlDbType.Int32).Value = int.Parse(datos[0]);
+            com1.Parameters.Add("?id_sol", MySqlDbType.Int32).Value = int.Parse(datos[1]);
+            com1.CommandType = CommandType.Text;
+            return Consulta_tipo2(com1);
+        }
+
+
+
+        #endregion
 
     }
 }

@@ -40,12 +40,12 @@
             this.BtnCliente = new System.Windows.Forms.Button();
             this.BtnSolicitud = new System.Windows.Forms.Button();
             this.PanelSup = new System.Windows.Forms.Panel();
+            this.LblVer = new System.Windows.Forms.Label();
             this.LbUsuario = new System.Windows.Forms.Label();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.BtnMinimizar = new System.Windows.Forms.Button();
             this.PanelCentral = new System.Windows.Forms.Panel();
-            this.LblVer = new System.Windows.Forms.Label();
             this.PanelLat.SuspendLayout();
             this.PanelSup.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -66,7 +66,7 @@
             this.PanelLat.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelLat.Location = new System.Drawing.Point(0, 0);
             this.PanelLat.Name = "PanelLat";
-            this.PanelLat.Size = new System.Drawing.Size(135, 600);
+            this.PanelLat.Size = new System.Drawing.Size(135, 850);
             this.PanelLat.TabIndex = 0;
             this.PanelLat.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelLat_Paint);
             // 
@@ -236,9 +236,19 @@
             this.PanelSup.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelSup.Location = new System.Drawing.Point(135, 0);
             this.PanelSup.Name = "PanelSup";
-            this.PanelSup.Size = new System.Drawing.Size(894, 51);
+            this.PanelSup.Size = new System.Drawing.Size(1165, 51);
             this.PanelSup.TabIndex = 1;
             this.PanelSup.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelSup_MouseDown);
+            // 
+            // LblVer
+            // 
+            this.LblVer.AutoSize = true;
+            this.LblVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblVer.Location = new System.Drawing.Point(568, 20);
+            this.LblVer.Name = "LblVer";
+            this.LblVer.Size = new System.Drawing.Size(51, 16);
+            this.LblVer.TabIndex = 2;
+            this.LblVer.Text = "label1";
             // 
             // LbUsuario
             // 
@@ -256,7 +266,7 @@
             this.flowLayoutPanel1.Controls.Add(this.BtnMinimizar);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(754, 0);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(1025, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(140, 51);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -293,24 +303,14 @@
             this.PanelCentral.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelCentral.Location = new System.Drawing.Point(135, 51);
             this.PanelCentral.Name = "PanelCentral";
-            this.PanelCentral.Size = new System.Drawing.Size(894, 549);
+            this.PanelCentral.Size = new System.Drawing.Size(1165, 799);
             this.PanelCentral.TabIndex = 2;
-            // 
-            // LblVer
-            // 
-            this.LblVer.AutoSize = true;
-            this.LblVer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblVer.Location = new System.Drawing.Point(568, 20);
-            this.LblVer.Name = "LblVer";
-            this.LblVer.Size = new System.Drawing.Size(51, 16);
-            this.LblVer.TabIndex = 2;
-            this.LblVer.Text = "label1";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 600);
+            this.ClientSize = new System.Drawing.Size(1300, 850);
             this.Controls.Add(this.PanelCentral);
             this.Controls.Add(this.PanelSup);
             this.Controls.Add(this.PanelLat);

@@ -32,6 +32,24 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TCTSoli = new System.Windows.Forms.TabControl();
+            this.TabCred = new System.Windows.Forms.TabPage();
+            this.GbxCredData = new System.Windows.Forms.GroupBox();
+            this.NupPlazo = new System.Windows.Forms.NumericUpDown();
+            this.LblPlazo = new System.Windows.Forms.Label();
+            this.CboTipo = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.TxtNoSol = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.CboAsesor = new System.Windows.Forms.ComboBox();
+            this.TxtConcept = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtMonto = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.CboCliente = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TabGarant = new System.Windows.Forms.TabPage();
             this.GbxGarantia = new System.Windows.Forms.GroupBox();
             this.BtnAddGarant = new System.Windows.Forms.Button();
             this.GbxDataFiad = new System.Windows.Forms.GroupBox();
@@ -63,23 +81,36 @@
             this.RdbGarant2 = new System.Windows.Forms.RadioButton();
             this.RdbGarant1 = new System.Windows.Forms.RadioButton();
             this.RdbSnGaran = new System.Windows.Forms.RadioButton();
-            this.NupPlazo = new System.Windows.Forms.NumericUpDown();
-            this.LblPlazo = new System.Windows.Forms.Label();
-            this.CboTipo = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.LblPatri = new System.Windows.Forms.TabPage();
+            this.TxtPatri = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.GbxResumenEgr = new System.Windows.Forms.GroupBox();
+            this.BtnElimEgr = new System.Windows.Forms.Button();
+            this.DgvEngMen = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GbxResumenIn = new System.Windows.Forms.GroupBox();
+            this.BtnElimIng = new System.Windows.Forms.Button();
+            this.DgvIngMen = new System.Windows.Forms.DataGridView();
+            this.Prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ganancia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GbxEstadoF = new System.Windows.Forms.GroupBox();
+            this.LstPasiv = new System.Windows.Forms.ListBox();
+            this.BtnElimCuenta = new System.Windows.Forms.Button();
+            this.LstCuentas = new System.Windows.Forms.ListBox();
+            this.BtnAddCuenta = new System.Windows.Forms.Button();
+            this.NudMontoCuenta = new System.Windows.Forms.NumericUpDown();
+            this.label36 = new System.Windows.Forms.Label();
+            this.CboCuenta = new System.Windows.Forms.ComboBox();
+            this.label35 = new System.Windows.Forms.Label();
+            this.LblFecha = new System.Windows.Forms.Label();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
-            this.LblFecha = new System.Windows.Forms.Label();
-            this.TxtNoSol = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.CboAsesor = new System.Windows.Forms.ComboBox();
-            this.TxtConcept = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtMonto = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.CboCliente = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.Tab2 = new System.Windows.Forms.TabPage();
             this.GBXPrestamo = new System.Windows.Forms.GroupBox();
             this.CboTipo2 = new System.Windows.Forms.ComboBox();
@@ -132,14 +163,26 @@
             this.label28 = new System.Windows.Forms.Label();
             this.CboCliInv = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.BtnPrueba = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.TCTSoli.SuspendLayout();
+            this.TabCred.SuspendLayout();
+            this.GbxCredData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
+            this.TabGarant.SuspendLayout();
             this.GbxGarantia.SuspendLayout();
             this.GbxDataFiad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).BeginInit();
             this.GbxGarantias.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
+            this.LblPatri.SuspendLayout();
+            this.GbxResumenEgr.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvEngMen)).BeginInit();
+            this.GbxResumenIn.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvIngMen)).BeginInit();
+            this.GbxEstadoF.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudMontoCuenta)).BeginInit();
             this.Tab2.SuspendLayout();
             this.GBXPrestamo.SuspendLayout();
             this.Tab3.SuspendLayout();
@@ -158,7 +201,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(894, 549);
+            this.tabControl1.Size = new System.Drawing.Size(1165, 799);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
@@ -170,7 +213,7 @@
             this.Tab1.Margin = new System.Windows.Forms.Padding(4);
             this.Tab1.Name = "Tab1";
             this.Tab1.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab1.Size = new System.Drawing.Size(886, 519);
+            this.Tab1.Size = new System.Drawing.Size(1157, 769);
             this.Tab1.TabIndex = 0;
             this.Tab1.Text = "Solicitud de Prestamo";
             this.Tab1.UseVisualStyleBackColor = true;
@@ -178,33 +221,221 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Khaki;
-            this.groupBox1.Controls.Add(this.GbxGarantia);
-            this.groupBox1.Controls.Add(this.NupPlazo);
-            this.groupBox1.Controls.Add(this.LblPlazo);
-            this.groupBox1.Controls.Add(this.CboTipo);
-            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.TCTSoli);
+            this.groupBox1.Controls.Add(this.LblFecha);
             this.groupBox1.Controls.Add(this.BtnLimpiar);
             this.groupBox1.Controls.Add(this.BtnAgregar);
-            this.groupBox1.Controls.Add(this.LblFecha);
-            this.groupBox1.Controls.Add(this.TxtNoSol);
-            this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.CboAsesor);
-            this.groupBox1.Controls.Add(this.TxtConcept);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.TxtMonto);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.CboCliente);
-            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(4, 4);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(878, 511);
+            this.groupBox1.Size = new System.Drawing.Size(1149, 761);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Solicitud de credito";
+            // 
+            // TCTSoli
+            // 
+            this.TCTSoli.Controls.Add(this.TabCred);
+            this.TCTSoli.Controls.Add(this.TabGarant);
+            this.TCTSoli.Controls.Add(this.LblPatri);
+            this.TCTSoli.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TCTSoli.Location = new System.Drawing.Point(4, 22);
+            this.TCTSoli.Name = "TCTSoli";
+            this.TCTSoli.SelectedIndex = 0;
+            this.TCTSoli.Size = new System.Drawing.Size(1141, 680);
+            this.TCTSoli.TabIndex = 26;
+            // 
+            // TabCred
+            // 
+            this.TabCred.Controls.Add(this.GbxCredData);
+            this.TabCred.Location = new System.Drawing.Point(4, 26);
+            this.TabCred.Name = "TabCred";
+            this.TabCred.Padding = new System.Windows.Forms.Padding(3);
+            this.TabCred.Size = new System.Drawing.Size(1133, 650);
+            this.TabCred.TabIndex = 0;
+            this.TabCred.Text = "Credito";
+            this.TabCred.UseVisualStyleBackColor = true;
+            // 
+            // GbxCredData
+            // 
+            this.GbxCredData.Controls.Add(this.NupPlazo);
+            this.GbxCredData.Controls.Add(this.LblPlazo);
+            this.GbxCredData.Controls.Add(this.CboTipo);
+            this.GbxCredData.Controls.Add(this.label6);
+            this.GbxCredData.Controls.Add(this.TxtNoSol);
+            this.GbxCredData.Controls.Add(this.label5);
+            this.GbxCredData.Controls.Add(this.CboAsesor);
+            this.GbxCredData.Controls.Add(this.TxtConcept);
+            this.GbxCredData.Controls.Add(this.label4);
+            this.GbxCredData.Controls.Add(this.label3);
+            this.GbxCredData.Controls.Add(this.TxtMonto);
+            this.GbxCredData.Controls.Add(this.label2);
+            this.GbxCredData.Controls.Add(this.CboCliente);
+            this.GbxCredData.Controls.Add(this.label1);
+            this.GbxCredData.Location = new System.Drawing.Point(7, 6);
+            this.GbxCredData.Name = "GbxCredData";
+            this.GbxCredData.Size = new System.Drawing.Size(849, 377);
+            this.GbxCredData.TabIndex = 50;
+            this.GbxCredData.TabStop = false;
+            this.GbxCredData.Text = "Datos del credito";
+            // 
+            // NupPlazo
+            // 
+            this.NupPlazo.Location = new System.Drawing.Point(164, 180);
+            this.NupPlazo.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NupPlazo.Name = "NupPlazo";
+            this.NupPlazo.Size = new System.Drawing.Size(57, 25);
+            this.NupPlazo.TabIndex = 63;
+            this.NupPlazo.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NupPlazo.Visible = false;
+            // 
+            // LblPlazo
+            // 
+            this.LblPlazo.AutoSize = true;
+            this.LblPlazo.Location = new System.Drawing.Point(17, 182);
+            this.LblPlazo.Name = "LblPlazo";
+            this.LblPlazo.Size = new System.Drawing.Size(89, 17);
+            this.LblPlazo.TabIndex = 62;
+            this.LblPlazo.Text = "Plazo(Meses)";
+            this.LblPlazo.Visible = false;
+            // 
+            // CboTipo
+            // 
+            this.CboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboTipo.FormattingEnabled = true;
+            this.CboTipo.Location = new System.Drawing.Point(657, 140);
+            this.CboTipo.Margin = new System.Windows.Forms.Padding(4);
+            this.CboTipo.Name = "CboTipo";
+            this.CboTipo.Size = new System.Drawing.Size(176, 25);
+            this.CboTipo.TabIndex = 61;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(542, 143);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 17);
+            this.label6.TabIndex = 60;
+            this.label6.Text = "Tipo Prestamo";
+            // 
+            // TxtNoSol
+            // 
+            this.TxtNoSol.Enabled = false;
+            this.TxtNoSol.Location = new System.Drawing.Point(164, 39);
+            this.TxtNoSol.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtNoSol.Name = "TxtNoSol";
+            this.TxtNoSol.Size = new System.Drawing.Size(115, 25);
+            this.TxtNoSol.TabIndex = 59;
+            this.TxtNoSol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(17, 43);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(88, 17);
+            this.label5.TabIndex = 58;
+            this.label5.Text = "Solicitud No.";
+            // 
+            // CboAsesor
+            // 
+            this.CboAsesor.FormattingEnabled = true;
+            this.CboAsesor.Location = new System.Drawing.Point(164, 111);
+            this.CboAsesor.Margin = new System.Windows.Forms.Padding(4);
+            this.CboAsesor.Name = "CboAsesor";
+            this.CboAsesor.Size = new System.Drawing.Size(214, 25);
+            this.CboAsesor.TabIndex = 57;
+            // 
+            // TxtConcept
+            // 
+            this.TxtConcept.Location = new System.Drawing.Point(657, 57);
+            this.TxtConcept.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtConcept.MaxLength = 255;
+            this.TxtConcept.Multiline = true;
+            this.TxtConcept.Name = "TxtConcept";
+            this.TxtConcept.Size = new System.Drawing.Size(176, 71);
+            this.TxtConcept.TabIndex = 56;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(542, 68);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 17);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "Concepto";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(17, 111);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 17);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "Asesor";
+            // 
+            // TxtMonto
+            // 
+            this.TxtMonto.Location = new System.Drawing.Point(164, 144);
+            this.TxtMonto.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtMonto.Name = "TxtMonto";
+            this.TxtMonto.Size = new System.Drawing.Size(132, 25);
+            this.TxtMonto.TabIndex = 53;
+            this.TxtMonto.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(17, 148);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 17);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "Monto solicitado";
+            // 
+            // CboCliente
+            // 
+            this.CboCliente.FormattingEnabled = true;
+            this.CboCliente.Location = new System.Drawing.Point(164, 78);
+            this.CboCliente.Margin = new System.Windows.Forms.Padding(4);
+            this.CboCliente.Name = "CboCliente";
+            this.CboCliente.Size = new System.Drawing.Size(214, 25);
+            this.CboCliente.TabIndex = 51;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(17, 82);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(126, 17);
+            this.label1.TabIndex = 50;
+            this.label1.Text = "Nombre del cliente";
+            // 
+            // TabGarant
+            // 
+            this.TabGarant.Controls.Add(this.GbxGarantia);
+            this.TabGarant.Location = new System.Drawing.Point(4, 26);
+            this.TabGarant.Name = "TabGarant";
+            this.TabGarant.Padding = new System.Windows.Forms.Padding(3);
+            this.TabGarant.Size = new System.Drawing.Size(1133, 650);
+            this.TabGarant.TabIndex = 1;
+            this.TabGarant.Text = "Garantia";
+            this.TabGarant.UseVisualStyleBackColor = true;
             // 
             // GbxGarantia
             // 
@@ -212,10 +443,10 @@
             this.GbxGarantia.Controls.Add(this.GbxDataFiad);
             this.GbxGarantia.Controls.Add(this.CboTipPresta);
             this.GbxGarantia.Controls.Add(this.GbxGarantias);
-            this.GbxGarantia.Location = new System.Drawing.Point(7, 250);
+            this.GbxGarantia.Location = new System.Drawing.Point(3, 68);
             this.GbxGarantia.Name = "GbxGarantia";
             this.GbxGarantia.Size = new System.Drawing.Size(864, 202);
-            this.GbxGarantia.TabIndex = 24;
+            this.GbxGarantia.TabIndex = 25;
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
             // 
@@ -227,7 +458,6 @@
             this.BtnAddGarant.Size = new System.Drawing.Size(75, 41);
             this.BtnAddGarant.TabIndex = 43;
             this.BtnAddGarant.UseVisualStyleBackColor = true;
-            this.BtnAddGarant.Click += new System.EventHandler(this.BtnAddGarant_Click);
             // 
             // GbxDataFiad
             // 
@@ -264,7 +494,6 @@
             this.CboCliNom.Name = "CboCliNom";
             this.CboCliNom.Size = new System.Drawing.Size(219, 25);
             this.CboCliNom.TabIndex = 52;
-            this.CboCliNom.SelectedValueChanged += new System.EventHandler(this.CboCliNom_SelectedValueChanged);
             // 
             // TxtProfFiad
             // 
@@ -412,7 +641,6 @@
             this.CboDepaF.Name = "CboDepaF";
             this.CboDepaF.Size = new System.Drawing.Size(138, 23);
             this.CboDepaF.TabIndex = 39;
-            this.CboDepaF.SelectedValueChanged += new System.EventHandler(this.CboDepaF_SelectedValueChanged);
             // 
             // label21
             // 
@@ -465,7 +693,6 @@
             this.CboTipPresta.Name = "CboTipPresta";
             this.CboTipPresta.Size = new System.Drawing.Size(180, 25);
             this.CboTipPresta.TabIndex = 41;
-            this.CboTipPresta.SelectedIndexChanged += new System.EventHandler(this.CboTipPresta_SelectedIndexChanged);
             // 
             // GbxGarantias
             // 
@@ -505,7 +732,6 @@
             this.ChkFirma2.TabIndex = 6;
             this.ChkFirma2.Text = "Firma Fiador";
             this.ChkFirma2.UseVisualStyleBackColor = true;
-            this.ChkFirma2.CheckedChanged += new System.EventHandler(this.ChkFirma2_CheckedChanged);
             // 
             // ChkTesti1
             // 
@@ -527,7 +753,6 @@
             this.ChkFirma1.TabIndex = 5;
             this.ChkFirma1.Text = "Firma Deudor";
             this.ChkFirma1.UseVisualStyleBackColor = true;
-            this.ChkFirma1.CheckedChanged += new System.EventHandler(this.ChkFirma1_CheckedChanged);
             // 
             // RdbGarant3
             // 
@@ -538,7 +763,6 @@
             this.RdbGarant3.TabIndex = 4;
             this.RdbGarant3.Text = "Garantia 1y2";
             this.RdbGarant3.UseVisualStyleBackColor = true;
-            this.RdbGarant3.CheckedChanged += new System.EventHandler(this.RdbGarant3_CheckedChanged);
             // 
             // RdbGarant2
             // 
@@ -549,7 +773,6 @@
             this.RdbGarant2.TabIndex = 3;
             this.RdbGarant2.Text = "Garantia 2";
             this.RdbGarant2.UseVisualStyleBackColor = true;
-            this.RdbGarant2.CheckedChanged += new System.EventHandler(this.RdbGarant2_CheckedChanged);
             // 
             // RdbGarant1
             // 
@@ -560,7 +783,6 @@
             this.RdbGarant1.TabIndex = 2;
             this.RdbGarant1.Text = "Garantia 1";
             this.RdbGarant1.UseVisualStyleBackColor = true;
-            this.RdbGarant1.CheckedChanged += new System.EventHandler(this.RdbGarant1_CheckedChanged);
             // 
             // RdbSnGaran
             // 
@@ -573,63 +795,299 @@
             this.RdbSnGaran.TabStop = true;
             this.RdbSnGaran.Text = "Sin Garantia";
             this.RdbSnGaran.UseVisualStyleBackColor = true;
-            this.RdbSnGaran.CheckedChanged += new System.EventHandler(this.RdbSnGaran_CheckedChanged);
             // 
-            // NupPlazo
+            // LblPatri
             // 
-            this.NupPlazo.Location = new System.Drawing.Point(648, 173);
-            this.NupPlazo.Minimum = new decimal(new int[] {
-            1,
+            this.LblPatri.Controls.Add(this.BtnPrueba);
+            this.LblPatri.Controls.Add(this.TxtPatri);
+            this.LblPatri.Controls.Add(this.label37);
+            this.LblPatri.Controls.Add(this.GbxResumenEgr);
+            this.LblPatri.Controls.Add(this.GbxResumenIn);
+            this.LblPatri.Controls.Add(this.GbxEstadoF);
+            this.LblPatri.Location = new System.Drawing.Point(4, 26);
+            this.LblPatri.Name = "LblPatri";
+            this.LblPatri.Size = new System.Drawing.Size(1133, 650);
+            this.LblPatri.TabIndex = 2;
+            this.LblPatri.Text = "Estado Financiero";
+            this.LblPatri.UseVisualStyleBackColor = true;
+            // 
+            // TxtPatri
+            // 
+            this.TxtPatri.Location = new System.Drawing.Point(15, 585);
+            this.TxtPatri.Name = "TxtPatri";
+            this.TxtPatri.ReadOnly = true;
+            this.TxtPatri.Size = new System.Drawing.Size(186, 25);
+            this.TxtPatri.TabIndex = 4;
+            this.TxtPatri.Text = "0";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(23, 565);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(77, 17);
+            this.label37.TabIndex = 3;
+            this.label37.Text = "Patrimonio";
+            // 
+            // GbxResumenEgr
+            // 
+            this.GbxResumenEgr.Controls.Add(this.BtnElimEgr);
+            this.GbxResumenEgr.Controls.Add(this.DgvEngMen);
+            this.GbxResumenEgr.Location = new System.Drawing.Point(739, 3);
+            this.GbxResumenEgr.Name = "GbxResumenEgr";
+            this.GbxResumenEgr.Size = new System.Drawing.Size(362, 549);
+            this.GbxResumenEgr.TabIndex = 2;
+            this.GbxResumenEgr.TabStop = false;
+            this.GbxResumenEgr.Text = "Resumen Egresos Mensuales";
+            // 
+            // BtnElimEgr
+            // 
+            this.BtnElimEgr.Image = ((System.Drawing.Image)(resources.GetObject("BtnElimEgr.Image")));
+            this.BtnElimEgr.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnElimEgr.Location = new System.Drawing.Point(6, 55);
+            this.BtnElimEgr.Name = "BtnElimEgr";
+            this.BtnElimEgr.Size = new System.Drawing.Size(144, 35);
+            this.BtnElimEgr.TabIndex = 9;
+            this.BtnElimEgr.Text = "Eliminar";
+            this.BtnElimEgr.UseVisualStyleBackColor = true;
+            // 
+            // DgvEngMen
+            // 
+            this.DgvEngMen.AllowUserToResizeColumns = false;
+            this.DgvEngMen.AllowUserToResizeRows = false;
+            this.DgvEngMen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvEngMen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvEngMen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn5});
+            this.DgvEngMen.Location = new System.Drawing.Point(6, 107);
+            this.DgvEngMen.Name = "DgvEngMen";
+            this.DgvEngMen.Size = new System.Drawing.Size(350, 430);
+            this.DgvEngMen.TabIndex = 1;
+            this.DgvEngMen.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvEngMen_RowsAdded);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 77;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 88;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 85;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // GbxResumenIn
+            // 
+            this.GbxResumenIn.Controls.Add(this.BtnElimIng);
+            this.GbxResumenIn.Controls.Add(this.DgvIngMen);
+            this.GbxResumenIn.Location = new System.Drawing.Point(371, 3);
+            this.GbxResumenIn.Name = "GbxResumenIn";
+            this.GbxResumenIn.Size = new System.Drawing.Size(362, 549);
+            this.GbxResumenIn.TabIndex = 1;
+            this.GbxResumenIn.TabStop = false;
+            this.GbxResumenIn.Text = "Resumen Ingresos Mensuales";
+            // 
+            // BtnElimIng
+            // 
+            this.BtnElimIng.Image = ((System.Drawing.Image)(resources.GetObject("BtnElimIng.Image")));
+            this.BtnElimIng.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnElimIng.Location = new System.Drawing.Point(6, 54);
+            this.BtnElimIng.Name = "BtnElimIng";
+            this.BtnElimIng.Size = new System.Drawing.Size(144, 35);
+            this.BtnElimIng.TabIndex = 8;
+            this.BtnElimIng.Text = "Eliminar";
+            this.BtnElimIng.UseVisualStyleBackColor = true;
+            this.BtnElimIng.Click += new System.EventHandler(this.BtnElimIng_Click);
+            // 
+            // DgvIngMen
+            // 
+            this.DgvIngMen.AllowUserToResizeColumns = false;
+            this.DgvIngMen.AllowUserToResizeRows = false;
+            this.DgvIngMen.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.DgvIngMen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvIngMen.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Prod,
+            this.Cant,
+            this.Costo,
+            this.Venta,
+            this.Ganancia});
+            this.DgvIngMen.Location = new System.Drawing.Point(6, 107);
+            this.DgvIngMen.Name = "DgvIngMen";
+            this.DgvIngMen.Size = new System.Drawing.Size(350, 430);
+            this.DgvIngMen.TabIndex = 0;
+            this.DgvIngMen.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvIngMen_RowsAdded);
+            // 
+            // Prod
+            // 
+            this.Prod.HeaderText = "Producto";
+            this.Prod.Name = "Prod";
+            this.Prod.Width = 89;
+            // 
+            // Cant
+            // 
+            this.Cant.HeaderText = "Cantidad";
+            this.Cant.Name = "Cant";
+            this.Cant.Width = 88;
+            // 
+            // Costo
+            // 
+            this.Costo.HeaderText = "Costo";
+            this.Costo.Name = "Costo";
+            this.Costo.Width = 68;
+            // 
+            // Venta
+            // 
+            this.Venta.HeaderText = "Venta";
+            this.Venta.Name = "Venta";
+            this.Venta.Width = 68;
+            // 
+            // Ganancia
+            // 
+            this.Ganancia.HeaderText = "Ganancia";
+            this.Ganancia.Name = "Ganancia";
+            this.Ganancia.Width = 89;
+            // 
+            // GbxEstadoF
+            // 
+            this.GbxEstadoF.Controls.Add(this.LstPasiv);
+            this.GbxEstadoF.Controls.Add(this.BtnElimCuenta);
+            this.GbxEstadoF.Controls.Add(this.LstCuentas);
+            this.GbxEstadoF.Controls.Add(this.BtnAddCuenta);
+            this.GbxEstadoF.Controls.Add(this.NudMontoCuenta);
+            this.GbxEstadoF.Controls.Add(this.label36);
+            this.GbxEstadoF.Controls.Add(this.CboCuenta);
+            this.GbxEstadoF.Controls.Add(this.label35);
+            this.GbxEstadoF.Location = new System.Drawing.Point(3, 3);
+            this.GbxEstadoF.Name = "GbxEstadoF";
+            this.GbxEstadoF.Size = new System.Drawing.Size(362, 549);
+            this.GbxEstadoF.TabIndex = 0;
+            this.GbxEstadoF.TabStop = false;
+            this.GbxEstadoF.Text = "Estado Financiero";
+            // 
+            // LstPasiv
+            // 
+            this.LstPasiv.FormattingEnabled = true;
+            this.LstPasiv.ItemHeight = 17;
+            this.LstPasiv.Location = new System.Drawing.Point(187, 159);
+            this.LstPasiv.Name = "LstPasiv";
+            this.LstPasiv.Size = new System.Drawing.Size(154, 378);
+            this.LstPasiv.TabIndex = 7;
+            // 
+            // BtnElimCuenta
+            // 
+            this.BtnElimCuenta.Image = ((System.Drawing.Image)(resources.GetObject("BtnElimCuenta.Image")));
+            this.BtnElimCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnElimCuenta.Location = new System.Drawing.Point(197, 107);
+            this.BtnElimCuenta.Name = "BtnElimCuenta";
+            this.BtnElimCuenta.Size = new System.Drawing.Size(144, 35);
+            this.BtnElimCuenta.TabIndex = 6;
+            this.BtnElimCuenta.Text = "Eliminar";
+            this.BtnElimCuenta.UseVisualStyleBackColor = true;
+            this.BtnElimCuenta.Click += new System.EventHandler(this.BtnElimCuenta_Click);
+            // 
+            // LstCuentas
+            // 
+            this.LstCuentas.FormattingEnabled = true;
+            this.LstCuentas.ItemHeight = 17;
+            this.LstCuentas.Location = new System.Drawing.Point(12, 159);
+            this.LstCuentas.Name = "LstCuentas";
+            this.LstCuentas.Size = new System.Drawing.Size(154, 378);
+            this.LstCuentas.TabIndex = 5;
+            // 
+            // BtnAddCuenta
+            // 
+            this.BtnAddCuenta.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddCuenta.Image")));
+            this.BtnAddCuenta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAddCuenta.Location = new System.Drawing.Point(23, 107);
+            this.BtnAddCuenta.Name = "BtnAddCuenta";
+            this.BtnAddCuenta.Size = new System.Drawing.Size(155, 35);
+            this.BtnAddCuenta.TabIndex = 4;
+            this.BtnAddCuenta.Text = "Agregar";
+            this.BtnAddCuenta.UseVisualStyleBackColor = true;
+            this.BtnAddCuenta.Click += new System.EventHandler(this.BtnAddCuenta_Click);
+            // 
+            // NudMontoCuenta
+            // 
+            this.NudMontoCuenta.DecimalPlaces = 2;
+            this.NudMontoCuenta.Location = new System.Drawing.Point(240, 61);
+            this.NudMontoCuenta.Maximum = new decimal(new int[] {
+            100000000,
             0,
             0,
             0});
-            this.NupPlazo.Name = "NupPlazo";
-            this.NupPlazo.Size = new System.Drawing.Size(57, 25);
-            this.NupPlazo.TabIndex = 21;
-            this.NupPlazo.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.NupPlazo.Visible = false;
+            this.NudMontoCuenta.Name = "NudMontoCuenta";
+            this.NudMontoCuenta.Size = new System.Drawing.Size(101, 25);
+            this.NudMontoCuenta.TabIndex = 3;
             // 
-            // LblPlazo
+            // label36
             // 
-            this.LblPlazo.AutoSize = true;
-            this.LblPlazo.Location = new System.Drawing.Point(533, 175);
-            this.LblPlazo.Name = "LblPlazo";
-            this.LblPlazo.Size = new System.Drawing.Size(89, 17);
-            this.LblPlazo.TabIndex = 20;
-            this.LblPlazo.Text = "Plazo(Meses)";
-            this.LblPlazo.Visible = false;
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(248, 41);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(49, 17);
+            this.label36.TabIndex = 2;
+            this.label36.Text = "Monto";
             // 
-            // CboTipo
+            // CboCuenta
             // 
-            this.CboTipo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboTipo.FormattingEnabled = true;
-            this.CboTipo.Location = new System.Drawing.Point(648, 129);
-            this.CboTipo.Margin = new System.Windows.Forms.Padding(4);
-            this.CboTipo.Name = "CboTipo";
-            this.CboTipo.Size = new System.Drawing.Size(176, 25);
-            this.CboTipo.TabIndex = 17;
-            this.CboTipo.SelectedIndexChanged += new System.EventHandler(this.CboPlaz_SelectedIndexChanged);
+            this.CboCuenta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboCuenta.FormattingEnabled = true;
+            this.CboCuenta.Items.AddRange(new object[] {
+            "Caja",
+            "Bancos",
+            "Inventario Negocio",
+            "Bienes Inmuebles",
+            "Bienes inmobiliarios",
+            "Vehiculos",
+            "Deudores",
+            "Prestamos"});
+            this.CboCuenta.Location = new System.Drawing.Point(6, 61);
+            this.CboCuenta.Name = "CboCuenta";
+            this.CboCuenta.Size = new System.Drawing.Size(192, 25);
+            this.CboCuenta.TabIndex = 1;
             // 
-            // label6
+            // label35
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(533, 132);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 17);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Tipo Prestamo";
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(16, 41);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(51, 17);
+            this.label35.TabIndex = 0;
+            this.label35.Text = "Cuenta";
+            // 
+            // LblFecha
+            // 
+            this.LblFecha.AutoSize = true;
+            this.LblFecha.Location = new System.Drawing.Point(552, 723);
+            this.LblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblFecha.Name = "LblFecha";
+            this.LblFecha.Size = new System.Drawing.Size(43, 17);
+            this.LblFecha.TabIndex = 25;
+            this.LblFecha.Text = "Fecha";
+            this.LblFecha.Visible = false;
             // 
             // BtnLimpiar
             // 
             this.BtnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimpiar.Image")));
             this.BtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnLimpiar.Location = new System.Drawing.Point(290, 459);
+            this.BtnLimpiar.Location = new System.Drawing.Point(286, 709);
             this.BtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(180, 44);
@@ -644,7 +1102,7 @@
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
             this.BtnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAgregar.Location = new System.Drawing.Point(15, 459);
+            this.BtnAgregar.Location = new System.Drawing.Point(11, 709);
             this.BtnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(180, 44);
@@ -654,115 +1112,6 @@
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
-            // LblFecha
-            // 
-            this.LblFecha.AutoSize = true;
-            this.LblFecha.Location = new System.Drawing.Point(98, 205);
-            this.LblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblFecha.Name = "LblFecha";
-            this.LblFecha.Size = new System.Drawing.Size(43, 17);
-            this.LblFecha.TabIndex = 13;
-            this.LblFecha.Text = "Fecha";
-            this.LblFecha.Visible = false;
-            // 
-            // TxtNoSol
-            // 
-            this.TxtNoSol.Enabled = false;
-            this.TxtNoSol.Location = new System.Drawing.Point(175, 47);
-            this.TxtNoSol.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtNoSol.Name = "TxtNoSol";
-            this.TxtNoSol.Size = new System.Drawing.Size(115, 25);
-            this.TxtNoSol.TabIndex = 12;
-            this.TxtNoSol.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(28, 51);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Solicitud No.";
-            // 
-            // CboAsesor
-            // 
-            this.CboAsesor.FormattingEnabled = true;
-            this.CboAsesor.Location = new System.Drawing.Point(175, 119);
-            this.CboAsesor.Margin = new System.Windows.Forms.Padding(4);
-            this.CboAsesor.Name = "CboAsesor";
-            this.CboAsesor.Size = new System.Drawing.Size(214, 25);
-            this.CboAsesor.TabIndex = 10;
-            // 
-            // TxtConcept
-            // 
-            this.TxtConcept.Location = new System.Drawing.Point(648, 36);
-            this.TxtConcept.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtConcept.MaxLength = 255;
-            this.TxtConcept.Multiline = true;
-            this.TxtConcept.Name = "TxtConcept";
-            this.TxtConcept.Size = new System.Drawing.Size(176, 71);
-            this.TxtConcept.TabIndex = 7;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(533, 47);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 17);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Concepto";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(28, 119);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 17);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Asesor";
-            // 
-            // TxtMonto
-            // 
-            this.TxtMonto.Location = new System.Drawing.Point(175, 152);
-            this.TxtMonto.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtMonto.Name = "TxtMonto";
-            this.TxtMonto.Size = new System.Drawing.Size(132, 25);
-            this.TxtMonto.TabIndex = 3;
-            this.TxtMonto.Text = "0";
-            this.TxtMonto.TextChanged += new System.EventHandler(this.TxtMonto_TextChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 156);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 17);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Monto solicitado";
-            // 
-            // CboCliente
-            // 
-            this.CboCliente.FormattingEnabled = true;
-            this.CboCliente.Location = new System.Drawing.Point(175, 86);
-            this.CboCliente.Margin = new System.Windows.Forms.Padding(4);
-            this.CboCliente.Name = "CboCliente";
-            this.CboCliente.Size = new System.Drawing.Size(214, 25);
-            this.CboCliente.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 90);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 17);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre del cliente";
-            // 
             // Tab2
             // 
             this.Tab2.BackColor = System.Drawing.Color.Khaki;
@@ -771,7 +1120,7 @@
             this.Tab2.Margin = new System.Windows.Forms.Padding(4);
             this.Tab2.Name = "Tab2";
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab2.Size = new System.Drawing.Size(886, 519);
+            this.Tab2.Size = new System.Drawing.Size(1157, 769);
             this.Tab2.TabIndex = 1;
             this.Tab2.Text = "Revisar solicitud de Prestamo";
             // 
@@ -813,7 +1162,7 @@
             this.GBXPrestamo.Margin = new System.Windows.Forms.Padding(4);
             this.GBXPrestamo.Name = "GBXPrestamo";
             this.GBXPrestamo.Padding = new System.Windows.Forms.Padding(4);
-            this.GBXPrestamo.Size = new System.Drawing.Size(878, 511);
+            this.GBXPrestamo.Size = new System.Drawing.Size(1149, 761);
             this.GBXPrestamo.TabIndex = 2;
             this.GBXPrestamo.TabStop = false;
             this.GBXPrestamo.Text = "Prestamo";
@@ -1136,7 +1485,7 @@
             this.Tab3.Controls.Add(this.GbxInv);
             this.Tab3.Location = new System.Drawing.Point(4, 26);
             this.Tab3.Name = "Tab3";
-            this.Tab3.Size = new System.Drawing.Size(886, 519);
+            this.Tab3.Size = new System.Drawing.Size(1157, 769);
             this.Tab3.TabIndex = 2;
             this.Tab3.Text = "Ingreso de inversiones";
             // 
@@ -1163,7 +1512,7 @@
             this.GbxInv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxInv.Location = new System.Drawing.Point(0, 0);
             this.GbxInv.Name = "GbxInv";
-            this.GbxInv.Size = new System.Drawing.Size(886, 519);
+            this.GbxInv.Size = new System.Drawing.Size(1157, 769);
             this.GbxInv.TabIndex = 0;
             this.GbxInv.TabStop = false;
             this.GbxInv.Text = "Datos de la inversion";
@@ -1356,12 +1705,22 @@
             this.label27.TabIndex = 0;
             this.label27.Text = "Cliente";
             // 
+            // BtnPrueba
+            // 
+            this.BtnPrueba.Location = new System.Drawing.Point(273, 594);
+            this.BtnPrueba.Name = "BtnPrueba";
+            this.BtnPrueba.Size = new System.Drawing.Size(193, 37);
+            this.BtnPrueba.TabIndex = 5;
+            this.BtnPrueba.Text = "Ingreso estado fin prueba";
+            this.BtnPrueba.UseVisualStyleBackColor = true;
+            this.BtnPrueba.Click += new System.EventHandler(this.BtnPrueba_Click);
+            // 
             // Solicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(894, 549);
+            this.ClientSize = new System.Drawing.Size(1165, 799);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1375,13 +1734,27 @@
             this.Tab1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.TCTSoli.ResumeLayout(false);
+            this.TabCred.ResumeLayout(false);
+            this.GbxCredData.ResumeLayout(false);
+            this.GbxCredData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).EndInit();
+            this.TabGarant.ResumeLayout(false);
             this.GbxGarantia.ResumeLayout(false);
             this.GbxDataFiad.ResumeLayout(false);
             this.GbxDataFiad.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudEdadF)).EndInit();
             this.GbxGarantias.ResumeLayout(false);
             this.GbxGarantias.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).EndInit();
+            this.LblPatri.ResumeLayout(false);
+            this.LblPatri.PerformLayout();
+            this.GbxResumenEgr.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvEngMen)).EndInit();
+            this.GbxResumenIn.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvIngMen)).EndInit();
+            this.GbxEstadoF.ResumeLayout(false);
+            this.GbxEstadoF.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.NudMontoCuenta)).EndInit();
             this.Tab2.ResumeLayout(false);
             this.GBXPrestamo.ResumeLayout(false);
             this.GBXPrestamo.PerformLayout();
@@ -1399,22 +1772,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Tab1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label LblFecha;
-        private System.Windows.Forms.TextBox TxtNoSol;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox CboAsesor;
-        private System.Windows.Forms.TextBox TxtConcept;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TxtMonto;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox CboCliente;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabPage Tab2;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.ComboBox CboTipo;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.GroupBox GBXPrestamo;
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BntCambiar;
@@ -1437,8 +1797,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox TxtNomSoli;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label LblPlazo;
-        private System.Windows.Forms.NumericUpDown NupPlazo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DateTimePicker DtpConc;
         private System.Windows.Forms.Label LblCodCli;
@@ -1449,37 +1807,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button BtnCancelar;
         private System.Windows.Forms.ComboBox CboTipo2;
-        private System.Windows.Forms.GroupBox GbxGarantia;
-        private System.Windows.Forms.GroupBox GbxGarantias;
-        private System.Windows.Forms.RadioButton RdbSnGaran;
-        private System.Windows.Forms.ComboBox CboTipPresta;
-        private System.Windows.Forms.RadioButton RdbGarant1;
-        private System.Windows.Forms.CheckBox ChkFirma2;
-        private System.Windows.Forms.CheckBox ChkFirma1;
-        private System.Windows.Forms.RadioButton RdbGarant3;
-        private System.Windows.Forms.RadioButton RdbGarant2;
-        private System.Windows.Forms.CheckBox ChkTesti2;
-        private System.Windows.Forms.CheckBox ChkTesti1;
-        private System.Windows.Forms.GroupBox GbxDataFiad;
-        private System.Windows.Forms.TextBox TxtDpiF;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox CboMuniF;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.ComboBox CboDepaF;
-        private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TextBox TxtDirF;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.ComboBox CboGeneF;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.NumericUpDown NudEdadF;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox TxtEstCivilF;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox TxtProfFiad;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Button BtnAddGarant;
-        private System.Windows.Forms.ComboBox CboCliNom;
         private System.Windows.Forms.TabPage Tab3;
         private System.Windows.Forms.GroupBox GbxInv;
         private System.Windows.Forms.TextBox TxtOrigenMonto;
@@ -1499,5 +1826,83 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ComboBox CboTutor;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.TabControl TCTSoli;
+        private System.Windows.Forms.TabPage TabCred;
+        private System.Windows.Forms.GroupBox GbxCredData;
+        private System.Windows.Forms.NumericUpDown NupPlazo;
+        private System.Windows.Forms.Label LblPlazo;
+        private System.Windows.Forms.ComboBox CboTipo;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox TxtNoSol;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox CboAsesor;
+        private System.Windows.Forms.TextBox TxtConcept;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox TxtMonto;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox CboCliente;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage TabGarant;
+        private System.Windows.Forms.GroupBox GbxGarantia;
+        private System.Windows.Forms.Button BtnAddGarant;
+        private System.Windows.Forms.GroupBox GbxDataFiad;
+        private System.Windows.Forms.ComboBox CboCliNom;
+        private System.Windows.Forms.TextBox TxtProfFiad;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox TxtEstCivilF;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox TxtDirF;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.ComboBox CboGeneF;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.NumericUpDown NudEdadF;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox CboMuniF;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox CboDepaF;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox TxtDpiF;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox CboTipPresta;
+        private System.Windows.Forms.GroupBox GbxGarantias;
+        private System.Windows.Forms.CheckBox ChkTesti2;
+        private System.Windows.Forms.CheckBox ChkFirma2;
+        private System.Windows.Forms.CheckBox ChkTesti1;
+        private System.Windows.Forms.CheckBox ChkFirma1;
+        private System.Windows.Forms.RadioButton RdbGarant3;
+        private System.Windows.Forms.RadioButton RdbGarant2;
+        private System.Windows.Forms.RadioButton RdbGarant1;
+        private System.Windows.Forms.RadioButton RdbSnGaran;
+        private System.Windows.Forms.TabPage LblPatri;
+        private System.Windows.Forms.Label LblFecha;
+        private System.Windows.Forms.GroupBox GbxResumenEgr;
+        private System.Windows.Forms.GroupBox GbxResumenIn;
+        private System.Windows.Forms.GroupBox GbxEstadoF;
+        private System.Windows.Forms.ListBox LstCuentas;
+        private System.Windows.Forms.Button BtnAddCuenta;
+        private System.Windows.Forms.NumericUpDown NudMontoCuenta;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.ComboBox CboCuenta;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Button BtnElimCuenta;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox TxtPatri;
+        private System.Windows.Forms.ListBox LstPasiv;
+        private System.Windows.Forms.DataGridView DgvIngMen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Prod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Venta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ganancia;
+        private System.Windows.Forms.DataGridView DgvEngMen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Button BtnElimEgr;
+        private System.Windows.Forms.Button BtnElimIng;
+        private System.Windows.Forms.Button BtnPrueba;
     }
 }

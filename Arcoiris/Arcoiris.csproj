@@ -320,6 +320,9 @@
     <Compile Include="Formularios\Solicitud.Designer.cs">
       <DependentUpon>Solicitud.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\SubClases\Cuenta.cs" />
+    <Compile Include="Formularios\SubClases\Egreso.cs" />
+    <Compile Include="Formularios\SubClases\Ingreso.cs" />
     <Compile Include="Formularios\SubForms\EditGarant.cs">
       <SubType>Form</SubType>
     </Compile>
