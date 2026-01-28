@@ -60,7 +60,7 @@ namespace Arcoiris.Formularios
             string Nom_cony = TxtNomcony.Text;
             string Ape_cony = TxtApecony.Text;
             string telcon = TxtConTel.Text;
-            string refe = TxtRef.Text;
+         //   string refe = TxtRef.Text;
          string fiad = "";// TxtFiador.Text;
             string tfiad = "";// TxtFtel.Text;
             string dfiad = "";// TxtFdir.Text;
@@ -70,7 +70,7 @@ namespace Arcoiris.Formularios
            
             
             string fecha = DateTime.Today.ToString("yyyy/MM/dd");
-            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe, fiad, tfiad, dfiad, fecha,depa,muni,edad,genero, Nacionalidad };
+            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, "", fiad, tfiad, dfiad, fecha,depa,muni,edad,genero, Nacionalidad };
             //   int idcli;
             //   idcli = clien.agregar_cliente(datos);
             if (clien.agregar_cliente(datos))
@@ -109,7 +109,7 @@ namespace Arcoiris.Formularios
             TxtNomBus.Clear();
             TxtNomcony.Clear();
             TxtProf.Clear();
-            TxtRef.Clear();
+            //TxtRef.Clear();
             TxtCTel1.Clear();
             CboScivil.SelectedIndex = 0;
         }
@@ -137,7 +137,7 @@ namespace Arcoiris.Formularios
             TxtNomcony.Clear();
             TxtApecony.Clear();
             TxtConTel.Clear();
-            TxtRef.Clear();
+           // TxtRef.Clear();
            // TxtFiador.Clear();
             //TxtFdir.Clear();
             //TxtFtel.Clear();
@@ -388,6 +388,65 @@ namespace Arcoiris.Formularios
                 CboCivil2.Items.Add("Casada");
                 CboCivil2.Items.Add("Viuda");
                 CboCivil2.Sorted = true;
+            }
+        }
+
+        private void BtnAddRef_Click(object sender, EventArgs e)
+        {
+            // 1. Limpieza de espacios para evitar entradas de solo espacios
+            string nombre = TxtNomRef.Text.Trim();
+            string parentesco = TxtParentRef.Text.Trim();
+            string telefono = TxtTelRef.Text.Trim();
+
+            // 2. Validaciones de campos obligatorios
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(parentesco) || string.IsNullOrEmpty(telefono))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución
+            }
+
+            // 3. Validación específica para el teléfono (Exactamente 8 caracteres)
+            // Nota: Puedes agregar '&& telefono.All(char.IsDigit)' si solo quieres números
+            if (telefono.Length != 8)
+            {
+                MessageBox.Show("El teléfono debe tener exactamente 8 caracteres.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 4. Validación de límite de filas
+            if (DgvRefs.Rows.Count < 3)
+            {
+                DgvRefs.Rows.Add("0", nombre, parentesco, telefono);
+
+                // Opcional: Limpiar los campos después de agregar
+                TxtNomRef.Clear();
+                TxtParentRef.Clear();
+                TxtTelRef.Clear();
+                TxtNomRef.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No es posible agregar más de 3 referencias", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnDelRef_Click(object sender, EventArgs e)
+        {
+            if (DgvRefs.CurrentRow != null && !DgvRefs.CurrentRow.IsNewRow)
+            {
+                // Confirmación opcional para evitar borrados accidentales
+                DialogResult respuesta = MessageBox.Show("¿Está seguro de eliminar esta referencia?",
+                    "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (respuesta == DialogResult.Yes)
+                {
+                    DgvRefs.Rows.RemoveAt(DgvRefs.CurrentRow.Index);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione una fila válida para eliminar.",
+                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

@@ -322,6 +322,8 @@
     </Compile>
     <Compile Include="Formularios\SubClases\Cuenta.cs" />
     <Compile Include="Formularios\SubClases\Egreso.cs" />
+    <Compile Include="Formularios\SubClases\Fiador.cs" />
+    <Compile Include="Formularios\SubClases\Garantia.cs" />
     <Compile Include="Formularios\SubClases\Ingreso.cs" />
     <Compile Include="Formularios\SubForms\EditGarant.cs">
       <SubType>Form</SubType>
@@ -381,6 +383,10 @@
     <Compile Include="Reportes\CajaRep.Designer.cs">
       <DependentUpon>CajaRep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ClasesRepo\DatosSolicitud.cs" />
+    <Compile Include="Reportes\ClasesRepo\FiadorSolicitud.cs" />
+    <Compile Include="Reportes\ClasesRepo\GarantiaSolicitud.cs" />
+    <Compile Include="Reportes\ClasesRepo\ReferenciaSolicitud.cs" />
     <Compile Include="Reportes\Colocacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -537,6 +543,12 @@
     </Compile>
     <Compile Include="Reportes\Retiro.Designer.cs">
       <DependentUpon>Retiro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes\SolicitudNuevo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\SolicitudNuevo.Designer.cs">
+      <DependentUpon>SolicitudNuevo.cs</DependentUpon>
     </Compile>
     <Compile Include="Reportes\TablaDet.cs" />
     <Compile Include="Reportes\TablaEnc.cs" />
@@ -724,6 +736,13 @@
     <EmbeddedResource Include="Reportes\Retiro.resx">
       <DependentUpon>Retiro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\SolicitudNuevo.rdlc" />
+    <EmbeddedResource Include="Reportes\SolicitudNuevo.resx">
+      <DependentUpon>SolicitudNuevo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\SoliFiador.rdlc" />
+    <EmbeddedResource Include="Reportes\SoliGarant.rdlc" />
+    <EmbeddedResource Include="Reportes\SoliRefe.rdlc" />
     <EmbeddedResource Include="Reportes\TablaP.rdlc" />
     <EmbeddedResource Include="Reportes\Tablapagos.resx">
       <DependentUpon>Tablapagos.cs</DependentUpon>
@@ -737,6 +756,10 @@
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE2.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosE3.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ClasesRepo.DatosSolicitud.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ClasesRepo.FiadorSolicitud.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ClasesRepo.GarantiaSolicitud.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.ClasesRepo.ReferenciaSolicitud.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ColocDeta.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ColocEnc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.ComisionDet.datasource" />

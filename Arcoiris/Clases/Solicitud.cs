@@ -79,6 +79,26 @@ namespace Arcoiris.Clases
             return true;
         }
 
+        private bool Consulta_General_tipo2(MySqlCommand comando)
+        {
+            conect.iniciar();
+            comando.Connection = conect.conn;
+            try
+            {
+                conect.conn.Open();
+                comando.ExecuteNonQuery();
+                conect.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                conect.conn.Close();
+                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.Message}/n{ex.InnerException.Message}");
+
+                return false;
+            }
+            return true;
+        }
+
         #endregion
         #region "Datos Solicitud"
 
@@ -850,6 +870,103 @@ namespace Arcoiris.Clases
 
         #endregion
 
+
+        #region Solicitud Garantia
+
+
+
+        public bool ingresoGarantia(List<Formularios.SubClases.Garantia> datos, string sol)
+        {
+            string consulta;
+            int id = id_garant() + 1;
+            int soli = int.Parse(sol);
+            consulta = $"Insert into Garantia(Id_garant,tipo,id_prop,Valuacion,detalle,info,estado,recepcion,entrega) " +
+               $"values(?Id_garant,?Tipo,?Valuacion,?detalle,?info,?estado,?recepcion,?entrega)";
+            // MessageBox.Show(consulta);
+            MySqlCommand com = new MySqlCommand();
+
+            com.CommandText = consulta;
+            com.CommandType = CommandType.Text;
+
+            com.Parameters.Add("?Id_garant", MySqlDbType.Int32);
+            com.Parameters.Add("?Id_prop", MySqlDbType.Int32);
+            com.Parameters.Add("?tipo", MySqlDbType.VarChar);
+            com.Parameters.Add("?Valuacion", MySqlDbType.Decimal);
+            com.Parameters.Add("?detalle", MySqlDbType.VarChar);
+            com.Parameters.Add("?info", MySqlDbType.VarChar);
+            com.Parameters.Add("?Estado", MySqlDbType.VarChar);
+            com.Parameters.Add("?recepcion", MySqlDbType.DateTime);
+            com.Parameters.Add("?entrega", MySqlDbType.DateTime);
+            bool respo = false;
+            foreach (Formularios.SubClases.Garantia item in datos)
+            {
+                com.Parameters["?Id_garant"].Value = id;
+                com.Parameters["?id_prop"].Value = item.Propietario;
+                com.Parameters["?tipo"].Value = item.Tipo;
+                com.Parameters["?Valuacion"].Value = item.Valor;
+                com.Parameters["?detalle"].Value =  item.Detalle;
+                com.Parameters["?info"].Value = item.Informacion;
+                com.Parameters["?Estado"].Value = "En posesion";
+                com.Parameters["?recepcion"].Value = DateTime.Now;
+                com.Parameters["?entrega"].Value = DateTime.Now;
+                respo = Consulta_General_tipo2(com) && asignaGarant(id,soli);
+                if (respo == false) return false;
+            }
+            return respo;
+        }
+
+        public bool asignaGarant(int gar, int sol)
+        {
+            string consulta;
+            consulta = $"insert into sol_garant(id_solicitud,id_gartant) "+
+                "values (?sol,?gar)";
+
+            // MessageBox.Show(consulta);
+            MySqlCommand com = new MySqlCommand();
+
+            com.CommandText = consulta;
+            com.CommandType = CommandType.Text;
+            com.Parameters.Add("?sol", MySqlDbType.Int32);
+            com.Parameters.Add("?gar", MySqlDbType.Int32);
+
+            com.Parameters["?sol"].Value = sol;
+            com.Parameters["?gar"].Value = gar;
+
+            return Consulta_General_tipo2(com);
+        }
+        #endregion
+
+        #region Solicitud Fiador
+
+        public bool ingresoFiador(List<Formularios.SubClases.Fiador> datos)
+        {
+            string consulta;
+            consulta = $"Insert into sol_fiad(id_sol,id_fia,Othering) " +
+               $"values(?sol,?Tipo,?fiad,?other)";
+            // MessageBox.Show(consulta);
+            MySqlCommand com = new MySqlCommand();
+
+            com.CommandText = consulta;
+            com.CommandType = CommandType.Text;
+
+            com.Parameters.Add("?Id_garant", MySqlDbType.Int32);
+            com.Parameters.Add("?Id_prop", MySqlDbType.Int32);
+            com.Parameters.Add("?Valuacion", MySqlDbType.VarChar);
+      
+            bool respo = false;
+            foreach (Formularios.SubClases.Fiador item in datos)
+            {
+
+                com.Parameters["?sol"].Value = item.idSol;
+                com.Parameters["?fiad"].Value = item.IdFiad;
+                com.Parameters["?other"].Value = item.OtherIng;
+              respo=  Consulta_General_tipo2(com);
+                    if (respo == false) return false;
+            }
+            return respo;
+        }
+
+        #endregion
     }
 }
 

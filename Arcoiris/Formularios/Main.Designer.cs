@@ -53,7 +53,7 @@
             // 
             // PanelLat
             // 
-            this.PanelLat.BackColor = System.Drawing.Color.SteelBlue;
+            this.PanelLat.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
             this.PanelLat.Controls.Add(this.BtnInv);
             this.PanelLat.Controls.Add(this.BtnCaja);
             this.PanelLat.Controls.Add(this.BtnAdmin);
@@ -229,11 +229,12 @@
             // 
             // PanelSup
             // 
-            this.PanelSup.BackColor = System.Drawing.Color.Silver;
+            this.PanelSup.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
             this.PanelSup.Controls.Add(this.LblVer);
             this.PanelSup.Controls.Add(this.LbUsuario);
             this.PanelSup.Controls.Add(this.flowLayoutPanel1);
             this.PanelSup.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelSup.ForeColor = System.Drawing.Color.White;
             this.PanelSup.Location = new System.Drawing.Point(135, 0);
             this.PanelSup.Name = "PanelSup";
             this.PanelSup.Size = new System.Drawing.Size(1165, 51);

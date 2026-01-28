@@ -49,6 +49,28 @@ namespace Arcoiris.Clases
 
             }
         }
+
+        private bool Consulta_General_tipo2(MySqlCommand comando)
+        {
+            conect.iniciar();
+            comando.Connection = conect.conn;
+            try
+            {
+                conect.conn.Open();
+                comando.ExecuteNonQuery();
+                conect.conn.Close();
+            }
+            catch (Exception ex)
+            {
+                conect.conn.Close();
+                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.Message}/n{ex.InnerException.Message}");
+
+                return false;
+            }
+            return true;
+        }
+
+
         private int buscarid(string consulta)
         {
             conect.iniciar();
@@ -147,35 +169,64 @@ namespace Arcoiris.Clases
         { 
         string consulta;
             string consultab;
-            consultab = "select count(*) from cliente";
+            consultab = "select max(codigo_cli) from cliente";
             string[] fiddatos = { datos[12], datos[13], datos[14] };
            // int idfid;
           //  idfid=agregarfiador(fiddatos);
             int id=buscarid(consultab)+1;
-             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad,genero,nacionalidad) values({id},'{datos[0]}','{datos[1]}','{datos[2]}','{datos[3]}','{datos[4]}','{datos[5]}','{datos[6]}','{datos[7]}','{datos[8]}','{datos[9]}','{datos[10]}','{datos[11]}','{datos[15]}','{datos[16]}','{datos[17]}',{datos[18]},'{datos[19]}','{datos[20]}')";
+             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad,genero,nacionalidad) " +
+                $"values(?codigo_cli,?nombres,?apellidos,?domicilio,?dpi,?telefono1,?telefono2,?profesion,?estado_civil,?nombre_cony,?apellido_cony,?telefonocon,?referencia,?fecha_ing,?departamento,?municipio,?edad,?genero,?nacionalidad)";
            // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
-            com.Connection = conect .conn ;
+         
             com.CommandText = consulta;
-            com.CommandType = System.Data.CommandType.Text;
-            string[] datosf = { };
-            try
-            {
-                conect.conn.Open();
-                com.ExecuteNonQuery();
-                conect.conn.Close();
-               
-                return true;
-            }
-            catch (Exception ex)
-            {
-                conect.conn.Close();
-                MessageBox.Show(ex.ToString());
-                return false;
+            com.CommandType = CommandType.Text;
 
-            }
-               
-            }
+            com.Parameters.Add("?codigo_cli", MySqlDbType.Int32);
+            com.Parameters.Add("?nombres", MySqlDbType.VarChar);
+            com.Parameters.Add("?apellidos",MySqlDbType.VarChar);
+            com.Parameters.Add("?domicilio", MySqlDbType.VarChar);
+            com.Parameters.Add("?dpi", MySqlDbType.VarChar);
+            com.Parameters.Add("?telefono1", MySqlDbType.VarChar);
+            com.Parameters.Add("?telefono2", MySqlDbType.VarChar);
+            com.Parameters.Add("?profesion", MySqlDbType.VarChar);
+            com.Parameters.Add("?estado_civil", MySqlDbType.VarChar);
+            com.Parameters.Add("?nombre_cony", MySqlDbType.VarChar);
+            com.Parameters.Add("?apellido_cony", MySqlDbType.VarChar);
+            com.Parameters.Add("?telefonocon", MySqlDbType.VarChar);
+            com.Parameters.Add("?referencia", MySqlDbType.VarChar);
+            com.Parameters.Add("?fecha_ing", MySqlDbType.Date);
+            com.Parameters.Add("?departamento", MySqlDbType.VarChar);
+            com.Parameters.Add("?municipio", MySqlDbType.VarChar);
+            com.Parameters.Add("?edad", MySqlDbType.Int32);
+            com.Parameters.Add("?genero", MySqlDbType.VarString);
+            com.Parameters.Add("?nacionalidad", MySqlDbType.VarChar);
+
+
+
+            com.Parameters["?codigo_cli"].Value = id;
+            com.Parameters["?nombres"].Value = datos[0];
+            com.Parameters["?apellidos"].Value = datos[1];
+            com.Parameters["?domicilio"].Value = datos[2];
+            com.Parameters["?dpi"].Value = datos[3];
+            com.Parameters["?telefono1"].Value = datos[4];
+            com.Parameters["?telefono2"].Value = datos[5];
+            com.Parameters["?profesion"].Value = datos[6];
+            com.Parameters["?estado_civil"].Value = datos[7];
+            com.Parameters["?nombre_cony"].Value = datos[8];
+            com.Parameters["?apellido_cony"].Value = datos[9];
+            com.Parameters["??telefonocon"].Value = datos[10];
+            com.Parameters["?referencia"].Value = datos[11];
+            com.Parameters["?fecha_ing"].Value = datos[15];
+            com.Parameters["?departamento"].Value = datos[16];
+            com.Parameters["?municipio"].Value = datos[17];
+            com.Parameters["?edad"].Value = datos[18];
+            com.Parameters["?genero"].Value = datos[19];
+            com.Parameters["?nacionalidad"].Value = datos[20];
+
+            return Consulta_General_tipo2(com);
+
+        }
 
         //Buscar cliente
 

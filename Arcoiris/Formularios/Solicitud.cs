@@ -47,18 +47,18 @@ namespace Arcoiris.Formularios
         {
             DataTable listadocli = new DataTable();
             listadocli = cli.AllCli();
-            CboCliNom.DataSource = listadocli;
+            CboFiadNom.DataSource = listadocli;
             AllCli = listadocli;
-            CboCliNom.DisplayMember = "Nombre";
-            CboCliNom.ValueMember = "Codigo_Cli";
+            CboFiadNom.DisplayMember = "Nombre";
+            CboFiadNom.ValueMember = "Codigo_Cli";
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
             foreach (DataRow row in listadocli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
             }
-            CboCliNom.AutoCompleteCustomSource = coleccion;
-            CboCliNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            CboCliNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboFiadNom.AutoCompleteCustomSource = coleccion;
+            CboFiadNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboFiadNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
         }
 
@@ -94,6 +94,7 @@ namespace Arcoiris.Formularios
             datoscli = cli.Buscar_nom_cli();
             AllCliInv = cli.AllCli();
             DataTable datos2 = datoscli.Copy();
+            DataTable Propis = datoscli.Copy();
             CboCliente.DataSource = datoscli;
             CboCliente.DisplayMember = "Nombre";
             CboCliente.ValueMember = "Codigo_Cli";
@@ -103,15 +104,22 @@ namespace Arcoiris.Formularios
             CboBenef.DataSource = datos2;
             CboBenef.DisplayMember = "Nombre";
             CboBenef.ValueMember = "Codigo_Cli";
+            CboPropi.DataSource = Propis;
+            CboPropi.DisplayMember = "Nombre";
+            CboPropi.ValueMember = "Codigo_Cli";
+
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
             AutoCompleteStringCollection coleccion2 = new AutoCompleteStringCollection();
             AutoCompleteStringCollection colecTutor = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection colecpropi = new AutoCompleteStringCollection();
+            
 
             foreach (DataRow row in datoscli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
                 coleccion2.Add(row["Nombre"].ToString());
                 colecTutor.Add(row["Nombre"].ToString());
+                colecpropi.Add(row["Nombre"].ToString());
 
             }
             CboCliente.AutoCompleteCustomSource = coleccion;
@@ -126,6 +134,9 @@ namespace Arcoiris.Formularios
             CboTutor.AutoCompleteCustomSource = colecTutor;
             CboTutor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboTutor.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboPropi.AutoCompleteCustomSource = colecpropi;
+            CboPropi.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboPropi.AutoCompleteSource = AutoCompleteSource.CustomSource;
             CboTutor.DataSource = AllCliInv;
             CboTutor.DisplayMember = "Nombre";
             CboTutor.ValueMember = "Codigo_cli";
@@ -170,9 +181,7 @@ namespace Arcoiris.Formularios
             CboTipo.SelectedIndex = 0;
 
 
-            cargarDepas();
-
-            CboGeneF.SelectedIndex = 0;
+        
 
         }
 
@@ -198,19 +207,21 @@ namespace Arcoiris.Formularios
         }
         private void añadir()
         {
-            datosgaran.NomFiador = CboCliNom.Text;
-            datosgaran.DeparFiador = CboDepaF.Text;
-            datosgaran.MuniFiador = CboMuniF.Text;
-            datosgaran.ProfFiador = TxtProfFiad.Text;
-            datosgaran.EdadFiador = NudEdadF.Value.ToString();
-            datosgaran.EstCivFiador = TxtEstCivilF.Text;
-            datosgaran.CuiFiador = TxtDpiF.Text;
-            datosgaran.FiadorDomi = TxtDirF.Text;
+            datosgaran.NomFiador = CboFiadNom.Text;
+            //datosgaran.DeparFiador = CboDepaF.Text;
+            //datosgaran.MuniFiador = CboMuniF.Text;
+            //datosgaran.ProfFiador = TxtProfFiad.Text;
+            //datosgaran.EdadFiador = NudEdadF.Value.ToString();
+            //datosgaran.EstCivFiador = TxtEstCivilF.Text;
+            //datosgaran.CuiFiador = TxtDpiF.Text;
+            //datosgaran.FiadorDomi = TxtDirF.Text;
             string asesor = "";
             string cliente = "";
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             string fechaf = fecha.Replace("Fecha de solicitud: ", "");
-            VeriContGar();
+            // VeriContGar();
+            int FilasFiad = DgvFiadorLst.RowCount;
+            int FilasGara = DgvGaranLSt.RowCount;
 
             string Valu = "0", DetaGarantD = datosgaran.GarantDeudor;
             if (CboAsesor.SelectedValue == null)
@@ -272,17 +283,43 @@ namespace Arcoiris.Formularios
             }
 
             string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo, Contratotip.ToString(), Valu, "0", datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador, datosgaran.CuiFiador, datosgaran.FiadorDomi };
-            string[] datos2 = { TxtNoSol.Text, CboCliNom.SelectedValue.ToString() };
+            string[] datos2 = { TxtNoSol.Text, CboFiadNom.SelectedValue.ToString() };
             if (sol.hayasesor(asesor))
             {
+                int FilIngM = DgvIngMen.RowCount;
+                int FilEgrM = DgvEngMen.RowCount;
+               
+
+                if (FilIngM <= 0)
+                {
+                    MessageBox.Show("No existen datos de ingresos mensuales", "Sin datos de ingreso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (FilEgrM <= 0)
+                {
+                    MessageBox.Show("No existen datos de egresos", "Sin datos de ingreso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                if (FilasFiad <= 0)
+                {
+                    if (DialogResult.No == MessageBox.Show("No se ingresara ningun fiador\nDesea continuar?", "Continuar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    { return; }
+                }
+                if (FilasGara<=0)
+                {
+                    if (DialogResult.No == MessageBox.Show("No se ingresara ninguna garantia\nDesea continuar?", "Continuar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    { return; }
+                }
+                
+
+
                 if (sol.agregar_soli(datos))
                 {
-                    bool addfiad = false;
-                    if (CboTipPresta.SelectedIndex == 1)
-                    { addfiad = sol.addFiad(datos2); }
-                    else { addfiad = true; }
-
-                    if (addfiad)
+                    //bool addfiad = false;
+                    //if (CboTipPresta.SelectedIndex == 1)
+                    bool respo1 = IngresoFiador(), respo2 =  IngresoGarant(), respo3=soliPt2();
+                    
+                    if (respo1 && respo2 && respo3)
                     {
                         MessageBox.Show("Solicitud ingresada correctamente", "Ingresada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         limpiar();
@@ -294,7 +331,7 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("Error al ingresar solicitud");
+                    MessageBox.Show("Error al ingresar solicitud","Algo salio mal!",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
             }
             else
@@ -930,33 +967,25 @@ namespace Arcoiris.Formularios
 
         private void CboTipoGarant_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string TipPresta;
-            TipPresta = CboTipPresta.SelectedIndex.ToString();
-            if (TipPresta.Equals("1"))
-            {
+            //string TipPresta;
+            //TipPresta = CboTipPresta.SelectedIndex.ToString();
+            //if (TipPresta.Equals("1"))
+            //{
 
-            }
-            else
-            {
-                label21.Visible = false;
-                label22.Visible = false;
-                label23.Visible = false;
-                //  TxtTipEsc.Visible = false;
-                //  DtpEsc.Visible = false;
-                //  TxtUbicacion.Visible = false;
-                // GbxGarantias.Visible = false;
-            }
+            //}
+            //else
+            //{
+            //    label21.Visible = false;
+            //    label22.Visible = false;
+            //    label23.Visible = false;
+            //    //  TxtTipEsc.Visible = false;
+            //    //  DtpEsc.Visible = false;
+            //    //  TxtUbicacion.Visible = false;
+            //    // GbxGarantias.Visible = false;
+            //}
         }
 
-        private void VeriContGar()
-        {
-            // if (TxtNomF.Text == "") TxtNomF.Text = "S/N";
-            if (TxtDpiF.Text == "") TxtDpiF.Text = "S/D";
-            if (TxtEstCivilF.Text == "") TxtEstCivilF.Text = "S/E";
-            if (TxtDirF.Text == "") TxtDirF.Text = "S/D";
-
-
-        }
+    
 
         private void RdbSnGaran_CheckedChanged(object sender, EventArgs e)
         {
@@ -970,123 +999,31 @@ namespace Arcoiris.Formularios
 
         private void CboTipPresta_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CboTipPresta.SelectedIndex == 0)
-            {
-                MostrarPrestaIndi();
-                GbxDataFiad.Visible = false;
-                llenarCajasSin();
-                EstabContrato();
-            }
-            else
-            {
-                MostrarPrestaFiad();
-                GbxDataFiad.Visible = true;
-                EstabContrato();
+            //if (CboTipPresta.SelectedIndex == 0)
+            //{
+            //    MostrarPrestaIndi();
+            //    GbxDataFiad.Visible = false;
+            //    llenarCajasSin();
+            //    EstabContrato();
+            //}
+            //else
+            //{
+            //    MostrarPrestaFiad();
+            //    GbxDataFiad.Visible = true;
+            //    EstabContrato();
 
 
-            }
+            //}
         }
 
-        private void MostrarPrestaIndi()
-        {
-            RdbSnGaran.Checked = true;
-            RdbGarant2.Visible = false;
-            RdbGarant3.Visible = false;
-            ChkFirma2.Visible = false;
-            RdbGarant1.Text = "Garantia";
-            ChkTesti2.Checked = false;
+        
 
-        }
+    
 
-        private void MostrarPrestaFiad()
-        {
-            RdbSnGaran.Checked = true;
-            RdbGarant2.Visible = true;
-            RdbGarant3.Visible = true;
-            ChkFirma2.Visible = true;
-            RdbGarant1.Text = "Garantia Deudor";
-            RdbGarant1.Text = "Garantia Fiador";
-            RdbGarant3.Text = "Garantia Total";
-
-        }
-
-        private void ChkFirma1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (CboTipPresta.SelectedIndex == 0)
-            {
-                ChkFirma2.Checked = false;
-                if (ChkFirma1.Checked)
-                {
-                    ChkTesti1.Checked = false;
-                }
-                else
-                {
-                    ChkTesti1.Checked = true;
-                }
-                EstabContrato();
-            }
-            else
-            {
-                if (ChkFirma1.Checked && ChkFirma2.Checked)
-                {
-                    ChkTesti1.Checked = false;
-                    ChkTesti2.Checked = false;
-                }
-                else if (ChkFirma1.Checked || ChkFirma2.Checked)
-                {
-                    ChkTesti1.Checked = true;
-                    ChkTesti2.Checked = false;
-                }
-                else
-                {
-                    ChkTesti1.Checked = true;
-                    ChkTesti2.Checked = true;
-                }
-                EstabContrato();
-            }
-
-        }
-
-        private void ChkFirma2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (ChkFirma1.Checked && ChkFirma2.Checked)
-            {
-                ChkTesti1.Checked = false;
-                ChkTesti2.Checked = false;
-            }
-            else if (ChkFirma1.Checked || ChkFirma2.Checked)
-            {
-                ChkTesti1.Checked = true;
-                ChkTesti2.Checked = false;
-            }
-            else
-            {
-                ChkTesti1.Checked = true;
-                ChkTesti2.Checked = true;
-            }
-        }
-
-        private void cargarDepas()
-        {
-            List<Clases.Modelos.DeparamentoModel> todos = cli.Depar();
-            CboDepaF.DataSource = todos;
-            AllDepas = todos;
-            CboDepaF.DisplayMember = "Nombre";
-            CboDepaF.ValueMember = "Id";
-        }
+       
 
 
-        private void CboDepaF_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (CboDepaF.SelectedValue != null && !CboDepaF.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
-            {
-                string id = CboDepaF.SelectedValue.ToString();
-                CboMuniF.DataSource = cli.Munis(id);
-                AllMunis = cli.Munis(id);
-                CboMuniF.DisplayMember = "Nombre";
-                CboMuniF.ValueMember = "Id";
-            }
-        }
+     
 
         private void BtnAddGarant_Click(object sender, EventArgs e)
         {
@@ -1101,31 +1038,29 @@ namespace Arcoiris.Formularios
 
         private void RdbGarant1_CheckedChanged(object sender, EventArgs e)
         {
-            if (RdbGarant1.Checked)
-            {
-                cantigarant = 1;
-                EstabContrato();
-            }
-;
-
+            //if (RdbGarant1.Checked)
+            //{
+            //    cantigarant = 1;
+            //    EstabContrato();
+            //}
         }
 
         private void RdbGarant2_CheckedChanged(object sender, EventArgs e)
         {
-            if (RdbGarant2.Checked)
-            {
-                cantigarant = 2;
-                EstabContrato();
-            }
+            //if (RdbGarant2.Checked)
+            //{
+            //    cantigarant = 2;
+            //    EstabContrato();
+            //}
         }
 
         private void RdbGarant3_CheckedChanged(object sender, EventArgs e)
         {
-            if (RdbGarant3.Checked)
-            {
-                cantigarant = 3;
-                EstabContrato();
-            }
+            //if (RdbGarant3.Checked)
+            //{
+            //    cantigarant = 3;
+            //    EstabContrato();
+            //}
         }
 
         private void cargarGarant(Reportes.Contratos.ContratoDatos garantis)
@@ -1135,61 +1070,46 @@ namespace Arcoiris.Formularios
 
         private void EstabContrato()
         {
-            if (CboTipPresta.SelectedIndex == 0)
-            {
-                if (RdbSnGaran.Checked && ChkFirma1.Checked == false)
-                {
-                    Contratotip = 1;
-                }
-                else if (RdbGarant1.Checked && ChkFirma1.Checked == true)
-                { Contratotip = 2; }
-                else if (RdbGarant1.Checked && ChkFirma1.Checked == false)
-                { Contratotip = 3; }
-            }
-            else if (CboTipPresta.SelectedIndex == 1)
-            {
-                if (RdbSnGaran.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
-                {
-                    Contratotip = 4;
-                }
-                else if (RdbGarant1.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
-                { Contratotip = 5; }
-                else if (RdbGarant2.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
-                { Contratotip = 6; }
-                else if (RdbSnGaran.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
-                { Contratotip = 7; }
-                else if (RdbGarant1.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
-                { Contratotip = 8; }
-                else if (RdbGarant2.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
-                { Contratotip = 9; }
-                else if (RdbSnGaran.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
-                { Contratotip = 10; }
-                else if (RdbGarant1.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked)
-                { Contratotip = 11; }
-                else if (RdbGarant1.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
-                { Contratotip = 12; }
-                else if (RdbGarant2.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
-                { Contratotip = 13; }
+            //if (CboTipPresta.SelectedIndex == 0)
+            //{
+            //    if (RdbSnGaran.Checked && ChkFirma1.Checked == false)
+            //    {
+            //        Contratotip = 1;
+            //    }
+            //    else if (RdbGarant1.Checked && ChkFirma1.Checked == true)
+            //    { Contratotip = 2; }
+            //    else if (RdbGarant1.Checked && ChkFirma1.Checked == false)
+            //    { Contratotip = 3; }
+            //}
+            //else if (CboTipPresta.SelectedIndex == 1)
+            //{
+            //    if (RdbSnGaran.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
+            //    {
+            //        Contratotip = 4;
+            //    }
+            //    else if (RdbGarant1.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
+            //    { Contratotip = 5; }
+            //    else if (RdbGarant2.Checked && ChkFirma1.Checked && ChkFirma2.Checked)
+            //    { Contratotip = 6; }
+            //    else if (RdbSnGaran.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
+            //    { Contratotip = 7; }
+            //    else if (RdbGarant1.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
+            //    { Contratotip = 8; }
+            //    else if (RdbGarant2.Checked && ChkFirma1.Checked && ChkFirma2.Checked == false)
+            //    { Contratotip = 9; }
+            //    else if (RdbSnGaran.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
+            //    { Contratotip = 10; }
+            //    else if (RdbGarant1.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked)
+            //    { Contratotip = 11; }
+            //    else if (RdbGarant1.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
+            //    { Contratotip = 12; }
+            //    else if (RdbGarant2.Checked && ChkFirma1.Checked == false && ChkFirma2.Checked == false)
+            //    { Contratotip = 13; }
 
-            }
+            //}
         }
 
-        private void llenarCajasSin() {
-            //TxtNomF.Text = "Sin Nom";
-            TxtProfFiad.Text = "Sin Prof";
-            TxtDpiF.Text = "0000000000000";
-            TxtEstCivilF.Text = "Sin Estado";
-            TxtDirF.Text = "Sin Dir";
-        }
-
-        private void LimpiarCajaFiad()
-        {
-            //TxtNomF.Clear();
-            TxtProfFiad.Clear();
-            TxtDpiF.Clear();
-            TxtEstCivilF.Clear();
-            TxtDirF.Clear();
-        }
+    
 
         private void CboTipo2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1231,7 +1151,7 @@ namespace Arcoiris.Formularios
         {
             if (AllCli.Rows.Count <= 0) return;
 
-            string id = CboCliNom.SelectedValue.ToString();
+            string id = CboFiadNom.SelectedValue.ToString();
             int idCod = 0;
             try
             {
@@ -1254,17 +1174,17 @@ namespace Arcoiris.Formularios
                               }).ToList();
 
                 int filas = ToList.Count;
-                TxtDpiF.Text = ToList[0].Dpi.ToString();
-                TxtProfFiad.Text = ToList[0].Profesion;
-                NudEdadF.Value = int.Parse(ToList[0].Edad.ToString());
-                TxtEstCivilF.Text = ToList[0].EstadoCiv;
-                TxtDirF.Text = ToList[0].Domicilio;
+                //TxtDpiF.Text = ToList[0].Dpi.ToString();
+                //TxtProfFiad.Text = ToList[0].Profesion;
+                //NudEdadF.Value = int.Parse(ToList[0].Edad.ToString());
+                //TxtEstCivilF.Text = ToList[0].EstadoCiv;
+                //TxtDirF.Text = ToList[0].Domicilio;
                 var Depauni = AllDepas.Where(o => o.Nombre.Equals(ToList[0].Departamento.ToString())).ToList();
                 int idDepa = Depauni[0].Id;
-                CboDepaF.SelectedValue = idDepa;
+              //  CboDepaF.SelectedValue = idDepa;
                 var MuniUni = AllMunis.Where(l => l.Nombre.Equals(ToList[0].Municipio.ToString())).ToList();
                 int idMuni = MuniUni[0].Id;
-                CboMuniF.SelectedValue = idMuni;
+                //CboMuniF.SelectedValue = idMuni;
             }
             catch (Exception ex)
             {
@@ -1657,6 +1577,12 @@ namespace Arcoiris.Formularios
 
         private void BtnPrueba_Click(object sender, EventArgs e)
         {
+          
+        }
+
+
+        private bool soliPt2()
+        {
             List<string> datos = new List<string>();
             List<SubClases.Egreso> egresos = new List<SubClases.Egreso>();
             List<SubClases.Ingreso> ingresos = new List<SubClases.Ingreso>();
@@ -1666,8 +1592,6 @@ namespace Arcoiris.Formularios
                 datos.Add(item.Valor.ToString());
                 datos.Add(item.tipo.ToString());
             }
-
-
             //comprobacion de valores para ingresos
             foreach (DataGridViewRow item in DgvIngMen.Rows)
             {
@@ -1680,7 +1604,7 @@ namespace Arcoiris.Formularios
                 var val2 = item.Cells[2].Value?.ToString();
                 var val3 = item.Cells[3].Value?.ToString();
                 var val4 = item.Cells[4].Value?.ToString();
-               
+
 
                 // 3. Comprobaciones de validación
                 bool esInt1Valido = int.TryParse(val1, out _);
@@ -1697,14 +1621,14 @@ namespace Arcoiris.Formularios
                     temp.Cantidad = int.Parse(val1);
                     temp.Costo = decimal.Parse(val2);
                     temp.Venta = decimal.Parse(val3);
-                        temp.Ganacia = decimal.Parse(val4);
+                    temp.Ganacia = decimal.Parse(val4);
                     ingresos.Add(temp);
-                    
+
                 }
                 else
                 {
                     MessageBox.Show($"La fila {item.Index} de ingresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    return false; //omitir este return para revision 
                 }
             }
 
@@ -1720,7 +1644,7 @@ namespace Arcoiris.Formularios
                 var valE1 = item.Cells[1].Value?.ToString();
                 var valE2 = item.Cells[2].Value?.ToString();
                 var valE3 = item.Cells[3].Value?.ToString();
-               
+
 
                 // 3. Comprobaciones de validación
                 bool esIntValido = int.TryParse(valE1, out _);
@@ -1741,18 +1665,200 @@ namespace Arcoiris.Formularios
                 else
                 {
                     MessageBox.Show($"La fila {item.Index} de egresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
+                    return false;
                 }
             }
-            if ((sol.IngresoEstadoFinan(listaCuentas, "1") && sol.IngresoMen(ingresos, "1") && sol.EgresoMen(egresos, "1")))
+            return ((sol.IngresoEstadoFinan(listaCuentas, "1") && sol.IngresoMen(ingresos, "1") && sol.EgresoMen(egresos, "1")));
+            
+           
+        }
+
+        private void BtnSoliVer_Click(object sender, EventArgs e)
+        {
+            CargarRepoSoli();
+        }
+
+        #region  Solicitud Reporte
+
+        private void CargarRepoSoli()
+        {
+            Reportes.ClasesRepo.ReferenciaSolicitud refes = new Reportes.ClasesRepo.ReferenciaSolicitud();
+            Reportes.ClasesRepo.FiadorSolicitud Fiad = new Reportes.ClasesRepo.FiadorSolicitud();
+            Reportes.ClasesRepo.GarantiaSolicitud Gara = new Reportes.ClasesRepo.GarantiaSolicitud();
+
+            string idcli = LblCodCli.Text;
+
+            DataTable datoscli = cli.clientebusca(idcli);
+            Reportes.ClasesRepo.DatosSolicitud DatoSol = new Reportes.ClasesRepo.DatosSolicitud();
+            DatoSol.IdSol = int.Parse(CboSoli.Text);
+            DatoSol.Cliente =$"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
+            DatoSol.Domicilio=$"{datoscli.Rows[0][2]}";
+            DatoSol.DPI = $"{datoscli.Rows[0][3]}";
+            DatoSol.Tel1 = $"{datoscli.Rows[0][4]}";
+            DatoSol.Tel2= $"{datoscli.Rows[0][5]}";
+            DatoSol.Prof1 = $"{datoscli.Rows[0][5]}";
+            DatoSol.NomCony= $"{datoscli.Rows[0][7]} {datoscli.Rows[0][8]}";
+            DatoSol.TelCony = $"{datoscli.Rows[0][9]}";
+            DatoSol.Referencia=$"{datoscli.Rows[0][10]}";
+            DatoSol.EstadoCivil= $"{datoscli.Rows[0][11]}";
+            DatoSol.Asesor = TxtNomAseso.Text;
+            //falta buscar
+            DatoSol.AntiqNeg = "Anios";
+            DatoSol.DirNeg = "En algun lugar";
+            DatoSol.NomNeg = "Panchitos";
+            DatoSol.PlazoCred =int.Parse(TxtPlazo.Text);
+            DatoSol.PagoCred = CboTipo.Text;
+            DatoSol.TipoCred = TxtPlazo.Text;
+            DatoSol.Monto = decimal.Parse(TxtMonto2.Text);
+           DatoSol.MontoSug= decimal.Parse(TxtMonto2.Text);
+            DatoSol.MotivoCred = TxtConcept.Text;
+            refes.Nombre = "Juan prueba";
+            refes.Parentezco = "Hermano";
+            refes.Telefono="908765441";
+            //DatoSol.Refs.Add(refes);
+
+            //DatoSol.cre
+            Reportes.SolicitudNuevo soli = new Reportes.SolicitudNuevo();
+            soli.DatosGen.Add(DatoSol);
+            soli.Referi.Add(refes);
+            soli.Fiado.Add(Fiad);
+            soli.Garant.Add(Gara);
+            soli.Show();
+
+
+        }
+
+
+
+        #endregion
+
+        #region Ingreso de Garantia renovada
+
+        private bool IngresoGarant()
+        {
+            List<SubClases.Garantia> IngGar = new List<SubClases.Garantia>();
+            foreach (DataGridViewRow fila in DgvGaranLSt.Rows)
             {
-                MessageBox.Show("Correcto", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Stop);
+                SubClases.Garantia temp = new SubClases.Garantia();
+                temp.Id = int.Parse($"{fila.Cells[0].Value}");
+                temp.Tipo=$"{fila.Cells[2].Value}";
+                temp.Propietario = int.Parse($"{fila.Cells[1].Value}");
+                temp.Detalle = ($"{fila.Cells[3].Value}");
+                temp.Valor = decimal.Parse($"{fila.Cells[4].Value}");
+                temp.Informacion = ($"{fila.Cells[5].Value}");
+                temp.Observaciones = ($"{fila.Cells[6].Value}");
+                IngGar.Add(temp);
+            }
+
+            return (sol.ingresoGarantia(IngGar, TxtNoSol.Text));
+        }
+
+       
+
+        #endregion
+
+        #region Ingreso del fiador renovada
+
+        private bool IngresoFiador()
+        {
+            List<SubClases.Fiador> IngFiad = new List<SubClases.Fiador>();
+            foreach (DataGridViewRow fila in DgvFiadorLst.Rows)
+            {
+                SubClases.Fiador temp = new SubClases.Fiador();
+                temp.idSol = int.Parse($"{TxtNoSol.Text}");
+                temp.IdFiad = int.Parse($"{fila.Cells[0].Value}");
+                temp.OtherIng = $"{fila.Cells}";
+                IngFiad.Add(temp);
+            }
+            return (sol.ingresoFiador(IngFiad));
+        }
+
+
+        #endregion
+
+
+        #region Manejo Lista fiador y garantias
+        private void BtnAddLstGarant_Click(object sender, EventArgs e)
+        {
+            //primera parte: comprovacion de datos
+            // 1. Limpieza de espacios para evitar entradas de solo espacios
+            string IdProp = CboPropi.SelectedValue.ToString().Trim();
+            string Tipo = CboTipoGarant.Text;
+            string prop = CboPropi.Text;
+            string valor = TxtValGara.Text.Trim();
+            string detalle = TxtDetaGara.Text.Trim();
+            string observacion = TxtObsGara.Text.Trim();
+            string Info = TxtInfoGara.Text.Trim();
+
+            // 2. Validaciones de campos obligatorios
+            if (string.IsNullOrEmpty(Tipo) || string.IsNullOrEmpty(prop) || string.IsNullOrEmpty(valor) || string.IsNullOrEmpty(detalle) || string.IsNullOrEmpty(observacion) || string.IsNullOrEmpty(Info) || string.IsNullOrEmpty(IdProp))
+            {
+                MessageBox.Show("Todos los campos de garantia son obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución
+            }
+            bool numerosi = false;
+            decimal numtemp;
+            numerosi = decimal.TryParse(valor, out numtemp);
+            if (!numerosi)
+            {
+                MessageBox.Show("El dato ingresado en valor es invalido, porfavor intentelo de nuevo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución }
+            }
+            DgvGaranLSt.Rows.Add(IdProp, prop, Tipo, detalle, String.Format("{0:0,000.00}", numtemp), Info, observacion);
+
+
+        }
+
+        private void BtnAddLstFiad_Click(object sender, EventArgs e)
+        {
+            //primera parte: comprovacion de datos
+            //primera parte: comprovacion de datos
+            // 1. Limpieza de espacios para evitar entradas de solo espacios
+            string IdFiad = CboFiadNom.SelectedValue.ToString().Trim();
+            string Nombre = CboFiadNom.Text.ToString().Trim();
+            string Otros = TxtOtherIng.Text.Trim();
+
+            // 2. Validaciones de campos obligatorios
+            if (string.IsNullOrEmpty(IdFiad) || string.IsNullOrEmpty(Nombre) || string.IsNullOrEmpty(Otros))
+            {
+                MessageBox.Show("Todos los campos de fiador son obligatorios", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución
+            }
+            DataTable DatosF = cli.clientebusca(IdFiad);
+            string Domi = $"{DatosF.Rows[0][2]}";
+
+            DgvFiadorLst.Rows.Add(IdFiad, Nombre, Domi, Otros);
+        }
+
+        private void BtnDelLstGarant_Click(object sender, EventArgs e)
+        {
+            if (DgvGaranLSt.Rows.Count > 0)
+            {
+                int indice = DgvGaranLSt.CurrentRow.Index;
+                DgvGaranLSt.Rows.RemoveAt(indice);
             }
             else
             {
-                MessageBox.Show("Incorrecto", "", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Asterisk);
+                MessageBox.Show("No existen datos para eliminar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return; // Detiene la ejecución }
             }
         }
+
+        private void BtnDelLstFiad_Click(object sender, EventArgs e)
+        {
+            if (DgvFiadorLst.Rows.Count > 0)
+            {
+                int indice = DgvFiadorLst.CurrentRow.Index;
+                DgvFiadorLst.Rows.RemoveAt(indice);
+            }
+            else
+            {
+                MessageBox.Show("No existen datos para eliminar", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                return; // Detiene la ejecución }
+            }
+        }
+        #endregion
+
     }
 }
 
