@@ -56,6 +56,8 @@
             this.CboCre = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.GbxAs = new System.Windows.Forms.GroupBox();
+            this.CboRepoA = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.GbxGan = new System.Windows.Forms.GroupBox();
             this.RdbMes = new System.Windows.Forms.RadioButton();
             this.RdbDia = new System.Windows.Forms.RadioButton();
@@ -65,8 +67,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.CboRepoA = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.GbxInver.SuspendLayout();
@@ -375,6 +375,24 @@
             this.GbxAs.TabStop = false;
             this.GbxAs.Text = "Asesores";
             // 
+            // CboRepoA
+            // 
+            this.CboRepoA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CboRepoA.FormattingEnabled = true;
+            this.CboRepoA.Location = new System.Drawing.Point(110, 104);
+            this.CboRepoA.Name = "CboRepoA";
+            this.CboRepoA.Size = new System.Drawing.Size(210, 25);
+            this.CboRepoA.TabIndex = 7;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(26, 104);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 17);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Asesor";
+            // 
             // GbxGan
             // 
             this.GbxGan.Controls.Add(this.RdbMes);
@@ -465,29 +483,11 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(26, 104);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 17);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Asesor";
-            // 
-            // CboRepoA
-            // 
-            this.CboRepoA.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboRepoA.FormattingEnabled = true;
-            this.CboRepoA.Location = new System.Drawing.Point(110, 104);
-            this.CboRepoA.Name = "CboRepoA";
-            this.CboRepoA.Size = new System.Drawing.Size(210, 25);
-            this.CboRepoA.TabIndex = 7;
-            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Khaki;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.ClientSize = new System.Drawing.Size(894, 549);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);

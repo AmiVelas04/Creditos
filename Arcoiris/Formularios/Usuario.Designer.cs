@@ -52,6 +52,7 @@
             // 
             // GbxUsuario
             // 
+            this.GbxUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.GbxUsuario.Controls.Add(this.button1);
             this.GbxUsuario.Controls.Add(this.LstUsu);
             this.GbxUsuario.Controls.Add(this.BtnNuevo);

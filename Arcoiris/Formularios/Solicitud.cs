@@ -1859,6 +1859,80 @@ namespace Arcoiris.Formularios
         }
         #endregion
 
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // Identificar cuál TabPage está seleccionada
+            TabPage SelectedTab = tabControl1.TabPages[e.Index];
+
+            // Obtener el área del encabezado del TabPage
+            Rectangle HeaderRect = tabControl1.GetTabRect(e.Index);
+            Color amria = Color.FromArgb(250, 204, 21);
+            // Crear Brushes para texto y fondo
+            using (SolidBrush BlackTextBrush = new SolidBrush(Color.Black))
+            using (SolidBrush RedTextBrush = new SolidBrush(Color.Black))
+            using (SolidBrush SelectedBackBrush = new SolidBrush(amria))   // Fondo cuando está seleccionada
+            using (SolidBrush NormalBackBrush = new SolidBrush(Color.White))         // Fondo normal
+            {
+                // Configurar la alineación del texto
+                StringFormat sf = new StringFormat();
+                sf.Alignment = StringAlignment.Center;
+                sf.LineAlignment = StringAlignment.Center;
+
+                // Pintar el fondo primero
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                {
+                    e.Graphics.FillRectangle(SelectedBackBrush, HeaderRect);
+
+                    using (Font BoldFont = new Font(tabControl1.Font.Name, tabControl1.Font.Size, FontStyle.Bold))
+                    {
+                        e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, BoldFont, RedTextBrush, HeaderRect, sf);
+                    }
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(NormalBackBrush, HeaderRect);
+                    e.Graphics.DrawString(tabControl1.TabPages[e.Index].Text, e.Font, BlackTextBrush, HeaderRect, sf);
+                }
+            }
+        }
+
+        private void TCTSoli_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            // Identificar cuál TabPage está seleccionada
+            TabPage SelectedTab = TCTSoli.TabPages[e.Index];
+
+            // Obtener el área del encabezado del TabPage
+            Rectangle HeaderRect = TCTSoli.GetTabRect(e.Index);
+
+            // Crear Brushes para texto y fondo
+            Color amria =  Color.FromArgb(250,204,21);
+            using (SolidBrush BlackTextBrush = new SolidBrush(Color.Black))
+            using (SolidBrush RedTextBrush = new SolidBrush(Color.Black))
+            using (SolidBrush SelectedBackBrush = new SolidBrush( amria))   // Fondo cuando está seleccionada
+            using (SolidBrush NormalBackBrush = new SolidBrush(Color.White))         // Fondo normal
+            {
+                // Configurar la alineación del texto
+                StringFormat sf = new StringFormat();
+                sf.Alignment = StringAlignment.Center;
+                sf.LineAlignment = StringAlignment.Center;
+
+                // Pintar el fondo primero
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                {
+                    e.Graphics.FillRectangle(SelectedBackBrush, HeaderRect);
+
+                    using (Font BoldFont = new Font(TCTSoli.Font.Name, TCTSoli.Font.Size, FontStyle.Bold))
+                    {
+                        e.Graphics.DrawString(TCTSoli.TabPages[e.Index].Text, BoldFont, RedTextBrush, HeaderRect, sf);
+                    }
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(NormalBackBrush, HeaderRect);
+                    e.Graphics.DrawString(TCTSoli.TabPages[e.Index].Text, e.Font, BlackTextBrush, HeaderRect, sf);
+                }
+            }
+        }
     }
 }
 

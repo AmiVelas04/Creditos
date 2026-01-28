@@ -32,6 +32,7 @@
             this.TbcInversion = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnBoletaReImp = new System.Windows.Forms.Button();
             this.TxtDpiCli = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.ChkRetirado = new System.Windows.Forms.CheckBox();
@@ -78,7 +79,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.CboCliNom = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.BtnBoletaReImp = new System.Windows.Forms.Button();
             this.TbcInversion.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -131,6 +131,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos generales";
             // 
+            // BtnBoletaReImp
+            // 
+            this.BtnBoletaReImp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.BtnBoletaReImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnBoletaReImp.Image")));
+            this.BtnBoletaReImp.Location = new System.Drawing.Point(535, 18);
+            this.BtnBoletaReImp.Name = "BtnBoletaReImp";
+            this.BtnBoletaReImp.Size = new System.Drawing.Size(172, 68);
+            this.BtnBoletaReImp.TabIndex = 29;
+            this.BtnBoletaReImp.Text = "Reimprimir Boleta de retiro";
+            this.BtnBoletaReImp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnBoletaReImp.UseVisualStyleBackColor = false;
+            this.BtnBoletaReImp.Visible = false;
+            this.BtnBoletaReImp.Click += new System.EventHandler(this.BtnBoletaReImp_Click);
+            // 
             // TxtDpiCli
             // 
             this.TxtDpiCli.Enabled = false;
@@ -163,6 +177,7 @@
             // 
             // BtnSearchInv
             // 
+            this.BtnSearchInv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnSearchInv.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchInv.Image")));
             this.BtnSearchInv.Location = new System.Drawing.Point(713, 18);
             this.BtnSearchInv.Name = "BtnSearchInv";
@@ -170,7 +185,7 @@
             this.BtnSearchInv.TabIndex = 12;
             this.BtnSearchInv.Text = "Mostrar Detalles";
             this.BtnSearchInv.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnSearchInv.UseVisualStyleBackColor = true;
+            this.BtnSearchInv.UseVisualStyleBackColor = false;
             this.BtnSearchInv.Click += new System.EventHandler(this.BtnSearchInv_Click);
             // 
             // GbxRetiro
@@ -601,19 +616,6 @@
             this.label1.Size = new System.Drawing.Size(51, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Cliente";
-            // 
-            // BtnBoletaReImp
-            // 
-            this.BtnBoletaReImp.Image = ((System.Drawing.Image)(resources.GetObject("BtnBoletaReImp.Image")));
-            this.BtnBoletaReImp.Location = new System.Drawing.Point(535, 18);
-            this.BtnBoletaReImp.Name = "BtnBoletaReImp";
-            this.BtnBoletaReImp.Size = new System.Drawing.Size(172, 68);
-            this.BtnBoletaReImp.TabIndex = 29;
-            this.BtnBoletaReImp.Text = "Reimprimir Boleta de retiro";
-            this.BtnBoletaReImp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.BtnBoletaReImp.UseVisualStyleBackColor = true;
-            this.BtnBoletaReImp.Visible = false;
-            this.BtnBoletaReImp.Click += new System.EventHandler(this.BtnBoletaReImp_Click);
             // 
             // Inversion
             // 

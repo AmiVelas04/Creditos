@@ -244,7 +244,7 @@ namespace Arcoiris.Clases
                     Dgaran[13] = "sin genero"; //genero
                     Dgaran[14] = "0";//valuacion garant fiador
                     Dgaran[15] = "00000000";//Telefono fiador
-                    return ingre_garant(Dgaran);
+                    return true;//ingre_garant(Dgaran);
                     //return true;
                 }
                 else
