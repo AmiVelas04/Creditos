@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.59021cm</Width>
+              <Width>4.25948cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>16.12604cm</Width>
+              <Width>15.75866cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -589,8 +589,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>GarantDato</DataSetName>
+        <Top>0.01cm</Top>
+        <Left>0.01cm</Left>
         <Height>4.8cm</Height>
-        <Width>20.71625cm</Width>
+        <Width>20.01814cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -598,10 +600,10 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>1.92807in</Height>
+    <Height>2.00099in</Height>
     <Style />
   </Body>
-  <Width>20.90312cm</Width>
+  <Width>20.02814cm</Width>
   <Page>
     <PageHeight>27.94cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>

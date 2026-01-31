@@ -24,8 +24,31 @@ namespace Arcoiris.Clases
             MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conect.conn);
             adap.Fill(datos);
             return datos;
+            
+        }
+
+        private DataTable Buscar_Tipo2(MySqlCommand coma)
+        {
+            conect.iniciar();
+            DataTable datos = new DataTable();
+            coma.Connection = conect.conn;
+            using (MySqlDataReader read = coma.ExecuteReader())
+            {
+                foreach (var item in read)
+                {
+                    datos.Rows.Add(item);
+                }
+                
+            }
+
+                // MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conect.conn);
+                // adap.Fill(datos);
+                return datos;
 
         }
+
+
+
         private bool Consulgeneral(string consulta)
         {
             MySqlCommand com = new MySqlCommand();
@@ -63,7 +86,7 @@ namespace Arcoiris.Clases
             catch (Exception ex)
             {
                 conect.conn.Close();
-                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.Message}/n{ex.InnerException.Message}");
+                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.InnerException}");
 
                 return false;
             }
@@ -131,6 +154,26 @@ namespace Arcoiris.Clases
             }
             return muni;
         }
+
+        public int idDepaByName(string nom)
+        {
+            string consulta =$"Select id from departamento where nombre='{nom}'";
+            int valor = -1;
+            DataTable resp = buscar(consulta);
+            valor = int.Parse($"{resp.Rows[0][0]}");
+            return valor;
+        }
+
+        public int idMuniByName(string nom)
+        {
+            string consulta = $"Select id from municipio where nombre='{nom}'";
+            int valor = -1;
+            DataTable resp = buscar(consulta);
+            valor = int.Parse($"{resp.Rows[0][0]}");
+            return valor;
+        }
+
+
         #endregion
 
         #region "cliente"
@@ -267,9 +310,9 @@ namespace Arcoiris.Clases
         public DataTable clientebusca(string idcli)
         {
             string consulta;
-            consulta = "SELECT Nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,nombre_cony,apellido_cony,telefonocon,referencia,estado_civil,edad,Departamento,Municipio,Genero,Nacionalidad " +
-                        "FROM cliente " +
-                        "WHERE codigo_cli ="+ idcli ;
+            consulta = "SELECT Nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,nombre_cony,apellido_cony,telefonocon,referencia,estado_civil,edad, " +
+                "Departamento,Municipio,Genero,Nacionalidad,profe2,cargafam,profcony,dpicony, DPIBASE64,fechanaci,negnom,negtel,negdir,negref,tiponeg,negantiq " +
+                        $"FROM cliente WHERE codigo_cli ={idcli}";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;
@@ -337,6 +380,83 @@ namespace Arcoiris.Clases
             }
 
         }
+
+        public bool updateclienteNuevo(string id, string[] datos)
+        {
+
+
+            string consulta;
+            consulta = $"update cliente set nombres=?nombres, apellidos=?apellidos, domicilio=?domi, dpi=?dpi, telefono1=?tel1, telefono2=?tel2, profesion=?prof, " +
+                $"nombre_cony=?nomCon, telefonocon=?telcon, referencia=?ref, estado_civil=?estC,fechanaci=?fnaci,genero=?gene,departamento=?depa,municipio=?muni, " +
+                $"negnom=?nomn,negdir=?dirn,negtel=?teln,tiponeg=?tipn,negref=?refn,negantiq=?antiqn,cargafam=?cargaf, profe2=?profOt,profcony=?profcon,dpicony=?dpicon " +
+                $"where codigo_cli={id}";
+            MySqlCommand com = new MySqlCommand();
+
+            com.CommandText = consulta;
+            com.CommandType = CommandType.Text;
+
+            com.Parameters.Add("?nombres", MySqlDbType.VarChar);
+            com.Parameters.Add("?apellidos", MySqlDbType.VarChar);
+            com.Parameters.Add("?domi", MySqlDbType.VarChar);
+            com.Parameters.Add("?dpi", MySqlDbType.VarChar);
+            com.Parameters.Add("?tel1", MySqlDbType.VarChar);
+            com.Parameters.Add("?tel2", MySqlDbType.VarChar);
+            com.Parameters.Add("?prof", MySqlDbType.VarChar);
+            com.Parameters.Add("?profOt", MySqlDbType.VarChar);
+            com.Parameters.Add("?estC", MySqlDbType.VarChar);
+            com.Parameters.Add("?nomCon", MySqlDbType.VarChar);
+            com.Parameters.Add("?telcon", MySqlDbType.VarChar);
+            com.Parameters.Add("?ref", MySqlDbType.VarChar);
+            com.Parameters.Add("?fnaci", MySqlDbType.DateTime);
+            com.Parameters.Add("?gene", MySqlDbType.VarChar);
+            com.Parameters.Add("?profcon", MySqlDbType.VarChar);
+            com.Parameters.Add("?dpicon", MySqlDbType.VarChar);
+            com.Parameters.Add("?depa", MySqlDbType.VarChar);
+            com.Parameters.Add("?muni", MySqlDbType.VarChar);
+           // com.Parameters.Add("?nacio", MySqlDbType.VarChar);
+            com.Parameters.Add("?tipn", MySqlDbType.VarChar);
+            com.Parameters.Add("?teln", MySqlDbType.VarChar);
+            com.Parameters.Add("?nomn", MySqlDbType.VarChar);
+            com.Parameters.Add("?dirn", MySqlDbType.VarChar);
+            com.Parameters.Add("?antiqn", MySqlDbType.VarChar);
+            com.Parameters.Add("?refn", MySqlDbType.VarChar);
+            com.Parameters.Add("?cargaf", MySqlDbType.VarChar);
+
+
+
+
+
+            com.Parameters["?nombres"].Value = datos[0];
+            com.Parameters["?apellidos"].Value = datos[1];
+            com.Parameters["?domi"].Value = datos[2];
+            com.Parameters["?dpi"].Value = datos[3];
+            com.Parameters["?tel1"].Value = datos[4];
+            com.Parameters["?tel2"].Value = datos[5];
+            com.Parameters["?prof"].Value = datos[6];
+            com.Parameters["?profOt"].Value = datos[9];
+            com.Parameters["?estC"].Value = datos[7];
+            com.Parameters["?nomCon"].Value = datos[8];
+            com.Parameters["?telcon"].Value = datos[10];
+            com.Parameters["?fnaci"].Value = DateTime.Now;
+            com.Parameters["?gene"].Value = datos[13];
+            com.Parameters["?profcon"].Value = datos[16];
+            com.Parameters["?dpicon"].Value = datos[17];
+            com.Parameters["?depa"].Value = datos[14];
+            com.Parameters["?muni"].Value = datos[15];
+            //com.Parameters["?nacio"].Value = datos[00];
+            com.Parameters["?nomn"].Value = datos[18];
+            com.Parameters["?dirn"].Value = datos[19];
+            com.Parameters["?teln"].Value = datos[20];
+            com.Parameters["?tipn"].Value = datos[21];
+            com.Parameters["?refn"].Value = datos[22];
+            com.Parameters["?antiqn"].Value = datos[23];
+            com.Parameters["?cargaf"].Value = datos[24];
+
+
+            return Consulta_General_tipo2(com);
+        }
+
+
 
         public bool updatefiad(string id,string[] datos)
         {

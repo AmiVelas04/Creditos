@@ -17,6 +17,7 @@ namespace Arcoiris.Formularios
         decimal pagof = 0;
         decimal interessaldgen = 0;
         string Nomasesor = "";
+       
         Clases.Solicitud soli = new Clases.Solicitud();
         Clases.Credito cre = new Clases.Credito();
         Clases.Cliente cli = new Clases.Cliente();
@@ -57,6 +58,7 @@ namespace Arcoiris.Formularios
         //Listar crditos pagina 1
         private void Prestamo_Load(object sender, EventArgs e)
         {
+           
             if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "5")
             {
                 BtnEliminar.Enabled = true;
@@ -83,7 +85,22 @@ namespace Arcoiris.Formularios
             Tab2.Parent = null;
             listacli();
             LblIdCli.Text = "0";
+            colores();
+           // Clases.Estilos.StyleForm(this);
         }
+
+        private void colores()
+        {
+            Clases.Estilos.StylePrimaryButton(BtnPago);
+            Clases.Estilos.StyleSecondaryButton(BtnPagProm);
+            Clases.Estilos.StyleSecondaryButton(BtnAldia);
+            //ases.Estilos.StyleSecondaryButton();
+            Clases.Estilos.StyleDangerButton(BtnCancel);
+
+
+        }
+
+
         private void listacre()
         {
             int total;
@@ -262,7 +279,7 @@ namespace Arcoiris.Formularios
             foreach (DataRow row in listadocli.Rows)
             {
                 coleccion.Add(row["Nombre"].ToString());
-                            }
+            }
             
             CboCliNom.AutoCompleteCustomSource = coleccion;
             CboCliNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;

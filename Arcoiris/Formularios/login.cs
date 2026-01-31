@@ -120,7 +120,7 @@ namespace Arcoiris.Formularios
 
         private void login_Load(object sender, EventArgs e)
         {
-           
+            Clases.Estilos.StyleForm(this);
 
         }
 

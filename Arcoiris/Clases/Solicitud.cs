@@ -92,7 +92,7 @@ namespace Arcoiris.Clases
             catch (Exception ex)
             {
                 conect.conn.Close();
-                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.Message}/n{ex.InnerException.Message}");
+                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.Message}");
 
                 return false;
             }
@@ -881,7 +881,7 @@ namespace Arcoiris.Clases
             int id = id_garant() + 1;
             int soli = int.Parse(sol);
             consulta = $"Insert into Garantia(Id_garant,tipo,id_prop,Valuacion,detalle,info,estado,recepcion,entrega) " +
-               $"values(?Id_garant,?Tipo,?Valuacion,?detalle,?info,?estado,?recepcion,?entrega)";
+               $"values(?Id_garant,?Tipo,?id_prop,?Valuacion,?detalle,?info,?estado,?recepcion,?entrega)";
             // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
 
@@ -901,7 +901,7 @@ namespace Arcoiris.Clases
             foreach (Formularios.SubClases.Garantia item in datos)
             {
                 com.Parameters["?Id_garant"].Value = id;
-                com.Parameters["?id_prop"].Value = item.Propietario;
+                com.Parameters["?id_prop"].Value = item.Id;
                 com.Parameters["?tipo"].Value = item.Tipo;
                 com.Parameters["?Valuacion"].Value = item.Valor;
                 com.Parameters["?detalle"].Value =  item.Detalle;
@@ -918,7 +918,7 @@ namespace Arcoiris.Clases
         public bool asignaGarant(int gar, int sol)
         {
             string consulta;
-            consulta = $"insert into sol_garant(id_solicitud,id_gartant) "+
+            consulta = $"insert into sol_garant(id_solicitud,id_garant) "+
                 "values (?sol,?gar)";
 
             // MessageBox.Show(consulta);
@@ -942,16 +942,16 @@ namespace Arcoiris.Clases
         {
             string consulta;
             consulta = $"Insert into sol_fiad(id_sol,id_fia,Othering) " +
-               $"values(?sol,?Tipo,?fiad,?other)";
+               $"values(?sol,?fiad,?other)";
             // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
 
             com.CommandText = consulta;
             com.CommandType = CommandType.Text;
 
-            com.Parameters.Add("?Id_garant", MySqlDbType.Int32);
-            com.Parameters.Add("?Id_prop", MySqlDbType.Int32);
-            com.Parameters.Add("?Valuacion", MySqlDbType.VarChar);
+            com.Parameters.Add("?sol", MySqlDbType.Int32);
+            com.Parameters.Add("?fiad", MySqlDbType.Int32);
+            com.Parameters.Add("?other", MySqlDbType.VarChar);
       
             bool respo = false;
             foreach (Formularios.SubClases.Fiador item in datos)

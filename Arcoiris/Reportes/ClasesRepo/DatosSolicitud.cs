@@ -32,6 +32,8 @@ namespace Arcoiris.Reportes.ClasesRepo
         public string ProfCony { get; set; }
         [MaxLength(8)]
         public string TelCony { get; set; }
+        [MaxLength(13)]
+        public string DPICony { get; set; }
         public string TipoNeg { get; set; }
         public string NomNeg { get; set; }
         public string TelNeg { get; set; }

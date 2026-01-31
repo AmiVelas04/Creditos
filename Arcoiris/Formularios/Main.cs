@@ -45,7 +45,7 @@ namespace Arcoiris.Formularios
                 //BtnReporte.Visible = true;
             }
             LblVer.Text = $"{Application.ProductName}  Version: {Application.ProductVersion}";
-
+           // Clases.Estilos.StyleForm(this);
         }
 
         private void BtnCliente_Click(object sender, EventArgs e)
@@ -86,6 +86,7 @@ namespace Arcoiris.Formularios
             presta.TopLevel = false;
             PanelCentral.Controls.Add(presta);
             PanelCentral.Tag = presta;
+         //   MessageBox.Show($"Tamanio fomrulario: {this.PanelCentral.Size.Width}x{this.PanelCentral.Size.Height}\nTamanio Espacio {presta.Size.Width}x{presta.Size.Height}");
             presta.Show();
         }
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Drawing;
 
 namespace Arcoiris.Formularios
 {
@@ -67,6 +68,13 @@ namespace Arcoiris.Formularios
 
             Tab2.Hide();
             Tab1.Hide();
+            Clases.Estilos.StyleForm(this);
+            // Configurar el DrawMode
+            TCTSoli.DrawMode = TabDrawMode.OwnerDrawFixed;
+            TCTSoli.DrawItem += TCTSoli_DrawItem;
+
+            // Ajustar el tamaño de las pestañas
+            AjustarTamanioPestaniasSegunTexto();
             if (Form1.Nivel.Equals("1") || Form1.Nivel.Equals("2") || Form1.Nivel.Equals("5"))
             {
                 Tab2.Parent = tabControl1;
@@ -288,29 +296,40 @@ namespace Arcoiris.Formularios
             {
                 int FilIngM = DgvIngMen.RowCount;
                 int FilEgrM = DgvEngMen.RowCount;
+                int ListaAct = LstCuentas.Items.Count;
+                int ListaPas = LstPasiv.Items.Count;
+                int CantIngre = DgvIngMen.RowCount;
+                int CantEgre = DgvIngMen.RowCount;
+
+
+                if (FilasGara <= 0 && !ConfirmarContinuar("No se ingresara ninguna garantia\n¿Desea continuar?"))
+                {
+                    return;
+                }
+
+                if (FilasFiad <= 0 && !ConfirmarContinuar("No se ingresara ningun fiador\n¿Desea continuar?"))
+                {
+                    return;
+                }
+
+                if (ListaAct <= 0)
+                {
+                    MostrarError("No existen datos de ingresos mensuales");
+                    return;
+                }
+                if (ListaPas<=0)
+                {
+                    MostrarError("No existen datos de egresosos mensuales");
+                    return;
+                }
+
+
+
+
                
 
-                if (FilIngM <= 0)
-                {
-                    MessageBox.Show("No existen datos de ingresos mensuales", "Sin datos de ingreso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                if (FilEgrM <= 0)
-                {
-                    MessageBox.Show("No existen datos de egresos", "Sin datos de ingreso!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
-                }
-                if (FilasFiad <= 0)
-                {
-                    if (DialogResult.No == MessageBox.Show("No se ingresara ningun fiador\nDesea continuar?", "Continuar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    { return; }
-                }
-                if (FilasGara<=0)
-                {
-                    if (DialogResult.No == MessageBox.Show("No se ingresara ninguna garantia\nDesea continuar?", "Continuar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    { return; }
-                }
-                
+
+
 
 
                 if (sol.agregar_soli(datos))
@@ -398,7 +417,7 @@ namespace Arcoiris.Formularios
                 TxtMonto2.Text = datos.Rows[0][3].ToString();
                 TxtGarantia.Text = datos.Rows[0][5].ToString();
                 TxtPlazo.Text = datos.Rows[0][4].ToString();
-                //   LblFechasol.Text = "Fecha de solicitud: " + Convert.ToDateTime(datos.Rows[0][6]).ToString("dd/MM/yyyy");
+                 LblFechasol.Text = $"{Convert.ToDateTime(datos.Rows[0][6]).ToString("dd/MM/yyyy")}";
 
                 CboTipo2.Items.Clear();
                 CboTipo2.Items.Add("Diario");
@@ -1586,6 +1605,7 @@ namespace Arcoiris.Formularios
             List<string> datos = new List<string>();
             List<SubClases.Egreso> egresos = new List<SubClases.Egreso>();
             List<SubClases.Ingreso> ingresos = new List<SubClases.Ingreso>();
+          
             foreach (var item in listaCuentas)
             {
                 datos.Add(item.NomCuenta);
@@ -1593,6 +1613,8 @@ namespace Arcoiris.Formularios
                 datos.Add(item.tipo.ToString());
             }
             //comprobacion de valores para ingresos
+
+            
             foreach (DataGridViewRow item in DgvIngMen.Rows)
             {
                 // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
@@ -1668,8 +1690,12 @@ namespace Arcoiris.Formularios
                     return false;
                 }
             }
-            return ((sol.IngresoEstadoFinan(listaCuentas, "1") && sol.IngresoMen(ingresos, "1") && sol.EgresoMen(egresos, "1")));
-            
+            int CantIngre = ingresos.Count;
+            int CantEgre = egresos.Count;
+            bool IngreResp = CantIngre > 0 ? sol.IngresoMen(ingresos, TxtNoSol.Text) : true;
+            bool EgreResp = CantEgre > 0 ? sol.EgresoMen(egresos, TxtNoSol.Text) : true;
+
+            return ((sol.IngresoEstadoFinan(listaCuentas,TxtNoSol.Text) && IngreResp && EgreResp ));
            
         }
 
@@ -1689,18 +1715,24 @@ namespace Arcoiris.Formularios
             string idcli = LblCodCli.Text;
 
             DataTable datoscli = cli.clientebusca(idcli);
+          //  DataTable datosSoli = sol.busca_datos(CboSoli.Text);
             Reportes.ClasesRepo.DatosSolicitud DatoSol = new Reportes.ClasesRepo.DatosSolicitud();
             DatoSol.IdSol = int.Parse(CboSoli.Text);
+            DatoSol.FechaSol = DateTime.Parse(LblFechasol.Text);
             DatoSol.Cliente =$"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
             DatoSol.Domicilio=$"{datoscli.Rows[0][2]}";
             DatoSol.DPI = $"{datoscli.Rows[0][3]}";
             DatoSol.Tel1 = $"{datoscli.Rows[0][4]}";
             DatoSol.Tel2= $"{datoscli.Rows[0][5]}";
-            DatoSol.Prof1 = $"{datoscli.Rows[0][5]}";
+            DatoSol.Prof1 = $"{datoscli.Rows[0][6]}";
             DatoSol.NomCony= $"{datoscli.Rows[0][7]} {datoscli.Rows[0][8]}";
             DatoSol.TelCony = $"{datoscli.Rows[0][9]}";
             DatoSol.Referencia=$"{datoscli.Rows[0][10]}";
             DatoSol.EstadoCivil= $"{datoscli.Rows[0][11]}";
+            DatoSol.Prof2= $"{datoscli.Rows[0][17]}";
+            DatoSol.CagaF = $"{datoscli.Rows[0][18]}";
+            DatoSol.ProfCony = $"{datoscli.Rows[0][19]}";
+            DatoSol.DPICony= $"{datoscli.Rows[0][20]}";
             DatoSol.Asesor = TxtNomAseso.Text;
             //falta buscar
             DatoSol.AntiqNeg = "Anios";
@@ -1741,8 +1773,8 @@ namespace Arcoiris.Formularios
             {
                 SubClases.Garantia temp = new SubClases.Garantia();
                 temp.Id = int.Parse($"{fila.Cells[0].Value}");
+                temp.Propietario =int.Parse($"{fila.Cells[0].Value}");
                 temp.Tipo=$"{fila.Cells[2].Value}";
-                temp.Propietario = int.Parse($"{fila.Cells[1].Value}");
                 temp.Detalle = ($"{fila.Cells[3].Value}");
                 temp.Valor = decimal.Parse($"{fila.Cells[4].Value}");
                 temp.Informacion = ($"{fila.Cells[5].Value}");
@@ -1898,41 +1930,133 @@ namespace Arcoiris.Formularios
 
         private void TCTSoli_DrawItem(object sender, DrawItemEventArgs e)
         {
-            // Identificar cuál TabPage está seleccionada
-            TabPage SelectedTab = TCTSoli.TabPages[e.Index];
+            TabControl tabControl = (TabControl)sender;
+            TabPage currentTab = tabControl.TabPages[e.Index];
 
-            // Obtener el área del encabezado del TabPage
-            Rectangle HeaderRect = TCTSoli.GetTabRect(e.Index);
+            // Obtener el área del encabezado
+            Rectangle headerRect = tabControl.GetTabRect(e.Index);
 
-            // Crear Brushes para texto y fondo
-            Color amria =  Color.FromArgb(250,204,21);
-            using (SolidBrush BlackTextBrush = new SolidBrush(Color.Black))
-            using (SolidBrush RedTextBrush = new SolidBrush(Color.Black))
-            using (SolidBrush SelectedBackBrush = new SolidBrush( amria))   // Fondo cuando está seleccionada
-            using (SolidBrush NormalBackBrush = new SolidBrush(Color.White))         // Fondo normal
+            // Definir colores usando tu clase Estilos
+            Color amarillo = Clases.Estilos.Accent;  // Usando tu color definido
+            Color fondoNormal = Clases.Estilos.Panel;
+            Color textoNormal = Clases.Estilos.TitleText;
+            Color textoSel = Clases.Estilos.MenuActive;  // O usar otro color para seleccionado
+
+            // Crear brushes
+            using (SolidBrush selectedBackBrush = new SolidBrush(amarillo))
+            using (SolidBrush normalBackBrush = new SolidBrush(fondoNormal))
+            using (SolidBrush selectedTextBrush = new SolidBrush(textoSel))
+            using (SolidBrush normalTextBrush = new SolidBrush(textoNormal))
             {
-                // Configurar la alineación del texto
+                // Configurar alineación
                 StringFormat sf = new StringFormat();
                 sf.Alignment = StringAlignment.Center;
                 sf.LineAlignment = StringAlignment.Center;
 
-                // Pintar el fondo primero
-                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
-                {
-                    e.Graphics.FillRectangle(SelectedBackBrush, HeaderRect);
+                // Determinar si está seleccionada
+                bool isSelected = (e.State & DrawItemState.Selected) == DrawItemState.Selected;
 
-                    using (Font BoldFont = new Font(TCTSoli.Font.Name, TCTSoli.Font.Size, FontStyle.Bold))
-                    {
-                        e.Graphics.DrawString(TCTSoli.TabPages[e.Index].Text, BoldFont, RedTextBrush, HeaderRect, sf);
-                    }
+                // Dibujar fondo
+                if (isSelected)
+                {
+                    e.Graphics.FillRectangle(selectedBackBrush, headerRect);
                 }
                 else
                 {
-                    e.Graphics.FillRectangle(NormalBackBrush, HeaderRect);
-                    e.Graphics.DrawString(TCTSoli.TabPages[e.Index].Text, e.Font, BlackTextBrush, HeaderRect, sf);
+                    e.Graphics.FillRectangle(normalBackBrush, headerRect);
+                }
+
+                // Dibujar texto
+                Font fontToUse;
+                Brush textBrush;
+
+                if (isSelected)
+                {
+                    // Usar fuente en negrita para seleccionado
+                    fontToUse = new Font(tabControl.Font, FontStyle.Bold);
+                    textBrush = selectedTextBrush;
+                }
+                else
+                {
+                    fontToUse = tabControl.Font;
+                    textBrush = normalTextBrush;
+                }
+
+                // Dibujar el texto centrado
+                e.Graphics.DrawString(currentTab.Text, fontToUse, textBrush, headerRect, sf);
+
+                // Limpiar recursos si creamos una nueva fuente
+                if (isSelected)
+                {
+                    fontToUse.Dispose();
                 }
             }
         }
+
+        // MÉTODO PARA AJUSTAR EL TAMAÑO DE LAS PESTAÑAS SEGÚN EL TEXTO
+        private void AjustarTamanioPestaniasSegunTexto()
+        {
+            // Configurar para calcular tamaño automático
+            TCTSoli.SizeMode = TabSizeMode.Fixed;
+
+            using (Graphics g = TCTSoli.CreateGraphics())
+            {
+                int maxWidth = 0;
+
+                // Calcular el ancho necesario para cada pestaña
+                foreach (TabPage tab in TCTSoli.TabPages)
+                {
+                    // Medir el texto con fuente normal
+                    SizeF textSizeNormal = g.MeasureString(tab.Text, TCTSoli.Font);
+
+                    // Medir el texto con fuente en negrita (para cuando está seleccionada)
+                    using (Font boldFont = new Font(TCTSoli.Font, FontStyle.Bold))
+                    {
+                        SizeF textSizeBold = g.MeasureString(tab.Text, boldFont);
+
+                        // Usar el mayor tamaño entre normal y negrita
+                        float textWidth = Math.Max(textSizeNormal.Width, textSizeBold.Width);
+
+                        // Agregar padding (izquierda y derecha)
+                        int requiredWidth = (int)textWidth + 30; // 15px de padding a cada lado
+
+                        if (requiredWidth > maxWidth)
+                        {
+                            maxWidth = requiredWidth;
+                        }
+                    }
+                }
+
+                // Limitar el tamaño máximo si es necesario
+                int maxPermitido = 200; // Ajusta este valor según tus necesidades
+                if (maxWidth > maxPermitido)
+                {
+                    maxWidth = maxPermitido;
+                }
+
+                // Asegurar un tamaño mínimo
+                int minWidth = 80;
+                if (maxWidth < minWidth)
+                {
+                    maxWidth = minWidth;
+                }
+
+                // Aplicar el tamaño calculado a todas las pestañas
+                TCTSoli.ItemSize = new Size(maxWidth, TCTSoli.ItemSize.Height);
+            }
+        }
+
+             //validaciones
+        private void MostrarError(string mensaje)
+        {
+            MessageBox.Show(mensaje, "¡Sin datos!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        }
+
+        private bool ConfirmarContinuar(string mensaje)
+        {
+            return MessageBox.Show(mensaje, "¿Continuar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
     }
 }
 

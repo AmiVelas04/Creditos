@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Arcoiris.Clases
 {
-    class Estilos
+   public static class Estilos
     {
 
         /* =========================

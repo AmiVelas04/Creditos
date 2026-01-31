@@ -52,16 +52,16 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.70882cm</Width>
+                  <Width>4.55669cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>6.12523cm</Width>
+                  <Width>5.9731cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.90109cm</Width>
+                  <Width>4.74896cm</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>4.90154cm</Width>
+                  <Width>5.43893cm</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -373,7 +373,7 @@
             </TablixRowHierarchy>
             <DataSetName>RefeDatos</DataSetName>
             <Height>1.2cm</Height>
-            <Width>20.63668cm</Width>
+            <Width>20.71768cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -387,9 +387,9 @@
       <Width>20.71768cm</Width>
       <Page>
         <PageHeight>27.94cm</PageHeight>
-        <PageWidth>21.59cm</PageWidth>
-        <LeftMargin>0.1cm</LeftMargin>
-        <RightMargin>0.1cm</RightMargin>
+        <PageWidth>20.18cm</PageWidth>
+        <LeftMargin>0cm</LeftMargin>
+        <RightMargin>0cm</RightMargin>
         <TopMargin>0.1cm</TopMargin>
         <BottomMargin>0.1cm</BottomMargin>
         <ColumnSpacing>0.13cm</ColumnSpacing>

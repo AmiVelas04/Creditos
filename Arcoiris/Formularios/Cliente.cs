@@ -15,6 +15,8 @@ namespace Arcoiris.Formularios
     {
 
         Clases.Cliente clien = new Clases.Cliente();
+        DataTable cliedit = new DataTable();
+       
         string idcli;
         string idfiad;
         public Cliente()
@@ -54,11 +56,11 @@ namespace Arcoiris.Formularios
             string dir = TxtDir.Text;
             string dpi = TxtDpi.Text;
             string tel1 = TxtCTel1.Text;
-            string tel2 = TxtCTel2.Text;
+            string tel2 = "";//TxtCTel2.Text;
             string prof = TxtProf.Text;
             string Est_civil = CboScivil.Text;
             string Nom_cony = TxtNomcony.Text;
-            string Ape_cony = TxtApecony.Text;
+            string Ape_cony = "";//TxtApecony.Text;
             string telcon = TxtConTel.Text;
          //   string refe = TxtRef.Text;
          string fiad = "";// TxtFiador.Text;
@@ -104,7 +106,7 @@ namespace Arcoiris.Formularios
             TxtNom.Clear();
             TxtDpi.Clear();
             TxtApe.Clear();
-            TxtApecony.Clear();
+           // TxtApecony.Clear();
             TxtDir.Clear();
             TxtNomBus.Clear();
             TxtNomcony.Clear();
@@ -132,10 +134,10 @@ namespace Arcoiris.Formularios
             TxtDir.Clear();
             TxtDpi.Clear();
             TxtCTel1.Clear();
-            TxtCTel2.Clear();
+          //  TxtCTel2.Clear();
             TxtProf.Clear();
             TxtNomcony.Clear();
-            TxtApecony.Clear();
+           // TxtApecony.Clear();
             TxtConTel.Clear();
            // TxtRef.Clear();
            // TxtFiador.Clear();
@@ -146,11 +148,11 @@ namespace Arcoiris.Formularios
         private void Cliente_Load(object sender, EventArgs e)
         {
             CboScivil.Items.Add("Soltero");
-            CboCivil2.Items.Add("Soltero");
+            CboCivEdit.Items.Add("Soltero");
             CboScivil.Items.Add("Casado");
-            CboCivil2.Items.Add("Casado");
+            CboCivEdit.Items.Add("Casado");
             CboScivil.Items.Add("Viudo");
-           CboCivil2.Items.Add("Viudo");
+           CboCivEdit.Items.Add("Viudo");
             CboScivil.Sorted = true;
             CboGene.SelectedIndex = 0;
             CboScivil.SelectedIndex = 0;
@@ -161,6 +163,16 @@ namespace Arcoiris.Formularios
                 BtnUpd.Visible = false;
             }
             cargarDepas();
+           // Clases.Estilos.StyleForm(this);
+            Colores();
+
+        }
+
+        private void Colores()
+        {
+           label1.ForeColor= Clases.Estilos.LabelText;
+            GBXCliente.ForeColor = Clases.Estilos.TitleText;
+
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
@@ -204,25 +216,37 @@ namespace Arcoiris.Formularios
             string dpi = TxtDpi2.Text;
             string tel1 = TxtTel1Edit.Text;
           string tel2 = TxtTel2Edit.Text;
-            string prof = TxtProf2.Text;
-            string Est_civil = CboCivil2.Text;
+            string prof = TxtProfEdit.Text;
+            string Est_civil = CboCivEdit.Text;
             string Nom_cony = TxtNomCony2.Text;
-            string Ape_cony = TxtApeCony2.Text;
+            string profOt = TxtOProfEdit.Text;
             string telcon = TxtTelCony2.Text;
-            string refe = TxtRef2.Text;
-            // string fiad = TxtFiadNom2.Text;
-            //   string tfiad = TxtFiadTel2.Text;
-            //    string dfiad = TxtFiadDir2.Text;
-            string depa = CboDepa.Text;
-            string muni = CboMuni.Text;
+            string refe = TxtDpiConEdit.Text;
+            string depa = CboDepaEdit.Text;
+            string muni = CboMunEdit.Text;
             string edad = NudEdad.Value.ToString();
+            string profcon = TxtProfConyEdit.Text;
+            string dpicon = TxtDpiConEdit.Text;
+            string nomneg = TxtNomNegEdit.Text;
+            string dirneg = TxtDirNegEdit.Text;
+            string telneg = TxtTelNegEdit.Text;
+            string refneg = TxtRefNegEdit.Text;
+            string tipneg = TxtTelNegEdit.Text;
+            string antiqneg = TxtAntiqNegEdit.Text;
+            string carga = TxtCargaFamEdit.Text;
+            
+              
+
+
+
       
-            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, refe,edad,gene };
+            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, profOt, telcon, refe,edad,gene,depa,muni,profcon,dpicon,nomneg,dirneg,telneg,refneg,tipneg,antiqneg,carga, };
           //  string[] fiador = { fiad, dfiad, tfiad };
 
-            if (clien.updatecliente(idcli, cliente))
+          //  if (clien.updatecliente(idcli, cliente))
+          if(clien.updateclienteNuevo(idcli,cliente))
             {
-                MessageBox.Show("Datos Actualizados");
+                MessageBox.Show("Datos actualizados correctamente", "Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 TabC3.Parent = null;
                 /*if (clien.updatefiad(idfiad, fiador))
                 {                                 }
@@ -231,7 +255,7 @@ namespace Arcoiris.Formularios
             }
             else
             {
-                MessageBox.Show("Error al actualizar datos del cliente");
+                MessageBox.Show("Error al actualizar datos del cliente","Algo salio mal",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
             }
 
 
@@ -267,12 +291,14 @@ namespace Arcoiris.Formularios
                     {
                         DataTable fiad = new DataTable();
                         idcli = Convert.ToString(DGVCliente.CurrentRow.Cells[0].Value);
-                       // fiad = clien.idfiad(idcli);
-                       // idfiad = fiad.Rows[0][0].ToString();
+                        // fiad = clien.idfiad(idcli);
+                        // idfiad = fiad.Rows[0][0].ToString();
                         //  TxtFiadNom2.Text = fiad.Rows[0][1].ToString();
                         //   TxtFiadDir2.Text = fiad.Rows[0][2].ToString();
                         //     TxtFiadTel2.Text = fiad.Rows[0][3].ToString();
-                        DataTable cliedit = new DataTable();
+                        //DataTable cliedit = new DataTable();
+
+                       
                         cliedit = clien.clientebusca(idcli);
                         TabC3.Parent = tabControl1;
                         tabControl1.SelectedIndex = 2;
@@ -282,36 +308,58 @@ namespace Arcoiris.Formularios
                         TxtDpi2.Text = cliedit.Rows[0][3].ToString();
                         TxtTel1Edit.Text = cliedit.Rows[0][4].ToString();
                         TxtTel2Edit.Text = cliedit.Rows[0][5].ToString();
-                        TxtProf2.Text = cliedit.Rows[0][6].ToString();
+                        TxtProfEdit.Text = cliedit.Rows[0][6].ToString();
                         TxtNomCony2.Text = cliedit.Rows[0][7].ToString();
-                        TxtApeCony2.Text = cliedit.Rows[0][8].ToString();
+                     //   TxtApeCony2.Text = cliedit.Rows[0][8].ToString();
                         TxtTelCony2.Text = cliedit.Rows[0][9].ToString();
-                        TxtRef2.Text = cliedit.Rows[0][10].ToString();
+                        TxtDpiConEdit.Text = cliedit.Rows[0][20].ToString();
+                       TxtOProfEdit.Text= cliedit.Rows[0][10].ToString();
+                    TxtOProfEdit.Text= cliedit.Rows[0][17].ToString();
+                        TxtProfConyEdit.Text= $"{cliedit.Rows[0][19]}";
+                         CboDepaEdit.SelectedValue = clien.idDepaByName($"{cliedit.Rows[0][13]}");
+                        CboMunEdit.SelectedValue = clien.idMuniByName($"{cliedit.Rows[0][14]}");
+                        TxtCargaFamEdit.Text= $"{cliedit.Rows[0][18]}";
+                        TxtNomNegEdit.Text = $"{cliedit.Rows[0][23]}";
+                        TxtTelNegEdit.Text = $"{cliedit.Rows[0][24]}";
+                        TxtDirNegEdit.Text = $"{cliedit.Rows[0][25]}";
+                        TxtRefNegEdit.Text = $"{cliedit.Rows[0][26]}";
+                        TxtTipNegEdit.Text= $"{cliedit.Rows[0][27]}";
+                        TxtAntiqNegEdit.Text= $"{cliedit.Rows[0][28]}";
+
+
+                        DateTime zeroTime = new DateTime(1, 1, 1);
+                        //DateTime fNac = DateTime.Parse($"{cliedit.Rows[0][22]}");
+                        //TimeSpan interm= (DateTime.Now - fNac);
+                        //NudEdadEdit.Value = (zeroTime - interm).Year-1;
+
+                        if (cliedit.Rows[0][15].ToString().Equals("M"))
+                        {
+                            CboGeneEdit.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            CboGeneEdit.SelectedIndex = 1;
+                        }
+
 
                         if (cliedit.Rows[0][11].ToString() == "Soltero")
                         {
-                            CboCivil2.SelectedIndex = 0;
+                            CboCivEdit.SelectedIndex = 0;
                         }
                         else if (cliedit.Rows[0][11].ToString() == "Casado")
                         {
-                            CboCivil2.SelectedIndex = 1;
+                            CboCivEdit.SelectedIndex = 1;
                         }
                         else if (cliedit.Rows[0][11].ToString() == "Viudo")
                         {
-                            CboCivil2.SelectedIndex = 2;
+                            CboCivEdit.SelectedIndex = 2;
                         }
                         //12 edad
                         NudEdadEdit.Value = decimal.Parse(cliedit.Rows[0][12].ToString());
                         //13 departamento
                         //14 municipio
                         //15 genero
-                        if (cliedit.Rows[0][15].ToString().Equals("M"))
-                        {
-                            CboGeneEdit.SelectedIndex = 0; }
-                        else
-                        {
-                            CboGeneEdit.SelectedIndex = 1;
-                        }
+                       
                         //16 nacionalidad
                     }
                 }
@@ -320,17 +368,6 @@ namespace Arcoiris.Formularios
                     MessageBox.Show($"Seleccione un elemento de la lista\n {ex}","Se presento un problema",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
 
-            }
-        }
-
-        private void CboDepaEdit_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (CboDepaEdit.SelectedValue != null && !CboDepaEdit.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
-            {
-                string id = CboDepaEdit.SelectedValue.ToString();
-                CboMunEdit.DataSource = clien.Munis(id);
-                CboMunEdit.DisplayMember = "Nombre";
-                CboMunEdit.ValueMember = "Id";
             }
         }
 
@@ -371,23 +408,23 @@ namespace Arcoiris.Formularios
 
         private void CboGeneEdit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CboCivil2.Items.Clear();
+            CboCivEdit.Items.Clear();
            
 
             if (CboGeneEdit.SelectedIndex == 0)
             {
                
-                CboCivil2.Items.Add("Soltero");
-                CboCivil2.Items.Add("Casado");
-                CboCivil2.Items.Add("Viudo");
-                CboCivil2.Sorted = true;
+                CboCivEdit.Items.Add("Soltero");
+                CboCivEdit.Items.Add("Casado");
+                CboCivEdit.Items.Add("Viudo");
+            //    CboCivEdit.Sorted = true;
             }
             else
             {
-                CboCivil2.Items.Add("Soltera");
-                CboCivil2.Items.Add("Casada");
-                CboCivil2.Items.Add("Viuda");
-                CboCivil2.Sorted = true;
+                CboCivEdit.Items.Add("Soltera");
+                CboCivEdit.Items.Add("Casada");
+                CboCivEdit.Items.Add("Viuda");
+              //  CboCivEdit.Sorted = true;
             }
         }
 
@@ -448,6 +485,28 @@ namespace Arcoiris.Formularios
                 MessageBox.Show("Por favor, seleccione una fila válida para eliminar.",
                     "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void cargamunis1()
+
+        {
+            if (CboDepaEdit.SelectedValue != null && !CboDepaEdit.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
+            {
+                string id = CboDepaEdit.SelectedValue.ToString();
+                CboMunEdit.DataSource = clien.Munis(id);
+                CboMunEdit.DisplayMember = "Nombre";
+                CboMunEdit.ValueMember = "Id";
+            }
+        }
+
+        private void CboDepaEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cargamunis1();
+        }
+
+        private void BtnGuardar_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
