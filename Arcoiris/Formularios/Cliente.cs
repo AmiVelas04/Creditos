@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,9 +18,11 @@ namespace Arcoiris.Formularios
 
         Clases.Cliente clien = new Clases.Cliente();
         DataTable cliedit = new DataTable();
+        DataTable clirefs = new DataTable();
+        string DPISin = @"C:\Users\AMKDEV\Documents\Sistemas\Creditos\Recursos\lol.jpg";
        
         string idcli;
-        string idfiad;
+        //string idfiad;
         public Cliente()
         {
             InitializeComponent();
@@ -40,6 +44,14 @@ namespace Arcoiris.Formularios
 
         private void guardar()
         {
+            List<string> refes= new List<string>();
+            foreach (DataGridViewRow fila in DgvRefs.Rows)
+            {
+                refes.Add($"{fila.Cells[1].Value}");
+                refes.Add($"{fila.Cells[2].Value}");
+                refes.Add($"{fila.Cells[3].Value}");
+            }
+
             string Nacionalidad = "";
             string genero = "";
 
@@ -51,6 +63,9 @@ namespace Arcoiris.Formularios
             { Nacionalidad = "Guatemalteca";
                 genero = "F";
             }
+          
+            byte[] imagenbytes=File.ReadAllBytes(OfdDPI.FileName);
+          
             string nom = TxtNom.Text;
             string ape = TxtApe.Text;
             string dir = TxtDir.Text;
@@ -62,28 +77,38 @@ namespace Arcoiris.Formularios
             string Nom_cony = TxtNomcony.Text;
             string Ape_cony = "";//TxtApecony.Text;
             string telcon = TxtConTel.Text;
-         //   string refe = TxtRef.Text;
-         string fiad = "";// TxtFiador.Text;
+            string refe = TxtRef.Text;
+            string fiad = "";// TxtFiador.Text;
             string tfiad = "";// TxtFtel.Text;
             string dfiad = "";// TxtFdir.Text;
             string depa = CboDepa.Text;
             string muni = CboMuni.Text;
             string edad = NudEdad.Value.ToString();
-           
-            
+            string oProf = TxtProf2In.Text;
+            string DpiCon = TxtDpiCony.Text;
+            string profCon = TxtProfCony.Text;
+            string cargaf = TxtCargaF.Text;
+            string NomNeg = TxtNomNeg.Text;
+            string DirNeg = TxtDirNeg.Text;
+            string TelNeg = TxtTelNeg.Text;
+            string RefNeg = TxtRefNeg.Text;
+            string TipNeg = TxtTipNeg.Text;
+            string AntiqNeg=TxtAtiqNeg.Text;
+            string fechanaci = DtpNac.Value.ToString("yyyy/MM/dd");
             string fecha = DateTime.Today.ToString("yyyy/MM/dd");
-            string[] datos = { nom, ape, dir, dpi, tel1, tel2, prof, Est_civil, Nom_cony, Ape_cony, telcon, "", fiad, tfiad, dfiad, fecha,depa,muni,edad,genero, Nacionalidad };
+            string imagen = Convert.ToBase64String(imagenbytes);
+            string[] datos = { nom, ape, dir,refe, dpi, tel1, tel2, prof, oProf, Est_civil, Nom_cony, telcon,  DpiCon, profCon, fecha,fechanaci, depa,muni,edad,genero, Nacionalidad,cargaf,NomNeg,DirNeg,TelNeg,RefNeg,TipNeg,AntiqNeg,imagen };
             //   int idcli;
             //   idcli = clien.agregar_cliente(datos);
-            if (clien.agregar_cliente(datos))
+            if (clien.agregar_cliente(datos,refes))
             {
-                MessageBox.Show("Datos del cliente guardados", "Guardar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Datos del cliente guardados correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpiar();
             }
             else
             {
-                MessageBox.Show("Existe un error en el guardado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                limpiar();
+                MessageBox.Show("No se pudo registrar el nuevo cliente", "Algo salio mal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+               // limpiar();
             }
         }
 
@@ -118,10 +143,7 @@ namespace Arcoiris.Formularios
 
 
 
-        private void BtnGuardar_Click(object sender, EventArgs e)
-        {
-            guardar();
-        }
+      
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
@@ -163,7 +185,7 @@ namespace Arcoiris.Formularios
                 BtnUpd.Visible = false;
             }
             cargarDepas();
-           // Clases.Estilos.StyleForm(this);
+            // Clases.Estilos.StyleForm(this);
             Colores();
 
         }
@@ -172,6 +194,17 @@ namespace Arcoiris.Formularios
         {
            label1.ForeColor= Clases.Estilos.LabelText;
             GBXCliente.ForeColor = Clases.Estilos.TitleText;
+            
+            Clases.Estilos.StylePrimaryButton(BtnGuardar);
+            Clases.Estilos.StylePrimaryButton(BtnUpd);
+            Clases.Estilos.StyleSecondaryButton(BtnLimpiar);
+            Clases.Estilos.StyleSecondaryButton(BtnClean);
+            byte[] imageBytes = File.ReadAllBytes(DPISin);
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+              PicDPI.Image = Image.FromStream(ms);
+            }
+
 
         }
 
@@ -209,7 +242,7 @@ namespace Arcoiris.Formularios
             { gene = "M"; }
             else
             { gene = "F"; }
-
+            byte[] imagenbytes = File.ReadAllBytes(OfdDpiEdit.FileName);
             string nom = TxtNom2.Text;
             string ape = TxtApe2.Text;
             string dir = TxtDir2.Text;
@@ -234,13 +267,8 @@ namespace Arcoiris.Formularios
             string tipneg = TxtTelNegEdit.Text;
             string antiqneg = TxtAntiqNegEdit.Text;
             string carga = TxtCargaFamEdit.Text;
-            
-              
-
-
-
-      
-            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, profOt, telcon, refe,edad,gene,depa,muni,profcon,dpicon,nomneg,dirneg,telneg,refneg,tipneg,antiqneg,carga, };
+            string imagen = Convert.ToBase64String(imagenbytes);
+            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, profOt, telcon, refe,edad,gene,depa,muni,profcon,dpicon,nomneg,dirneg,telneg,refneg,tipneg,antiqneg,carga,imagen };
           //  string[] fiador = { fiad, dfiad, tfiad };
 
           //  if (clien.updatecliente(idcli, cliente))
@@ -248,10 +276,6 @@ namespace Arcoiris.Formularios
             {
                 MessageBox.Show("Datos actualizados correctamente", "Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information);
                 TabC3.Parent = null;
-                /*if (clien.updatefiad(idfiad, fiador))
-                {                                 }
-                else
-                {                    MessageBox.Show("Error al actualizar datos del fiador");                }*/
             }
             else
             {
@@ -261,16 +285,7 @@ namespace Arcoiris.Formularios
 
         }
 
-        private void CboDepa_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (CboDepa.SelectedValue != null && !CboDepa.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
-            {
-                string id = CboDepa.SelectedValue.ToString();
-                CboMuni.DataSource = clien.Munis(id);
-                CboMuni.DisplayMember = "Nombre";
-                CboMuni.ValueMember = "Id";
-            }
-        }
+       
 
         private void DGVCliente_DoubleClick(object sender, EventArgs e)
         {
@@ -291,15 +306,8 @@ namespace Arcoiris.Formularios
                     {
                         DataTable fiad = new DataTable();
                         idcli = Convert.ToString(DGVCliente.CurrentRow.Cells[0].Value);
-                        // fiad = clien.idfiad(idcli);
-                        // idfiad = fiad.Rows[0][0].ToString();
-                        //  TxtFiadNom2.Text = fiad.Rows[0][1].ToString();
-                        //   TxtFiadDir2.Text = fiad.Rows[0][2].ToString();
-                        //     TxtFiadTel2.Text = fiad.Rows[0][3].ToString();
-                        //DataTable cliedit = new DataTable();
-
-                       
                         cliedit = clien.clientebusca(idcli);
+                        clirefs = clien.refscli(idcli);
                         TabC3.Parent = tabControl1;
                         tabControl1.SelectedIndex = 2;
                         TxtNom2.Text = cliedit.Rows[0][0].ToString();
@@ -314,7 +322,7 @@ namespace Arcoiris.Formularios
                         TxtTelCony2.Text = cliedit.Rows[0][9].ToString();
                         TxtDpiConEdit.Text = cliedit.Rows[0][20].ToString();
                        TxtOProfEdit.Text= cliedit.Rows[0][10].ToString();
-                    TxtOProfEdit.Text= cliedit.Rows[0][17].ToString();
+                    TxtCargaF.Text= cliedit.Rows[0][17].ToString();
                         TxtProfConyEdit.Text= $"{cliedit.Rows[0][19]}";
                          CboDepaEdit.SelectedValue = clien.idDepaByName($"{cliedit.Rows[0][13]}");
                         CboMunEdit.SelectedValue = clien.idMuniByName($"{cliedit.Rows[0][14]}");
@@ -325,8 +333,36 @@ namespace Arcoiris.Formularios
                         TxtRefNegEdit.Text = $"{cliedit.Rows[0][26]}";
                         TxtTipNegEdit.Text= $"{cliedit.Rows[0][27]}";
                         TxtAntiqNegEdit.Text= $"{cliedit.Rows[0][28]}";
+                        //  TxtCargaFamEdit.Text=(cliedit.Rows[0][21].ToString());
+                        try
+                        {
+                            byte[] imadpi = (byte[])cliedit.Rows[0][21];
+
+                            // Intentemos convertir los bytes a texto y luego de Base64 a Bytes
+                            // Solo si el programador anterior guardó el Base64 puro en el BLOB
+                            string base64String =Encoding.UTF8.GetString(imadpi);
+                            byte[] realBytes = Convert.FromBase64String(base64String);
+
+                            using (MemoryStream ms = new MemoryStream(realBytes))
+                            {
+                                PicDpiEdit.Image = new Bitmap(ms);
+                            }
+                        }
+                        catch
+                        {
+                            // Si lo de arriba falla, es que los bytes originales estaban bien 
+                            // pero quizás tienen un encabezado corrupto.
+                        }
 
 
+
+                        DgvRefEditData.Rows.Clear();
+                        for (int i = 0; i < clirefs.Rows.Count; i++)
+                        {
+                           DgvRefEditData.Rows.Add($"{clirefs.Rows[i][0]}", $"{clirefs.Rows[i][1]}", $"{clirefs.Rows[i][2]}", $"{clirefs.Rows[i][3]}");
+                        }
+
+                       // DgvRefsEdit.EditMode = DataGridViewEditMode.EditOnF2;
                         DateTime zeroTime = new DateTime(1, 1, 1);
                         //DateTime fNac = DateTime.Parse($"{cliedit.Rows[0][22]}");
                         //TimeSpan interm= (DateTime.Now - fNac);
@@ -368,6 +404,18 @@ namespace Arcoiris.Formularios
                     MessageBox.Show($"Seleccione un elemento de la lista\n {ex}","Se presento un problema",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                 }
 
+            }
+        }
+
+        byte[] ObjectToByteArray(object obj)
+        {
+            if (obj == null)
+                return null;
+            BinaryFormatter bf = new BinaryFormatter();
+            using (MemoryStream ms = new MemoryStream())
+            {
+                bf.Serialize(ms, obj);
+                return ms.ToArray();
             }
         }
 
@@ -499,14 +547,139 @@ namespace Arcoiris.Formularios
             }
         }
 
+        private void cargamunis()
+
+        {
+            if (CboDepa.SelectedValue != null && !CboDepa.SelectedValue.ToString().Equals("Arcoiris.Clases.Modelos.DeparamentoModel"))
+            {
+                string id = CboDepa.SelectedValue.ToString();
+                CboMuni.DataSource = clien.Munis(id);
+                CboMuni.DisplayMember = "Nombre";
+                CboMuni.ValueMember = "Id";
+            }
+        }
+
         private void CboDepaEdit_SelectedIndexChanged(object sender, EventArgs e)
         {
             cargamunis1();
         }
 
-        private void BtnGuardar_Click_1(object sender, EventArgs e)
+        private void CboDepa_SelectedValueChanged_1(object sender, EventArgs e)
+        {
+            cargamunis();
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            guardar();
+        }
+
+        private bool updrefes()
         {
 
+            List<string> refes = new List<string>();
+            foreach (DataGridViewRow fila in DgvRefEditData.Rows)
+            {
+                refes.Add($"{fila.Cells[0].Value}");
+                refes.Add($"{fila.Cells[1].Value}");
+                refes.Add($"{fila.Cells[2].Value}");
+                refes.Add($"{fila.Cells[3].Value}");
+            }
+
+            return (clien.UpdRefes(refes, idcli));
+
+
+        }
+
+        private void BtnUpdRefes_Click(object sender, EventArgs e)
+        {
+
+            if (updrefes())
+            {
+                MessageBox.Show("Referencias actualizadas ccorrectamente","Exito",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("No se pudo actualizar los datos de las referencias", "Algo salio mal", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+        }
+
+        private void BtnAddRefEdit_Click(object sender, EventArgs e)
+        {
+            // 1. Limpieza de espacios para evitar entradas de solo espacios
+            string nombre = TxtNomRefEdit.Text.Trim();
+            string parentesco = TxtParenEdit.Text.Trim();
+            string telefono = TxtTelRefEdit.Text.Trim();
+
+            // 2. Validaciones de campos obligatorios
+            if (string.IsNullOrEmpty(nombre) || string.IsNullOrEmpty(parentesco) || string.IsNullOrEmpty(telefono))
+            {
+                MessageBox.Show("Todos los campos son obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Detiene la ejecución
+            }
+
+            // 3. Validación específica para el teléfono (Exactamente 8 caracteres)
+            // Nota: Puedes agregar '&& telefono.All(char.IsDigit)' si solo quieres números
+            if (telefono.Length != 8)
+            {
+                MessageBox.Show("El teléfono debe tener exactamente 8 caracteres.", "Error de formato", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // 4. Validación de límite de filas
+            if (DgvRefEditData.Rows.Count < 3)
+            {
+               DgvRefEditData.Rows.Add("0", nombre, parentesco, telefono);
+
+                // Opcional: Limpiar los campos después de agregar
+                TxtNomRefEdit.Clear();
+                TxtParenEdit.Clear();
+                TxtTelRefEdit.Clear();
+                TxtNomRef.Focus();
+            }
+            else
+            {
+                MessageBox.Show("No es posible agregar más de 3 referencias", "Límite alcanzado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void BtnUpdDpi_Click(object sender, EventArgs e)
+        {
+            OfdDPI.InitialDirectory = "c:\\";
+            OfdDPI.Filter = "JPG|*.jpg;*.jpeg";
+            if (OfdDPI.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // MessageBox.Show("Ruta Guardada: " + OFD1.FileName);
+                    //PbxProd.Image = Image.FromFile(@"C:\Users\Insane\Pictures\7z6vh4.jpg");
+                    PicDPI.Image = Image.FromFile(@"" + OfdDPI.FileName);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.ToString());
+                }
+            }
+        }
+
+        private void BtnDpiImgEdit_Click(object sender, EventArgs e)
+        {
+            OfdDpiEdit.InitialDirectory = "c:\\";
+            OfdDpiEdit.Filter = "JPG|*.jpg;*.jpeg";
+            if (OfdDpiEdit.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // MessageBox.Show("Ruta Guardada: " + OFD1.FileName);
+                    //PbxProd.Image = Image.FromFile(@"C:\Users\Insane\Pictures\7z6vh4.jpg");
+                    PicDpiEdit.Image = Image.FromFile(@"" + OfdDpiEdit.FileName);
+                }
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.ToString());
+                }
+            }
         }
     }
 }

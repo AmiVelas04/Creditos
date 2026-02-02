@@ -17,6 +17,10 @@ namespace Arcoiris.Reportes
         public List<ClasesRepo.ReferenciaSolicitud> Referi = new List<ClasesRepo.ReferenciaSolicitud>();
         public List<ClasesRepo.FiadorSolicitud> Fiado = new List<ClasesRepo.FiadorSolicitud>();
         public List<ClasesRepo.GarantiaSolicitud> Garant = new List<ClasesRepo.GarantiaSolicitud>();
+        public List<Formularios.SubClases.Ingreso> Ingre = new List<Formularios.SubClases.Ingreso>();
+        public List<Formularios.SubClases.Egreso> Egres = new List<Formularios.SubClases.Egreso>();
+        public List<Formularios.SubClases.Cuenta> Cuenta = new List<Formularios.SubClases.Cuenta>();
+        
 
         public SolicitudNuevo()
         {
@@ -40,7 +44,7 @@ namespace Arcoiris.Reportes
         private void LocalReport_SubreportProcessing(object remitente, SubreportProcessingEventArgs e)
         {
             //  var ID = Convert.ToInt32(e.Parameters[0].Values[0]);
-            var Referencias = Referi[0];
+       //    var Referencias = Referi[0];
             if (e.ReportPath == "SoliFiador")
             {
                 var Detalle_Fiador = new ReportDataSource() { Name = "FiadorData", Value = Fiado };

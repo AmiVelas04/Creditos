@@ -1708,13 +1708,16 @@ namespace Arcoiris.Formularios
 
         private void CargarRepoSoli()
         {
-            Reportes.ClasesRepo.ReferenciaSolicitud refes = new Reportes.ClasesRepo.ReferenciaSolicitud();
+            List<Reportes.ClasesRepo.ReferenciaSolicitud> refes = new List<Reportes.ClasesRepo.ReferenciaSolicitud>();
             Reportes.ClasesRepo.FiadorSolicitud Fiad = new Reportes.ClasesRepo.FiadorSolicitud();
-            Reportes.ClasesRepo.GarantiaSolicitud Gara = new Reportes.ClasesRepo.GarantiaSolicitud();
+           List< Reportes.ClasesRepo.GarantiaSolicitud> Gara = new List<Reportes.ClasesRepo.GarantiaSolicitud>();
 
             string idcli = LblCodCli.Text;
+            string idsol = CboSoli.Text;
 
             DataTable datoscli = cli.clientebusca(idcli);
+            DataTable datosrefes = cli.refscli(idcli);
+            DataTable datosGarant = cli.GaratanbyCliSol(idsol, idcli);
           //  DataTable datosSoli = sol.busca_datos(CboSoli.Text);
             Reportes.ClasesRepo.DatosSolicitud DatoSol = new Reportes.ClasesRepo.DatosSolicitud();
             DatoSol.IdSol = int.Parse(CboSoli.Text);
@@ -1735,26 +1738,46 @@ namespace Arcoiris.Formularios
             DatoSol.DPICony= $"{datoscli.Rows[0][20]}";
             DatoSol.Asesor = TxtNomAseso.Text;
             //falta buscar
-            DatoSol.AntiqNeg = "Anios";
-            DatoSol.DirNeg = "En algun lugar";
-            DatoSol.NomNeg = "Panchitos";
+            DatoSol.TelNeg= $"{datoscli.Rows[0][24]}";
+            DatoSol.RefNeg= $"{datoscli.Rows[0][26]}";
+            DatoSol.AntiqNeg = $"{datoscli.Rows[0][28]}";
+            DatoSol.DirNeg = $"{datoscli.Rows[0][25]}";
+            DatoSol.NomNeg = $"{datoscli.Rows[0][23]}";
+            DatoSol.TipoNeg= $"{datoscli.Rows[0][27]}";
             DatoSol.PlazoCred =int.Parse(TxtPlazo.Text);
             DatoSol.PagoCred = CboTipo.Text;
             DatoSol.TipoCred = TxtPlazo.Text;
             DatoSol.Monto = decimal.Parse(TxtMonto2.Text);
-           DatoSol.MontoSug= decimal.Parse(TxtMonto2.Text);
+            DatoSol.MontoSug= decimal.Parse(TxtMonto2.Text);
             DatoSol.MotivoCred = TxtConcept.Text;
-            refes.Nombre = "Juan prueba";
-            refes.Parentezco = "Hermano";
-            refes.Telefono="908765441";
+            
+            for (int i = 0; i < datosrefes.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.ReferenciaSolicitud TempRefe = new Reportes.ClasesRepo.ReferenciaSolicitud();
+                TempRefe.Nombre = $"{datosrefes.Rows[i][1]}";
+                TempRefe.Parentezco = $"{datosrefes.Rows[i][2]}";
+                TempRefe.Telefono = $"{datosrefes.Rows[i][3]}";
+                refes.Add(TempRefe);
+            }
+            for (int i = 0; i < datosGarant.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.GarantiaSolicitud temp = new Reportes.ClasesRepo.GarantiaSolicitud();
+                temp.Propietario = $"{datosGarant.Rows[i][0]}";
+                temp.Detalle = $"{datosGarant.Rows[i][1]}";
+                temp.Tipo = $"{datosGarant.Rows[i][2]}";
+                temp.Detalle = $"{datosGarant.Rows[i][3]}";
+                temp.Valor = decimal.Parse($"{datosGarant.Rows[i][4]}");
+                temp.Informacion = $"{datosGarant.Rows[i][5]}";
+                temp.Observaciones = $"{datosGarant.Rows[i][6]}";
+                Gara.Add(temp);
+            }
             //DatoSol.Refs.Add(refes);
-
             //DatoSol.cre
             Reportes.SolicitudNuevo soli = new Reportes.SolicitudNuevo();
             soli.DatosGen.Add(DatoSol);
-            soli.Referi.Add(refes);
+            soli.Referi = refes;
             soli.Fiado.Add(Fiad);
-            soli.Garant.Add(Gara);
+            soli.Garant=(Gara);
             soli.Show();
 
 

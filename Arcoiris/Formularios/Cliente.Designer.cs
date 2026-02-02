@@ -31,11 +31,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Cliente));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TabC1 = new System.Windows.Forms.TabPage();
-            this.PanInfIngreso1 = new System.Windows.Forms.Panel();
-            this.NudEdad = new System.Windows.Forms.NumericUpDown();
             this.PanSupIngreso1 = new System.Windows.Forms.Panel();
             this.GBXCliente = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.PicDPI = new System.Windows.Forms.PictureBox();
+            this.BtnUpdDpi = new System.Windows.Forms.Button();
+            this.label56 = new System.Windows.Forms.Label();
+            this.NudEdad = new System.Windows.Forms.NumericUpDown();
+            this.GbxNeg = new System.Windows.Forms.GroupBox();
             this.TxtAtiqNeg = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
             this.TxtRefNeg = new System.Windows.Forms.TextBox();
@@ -110,6 +112,13 @@
             this.DGVCliente = new System.Windows.Forms.DataGridView();
             this.TabC3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnDpiImgEdit = new System.Windows.Forms.Button();
+            this.PicDpiEdit = new System.Windows.Forms.PictureBox();
+            this.DgvRefEditData = new System.Windows.Forms.DataGridView();
+            this.IdrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefEditNom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefEditParen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RefEditTel = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CboCivEdit = new System.Windows.Forms.ComboBox();
             this.GbxNegEdit = new System.Windows.Forms.GroupBox();
             this.TxtAntiqNegEdit = new System.Windows.Forms.TextBox();
@@ -134,8 +143,8 @@
             this.label40 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.DtpNaci2 = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.BtnAddRefEdit = new System.Windows.Forms.Button();
+            this.BtnUpdRefes = new System.Windows.Forms.Button();
             this.TxtTelRefEdit = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.TxtParenEdit = new System.Windows.Forms.TextBox();
@@ -143,11 +152,6 @@
             this.TxtNomRefEdit = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TxtTel2Edit = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.CboGeneEdit = new System.Windows.Forms.ComboBox();
@@ -178,20 +182,23 @@
             this.label30 = new System.Windows.Forms.Label();
             this.TxtNom2 = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.OfdDPI = new System.Windows.Forms.OpenFileDialog();
+            this.OfdDpiEdit = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.TabC1.SuspendLayout();
-            this.PanInfIngreso1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.NudEdad)).BeginInit();
             this.PanSupIngreso1.SuspendLayout();
             this.GBXCliente.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicDPI)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEdad)).BeginInit();
+            this.GbxNeg.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRefs)).BeginInit();
             this.TbC2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVCliente)).BeginInit();
             this.TabC3.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicDpiEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvRefEditData)).BeginInit();
             this.GbxNegEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudEdadEdit)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,7 +217,6 @@
             // 
             // TabC1
             // 
-            this.TabC1.Controls.Add(this.PanInfIngreso1);
             this.TabC1.Controls.Add(this.PanSupIngreso1);
             this.TabC1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabC1.Location = new System.Drawing.Point(4, 26);
@@ -221,50 +227,23 @@
             this.TabC1.Text = "Ingreso cliente";
             this.TabC1.UseVisualStyleBackColor = true;
             // 
-            // PanInfIngreso1
-            // 
-            this.PanInfIngreso1.Controls.Add(this.NudEdad);
-            this.PanInfIngreso1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanInfIngreso1.Location = new System.Drawing.Point(3, 700);
-            this.PanInfIngreso1.Name = "PanInfIngreso1";
-            this.PanInfIngreso1.Size = new System.Drawing.Size(1151, 66);
-            this.PanInfIngreso1.TabIndex = 1;
-            // 
-            // NudEdad
-            // 
-            this.NudEdad.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NudEdad.Location = new System.Drawing.Point(555, 38);
-            this.NudEdad.Maximum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.NudEdad.Minimum = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
-            this.NudEdad.Name = "NudEdad";
-            this.NudEdad.Size = new System.Drawing.Size(33, 23);
-            this.NudEdad.TabIndex = 40;
-            this.NudEdad.Value = new decimal(new int[] {
-            18,
-            0,
-            0,
-            0});
-            // 
             // PanSupIngreso1
             // 
             this.PanSupIngreso1.Controls.Add(this.GBXCliente);
-            this.PanSupIngreso1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanSupIngreso1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanSupIngreso1.Location = new System.Drawing.Point(3, 3);
             this.PanSupIngreso1.Name = "PanSupIngreso1";
-            this.PanSupIngreso1.Size = new System.Drawing.Size(1151, 697);
+            this.PanSupIngreso1.Size = new System.Drawing.Size(1151, 763);
             this.PanSupIngreso1.TabIndex = 0;
             // 
             // GBXCliente
             // 
-            this.GBXCliente.Controls.Add(this.groupBox2);
+            this.GBXCliente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.GBXCliente.Controls.Add(this.PicDPI);
+            this.GBXCliente.Controls.Add(this.BtnUpdDpi);
+            this.GBXCliente.Controls.Add(this.label56);
+            this.GBXCliente.Controls.Add(this.NudEdad);
+            this.GBXCliente.Controls.Add(this.GbxNeg);
             this.GBXCliente.Controls.Add(this.TxtRef);
             this.GBXCliente.Controls.Add(this.label41);
             this.GBXCliente.Controls.Add(this.TxtDpiCony);
@@ -320,31 +299,89 @@
             this.GBXCliente.Margin = new System.Windows.Forms.Padding(4);
             this.GBXCliente.Name = "GBXCliente";
             this.GBXCliente.Padding = new System.Windows.Forms.Padding(4);
-            this.GBXCliente.Size = new System.Drawing.Size(1147, 697);
+            this.GBXCliente.Size = new System.Drawing.Size(1147, 763);
             this.GBXCliente.TabIndex = 3;
             this.GBXCliente.TabStop = false;
             this.GBXCliente.Text = "Datos del cliente";
             // 
-            // groupBox2
+            // PicDPI
             // 
-            this.groupBox2.Controls.Add(this.TxtAtiqNeg);
-            this.groupBox2.Controls.Add(this.label50);
-            this.groupBox2.Controls.Add(this.TxtRefNeg);
-            this.groupBox2.Controls.Add(this.label51);
-            this.groupBox2.Controls.Add(this.TxtTipNeg);
-            this.groupBox2.Controls.Add(this.label52);
-            this.groupBox2.Controls.Add(this.TxtTelNeg);
-            this.groupBox2.Controls.Add(this.label53);
-            this.groupBox2.Controls.Add(this.TxtDirNeg);
-            this.groupBox2.Controls.Add(this.label54);
-            this.groupBox2.Controls.Add(this.TxtNomNeg);
-            this.groupBox2.Controls.Add(this.label55);
-            this.groupBox2.Location = new System.Drawing.Point(367, 261);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(590, 181);
-            this.groupBox2.TabIndex = 82;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Negocio";
+            this.PicDPI.Location = new System.Drawing.Point(932, 317);
+            this.PicDPI.Name = "PicDPI";
+            this.PicDPI.Size = new System.Drawing.Size(192, 120);
+            this.PicDPI.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicDPI.TabIndex = 85;
+            this.PicDPI.TabStop = false;
+            // 
+            // BtnUpdDpi
+            // 
+            this.BtnUpdDpi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.BtnUpdDpi.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnUpdDpi.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdDpi.Image")));
+            this.BtnUpdDpi.Location = new System.Drawing.Point(309, 229);
+            this.BtnUpdDpi.Name = "BtnUpdDpi";
+            this.BtnUpdDpi.Size = new System.Drawing.Size(38, 30);
+            this.BtnUpdDpi.TabIndex = 84;
+            this.BtnUpdDpi.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnUpdDpi.UseVisualStyleBackColor = false;
+            this.BtnUpdDpi.Click += new System.EventHandler(this.BtnUpdDpi_Click);
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label56.Location = new System.Drawing.Point(351, 222);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(38, 17);
+            this.label56.TabIndex = 83;
+            this.label56.Text = "Edad";
+            // 
+            // NudEdad
+            // 
+            this.NudEdad.BackColor = System.Drawing.Color.White;
+            this.NudEdad.Enabled = false;
+            this.NudEdad.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NudEdad.Location = new System.Drawing.Point(420, 217);
+            this.NudEdad.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.NudEdad.Minimum = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            this.NudEdad.Name = "NudEdad";
+            this.NudEdad.ReadOnly = true;
+            this.NudEdad.Size = new System.Drawing.Size(33, 23);
+            this.NudEdad.TabIndex = 40;
+            this.NudEdad.Value = new decimal(new int[] {
+            18,
+            0,
+            0,
+            0});
+            // 
+            // GbxNeg
+            // 
+            this.GbxNeg.Controls.Add(this.TxtAtiqNeg);
+            this.GbxNeg.Controls.Add(this.label50);
+            this.GbxNeg.Controls.Add(this.TxtRefNeg);
+            this.GbxNeg.Controls.Add(this.label51);
+            this.GbxNeg.Controls.Add(this.TxtTipNeg);
+            this.GbxNeg.Controls.Add(this.label52);
+            this.GbxNeg.Controls.Add(this.TxtTelNeg);
+            this.GbxNeg.Controls.Add(this.label53);
+            this.GbxNeg.Controls.Add(this.TxtDirNeg);
+            this.GbxNeg.Controls.Add(this.label54);
+            this.GbxNeg.Controls.Add(this.TxtNomNeg);
+            this.GbxNeg.Controls.Add(this.label55);
+            this.GbxNeg.Location = new System.Drawing.Point(344, 276);
+            this.GbxNeg.Name = "GbxNeg";
+            this.GbxNeg.Size = new System.Drawing.Size(565, 181);
+            this.GbxNeg.TabIndex = 82;
+            this.GbxNeg.TabStop = false;
+            this.GbxNeg.Text = "Negocio";
             // 
             // TxtAtiqNeg
             // 
@@ -397,6 +434,7 @@
             // TxtTelNeg
             // 
             this.TxtTelNeg.Location = new System.Drawing.Point(84, 138);
+            this.TxtTelNeg.MaxLength = 8;
             this.TxtTelNeg.Name = "TxtTelNeg";
             this.TxtTelNeg.Size = new System.Drawing.Size(171, 23);
             this.TxtTelNeg.TabIndex = 86;
@@ -444,7 +482,7 @@
             // 
             // TxtRef
             // 
-            this.TxtRef.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtRef.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtRef.Location = new System.Drawing.Point(130, 202);
             this.TxtRef.Name = "TxtRef";
             this.TxtRef.Size = new System.Drawing.Size(173, 23);
@@ -462,15 +500,16 @@
             // 
             // TxtDpiCony
             // 
-            this.TxtDpiCony.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtDpiCony.Location = new System.Drawing.Point(627, 124);
+            this.TxtDpiCony.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDpiCony.Location = new System.Drawing.Point(627, 138);
+            this.TxtDpiCony.MaxLength = 13;
             this.TxtDpiCony.Name = "TxtDpiCony";
             this.TxtDpiCony.Size = new System.Drawing.Size(153, 23);
             this.TxtDpiCony.TabIndex = 64;
             // 
             // TxtProf2In
             // 
-            this.TxtProf2In.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProf2In.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProf2In.Location = new System.Drawing.Point(130, 317);
             this.TxtProf2In.Name = "TxtProf2In";
             this.TxtProf2In.Size = new System.Drawing.Size(173, 23);
@@ -483,7 +522,7 @@
             this.BtnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimpiar.Image")));
             this.BtnLimpiar.Location = new System.Drawing.Point(974, 109);
             this.BtnLimpiar.Name = "BtnLimpiar";
-            this.BtnLimpiar.Size = new System.Drawing.Size(128, 84);
+            this.BtnLimpiar.Size = new System.Drawing.Size(150, 52);
             this.BtnLimpiar.TabIndex = 62;
             this.BtnLimpiar.Text = "Limpiar campos";
             this.BtnLimpiar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -496,12 +535,12 @@
             this.BtnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("BtnGuardar.Image")));
             this.BtnGuardar.Location = new System.Drawing.Point(974, 25);
             this.BtnGuardar.Name = "BtnGuardar";
-            this.BtnGuardar.Size = new System.Drawing.Size(128, 77);
+            this.BtnGuardar.Size = new System.Drawing.Size(150, 48);
             this.BtnGuardar.TabIndex = 61;
             this.BtnGuardar.Text = "Guardar nuevo registro";
             this.BtnGuardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnGuardar.UseVisualStyleBackColor = false;
-            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click_1);
+            this.BtnGuardar.Click += new System.EventHandler(this.BtnGuardar_Click);
             // 
             // BtnAddRef
             // 
@@ -532,6 +571,7 @@
             // TxtTelRef
             // 
             this.TxtTelRef.Location = new System.Drawing.Point(676, 518);
+            this.TxtTelRef.MaxLength = 8;
             this.TxtTelRef.Name = "TxtTelRef";
             this.TxtTelRef.Size = new System.Drawing.Size(169, 23);
             this.TxtTelRef.TabIndex = 58;
@@ -547,15 +587,15 @@
             // 
             // TxtParentRef
             // 
-            this.TxtParentRef.Location = new System.Drawing.Point(461, 518);
+            this.TxtParentRef.Location = new System.Drawing.Point(387, 518);
             this.TxtParentRef.Name = "TxtParentRef";
-            this.TxtParentRef.Size = new System.Drawing.Size(169, 23);
+            this.TxtParentRef.Size = new System.Drawing.Size(235, 23);
             this.TxtParentRef.TabIndex = 56;
             // 
             // LblParentRef
             // 
             this.LblParentRef.AutoSize = true;
-            this.LblParentRef.Location = new System.Drawing.Point(466, 498);
+            this.LblParentRef.Location = new System.Drawing.Point(392, 498);
             this.LblParentRef.Name = "LblParentRef";
             this.LblParentRef.Size = new System.Drawing.Size(66, 15);
             this.LblParentRef.TabIndex = 55;
@@ -565,7 +605,7 @@
             // 
             this.TxtNomRef.Location = new System.Drawing.Point(29, 518);
             this.TxtNomRef.Name = "TxtNomRef";
-            this.TxtNomRef.Size = new System.Drawing.Size(405, 23);
+            this.TxtNomRef.Size = new System.Drawing.Size(325, 23);
             this.TxtNomRef.TabIndex = 54;
             // 
             // LblNomRef
@@ -598,50 +638,46 @@
             this.RefParent,
             this.RefTel});
             this.DgvRefs.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DgvRefs.Location = new System.Drawing.Point(4, 567);
+            this.DgvRefs.Location = new System.Drawing.Point(4, 570);
             this.DgvRefs.Name = "DgvRefs";
-            this.DgvRefs.ReadOnly = true;
-            this.DgvRefs.Size = new System.Drawing.Size(1139, 126);
+            this.DgvRefs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgvRefs.Size = new System.Drawing.Size(1139, 189);
             this.DgvRefs.TabIndex = 51;
             // 
             // Id
             // 
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
             this.Id.Visible = false;
             // 
             // RefNombre
             // 
             this.RefNombre.HeaderText = "Nombre";
             this.RefNombre.Name = "RefNombre";
-            this.RefNombre.ReadOnly = true;
             // 
             // RefParent
             // 
             this.RefParent.HeaderText = "Parentezco";
             this.RefParent.Name = "RefParent";
-            this.RefParent.ReadOnly = true;
             // 
             // RefTel
             // 
             this.RefTel.HeaderText = "Telefono";
             this.RefTel.Name = "RefTel";
-            this.RefTel.ReadOnly = true;
             // 
             // TxtCargaF
             // 
-            this.TxtCargaF.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCargaF.Location = new System.Drawing.Point(627, 222);
+            this.TxtCargaF.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCargaF.Location = new System.Drawing.Point(627, 231);
             this.TxtCargaF.Name = "TxtCargaF";
-            this.TxtCargaF.Size = new System.Drawing.Size(290, 23);
+            this.TxtCargaF.Size = new System.Drawing.Size(282, 23);
             this.TxtCargaF.TabIndex = 49;
             // 
             // label36
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(517, 223);
+            this.label36.Location = new System.Drawing.Point(517, 232);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(94, 17);
             this.label36.TabIndex = 50;
@@ -650,7 +686,7 @@
             // CboScivil
             // 
             this.CboScivil.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboScivil.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboScivil.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboScivil.FormattingEnabled = true;
             this.CboScivil.Location = new System.Drawing.Point(130, 434);
             this.CboScivil.Name = "CboScivil";
@@ -669,8 +705,8 @@
             // 
             // TxtProfCony
             // 
-            this.TxtProfCony.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtProfCony.Location = new System.Drawing.Point(627, 170);
+            this.TxtProfCony.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProfCony.Location = new System.Drawing.Point(627, 197);
             this.TxtProfCony.Name = "TxtProfCony";
             this.TxtProfCony.Size = new System.Drawing.Size(153, 23);
             this.TxtProfCony.TabIndex = 45;
@@ -678,7 +714,7 @@
             // label35
             // 
             this.label35.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(517, 158);
+            this.label35.Location = new System.Drawing.Point(517, 185);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(66, 35);
             this.label35.TabIndex = 46;
@@ -686,8 +722,9 @@
             // 
             // TxtTel2
             // 
-            this.TxtTel2.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtTel2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtTel2.Location = new System.Drawing.Point(130, 395);
+            this.TxtTel2.MaxLength = 8;
             this.TxtTel2.Name = "TxtTel2";
             this.TxtTel2.Size = new System.Drawing.Size(153, 23);
             this.TxtTel2.TabIndex = 43;
@@ -713,21 +750,21 @@
             // CboGene
             // 
             this.CboGene.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboGene.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboGene.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboGene.FormattingEnabled = true;
             this.CboGene.Items.AddRange(new object[] {
-            "Maculino",
+            "Masculino",
             "Femenino"});
-            this.CboGene.Location = new System.Drawing.Point(354, 102);
+            this.CboGene.Location = new System.Drawing.Point(329, 101);
             this.CboGene.Name = "CboGene";
-            this.CboGene.Size = new System.Drawing.Size(122, 23);
+            this.CboGene.Size = new System.Drawing.Size(126, 23);
             this.CboGene.TabIndex = 41;
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(297, 105);
+            this.label21.Location = new System.Drawing.Point(271, 105);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(52, 17);
             this.label21.TabIndex = 40;
@@ -746,7 +783,7 @@
             // CboMuni
             // 
             this.CboMuni.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboMuni.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboMuni.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboMuni.FormattingEnabled = true;
             this.CboMuni.Location = new System.Drawing.Point(344, 170);
             this.CboMuni.Name = "CboMuni";
@@ -766,12 +803,13 @@
             // CboDepa
             // 
             this.CboDepa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.CboDepa.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CboDepa.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CboDepa.FormattingEnabled = true;
             this.CboDepa.Location = new System.Drawing.Point(130, 170);
             this.CboDepa.Name = "CboDepa";
             this.CboDepa.Size = new System.Drawing.Size(111, 23);
             this.CboDepa.TabIndex = 35;
+            this.CboDepa.SelectedValueChanged += new System.EventHandler(this.CboDepa_SelectedValueChanged_1);
             // 
             // label14
             // 
@@ -785,17 +823,17 @@
             // 
             // TxtConTel
             // 
-            this.TxtConTel.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtConTel.Location = new System.Drawing.Point(627, 70);
+            this.TxtConTel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtConTel.Location = new System.Drawing.Point(627, 83);
             this.TxtConTel.MaxLength = 8;
             this.TxtConTel.Name = "TxtConTel";
-            this.TxtConTel.Size = new System.Drawing.Size(130, 23);
+            this.TxtConTel.Size = new System.Drawing.Size(153, 23);
             this.TxtConTel.TabIndex = 11;
             // 
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(517, 71);
+            this.label13.Location = new System.Drawing.Point(517, 83);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(94, 41);
             this.label13.TabIndex = 25;
@@ -813,7 +851,7 @@
             // 
             // TxtDpi
             // 
-            this.TxtDpi.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDpi.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDpi.Location = new System.Drawing.Point(130, 234);
             this.TxtDpi.MaxLength = 13;
             this.TxtDpi.Name = "TxtDpi";
@@ -833,7 +871,7 @@
             // label7
             // 
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(517, 112);
+            this.label7.Location = new System.Drawing.Point(517, 129);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 35);
             this.label7.TabIndex = 12;
@@ -841,7 +879,7 @@
             // 
             // TxtProf
             // 
-            this.TxtProf.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtProf.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtProf.Location = new System.Drawing.Point(130, 275);
             this.TxtProf.Name = "TxtProf";
             this.TxtProf.Size = new System.Drawing.Size(173, 23);
@@ -858,10 +896,10 @@
             // 
             // TxtNomcony
             // 
-            this.TxtNomcony.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtNomcony.Location = new System.Drawing.Point(627, 33);
+            this.TxtNomcony.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNomcony.Location = new System.Drawing.Point(627, 29);
             this.TxtNomcony.Name = "TxtNomcony";
-            this.TxtNomcony.Size = new System.Drawing.Size(290, 23);
+            this.TxtNomcony.Size = new System.Drawing.Size(282, 23);
             this.TxtNomcony.TabIndex = 9;
             // 
             // label5
@@ -875,7 +913,7 @@
             // 
             // TxtCTel1
             // 
-            this.TxtCTel1.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtCTel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtCTel1.Location = new System.Drawing.Point(130, 354);
             this.TxtCTel1.MaxLength = 8;
             this.TxtCTel1.Name = "TxtCTel1";
@@ -894,10 +932,10 @@
             // 
             // TxtDir
             // 
-            this.TxtDir.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDir.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtDir.Location = new System.Drawing.Point(130, 141);
             this.TxtDir.Name = "TxtDir";
-            this.TxtDir.Size = new System.Drawing.Size(302, 23);
+            this.TxtDir.Size = new System.Drawing.Size(325, 23);
             this.TxtDir.TabIndex = 3;
             // 
             // label3
@@ -912,10 +950,10 @@
             // 
             // TxtApe
             // 
-            this.TxtApe.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtApe.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtApe.Location = new System.Drawing.Point(130, 64);
             this.TxtApe.Name = "TxtApe";
-            this.TxtApe.Size = new System.Drawing.Size(295, 23);
+            this.TxtApe.Size = new System.Drawing.Size(325, 23);
             this.TxtApe.TabIndex = 2;
             // 
             // label2
@@ -930,10 +968,10 @@
             // 
             // TxtNom
             // 
-            this.TxtNom.Font = new System.Drawing.Font("Segoe UI Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtNom.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TxtNom.Location = new System.Drawing.Point(130, 29);
             this.TxtNom.Name = "TxtNom";
-            this.TxtNom.Size = new System.Drawing.Size(295, 23);
+            this.TxtNom.Size = new System.Drawing.Size(323, 23);
             this.TxtNom.TabIndex = 1;
             // 
             // label1
@@ -948,6 +986,7 @@
             // 
             // TbC2
             // 
+            this.TbC2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.TbC2.Controls.Add(this.TxtNomBus);
             this.TbC2.Controls.Add(this.label10);
             this.TbC2.Controls.Add(this.BtnBuscar);
@@ -960,7 +999,6 @@
             this.TbC2.Size = new System.Drawing.Size(1157, 769);
             this.TbC2.TabIndex = 1;
             this.TbC2.Text = "Buscar cliente";
-            this.TbC2.UseVisualStyleBackColor = true;
             // 
             // TxtNomBus
             // 
@@ -1039,6 +1077,9 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.groupBox1.Controls.Add(this.BtnDpiImgEdit);
+            this.groupBox1.Controls.Add(this.PicDpiEdit);
+            this.groupBox1.Controls.Add(this.DgvRefEditData);
             this.groupBox1.Controls.Add(this.CboCivEdit);
             this.groupBox1.Controls.Add(this.GbxNegEdit);
             this.groupBox1.Controls.Add(this.TxtCargaFamEdit);
@@ -1051,8 +1092,8 @@
             this.groupBox1.Controls.Add(this.label40);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.DtpNaci2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.BtnAddRefEdit);
+            this.groupBox1.Controls.Add(this.BtnUpdRefes);
             this.groupBox1.Controls.Add(this.TxtTelRefEdit);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.TxtParenEdit);
@@ -1060,7 +1101,6 @@
             this.groupBox1.Controls.Add(this.TxtNomRefEdit);
             this.groupBox1.Controls.Add(this.label38);
             this.groupBox1.Controls.Add(this.label39);
-            this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Controls.Add(this.TxtTel2Edit);
             this.groupBox1.Controls.Add(this.label32);
             this.groupBox1.Controls.Add(this.CboGeneEdit);
@@ -1102,6 +1142,72 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editar datos del cliente";
             // 
+            // BtnDpiImgEdit
+            // 
+            this.BtnDpiImgEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.BtnDpiImgEdit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BtnDpiImgEdit.Image = ((System.Drawing.Image)(resources.GetObject("BtnDpiImgEdit.Image")));
+            this.BtnDpiImgEdit.Location = new System.Drawing.Point(334, 274);
+            this.BtnDpiImgEdit.Name = "BtnDpiImgEdit";
+            this.BtnDpiImgEdit.Size = new System.Drawing.Size(38, 30);
+            this.BtnDpiImgEdit.TabIndex = 87;
+            this.BtnDpiImgEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnDpiImgEdit.UseVisualStyleBackColor = false;
+            this.BtnDpiImgEdit.Click += new System.EventHandler(this.BtnDpiImgEdit_Click);
+            // 
+            // PicDpiEdit
+            // 
+            this.PicDpiEdit.Location = new System.Drawing.Point(938, 307);
+            this.PicDpiEdit.Name = "PicDpiEdit";
+            this.PicDpiEdit.Size = new System.Drawing.Size(192, 120);
+            this.PicDpiEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PicDpiEdit.TabIndex = 86;
+            this.PicDpiEdit.TabStop = false;
+            // 
+            // DgvRefEditData
+            // 
+            this.DgvRefEditData.AllowUserToAddRows = false;
+            this.DgvRefEditData.AllowUserToDeleteRows = false;
+            this.DgvRefEditData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.DgvRefEditData.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.DgvRefEditData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvRefEditData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdrEdit,
+            this.RefEditNom,
+            this.RefEditParen,
+            this.RefEditTel});
+            this.DgvRefEditData.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.DgvRefEditData.Location = new System.Drawing.Point(4, 622);
+            this.DgvRefEditData.Name = "DgvRefEditData";
+            this.DgvRefEditData.Size = new System.Drawing.Size(1149, 143);
+            this.DgvRefEditData.TabIndex = 83;
+            // 
+            // IdrEdit
+            // 
+            this.IdrEdit.HeaderText = "Id";
+            this.IdrEdit.Name = "IdrEdit";
+            this.IdrEdit.Visible = false;
+            this.IdrEdit.Width = 43;
+            // 
+            // RefEditNom
+            // 
+            this.RefEditNom.HeaderText = "Nombre";
+            this.RefEditNom.Name = "RefEditNom";
+            this.RefEditNom.Width = 76;
+            // 
+            // RefEditParen
+            // 
+            this.RefEditParen.HeaderText = "Parentezco";
+            this.RefEditParen.Name = "RefEditParen";
+            this.RefEditParen.Width = 91;
+            // 
+            // RefEditTel
+            // 
+            this.RefEditTel.HeaderText = "Telefono";
+            this.RefEditTel.MaxInputLength = 8;
+            this.RefEditTel.Name = "RefEditTel";
+            this.RefEditTel.Width = 78;
+            // 
             // CboCivEdit
             // 
             this.CboCivEdit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -1125,16 +1231,16 @@
             this.GbxNegEdit.Controls.Add(this.label45);
             this.GbxNegEdit.Controls.Add(this.TxtNomNegEdit);
             this.GbxNegEdit.Controls.Add(this.label44);
-            this.GbxNegEdit.Location = new System.Drawing.Point(537, 303);
+            this.GbxNegEdit.Location = new System.Drawing.Point(378, 287);
             this.GbxNegEdit.Name = "GbxNegEdit";
-            this.GbxNegEdit.Size = new System.Drawing.Size(590, 181);
+            this.GbxNegEdit.Size = new System.Drawing.Size(527, 181);
             this.GbxNegEdit.TabIndex = 81;
             this.GbxNegEdit.TabStop = false;
             this.GbxNegEdit.Text = "Negocio";
             // 
             // TxtAntiqNegEdit
             // 
-            this.TxtAntiqNegEdit.Location = new System.Drawing.Point(379, 138);
+            this.TxtAntiqNegEdit.Location = new System.Drawing.Point(348, 138);
             this.TxtAntiqNegEdit.Name = "TxtAntiqNegEdit";
             this.TxtAntiqNegEdit.Size = new System.Drawing.Size(171, 23);
             this.TxtAntiqNegEdit.TabIndex = 92;
@@ -1142,7 +1248,7 @@
             // label49
             // 
             this.label49.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(292, 131);
+            this.label49.Location = new System.Drawing.Point(275, 131);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(76, 37);
             this.label49.TabIndex = 91;
@@ -1150,7 +1256,7 @@
             // 
             // TxtRefNegEdit
             // 
-            this.TxtRefNegEdit.Location = new System.Drawing.Point(379, 92);
+            this.TxtRefNegEdit.Location = new System.Drawing.Point(348, 92);
             this.TxtRefNegEdit.Name = "TxtRefNegEdit";
             this.TxtRefNegEdit.Size = new System.Drawing.Size(171, 23);
             this.TxtRefNegEdit.TabIndex = 90;
@@ -1158,7 +1264,7 @@
             // label48
             // 
             this.label48.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(292, 85);
+            this.label48.Location = new System.Drawing.Point(275, 85);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(70, 37);
             this.label48.TabIndex = 89;
@@ -1166,7 +1272,7 @@
             // 
             // TxtTipNegEdit
             // 
-            this.TxtTipNegEdit.Location = new System.Drawing.Point(379, 37);
+            this.TxtTipNegEdit.Location = new System.Drawing.Point(348, 37);
             this.TxtTipNegEdit.Name = "TxtTipNegEdit";
             this.TxtTipNegEdit.Size = new System.Drawing.Size(171, 23);
             this.TxtTipNegEdit.TabIndex = 88;
@@ -1174,7 +1280,7 @@
             // label47
             // 
             this.label47.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(292, 30);
+            this.label47.Location = new System.Drawing.Point(275, 30);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(70, 37);
             this.label47.TabIndex = 87;
@@ -1183,6 +1289,7 @@
             // TxtTelNegEdit
             // 
             this.TxtTelNegEdit.Location = new System.Drawing.Point(84, 138);
+            this.TxtTelNegEdit.MaxLength = 8;
             this.TxtTelNegEdit.Name = "TxtTelNegEdit";
             this.TxtTelNegEdit.Size = new System.Drawing.Size(171, 23);
             this.TxtTelNegEdit.TabIndex = 86;
@@ -1263,7 +1370,7 @@
             // TztRefeEdit
             // 
             this.TztRefeEdit.Location = new System.Drawing.Point(154, 237);
-            this.TztRefeEdit.MaxLength = 13;
+            this.TztRefeEdit.MaxLength = 214;
             this.TztRefeEdit.Name = "TztRefeEdit";
             this.TztRefeEdit.Size = new System.Drawing.Size(173, 23);
             this.TztRefeEdit.TabIndex = 75;
@@ -1317,33 +1424,36 @@
             this.DtpNaci2.Size = new System.Drawing.Size(89, 25);
             this.DtpNaci2.TabIndex = 71;
             // 
-            // button1
+            // BtnAddRefEdit
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(857, 559);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(132, 57);
-            this.button1.TabIndex = 70;
-            this.button1.Text = "Agregar Referencia";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button1.UseVisualStyleBackColor = false;
+            this.BtnAddRefEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.BtnAddRefEdit.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddRefEdit.Image")));
+            this.BtnAddRefEdit.Location = new System.Drawing.Point(857, 557);
+            this.BtnAddRefEdit.Name = "BtnAddRefEdit";
+            this.BtnAddRefEdit.Size = new System.Drawing.Size(135, 55);
+            this.BtnAddRefEdit.TabIndex = 70;
+            this.BtnAddRefEdit.Text = "Agregar Referencia";
+            this.BtnAddRefEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnAddRefEdit.UseVisualStyleBackColor = false;
+            this.BtnAddRefEdit.Click += new System.EventHandler(this.BtnAddRefEdit_Click);
             // 
-            // button2
+            // BtnUpdRefes
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(995, 557);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(132, 56);
-            this.button2.TabIndex = 69;
-            this.button2.Text = "Remover Referencia";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button2.UseVisualStyleBackColor = false;
+            this.BtnUpdRefes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.BtnUpdRefes.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdRefes.Image")));
+            this.BtnUpdRefes.Location = new System.Drawing.Point(995, 557);
+            this.BtnUpdRefes.Name = "BtnUpdRefes";
+            this.BtnUpdRefes.Size = new System.Drawing.Size(135, 55);
+            this.BtnUpdRefes.TabIndex = 69;
+            this.BtnUpdRefes.Text = "Actualizar Referencias";
+            this.BtnUpdRefes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.BtnUpdRefes.UseVisualStyleBackColor = false;
+            this.BtnUpdRefes.Click += new System.EventHandler(this.BtnUpdRefes_Click);
             // 
             // TxtTelRefEdit
             // 
             this.TxtTelRefEdit.Location = new System.Drawing.Point(682, 577);
+            this.TxtTelRefEdit.MaxLength = 8;
             this.TxtTelRefEdit.Name = "TxtTelRefEdit";
             this.TxtTelRefEdit.Size = new System.Drawing.Size(169, 23);
             this.TxtTelRefEdit.TabIndex = 68;
@@ -1401,49 +1511,6 @@
             this.label39.Size = new System.Drawing.Size(76, 17);
             this.label39.TabIndex = 62;
             this.label39.Text = "Referencias";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridView1.Location = new System.Drawing.Point(4, 639);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1149, 126);
-            this.dataGridView1.TabIndex = 61;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Parentezco";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Telefono";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // TxtTel2Edit
             // 
@@ -1552,7 +1619,7 @@
             this.BtnClean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
             this.BtnClean.ForeColor = System.Drawing.Color.White;
             this.BtnClean.Image = ((System.Drawing.Image)(resources.GetObject("BtnClean.Image")));
-            this.BtnClean.Location = new System.Drawing.Point(951, 118);
+            this.BtnClean.Location = new System.Drawing.Point(951, 125);
             this.BtnClean.Name = "BtnClean";
             this.BtnClean.Size = new System.Drawing.Size(158, 47);
             this.BtnClean.TabIndex = 32;
@@ -1586,6 +1653,7 @@
             // TxtDpiConEdit
             // 
             this.TxtDpiConEdit.Location = new System.Drawing.Point(667, 154);
+            this.TxtDpiConEdit.MaxLength = 13;
             this.TxtDpiConEdit.Name = "TxtDpiConEdit";
             this.TxtDpiConEdit.Size = new System.Drawing.Size(238, 23);
             this.TxtDpiConEdit.TabIndex = 12;
@@ -1674,7 +1742,7 @@
             this.TxtTel1Edit.Location = new System.Drawing.Point(154, 407);
             this.TxtTel1Edit.MaxLength = 8;
             this.TxtTel1Edit.Name = "TxtTel1Edit";
-            this.TxtTel1Edit.Size = new System.Drawing.Size(173, 23);
+            this.TxtTel1Edit.Size = new System.Drawing.Size(130, 23);
             this.TxtTel1Edit.TabIndex = 5;
             // 
             // label28
@@ -1738,6 +1806,14 @@
             this.label31.TabIndex = 0;
             this.label31.Text = "Nombres";
             // 
+            // OfdDPI
+            // 
+            this.OfdDPI.FileName = "openFileDialog1";
+            // 
+            // OfdDpiEdit
+            // 
+            this.OfdDpiEdit.FileName = "openFileDialog1";
+            // 
             // Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1754,13 +1830,13 @@
             this.Load += new System.EventHandler(this.Cliente_Load);
             this.tabControl1.ResumeLayout(false);
             this.TabC1.ResumeLayout(false);
-            this.PanInfIngreso1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.NudEdad)).EndInit();
             this.PanSupIngreso1.ResumeLayout(false);
             this.GBXCliente.ResumeLayout(false);
             this.GBXCliente.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicDPI)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NudEdad)).EndInit();
+            this.GbxNeg.ResumeLayout(false);
+            this.GbxNeg.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvRefs)).EndInit();
             this.TbC2.ResumeLayout(false);
             this.TbC2.PerformLayout();
@@ -1768,9 +1844,10 @@
             this.TabC3.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PicDpiEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvRefEditData)).EndInit();
             this.GbxNegEdit.ResumeLayout(false);
             this.GbxNegEdit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NudEdadEdit)).EndInit();
             this.ResumeLayout(false);
 
@@ -1818,7 +1895,6 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox TxtTel2Edit;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Panel PanInfIngreso1;
         private System.Windows.Forms.NumericUpDown NudEdad;
         private System.Windows.Forms.Panel PanSupIngreso1;
         private System.Windows.Forms.GroupBox GBXCliente;
@@ -1865,15 +1941,10 @@
         private System.Windows.Forms.TextBox TxtNomRef;
         private System.Windows.Forms.Label LblNomRef;
         private System.Windows.Forms.Label LblRefs;
-        private System.Windows.Forms.DataGridView DgvRefs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RefNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RefParent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn RefTel;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnGuardar;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button BtnAddRefEdit;
+        private System.Windows.Forms.Button BtnUpdRefes;
         private System.Windows.Forms.TextBox TxtTelRefEdit;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox TxtParenEdit;
@@ -1881,11 +1952,6 @@
         private System.Windows.Forms.TextBox TxtNomRefEdit;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DateTimePicker DtpNaci2;
         private System.Windows.Forms.TextBox TxtProf2In;
@@ -1914,7 +1980,7 @@
         private System.Windows.Forms.TextBox TxtAntiqNegEdit;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.ComboBox CboCivEdit;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox GbxNeg;
         private System.Windows.Forms.TextBox TxtAtiqNeg;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.TextBox TxtRefNeg;
@@ -1927,5 +1993,22 @@
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.TextBox TxtNomNeg;
         private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.DataGridView DgvRefs;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefParent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefTel;
+        private System.Windows.Forms.DataGridView DgvRefEditData;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdrEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefEditNom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefEditParen;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RefEditTel;
+        private System.Windows.Forms.Button BtnUpdDpi;
+        private System.Windows.Forms.OpenFileDialog OfdDPI;
+        private System.Windows.Forms.PictureBox PicDPI;
+        private System.Windows.Forms.PictureBox PicDpiEdit;
+        private System.Windows.Forms.Button BtnDpiImgEdit;
+        private System.Windows.Forms.OpenFileDialog OfdDpiEdit;
     }
 }

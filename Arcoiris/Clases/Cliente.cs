@@ -40,11 +40,9 @@ namespace Arcoiris.Clases
                 }
                 
             }
-
                 // MySqlDataAdapter adap = new MySqlDataAdapter(consulta, conect.conn);
                 // adap.Fill(datos);
                 return datos;
-
         }
 
 
@@ -86,7 +84,7 @@ namespace Arcoiris.Clases
             catch (Exception ex)
             {
                 conect.conn.Close();
-                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion /n{ex.InnerException}");
+                MessageBox.Show($"Ocurrio un error al intentar realizar la operacion \n{ex.Message}");
 
                 return false;
             }
@@ -111,7 +109,6 @@ namespace Arcoiris.Clases
                 else
                 {
                     return 1;
-
                 }
             }
             catch(Exception ex)
@@ -208,22 +205,37 @@ namespace Arcoiris.Clases
 
         }
         #endregion
-        public bool  agregar_cliente(string[] datos)
-        { 
+        public bool  agregar_cliente(string[] datos,List<string> refes)
+            { 
         string consulta;
             string consultab;
             consultab = "select max(codigo_cli) from cliente";
             string[] fiddatos = { datos[12], datos[13], datos[14] };
+         
            // int idfid;
           //  idfid=agregarfiador(fiddatos);
-            int id=buscarid(consultab)+1;
-             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad,genero,nacionalidad) " +
-                $"values(?codigo_cli,?nombres,?apellidos,?domicilio,?dpi,?telefono1,?telefono2,?profesion,?estado_civil,?nombre_cony,?apellido_cony,?telefonocon,?referencia,?fecha_ing,?departamento,?municipio,?edad,?genero,?nacionalidad)";
-           // MessageBox.Show(consulta);
+            int id=buscarid(consultab);
+            id++;
+             consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad,genero,nacionalidad," +
+                $"fechanaci,profe2,dpicony,profcony,cargafam,negnom,negdir,negtel,negref,tiponeg,negantiq,dipbase64) " +
+                $"values(?codigo_cli,?nombres,?apellidos,?domicilio,?dpi,?telefono1,?telefono2,?profesion,?estado_civil,?nombre_cony,?apellido_cony,?telefonocon,?referencia,?fecha_ing,?departamento,?municipio,?edad,?genero,?nacionalidad," +
+                $"?fnaci,?oprof,?dpicon,?profcon,?cargaf,?nomneg,?dirneg,?telneg,?refneg,?tneg,?aneg,?imag)";
+            // MessageBox.Show(consulta);
+
+            //revisar dpi
+            string consuldpi = $"select count(codigo_cli) from cliente where dpi={datos[4]}";
+            DataTable dpiexist = buscar(consuldpi);
+            int dpiReg = int.Parse($"{dpiexist.Rows[0][0]}");
+            if (dpiReg> 0)
+            {
+                MessageBox.Show("El DPI ingresado ya existe, profavor revise el valor e intentelo de nuevo","DPI ya ingresado",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                return false;
+            }
+
             MySqlCommand com = new MySqlCommand();
-         
             com.CommandText = consulta;
             com.CommandType = CommandType.Text;
+           
 
             com.Parameters.Add("?codigo_cli", MySqlDbType.Int32);
             com.Parameters.Add("?nombres", MySqlDbType.VarChar);
@@ -244,31 +256,147 @@ namespace Arcoiris.Clases
             com.Parameters.Add("?edad", MySqlDbType.Int32);
             com.Parameters.Add("?genero", MySqlDbType.VarString);
             com.Parameters.Add("?nacionalidad", MySqlDbType.VarChar);
-
-
+            com.Parameters.Add("?fnaci", MySqlDbType.Date);
+            com.Parameters.Add("?oprof", MySqlDbType.VarChar);
+            com.Parameters.Add("?dpicon", MySqlDbType.VarChar);
+            com.Parameters.Add("?profcon", MySqlDbType.VarChar);
+            com.Parameters.Add("?cargaf", MySqlDbType.VarChar);
+            com.Parameters.Add("?nomneg", MySqlDbType.VarChar);
+            com.Parameters.Add("?dirneg", MySqlDbType.VarChar);
+            com.Parameters.Add("?telneg", MySqlDbType.VarChar);
+            com.Parameters.Add("?refneg", MySqlDbType.VarChar);
+            com.Parameters.Add("?aneg", MySqlDbType.VarChar);
+            com.Parameters.Add("?tneg", MySqlDbType.VarChar);
+            com.Parameters.Add("?imag", MySqlDbType.VarChar);
 
             com.Parameters["?codigo_cli"].Value = id;
             com.Parameters["?nombres"].Value = datos[0];
             com.Parameters["?apellidos"].Value = datos[1];
             com.Parameters["?domicilio"].Value = datos[2];
-            com.Parameters["?dpi"].Value = datos[3];
-            com.Parameters["?telefono1"].Value = datos[4];
-            com.Parameters["?telefono2"].Value = datos[5];
-            com.Parameters["?profesion"].Value = datos[6];
-            com.Parameters["?estado_civil"].Value = datos[7];
-            com.Parameters["?nombre_cony"].Value = datos[8];
-            com.Parameters["?apellido_cony"].Value = datos[9];
-            com.Parameters["??telefonocon"].Value = datos[10];
-            com.Parameters["?referencia"].Value = datos[11];
-            com.Parameters["?fecha_ing"].Value = datos[15];
+            com.Parameters["?referencia"].Value = datos[3];
+            com.Parameters["?dpi"].Value = datos[4];
+            com.Parameters["?telefono1"].Value = datos[5];
+            com.Parameters["?telefono2"].Value = datos[6];
+            com.Parameters["?profesion"].Value = datos[7];
+            com.Parameters["?oprof"].Value = datos[8];
+            com.Parameters["?estado_civil"].Value = datos[9];
+            com.Parameters["?nombre_cony"].Value = datos[10];
+            com.Parameters["?apellido_cony"].Value = datos[10];// revisa como ira apellido
+            com.Parameters["??telefonocon"].Value = datos[11];
+            com.Parameters["?dpicon"].Value = datos[12];
+            com.Parameters["?profcon"].Value = datos[13];
+            com.Parameters["?fecha_ing"].Value = datos[14];
+            com.Parameters["?fnaci"].Value = datos[15];
+
             com.Parameters["?departamento"].Value = datos[16];
             com.Parameters["?municipio"].Value = datos[17];
             com.Parameters["?edad"].Value = datos[18];
             com.Parameters["?genero"].Value = datos[19];
             com.Parameters["?nacionalidad"].Value = datos[20];
+            com.Parameters["?cargaf"].Value = datos[21];
+            com.Parameters["?nomneg"].Value = datos[22];
+            com.Parameters["?dirneg"].Value = datos[23];
+            com.Parameters["?telneg"].Value = datos[24];
+            com.Parameters["?refneg"].Value = datos[25];
+            com.Parameters["?tneg"].Value = datos[26];
+            com.Parameters["?aneg"].Value = datos[27];
+            com.Parameters["?imag"].Value = datos[28];
 
-            return Consulta_General_tipo2(com);
+            return (Consulta_General_tipo2(com) && asignarefes(refes,id));
 
+        }
+
+        private bool asignarefes(List<string> refes, int id)
+        {
+            if (refes.Count<= 0) return true;
+            string consulid = "select max(id_ref) from referencia";
+            int idR = buscarid(consulid);
+            idR++;
+            string consulta1 = $"insert into referencia(id_ref,nombre,direccion,telefono) " +
+                $"values(?id,?nom,?dir,?tel)";
+            string consulta2 = $"insert into asigna_ref(id_ref,codigo_cli) " +
+                $"values(?id,?cli)";
+            MySqlCommand com1 = new MySqlCommand();
+            MySqlCommand com2 = new MySqlCommand();
+            com1.CommandText = consulta1;
+            com1.CommandType = CommandType.Text;
+            com2.CommandText = consulta2;
+            com2.CommandType = CommandType.Text;
+            com1.Parameters.Add("?id", MySqlDbType.Int32);
+            com1.Parameters.Add("?nom", MySqlDbType.VarChar);
+            com1.Parameters.Add("?dir", MySqlDbType.VarChar);
+            com1.Parameters.Add("?tel", MySqlDbType.VarChar);
+com2.Parameters.Add("?id", MySqlDbType.Int32);
+            com2.Parameters.Add("?cli", MySqlDbType.Int32);
+
+
+            int conteo = 0;
+            bool respo = false;
+            if (refes.Count <= 3)
+            { conteo = 1; }
+            else if (refes.Count <= 6)
+            {
+                conteo = 2;
+            }
+            else 
+            { conteo = 3; }
+            int recorr = 0;
+            for (int i =0; i <conteo; i++)
+            {
+                com1.Parameters["?id"].Value = idR;
+                com1.Parameters["?nom"].Value = refes[recorr];
+                recorr++;
+                com1.Parameters["?dir"].Value = refes[recorr];
+                recorr++;
+                com1.Parameters["?tel"].Value = refes[recorr];
+                recorr++;
+                com2.Parameters["?id"].Value = idR;
+                com2.Parameters["?cli"].Value = id;
+                respo = (Consulta_General_tipo2(com1) && Consulta_General_tipo2(com2));
+                if (respo == false) return false;
+                idR++;
+            }
+            return respo;
+        }
+
+        private  bool updSinglerefes(List <string>datos)
+        {
+            if (datos.Count <= 0) return true;
+            int contrefes = datos.Count;
+            int conteo = 0;
+            bool respo = false;
+
+            string consulta1 = $"update referencia set nombre=?nom,direccion=?dir,telefono=?tel " +
+                $"where id_ref=?id";
+        
+            MySqlCommand com1 = new MySqlCommand();
+          
+            com1.CommandText = consulta1;
+            com1.CommandType = CommandType.Text;
+         
+            com1.Parameters.Add("?id", MySqlDbType.Int32);
+            com1.Parameters.Add("?nom", MySqlDbType.VarChar);
+            com1.Parameters.Add("?dir", MySqlDbType.VarChar);
+            com1.Parameters.Add("?tel", MySqlDbType.VarChar);
+
+
+            if (contrefes <= 12) conteo = 3;
+            if (contrefes <= 8) conteo = 2;
+            if (contrefes <= 4) conteo = 1;
+
+
+            int recorr = 0;
+            for (int i = 0; i < conteo; i++)
+            {
+                com1.Parameters["?id"].Value = datos[recorr];
+                com1.Parameters["?nom"].Value = datos[recorr+1];
+                com1.Parameters["?dir"].Value = datos[recorr+2];
+                com1.Parameters["?tel"].Value = datos[recorr+3];
+                recorr=+4;
+                respo = (Consulta_General_tipo2(com1));
+                if (respo == false) return false;
+            }
+            return respo;
         }
 
         //Buscar cliente
@@ -311,7 +439,7 @@ namespace Arcoiris.Clases
         {
             string consulta;
             consulta = "SELECT Nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,nombre_cony,apellido_cony,telefonocon,referencia,estado_civil,edad, " +
-                "Departamento,Municipio,Genero,Nacionalidad,profe2,cargafam,profcony,dpicony, DPIBASE64,fechanaci,negnom,negtel,negdir,negref,tiponeg,negantiq " +
+                "Departamento,Municipio,Genero,Nacionalidad,profe2,cargafam,profcony,dpicony, DPIBASE64,fechanaci,negnom,negtel,negdir,negref,tiponeg,negantiq,dpibase64 " +
                         $"FROM cliente WHERE codigo_cli ={idcli}";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
@@ -383,18 +511,16 @@ namespace Arcoiris.Clases
 
         public bool updateclienteNuevo(string id, string[] datos)
         {
-
-
             string consulta;
             consulta = $"update cliente set nombres=?nombres, apellidos=?apellidos, domicilio=?domi, dpi=?dpi, telefono1=?tel1, telefono2=?tel2, profesion=?prof, " +
                 $"nombre_cony=?nomCon, telefonocon=?telcon, referencia=?ref, estado_civil=?estC,fechanaci=?fnaci,genero=?gene,departamento=?depa,municipio=?muni, " +
-                $"negnom=?nomn,negdir=?dirn,negtel=?teln,tiponeg=?tipn,negref=?refn,negantiq=?antiqn,cargafam=?cargaf, profe2=?profOt,profcony=?profcon,dpicony=?dpicon " +
+                $"negnom=?nomn,negdir=?dirn,negtel=?teln,tiponeg=?tipn,negref=?refn,negantiq=?antiqn,cargafam=?cargaf, profe2=?profOt,profcony=?profcon,dpicony=?dpicon, " +
+                $"dpibase64=?imag " +
                 $"where codigo_cli={id}";
             MySqlCommand com = new MySqlCommand();
 
             com.CommandText = consulta;
             com.CommandType = CommandType.Text;
-
             com.Parameters.Add("?nombres", MySqlDbType.VarChar);
             com.Parameters.Add("?apellidos", MySqlDbType.VarChar);
             com.Parameters.Add("?domi", MySqlDbType.VarChar);
@@ -421,6 +547,7 @@ namespace Arcoiris.Clases
             com.Parameters.Add("?antiqn", MySqlDbType.VarChar);
             com.Parameters.Add("?refn", MySqlDbType.VarChar);
             com.Parameters.Add("?cargaf", MySqlDbType.VarChar);
+            com.Parameters.Add("?imag", MySqlDbType.LongBlob);
 
 
 
@@ -451,6 +578,7 @@ namespace Arcoiris.Clases
             com.Parameters["?refn"].Value = datos[22];
             com.Parameters["?antiqn"].Value = datos[23];
             com.Parameters["?cargaf"].Value = datos[24];
+            com.Parameters["?imag"].Value = datos[25];
 
 
             return Consulta_General_tipo2(com);
@@ -503,5 +631,57 @@ namespace Arcoiris.Clases
 
 
 
+        public DataTable refscli(string cli)
+        {
+            string consulta = $"Select R.id_ref, R.nombre,R.Direccion,R.Telefono from referencia R " +
+                $" inner join asigna_ref Af on R.id_ref=AF.id_ref " +
+                $"where AF.codigo_cli={cli}";
+            return buscar(consulta);
+        }
+
+        public bool UpdRefes(List<string> datos, string cli)
+        {
+            int idCliente = int.Parse(cli);
+            List<string> refesNew = new List<string>();
+            List<string> refesupdate = new List<string>();
+            int refes = datos.Count;
+            int filas = 0;
+            if (refes <= 0) return true;
+            if (refes <= 12) filas = 3;
+            if (refes <= 8) filas = 2;
+            if (refes <= 4) filas = 1;
+            int columTemp = 0;
+            for (int  i= 0; i < filas; i++)
+            {
+                if (datos[columTemp].Equals("0"))
+                {
+                    refesNew.Add(datos[columTemp+1]);
+                    refesNew.Add(datos[columTemp+2]);
+                    refesNew.Add(datos[columTemp+3]);
+                    columTemp+=4;
+                }
+                else {
+                    refesupdate.Add(datos[columTemp]);
+                    refesupdate.Add(datos[columTemp+  1]);
+                    refesupdate.Add(datos[columTemp + 2]);
+                    refesupdate.Add(datos[columTemp + 3]);
+                    columTemp+=4;
+                }
+            }
+            return (asignarefes(refesNew,idCliente) && updSinglerefes(refesupdate) );
+            
+        }
+
+
+        public DataTable GaratanbyCliSol(string sol, string cli)
+        {
+            string consulta = $"SELECT CONCAT(cli.NOMBRES,' ', cli.APELLIDOS) AS Nomb, g.Detalle,g.Tipo,g.Detalle,g.Valuacion,g.Info, g.Observaciones FROM garantia g " +
+                $"inner JOIN sol_garant sg ON g.Id_Garant = sg.id_garant " +
+                $"INNER JOIN solicitud s ON s.ID_SOLICITUD = sg.Id_Solicitud " +
+                $"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = s.ID_SOLICITUD " +
+                $"INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
+                $"WHERE asol.codigo_cli ={cli} AND asol.ID_SOLICITUD = {sol}";
+            return buscar(consulta);
+        }
     }
 }
