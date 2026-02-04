@@ -332,6 +332,12 @@
     <Compile Include="Formularios\SubForms\EditGarant.Designer.cs">
       <DependentUpon>EditGarant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Formularios\SubForms\EditSolicitud.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SubForms\EditSolicitud.Designer.cs">
+      <DependentUpon>EditSolicitud.cs</DependentUpon>
+    </Compile>
     <Compile Include="Formularios\SubForms\IngresoGarantia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -384,9 +390,12 @@
     <Compile Include="Reportes\CajaRep.Designer.cs">
       <DependentUpon>CajaRep.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\ClasesRepo\CuentaRepo.cs" />
     <Compile Include="Reportes\ClasesRepo\DatosSolicitud.cs" />
+    <Compile Include="Reportes\ClasesRepo\EgresoRepo.cs" />
     <Compile Include="Reportes\ClasesRepo\FiadorSolicitud.cs" />
     <Compile Include="Reportes\ClasesRepo\GarantiaSolicitud.cs" />
+    <Compile Include="Reportes\ClasesRepo\IngresoRepo.cs" />
     <Compile Include="Reportes\ClasesRepo\ReferenciaSolicitud.cs" />
     <Compile Include="Reportes\Colocacion.cs">
       <SubType>Form</SubType>
@@ -605,6 +614,9 @@
     <EmbeddedResource Include="Formularios\SubForms\EditGarant.resx">
       <DependentUpon>EditGarant.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SubForms\EditSolicitud.resx">
+      <DependentUpon>EditSolicitud.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Formularios\SubForms\IngresoGarantia.resx">
       <DependentUpon>IngresoGarantia.cs</DependentUpon>
     </EmbeddedResource>
@@ -737,6 +749,7 @@
     <EmbeddedResource Include="Reportes\Retiro.resx">
       <DependentUpon>Retiro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Solicitud2daParte.rdlc" />
     <EmbeddedResource Include="Reportes\SolicitudNuevo.rdlc" />
     <EmbeddedResource Include="Reportes\SolicitudNuevo.resx">
       <DependentUpon>SolicitudNuevo.cs</DependentUpon>
@@ -749,6 +762,9 @@
       <DependentUpon>Tablapagos.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Arcoiris.Formularios.SubClases.Cuenta.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Formularios.SubClases.Egreso.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Formularios.SubClases.Ingreso.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.AtrasosD2.datasource" />

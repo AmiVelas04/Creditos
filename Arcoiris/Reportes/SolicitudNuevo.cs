@@ -17,9 +17,9 @@ namespace Arcoiris.Reportes
         public List<ClasesRepo.ReferenciaSolicitud> Referi = new List<ClasesRepo.ReferenciaSolicitud>();
         public List<ClasesRepo.FiadorSolicitud> Fiado = new List<ClasesRepo.FiadorSolicitud>();
         public List<ClasesRepo.GarantiaSolicitud> Garant = new List<ClasesRepo.GarantiaSolicitud>();
-        public List<Formularios.SubClases.Ingreso> Ingre = new List<Formularios.SubClases.Ingreso>();
-        public List<Formularios.SubClases.Egreso> Egres = new List<Formularios.SubClases.Egreso>();
-        public List<Formularios.SubClases.Cuenta> Cuenta = new List<Formularios.SubClases.Cuenta>();
+        public List<ClasesRepo.IngresoRepo> Ingre = new List<ClasesRepo.IngresoRepo>();
+        public List<ClasesRepo.EgresoRepo> Egres = new List<ClasesRepo.EgresoRepo>();
+        public List<ClasesRepo.CuentaRepo> Cuenta = new List<ClasesRepo.CuentaRepo>();
         
 
         public SolicitudNuevo()
@@ -44,7 +44,7 @@ namespace Arcoiris.Reportes
         private void LocalReport_SubreportProcessing(object remitente, SubreportProcessingEventArgs e)
         {
             //  var ID = Convert.ToInt32(e.Parameters[0].Values[0]);
-       //    var Referencias = Referi[0];
+            //    var Referencias = Referi[0];
             if (e.ReportPath == "SoliFiador")
             {
                 var Detalle_Fiador = new ReportDataSource() { Name = "FiadorData", Value = Fiado };
@@ -60,7 +60,18 @@ namespace Arcoiris.Reportes
                 var Detalle_Referencia = new ReportDataSource() { Name = "RefeDatos", Value = Referi };
                 e.DataSources.Add(Detalle_Referencia);
             }
+            else if (e.ReportPath== "Solicitud2daParte")
+            {
+                var Cuent = new ReportDataSource() { Name = "Cuenta", Value = Cuenta };
+                var Ingreso = new ReportDataSource() { Name = "Ingreso", Value = Ingre };
+                var Egreso = new ReportDataSource() { Name = "Egreso", Value = Egres };
+                e.DataSources.Add(Cuent);
+                e.DataSources.Add(Ingreso);
+                e.DataSources.Add(Egreso);
 
+
+
+            }
 
 
         }

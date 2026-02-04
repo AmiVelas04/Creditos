@@ -2481,14 +2481,27 @@
           </Border>
         </Style>
       </Tablix>
+      <Subreport Name="Subreport1">
+        <ReportName>Solicitud2daParte</ReportName>
+        <Top>20.15808cm</Top>
+        <Left>0.15cm</Left>
+        <Height>0.98542cm</Height>
+        <Width>20.02816cm</Width>
+        <ZIndex>3</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Subreport>
     </ReportItems>
-    <Height>14.09375in</Height>
+    <Height>8.76171in</Height>
     <Style />
   </Body>
   <Width>20.37396cm</Width>
   <Page>
     <PageFooter>
-      <Height>3.28083cm</Height>
+      <Height>2.38125cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>

@@ -469,7 +469,11 @@ namespace Arcoiris.Formularios
 
         private void BtnEditar_Click(object sender, EventArgs e)
         {
-            desbloquear();
+            SubForms.EditSolicitud Edita = new SubForms.EditSolicitud();
+            Edita.IdCli = int.Parse($"{CboCliente.SelectedValue}");
+            Edita.IdSol = int.Parse($"{CboSoli.Text}");
+            Edita.ShowDialog();
+            //desbloquear();
         }
 
         private void bloquear()
@@ -1709,41 +1713,48 @@ namespace Arcoiris.Formularios
         private void CargarRepoSoli()
         {
             List<Reportes.ClasesRepo.ReferenciaSolicitud> refes = new List<Reportes.ClasesRepo.ReferenciaSolicitud>();
-            Reportes.ClasesRepo.FiadorSolicitud Fiad = new Reportes.ClasesRepo.FiadorSolicitud();
+           List<Reportes.ClasesRepo.FiadorSolicitud> Fiad = new List<Reportes.ClasesRepo.FiadorSolicitud>();
            List< Reportes.ClasesRepo.GarantiaSolicitud> Gara = new List<Reportes.ClasesRepo.GarantiaSolicitud>();
+            List<Reportes.ClasesRepo.CuentaRepo> Cue = new List<Reportes.ClasesRepo.CuentaRepo>();
+            List<Reportes.ClasesRepo.IngresoRepo> Ingre = new List<Reportes.ClasesRepo.IngresoRepo>();
+            List<Reportes.ClasesRepo.EgresoRepo> Egre = new List<Reportes.ClasesRepo.EgresoRepo>();
 
             string idcli = LblCodCli.Text;
             string idsol = CboSoli.Text;
 
-            DataTable datoscli = cli.clientebusca(idcli);
-            DataTable datosrefes = cli.refscli(idcli);
-            DataTable datosGarant = cli.GaratanbyCliSol(idsol, idcli);
+            DataTable datosCli = cli.clientebusca(idcli);
+            DataTable datosRefes = cli.refscli(idcli);
+            DataTable datosGarant = sol.GaratanbyCliSol(idsol, idcli);
+            DataTable datosIngre = sol.IngresoSol(idsol);
+            DataTable datosEgre = sol.EgresoSol(idsol);
+            DataTable datosCuent = sol.CuentaSol(idsol);
+            DataTable datosFiad = sol.FiadAllSol(idsol);
           //  DataTable datosSoli = sol.busca_datos(CboSoli.Text);
             Reportes.ClasesRepo.DatosSolicitud DatoSol = new Reportes.ClasesRepo.DatosSolicitud();
             DatoSol.IdSol = int.Parse(CboSoli.Text);
             DatoSol.FechaSol = DateTime.Parse(LblFechasol.Text);
-            DatoSol.Cliente =$"{datoscli.Rows[0][0]} {datoscli.Rows[0][1]}";
-            DatoSol.Domicilio=$"{datoscli.Rows[0][2]}";
-            DatoSol.DPI = $"{datoscli.Rows[0][3]}";
-            DatoSol.Tel1 = $"{datoscli.Rows[0][4]}";
-            DatoSol.Tel2= $"{datoscli.Rows[0][5]}";
-            DatoSol.Prof1 = $"{datoscli.Rows[0][6]}";
-            DatoSol.NomCony= $"{datoscli.Rows[0][7]} {datoscli.Rows[0][8]}";
-            DatoSol.TelCony = $"{datoscli.Rows[0][9]}";
-            DatoSol.Referencia=$"{datoscli.Rows[0][10]}";
-            DatoSol.EstadoCivil= $"{datoscli.Rows[0][11]}";
-            DatoSol.Prof2= $"{datoscli.Rows[0][17]}";
-            DatoSol.CagaF = $"{datoscli.Rows[0][18]}";
-            DatoSol.ProfCony = $"{datoscli.Rows[0][19]}";
-            DatoSol.DPICony= $"{datoscli.Rows[0][20]}";
+            DatoSol.Cliente =$"{datosCli.Rows[0][0]} {datosCli.Rows[0][1]}";
+            DatoSol.Domicilio=$"{datosCli.Rows[0][2]}";
+            DatoSol.DPI = $"{datosCli.Rows[0][3]}";
+            DatoSol.Tel1 = $"{datosCli.Rows[0][4]}";
+            DatoSol.Tel2= $"{datosCli.Rows[0][5]}";
+            DatoSol.Prof1 = $"{datosCli.Rows[0][6]}";
+            DatoSol.NomCony= $"{datosCli.Rows[0][7]} {datosCli.Rows[0][8]}";
+            DatoSol.TelCony = $"{datosCli.Rows[0][9]}";
+            DatoSol.Referencia=$"{datosCli.Rows[0][10]}";
+            DatoSol.EstadoCivil= $"{datosCli.Rows[0][11]}";
+            DatoSol.Prof2= $"{datosCli.Rows[0][17]}";
+            DatoSol.CagaF = $"{datosCli.Rows[0][18]}";
+            DatoSol.ProfCony = $"{datosCli.Rows[0][19]}";
+            DatoSol.DPICony= $"{datosCli.Rows[0][20]}";
             DatoSol.Asesor = TxtNomAseso.Text;
             //falta buscar
-            DatoSol.TelNeg= $"{datoscli.Rows[0][24]}";
-            DatoSol.RefNeg= $"{datoscli.Rows[0][26]}";
-            DatoSol.AntiqNeg = $"{datoscli.Rows[0][28]}";
-            DatoSol.DirNeg = $"{datoscli.Rows[0][25]}";
-            DatoSol.NomNeg = $"{datoscli.Rows[0][23]}";
-            DatoSol.TipoNeg= $"{datoscli.Rows[0][27]}";
+            DatoSol.TelNeg= $"{datosCli.Rows[0][24]}";
+            DatoSol.RefNeg= $"{datosCli.Rows[0][26]}";
+            DatoSol.AntiqNeg = $"{datosCli.Rows[0][28]}";
+            DatoSol.DirNeg = $"{datosCli.Rows[0][25]}";
+            DatoSol.NomNeg = $"{datosCli.Rows[0][23]}";
+            DatoSol.TipoNeg= $"{datosCli.Rows[0][27]}";
             DatoSol.PlazoCred =int.Parse(TxtPlazo.Text);
             DatoSol.PagoCred = CboTipo.Text;
             DatoSol.TipoCred = TxtPlazo.Text;
@@ -1751,12 +1762,12 @@ namespace Arcoiris.Formularios
             DatoSol.MontoSug= decimal.Parse(TxtMonto2.Text);
             DatoSol.MotivoCred = TxtConcept.Text;
             
-            for (int i = 0; i < datosrefes.Rows.Count; i++)
+            for (int i = 0; i < datosRefes.Rows.Count; i++)
             {
                 Reportes.ClasesRepo.ReferenciaSolicitud TempRefe = new Reportes.ClasesRepo.ReferenciaSolicitud();
-                TempRefe.Nombre = $"{datosrefes.Rows[i][1]}";
-                TempRefe.Parentezco = $"{datosrefes.Rows[i][2]}";
-                TempRefe.Telefono = $"{datosrefes.Rows[i][3]}";
+                TempRefe.Nombre = $"{datosRefes.Rows[i][1]}";
+                TempRefe.Parentezco = $"{datosRefes.Rows[i][2]}";
+                TempRefe.Telefono = $"{datosRefes.Rows[i][3]}";
                 refes.Add(TempRefe);
             }
             for (int i = 0; i < datosGarant.Rows.Count; i++)
@@ -1771,13 +1782,60 @@ namespace Arcoiris.Formularios
                 temp.Observaciones = $"{datosGarant.Rows[i][6]}";
                 Gara.Add(temp);
             }
+
+            for (int i = 0; i < datosCuent.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.CuentaRepo temp = new Reportes.ClasesRepo.CuentaRepo();
+                temp.NomCuenta = $"{datosCuent.Rows[i][0]}";
+                temp.Valor = decimal.Parse( $"{datosCuent.Rows[i][1]}");
+                temp.tipo = bool.Parse( $"{datosCuent.Rows[i][2]}");
+                Cue.Add(temp);
+            }
+
+            for (int i = 0; i < datosIngre.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.IngresoRepo temp = new Reportes.ClasesRepo.IngresoRepo();
+                temp.Cantidad= int.Parse( $"{datosIngre.Rows[i][0]}");
+                temp.Producto= ( $"{datosIngre.Rows[i][1]}");
+                temp.Costo= decimal.Parse( $"{datosIngre.Rows[i][2]}");
+                temp.Venta= decimal.Parse( $"{datosIngre.Rows[i][3]}");
+                temp.Ganacia= decimal.Parse( $"{datosIngre.Rows[i][4]}");
+                Ingre.Add(temp);
+            }
+            for (int i = 0; i < datosEgre.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.EgresoRepo temp = new Reportes.ClasesRepo.EgresoRepo();
+                temp.Cantidad = int.Parse($"{datosEgre.Rows[i][0]}");
+                temp.Detalle = ($"{datosEgre.Rows[i][0]}");
+                temp.Empresa = ($"{datosEgre.Rows[i][0]}");
+                temp.Cuota_men = decimal.Parse($"{datosEgre.Rows[i][0]}");
+                Egre.Add(temp);
+            }
+
+            for (int i = 0; i < datosFiad.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.FiadorSolicitud temp = new Reportes.ClasesRepo.FiadorSolicitud();
+                //temp = int.Parse($"{datosEgre.Rows[i][0]}");
+                temp.Nombre = ($"{datosEgre.Rows[i][0]}");
+                temp.Dpi = ($"{datosEgre.Rows[i][0]}");
+                temp.Domicilio = ($"{datosEgre.Rows[i][0]}");
+                temp.Tel1 =($"{datosEgre.Rows[i][0]}");
+                temp.Tel2 =($"{datosEgre.Rows[i][0]}");
+                temp.Profes = ($"{datosEgre.Rows[i][0]}");
+                temp.RefUbi = ($"{datosEgre.Rows[i][0]}");
+                
+               Fiad.Add(temp);
+            }
             //DatoSol.Refs.Add(refes);
             //DatoSol.cre
             Reportes.SolicitudNuevo soli = new Reportes.SolicitudNuevo();
             soli.DatosGen.Add(DatoSol);
             soli.Referi = refes;
-            soli.Fiado.Add(Fiad);
+            soli.Fiado=(Fiad);
             soli.Garant=(Gara);
+            soli.Cuenta = Cue;
+            soli.Ingre = Ingre;
+            soli.Egres = Egre;
             soli.Show();
 
 
@@ -2021,52 +2079,86 @@ namespace Arcoiris.Formularios
         {
             // Configurar para calcular tamaño automático
             TCTSoli.SizeMode = TabSizeMode.Fixed;
+            tabControl1.SizeMode = TabSizeMode.Fixed;
 
-            using (Graphics g = TCTSoli.CreateGraphics())
+            //tab superior
+            using (Graphics g = tabControl1.CreateGraphics())
             {
                 int maxWidth = 0;
-
                 // Calcular el ancho necesario para cada pestaña
-                foreach (TabPage tab in TCTSoli.TabPages)
+                foreach (TabPage tab in tabControl1.TabPages)
                 {
                     // Medir el texto con fuente normal
-                    SizeF textSizeNormal = g.MeasureString(tab.Text, TCTSoli.Font);
-
+                    SizeF textSizeNormal = g.MeasureString(tab.Text, tabControl1.Font);
                     // Medir el texto con fuente en negrita (para cuando está seleccionada)
-                    using (Font boldFont = new Font(TCTSoli.Font, FontStyle.Bold))
+                    using (Font boldFont = new Font(tabControl1.Font, FontStyle.Bold))
                     {
                         SizeF textSizeBold = g.MeasureString(tab.Text, boldFont);
-
                         // Usar el mayor tamaño entre normal y negrita
                         float textWidth = Math.Max(textSizeNormal.Width, textSizeBold.Width);
-
                         // Agregar padding (izquierda y derecha)
                         int requiredWidth = (int)textWidth + 30; // 15px de padding a cada lado
-
                         if (requiredWidth > maxWidth)
                         {
                             maxWidth = requiredWidth;
                         }
                     }
                 }
-
                 // Limitar el tamaño máximo si es necesario
                 int maxPermitido = 200; // Ajusta este valor según tus necesidades
                 if (maxWidth > maxPermitido)
                 {
                     maxWidth = maxPermitido;
                 }
-
                 // Asegurar un tamaño mínimo
                 int minWidth = 80;
                 if (maxWidth < minWidth)
                 {
                     maxWidth = minWidth;
                 }
+                // Aplicar el tamaño calculado a todas las pestañas
+                tabControl1.ItemSize = new Size(maxWidth, tabControl1.ItemSize.Height);
+            }
 
+            using (Graphics g = TCTSoli.CreateGraphics())
+            {
+                int maxWidth = 0;
+                // Calcular el ancho necesario para cada pestaña
+                foreach (TabPage tab in TCTSoli.TabPages)
+                {
+                    // Medir el texto con fuente normal
+                    SizeF textSizeNormal = g.MeasureString(tab.Text, TCTSoli.Font);
+                    // Medir el texto con fuente en negrita (para cuando está seleccionada)
+                    using (Font boldFont = new Font(TCTSoli.Font, FontStyle.Bold))
+                    {
+                        SizeF textSizeBold = g.MeasureString(tab.Text, boldFont);
+                        // Usar el mayor tamaño entre normal y negrita
+                        float textWidth = Math.Max(textSizeNormal.Width, textSizeBold.Width);
+                        // Agregar padding (izquierda y derecha)
+                        int requiredWidth = (int)textWidth + 30; // 15px de padding a cada lado
+                        if (requiredWidth > maxWidth)
+                        {
+                            maxWidth = requiredWidth;
+                        }
+                    }
+                }
+                // Limitar el tamaño máximo si es necesario
+                int maxPermitido = 200; // Ajusta este valor según tus necesidades
+                if (maxWidth > maxPermitido)
+                {
+                    maxWidth = maxPermitido;
+                }
+                // Asegurar un tamaño mínimo
+                int minWidth = 80;
+                if (maxWidth < minWidth)
+                {
+                    maxWidth = minWidth;
+                }
                 // Aplicar el tamaño calculado a todas las pestañas
                 TCTSoli.ItemSize = new Size(maxWidth, TCTSoli.ItemSize.Height);
             }
+
+
         }
 
              //validaciones

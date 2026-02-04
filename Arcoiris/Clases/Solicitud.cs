@@ -194,9 +194,19 @@ namespace Arcoiris.Clases
 
             return "";
         }
+        public DataTable datosGen2Soli(string sol)
+        {
+            string consulta =$"SELECT sol.ID_SOLICITUD,cli.CODIGO_CLI,asol.COD_ASESOR,sol.MONTO,sol.CONCEPTO,sol.TIPO " +
+                $"FROM solicitud sol " +
+                $"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                $"INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
+                $"WHERE sol.ID_SOLICITUD = {sol}";
+            return buscar(consulta);
+        }
+        
         #endregion
 
-     
+        #region funciones credito-solicitud
         public bool agregar_soli(string[] datos)
         {
             conect.iniciar();
@@ -221,11 +231,12 @@ namespace Arcoiris.Clases
                     Dgaran[0] = datos[10]; //contrato
                     Dgaran[1] = datos[12];//valuacion
                     if (datos[13] != null)
-                    { Dgaran[2] = datos[13];//Garantia 
+                    {
+                        Dgaran[2] = datos[13];//Garantia 
                     }
                     else
                     {
-                        Dgaran[2] ="Sn garantia";//Garantia 
+                        Dgaran[2] = "Sn garantia";//Garantia 
                     }
                     Dgaran[3] = datos[14];//Nom fiador
                     Dgaran[4] = datos[15];//Municipio fiador
@@ -364,11 +375,11 @@ namespace Arcoiris.Clases
             com.CommandType = CommandType.Text;
             try
             {
-                
+
                 conect.conn.Open();
                 com.ExecuteNonQuery();
                 conect.conn.Close();
-                    return true;
+                return true;
             }
             catch (Exception ex)
             {
@@ -444,7 +455,8 @@ namespace Arcoiris.Clases
                 decimal pago;
                 pago = saldoC / plaz;
                 decimal SumI = 0;
-                for (cont = 1; cont <= plaz; cont++) {
+                for (cont = 1; cont <= plaz; cont++)
+                {
                     saldoI = Math.Round((total * interes / 100 / 12), 2);
                     SumI += saldoI;
                     total -= pago;
@@ -474,7 +486,8 @@ namespace Arcoiris.Clases
             {
                 return asigna_credito(datos[0], idcredito);
             }
-            else {
+            else
+            {
                 return false;
             }
         }
@@ -564,16 +577,18 @@ namespace Arcoiris.Clases
             datos = buscar(consulta);
             int cont, total;
             total = datos.Rows.Count;
-           //  DateTime Fini, Ffin;
+            //  DateTime Fini, Ffin;
             for (cont = 0; cont < total; cont++)
             {
                 int dias;
-                dias = diaspagos(datos.Rows[cont][1].ToString (), datos.Rows[cont ][2].ToString ());
-                MessageBox.Show("Credito: " + (datos.Rows[cont ][0].ToString()) + "\nDias de Pago: " + dias);
+                dias = diaspagos(datos.Rows[cont][1].ToString(), datos.Rows[cont][2].ToString());
+                MessageBox.Show("Credito: " + (datos.Rows[cont][0].ToString()) + "\nDias de Pago: " + dias);
             }
             return true;
 
         }
+        #endregion
+
 
 
         #region Id's
@@ -866,7 +881,66 @@ namespace Arcoiris.Clases
             return Consulta_tipo2(com1);
         }
 
+      
 
+
+        public DataTable GaratanbyCliSol(string sol, string cli)
+        {
+            string consulta = $"SELECT CONCAT(cli.NOMBRES,' ', cli.APELLIDOS) AS Nomb, g.Detalle,g.Tipo,g.Detalle,g.Valuacion,g.Info, g.Observaciones FROM garantia g " +
+                $"inner JOIN sol_garant sg ON g.Id_Garant = sg.id_garant " +
+                $"INNER JOIN solicitud s ON s.ID_SOLICITUD = sg.Id_Solicitud " +
+                $"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = s.ID_SOLICITUD " +
+                $"INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
+                $"WHERE asol.codigo_cli ={cli} AND asol.ID_SOLICITUD = {sol}";
+            return buscar(consulta);
+        }
+
+        public DataTable FiadorbyCliSol(string sol)
+        {
+            string consulta = $"SELECT c.CODIGO_CLI, CONCAT(c.NOMBRES,' ',c.APELLIDOS),sfi.OtherIng " +
+                $"FROM cliente c " +
+                $"JOIN sol_fiad sfi ON c.CODIGO_CLI = sfi.Id_Fia " +
+                $"WHERE sfi.Id_sol ={sol}";
+            return buscar(consulta);
+        }
+
+        public DataTable FiadAllSol(string sol)
+        {
+            string consulta = $"SELECT c.CODIGO_CLI, CONCAT(c.NOMBRES, ' ', c.APELLIDOS),c.DPI,c.DOMICILIO,c.TELEFONO1,c.Telefono2,c.PROFESION,c.REFERENCIA,sfi.OtherIng " +
+                $"FROM cliente c " +
+                $"JOIN sol_fiad sfi ON c.CODIGO_CLI = sfi.Id_Fia " +
+                $"WHERE sfi.Id_sol ={sol}";
+            return buscar(consulta);
+        }
+
+        public DataTable IngresoSol(string idsol)
+        {
+            string consulta = "SELECT icli.CANTIDAD,icli.PRODUCTO,icli.COSTO,icli.VENTA,icli.GANANCIA " +
+              "FROM ingresocli icli " +
+              "INNER JOIN ingreso_sol isol ON isol.ID_INGMEN = icli.ID_INGMEN " +
+              $"WHERE isol.ID_SOL ={idsol} ";
+            return buscar(consulta);
+        }
+
+        public DataTable EgresoSol(string idsol)
+        {
+            string consulta = "SELECT ecli.CANTIDAD,ecli.DETALLE,ecli.DETALLE,ecli.CUOTA_MEN " +
+                "FROM egresocli ecli " +
+                "INNER JOIN egreso_sol esol ON esol.ID_EGRMEN = ecli.ID_EGRMEN " +
+                $"WHERE esol.ID_SOL= {idsol} ";
+            return buscar(consulta);
+        }
+
+        public DataTable CuentaSol(string idsol)
+        {
+            string consulta = "SELECT est.cuenta,est.valor,est.tipo " +
+              "FROM estadofin est " +
+              "INNER JOIN estfin_sol esol ON esol.ID_ESTFIN = est.ID_ESTFIN " +
+              $"WHERE esol.ID_SOL = {idsol}";
+            return buscar(consulta);
+
+
+        }
 
         #endregion
 
@@ -967,6 +1041,9 @@ namespace Arcoiris.Clases
         }
 
         #endregion
+
+
+
     }
 }
 

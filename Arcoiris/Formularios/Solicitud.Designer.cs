@@ -97,18 +97,9 @@
             this.GbxResumenEgr = new System.Windows.Forms.GroupBox();
             this.BtnElimEgr = new System.Windows.Forms.Button();
             this.DgvEngMen = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbxResumenIn = new System.Windows.Forms.GroupBox();
             this.BtnElimIng = new System.Windows.Forms.Button();
             this.DgvIngMen = new System.Windows.Forms.DataGridView();
-            this.Prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ganancia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbxEstadoF = new System.Windows.Forms.GroupBox();
             this.LstPasiv = new System.Windows.Forms.ListBox();
             this.BtnElimCuenta = new System.Windows.Forms.Button();
@@ -174,6 +165,17 @@
             this.label28 = new System.Windows.Forms.Label();
             this.CboCliInv = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ganancia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdIngEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -270,10 +272,10 @@
             // 
             this.TabCred.Controls.Add(this.CboRazonCred);
             this.TabCred.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TabCred.Location = new System.Drawing.Point(4, 26);
+            this.TabCred.Location = new System.Drawing.Point(4, 24);
             this.TabCred.Name = "TabCred";
             this.TabCred.Padding = new System.Windows.Forms.Padding(3);
-            this.TabCred.Size = new System.Drawing.Size(1133, 650);
+            this.TabCred.Size = new System.Drawing.Size(1133, 652);
             this.TabCred.TabIndex = 0;
             this.TabCred.Text = "Credito";
             this.TabCred.UseVisualStyleBackColor = true;
@@ -302,7 +304,7 @@
             this.CboRazonCred.Dock = System.Windows.Forms.DockStyle.Fill;
             this.CboRazonCred.Location = new System.Drawing.Point(3, 3);
             this.CboRazonCred.Name = "CboRazonCred";
-            this.CboRazonCred.Size = new System.Drawing.Size(1127, 644);
+            this.CboRazonCred.Size = new System.Drawing.Size(1127, 646);
             this.CboRazonCred.TabIndex = 50;
             this.CboRazonCred.TabStop = false;
             this.CboRazonCred.Text = "Datos del credito";
@@ -519,10 +521,10 @@
             this.TabGarant.Controls.Add(this.GbxFiadorIn);
             this.TabGarant.Controls.Add(this.GbxGarantia);
             this.TabGarant.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TabGarant.Location = new System.Drawing.Point(4, 26);
+            this.TabGarant.Location = new System.Drawing.Point(4, 24);
             this.TabGarant.Name = "TabGarant";
             this.TabGarant.Padding = new System.Windows.Forms.Padding(3);
-            this.TabGarant.Size = new System.Drawing.Size(1133, 650);
+            this.TabGarant.Size = new System.Drawing.Size(1133, 652);
             this.TabGarant.TabIndex = 1;
             this.TabGarant.Text = "Garantia/Fiador";
             this.TabGarant.UseVisualStyleBackColor = true;
@@ -533,7 +535,7 @@
             this.GbxFiadorIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxFiadorIn.Location = new System.Drawing.Point(3, 332);
             this.GbxFiadorIn.Name = "GbxFiadorIn";
-            this.GbxFiadorIn.Size = new System.Drawing.Size(1127, 315);
+            this.GbxFiadorIn.Size = new System.Drawing.Size(1127, 317);
             this.GbxFiadorIn.TabIndex = 26;
             this.GbxFiadorIn.TabStop = false;
             this.GbxFiadorIn.Text = "Fiador";
@@ -550,7 +552,7 @@
             this.GbxDataFiad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxDataFiad.Location = new System.Drawing.Point(3, 19);
             this.GbxDataFiad.Name = "GbxDataFiad";
-            this.GbxDataFiad.Size = new System.Drawing.Size(1121, 293);
+            this.GbxDataFiad.Size = new System.Drawing.Size(1121, 295);
             this.GbxDataFiad.TabIndex = 43;
             this.GbxDataFiad.TabStop = false;
             this.GbxDataFiad.Text = "Datos del fiador";
@@ -610,7 +612,7 @@
             this.DgvFiadorLst.Name = "DgvFiadorLst";
             this.DgvFiadorLst.ReadOnly = true;
             this.DgvFiadorLst.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvFiadorLst.Size = new System.Drawing.Size(650, 271);
+            this.DgvFiadorLst.Size = new System.Drawing.Size(650, 273);
             this.DgvFiadorLst.TabIndex = 53;
             // 
             // IdFiad
@@ -971,36 +973,13 @@
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn5});
+            this.dataGridViewTextBoxColumn5,
+            this.IdEgrEdit});
             this.DgvEngMen.Location = new System.Drawing.Point(6, 107);
             this.DgvEngMen.Name = "DgvEngMen";
             this.DgvEngMen.Size = new System.Drawing.Size(350, 430);
             this.DgvEngMen.TabIndex = 1;
             this.DgvEngMen.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvEngMen_RowsAdded);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 69;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 79;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 77;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 111;
             // 
             // GbxResumenIn
             // 
@@ -1037,42 +1016,13 @@
             this.Cant,
             this.Costo,
             this.Venta,
-            this.Ganancia});
+            this.Ganancia,
+            this.IdIngEdit});
             this.DgvIngMen.Location = new System.Drawing.Point(6, 107);
             this.DgvIngMen.Name = "DgvIngMen";
             this.DgvIngMen.Size = new System.Drawing.Size(350, 430);
             this.DgvIngMen.TabIndex = 0;
             this.DgvIngMen.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvIngMen_RowsAdded);
-            // 
-            // Prod
-            // 
-            this.Prod.HeaderText = "Producto";
-            this.Prod.Name = "Prod";
-            this.Prod.Width = 81;
-            // 
-            // Cant
-            // 
-            this.Cant.HeaderText = "Cantidad";
-            this.Cant.Name = "Cant";
-            this.Cant.Width = 79;
-            // 
-            // Costo
-            // 
-            this.Costo.HeaderText = "Costo";
-            this.Costo.Name = "Costo";
-            this.Costo.Width = 62;
-            // 
-            // Venta
-            // 
-            this.Venta.HeaderText = "Venta";
-            this.Venta.Name = "Venta";
-            this.Venta.Width = 62;
-            // 
-            // Ganancia
-            // 
-            this.Ganancia.HeaderText = "Ganancia";
-            this.Ganancia.Name = "Ganancia";
-            this.Ganancia.Width = 81;
             // 
             // GbxEstadoF
             // 
@@ -1870,6 +1820,73 @@
             this.label27.TabIndex = 0;
             this.label27.Text = "Cliente";
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 69;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 79;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 77;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 111;
+            // 
+            // IdEgrEdit
+            // 
+            this.IdEgrEdit.HeaderText = "ID";
+            this.IdEgrEdit.Name = "IdEgrEdit";
+            this.IdEgrEdit.Width = 45;
+            // 
+            // Prod
+            // 
+            this.Prod.HeaderText = "Producto";
+            this.Prod.Name = "Prod";
+            this.Prod.Width = 81;
+            // 
+            // Cant
+            // 
+            this.Cant.HeaderText = "Cantidad";
+            this.Cant.Name = "Cant";
+            this.Cant.Width = 79;
+            // 
+            // Costo
+            // 
+            this.Costo.HeaderText = "Costo";
+            this.Costo.Name = "Costo";
+            this.Costo.Width = 62;
+            // 
+            // Venta
+            // 
+            this.Venta.HeaderText = "Venta";
+            this.Venta.Name = "Venta";
+            this.Venta.Width = 62;
+            // 
+            // Ganancia
+            // 
+            this.Ganancia.HeaderText = "Ganancia";
+            this.Ganancia.Name = "Ganancia";
+            this.Ganancia.Width = 81;
+            // 
+            // IdIngEdit
+            // 
+            this.IdIngEdit.HeaderText = "Id";
+            this.IdIngEdit.Name = "IdIngEdit";
+            this.IdIngEdit.Visible = false;
+            this.IdIngEdit.Width = 43;
+            // 
             // Solicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -2017,16 +2034,7 @@
         private System.Windows.Forms.TextBox TxtPatri;
         private System.Windows.Forms.ListBox LstPasiv;
         private System.Windows.Forms.DataGridView DgvIngMen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Prod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Venta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Ganancia;
         private System.Windows.Forms.DataGridView DgvEngMen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.Button BtnElimEgr;
         private System.Windows.Forms.Button BtnElimIng;
         private System.Windows.Forms.Button BtnPrueba;
@@ -2070,5 +2078,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GaraVal;
         private System.Windows.Forms.DataGridViewTextBoxColumn InfoGaran;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObserGaran;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEgrEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Prod;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Venta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Ganancia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdIngEdit;
     }
 }

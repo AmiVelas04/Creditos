@@ -651,37 +651,28 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
             if (refes <= 8) filas = 2;
             if (refes <= 4) filas = 1;
             int columTemp = 0;
-            for (int  i= 0; i < filas; i++)
+            for (int i = 0; i < filas; i++)
             {
                 if (datos[columTemp].Equals("0"))
                 {
-                    refesNew.Add(datos[columTemp+1]);
-                    refesNew.Add(datos[columTemp+2]);
-                    refesNew.Add(datos[columTemp+3]);
-                    columTemp+=4;
+                    refesNew.Add(datos[columTemp + 1]);
+                    refesNew.Add(datos[columTemp + 2]);
+                    refesNew.Add(datos[columTemp + 3]);
+                    columTemp += 4;
                 }
-                else {
+                else
+                {
                     refesupdate.Add(datos[columTemp]);
-                    refesupdate.Add(datos[columTemp+  1]);
+                    refesupdate.Add(datos[columTemp + 1]);
                     refesupdate.Add(datos[columTemp + 2]);
                     refesupdate.Add(datos[columTemp + 3]);
-                    columTemp+=4;
+                    columTemp += 4;
                 }
             }
-            return (asignarefes(refesNew,idCliente) && updSinglerefes(refesupdate) );
-            
+            return (asignarefes(refesNew, idCliente) && updSinglerefes(refesupdate));
+
         }
 
 
-        public DataTable GaratanbyCliSol(string sol, string cli)
-        {
-            string consulta = $"SELECT CONCAT(cli.NOMBRES,' ', cli.APELLIDOS) AS Nomb, g.Detalle,g.Tipo,g.Detalle,g.Valuacion,g.Info, g.Observaciones FROM garantia g " +
-                $"inner JOIN sol_garant sg ON g.Id_Garant = sg.id_garant " +
-                $"INNER JOIN solicitud s ON s.ID_SOLICITUD = sg.Id_Solicitud " +
-                $"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = s.ID_SOLICITUD " +
-                $"INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
-                $"WHERE asol.codigo_cli ={cli} AND asol.ID_SOLICITUD = {sol}";
-            return buscar(consulta);
-        }
     }
 }
