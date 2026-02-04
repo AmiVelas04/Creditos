@@ -44,6 +44,8 @@ namespace Arcoiris.Formularios
         }
         private void ListCred_Load(object sender, EventArgs e)
         {
+            Clases.Estilos.StyleForm(this);
+            Clases.Estilos.StylePrimaryButton(BtnRef);
             string consulta;
             consulta = "SELECT Cre.Cod_credito AS Credito, cre.monto,cre.Fecha_conc , cre.Fecha_venci, cre.id_tipo_credito " +
                         "FROM credito cre " +

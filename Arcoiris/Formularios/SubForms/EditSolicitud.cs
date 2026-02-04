@@ -15,6 +15,7 @@ namespace Arcoiris.Formularios.SubForms
         private List<Formularios.SubClases.Cuenta> listaCuentas = new List<Formularios.SubClases.Cuenta>();
         Clases.Solicitud Soli = new Clases.Solicitud();
         Clases.Cliente Cli = new Clases.Cliente();
+        Clases.ClAsesor Aseso = new Clases.ClAsesor();
         public Clases.Solicitud DatosSol { get; set; }
         public List<SubClases.Cuenta> DatosCue { get; set; }
         public List<SubClases.Ingreso> DatosIng { get; set; }
@@ -37,6 +38,97 @@ namespace Arcoiris.Formularios.SubForms
         #endregion
 
         #region Carga general
+
+        private void cargaClientes()
+        {
+            DataTable datoscli = new DataTable();
+
+            datoscli = Cli.Buscar_nom_cli();
+           
+            DataTable datos2 = datoscli.Copy();
+            DataTable Propis = datoscli.Copy();
+            CboCliente.DataSource = datoscli;
+            CboCliente.DisplayMember = "Nombre";
+            CboCliente.ValueMember = "Codigo_Cli";
+            CboPropi.DataSource = Propis;
+            CboPropi.DisplayMember = "Nombre";
+            CboPropi.ValueMember = "Codigo_Cli";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection coleccion2 = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection colecTutor = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection colecpropi = new AutoCompleteStringCollection();
+            foreach (DataRow row in datoscli.Rows)
+            {
+                coleccion.Add(row["Nombre"].ToString());
+                coleccion2.Add(row["Nombre"].ToString());
+                colecTutor.Add(row["Nombre"].ToString());
+                colecpropi.Add(row["Nombre"].ToString());
+            }
+            CboCliente.AutoCompleteCustomSource = coleccion;
+            CboCliente.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboCliente.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            CboPropi.AutoCompleteCustomSource = colecpropi;
+            CboPropi.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboPropi.AutoCompleteSource = AutoCompleteSource.CustomSource;
+           
+
+
+
+            //Agregar cliente a inversiones
+
+
+
+            //Agregar datos de asesores
+            DataTable datosas = new DataTable();
+            datosas = Aseso.busca_asesor_nom();
+            CboAsesor.DataSource = datosas;
+            CboAsesor.DisplayMember = "Nombre";
+            CboAsesor.ValueMember = "Codigo";
+           
+            foreach (DataRow row in datosas.Rows)
+            {
+                coleccion.Add(row["Nombre"].ToString());
+
+            }
+            CboAsesor.AutoCompleteCustomSource = coleccion;
+            CboAsesor.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboAsesor.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+
+            //Lista de fiadores
+            listCliFia();
+
+
+            LblFecha.Text = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
+            TxtNoSol.Text = Soli.id_solicitud().ToString();
+            CboTipo.Items.Add("Diario");
+            CboTipo.Items.Add("Diario - Intereses");
+            CboTipo.Items.Add("Semanal");
+            CboTipo.Items.Add("Quincenal");
+            CboTipo.Items.Add("Mensual - Cuota Fija");
+            CboTipo.Items.Add("Mensual - Sobre Saldo");
+            CboTipo.SelectedIndex = 0;
+        }
+
+        private void listCliFia()
+        {
+            DataTable listadocli = new DataTable();
+            listadocli = Cli.AllCli();
+            CboFiadNom.DataSource = listadocli;
+          //  AllCli = listadocli;
+            CboFiadNom.DisplayMember = "Nombre";
+            CboFiadNom.ValueMember = "Codigo_Cli";
+            AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
+            foreach (DataRow row in listadocli.Rows)
+            {
+                coleccion.Add(row["Nombre"].ToString());
+            }
+            CboFiadNom.AutoCompleteCustomSource = coleccion;
+            CboFiadNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CboFiadNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+        }
+
         private void cargaSoli()
         {
             DataTable datosSol = Soli.datosGen2Soli($"{IdSol}");
@@ -115,7 +207,8 @@ namespace Arcoiris.Formularios.SubForms
 
         private void EditSolicitud_Load(object sender, EventArgs e)
         {
-            Clases.Estilos.StyleForm(this);
+            cargaClientes();
+            //Clases.Estilos.StyleForm(this);
             // Configurar el DrawMode
             TCTSoli.DrawMode = TabDrawMode.OwnerDrawFixed;
             TCTSoli.DrawItem += TCTSoli_DrawItem;
@@ -128,6 +221,7 @@ namespace Arcoiris.Formularios.SubForms
             cargaEgreso();
             cargarGarantia();
             cargaFiador();
+         
         }
 
 
