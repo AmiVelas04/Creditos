@@ -217,7 +217,7 @@ namespace Arcoiris.Clases
             int id=buscarid(consultab);
             id++;
              consulta= $"Insert into cliente(codigo_cli,nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,estado_civil,nombre_cony,apellido_cony,telefonocon,referencia,fecha_ing,departamento,municipio,edad,genero,nacionalidad," +
-                $"fechanaci,profe2,dpicony,profcony,cargafam,negnom,negdir,negtel,negref,tiponeg,negantiq,dipbase64) " +
+                $"fechanaci,profe2,dpicony,profcony,cargafam,negnom,negdir,negtel,negref,tiponeg,negantiq,dpibase64) " +
                 $"values(?codigo_cli,?nombres,?apellidos,?domicilio,?dpi,?telefono1,?telefono2,?profesion,?estado_civil,?nombre_cony,?apellido_cony,?telefonocon,?referencia,?fecha_ing,?departamento,?municipio,?edad,?genero,?nacionalidad," +
                 $"?fnaci,?oprof,?dpicon,?profcon,?cargaf,?nomneg,?dirneg,?telneg,?refneg,?tneg,?aneg,?imag)";
             // MessageBox.Show(consulta);
@@ -418,7 +418,7 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
         {
             DataTable datos = new DataTable();
             String consulta;
-            consulta = "Select Concat(Nombres,' ',apellidos) as Nombre , Codigo_Cli from Cliente ORDER BY nombres,apellidos";
+            consulta = "Select Concat(Nombres,' ',apellidos,'-',DPI) as Nombre , Codigo_Cli,DPI from Cliente ORDER BY nombres,apellidos";
             datos=buscar(consulta);
             return datos;
 
@@ -515,7 +515,7 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
             consulta = $"update cliente set nombres=?nombres, apellidos=?apellidos, domicilio=?domi, dpi=?dpi, telefono1=?tel1, telefono2=?tel2, profesion=?prof, " +
                 $"nombre_cony=?nomCon, telefonocon=?telcon, referencia=?ref, estado_civil=?estC,fechanaci=?fnaci,genero=?gene,departamento=?depa,municipio=?muni, " +
                 $"negnom=?nomn,negdir=?dirn,negtel=?teln,tiponeg=?tipn,negref=?refn,negantiq=?antiqn,cargafam=?cargaf, profe2=?profOt,profcony=?profcon,dpicony=?dpicon, " +
-                $"dpibase64=?imag " +
+                $"dpibase64=?imag, edad=?edad, referencia=?ref " +
                 $"where codigo_cli={id}";
             MySqlCommand com = new MySqlCommand();
 
@@ -533,6 +533,7 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
             com.Parameters.Add("?nomCon", MySqlDbType.VarChar);
             com.Parameters.Add("?telcon", MySqlDbType.VarChar);
             com.Parameters.Add("?ref", MySqlDbType.VarChar);
+            com.Parameters.Add("?edad", MySqlDbType.VarChar);
             com.Parameters.Add("?fnaci", MySqlDbType.DateTime);
             com.Parameters.Add("?gene", MySqlDbType.VarChar);
             com.Parameters.Add("?profcon", MySqlDbType.VarChar);
@@ -565,6 +566,8 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
             com.Parameters["?nomCon"].Value = datos[8];
             com.Parameters["?telcon"].Value = datos[10];
             com.Parameters["?fnaci"].Value = DateTime.Now;
+            com.Parameters["?ref"].Value = datos[11];
+            com.Parameters["?edad"].Value = datos[12];
             com.Parameters["?gene"].Value = datos[13];
             com.Parameters["?profcon"].Value = datos[16];
             com.Parameters["?dpicon"].Value = datos[17];

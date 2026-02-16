@@ -34,7 +34,14 @@
             this.TCTSoli = new System.Windows.Forms.TabControl();
             this.TabCred = new System.Windows.Forms.TabPage();
             this.GbxSol = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TxtInteresEdit = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.LblEstado = new System.Windows.Forms.Label();
+            this.TxtCredAqui = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.BtnEditar = new System.Windows.Forms.Button();
+            this.TxtMontoAprov = new System.Windows.Forms.TextBox();
+            this.LblFecha = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -59,6 +66,7 @@
             this.TabGarant = new System.Windows.Forms.TabPage();
             this.GbxFiadorIn = new System.Windows.Forms.GroupBox();
             this.GbxDataFiad = new System.Windows.Forms.GroupBox();
+            this.UpdFiadEdit = new System.Windows.Forms.Button();
             this.BtnDelLstFiad = new System.Windows.Forms.Button();
             this.BtnAddLstFiad = new System.Windows.Forms.Button();
             this.TxtOtherIng = new System.Windows.Forms.TextBox();
@@ -68,9 +76,11 @@
             this.Fiador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DomiFiad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IngreFiad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEstF = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CboFiadNom = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.GbxGarantia = new System.Windows.Forms.GroupBox();
+            this.BtnUpGarantEdit = new System.Windows.Forms.Button();
             this.BtnDelLstGarant = new System.Windows.Forms.Button();
             this.BtnAddLstGarant = new System.Windows.Forms.Button();
             this.TxtObsGara = new System.Windows.Forms.TextBox();
@@ -93,8 +103,9 @@
             this.GaraVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InfoGaran = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ObserGaran = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdSt = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LblPatri = new System.Windows.Forms.TabPage();
-            this.BtnPrueba = new System.Windows.Forms.Button();
+            this.BtnUpdEstFin = new System.Windows.Forms.Button();
             this.TxtPatri = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
             this.GbxResumenEgr = new System.Windows.Forms.GroupBox();
@@ -123,7 +134,6 @@
             this.label36 = new System.Windows.Forms.Label();
             this.CboCuenta = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.LblFecha = new System.Windows.Forms.Label();
             this.PanMain.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.TCTSoli.SuspendLayout();
@@ -158,7 +168,6 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
             this.groupBox1.Controls.Add(this.TCTSoli);
-            this.groupBox1.Controls.Add(this.LblFecha);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(51)))));
@@ -176,13 +185,13 @@
             this.TCTSoli.Controls.Add(this.TabCred);
             this.TCTSoli.Controls.Add(this.TabGarant);
             this.TCTSoli.Controls.Add(this.LblPatri);
-            this.TCTSoli.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TCTSoli.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TCTSoli.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.TCTSoli.Location = new System.Drawing.Point(4, 20);
             this.TCTSoli.Multiline = true;
             this.TCTSoli.Name = "TCTSoli";
             this.TCTSoli.SelectedIndex = 0;
-            this.TCTSoli.Size = new System.Drawing.Size(1186, 680);
+            this.TCTSoli.Size = new System.Drawing.Size(1186, 732);
             this.TCTSoli.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.TCTSoli.TabIndex = 26;
             // 
@@ -193,7 +202,7 @@
             this.TabCred.Location = new System.Drawing.Point(4, 24);
             this.TabCred.Name = "TabCred";
             this.TabCred.Padding = new System.Windows.Forms.Padding(3);
-            this.TabCred.Size = new System.Drawing.Size(1178, 652);
+            this.TabCred.Size = new System.Drawing.Size(1178, 704);
             this.TabCred.TabIndex = 0;
             this.TabCred.Text = "Credito";
             this.TabCred.UseVisualStyleBackColor = true;
@@ -201,7 +210,14 @@
             // GbxSol
             // 
             this.GbxSol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.GbxSol.Controls.Add(this.textBox2);
+            this.GbxSol.Controls.Add(this.TxtInteresEdit);
+            this.GbxSol.Controls.Add(this.label11);
+            this.GbxSol.Controls.Add(this.LblEstado);
+            this.GbxSol.Controls.Add(this.TxtCredAqui);
+            this.GbxSol.Controls.Add(this.label10);
+            this.GbxSol.Controls.Add(this.BtnEditar);
+            this.GbxSol.Controls.Add(this.TxtMontoAprov);
+            this.GbxSol.Controls.Add(this.LblFecha);
             this.GbxSol.Controls.Add(this.label9);
             this.GbxSol.Controls.Add(this.textBox1);
             this.GbxSol.Controls.Add(this.label8);
@@ -226,26 +242,109 @@
             this.GbxSol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxSol.Location = new System.Drawing.Point(3, 3);
             this.GbxSol.Name = "GbxSol";
-            this.GbxSol.Size = new System.Drawing.Size(1172, 646);
+            this.GbxSol.Size = new System.Drawing.Size(1172, 698);
             this.GbxSol.TabIndex = 50;
             this.GbxSol.TabStop = false;
             this.GbxSol.Text = "Datos del credito";
             // 
-            // textBox2
+            // TxtInteresEdit
             // 
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.textBox2.Location = new System.Drawing.Point(164, 342);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(132, 23);
-            this.textBox2.TabIndex = 71;
-            this.textBox2.Text = "0";
+            this.TxtInteresEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.TxtInteresEdit.Location = new System.Drawing.Point(164, 454);
+            this.TxtInteresEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtInteresEdit.Name = "TxtInteresEdit";
+            this.TxtInteresEdit.Size = new System.Drawing.Size(132, 23);
+            this.TxtInteresEdit.TabIndex = 77;
+            this.TxtInteresEdit.Text = "0";
+            this.TxtInteresEdit.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.label11.Location = new System.Drawing.Point(17, 458);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(43, 15);
+            this.label11.TabIndex = 76;
+            this.label11.Text = "Interes";
+            this.label11.Visible = false;
+            // 
+            // LblEstado
+            // 
+            this.LblEstado.AutoSize = true;
+            this.LblEstado.Location = new System.Drawing.Point(918, 530);
+            this.LblEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblEstado.Name = "LblEstado";
+            this.LblEstado.Size = new System.Drawing.Size(42, 15);
+            this.LblEstado.TabIndex = 75;
+            this.LblEstado.Text = "Estado";
+            this.LblEstado.Visible = false;
+            // 
+            // TxtCredAqui
+            // 
+            this.TxtCredAqui.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.TxtCredAqui.Location = new System.Drawing.Point(164, 499);
+            this.TxtCredAqui.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtCredAqui.Name = "TxtCredAqui";
+            this.TxtCredAqui.Size = new System.Drawing.Size(307, 23);
+            this.TxtCredAqui.TabIndex = 74;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.label10.Location = new System.Drawing.Point(17, 503);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(112, 15);
+            this.label10.TabIndex = 73;
+            this.label10.Text = "Familiar con credito";
+            // 
+            // BtnEditar
+            // 
+            this.BtnEditar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
+            this.BtnEditar.FlatAppearance.BorderSize = 0;
+            this.BtnEditar.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnEditar.ForeColor = System.Drawing.Color.White;
+            this.BtnEditar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditar.Image")));
+            this.BtnEditar.Location = new System.Drawing.Point(449, 567);
+            this.BtnEditar.Margin = new System.Windows.Forms.Padding(4);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(165, 78);
+            this.BtnEditar.TabIndex = 72;
+            this.BtnEditar.Text = "Actualizar datos";
+            this.BtnEditar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnEditar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnEditar.UseVisualStyleBackColor = false;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
+            // 
+            // TxtMontoAprov
+            // 
+            this.TxtMontoAprov.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.TxtMontoAprov.Location = new System.Drawing.Point(164, 280);
+            this.TxtMontoAprov.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtMontoAprov.Name = "TxtMontoAprov";
+            this.TxtMontoAprov.Size = new System.Drawing.Size(132, 23);
+            this.TxtMontoAprov.TabIndex = 71;
+            this.TxtMontoAprov.Text = "0";
+            // 
+            // LblFecha
+            // 
+            this.LblFecha.AutoSize = true;
+            this.LblFecha.Location = new System.Drawing.Point(918, 499);
+            this.LblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LblFecha.Name = "LblFecha";
+            this.LblFecha.Size = new System.Drawing.Size(38, 15);
+            this.LblFecha.TabIndex = 25;
+            this.LblFecha.Text = "Fecha";
+            this.LblFecha.Visible = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label9.Location = new System.Drawing.Point(17, 346);
+            this.label9.Location = new System.Drawing.Point(17, 284);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(99, 15);
@@ -256,7 +355,7 @@
             // 
             this.textBox1.Enabled = false;
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.textBox1.Location = new System.Drawing.Point(164, 79);
+            this.textBox1.Location = new System.Drawing.Point(657, 210);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(115, 23);
@@ -268,7 +367,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label8.Location = new System.Drawing.Point(17, 83);
+            this.label8.Location = new System.Drawing.Point(510, 214);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 15);
@@ -285,7 +384,7 @@
             "Emergencia",
             "Mensual",
             "Otro"});
-            this.CboRazon.Location = new System.Drawing.Point(164, 389);
+            this.CboRazon.Location = new System.Drawing.Point(164, 350);
             this.CboRazon.Margin = new System.Windows.Forms.Padding(4);
             this.CboRazon.Name = "CboRazon";
             this.CboRazon.Size = new System.Drawing.Size(193, 23);
@@ -295,7 +394,7 @@
             // 
             this.label39.AutoSize = true;
             this.label39.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label39.Location = new System.Drawing.Point(17, 389);
+            this.label39.Location = new System.Drawing.Point(17, 350);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(97, 15);
@@ -304,8 +403,9 @@
             // 
             // TxtMontoSug
             // 
+            this.TxtMontoSug.Enabled = false;
             this.TxtMontoSug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.TxtMontoSug.Location = new System.Drawing.Point(164, 292);
+            this.TxtMontoSug.Location = new System.Drawing.Point(164, 229);
             this.TxtMontoSug.Margin = new System.Windows.Forms.Padding(4);
             this.TxtMontoSug.Name = "TxtMontoSug";
             this.TxtMontoSug.Size = new System.Drawing.Size(132, 23);
@@ -316,7 +416,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label38.Location = new System.Drawing.Point(17, 296);
+            this.label38.Location = new System.Drawing.Point(17, 233);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(94, 15);
@@ -326,7 +426,7 @@
             // NupPlazo
             // 
             this.NupPlazo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.NupPlazo.Location = new System.Drawing.Point(164, 442);
+            this.NupPlazo.Location = new System.Drawing.Point(164, 415);
             this.NupPlazo.Minimum = new decimal(new int[] {
             1,
             0,
@@ -340,18 +440,16 @@
             0,
             0,
             0});
-            this.NupPlazo.Visible = false;
             // 
             // LblPlazo
             // 
             this.LblPlazo.AutoSize = true;
             this.LblPlazo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.LblPlazo.Location = new System.Drawing.Point(17, 444);
+            this.LblPlazo.Location = new System.Drawing.Point(17, 417);
             this.LblPlazo.Name = "LblPlazo";
             this.LblPlazo.Size = new System.Drawing.Size(77, 15);
             this.LblPlazo.TabIndex = 62;
             this.LblPlazo.Text = "Plazo(Meses)";
-            this.LblPlazo.Visible = false;
             // 
             // CboTipo
             // 
@@ -401,7 +499,7 @@
             // 
             this.CboAsesor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.CboAsesor.FormattingEnabled = true;
-            this.CboAsesor.Location = new System.Drawing.Point(164, 164);
+            this.CboAsesor.Location = new System.Drawing.Point(164, 143);
             this.CboAsesor.Margin = new System.Windows.Forms.Padding(4);
             this.CboAsesor.Name = "CboAsesor";
             this.CboAsesor.Size = new System.Drawing.Size(307, 23);
@@ -433,7 +531,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label3.Location = new System.Drawing.Point(17, 164);
+            this.label3.Location = new System.Drawing.Point(17, 143);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 15);
@@ -443,8 +541,9 @@
             // TxtMonto
             // 
             this.TxtMonto.BackColor = System.Drawing.Color.White;
+            this.TxtMonto.Enabled = false;
             this.TxtMonto.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.TxtMonto.Location = new System.Drawing.Point(164, 235);
+            this.TxtMonto.Location = new System.Drawing.Point(164, 183);
             this.TxtMonto.Margin = new System.Windows.Forms.Padding(4);
             this.TxtMonto.Name = "TxtMonto";
             this.TxtMonto.Size = new System.Drawing.Size(132, 23);
@@ -455,7 +554,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label2.Location = new System.Drawing.Point(17, 239);
+            this.label2.Location = new System.Drawing.Point(17, 187);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(97, 15);
@@ -467,7 +566,7 @@
             this.CboCliente.Enabled = false;
             this.CboCliente.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.CboCliente.FormattingEnabled = true;
-            this.CboCliente.Location = new System.Drawing.Point(164, 131);
+            this.CboCliente.Location = new System.Drawing.Point(164, 96);
             this.CboCliente.Margin = new System.Windows.Forms.Padding(4);
             this.CboCliente.Name = "CboCliente";
             this.CboCliente.Size = new System.Drawing.Size(307, 23);
@@ -477,7 +576,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label1.Location = new System.Drawing.Point(17, 135);
+            this.label1.Location = new System.Drawing.Point(17, 100);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 15);
@@ -492,7 +591,7 @@
             this.TabGarant.Location = new System.Drawing.Point(4, 24);
             this.TabGarant.Name = "TabGarant";
             this.TabGarant.Padding = new System.Windows.Forms.Padding(3);
-            this.TabGarant.Size = new System.Drawing.Size(1178, 652);
+            this.TabGarant.Size = new System.Drawing.Size(1178, 704);
             this.TabGarant.TabIndex = 1;
             this.TabGarant.Text = "Garantia/Fiador";
             this.TabGarant.UseVisualStyleBackColor = true;
@@ -503,13 +602,14 @@
             this.GbxFiadorIn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxFiadorIn.Location = new System.Drawing.Point(3, 332);
             this.GbxFiadorIn.Name = "GbxFiadorIn";
-            this.GbxFiadorIn.Size = new System.Drawing.Size(1172, 317);
+            this.GbxFiadorIn.Size = new System.Drawing.Size(1172, 369);
             this.GbxFiadorIn.TabIndex = 26;
             this.GbxFiadorIn.TabStop = false;
             this.GbxFiadorIn.Text = "Fiador";
             // 
             // GbxDataFiad
             // 
+            this.GbxDataFiad.Controls.Add(this.UpdFiadEdit);
             this.GbxDataFiad.Controls.Add(this.BtnDelLstFiad);
             this.GbxDataFiad.Controls.Add(this.BtnAddLstFiad);
             this.GbxDataFiad.Controls.Add(this.TxtOtherIng);
@@ -520,16 +620,27 @@
             this.GbxDataFiad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxDataFiad.Location = new System.Drawing.Point(3, 19);
             this.GbxDataFiad.Name = "GbxDataFiad";
-            this.GbxDataFiad.Size = new System.Drawing.Size(1166, 295);
+            this.GbxDataFiad.Size = new System.Drawing.Size(1166, 347);
             this.GbxDataFiad.TabIndex = 43;
             this.GbxDataFiad.TabStop = false;
             this.GbxDataFiad.Text = "Datos del fiador";
+            // 
+            // UpdFiadEdit
+            // 
+            this.UpdFiadEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.UpdFiadEdit.Image = ((System.Drawing.Image)(resources.GetObject("UpdFiadEdit.Image")));
+            this.UpdFiadEdit.Location = new System.Drawing.Point(408, 146);
+            this.UpdFiadEdit.Name = "UpdFiadEdit";
+            this.UpdFiadEdit.Size = new System.Drawing.Size(75, 53);
+            this.UpdFiadEdit.TabIndex = 61;
+            this.UpdFiadEdit.UseVisualStyleBackColor = false;
+            this.UpdFiadEdit.Click += new System.EventHandler(this.UpdFiadEdit_Click);
             // 
             // BtnDelLstFiad
             // 
             this.BtnDelLstFiad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnDelLstFiad.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelLstFiad.Image")));
-            this.BtnDelLstFiad.Location = new System.Drawing.Point(270, 146);
+            this.BtnDelLstFiad.Location = new System.Drawing.Point(246, 146);
             this.BtnDelLstFiad.Name = "BtnDelLstFiad";
             this.BtnDelLstFiad.Size = new System.Drawing.Size(75, 53);
             this.BtnDelLstFiad.TabIndex = 60;
@@ -539,11 +650,12 @@
             // 
             this.BtnAddLstFiad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnAddLstFiad.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddLstFiad.Image")));
-            this.BtnAddLstFiad.Location = new System.Drawing.Point(351, 146);
+            this.BtnAddLstFiad.Location = new System.Drawing.Point(327, 146);
             this.BtnAddLstFiad.Name = "BtnAddLstFiad";
             this.BtnAddLstFiad.Size = new System.Drawing.Size(75, 53);
             this.BtnAddLstFiad.TabIndex = 59;
             this.BtnAddLstFiad.UseVisualStyleBackColor = false;
+            this.BtnAddLstFiad.Click += new System.EventHandler(this.BtnAddLstFiad_Click);
             // 
             // TxtOtherIng
             // 
@@ -572,42 +684,47 @@
             this.IdFiad,
             this.Fiador,
             this.DomiFiad,
-            this.IngreFiad});
+            this.IngreFiad,
+            this.IdEstF});
             this.DgvFiadorLst.Dock = System.Windows.Forms.DockStyle.Right;
             this.DgvFiadorLst.Location = new System.Drawing.Point(513, 19);
             this.DgvFiadorLst.Name = "DgvFiadorLst";
-            this.DgvFiadorLst.ReadOnly = true;
             this.DgvFiadorLst.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvFiadorLst.Size = new System.Drawing.Size(650, 273);
+            this.DgvFiadorLst.Size = new System.Drawing.Size(650, 325);
             this.DgvFiadorLst.TabIndex = 53;
             // 
             // IdFiad
             // 
             this.IdFiad.HeaderText = "Id";
             this.IdFiad.Name = "IdFiad";
-            this.IdFiad.ReadOnly = true;
             this.IdFiad.Visible = false;
+            this.IdFiad.Width = 43;
             // 
             // Fiador
             // 
             this.Fiador.HeaderText = "Nombre";
             this.Fiador.Name = "Fiador";
-            this.Fiador.ReadOnly = true;
             this.Fiador.Width = 76;
             // 
             // DomiFiad
             // 
             this.DomiFiad.HeaderText = "Domicilio";
             this.DomiFiad.Name = "DomiFiad";
-            this.DomiFiad.ReadOnly = true;
             this.DomiFiad.Width = 84;
             // 
             // IngreFiad
             // 
             this.IngreFiad.HeaderText = "Otros Ingresos";
             this.IngreFiad.Name = "IngreFiad";
-            this.IngreFiad.ReadOnly = true;
             this.IngreFiad.Width = 109;
+            // 
+            // IdEstF
+            // 
+            this.IdEstF.HeaderText = "Id Estado";
+            this.IdEstF.Name = "IdEstF";
+            this.IdEstF.ReadOnly = true;
+            this.IdEstF.Visible = false;
+            this.IdEstF.Width = 81;
             // 
             // CboFiadNom
             // 
@@ -630,6 +747,7 @@
             // 
             // GbxGarantia
             // 
+            this.GbxGarantia.Controls.Add(this.BtnUpGarantEdit);
             this.GbxGarantia.Controls.Add(this.BtnDelLstGarant);
             this.GbxGarantia.Controls.Add(this.BtnAddLstGarant);
             this.GbxGarantia.Controls.Add(this.TxtObsGara);
@@ -653,11 +771,22 @@
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
             // 
+            // BtnUpGarantEdit
+            // 
+            this.BtnUpGarantEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
+            this.BtnUpGarantEdit.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpGarantEdit.Image")));
+            this.BtnUpGarantEdit.Location = new System.Drawing.Point(411, 26);
+            this.BtnUpGarantEdit.Name = "BtnUpGarantEdit";
+            this.BtnUpGarantEdit.Size = new System.Drawing.Size(75, 53);
+            this.BtnUpGarantEdit.TabIndex = 59;
+            this.BtnUpGarantEdit.UseVisualStyleBackColor = false;
+            this.BtnUpGarantEdit.Click += new System.EventHandler(this.BtnUpGarantEdit_Click);
+            // 
             // BtnDelLstGarant
             // 
             this.BtnDelLstGarant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnDelLstGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelLstGarant.Image")));
-            this.BtnDelLstGarant.Location = new System.Drawing.Point(273, 26);
+            this.BtnDelLstGarant.Location = new System.Drawing.Point(249, 26);
             this.BtnDelLstGarant.Name = "BtnDelLstGarant";
             this.BtnDelLstGarant.Size = new System.Drawing.Size(75, 53);
             this.BtnDelLstGarant.TabIndex = 58;
@@ -667,11 +796,12 @@
             // 
             this.BtnAddLstGarant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnAddLstGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddLstGarant.Image")));
-            this.BtnAddLstGarant.Location = new System.Drawing.Point(354, 26);
+            this.BtnAddLstGarant.Location = new System.Drawing.Point(330, 26);
             this.BtnAddLstGarant.Name = "BtnAddLstGarant";
             this.BtnAddLstGarant.Size = new System.Drawing.Size(75, 53);
             this.BtnAddLstGarant.TabIndex = 57;
             this.BtnAddLstGarant.UseVisualStyleBackColor = false;
+            this.BtnAddLstGarant.Click += new System.EventHandler(this.BtnAddLstGarant_Click);
             // 
             // TxtObsGara
             // 
@@ -753,6 +883,7 @@
             this.CboPropi.Name = "CboPropi";
             this.CboPropi.Size = new System.Drawing.Size(411, 23);
             this.CboPropi.TabIndex = 48;
+            this.CboPropi.SelectedValueChanged += new System.EventHandler(this.CboPropi_SelectedValueChanged);
             // 
             // label41
             // 
@@ -802,11 +933,11 @@
             this.DetaGara,
             this.GaraVal,
             this.InfoGaran,
-            this.ObserGaran});
+            this.ObserGaran,
+            this.IdSt});
             this.DgvGaranLSt.Dock = System.Windows.Forms.DockStyle.Right;
             this.DgvGaranLSt.Location = new System.Drawing.Point(516, 19);
             this.DgvGaranLSt.Name = "DgvGaranLSt";
-            this.DgvGaranLSt.ReadOnly = true;
             this.DgvGaranLSt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgvGaranLSt.Size = new System.Drawing.Size(653, 307);
             this.DgvGaranLSt.TabIndex = 44;
@@ -816,53 +947,55 @@
             this.IdGara.HeaderText = "Id";
             this.IdGara.Name = "IdGara";
             this.IdGara.ReadOnly = true;
-            this.IdGara.Visible = false;
+            this.IdGara.Width = 43;
             // 
             // Propi
             // 
             this.Propi.HeaderText = "Propietario";
             this.Propi.Name = "Propi";
-            this.Propi.ReadOnly = true;
             this.Propi.Width = 90;
             // 
             // GarTipo
             // 
             this.GarTipo.HeaderText = "Tipo";
             this.GarTipo.Name = "GarTipo";
-            this.GarTipo.ReadOnly = true;
             this.GarTipo.Width = 56;
             // 
             // DetaGara
             // 
             this.DetaGara.HeaderText = "Detalle";
             this.DetaGara.Name = "DetaGara";
-            this.DetaGara.ReadOnly = true;
             this.DetaGara.Width = 69;
             // 
             // GaraVal
             // 
             this.GaraVal.HeaderText = "Valor";
             this.GaraVal.Name = "GaraVal";
-            this.GaraVal.ReadOnly = true;
             this.GaraVal.Width = 59;
             // 
             // InfoGaran
             // 
             this.InfoGaran.HeaderText = "Informacion relevante";
             this.InfoGaran.Name = "InfoGaran";
-            this.InfoGaran.ReadOnly = true;
             this.InfoGaran.Width = 136;
             // 
             // ObserGaran
             // 
             this.ObserGaran.HeaderText = "Observaciones";
             this.ObserGaran.Name = "ObserGaran";
-            this.ObserGaran.ReadOnly = true;
             this.ObserGaran.Width = 109;
+            // 
+            // IdSt
+            // 
+            this.IdSt.HeaderText = "Id Estado";
+            this.IdSt.Name = "IdSt";
+            this.IdSt.ReadOnly = true;
+            this.IdSt.Visible = false;
+            this.IdSt.Width = 75;
             // 
             // LblPatri
             // 
-            this.LblPatri.Controls.Add(this.BtnPrueba);
+            this.LblPatri.Controls.Add(this.BtnUpdEstFin);
             this.LblPatri.Controls.Add(this.TxtPatri);
             this.LblPatri.Controls.Add(this.label37);
             this.LblPatri.Controls.Add(this.GbxResumenEgr);
@@ -871,19 +1004,21 @@
             this.LblPatri.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblPatri.Location = new System.Drawing.Point(4, 24);
             this.LblPatri.Name = "LblPatri";
-            this.LblPatri.Size = new System.Drawing.Size(1178, 652);
+            this.LblPatri.Size = new System.Drawing.Size(1178, 704);
             this.LblPatri.TabIndex = 2;
             this.LblPatri.Text = "Estado financiero";
             // 
-            // BtnPrueba
+            // BtnUpdEstFin
             // 
-            this.BtnPrueba.Location = new System.Drawing.Point(273, 594);
-            this.BtnPrueba.Name = "BtnPrueba";
-            this.BtnPrueba.Size = new System.Drawing.Size(193, 37);
-            this.BtnPrueba.TabIndex = 5;
-            this.BtnPrueba.Text = "Ingreso estado fin prueba";
-            this.BtnPrueba.UseVisualStyleBackColor = true;
-            this.BtnPrueba.Visible = false;
+            this.BtnUpdEstFin.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdEstFin.Image")));
+            this.BtnUpdEstFin.Location = new System.Drawing.Point(447, 585);
+            this.BtnUpdEstFin.Name = "BtnUpdEstFin";
+            this.BtnUpdEstFin.Size = new System.Drawing.Size(193, 37);
+            this.BtnUpdEstFin.TabIndex = 5;
+            this.BtnUpdEstFin.Text = "Actualizar estado financiero";
+            this.BtnUpdEstFin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.BtnUpdEstFin.UseVisualStyleBackColor = true;
+            this.BtnUpdEstFin.Click += new System.EventHandler(this.BtnUpdEstFin_Click);
             // 
             // TxtPatri
             // 
@@ -907,9 +1042,10 @@
             // 
             this.GbxResumenEgr.Controls.Add(this.BtnElimEgr);
             this.GbxResumenEgr.Controls.Add(this.DgvEngMen);
-            this.GbxResumenEgr.Location = new System.Drawing.Point(739, 3);
+            this.GbxResumenEgr.Dock = System.Windows.Forms.DockStyle.Right;
+            this.GbxResumenEgr.Location = new System.Drawing.Point(793, 0);
             this.GbxResumenEgr.Name = "GbxResumenEgr";
-            this.GbxResumenEgr.Size = new System.Drawing.Size(362, 549);
+            this.GbxResumenEgr.Size = new System.Drawing.Size(385, 704);
             this.GbxResumenEgr.TabIndex = 2;
             this.GbxResumenEgr.TabStop = false;
             this.GbxResumenEgr.Text = "Resumen Egresos Mensuales";
@@ -940,7 +1076,7 @@
             this.IdEgrEdit});
             this.DgvEngMen.Location = new System.Drawing.Point(6, 107);
             this.DgvEngMen.Name = "DgvEngMen";
-            this.DgvEngMen.Size = new System.Drawing.Size(350, 430);
+            this.DgvEngMen.Size = new System.Drawing.Size(373, 430);
             this.DgvEngMen.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -979,7 +1115,7 @@
             this.GbxResumenIn.Controls.Add(this.DgvIngMen);
             this.GbxResumenIn.Location = new System.Drawing.Point(371, 3);
             this.GbxResumenIn.Name = "GbxResumenIn";
-            this.GbxResumenIn.Size = new System.Drawing.Size(362, 549);
+            this.GbxResumenIn.Size = new System.Drawing.Size(416, 549);
             this.GbxResumenIn.TabIndex = 1;
             this.GbxResumenIn.TabStop = false;
             this.GbxResumenIn.Text = "Resumen Ingresos Mensuales";
@@ -1011,7 +1147,7 @@
             this.IdIngEdit});
             this.DgvIngMen.Location = new System.Drawing.Point(6, 107);
             this.DgvIngMen.Name = "DgvIngMen";
-            this.DgvIngMen.Size = new System.Drawing.Size(350, 430);
+            this.DgvIngMen.Size = new System.Drawing.Size(404, 430);
             this.DgvIngMen.TabIndex = 0;
             // 
             // Prod
@@ -1075,8 +1211,9 @@
             this.LstPasiv.ItemHeight = 15;
             this.LstPasiv.Location = new System.Drawing.Point(187, 159);
             this.LstPasiv.Name = "LstPasiv";
-            this.LstPasiv.Size = new System.Drawing.Size(154, 364);
+            this.LstPasiv.Size = new System.Drawing.Size(154, 289);
             this.LstPasiv.TabIndex = 7;
+            this.LstPasiv.SelectedIndexChanged += new System.EventHandler(this.LstPasiv_SelectedIndexChanged);
             // 
             // BtnElimCuenta
             // 
@@ -1087,8 +1224,9 @@
             this.BtnElimCuenta.Name = "BtnElimCuenta";
             this.BtnElimCuenta.Size = new System.Drawing.Size(144, 35);
             this.BtnElimCuenta.TabIndex = 6;
-            this.BtnElimCuenta.Text = "Remover";
+            this.BtnElimCuenta.Text = "Cambiar";
             this.BtnElimCuenta.UseVisualStyleBackColor = false;
+            this.BtnElimCuenta.Click += new System.EventHandler(this.BtnElimCuenta_Click);
             // 
             // LstCuentas
             // 
@@ -1096,8 +1234,9 @@
             this.LstCuentas.ItemHeight = 15;
             this.LstCuentas.Location = new System.Drawing.Point(12, 159);
             this.LstCuentas.Name = "LstCuentas";
-            this.LstCuentas.Size = new System.Drawing.Size(154, 364);
+            this.LstCuentas.Size = new System.Drawing.Size(154, 289);
             this.LstCuentas.TabIndex = 5;
+            this.LstCuentas.SelectedIndexChanged += new System.EventHandler(this.LstCuentas_SelectedIndexChanged);
             // 
             // BtnAddCuenta
             // 
@@ -1110,6 +1249,7 @@
             this.BtnAddCuenta.TabIndex = 4;
             this.BtnAddCuenta.Text = "Agregar";
             this.BtnAddCuenta.UseVisualStyleBackColor = false;
+            this.BtnAddCuenta.Click += new System.EventHandler(this.BtnAddCuenta_Click);
             // 
             // NudMontoCuenta
             // 
@@ -1160,17 +1300,6 @@
             this.label35.TabIndex = 0;
             this.label35.Text = "Cuenta";
             // 
-            // LblFecha
-            // 
-            this.LblFecha.AutoSize = true;
-            this.LblFecha.Location = new System.Drawing.Point(552, 723);
-            this.LblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.LblFecha.Name = "LblFecha";
-            this.LblFecha.Size = new System.Drawing.Size(38, 15);
-            this.LblFecha.TabIndex = 25;
-            this.LblFecha.Text = "Fecha";
-            this.LblFecha.Visible = false;
-            // 
             // EditSolicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1179,11 +1308,12 @@
             this.Controls.Add(this.PanMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EditSolicitud";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Editar Solicitud";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EditSolicitud_FormClosing);
             this.Load += new System.EventHandler(this.EditSolicitud_Load);
             this.PanMain.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.TCTSoli.ResumeLayout(false);
             this.TabCred.ResumeLayout(false);
             this.GbxSol.ResumeLayout(false);
@@ -1243,10 +1373,6 @@
         private System.Windows.Forms.TextBox TxtOtherIng;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DataGridView DgvFiadorLst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdFiad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fiador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DomiFiad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IngreFiad;
         private System.Windows.Forms.ComboBox CboFiadNom;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox GbxGarantia;
@@ -1265,15 +1391,8 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.ComboBox CboTipoGarant;
         private System.Windows.Forms.DataGridView DgvGaranLSt;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdGara;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Propi;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GarTipo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DetaGara;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GaraVal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InfoGaran;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ObserGaran;
         private System.Windows.Forms.TabPage LblPatri;
-        private System.Windows.Forms.Button BtnPrueba;
+        private System.Windows.Forms.Button BtnUpdEstFin;
         private System.Windows.Forms.TextBox TxtPatri;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.GroupBox GbxResumenEgr;
@@ -1294,7 +1413,7 @@
         private System.Windows.Forms.Label LblFecha;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TxtMontoAprov;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -1307,5 +1426,26 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Venta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ganancia;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdIngEdit;
+        private System.Windows.Forms.Button BtnEditar;
+        private System.Windows.Forms.Button UpdFiadEdit;
+        private System.Windows.Forms.Button BtnUpGarantEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdFiad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fiador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DomiFiad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IngreFiad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEstF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdGara;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Propi;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GarTipo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetaGara;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GaraVal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InfoGaran;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ObserGaran;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdSt;
+        private System.Windows.Forms.TextBox TxtCredAqui;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label LblEstado;
+        private System.Windows.Forms.TextBox TxtInteresEdit;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -32,11 +32,13 @@ namespace Arcoiris.Reportes
             this.Rpv1.LocalReport.DataSources.Clear();
             this.Rpv1.LocalReport.DataSources.Add(new ReportDataSource("RepoSoli", DatosGen));
 
-            this.Rpv1.ZoomMode = ZoomMode.Percent;
-            //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
-            this.Rpv1.ZoomPercent = 100;
+          
+       
             this.Rpv1.SetDisplayMode(DisplayMode.PrintLayout);
             this.Rpv1.LocalReport.SubreportProcessing += LocalReport_SubreportProcessing;
+            this.Rpv1.ZoomMode = ZoomMode.Percent;
+            //Seleccionamos el zoom que deseamos utilizar. En este caso un 100%
+            this.Rpv1.ZoomPercent =  115;
             this.Rpv1.Refresh();
             this.Rpv1.RefreshReport();
         }

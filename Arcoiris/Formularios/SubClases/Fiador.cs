@@ -11,6 +11,7 @@ namespace Arcoiris.Formularios.SubClases
        public int IdFiad { get; set; }
         public int idSol { get; set; }
         public string OtherIng { get; set; }
+        public bool procc { get; set; }
         
     }
 }

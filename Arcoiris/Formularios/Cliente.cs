@@ -19,7 +19,7 @@ namespace Arcoiris.Formularios
         Clases.Cliente clien = new Clases.Cliente();
         DataTable cliedit = new DataTable();
         DataTable clirefs = new DataTable();
-        string DPISin = @"C:\Users\AMKDEV\Documents\Sistemas\Creditos\Recursos\lol.jpg";
+        string DPISin =$"{AppDomain.CurrentDomain.BaseDirectory}\\0.jpg";
        
         string idcli;
         //string idfiad;
@@ -63,8 +63,16 @@ namespace Arcoiris.Formularios
             { Nacionalidad = "Guatemalteca";
                 genero = "F";
             }
-          
-            byte[] imagenbytes=File.ReadAllBytes(OfdDPI.FileName);
+            byte[] imagenbytes;
+            try
+            {
+                imagenbytes = File.ReadAllBytes(OfdDPI.FileName);
+            }
+            catch (Exception ex)
+            {
+                imagenbytes = File.ReadAllBytes(DPISin);
+            }
+           
           
             string nom = TxtNom.Text;
             string ape = TxtApe.Text;
@@ -242,7 +250,18 @@ namespace Arcoiris.Formularios
             { gene = "M"; }
             else
             { gene = "F"; }
-            byte[] imagenbytes = File.ReadAllBytes(OfdDpiEdit.FileName);
+
+            byte[] imagenbytes;
+            try
+            {
+                imagenbytes = File.ReadAllBytes(OfdDpiEdit.FileName);
+            }
+            catch (Exception)
+            {
+
+                imagenbytes = File.ReadAllBytes(DPISin);
+            }
+               
             string nom = TxtNom2.Text;
             string ape = TxtApe2.Text;
             string dir = TxtDir2.Text;
@@ -257,7 +276,7 @@ namespace Arcoiris.Formularios
             string refe = TxtDpiConEdit.Text;
             string depa = CboDepaEdit.Text;
             string muni = CboMunEdit.Text;
-            string edad = NudEdad.Value.ToString();
+            string edad =NudEdadEdit.Value.ToString();
             string profcon = TxtProfConyEdit.Text;
             string dpicon = TxtDpiConEdit.Text;
             string nomneg = TxtNomNegEdit.Text;
@@ -680,6 +699,44 @@ namespace Arcoiris.Formularios
                     MessageBox.Show(Ex.ToString());
                 }
             }
+        }
+
+        private void DtpNac_ValueChanged(object sender, EventArgs e)
+        {
+            // 1. Obtener la fecha seleccionada
+            DateTime fechaNacimiento = DtpNac.Value;
+            DateTime fechaActual = DateTime.Today;
+
+            // 2. Calcular la diferencia inicial en años
+            int edad = fechaActual.Year - fechaNacimiento.Year;
+
+            // 3. Ajustar si el cumpleaños no ha ocurrido este año
+            if (fechaNacimiento.Date > fechaActual.AddYears(-edad))
+            {
+                edad--;
+            }
+
+            // Resultado
+            NudEdad.Value = edad;
+        }
+
+        private void DtpNaci2_ValueChanged(object sender, EventArgs e)
+        {
+            // 1. Obtener la fecha seleccionada
+            DateTime fechaNacimiento = DtpNaci2.Value;
+            DateTime fechaActual = DateTime.Today;
+
+            // 2. Calcular la diferencia inicial en años
+            int edad = fechaActual.Year - fechaNacimiento.Year;
+
+            // 3. Ajustar si el cumpleaños no ha ocurrido este año
+            if (fechaNacimiento.Date > fechaActual.AddYears(-edad))
+            {
+                edad--;
+            }
+
+            // Resultado
+           NudEdadEdit.Value = edad;
         }
     }
 }

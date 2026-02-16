@@ -31,10 +31,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Solicitud));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tab1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.GbxSolicitud = new System.Windows.Forms.GroupBox();
             this.TCTSoli = new System.Windows.Forms.TabControl();
             this.TabCred = new System.Windows.Forms.TabPage();
-            this.CboRazonCred = new System.Windows.Forms.GroupBox();
+            this.GbxSol = new System.Windows.Forms.GroupBox();
+            this.Txtfam = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.CboRazon = new System.Windows.Forms.ComboBox();
             this.label39 = new System.Windows.Forms.Label();
             this.TxtMontoSug = new System.Windows.Forms.TextBox();
@@ -97,9 +99,20 @@
             this.GbxResumenEgr = new System.Windows.Forms.GroupBox();
             this.BtnElimEgr = new System.Windows.Forms.Button();
             this.DgvEngMen = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbxResumenIn = new System.Windows.Forms.GroupBox();
             this.BtnElimIng = new System.Windows.Forms.Button();
             this.DgvIngMen = new System.Windows.Forms.DataGridView();
+            this.Prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Ganancia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdIngEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbxEstadoF = new System.Windows.Forms.GroupBox();
             this.LstPasiv = new System.Windows.Forms.ListBox();
             this.BtnElimCuenta = new System.Windows.Forms.Button();
@@ -114,6 +127,8 @@
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.Tab2 = new System.Windows.Forms.TabPage();
             this.GBXPrestamo = new System.Windows.Forms.GroupBox();
+            this.TxtMontoSug2 = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.BtnSoliVer = new System.Windows.Forms.Button();
             this.CboTipo2 = new System.Windows.Forms.ComboBox();
             this.BtnCancelar = new System.Windows.Forms.Button();
@@ -165,23 +180,14 @@
             this.label28 = new System.Windows.Forms.Label();
             this.CboCliInv = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Prod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cant = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Costo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Ganancia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdIngEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TxtInt = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.GbxSolicitud.SuspendLayout();
             this.TCTSoli.SuspendLayout();
             this.TabCred.SuspendLayout();
-            this.CboRazonCred.SuspendLayout();
+            this.GbxSol.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).BeginInit();
             this.TabGarant.SuspendLayout();
             this.GbxFiadorIn.SuspendLayout();
@@ -215,7 +221,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1165, 799);
+            this.tabControl1.Size = new System.Drawing.Size(1165, 753);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
@@ -223,34 +229,34 @@
             // 
             // Tab1
             // 
-            this.Tab1.Controls.Add(this.groupBox1);
+            this.Tab1.Controls.Add(this.GbxSolicitud);
             this.Tab1.Location = new System.Drawing.Point(4, 26);
             this.Tab1.Margin = new System.Windows.Forms.Padding(4);
             this.Tab1.Name = "Tab1";
             this.Tab1.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab1.Size = new System.Drawing.Size(1157, 769);
+            this.Tab1.Size = new System.Drawing.Size(1157, 723);
             this.Tab1.TabIndex = 0;
             this.Tab1.Text = "Solicitud de Prestamo";
             this.Tab1.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // GbxSolicitud
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.groupBox1.Controls.Add(this.TCTSoli);
-            this.groupBox1.Controls.Add(this.LblFecha);
-            this.groupBox1.Controls.Add(this.BtnLimpiar);
-            this.groupBox1.Controls.Add(this.BtnAgregar);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(51)))));
-            this.groupBox1.Location = new System.Drawing.Point(4, 4);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1149, 761);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Solicitud de credito";
+            this.GbxSolicitud.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.GbxSolicitud.Controls.Add(this.TCTSoli);
+            this.GbxSolicitud.Controls.Add(this.LblFecha);
+            this.GbxSolicitud.Controls.Add(this.BtnLimpiar);
+            this.GbxSolicitud.Controls.Add(this.BtnAgregar);
+            this.GbxSolicitud.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GbxSolicitud.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GbxSolicitud.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(41)))), ((int)(((byte)(51)))));
+            this.GbxSolicitud.Location = new System.Drawing.Point(4, 4);
+            this.GbxSolicitud.Margin = new System.Windows.Forms.Padding(4);
+            this.GbxSolicitud.Name = "GbxSolicitud";
+            this.GbxSolicitud.Padding = new System.Windows.Forms.Padding(4);
+            this.GbxSolicitud.Size = new System.Drawing.Size(1149, 715);
+            this.GbxSolicitud.TabIndex = 1;
+            this.GbxSolicitud.TabStop = false;
+            this.GbxSolicitud.Text = "Solicitud de credito";
             // 
             // TCTSoli
             // 
@@ -263,51 +269,75 @@
             this.TCTSoli.Multiline = true;
             this.TCTSoli.Name = "TCTSoli";
             this.TCTSoli.SelectedIndex = 0;
-            this.TCTSoli.Size = new System.Drawing.Size(1141, 680);
+            this.TCTSoli.Size = new System.Drawing.Size(1141, 650);
             this.TCTSoli.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.TCTSoli.TabIndex = 26;
             this.TCTSoli.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.TCTSoli_DrawItem);
             // 
             // TabCred
             // 
-            this.TabCred.Controls.Add(this.CboRazonCred);
+            this.TabCred.Controls.Add(this.GbxSol);
             this.TabCred.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TabCred.Location = new System.Drawing.Point(4, 24);
             this.TabCred.Name = "TabCred";
             this.TabCred.Padding = new System.Windows.Forms.Padding(3);
-            this.TabCred.Size = new System.Drawing.Size(1133, 652);
+            this.TabCred.Size = new System.Drawing.Size(1133, 622);
             this.TabCred.TabIndex = 0;
             this.TabCred.Text = "Credito";
             this.TabCred.UseVisualStyleBackColor = true;
             // 
-            // CboRazonCred
+            // GbxSol
             // 
-            this.CboRazonCred.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.CboRazonCred.Controls.Add(this.CboRazon);
-            this.CboRazonCred.Controls.Add(this.label39);
-            this.CboRazonCred.Controls.Add(this.TxtMontoSug);
-            this.CboRazonCred.Controls.Add(this.label38);
-            this.CboRazonCred.Controls.Add(this.NupPlazo);
-            this.CboRazonCred.Controls.Add(this.LblPlazo);
-            this.CboRazonCred.Controls.Add(this.CboTipo);
-            this.CboRazonCred.Controls.Add(this.label6);
-            this.CboRazonCred.Controls.Add(this.TxtNoSol);
-            this.CboRazonCred.Controls.Add(this.label5);
-            this.CboRazonCred.Controls.Add(this.CboAsesor);
-            this.CboRazonCred.Controls.Add(this.TxtConcept);
-            this.CboRazonCred.Controls.Add(this.label4);
-            this.CboRazonCred.Controls.Add(this.label3);
-            this.CboRazonCred.Controls.Add(this.TxtMonto);
-            this.CboRazonCred.Controls.Add(this.label2);
-            this.CboRazonCred.Controls.Add(this.CboCliente);
-            this.CboRazonCred.Controls.Add(this.label1);
-            this.CboRazonCred.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.CboRazonCred.Location = new System.Drawing.Point(3, 3);
-            this.CboRazonCred.Name = "CboRazonCred";
-            this.CboRazonCred.Size = new System.Drawing.Size(1127, 646);
-            this.CboRazonCred.TabIndex = 50;
-            this.CboRazonCred.TabStop = false;
-            this.CboRazonCred.Text = "Datos del credito";
+            this.GbxSol.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.GbxSol.Controls.Add(this.TxtInt);
+            this.GbxSol.Controls.Add(this.label22);
+            this.GbxSol.Controls.Add(this.Txtfam);
+            this.GbxSol.Controls.Add(this.label20);
+            this.GbxSol.Controls.Add(this.CboRazon);
+            this.GbxSol.Controls.Add(this.label39);
+            this.GbxSol.Controls.Add(this.TxtMontoSug);
+            this.GbxSol.Controls.Add(this.label38);
+            this.GbxSol.Controls.Add(this.NupPlazo);
+            this.GbxSol.Controls.Add(this.LblPlazo);
+            this.GbxSol.Controls.Add(this.CboTipo);
+            this.GbxSol.Controls.Add(this.label6);
+            this.GbxSol.Controls.Add(this.TxtNoSol);
+            this.GbxSol.Controls.Add(this.label5);
+            this.GbxSol.Controls.Add(this.CboAsesor);
+            this.GbxSol.Controls.Add(this.TxtConcept);
+            this.GbxSol.Controls.Add(this.label4);
+            this.GbxSol.Controls.Add(this.label3);
+            this.GbxSol.Controls.Add(this.TxtMonto);
+            this.GbxSol.Controls.Add(this.label2);
+            this.GbxSol.Controls.Add(this.CboCliente);
+            this.GbxSol.Controls.Add(this.label1);
+            this.GbxSol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GbxSol.Location = new System.Drawing.Point(3, 3);
+            this.GbxSol.Name = "GbxSol";
+            this.GbxSol.Size = new System.Drawing.Size(1127, 616);
+            this.GbxSol.TabIndex = 50;
+            this.GbxSol.TabStop = false;
+            this.GbxSol.Text = "Datos del credito";
+            // 
+            // Txtfam
+            // 
+            this.Txtfam.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.Txtfam.Location = new System.Drawing.Point(164, 410);
+            this.Txtfam.Margin = new System.Windows.Forms.Padding(4);
+            this.Txtfam.Name = "Txtfam";
+            this.Txtfam.Size = new System.Drawing.Size(307, 23);
+            this.Txtfam.TabIndex = 69;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.label20.Location = new System.Drawing.Point(17, 414);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(109, 15);
+            this.label20.TabIndex = 68;
+            this.label20.Text = "Famiiar con credito";
             // 
             // CboRazon
             // 
@@ -331,9 +361,9 @@
             this.label39.Location = new System.Drawing.Point(17, 258);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(96, 15);
+            this.label39.Size = new System.Drawing.Size(94, 15);
             this.label39.TabIndex = 66;
-            this.label39.Text = "Tazon de Credito";
+            this.label39.Text = "razon de Credito";
             // 
             // TxtMontoSug
             // 
@@ -373,7 +403,6 @@
             0,
             0,
             0});
-            this.NupPlazo.Visible = false;
             // 
             // LblPlazo
             // 
@@ -384,7 +413,6 @@
             this.LblPlazo.Size = new System.Drawing.Size(77, 15);
             this.LblPlazo.TabIndex = 62;
             this.LblPlazo.Text = "Plazo(Meses)";
-            this.LblPlazo.Visible = false;
             // 
             // CboTipo
             // 
@@ -524,7 +552,7 @@
             this.TabGarant.Location = new System.Drawing.Point(4, 24);
             this.TabGarant.Name = "TabGarant";
             this.TabGarant.Padding = new System.Windows.Forms.Padding(3);
-            this.TabGarant.Size = new System.Drawing.Size(1133, 652);
+            this.TabGarant.Size = new System.Drawing.Size(1133, 622);
             this.TabGarant.TabIndex = 1;
             this.TabGarant.Text = "Garantia/Fiador";
             this.TabGarant.UseVisualStyleBackColor = true;
@@ -533,9 +561,9 @@
             // 
             this.GbxFiadorIn.Controls.Add(this.GbxDataFiad);
             this.GbxFiadorIn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.GbxFiadorIn.Location = new System.Drawing.Point(3, 332);
+            this.GbxFiadorIn.Location = new System.Drawing.Point(3, 326);
             this.GbxFiadorIn.Name = "GbxFiadorIn";
-            this.GbxFiadorIn.Size = new System.Drawing.Size(1127, 317);
+            this.GbxFiadorIn.Size = new System.Drawing.Size(1127, 293);
             this.GbxFiadorIn.TabIndex = 26;
             this.GbxFiadorIn.TabStop = false;
             this.GbxFiadorIn.Text = "Fiador";
@@ -552,7 +580,7 @@
             this.GbxDataFiad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxDataFiad.Location = new System.Drawing.Point(3, 19);
             this.GbxDataFiad.Name = "GbxDataFiad";
-            this.GbxDataFiad.Size = new System.Drawing.Size(1121, 295);
+            this.GbxDataFiad.Size = new System.Drawing.Size(1121, 271);
             this.GbxDataFiad.TabIndex = 43;
             this.GbxDataFiad.TabStop = false;
             this.GbxDataFiad.Text = "Datos del fiador";
@@ -612,7 +640,7 @@
             this.DgvFiadorLst.Name = "DgvFiadorLst";
             this.DgvFiadorLst.ReadOnly = true;
             this.DgvFiadorLst.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvFiadorLst.Size = new System.Drawing.Size(650, 273);
+            this.DgvFiadorLst.Size = new System.Drawing.Size(650, 249);
             this.DgvFiadorLst.TabIndex = 53;
             // 
             // IdFiad
@@ -682,7 +710,7 @@
             this.GbxGarantia.Dock = System.Windows.Forms.DockStyle.Top;
             this.GbxGarantia.Location = new System.Drawing.Point(3, 3);
             this.GbxGarantia.Name = "GbxGarantia";
-            this.GbxGarantia.Size = new System.Drawing.Size(1127, 329);
+            this.GbxGarantia.Size = new System.Drawing.Size(1127, 323);
             this.GbxGarantia.TabIndex = 25;
             this.GbxGarantia.TabStop = false;
             this.GbxGarantia.Text = "Garantias";
@@ -844,7 +872,7 @@
             this.DgvGaranLSt.Name = "DgvGaranLSt";
             this.DgvGaranLSt.ReadOnly = true;
             this.DgvGaranLSt.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvGaranLSt.Size = new System.Drawing.Size(653, 307);
+            this.DgvGaranLSt.Size = new System.Drawing.Size(653, 301);
             this.DgvGaranLSt.TabIndex = 44;
             // 
             // IdGara
@@ -907,7 +935,7 @@
             this.LblPatri.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblPatri.Location = new System.Drawing.Point(4, 24);
             this.LblPatri.Name = "LblPatri";
-            this.LblPatri.Size = new System.Drawing.Size(1133, 652);
+            this.LblPatri.Size = new System.Drawing.Size(1133, 622);
             this.LblPatri.TabIndex = 2;
             this.LblPatri.Text = "Estado financiero";
             // 
@@ -981,6 +1009,37 @@
             this.DgvEngMen.TabIndex = 1;
             this.DgvEngMen.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvEngMen_RowsAdded);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 69;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 79;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 77;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 111;
+            // 
+            // IdEgrEdit
+            // 
+            this.IdEgrEdit.HeaderText = "ID";
+            this.IdEgrEdit.Name = "IdEgrEdit";
+            this.IdEgrEdit.Visible = false;
+            this.IdEgrEdit.Width = 45;
+            // 
             // GbxResumenIn
             // 
             this.GbxResumenIn.Controls.Add(this.BtnElimIng);
@@ -1023,6 +1082,43 @@
             this.DgvIngMen.Size = new System.Drawing.Size(350, 430);
             this.DgvIngMen.TabIndex = 0;
             this.DgvIngMen.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DgvIngMen_RowsAdded);
+            // 
+            // Prod
+            // 
+            this.Prod.HeaderText = "Producto";
+            this.Prod.Name = "Prod";
+            this.Prod.Width = 81;
+            // 
+            // Cant
+            // 
+            this.Cant.HeaderText = "Cantidad";
+            this.Cant.Name = "Cant";
+            this.Cant.Width = 79;
+            // 
+            // Costo
+            // 
+            this.Costo.HeaderText = "Costo";
+            this.Costo.Name = "Costo";
+            this.Costo.Width = 62;
+            // 
+            // Venta
+            // 
+            this.Venta.HeaderText = "Venta";
+            this.Venta.Name = "Venta";
+            this.Venta.Width = 62;
+            // 
+            // Ganancia
+            // 
+            this.Ganancia.HeaderText = "Ganancia";
+            this.Ganancia.Name = "Ganancia";
+            this.Ganancia.Width = 81;
+            // 
+            // IdIngEdit
+            // 
+            this.IdIngEdit.HeaderText = "Id";
+            this.IdIngEdit.Name = "IdIngEdit";
+            this.IdIngEdit.Visible = false;
+            this.IdIngEdit.Width = 43;
             // 
             // GbxEstadoF
             // 
@@ -1138,7 +1234,7 @@
             // LblFecha
             // 
             this.LblFecha.AutoSize = true;
-            this.LblFecha.Location = new System.Drawing.Point(552, 723);
+            this.LblFecha.Location = new System.Drawing.Point(551, 691);
             this.LblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LblFecha.Name = "LblFecha";
             this.LblFecha.Size = new System.Drawing.Size(38, 15);
@@ -1153,7 +1249,7 @@
             this.BtnLimpiar.ForeColor = System.Drawing.Color.White;
             this.BtnLimpiar.Image = ((System.Drawing.Image)(resources.GetObject("BtnLimpiar.Image")));
             this.BtnLimpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnLimpiar.Location = new System.Drawing.Point(235, 709);
+            this.BtnLimpiar.Location = new System.Drawing.Point(234, 677);
             this.BtnLimpiar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnLimpiar.Name = "BtnLimpiar";
             this.BtnLimpiar.Size = new System.Drawing.Size(180, 44);
@@ -1170,7 +1266,7 @@
             this.BtnAgregar.ForeColor = System.Drawing.Color.White;
             this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
             this.BtnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnAgregar.Location = new System.Drawing.Point(11, 709);
+            this.BtnAgregar.Location = new System.Drawing.Point(10, 677);
             this.BtnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(198, 44);
@@ -1188,13 +1284,15 @@
             this.Tab2.Margin = new System.Windows.Forms.Padding(4);
             this.Tab2.Name = "Tab2";
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab2.Size = new System.Drawing.Size(1157, 769);
+            this.Tab2.Size = new System.Drawing.Size(1157, 723);
             this.Tab2.TabIndex = 1;
             this.Tab2.Text = "Revisar solicitud de Prestamo";
             // 
             // GBXPrestamo
             // 
             this.GBXPrestamo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.GBXPrestamo.Controls.Add(this.TxtMontoSug2);
+            this.GBXPrestamo.Controls.Add(this.label21);
             this.GBXPrestamo.Controls.Add(this.BtnSoliVer);
             this.GBXPrestamo.Controls.Add(this.CboTipo2);
             this.GBXPrestamo.Controls.Add(this.BtnCancelar);
@@ -1232,10 +1330,30 @@
             this.GBXPrestamo.Margin = new System.Windows.Forms.Padding(4);
             this.GBXPrestamo.Name = "GBXPrestamo";
             this.GBXPrestamo.Padding = new System.Windows.Forms.Padding(4);
-            this.GBXPrestamo.Size = new System.Drawing.Size(1149, 761);
+            this.GBXPrestamo.Size = new System.Drawing.Size(1149, 715);
             this.GBXPrestamo.TabIndex = 2;
             this.GBXPrestamo.TabStop = false;
             this.GBXPrestamo.Text = "Prestamo";
+            // 
+            // TxtMontoSug2
+            // 
+            this.TxtMontoSug2.Enabled = false;
+            this.TxtMontoSug2.Location = new System.Drawing.Point(186, 188);
+            this.TxtMontoSug2.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtMontoSug2.Name = "TxtMontoSug2";
+            this.TxtMontoSug2.Size = new System.Drawing.Size(155, 25);
+            this.TxtMontoSug2.TabIndex = 34;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.label21.Location = new System.Drawing.Point(26, 192);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(108, 17);
+            this.label21.TabIndex = 33;
+            this.label21.Text = "Monto Sugerido";
             // 
             // BtnSoliVer
             // 
@@ -1302,7 +1420,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(368, 479);
+            this.comboBox1.Location = new System.Drawing.Point(371, 527);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 25);
             this.comboBox1.TabIndex = 27;
@@ -1310,7 +1428,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(237, 475);
+            this.button1.Location = new System.Drawing.Point(240, 523);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(104, 29);
             this.button1.TabIndex = 26;
@@ -1483,7 +1601,6 @@
             // 
             // TxtPlazo
             // 
-            this.TxtPlazo.Enabled = false;
             this.TxtPlazo.Location = new System.Drawing.Point(184, 357);
             this.TxtPlazo.Margin = new System.Windows.Forms.Padding(4);
             this.TxtPlazo.Name = "TxtPlazo";
@@ -1504,28 +1621,27 @@
             // TxtGarantia
             // 
             this.TxtGarantia.Enabled = false;
-            this.TxtGarantia.Location = new System.Drawing.Point(184, 222);
+            this.TxtGarantia.Location = new System.Drawing.Point(184, 262);
             this.TxtGarantia.Margin = new System.Windows.Forms.Padding(4);
             this.TxtGarantia.Multiline = true;
             this.TxtGarantia.Name = "TxtGarantia";
-            this.TxtGarantia.Size = new System.Drawing.Size(280, 84);
+            this.TxtGarantia.Size = new System.Drawing.Size(280, 24);
             this.TxtGarantia.TabIndex = 7;
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label10.Location = new System.Drawing.Point(24, 226);
+            this.label10.Location = new System.Drawing.Point(24, 262);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 17);
+            this.label10.Size = new System.Drawing.Size(124, 43);
             this.label10.TabIndex = 6;
-            this.label10.Text = "Garantia";
+            this.label10.Text = "Familiar Que tiene credito ";
             // 
             // TxtConcepto
             // 
             this.TxtConcepto.Enabled = false;
-            this.TxtConcepto.Location = new System.Drawing.Point(184, 185);
+            this.TxtConcepto.Location = new System.Drawing.Point(184, 221);
             this.TxtConcepto.Margin = new System.Windows.Forms.Padding(4);
             this.TxtConcepto.Name = "TxtConcepto";
             this.TxtConcepto.Size = new System.Drawing.Size(280, 25);
@@ -1535,7 +1651,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label11.Location = new System.Drawing.Point(24, 189);
+            this.label11.Location = new System.Drawing.Point(24, 225);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(66, 17);
@@ -1558,9 +1674,9 @@
             this.label12.Location = new System.Drawing.Point(24, 156);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(49, 17);
+            this.label12.Size = new System.Drawing.Size(107, 17);
             this.label12.TabIndex = 2;
-            this.label12.Text = "Monto";
+            this.label12.Text = "Monto Aplicado";
             // 
             // CboSoli
             // 
@@ -1590,7 +1706,7 @@
             this.Tab3.Controls.Add(this.GbxInv);
             this.Tab3.Location = new System.Drawing.Point(4, 26);
             this.Tab3.Name = "Tab3";
-            this.Tab3.Size = new System.Drawing.Size(1157, 769);
+            this.Tab3.Size = new System.Drawing.Size(1157, 723);
             this.Tab3.TabIndex = 2;
             this.Tab3.Text = "Ingreso de inversiones";
             // 
@@ -1617,7 +1733,7 @@
             this.GbxInv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxInv.Location = new System.Drawing.Point(0, 0);
             this.GbxInv.Name = "GbxInv";
-            this.GbxInv.Size = new System.Drawing.Size(1157, 769);
+            this.GbxInv.Size = new System.Drawing.Size(1157, 723);
             this.GbxInv.TabIndex = 0;
             this.GbxInv.TabStop = false;
             this.GbxInv.Text = "Datos de la inversion";
@@ -1820,79 +1936,35 @@
             this.label27.TabIndex = 0;
             this.label27.Text = "Cliente";
             // 
-            // dataGridViewTextBoxColumn1
+            // TxtInt
             // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 69;
+            this.TxtInt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.TxtInt.Location = new System.Drawing.Point(164, 365);
+            this.TxtInt.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtInt.Name = "TxtInt";
+            this.TxtInt.Size = new System.Drawing.Size(132, 23);
+            this.TxtInt.TabIndex = 71;
+            this.TxtInt.Text = "0";
+            this.TxtInt.Visible = false;
             // 
-            // dataGridViewTextBoxColumn2
+            // label22
             // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 79;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 77;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 111;
-            // 
-            // IdEgrEdit
-            // 
-            this.IdEgrEdit.HeaderText = "ID";
-            this.IdEgrEdit.Name = "IdEgrEdit";
-            this.IdEgrEdit.Width = 45;
-            // 
-            // Prod
-            // 
-            this.Prod.HeaderText = "Producto";
-            this.Prod.Name = "Prod";
-            this.Prod.Width = 81;
-            // 
-            // Cant
-            // 
-            this.Cant.HeaderText = "Cantidad";
-            this.Cant.Name = "Cant";
-            this.Cant.Width = 79;
-            // 
-            // Costo
-            // 
-            this.Costo.HeaderText = "Costo";
-            this.Costo.Name = "Costo";
-            this.Costo.Width = 62;
-            // 
-            // Venta
-            // 
-            this.Venta.HeaderText = "Venta";
-            this.Venta.Name = "Venta";
-            this.Venta.Width = 62;
-            // 
-            // Ganancia
-            // 
-            this.Ganancia.HeaderText = "Ganancia";
-            this.Ganancia.Name = "Ganancia";
-            this.Ganancia.Width = 81;
-            // 
-            // IdIngEdit
-            // 
-            this.IdIngEdit.HeaderText = "Id";
-            this.IdIngEdit.Name = "IdIngEdit";
-            this.IdIngEdit.Visible = false;
-            this.IdIngEdit.Width = 43;
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.label22.Location = new System.Drawing.Point(17, 369);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(43, 15);
+            this.label22.TabIndex = 70;
+            this.label22.Text = "Interes";
+            this.label22.Visible = false;
             // 
             // Solicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1165, 799);
+            this.ClientSize = new System.Drawing.Size(1165, 753);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1904,12 +1976,12 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Solicitud_KeyDown);
             this.tabControl1.ResumeLayout(false);
             this.Tab1.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.GbxSolicitud.ResumeLayout(false);
+            this.GbxSolicitud.PerformLayout();
             this.TCTSoli.ResumeLayout(false);
             this.TabCred.ResumeLayout(false);
-            this.CboRazonCred.ResumeLayout(false);
-            this.CboRazonCred.PerformLayout();
+            this.GbxSol.ResumeLayout(false);
+            this.GbxSol.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NupPlazo)).EndInit();
             this.TabGarant.ResumeLayout(false);
             this.GbxFiadorIn.ResumeLayout(false);
@@ -1944,7 +2016,7 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Tab1;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox GbxSolicitud;
         private System.Windows.Forms.TabPage Tab2;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnAgregar;
@@ -2001,7 +2073,7 @@
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TabControl TCTSoli;
         private System.Windows.Forms.TabPage TabCred;
-        private System.Windows.Forms.GroupBox CboRazonCred;
+        private System.Windows.Forms.GroupBox GbxSol;
         private System.Windows.Forms.NumericUpDown NupPlazo;
         private System.Windows.Forms.Label LblPlazo;
         private System.Windows.Forms.ComboBox CboTipo;
@@ -2078,16 +2150,22 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn GaraVal;
         private System.Windows.Forms.DataGridViewTextBoxColumn InfoGaran;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObserGaran;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdEgrEdit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prod;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Venta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ganancia;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdIngEdit;
+        private System.Windows.Forms.TextBox Txtfam;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox TxtMontoSug2;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEgrEdit;
+        private System.Windows.Forms.TextBox TxtInt;
+        private System.Windows.Forms.Label label22;
     }
 }

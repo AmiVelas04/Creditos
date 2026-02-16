@@ -48,6 +48,8 @@ namespace Arcoiris.Reportes.ClasesRepo
         public string PagoCred { get; set; }
         public int PlazoCred { get; set; }
         public int RazonCred { get; set; }
+        public decimal interes { get; set; }
+        public string FamConCredito { get; set; }
 
 
 

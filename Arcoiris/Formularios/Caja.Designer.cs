@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Caja));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.GbxCaja = new System.Windows.Forms.GroupBox();
             this.ChkAct = new System.Windows.Forms.CheckBox();
             this.BtnImprimir = new System.Windows.Forms.Button();
@@ -82,7 +82,7 @@
             this.GbxCaja.Margin = new System.Windows.Forms.Padding(4);
             this.GbxCaja.Name = "GbxCaja";
             this.GbxCaja.Padding = new System.Windows.Forms.Padding(4);
-            this.GbxCaja.Size = new System.Drawing.Size(894, 549);
+            this.GbxCaja.Size = new System.Drawing.Size(1038, 635);
             this.GbxCaja.TabIndex = 0;
             this.GbxCaja.TabStop = false;
             this.GbxCaja.Text = "Control de Caja";
@@ -102,11 +102,13 @@
             // 
             this.BtnImprimir.FlatAppearance.BorderSize = 2;
             this.BtnImprimir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnImprimir.Location = new System.Drawing.Point(399, 230);
+            this.BtnImprimir.Image = ((System.Drawing.Image)(resources.GetObject("BtnImprimir.Image")));
+            this.BtnImprimir.Location = new System.Drawing.Point(705, 120);
             this.BtnImprimir.Name = "BtnImprimir";
-            this.BtnImprimir.Size = new System.Drawing.Size(100, 48);
+            this.BtnImprimir.Size = new System.Drawing.Size(120, 50);
             this.BtnImprimir.TabIndex = 18;
             this.BtnImprimir.Text = "Imprimir";
+            this.BtnImprimir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnImprimir.UseVisualStyleBackColor = true;
             this.BtnImprimir.Click += new System.EventHandler(this.BtnImprimir_Click);
             // 
@@ -189,21 +191,21 @@
             this.DgvMov.AllowUserToDeleteRows = false;
             this.DgvMov.AllowUserToResizeColumns = false;
             this.DgvMov.AllowUserToResizeRows = false;
-            this.DgvMov.BackgroundColor = System.Drawing.Color.Khaki;
+            this.DgvMov.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.DgvMov.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.DgvMov.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.Info;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DgvMov.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Info;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DgvMov.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.DgvMov.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvMov.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.DgvMov.EnableHeadersVisualStyles = false;
-            this.DgvMov.Location = new System.Drawing.Point(4, 320);
+            this.DgvMov.Location = new System.Drawing.Point(4, 406);
             this.DgvMov.Margin = new System.Windows.Forms.Padding(4);
             this.DgvMov.MultiSelect = false;
             this.DgvMov.Name = "DgvMov";
@@ -213,19 +215,21 @@
             this.DgvMov.RowTemplate.Height = 60;
             this.DgvMov.RowTemplate.ReadOnly = true;
             this.DgvMov.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgvMov.Size = new System.Drawing.Size(886, 225);
+            this.DgvMov.Size = new System.Drawing.Size(1030, 225);
             this.DgvMov.TabIndex = 10;
             // 
             // BtnActualizar
             // 
             this.BtnActualizar.FlatAppearance.BorderSize = 2;
             this.BtnActualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnActualizar.Location = new System.Drawing.Point(506, 231);
+            this.BtnActualizar.Image = ((System.Drawing.Image)(resources.GetObject("BtnActualizar.Image")));
+            this.BtnActualizar.Location = new System.Drawing.Point(873, 120);
             this.BtnActualizar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnActualizar.Name = "BtnActualizar";
-            this.BtnActualizar.Size = new System.Drawing.Size(100, 47);
+            this.BtnActualizar.Size = new System.Drawing.Size(120, 50);
             this.BtnActualizar.TabIndex = 9;
             this.BtnActualizar.Text = "Actualizar operacion";
+            this.BtnActualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnActualizar.UseVisualStyleBackColor = true;
             this.BtnActualizar.Visible = false;
             this.BtnActualizar.Click += new System.EventHandler(this.BtnActualizar_Click);
@@ -235,12 +239,14 @@
             this.BtnEliminar.Enabled = false;
             this.BtnEliminar.FlatAppearance.BorderSize = 2;
             this.BtnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEliminar.Location = new System.Drawing.Point(507, 173);
+            this.BtnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("BtnEliminar.Image")));
+            this.BtnEliminar.Location = new System.Drawing.Point(873, 36);
             this.BtnEliminar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnEliminar.Name = "BtnEliminar";
-            this.BtnEliminar.Size = new System.Drawing.Size(100, 50);
+            this.BtnEliminar.Size = new System.Drawing.Size(125, 50);
             this.BtnEliminar.TabIndex = 8;
-            this.BtnEliminar.Text = "Eliminar Operacion";
+            this.BtnEliminar.Text = "Anular Operacion";
+            this.BtnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnEliminar.UseVisualStyleBackColor = true;
             this.BtnEliminar.Click += new System.EventHandler(this.BtnEliminar_Click);
             // 
@@ -248,12 +254,14 @@
             // 
             this.BtnAgregar.FlatAppearance.BorderSize = 2;
             this.BtnAgregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAgregar.Location = new System.Drawing.Point(399, 173);
+            this.BtnAgregar.Image = ((System.Drawing.Image)(resources.GetObject("BtnAgregar.Image")));
+            this.BtnAgregar.Location = new System.Drawing.Point(705, 36);
             this.BtnAgregar.Margin = new System.Windows.Forms.Padding(4);
             this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(100, 50);
+            this.BtnAgregar.Size = new System.Drawing.Size(120, 50);
             this.BtnAgregar.TabIndex = 7;
             this.BtnAgregar.Text = "Ingresar Operacion";
+            this.BtnAgregar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnAgregar.UseVisualStyleBackColor = true;
             this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
@@ -329,8 +337,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(894, 549);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.ClientSize = new System.Drawing.Size(1038, 635);
             this.Controls.Add(this.GbxCaja);
             this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;

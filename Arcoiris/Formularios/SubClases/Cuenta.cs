@@ -8,6 +8,7 @@ namespace Arcoiris.Formularios.SubClases
 {
     public class Cuenta : IEquatable<Cuenta>
     {
+        public int Id { get; set; }
         public string NomCuenta { get; set; }
         public decimal Valor { get; set; }
         public bool tipo { get; set; }

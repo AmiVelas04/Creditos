@@ -746,6 +746,7 @@
             this.DtpNac.Name = "DtpNac";
             this.DtpNac.Size = new System.Drawing.Size(122, 25);
             this.DtpNac.TabIndex = 42;
+            this.DtpNac.ValueChanged += new System.EventHandler(this.DtpNac_ValueChanged);
             // 
             // CboGene
             // 
@@ -1411,7 +1412,6 @@
             this.label19.Size = new System.Drawing.Size(135, 17);
             this.label19.TabIndex = 72;
             this.label19.Text = "Fecha de Nacimiento";
-            this.label19.Visible = false;
             // 
             // DtpNaci2
             // 
@@ -1423,6 +1423,7 @@
             this.DtpNaci2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.DtpNaci2.Size = new System.Drawing.Size(89, 25);
             this.DtpNaci2.TabIndex = 71;
+            this.DtpNaci2.ValueChanged += new System.EventHandler(this.DtpNaci2_ValueChanged);
             // 
             // BtnAddRefEdit
             // 
@@ -1562,10 +1563,10 @@
             0,
             0});
             this.NudEdadEdit.Minimum = new decimal(new int[] {
-            18,
+            100,
             0,
             0,
-            0});
+            -2147483648});
             this.NudEdadEdit.Name = "NudEdadEdit";
             this.NudEdadEdit.Size = new System.Drawing.Size(66, 23);
             this.NudEdadEdit.TabIndex = 43;

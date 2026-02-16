@@ -90,7 +90,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.BackColor = System.Drawing.Color.Olive;
             this.ClientSize = new System.Drawing.Size(441, 178);
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.BtnGuardar);
@@ -103,6 +103,7 @@
             this.Name = "Respaldo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Respaldo";
+            this.Load += new System.EventHandler(this.Respaldo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

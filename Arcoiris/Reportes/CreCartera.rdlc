@@ -2170,48 +2170,6 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="Textbox10">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>Porcentaje de mora: </Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <Format>#,0.00 %</Format>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value>=(((Sum(Fields!capatras.Value, "Detalle")+Sum(Fields!intatras.Value, "Detalle"))*100)/(Sum(Fields!monto.Value, "Encabezado"))/100)</Value>
-                  <Style>
-                    <FontWeight>Bold</FontWeight>
-                    <Format>#,0.00 %</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Center</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>1.77024cm</Top>
-          <Left>16.27063cm</Left>
-          <Height>0.6cm</Height>
-          <Width>9.98708cm</Width>
-          <ZIndex>3</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
       </ReportItems>
       <Style>
         <Border>

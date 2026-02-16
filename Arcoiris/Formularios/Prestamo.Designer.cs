@@ -55,7 +55,9 @@
             this.ChkCancelado = new System.Windows.Forms.CheckBox();
             this.BtnEliminarCre = new System.Windows.Forms.Button();
             this.BtnListPago = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.GbxDatoPrestamo = new System.Windows.Forms.GroupBox();
+            this.BtnVerDpi = new System.Windows.Forms.Button();
+            this.BtnEditsol = new System.Windows.Forms.Button();
             this.BtnGarant = new System.Windows.Forms.Button();
             this.TxtTasa = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -120,7 +122,7 @@
             this.GbxPago.SuspendLayout();
             this.GbxSearch.SuspendLayout();
             this.GbxCuotaProm.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.GbxDatoPrestamo.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.Tab2.SuspendLayout();
@@ -139,7 +141,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1165, 799);
+            this.tabControl1.Size = new System.Drawing.Size(1165, 730);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControl1_KeyDown);
@@ -151,7 +153,7 @@
             this.Tab1.Margin = new System.Windows.Forms.Padding(4);
             this.Tab1.Name = "Tab1";
             this.Tab1.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab1.Size = new System.Drawing.Size(1157, 771);
+            this.Tab1.Size = new System.Drawing.Size(1157, 702);
             this.Tab1.TabIndex = 0;
             this.Tab1.Text = "Pago de credito";
             this.Tab1.UseVisualStyleBackColor = true;
@@ -173,7 +175,7 @@
             this.GbxPago.Controls.Add(this.ChkCancelado);
             this.GbxPago.Controls.Add(this.BtnEliminarCre);
             this.GbxPago.Controls.Add(this.BtnListPago);
-            this.GbxPago.Controls.Add(this.groupBox3);
+            this.GbxPago.Controls.Add(this.GbxDatoPrestamo);
             this.GbxPago.Controls.Add(this.BtnAldia);
             this.GbxPago.Controls.Add(this.groupBox2);
             this.GbxPago.Controls.Add(this.groupBox1);
@@ -215,7 +217,7 @@
             this.BtnPagProm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnPagProm.Font = new System.Drawing.Font("Segoe UI Black", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BtnPagProm.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.BtnPagProm.Location = new System.Drawing.Point(669, 704);
+            this.BtnPagProm.Location = new System.Drawing.Point(972, 588);
             this.BtnPagProm.Name = "BtnPagProm";
             this.BtnPagProm.Size = new System.Drawing.Size(97, 52);
             this.BtnPagProm.TabIndex = 62;
@@ -380,7 +382,7 @@
             // TxtDepo
             // 
             this.TxtDepo.Enabled = false;
-            this.TxtDepo.Location = new System.Drawing.Point(427, 540);
+            this.TxtDepo.Location = new System.Drawing.Point(272, 540);
             this.TxtDepo.Name = "TxtDepo";
             this.TxtDepo.Size = new System.Drawing.Size(211, 23);
             this.TxtDepo.TabIndex = 55;
@@ -388,7 +390,7 @@
             // ChkDepo
             // 
             this.ChkDepo.AutoSize = true;
-            this.ChkDepo.Location = new System.Drawing.Point(429, 519);
+            this.ChkDepo.Location = new System.Drawing.Point(274, 519);
             this.ChkDepo.Name = "ChkDepo";
             this.ChkDepo.Size = new System.Drawing.Size(74, 19);
             this.ChkDepo.TabIndex = 54;
@@ -401,7 +403,7 @@
             this.BtnCancel.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.BtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnCancel.ForeColor = System.Drawing.SystemColors.MenuBar;
-            this.BtnCancel.Location = new System.Drawing.Point(494, 704);
+            this.BtnCancel.Location = new System.Drawing.Point(797, 588);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(97, 52);
             this.BtnCancel.TabIndex = 53;
@@ -425,7 +427,7 @@
             this.BtnEliminarCre.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnEliminarCre.Location = new System.Drawing.Point(557, 57);
             this.BtnEliminarCre.Name = "BtnEliminarCre";
-            this.BtnEliminarCre.Size = new System.Drawing.Size(102, 47);
+            this.BtnEliminarCre.Size = new System.Drawing.Size(123, 47);
             this.BtnEliminarCre.TabIndex = 51;
             this.BtnEliminarCre.Text = "Anular Credito";
             this.BtnEliminarCre.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -435,54 +437,85 @@
             // 
             // BtnListPago
             // 
-            this.BtnListPago.Location = new System.Drawing.Point(678, 57);
+            this.BtnListPago.Image = ((System.Drawing.Image)(resources.GetObject("BtnListPago.Image")));
+            this.BtnListPago.Location = new System.Drawing.Point(769, 56);
             this.BtnListPago.Name = "BtnListPago";
-            this.BtnListPago.Size = new System.Drawing.Size(88, 48);
+            this.BtnListPago.Size = new System.Drawing.Size(119, 48);
             this.BtnListPago.TabIndex = 50;
             this.BtnListPago.Text = "Listado de pagos";
+            this.BtnListPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnListPago.UseVisualStyleBackColor = true;
             this.BtnListPago.Click += new System.EventHandler(this.BtnListPago_Click);
             // 
-            // groupBox3
+            // GbxDatoPrestamo
             // 
-            this.groupBox3.Controls.Add(this.BtnGarant);
-            this.groupBox3.Controls.Add(this.TxtTasa);
-            this.groupBox3.Controls.Add(this.label25);
-            this.groupBox3.Controls.Add(this.TxtPlazo);
-            this.groupBox3.Controls.Add(this.label24);
-            this.groupBox3.Controls.Add(this.TxtFechConc);
-            this.groupBox3.Controls.Add(this.label23);
-            this.groupBox3.Controls.Add(this.TxtTotalTod);
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.TxtAtraso);
-            this.groupBox3.Controls.Add(this.TxtSaldInt);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.TxtTipo);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.TxtVenc);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.TxtMonto);
-            this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.TxtSaldo);
-            this.groupBox3.ForeColor = System.Drawing.Color.SteelBlue;
-            this.groupBox3.Location = new System.Drawing.Point(470, 133);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(660, 379);
-            this.groupBox3.TabIndex = 49;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Datos del Prestamo";
+            this.GbxDatoPrestamo.Controls.Add(this.BtnVerDpi);
+            this.GbxDatoPrestamo.Controls.Add(this.BtnEditsol);
+            this.GbxDatoPrestamo.Controls.Add(this.BtnGarant);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtTasa);
+            this.GbxDatoPrestamo.Controls.Add(this.label25);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtPlazo);
+            this.GbxDatoPrestamo.Controls.Add(this.label24);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtFechConc);
+            this.GbxDatoPrestamo.Controls.Add(this.label23);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtTotalTod);
+            this.GbxDatoPrestamo.Controls.Add(this.label22);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtAtraso);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtSaldInt);
+            this.GbxDatoPrestamo.Controls.Add(this.label21);
+            this.GbxDatoPrestamo.Controls.Add(this.label16);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtTipo);
+            this.GbxDatoPrestamo.Controls.Add(this.label9);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtVenc);
+            this.GbxDatoPrestamo.Controls.Add(this.label10);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtMonto);
+            this.GbxDatoPrestamo.Controls.Add(this.label3);
+            this.GbxDatoPrestamo.Controls.Add(this.label4);
+            this.GbxDatoPrestamo.Controls.Add(this.TxtSaldo);
+            this.GbxDatoPrestamo.ForeColor = System.Drawing.Color.SteelBlue;
+            this.GbxDatoPrestamo.Location = new System.Drawing.Point(470, 133);
+            this.GbxDatoPrestamo.Name = "GbxDatoPrestamo";
+            this.GbxDatoPrestamo.Size = new System.Drawing.Size(660, 379);
+            this.GbxDatoPrestamo.TabIndex = 49;
+            this.GbxDatoPrestamo.TabStop = false;
+            this.GbxDatoPrestamo.Text = "Datos del Prestamo";
+            // 
+            // BtnVerDpi
+            // 
+            this.BtnVerDpi.Image = ((System.Drawing.Image)(resources.GetObject("BtnVerDpi.Image")));
+            this.BtnVerDpi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnVerDpi.Location = new System.Drawing.Point(388, 313);
+            this.BtnVerDpi.Name = "BtnVerDpi";
+            this.BtnVerDpi.Size = new System.Drawing.Size(130, 42);
+            this.BtnVerDpi.TabIndex = 59;
+            this.BtnVerDpi.Text = "Ver DPI";
+            this.BtnVerDpi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnVerDpi.UseVisualStyleBackColor = true;
+            this.BtnVerDpi.Click += new System.EventHandler(this.BtnVerDpi_Click);
+            // 
+            // BtnEditsol
+            // 
+            this.BtnEditsol.Enabled = false;
+            this.BtnEditsol.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditsol.Image")));
+            this.BtnEditsol.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnEditsol.Location = new System.Drawing.Point(234, 313);
+            this.BtnEditsol.Name = "BtnEditsol";
+            this.BtnEditsol.Size = new System.Drawing.Size(130, 42);
+            this.BtnEditsol.TabIndex = 58;
+            this.BtnEditsol.Text = "Editar Datos del credito";
+            this.BtnEditsol.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnEditsol.UseVisualStyleBackColor = true;
+            this.BtnEditsol.Click += new System.EventHandler(this.BtnEditsol_Click);
             // 
             // BtnGarant
             // 
             this.BtnGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnGarant.Image")));
             this.BtnGarant.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnGarant.Location = new System.Drawing.Point(309, 179);
+            this.BtnGarant.Location = new System.Drawing.Point(80, 313);
             this.BtnGarant.Name = "BtnGarant";
             this.BtnGarant.Size = new System.Drawing.Size(130, 42);
             this.BtnGarant.TabIndex = 57;
-            this.BtnGarant.Text = "Garantia";
+            this.BtnGarant.Text = "Ver Solicitud";
             this.BtnGarant.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnGarant.UseVisualStyleBackColor = true;
             this.BtnGarant.Click += new System.EventHandler(this.BtnGarant_Click);
@@ -507,7 +540,7 @@
             // TxtPlazo
             // 
             this.TxtPlazo.Enabled = false;
-            this.TxtPlazo.Location = new System.Drawing.Point(155, 193);
+            this.TxtPlazo.Location = new System.Drawing.Point(284, 195);
             this.TxtPlazo.Name = "TxtPlazo";
             this.TxtPlazo.Size = new System.Drawing.Size(126, 23);
             this.TxtPlazo.TabIndex = 54;
@@ -516,7 +549,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(199, 173);
+            this.label24.Location = new System.Drawing.Point(328, 175);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(36, 15);
             this.label24.TabIndex = 53;
@@ -525,7 +558,7 @@
             // TxtFechConc
             // 
             this.TxtFechConc.Enabled = false;
-            this.TxtFechConc.Location = new System.Drawing.Point(155, 41);
+            this.TxtFechConc.Location = new System.Drawing.Point(284, 43);
             this.TxtFechConc.Name = "TxtFechConc";
             this.TxtFechConc.Size = new System.Drawing.Size(126, 23);
             this.TxtFechConc.TabIndex = 52;
@@ -534,7 +567,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(152, 23);
+            this.label23.Location = new System.Drawing.Point(281, 25);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(113, 15);
             this.label23.TabIndex = 51;
@@ -543,7 +576,7 @@
             // TxtTotalTod
             // 
             this.TxtTotalTod.Enabled = false;
-            this.TxtTotalTod.Location = new System.Drawing.Point(309, 123);
+            this.TxtTotalTod.Location = new System.Drawing.Point(491, 118);
             this.TxtTotalTod.Name = "TxtTotalTod";
             this.TxtTotalTod.Size = new System.Drawing.Size(130, 23);
             this.TxtTotalTod.TabIndex = 50;
@@ -551,7 +584,7 @@
             // 
             // label22
             // 
-            this.label22.Location = new System.Drawing.Point(338, 97);
+            this.label22.Location = new System.Drawing.Point(520, 92);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(87, 22);
             this.label22.TabIndex = 49;
@@ -560,7 +593,7 @@
             // TxtAtraso
             // 
             this.TxtAtraso.Enabled = false;
-            this.TxtAtraso.Location = new System.Drawing.Point(309, 244);
+            this.TxtAtraso.Location = new System.Drawing.Point(491, 251);
             this.TxtAtraso.MaxLength = 3;
             this.TxtAtraso.Name = "TxtAtraso";
             this.TxtAtraso.Size = new System.Drawing.Size(130, 23);
@@ -570,7 +603,7 @@
             // TxtSaldInt
             // 
             this.TxtSaldInt.Enabled = false;
-            this.TxtSaldInt.Location = new System.Drawing.Point(155, 123);
+            this.TxtSaldInt.Location = new System.Drawing.Point(284, 125);
             this.TxtSaldInt.Name = "TxtSaldInt";
             this.TxtSaldInt.Size = new System.Drawing.Size(126, 23);
             this.TxtSaldInt.TabIndex = 48;
@@ -578,7 +611,7 @@
             // 
             // label21
             // 
-            this.label21.Location = new System.Drawing.Point(167, 97);
+            this.label21.Location = new System.Drawing.Point(296, 99);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(114, 23);
             this.label21.TabIndex = 47;
@@ -587,7 +620,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(231, 249);
+            this.label16.Location = new System.Drawing.Point(541, 232);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(41, 15);
             this.label16.TabIndex = 40;
@@ -614,7 +647,7 @@
             // TxtVenc
             // 
             this.TxtVenc.Enabled = false;
-            this.TxtVenc.Location = new System.Drawing.Point(309, 41);
+            this.TxtVenc.Location = new System.Drawing.Point(491, 36);
             this.TxtVenc.Name = "TxtVenc";
             this.TxtVenc.Size = new System.Drawing.Size(130, 23);
             this.TxtVenc.TabIndex = 37;
@@ -623,7 +656,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(326, 21);
+            this.label10.Location = new System.Drawing.Point(508, 16);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(74, 15);
             this.label10.TabIndex = 36;
@@ -669,7 +702,7 @@
             this.BtnAldia.BackColor = System.Drawing.Color.Green;
             this.BtnAldia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAldia.ForeColor = System.Drawing.SystemColors.Info;
-            this.BtnAldia.Location = new System.Drawing.Point(334, 704);
+            this.BtnAldia.Location = new System.Drawing.Point(637, 588);
             this.BtnAldia.Name = "BtnAldia";
             this.BtnAldia.Size = new System.Drawing.Size(97, 52);
             this.BtnAldia.TabIndex = 46;
@@ -839,7 +872,7 @@
             // 
             this.TxtCambio.Enabled = false;
             this.TxtCambio.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtCambio.Location = new System.Drawing.Point(823, 585);
+            this.TxtCambio.Location = new System.Drawing.Point(951, 537);
             this.TxtCambio.Multiline = true;
             this.TxtCambio.Name = "TxtCambio";
             this.TxtCambio.Size = new System.Drawing.Size(107, 36);
@@ -849,7 +882,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(766, 596);
+            this.label15.Location = new System.Drawing.Point(894, 548);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(51, 15);
             this.label15.TabIndex = 32;
@@ -859,7 +892,7 @@
             // TxtTotal
             // 
             this.TxtTotal.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtTotal.Location = new System.Drawing.Point(636, 588);
+            this.TxtTotal.Location = new System.Drawing.Point(764, 540);
             this.TxtTotal.Multiline = true;
             this.TxtTotal.Name = "TxtTotal";
             this.TxtTotal.Size = new System.Drawing.Size(107, 33);
@@ -869,7 +902,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(580, 596);
+            this.label14.Location = new System.Drawing.Point(708, 548);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(52, 15);
             this.label14.TabIndex = 30;
@@ -879,7 +912,7 @@
             // TxtEfectivo
             // 
             this.TxtEfectivo.Font = new System.Drawing.Font("Segoe UI Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtEfectivo.Location = new System.Drawing.Point(476, 588);
+            this.TxtEfectivo.Location = new System.Drawing.Point(604, 540);
             this.TxtEfectivo.Multiline = true;
             this.TxtEfectivo.Name = "TxtEfectivo";
             this.TxtEfectivo.Size = new System.Drawing.Size(91, 34);
@@ -889,7 +922,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(426, 596);
+            this.label13.Location = new System.Drawing.Point(554, 548);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 15);
             this.label13.TabIndex = 28;
@@ -909,11 +942,13 @@
             // 
             // BtnMostrar
             // 
-            this.BtnMostrar.Location = new System.Drawing.Point(781, 56);
+            this.BtnMostrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnMostrar.Image")));
+            this.BtnMostrar.Location = new System.Drawing.Point(972, 50);
             this.BtnMostrar.Name = "BtnMostrar";
-            this.BtnMostrar.Size = new System.Drawing.Size(88, 49);
+            this.BtnMostrar.Size = new System.Drawing.Size(119, 49);
             this.BtnMostrar.TabIndex = 18;
             this.BtnMostrar.Text = "Mostrar Credito(s)";
+            this.BtnMostrar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnMostrar.UseVisualStyleBackColor = true;
             this.BtnMostrar.Click += new System.EventHandler(this.BtnMostrar_Click);
             // 
@@ -929,7 +964,7 @@
             // 
             // BtnPago
             // 
-            this.BtnPago.Location = new System.Drawing.Point(7, 704);
+            this.BtnPago.Location = new System.Drawing.Point(268, 584);
             this.BtnPago.Name = "BtnPago";
             this.BtnPago.Size = new System.Drawing.Size(272, 52);
             this.BtnPago.TabIndex = 14;
@@ -972,7 +1007,7 @@
             this.Tab2.Margin = new System.Windows.Forms.Padding(4);
             this.Tab2.Name = "Tab2";
             this.Tab2.Padding = new System.Windows.Forms.Padding(4);
-            this.Tab2.Size = new System.Drawing.Size(1157, 771);
+            this.Tab2.Size = new System.Drawing.Size(1157, 702);
             this.Tab2.TabIndex = 1;
             this.Tab2.Text = "Estado de prestamos";
             this.Tab2.UseVisualStyleBackColor = true;
@@ -987,7 +1022,7 @@
             this.GbxPagos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GbxPagos.Location = new System.Drawing.Point(4, 4);
             this.GbxPagos.Name = "GbxPagos";
-            this.GbxPagos.Size = new System.Drawing.Size(1149, 763);
+            this.GbxPagos.Size = new System.Drawing.Size(1149, 694);
             this.GbxPagos.TabIndex = 0;
             this.GbxPagos.TabStop = false;
             this.GbxPagos.Text = "Control de pagos";
@@ -1048,7 +1083,7 @@
             // 
             this.panel1.Controls.Add(this.DGVPpago);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 113);
+            this.panel1.Location = new System.Drawing.Point(3, 44);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1143, 647);
             this.panel1.TabIndex = 24;
@@ -1079,7 +1114,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
-            this.ClientSize = new System.Drawing.Size(1165, 799);
+            this.ClientSize = new System.Drawing.Size(1165, 730);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Segoe UI Black", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -1096,8 +1131,8 @@
             this.GbxSearch.PerformLayout();
             this.GbxCuotaProm.ResumeLayout(false);
             this.GbxCuotaProm.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.GbxDatoPrestamo.ResumeLayout(false);
+            this.GbxDatoPrestamo.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1155,7 +1190,7 @@
         private System.Windows.Forms.Button BtnAldia;
         private System.Windows.Forms.TextBox TxtSaldInt;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox GbxDatoPrestamo;
         private System.Windows.Forms.TextBox TxtAtraso;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox TxtTipo;
@@ -1198,5 +1233,7 @@
         private System.Windows.Forms.Button AddNota;
         private System.Windows.Forms.Button BtnPagProm;
         private System.Windows.Forms.Label LblCred;
+        private System.Windows.Forms.Button BtnEditsol;
+        private System.Windows.Forms.Button BtnVerDpi;
     }
 }

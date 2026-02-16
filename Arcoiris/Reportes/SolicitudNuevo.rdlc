@@ -38,7 +38,7 @@
         <Top>1.79599cm</Top>
         <Left>6.22169cm</Left>
         <Height>0.6cm</Height>
-        <Width>11.01958cm</Width>
+        <Width>11.95647cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -54,16 +54,16 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>4.55669cm</Width>
+              <Width>3.75cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.9731cm</Width>
+              <Width>5.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.74896cm</Width>
+              <Width>4cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>4.74941cm</Width>
+              <Width>4.75cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -1302,21 +1302,23 @@
                 <TablixCell />
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox67">
+                    <Textbox Name="FamConCredito">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
-                              <Style />
+                              <Value>=Fields!FamConCredito.Value</Value>
+                              <Style>
+                                <FontFamily>Times New Roman</FontFamily>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox67</rd:DefaultName>
+                      <rd:DefaultName>FamConCredito</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1873,7 +1875,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Inforamacion del credito</Value>
+                              <Value>Informacion del credito</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
                                 <FontWeight>Bold</FontWeight>
@@ -1955,6 +1957,7 @@
                               <Value>=Sum(Fields!Monto.Value)</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
+                                <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1973,6 +1976,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -2024,6 +2028,7 @@
                               <Value>=Sum(Fields!MontoSug.Value)</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
+                                <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -2042,6 +2047,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -2157,23 +2163,27 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Textbox7">
+                    <Textbox Name="interes">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>=Sum(Fields!interes.Value)</Value>
+                              <Style />
+                            </TextRun>
+                            <TextRun>
+                              <Value> %</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Left</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Textbox7</rd:DefaultName>
+                      <rd:DefaultName>interes</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -2473,7 +2483,7 @@
         <Top>4.15078cm</Top>
         <Left>0.15cm</Left>
         <Height>15cm</Height>
-        <Width>20.02816cm</Width>
+        <Width>18cm</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -2486,7 +2496,7 @@
         <Top>20.15808cm</Top>
         <Left>0.15cm</Left>
         <Height>0.98542cm</Height>
-        <Width>20.02816cm</Width>
+        <Width>18.02816cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -2495,10 +2505,10 @@
         </Style>
       </Subreport>
     </ReportItems>
-    <Height>8.76171in</Height>
+    <Height>8.78254in</Height>
     <Style />
   </Body>
-  <Width>20.37396cm</Width>
+  <Width>18.78646cm</Width>
   <Page>
     <PageFooter>
       <Height>2.38125cm</Height>
@@ -2525,9 +2535,9 @@
           </Paragraphs>
           <rd:DefaultName>Textbox8</rd:DefaultName>
           <Top>0.17639cm</Top>
-          <Left>8.04016cm</Left>
+          <Left>7.14058cm</Left>
           <Height>0.6cm</Height>
-          <Width>5.70146cm</Width>
+          <Width>5.25167cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -2547,10 +2557,10 @@
     </PageFooter>
     <PageHeight>33cm</PageHeight>
     <PageWidth>21.59cm</PageWidth>
-    <LeftMargin>0.1cm</LeftMargin>
+    <LeftMargin>2cm</LeftMargin>
     <RightMargin>0.1cm</RightMargin>
-    <TopMargin>0.1cm</TopMargin>
-    <BottomMargin>0.1cm</BottomMargin>
+    <TopMargin>1.5cm</TopMargin>
+    <BottomMargin>1.5cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
@@ -2606,6 +2616,10 @@
           <DataField>DPI</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="DPICony">
+          <DataField>DPICony</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="DpiImg64">
           <DataField>DpiImg64</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -2618,6 +2632,10 @@
           <DataField>EstadoCivil</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="FamConCredito">
+          <DataField>FamConCredito</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="FechaSol">
           <DataField>FechaSol</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
@@ -2625,6 +2643,10 @@
         <Field Name="IdSol">
           <DataField>IdSol</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="interes">
+          <DataField>interes</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="Monto">
           <DataField>Monto</DataField>
@@ -2706,7 +2728,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>Arcoiris.Reportes.ClasesRepo</rd:DataSetName>
         <rd:TableName>DatosSolicitud</rd:TableName>
-        <rd:ObjectDataSourceType>Arcoiris.Reportes.ClasesRepo.DatosSolicitud, Arcoiris, Version=4.0.5.2, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>Arcoiris.Reportes.ClasesRepo.DatosSolicitud, Arcoiris, Version=5.0.1.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

@@ -80,6 +80,13 @@ namespace Arcoiris.Formularios
                 Tab2.Parent = tabControl1;
                 Tab3.Parent = tabControl1;
             }
+            else if (Form1.Nivel.Equals("4"))
+            {
+                Tab2.Parent = tabControl1;
+                Tab3.Parent = null;
+                BtnCancelar.Enabled = false;
+                BntCambiar.Enabled = false;
+            }
             else
             {
                 Tab2.Parent = null;
@@ -179,7 +186,7 @@ namespace Arcoiris.Formularios
 
 
             LblFecha.Text = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
-            TxtNoSol.Text = sol.id_solicitud().ToString();
+            TxtNoSol.Text = $"{sol.id_solicitud()}";
             CboTipo.Items.Add("Diario");
             CboTipo.Items.Add("Diario - Intereses");
             CboTipo.Items.Add("Semanal");
@@ -187,10 +194,6 @@ namespace Arcoiris.Formularios
             CboTipo.Items.Add("Mensual - Cuota Fija");
             CboTipo.Items.Add("Mensual - Sobre Saldo");
             CboTipo.SelectedIndex = 0;
-
-
-        
-
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
@@ -212,6 +215,7 @@ namespace Arcoiris.Formularios
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             añadir();
+
         }
         private void añadir()
         {
@@ -227,6 +231,7 @@ namespace Arcoiris.Formularios
             string cliente = "";
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
             string fechaf = fecha.Replace("Fecha de solicitud: ", "");
+            string creditoaca = Txtfam.Text;
             // VeriContGar();
             int FilasFiad = DgvFiadorLst.RowCount;
             int FilasGara = DgvGaranLSt.RowCount;
@@ -289,8 +294,10 @@ namespace Arcoiris.Formularios
                 tipo = "0";
                 plazo = "0";
             }
+            string razon = CboRazon.Text;
+            string sugerido = TxtMontoSug.Text;
 
-            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, "", asesor, cliente, tipo, Contratotip.ToString(), Valu, "0", datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador, datosgaran.CuiFiador, datosgaran.FiadorDomi };
+            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, TxtMontoSug.Text, asesor, cliente, tipo, Contratotip.ToString(), Valu, Txtfam.Text, datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador, datosgaran.CuiFiador, datosgaran.FiadorDomi,creditoaca,razon,sugerido };
             string[] datos2 = { TxtNoSol.Text, CboFiadNom.SelectedValue.ToString() };
             if (sol.hayasesor(asesor))
             {
@@ -298,8 +305,8 @@ namespace Arcoiris.Formularios
                 int FilEgrM = DgvEngMen.RowCount;
                 int ListaAct = LstCuentas.Items.Count;
                 int ListaPas = LstPasiv.Items.Count;
-                int CantIngre = DgvIngMen.RowCount;
-                int CantEgre = DgvIngMen.RowCount;
+                //int CantIngre = DgvIngMen.RowCount;
+                //int CantEgre = DgvIngMen.RowCount;
 
 
                 if (FilasGara <= 0 && !ConfirmarContinuar("No se ingresara ninguna garantia\n¿Desea continuar?"))
@@ -312,40 +319,82 @@ namespace Arcoiris.Formularios
                     return;
                 }
 
-                if (ListaAct <= 0)
+                //if (ListaAct <= 0)
+                //{
+                //    MostrarError("No existen datos de ingresos mensuales");
+                //   // return;
+                //}
+                //if (ListaPas<=0)
+                //{
+                //    MostrarError("No existen datos de egresos mensuales");
+                //    //return;
+                //}
+                if (verificarEstCuenta() != true)
                 {
-                    MostrarError("No existen datos de ingresos mensuales");
+                    DialogResult resp = MessageBox.Show("No se ha ingresado valores en ingresos o egresos mensuales, desea continuar sin estos valores?","sin ingresos o egresos",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                    if(resp==DialogResult.No)
                     return;
                 }
-                if (ListaPas<=0)
-                {
-                    MostrarError("No existen datos de egresosos mensuales");
-                    return;
-                }
-
-
-
-
-               
-
-
-
-
 
                 if (sol.agregar_soli(datos))
                 {
                     //bool addfiad = false;
                     //if (CboTipPresta.SelectedIndex == 1)
                     bool respo1 = IngresoFiador(), respo2 =  IngresoGarant(), respo3=soliPt2();
-                    
-                    if (respo1 && respo2 && respo3)
+                    // Escenario 1: TODO EXITOSO
+                    if (respo1 == true && respo2 == true && respo3 == true)
                     {
-                        MessageBox.Show("Solicitud ingresada correctamente", "Ingresada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Solicitud ingresada correctamente", "Ingresada",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                         limpiar();
                     }
-                    else
+
+                    // Escenario 2: Solo falla soliPt2
+                    else if (respo1 == true && respo2 == true && respo3 == false)
                     {
-                        MessageBox.Show("No fue posible asignar fiador a cliente!", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("Se registro la solicitud pero no fue posible agregar el estado financiero",
+                                        "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+                    // Escenario 3: Solo falla IngresoGarant
+                    else if (respo1 == true && respo2 == false && respo3 == true)
+                    {
+                        MessageBox.Show("Se registro la solicitud pero no fue posible agregar la garantia",
+                                       "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    // Escenario 4: Solo falla IngresoFiador
+                    else if (respo1 == false && respo2 == true && respo3 == true)
+                    {
+                        MessageBox.Show("Se registro la solicitud pero no fue posible agregar los datos del fiador",
+                                      "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    // Escenario 5: Solo IngresoFiador es exitoso
+                    else if (respo1 == true && respo2 == false && respo3 == false)
+                    {
+                        MessageBox.Show("Se registro la solicitud pero no fue posible agregar garantia y el estado financiero",
+                                     "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    // Escenario 6: Solo IngresoGarant es exitoso
+                    else if (respo1 == false && respo2 == true && respo3 == false)
+                    {
+                        MessageBox.Show("Se registro la solicitud pero no fue posible agregar datos del fiador y el estado financiero",
+                                        "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    // Escenario 7: Solo soliPt2 es exitoso
+                    else if (respo1 == false && respo2 == false && respo3 == true)
+                    {
+                        MessageBox.Show("Se registro la solicitud pero no fue posible agregar garantia y datos del fiador",
+                                         "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
+
+                    // Escenario 8: TODO FALLA
+                    else if (respo1 == false && respo2 == false && respo3 == false)
+                    {
+                        MessageBox.Show("Se registro la solicitud pero no hubo un inconveniente con los datos de garantia, fiador y estado financiero",
+                                           "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -403,7 +452,6 @@ namespace Arcoiris.Formularios
         }
         private void llenado_datos()
         {
-
             if (CboSoli.Text != "")
             {
                 string solicitud;
@@ -415,10 +463,10 @@ namespace Arcoiris.Formularios
                 TxtNomAseso.Text = datos.Rows[0][1].ToString();
                 TxtConcepto.Text = datos.Rows[0][2].ToString();
                 TxtMonto2.Text = datos.Rows[0][3].ToString();
-                TxtGarantia.Text = datos.Rows[0][5].ToString();
+                TxtMontoSug2.Text = datos.Rows[0][5].ToString();
                 TxtPlazo.Text = datos.Rows[0][4].ToString();
+                TxtGarantia.Text = $"{datos.Rows[0][9]}";
                  LblFechasol.Text = $"{Convert.ToDateTime(datos.Rows[0][6]).ToString("dd/MM/yyyy")}";
-
                 CboTipo2.Items.Clear();
                 CboTipo2.Items.Add("Diario");
                 CboTipo2.Items.Add("Diario - Intereses");
@@ -470,20 +518,23 @@ namespace Arcoiris.Formularios
         private void BtnEditar_Click(object sender, EventArgs e)
         {
             SubForms.EditSolicitud Edita = new SubForms.EditSolicitud();
-            Edita.IdCli = int.Parse($"{CboCliente.SelectedValue}");
+            Edita.IdCli = int.Parse($"{LblCodCli.Text}");
             Edita.IdSol = int.Parse($"{CboSoli.Text}");
+            Edita.isDoing += new SubForms.EditSolicitud.edicion(EdicionEnCurso);
             Edita.ShowDialog();
             //desbloquear();
         }
+
+
 
         private void bloquear()
         {
             TxtMonto2.Enabled = false;
             TxtConcepto.Enabled = false;
             TxtGarantia.Enabled = false;
-            TxtPlazo.Enabled = false;
+           // TxtPlazo.Enabled = false;
             CboEstado.Enabled = false;
-            TxtInteres.Enabled = false;
+            //TxtInteres.Enabled = false;
             TxtNomAseso.Enabled = false;
             TxtNomSoli.Enabled = false;
             CboTipo2.Enabled = false;
@@ -909,6 +960,13 @@ namespace Arcoiris.Formularios
         {
             cod_credi = Convert.ToInt32(credi);
         }
+        public void EdicionEnCurso(bool sehizo)
+        {
+            if (sehizo)
+            {
+                llenado_datos();
+            }
+        }
         private void limpiar2()
         {
             TxtNomSoli.Clear();
@@ -1230,9 +1288,9 @@ namespace Arcoiris.Formularios
             {
                 MessageBox.Show("No se ha Ingresado un monto valido, intentelo de nuevo", "Montor incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-            else if ((int.Parse(NudPlazoInv.Value.ToString()))<6)
+            else if ((int.Parse(NudPlazoInv.Value.ToString()))<3)
                 {
-                MessageBox.Show("Se necesita un plazo minimo de 6 meses para ingresar la inversiono, intentelo de nuevo", "Plazo incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);            }
+                MessageBox.Show("Se necesita un plazo minimo de 3 meses para ingresar la inversiono, intentelo de nuevo", "Plazo incorrecto", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);            }
             else if (string.IsNullOrEmpty(TxtOrigenMonto.Text))
             {
                 MessageBox.Show("No se ha definido el origen del monto de la inversion", "Origen Vacio", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1630,6 +1688,7 @@ namespace Arcoiris.Formularios
                 var val2 = item.Cells[2].Value?.ToString();
                 var val3 = item.Cells[3].Value?.ToString();
                 var val4 = item.Cells[4].Value?.ToString();
+                var val5 = item.Cells[5].Value?.ToString();
 
 
                 // 3. Comprobaciones de validación
@@ -1648,8 +1707,8 @@ namespace Arcoiris.Formularios
                     temp.Costo = decimal.Parse(val2);
                     temp.Venta = decimal.Parse(val3);
                     temp.Ganacia = decimal.Parse(val4);
+                    temp.Id= string.IsNullOrWhiteSpace(val5) ? 0 : int.Parse(val5);
                     ingresos.Add(temp);
-
                 }
                 else
                 {
@@ -1670,6 +1729,7 @@ namespace Arcoiris.Formularios
                 var valE1 = item.Cells[1].Value?.ToString();
                 var valE2 = item.Cells[2].Value?.ToString();
                 var valE3 = item.Cells[3].Value?.ToString();
+                var valeE4 = item.Cells[3].Value?.ToString();
 
 
                 // 3. Comprobaciones de validación
@@ -1677,6 +1737,7 @@ namespace Arcoiris.Formularios
                 bool esString1Valido = !string.IsNullOrWhiteSpace(valE0);
                 bool esString2Valido = !string.IsNullOrWhiteSpace(valE2);
                 bool esDecimalValido = decimal.TryParse(valE3, out _);
+
 
                 // 4. Solo si todo es válido, se agregan a la lista
                 if (esIntValido && esString1Valido && esString2Valido && esDecimalValido)
@@ -1686,6 +1747,7 @@ namespace Arcoiris.Formularios
                     TempE.Cantidad = int.Parse(valE1);
                     TempE.Empresa = valE2;
                     TempE.Cuota_men = decimal.Parse(valE3);
+                    TempE.Id= string.IsNullOrWhiteSpace(valeE4) ? 0 : int.Parse(valeE4);
                     egresos.Add(TempE);
                 }
                 else
@@ -1724,7 +1786,7 @@ namespace Arcoiris.Formularios
 
             DataTable datosCli = cli.clientebusca(idcli);
             DataTable datosRefes = cli.refscli(idcli);
-            DataTable datosGarant = sol.GaratanbyCliSol(idsol, idcli);
+            DataTable datosGarant = sol.GarantbyCliSol(idsol, idcli);
             DataTable datosIngre = sol.IngresoSol(idsol);
             DataTable datosEgre = sol.EgresoSol(idsol);
             DataTable datosCuent = sol.CuentaSol(idsol);
@@ -1759,9 +1821,11 @@ namespace Arcoiris.Formularios
             DatoSol.PagoCred = CboTipo.Text;
             DatoSol.TipoCred = TxtPlazo.Text;
             DatoSol.Monto = decimal.Parse(TxtMonto2.Text);
-            DatoSol.MontoSug= decimal.Parse(TxtMonto2.Text);
+            DatoSol.MontoSug= decimal.Parse(TxtMontoSug2.Text);
             DatoSol.MotivoCred = TxtConcept.Text;
-            
+            DatoSol.FamConCredito = TxtGarantia.Text;
+            DatoSol.interes = decimal.Parse(TxtInteres.Text);
+           
             for (int i = 0; i < datosRefes.Rows.Count; i++)
             {
                 Reportes.ClasesRepo.ReferenciaSolicitud TempRefe = new Reportes.ClasesRepo.ReferenciaSolicitud();
@@ -1773,8 +1837,8 @@ namespace Arcoiris.Formularios
             for (int i = 0; i < datosGarant.Rows.Count; i++)
             {
                 Reportes.ClasesRepo.GarantiaSolicitud temp = new Reportes.ClasesRepo.GarantiaSolicitud();
-                temp.Propietario = $"{datosGarant.Rows[i][0]}";
-                temp.Detalle = $"{datosGarant.Rows[i][1]}";
+                temp.Propietario = $"{datosGarant.Rows[i][1]}";
+               // temp.Detalle = $"{datosGarant.Rows[i][1]}";
                 temp.Tipo = $"{datosGarant.Rows[i][2]}";
                 temp.Detalle = $"{datosGarant.Rows[i][3]}";
                 temp.Valor = decimal.Parse($"{datosGarant.Rows[i][4]}");
@@ -1816,13 +1880,13 @@ namespace Arcoiris.Formularios
             {
                 Reportes.ClasesRepo.FiadorSolicitud temp = new Reportes.ClasesRepo.FiadorSolicitud();
                 //temp = int.Parse($"{datosEgre.Rows[i][0]}");
-                temp.Nombre = ($"{datosEgre.Rows[i][0]}");
-                temp.Dpi = ($"{datosEgre.Rows[i][0]}");
-                temp.Domicilio = ($"{datosEgre.Rows[i][0]}");
-                temp.Tel1 =($"{datosEgre.Rows[i][0]}");
-                temp.Tel2 =($"{datosEgre.Rows[i][0]}");
-                temp.Profes = ($"{datosEgre.Rows[i][0]}");
-                temp.RefUbi = ($"{datosEgre.Rows[i][0]}");
+                temp.Nombre = ($"{datosFiad.Rows[i][1]}");
+                temp.Dpi = ($"{datosFiad.Rows[i][2]}");
+                temp.Domicilio = ($"{datosFiad.Rows[i][3]}");
+                temp.Tel1 =($"{datosFiad.Rows[i][4]}");
+                temp.Tel2 =($"{datosFiad.Rows[i][4]}");
+                temp.Profes = ($"{datosFiad.Rows[i][6]}");
+                temp.RefUbi = ($"{datosFiad.Rows[i][7]}");
                 
                Fiad.Add(temp);
             }
@@ -1853,7 +1917,7 @@ namespace Arcoiris.Formularios
             foreach (DataGridViewRow fila in DgvGaranLSt.Rows)
             {
                 SubClases.Garantia temp = new SubClases.Garantia();
-                temp.Id = int.Parse($"{fila.Cells[0].Value}");
+                temp.Id = 0;
                 temp.Propietario =int.Parse($"{fila.Cells[0].Value}");
                 temp.Tipo=$"{fila.Cells[2].Value}";
                 temp.Detalle = ($"{fila.Cells[3].Value}");
@@ -1875,12 +1939,13 @@ namespace Arcoiris.Formularios
         private bool IngresoFiador()
         {
             List<SubClases.Fiador> IngFiad = new List<SubClases.Fiador>();
+            
             foreach (DataGridViewRow fila in DgvFiadorLst.Rows)
             {
                 SubClases.Fiador temp = new SubClases.Fiador();
                 temp.idSol = int.Parse($"{TxtNoSol.Text}");
                 temp.IdFiad = int.Parse($"{fila.Cells[0].Value}");
-                temp.OtherIng = $"{fila.Cells}";
+                temp.OtherIng = $"{fila.Cells[3].Value}";
                 IngFiad.Add(temp);
             }
             return (sol.ingresoFiador(IngFiad));
@@ -1902,6 +1967,8 @@ namespace Arcoiris.Formularios
             string detalle = TxtDetaGara.Text.Trim();
             string observacion = TxtObsGara.Text.Trim();
             string Info = TxtInfoGara.Text.Trim();
+
+
 
             // 2. Validaciones de campos obligatorios
             if (string.IsNullOrEmpty(Tipo) || string.IsNullOrEmpty(prop) || string.IsNullOrEmpty(valor) || string.IsNullOrEmpty(detalle) || string.IsNullOrEmpty(observacion) || string.IsNullOrEmpty(Info) || string.IsNullOrEmpty(IdProp))
@@ -2170,6 +2237,77 @@ namespace Arcoiris.Formularios
         private bool ConfirmarContinuar(string mensaje)
         {
             return MessageBox.Show(mensaje, "¿Continuar?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
+        }
+
+        private bool verificarEstCuenta()
+        {
+           bool  respo = false;
+            foreach (DataGridViewRow item in DgvIngMen.Rows)
+            {
+                // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
+                if (item.IsNewRow) continue;
+
+                // 2. Obtener valores de las celdas (manejando posibles nulos)
+                var val0 = item.Cells[0].Value?.ToString();
+                var val1 = item.Cells[1].Value?.ToString();
+                var val2 = item.Cells[2].Value?.ToString();
+                var val3 = item.Cells[3].Value?.ToString();
+                var val4 = item.Cells[4].Value?.ToString();
+
+
+                // 3. Comprobaciones de validación
+                bool esInt1Valido = int.TryParse(val1, out _);
+                bool esString1Valido = !string.IsNullOrWhiteSpace(val0);
+                bool esDecimal1Valido = decimal.TryParse(val2, out _);
+                bool esDecimal2Valido = decimal.TryParse(val3, out _);
+                bool esDecimal3Valido = decimal.TryParse(val4, out _);
+
+                // 4. Solo si todo es válido, se agregan a la lista
+                if (esInt1Valido && esString1Valido && esDecimal1Valido && esDecimal2Valido && esDecimal3Valido)
+                {
+
+                    respo = true;
+                }
+                else
+                {
+                    MessageBox.Show($"La fila {item.Index} de ingresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false; //omitir este return para revision 
+                }
+                
+            }
+
+            //Comprobacion de valores para egresos
+
+            foreach (DataGridViewRow item in DgvEngMen.Rows)
+            {
+                // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
+                if (item.IsNewRow) continue;
+
+                // 2. Obtener valores de las celdas (manejando posibles nulos)
+                var valE0 = item.Cells[0].Value?.ToString();
+                var valE1 = item.Cells[1].Value?.ToString();
+                var valE2 = item.Cells[2].Value?.ToString();
+                var valE3 = item.Cells[3].Value?.ToString();
+
+
+                // 3. Comprobaciones de validación
+                bool esIntValido = int.TryParse(valE1, out _);
+                bool esString1Valido = !string.IsNullOrWhiteSpace(valE0);
+                bool esString2Valido = !string.IsNullOrWhiteSpace(valE2);
+                bool esDecimalValido = decimal.TryParse(valE3, out _);
+
+                // 4. Solo si todo es válido, se agregan a la lista
+                if (esIntValido && esString1Valido && esString2Valido && esDecimalValido)
+                {
+                    respo = true;
+                }
+                else
+                {
+                    MessageBox.Show($"La fila {item.Index} de egresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
+            }
+            return respo;
         }
 
     }

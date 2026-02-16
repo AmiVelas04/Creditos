@@ -26,7 +26,7 @@ namespace Arcoiris.Formularios
             listarasesores();
             ListaAsesoAll();
 
-            if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "3" 
+            if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "3" || Form1.Nivel=="5"
                 )
             {
                 CboCre.Items.Add("Creditos Atrasados Diarios");

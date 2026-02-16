@@ -84,6 +84,14 @@ namespace Arcoiris.Formularios
         {
             this.Close();
         }
+
+        private void Respaldo_Load(object sender, EventArgs e)
+        {
+            //Clases.Estilos.StyleForm(this);
+            Clases.Estilos.StyleDangerButton(BtnCerrar);
+            Clases.Estilos.StylePrimaryButton(BtnGuardar);
+            Clases.Estilos.StyleSecondaryButton(BtnCarpeta);
+        }
     }
 }
 

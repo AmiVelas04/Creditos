@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,12 +59,14 @@ namespace Arcoiris.Formularios
         //Listar crditos pagina 1
         private void Prestamo_Load(object sender, EventArgs e)
         {
+          
            
             if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "5")
             {
                 BtnEliminar.Enabled = true;
                 BtnEliminarCre.Visible = true;
                 AddNota.Visible = true;
+                BtnEditsol.Enabled = true;
             }
             else if (Form1.Nivel == "4")
             {
@@ -96,6 +99,9 @@ namespace Arcoiris.Formularios
             Clases.Estilos.StyleSecondaryButton(BtnAldia);
             //ases.Estilos.StyleSecondaryButton();
             Clases.Estilos.StyleDangerButton(BtnCancel);
+            Clases.Estilos.StyleSecondaryButton(BtnMostrar);
+            Clases.Estilos.StyleSecondaryButton(BtnListPago);
+            Clases.Estilos.StyleDangerButton(BtnEliminarCre);
 
 
         }
@@ -137,13 +143,13 @@ namespace Arcoiris.Formularios
         private void cancel()
         {
             DataTable dat = new DataTable();
+
             dat = cre.cancel(CboCliNom.SelectedValue.ToString());
             int cont, total = dat.Rows.Count;
             CboPresta.Items.Clear();
             for (cont = 1; cont <= total; cont++)
             {
                 CboPresta.Items.Add(dat.Rows[cont - 1][0]);
-
             }
         }
 
@@ -278,7 +284,7 @@ namespace Arcoiris.Formularios
             AutoCompleteStringCollection coleccion = new AutoCompleteStringCollection();
             foreach (DataRow row in listadocli.Rows)
             {
-                coleccion.Add(row["Nombre"].ToString());
+                coleccion.Add($"{row["Nombre"]}");
             }
             
             CboCliNom.AutoCompleteCustomSource = coleccion;
@@ -453,7 +459,7 @@ namespace Arcoiris.Formularios
             string fecha = DateTime.Now.ToString("yyyy/MM/dd"); //DtpPago.Value.ToString("yyyy/MM/dd");
             string estado = "Activo";
             string usuario = Form1.Cod_U;
-            string credito = LblCred.Text, cliente = CboCliNom.Text;
+            string credito = LblCred.Text, cliente = CboCliNom.Text.Split('-')[0].Trim(); //CboCliNom.Text;
 
             String[] datos = { id, operacion, monto, descripcion, fecha, estado, usuario, credito, cliente };
             if (caj.ingreope(datos))
@@ -538,7 +544,7 @@ namespace Arcoiris.Formularios
         private void imprimir_bol()
         {
             string[] chrRem = new string[] { ")", "(", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-            string nom = CboCliNom.Text;
+            string nom = CboCliNom.Text.Split('-')[0].Trim(); ;
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
             datosP.boleta = pag.idpago(CboPresta.Text);
             string dir = cli.Dir_cli(pag.idpago(LblCred.Text).ToString());
@@ -578,7 +584,7 @@ namespace Arcoiris.Formularios
         private void Re_imprimir()
         {
             string[] chrRem = new string[] {")","(","0", "1", "2", "3", "4", "5", "6", "7", "8", "9","-"};
-            string nom = CboCliNom.Text;
+            string nom = CboCliNom.Text.Split('-')[0].Trim(); ;
             Reportes.PagoDesc datosP = new Reportes.PagoDesc();
             int indice;
             indice = DGVPpago.CurrentRow.Index;
@@ -903,7 +909,7 @@ namespace Arcoiris.Formularios
             DataTable datos = new DataTable();
             datos = cre.nombres_cre(Convert.ToInt32(CboPresta.Text));
 
-            nombre = CboCliNom.Text;
+            nombre = CboCliNom.Text.Split('-')[0].Trim(); ;
             direccion = datos.Rows[0][6].ToString();
             tasa = TxtTasa.Text;
             plazo = datos.Rows[0][5].ToString();
@@ -1001,14 +1007,16 @@ namespace Arcoiris.Formularios
 
         private void BtnGarant_Click(object sender, EventArgs e)
         {
-            if (CboPresta.Text != "")
-            {
-                GarantVer garan = new GarantVer();
-                garan.cliente = CboCliNom.Text;
-                garan.idcre = CboPresta.Text;
-                garan.nivel = Form1.Nivel;
-                garan.ShowDialog();
-            }
+            //if (CboPresta.Text != "")
+            //{
+            //    GarantVer garan = new GarantVer();
+            //    garan.cliente = CboCliNom.Text;
+            //    garan.idcre = CboPresta.Text;
+            //    garan.nivel = Form1.Nivel;
+            //    garan.ShowDialog();
+            //}
+            verSoli();
+
         }
         #endregion
 
@@ -1171,5 +1179,185 @@ namespace Arcoiris.Formularios
             decimal.TryParse(TxtMora.Text, out mora);
             TxtCuota.Text = (decimal.Parse(TxtIntD.Text) + decimal.Parse(TxtCapD.Text) + mora).ToString();
         }
+
+        private void BtnVerDpi_Click(object sender, EventArgs e)
+        {
+            int idcli = int.Parse($"{CboCliNom.SelectedValue}");
+            DataTable datos=cli.clientebusca($"{idcli}");
+            byte[] imadpi = (byte[])datos.Rows[0][21];
+
+            // Intentemos convertir los bytes a texto y luego de Base64 a Bytes
+            // Solo si el programador anterior guardó el Base64 puro en el BLOB
+            string base64String = Encoding.UTF8.GetString(imadpi);
+            byte[] realBytes = Convert.FromBase64String(base64String);
+            Bitmap ImgDpi;
+            using (MemoryStream ms = new MemoryStream(realBytes))
+            {
+                ImgDpi = new Bitmap(ms);
+            }
+            SubForms.Dpi ImagenDpi = new SubForms.Dpi();
+            ImagenDpi.dpi = ImgDpi;
+            ImagenDpi.ShowDialog();
+
+        }
+
+        private void BtnEditsol_Click(object sender, EventArgs e)
+        {
+            if (CboPresta.Text == "")
+            {
+                MessageBox.Show("No se ha selecionado un numero de credito","sin credito",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+                return;
+            }
+            SubForms.EditSolicitud Edita = new SubForms.EditSolicitud();
+            DataTable datoSol= soli.SolibyCredi($"{CboPresta.Text}");
+            string sol = $"{datoSol.Rows[0][0]}";
+            Edita.IdCli = int.Parse($"{CboCliNom.SelectedValue}");
+            Edita.IdSol = int.Parse(sol);
+            Edita.Credito =int.Parse(CboPresta.Text);
+            Edita.isDoing += new SubForms.EditSolicitud.edicion(EdicionEnCurso);
+            Edita.ShowDialog();
+        }
+
+        private void EdicionEnCurso(bool edita)
+        {
+            if (edita)
+            { MessageBox.Show("La edidicon de los datos del credito/solicitud se realizaron con exito","Correcto",MessageBoxButtons.OK,MessageBoxIcon.Information); }
+            else
+            {
+               // MessageBox.Show("La edicion de los datos no pudo ser realizada", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+
+        private void verSoli()
+        {
+            List<Reportes.ClasesRepo.ReferenciaSolicitud> refes = new List<Reportes.ClasesRepo.ReferenciaSolicitud>();
+            List<Reportes.ClasesRepo.FiadorSolicitud> Fiad = new List<Reportes.ClasesRepo.FiadorSolicitud>();
+            List<Reportes.ClasesRepo.GarantiaSolicitud> Gara = new List<Reportes.ClasesRepo.GarantiaSolicitud>();
+            List<Reportes.ClasesRepo.CuentaRepo> Cue = new List<Reportes.ClasesRepo.CuentaRepo>();
+            List<Reportes.ClasesRepo.IngresoRepo> Ingre = new List<Reportes.ClasesRepo.IngresoRepo>();
+            List<Reportes.ClasesRepo.EgresoRepo> Egre = new List<Reportes.ClasesRepo.EgresoRepo>();
+            DataTable respo1 = soli.SolibyCredi(LblCred.Text);
+
+            string idcli = LblIdCli.Text;
+            string idsol = $"{respo1.Rows[0][0]}";
+            string fechasoli = $"{DateTime.Parse($"{respo1.Rows[0][5]}").ToString("dd/MM/yyy")}";
+            DataTable datosCli = cli.clientebusca(idcli);
+            DataTable datosRefes = cli.refscli(idcli);
+            DataTable datosGarant = soli.GarantbyCliSol(idsol, idcli);
+            DataTable datosIngre = soli.IngresoSol(idsol);
+            DataTable datosEgre = soli.EgresoSol(idsol);
+            DataTable datosCuent = soli.CuentaSol(idsol);
+            DataTable datosFiad = soli.FiadAllSol(idsol);
+            //  DataTable datosSoli = sol.busca_datos(CboSoli.Text);
+            Reportes.ClasesRepo.DatosSolicitud DatoSol = new Reportes.ClasesRepo.DatosSolicitud();
+            DatoSol.IdSol = int.Parse(idsol);
+            DatoSol.FechaSol = DateTime.Parse(fechasoli);
+            DatoSol.Cliente = $"{datosCli.Rows[0][0]} {datosCli.Rows[0][1]}";
+            DatoSol.Domicilio = $"{datosCli.Rows[0][2]}";
+            DatoSol.DPI = $"{datosCli.Rows[0][3]}";
+            DatoSol.Tel1 = $"{datosCli.Rows[0][4]}";
+            DatoSol.Tel2 = $"{datosCli.Rows[0][5]}";
+            DatoSol.Prof1 = $"{datosCli.Rows[0][6]}";
+            DatoSol.NomCony = $"{datosCli.Rows[0][7]} {datosCli.Rows[0][8]}";
+            DatoSol.TelCony = $"{datosCli.Rows[0][9]}";
+            DatoSol.Referencia = $"{datosCli.Rows[0][10]}";
+            DatoSol.EstadoCivil = $"{datosCli.Rows[0][11]}";
+            DatoSol.Prof2 = $"{datosCli.Rows[0][17]}";
+            DatoSol.CagaF = $"{datosCli.Rows[0][18]}";
+            DatoSol.ProfCony = $"{datosCli.Rows[0][19]}";
+            DatoSol.DPICony = $"{datosCli.Rows[0][20]}";
+            DatoSol.Asesor = LblAseso.Text;
+            //falta buscar
+            DatoSol.TelNeg = $"{datosCli.Rows[0][24]}";
+            DatoSol.RefNeg = $"{datosCli.Rows[0][26]}";
+            DatoSol.AntiqNeg = $"{datosCli.Rows[0][28]}";
+            DatoSol.DirNeg = $"{datosCli.Rows[0][25]}";
+            DatoSol.NomNeg = $"{datosCli.Rows[0][23]}";
+            DatoSol.TipoNeg = $"{datosCli.Rows[0][27]}";
+            DatoSol.PlazoCred = int.Parse(TxtPlazo.Text);
+            DatoSol.PagoCred = TxtTipo.Text;
+            DatoSol.TipoCred = TxtPlazo.Text;
+            DatoSol.Monto = decimal.Parse(TxtMonto.Text);
+            DatoSol.MontoSug = decimal.Parse($"{respo1.Rows[0][2]}");
+            DatoSol.MotivoCred = $"{respo1.Rows[0][1]}";
+
+            for (int i = 0; i < datosRefes.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.ReferenciaSolicitud TempRefe = new Reportes.ClasesRepo.ReferenciaSolicitud();
+                TempRefe.Nombre = $"{datosRefes.Rows[i][1]}";
+                TempRefe.Parentezco = $"{datosRefes.Rows[i][2]}";
+                TempRefe.Telefono = $"{datosRefes.Rows[i][3]}";
+                refes.Add(TempRefe);
+            }
+            for (int i = 0; i < datosGarant.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.GarantiaSolicitud temp = new Reportes.ClasesRepo.GarantiaSolicitud();
+                temp.Propietario = $"{datosGarant.Rows[i][0]}";
+                temp.Detalle = $"{datosGarant.Rows[i][1]}";
+                temp.Tipo = $"{datosGarant.Rows[i][2]}";
+                temp.Detalle = $"{datosGarant.Rows[i][3]}";
+                temp.Valor = decimal.Parse($"{datosGarant.Rows[i][4]}");
+                temp.Informacion = $"{datosGarant.Rows[i][5]}";
+                temp.Observaciones = $"{datosGarant.Rows[i][6]}";
+                Gara.Add(temp);
+            }
+
+            for (int i = 0; i < datosCuent.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.CuentaRepo temp = new Reportes.ClasesRepo.CuentaRepo();
+                temp.NomCuenta = $"{datosCuent.Rows[i][0]}";
+                temp.Valor = decimal.Parse($"{datosCuent.Rows[i][1]}");
+                temp.tipo = bool.Parse($"{datosCuent.Rows[i][2]}");
+                Cue.Add(temp);
+            }
+
+            for (int i = 0; i < datosIngre.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.IngresoRepo temp = new Reportes.ClasesRepo.IngresoRepo();
+                temp.Cantidad = int.Parse($"{datosIngre.Rows[i][0]}");
+                temp.Producto = ($"{datosIngre.Rows[i][1]}");
+                temp.Costo = decimal.Parse($"{datosIngre.Rows[i][2]}");
+                temp.Venta = decimal.Parse($"{datosIngre.Rows[i][3]}");
+                temp.Ganacia = decimal.Parse($"{datosIngre.Rows[i][4]}");
+                Ingre.Add(temp);
+            }
+            for (int i = 0; i < datosEgre.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.EgresoRepo temp = new Reportes.ClasesRepo.EgresoRepo();
+                temp.Cantidad = int.Parse($"{datosEgre.Rows[i][0]}");
+                temp.Detalle = ($"{datosEgre.Rows[i][0]}");
+                temp.Empresa = ($"{datosEgre.Rows[i][0]}");
+                temp.Cuota_men = decimal.Parse($"{datosEgre.Rows[i][0]}");
+                Egre.Add(temp);
+            }
+
+            for (int i = 0; i < datosFiad.Rows.Count; i++)
+            {
+                Reportes.ClasesRepo.FiadorSolicitud temp = new Reportes.ClasesRepo.FiadorSolicitud();
+                //temp = int.Parse($"{datosEgre.Rows[i][0]}");
+                temp.Nombre = ($"{datosEgre.Rows[i][0]}");
+                temp.Dpi = ($"{datosEgre.Rows[i][0]}");
+                temp.Domicilio = ($"{datosEgre.Rows[i][0]}");
+                temp.Tel1 = ($"{datosEgre.Rows[i][0]}");
+                temp.Tel2 = ($"{datosEgre.Rows[i][0]}");
+                temp.Profes = ($"{datosEgre.Rows[i][0]}");
+                temp.RefUbi = ($"{datosEgre.Rows[i][0]}");
+
+                Fiad.Add(temp);
+            }
+            //DatoSol.Refs.Add(refes);
+            //DatoSol.cre
+            Reportes.SolicitudNuevo SoliRepo = new Reportes.SolicitudNuevo();
+            SoliRepo.DatosGen.Add(DatoSol);
+            SoliRepo.Referi = refes;
+            SoliRepo.Fiado = (Fiad);
+            SoliRepo.Garant = (Gara);
+            SoliRepo.Cuenta = Cue;
+            SoliRepo.Ingre = Ingre;
+            SoliRepo.Egres = Egre;
+            SoliRepo.Show();
+        }
+
     }
 }

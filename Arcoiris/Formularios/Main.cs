@@ -42,6 +42,7 @@ namespace Arcoiris.Formularios
             }
             else if (Form1.Nivel.Equals("5"))
             {
+                BtnInv.Visible = true;
                 //BtnReporte.Visible = true;
             }
             LblVer.Text = $"{Application.ProductName}  Version: {Application.ProductVersion}";
