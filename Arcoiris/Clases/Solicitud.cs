@@ -196,7 +196,7 @@ namespace Arcoiris.Clases
         }
         public DataTable datosGen2Soli(string sol)
         {
-            string consulta = $"SELECT sol.ID_SOLICITUD,cli.CODIGO_CLI,asol.COD_ASESOR,sol.MONTO,sol.CONCEPTO,sol.TIPO,sol.estado " +
+            string consulta = $"SELECT sol.ID_SOLICITUD,cli.CODIGO_CLI,asol.COD_ASESOR,sol.MONTO,sol.CONCEPTO,sol.TIPO,sol.estado,sol.interes " +
                 $"FROM solicitud sol " +
                 $"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
                 $"INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
@@ -233,8 +233,8 @@ namespace Arcoiris.Clases
                 solicompa = id_solicitud();
             }
             datos[0] = $"{solTemp}";
-            consulta = $"insert into solicitud (id_solicitud,concepto,monto,fecha, estado, plazo,garantia,tipo,fiador,razon) " +
-                $"values({datos[0]},'{datos[1]}',{datos[2]} ,'{fecha}','{datos[4]}','{datos[5]}','{datos[6]}',{datos[9]},'{datos[23]}','{datos[24]}')";
+            consulta = $"insert into solicitud (id_solicitud,concepto,monto,fecha, estado, plazo,garantia,tipo,fiador,razon,interes) " +
+                $"values({datos[0]},'{datos[1]}',{datos[2]} ,'{fecha}','{datos[4]}','{datos[5]}','{datos[6]}',{datos[9]},'{datos[23]}','{datos[24]}',{datos[26]})";
             //MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
             com.Connection = conect.conn;
@@ -311,7 +311,7 @@ namespace Arcoiris.Clases
         public DataTable busca_datos(string soli)
         {
             string consulta;
-            consulta = "Select Concat(cli.Nombres,' ',cli.apellidos) as Nombre, ase.nombre as Asesor, sol.Concepto , Monto,plazo,garantia,Fecha,tipo,cli.Codigo_cli,sol.fiador " +
+            consulta = "Select Concat(cli.Nombres,' ',cli.apellidos) as Nombre, ase.nombre as Asesor, sol.Concepto , Monto,plazo,garantia,Fecha,tipo,cli.Codigo_cli,sol.fiador,sol.interes " +
                        "from Cliente cli inner join asigna_solicitud asol on asol.codigo_cli = cli.codigo_cli inner join Asesor ase on ase.cod_asesor = asol.cod_asesor inner join solicitud sol on sol.id_solicitud = asol.id_solicitud " +
                        "where sol.id_solicitud =" + soli;
             DataTable datos = new DataTable();
@@ -1007,7 +1007,7 @@ namespace Arcoiris.Clases
 
         public DataTable FiadAllSol(string sol)
         {
-            string consulta = $"SELECT c.CODIGO_CLI, CONCAT(c.NOMBRES, ' ', c.APELLIDOS),c.DPI,c.DOMICILIO,c.TELEFONO1,c.Telefono2,c.PROFESION,c.REFERENCIA,sfi.OtherIng " +
+            string consulta = $"SELECT c.CODIGO_CLI, CONCAT(c.NOMBRES, ' ', c.APELLIDOS),c.DPI,c.DOMICILIO,c.TELEFONO1,c.Telefono2,c.PROFESION,c.REFERENCIA,sfi.OtherIng,Date_format(c.fechanaci,'%y/%m/%d') " +
                 $"FROM cliente c " +
                 $"JOIN sol_fiad sfi ON c.CODIGO_CLI = sfi.Id_Fia " +
                 $"WHERE sfi.Id_sol ={sol}";
@@ -1025,7 +1025,7 @@ namespace Arcoiris.Clases
 
         public DataTable EgresoSol(string idsol)
         {
-            string consulta = "SELECT ecli.CANTIDAD,ecli.DETALLE,ecli.DETALLE,ecli.CUOTA_MEN,ecli.id_egrmen " +
+            string consulta = "SELECT ecli.CANTIDAD,ecli.DETALLE,ecli.Empresa,ecli.CUOTA_MEN,ecli.id_egrmen " +
                 "FROM egresocli ecli " +
                 "INNER JOIN egreso_sol esol ON esol.ID_EGRMEN = ecli.ID_EGRMEN " +
                 $"WHERE esol.ID_SOL= {idsol} ";
@@ -1245,8 +1245,8 @@ namespace Arcoiris.Clases
 
         public bool editarSolPre(string [] datos)
         {
-            string consulta = $"update solicitud set concepto='{datos[1]}',razon='{datos[2]}',monto={datos[3]},fecha='{datos[4]}',estado='{datos[5]}',plazo={datos[6]}, " +
-                $"garantia='{datos[7]}',fiador='{datos[8]}',tipo={datos[9]} " +
+            string consulta = $"update solicitud set concepto='{datos[1]}',razon='{datos[2]}',monto={datos[3]},estado='{datos[5]}',plazo={datos[6]}, " +
+                $"garantia='{datos[7]}',fiador='{datos[8]}',tipo={datos[9]},interes={datos[10]} " +
                 $"where id_solicitud={datos[0]}";
             return consulta_gen(consulta);
         }

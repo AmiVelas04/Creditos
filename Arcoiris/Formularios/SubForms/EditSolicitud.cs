@@ -142,15 +142,16 @@ namespace Arcoiris.Formularios.SubForms
             TxtConcept.Text = $"{datosSol.Rows[0][1]}";
             TxtMonto.Text = $"{datosSol.Rows[0][3]}";
             TxtMontoAprov.Text = $"{datosSol.Rows[0][3]}";
-           
-            LblFecha.Text= $"{datosSol.Rows[0][4]}";
-            LblEstado.Text= $"{datosSol.Rows[0][5]}";
+
+            LblFecha.Text = $"{datosSol.Rows[0][4]}";
+            LblEstado.Text = $"{datosSol.Rows[0][5]}";
             NupPlazo.Value = decimal.Parse($"{datosSol.Rows[0][6]}");
+            TxtInteresEdit.Text = $"{datosSol.Rows[0][6]}";
 
             TxtMontoSug.Text = $"{datosSol.Rows[0][7]}";
             TxtCredAqui.Text = $"{datosSol.Rows[0][8]}";
 
-         
+
             CboTipo.SelectedValue = int.Parse($"{datosSol.Rows[0][9]}");
 
             if (datosSol.Rows[0][2].ToString().Equals("Emergencia"))
@@ -168,11 +169,11 @@ namespace Arcoiris.Formularios.SubForms
 
             if ($"{datosSol.Rows[0][5]}".Equals("Espera"))
             {
-               // TxtMonto.Enabled = true;
-                
+                // TxtMonto.Enabled = true;
+
             }
             else if ($"{datosSol.Rows[0][5]}".Equals("Autorizado"))
-                {
+            {
                 TxtMonto.Enabled = false;
                 CboAsesor.Enabled = false;
                 CboTipo.Enabled = false;
@@ -212,8 +213,8 @@ namespace Arcoiris.Formularios.SubForms
 
         private void cargaCuenta()
         {
-        //    listaCuentas.Clear();
-          //  LstCuentas.Items.Clear();
+               listaCuentas.Clear();
+             LstCuentas.Items.Clear();
             LstPasiv.Items.Clear();
             DataTable datosCuent = Soli.CuentaSol($"{IdSol}");
             int filas = datosCuent.Rows.Count;
@@ -226,13 +227,13 @@ namespace Arcoiris.Formularios.SubForms
         private void cargaCuentaModif()
         {
             List<Formularios.SubClases.Cuenta> Tempo = new List<SubClases.Cuenta>();
-                 Tempo=listaCuentas.ToList();
+            Tempo = listaCuentas.ToList();
             listaCuentas.Clear();
             LstCuentas.Items.Clear();
             LstPasiv.Items.Clear();
-            for (int i = 0; i <Tempo.Count; i++)
+            for (int i = 0; i < Tempo.Count; i++)
             {
-                agregarCuentaEdita(Tempo[i].NomCuenta,Tempo[i].Valor, Tempo[i].tipo, Tempo[i].Id);
+                agregarCuentaEdita(Tempo[i].NomCuenta, Tempo[i].Valor, Tempo[i].tipo, Tempo[i].Id);
             }
         }
 
@@ -240,21 +241,23 @@ namespace Arcoiris.Formularios.SubForms
 
         private void cargaIngreso()
         {
+            DgvIngMen.Rows.Clear();
             DataTable datosIngre = Soli.IngresoSol($"{IdSol}");
             int filas = datosIngre.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
-                DgvIngMen.Rows.Add( $"{datosIngre.Rows[i][1]}", $"{datosIngre.Rows[i][0]}", $"{datosIngre.Rows[i][2]}", $"{datosIngre.Rows[i][3]}", $"{datosIngre.Rows[i][4]}", $"{datosIngre.Rows[i][5]}");//falta meter codigo para actualizar
+                DgvIngMen.Rows.Add($"{datosIngre.Rows[i][1]}", $"{datosIngre.Rows[i][0]}", $"{datosIngre.Rows[i][2]}", $"{datosIngre.Rows[i][3]}", $"{datosIngre.Rows[i][4]}", $"{datosIngre.Rows[i][5]}");//falta meter codigo para actualizar
             }
         }
 
         private void cargaEgreso()
         {
+            DgvIngMen.Rows.Clear();
             DataTable datosEgre = Soli.EgresoSol($"{IdSol}");
             int filas = datosEgre.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
-                DgvEngMen.Rows.Add( $"{datosEgre.Rows[i][1]}", $"{datosEgre.Rows[i][0]}", $"{datosEgre.Rows[i][2]}", $"{datosEgre.Rows[i][3]}", $"{datosEgre.Rows[i][4]}"); //falta meter codigo para actualizar
+                DgvEngMen.Rows.Add($"{datosEgre.Rows[i][1]}", $"{datosEgre.Rows[i][0]}", $"{datosEgre.Rows[i][2]}", $"{datosEgre.Rows[i][3]}", $"{datosEgre.Rows[i][4]}"); //falta meter codigo para actualizar
             }
         }
 
@@ -264,12 +267,13 @@ namespace Arcoiris.Formularios.SubForms
             int filas = datosFia.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
-                DgvFiadorLst.Rows.Add($"{datosFia.Rows[i][0]}",$"{datosFia.Rows[i][1]}", $"{datosFia.Rows[i][3]}", $"{datosFia.Rows[i][8]}",1); // falta meter codigo de cliente para futuros datos actualizados
+                DgvFiadorLst.Rows.Add($"{datosFia.Rows[i][0]}", $"{datosFia.Rows[i][1]}", $"{datosFia.Rows[i][3]}", $"{datosFia.Rows[i][8]}", 1); // falta meter codigo de cliente para futuros datos actualizados
             }
         }
 
         private void cargarGarantia()
-        { DataTable datosGarant = Soli.GarantbyCliSol($"{IdSol}", $"{IdCli}");
+        {
+            DataTable datosGarant = Soli.GarantbyCliSol($"{IdSol}", $"{IdCli}");
             int filas = datosGarant.Rows.Count;
             for (int i = 0; i < filas; i++)
             {
@@ -288,7 +292,7 @@ namespace Arcoiris.Formularios.SubForms
             string IdSol;
             string IdClie;
             string IdAse;
-           
+
 
             // 2. Validación en cascada
             if (string.IsNullOrWhiteSpace(TxtConcept.Text))
@@ -326,7 +330,7 @@ namespace Arcoiris.Formularios.SubForms
             {
                 tipo = "0"; // Fallback
             }
-            string[] soli = {TxtConcept.Text.Trim(),montoValidado.ToString("F2"),plazoValidado.ToString(),tipo,IdSol,IdAse,IdClie};
+            string[] soli = { TxtConcept.Text.Trim(), montoValidado.ToString("F2"), plazoValidado.ToString(), tipo, IdSol, IdAse, IdClie };
 
             Doing = true;
         }
@@ -362,14 +366,14 @@ namespace Arcoiris.Formularios.SubForms
 
                 // 3. Comprobaciones de validación
                 bool esInt1Valido = int.TryParse(val1, out _);
-                bool esInt2Valido= int.TryParse(val5, out _);
+                bool esInt2Valido = int.TryParse(val5, out _);
                 bool esString1Valido = !string.IsNullOrWhiteSpace(val0);
                 bool esDecimal1Valido = decimal.TryParse(val2, out _);
                 bool esDecimal2Valido = decimal.TryParse(val3, out _);
                 bool esDecimal3Valido = decimal.TryParse(val4, out _);
 
                 // 4. Solo si todo es válido, se agregan a la lista
-                if (esInt1Valido && esString1Valido && esDecimal1Valido && esDecimal2Valido && esDecimal3Valido && esInt2Valido )
+                if (esInt1Valido && esString1Valido && esDecimal1Valido && esDecimal2Valido && esDecimal3Valido && esInt2Valido)
                 {
                     SubClases.Ingreso temp = new SubClases.Ingreso();
                     temp.Producto = val0;
@@ -384,7 +388,7 @@ namespace Arcoiris.Formularios.SubForms
                 else
                 {
                     MessageBox.Show($"La fila {item.Index} de ingresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    Doing= false; //omitir este return para revision 
+                    Doing = false; //omitir este return para revision 
                 }
             }
 
@@ -400,7 +404,9 @@ namespace Arcoiris.Formularios.SubForms
                 var valE1 = item.Cells[1].Value?.ToString();
                 var valE2 = item.Cells[2].Value?.ToString();
                 var valE3 = item.Cells[3].Value?.ToString();
-                var valE4 = item.Cells[4].Value?.ToString();
+                var valE4 = string.IsNullOrWhiteSpace(item.Cells[4].Value?.ToString())
+         ? "0"
+         : item.Cells[4].Value.ToString();
 
 
                 // 3. Comprobaciones de validación
@@ -423,8 +429,8 @@ namespace Arcoiris.Formularios.SubForms
                 }
                 else
                 {
-                    MessageBox.Show($"La fila {item.Index} de egresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                   Doing= false;
+                    MessageBox.Show($"La fila {item.Index + 1} de egresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    Doing = false;
                 }
             }
             int CantIngre = ingresos.Count;
@@ -432,14 +438,18 @@ namespace Arcoiris.Formularios.SubForms
             bool IngreResp = CantIngre > 0 ? Soli.IngresoMen(ingresos, TxtNoSol.Text) : true;
             bool EgreResp = CantEgre > 0 ? Soli.EgresoMen(egresos, TxtNoSol.Text) : true;
 
-          Doing= ((Soli.IngresoEstadoFinan(listaCuentas, TxtNoSol.Text) && IngreResp && EgreResp));
+            Doing = ((Soli.IngresoEstadoFinan(listaCuentas, TxtNoSol.Text) && IngreResp && EgreResp));
             if (Doing)
             {
+               
                 MessageBox.Show("El estado financiero ha sido actualizado",
                                "Exito",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Information);
             }
+            cargaCuenta();
+            cargaIngreso();
+            cargaEgreso();
         }
 
         private void updateFiador()
@@ -454,7 +464,7 @@ namespace Arcoiris.Formularios.SubForms
                 temp.procc = $"{fila.Cells[4].Value}" != "0";
                 IngFiad.Add(temp);
             }
-            Doing=(Soli.ingresoFiador(IngFiad));// enviar un identificador de que es para actualizar o para ingresar
+            Doing = (Soli.ingresoFiador(IngFiad));// enviar un identificador de que es para actualizar o para ingresar
             if (Doing)
             {
                 MessageBox.Show("Los datos de fiador han sido actualizados",
@@ -469,7 +479,7 @@ namespace Arcoiris.Formularios.SubForms
             List<SubClases.Garantia> IngGar = new List<SubClases.Garantia>();
             foreach (DataGridViewRow fila in DgvGaranLSt.Rows)
             {
-                SubClases.Garantia temp = new SubClases.Garantia(); 
+                SubClases.Garantia temp = new SubClases.Garantia();
                 temp.Id = int.Parse($"{fila.Cells[7].Value}"); // debeser id de garantia o 0 para que se ingrese como nuevo
                 temp.Propietario = int.Parse($"{fila.Cells[0].Value}");
                 temp.Tipo = $"{fila.Cells[2].Value}";
@@ -479,12 +489,12 @@ namespace Arcoiris.Formularios.SubForms
                 temp.Observaciones = ($"{fila.Cells[6].Value}");
                 IngGar.Add(temp);
             }
-            Doing =((Soli.ingresoGarantia(IngGar, TxtNoSol.Text)));
+            Doing = ((Soli.ingresoGarantia(IngGar, TxtNoSol.Text)));
             if (Doing)
             { MessageBox.Show("Garantias actualizadas", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             else
             { MessageBox.Show("Garantias no actualizadas", "revisar", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
-            
+
         }
 
 
@@ -512,7 +522,7 @@ namespace Arcoiris.Formularios.SubForms
         }
 
 
-        private void agregarCuentaEdita(string Nombre, decimal valore, bool tipo,int idc)
+        private void agregarCuentaEdita(string Nombre, decimal valore, bool tipo, int idc)
         {
 
             // Crear nueva cuenta
@@ -523,7 +533,7 @@ namespace Arcoiris.Formularios.SubForms
                 NomCuenta = Nombre,
                 Valor = valore,
                 tipo = tipo,// Convierte a int
-               Id=idc
+                Id = idc
             };
 
             // Verificar si ya existe en la lista
@@ -723,7 +733,7 @@ namespace Arcoiris.Formularios.SubForms
                 MessageBox.Show("El dato ingresado en valor es invalido, porfavor intentelo de nuevo.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Detiene la ejecución }
             }
-            DgvGaranLSt.Rows.Add(IdProp, prop, Tipo, detalle, String.Format("{0:0,000.00}", numtemp), Info, observacion,"0");
+            DgvGaranLSt.Rows.Add(IdProp, prop, Tipo, detalle, String.Format("{0:0,000.00}", numtemp), Info, observacion, "0");
         }
 
         private void BtnAddLstFiad_Click(object sender, EventArgs e)
@@ -744,7 +754,7 @@ namespace Arcoiris.Formularios.SubForms
             DataTable DatosF = Cli.clientebusca(IdFiad);
             string Domi = $"{DatosF.Rows[0][2]}";
 
-            DgvFiadorLst.Rows.Add(IdFiad, Nombre, Domi, Otros,"0");
+            DgvFiadorLst.Rows.Add(IdFiad, Nombre, Domi, Otros, "0");
         }
 
         private void BtnUpGarantEdit_Click(object sender, EventArgs e)
@@ -764,21 +774,22 @@ namespace Arcoiris.Formularios.SubForms
 
         private void CboPropi_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (CboPropi.SelectedValue != null && !CboPropi.SelectedValue.ToString().Equals("System.Data.DataRowView") && DgvGaranLSt.Rows.Count>0)
+            if (CboPropi.SelectedValue != null && !CboPropi.SelectedValue.ToString().Equals("System.Data.DataRowView") && DgvGaranLSt.Rows.Count > 0)
             {
-                string esta =  CboPropi.SelectedValue.ToString();
+                string esta = CboPropi.SelectedValue.ToString();
                 int indice = DgvGaranLSt.CurrentRow.Index;
 
-                DialogResult resp = MessageBox.Show("Desea modificar el propietario de esta garantia","Cambiar propietario",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+                DialogResult resp = MessageBox.Show("Desea modificar el propietario de esta garantia", "Cambiar propietario", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (resp == DialogResult.Yes)
-                { DgvGaranLSt.Rows[indice].Cells[0].Value = CboPropi.SelectedValue.ToString();
+                {
+                    DgvGaranLSt.Rows[indice].Cells[0].Value = CboPropi.SelectedValue.ToString();
                     DgvGaranLSt.Rows[indice].Cells[1].Value = CboPropi.Text;
                 }
-                   
-               
+
+
             }
-            
-                
+
+
         }
 
         private void EditSolicitud_FormClosing(object sender, FormClosingEventArgs e)
@@ -829,32 +840,35 @@ namespace Arcoiris.Formularios.SubForms
             string monto = TxtMontoAprov.Text;
             string aseso = $"{CboAsesor.SelectedValue}";
             string clien = $"{CboCliente.SelectedValue}";
-            string concep= $"{TxtConcept.Text}";
+            string concep = $"{TxtConcept.Text}";
             string razon = CboRazon.Text;
             string sugerido = TxtMontoSug.Text;
             string credaqui = TxtCredAqui.Text;
-            string Fecha =DateTime.Parse(LblFecha.Text).ToString("yyyy/MM/dd");
+            string Fecha = "";//DateTime.Parse(LblFecha.Text).ToString("yyyy/MM/dd");
             string solicitudNum = TxtNoSol.Text;
-            
+            string inte = TxtInteresEdit.Text;
+
             //string garant=
 
 
-            string[] datos = { solicitudNum,concep,razon,monto,Fecha,LblEstado.Text,plazo,sugerido,credaqui,tipo};
+            string[] datos = { solicitudNum, concep, razon, monto, Fecha, LblEstado.Text, plazo, sugerido, credaqui, tipo, inte };
             if (Soli.editarSolPre(datos))
-            { MessageBox.Show("Se actualizaron los datos de la soliciud", "Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            {
+                MessageBox.Show("Se actualizaron los datos de la soliciud", "Actualizado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Doing = true;
             }
             else
-            { MessageBox.Show("No se pudo actualizar los datos de la soliciud", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            {
+                MessageBox.Show("No se pudo actualizar los datos de la soliciud", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Doing = false;
             }
-           
+
 
         }
 
         private void BtnAddCuenta_Click(object sender, EventArgs e)
         {
-        agregarCuenta();
+            agregarCuenta();
             calcEstadoFin();
         }
 
@@ -945,7 +959,7 @@ namespace Arcoiris.Formularios.SubForms
         private void EliminarCuenta()
         {
             // Verificar si hay algún elemento seleccionado en el ListBox
-            if (LstCuentas.SelectedIndex == -1 && LstPasiv.SelectedIndex==-1)
+            if (LstCuentas.SelectedIndex == -1 && LstPasiv.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor, seleccione un elemento para eliminar",
                                "Advertencia",

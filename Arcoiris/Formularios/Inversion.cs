@@ -183,8 +183,9 @@ namespace Arcoiris.Formularios
             decimal IntGene = Math.Round( (interespuesto/100 * PeriodoCurrido(datos.Rows[0][4].ToString()) *monto/12),2);
             DataRow[] DataTutor = (AllCli.Select($"codigo_cli={refe.Rows[0][2]}"));
             DataRow[] DataCli = AllCli.Select($"codigo_cli={refe.Rows[0][0]}");
-           
 
+            DateTime final = DateTime.Parse($"{datos.Rows[0][5]}");
+            DtpFecha1.MaxDate = final;
             int edad = int.Parse($"{DataCli[0][7]}");
             if (edad < 18)
             {
@@ -223,6 +224,19 @@ namespace Arcoiris.Formularios
         private void Inversion_Load(object sender, EventArgs e)
         {
             listacli();
+            Colores();
+        }
+
+        private void Colores()
+        {
+           // label1.ForeColor = Clases.Estilos.LabelText;
+         
+
+            Clases.Estilos.StylePrimaryButton(BtnRetiro);
+            
+            Clases.Estilos.StyleSecondaryButton(BtnGanAct);
+            
+
         }
 
         private void CboCliNom_SelectedValueChanged(object sender, EventArgs e)
@@ -269,24 +283,29 @@ namespace Arcoiris.Formularios
 
         private void BtnGanAct_Click(object sender, EventArgs e)
         {
+            calcular();
+        }
+
+        private void calcular()
+        {
             if (CboInv.SelectedIndex != -1)
             {
                 TxtMontoRetir.Text = "0";
                 //Busqueda de los dato generales
-                                string inversi = CboInv.Text;
+                string inversi = CboInv.Text;
                 DataTable datos = Inver.detalle_Inv(inversi);
                 //Condicion de cierre de calculo
                 int plazo = int.Parse($"{datos.Rows[0][2]}");
                 decimal capital = decimal.Parse($"{datos.Rows[0][1]}");
                 int plazotrans = PeriodoCurrido($"{datos.Rows[0][4]}");
                 decimal interespuesto = decimal.Parse(datos.Rows[0][3].ToString()) * 100;
-                decimal IntGene=  Math.Round((interespuesto / 100 * PeriodoCurrido(datos.Rows[0][4].ToString()) * capital / 12), 2);
-               // decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
+                decimal IntGene = Math.Round((interespuesto / 100 * PeriodoCurrido(datos.Rows[0][4].ToString()) * capital / 12), 2);
+                // decimal IntGene = interespuesto * PeriodoCurrido(datos.Rows[0][4].ToString());
                 if (plazotrans < plazo)
                 {
                     if (plazo >= 12)
                     {
-                        IntGene = Math.Round(( capital), 2);
+                        IntGene = Math.Round((capital), 2);
                     }
                     else
                     {
@@ -295,7 +314,7 @@ namespace Arcoiris.Formularios
                 }
                 else
                 {
-                    IntGene = Math.Round((IntGene+capital),2);
+                    IntGene = Math.Round((IntGene + capital), 2);
                 }
                 TxtMontoRetir.Text = $"{IntGene}";
             }
@@ -313,7 +332,13 @@ namespace Arcoiris.Formularios
 
         private void BtnRetiro_Click(object sender, EventArgs e)
         {
-            if(DialogResult.Yes==MessageBox.Show("Desea realizar el retiro de la inversion?, Esto dara la inversion como terminada","Realizar retiro?",MessageBoxButtons.YesNo,MessageBoxIcon.Question)) retiro();
+            if (DialogResult.Yes == MessageBox.Show($"Desea realizar el retiro de la inversion a la fecha actual({DateTime.Now.ToString("dddd/MM/yyyy")})?, Esto dara la inversion como terminada", "Realizar retiro?", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            {
+                DtpFecha1.Value = DtpFecha1.MaxDate;
+                calcular();
+                retiro();
+            }
+               
         }
         private void retiro()
         {

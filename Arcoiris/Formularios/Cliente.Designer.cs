@@ -112,6 +112,7 @@
             this.DGVCliente = new System.Windows.Forms.DataGridView();
             this.TabC3 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label57 = new System.Windows.Forms.Label();
             this.BtnDpiImgEdit = new System.Windows.Forms.Button();
             this.PicDpiEdit = new System.Windows.Forms.PictureBox();
             this.DgvRefEditData = new System.Windows.Forms.DataGridView();
@@ -1078,6 +1079,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(247)))), ((int)(((byte)(250)))));
+            this.groupBox1.Controls.Add(this.label57);
             this.groupBox1.Controls.Add(this.BtnDpiImgEdit);
             this.groupBox1.Controls.Add(this.PicDpiEdit);
             this.groupBox1.Controls.Add(this.DgvRefEditData);
@@ -1143,6 +1145,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Editar datos del cliente";
             // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Perpetua Titling MT", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label57.Location = new System.Drawing.Point(406, 563);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(273, 23);
+            this.label57.TabIndex = 88;
+            this.label57.Text = "Listado de referencias";
+            // 
             // BtnDpiImgEdit
             // 
             this.BtnDpiImgEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(128)))), ((int)(((byte)(237)))));
@@ -1178,9 +1191,9 @@
             this.RefEditParen,
             this.RefEditTel});
             this.DgvRefEditData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.DgvRefEditData.Location = new System.Drawing.Point(4, 622);
+            this.DgvRefEditData.Location = new System.Drawing.Point(4, 589);
             this.DgvRefEditData.Name = "DgvRefEditData";
-            this.DgvRefEditData.Size = new System.Drawing.Size(1149, 143);
+            this.DgvRefEditData.Size = new System.Drawing.Size(1149, 176);
             this.DgvRefEditData.TabIndex = 83;
             // 
             // IdrEdit
@@ -1429,11 +1442,11 @@
             // 
             this.BtnAddRefEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnAddRefEdit.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddRefEdit.Image")));
-            this.BtnAddRefEdit.Location = new System.Drawing.Point(857, 557);
+            this.BtnAddRefEdit.Location = new System.Drawing.Point(857, 494);
             this.BtnAddRefEdit.Name = "BtnAddRefEdit";
-            this.BtnAddRefEdit.Size = new System.Drawing.Size(135, 55);
+            this.BtnAddRefEdit.Size = new System.Drawing.Size(135, 63);
             this.BtnAddRefEdit.TabIndex = 70;
-            this.BtnAddRefEdit.Text = "Agregar Referencia";
+            this.BtnAddRefEdit.Text = "Agregar registro";
             this.BtnAddRefEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnAddRefEdit.UseVisualStyleBackColor = false;
             this.BtnAddRefEdit.Click += new System.EventHandler(this.BtnAddRefEdit_Click);
@@ -1442,18 +1455,18 @@
             // 
             this.BtnUpdRefes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(231)))), ((int)(((byte)(235)))));
             this.BtnUpdRefes.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpdRefes.Image")));
-            this.BtnUpdRefes.Location = new System.Drawing.Point(995, 557);
+            this.BtnUpdRefes.Location = new System.Drawing.Point(995, 494);
             this.BtnUpdRefes.Name = "BtnUpdRefes";
-            this.BtnUpdRefes.Size = new System.Drawing.Size(135, 55);
+            this.BtnUpdRefes.Size = new System.Drawing.Size(135, 63);
             this.BtnUpdRefes.TabIndex = 69;
-            this.BtnUpdRefes.Text = "Actualizar Referencias";
+            this.BtnUpdRefes.Text = "Guardar Cambios Referencias";
             this.BtnUpdRefes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnUpdRefes.UseVisualStyleBackColor = false;
             this.BtnUpdRefes.Click += new System.EventHandler(this.BtnUpdRefes_Click);
             // 
             // TxtTelRefEdit
             // 
-            this.TxtTelRefEdit.Location = new System.Drawing.Point(682, 577);
+            this.TxtTelRefEdit.Location = new System.Drawing.Point(684, 534);
             this.TxtTelRefEdit.MaxLength = 8;
             this.TxtTelRefEdit.Name = "TxtTelRefEdit";
             this.TxtTelRefEdit.Size = new System.Drawing.Size(169, 23);
@@ -1463,7 +1476,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(687, 557);
+            this.label11.Location = new System.Drawing.Point(689, 514);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 17);
             this.label11.TabIndex = 67;
@@ -1471,7 +1484,7 @@
             // 
             // TxtParenEdit
             // 
-            this.TxtParenEdit.Location = new System.Drawing.Point(464, 577);
+            this.TxtParenEdit.Location = new System.Drawing.Point(466, 534);
             this.TxtParenEdit.Name = "TxtParenEdit";
             this.TxtParenEdit.Size = new System.Drawing.Size(169, 23);
             this.TxtParenEdit.TabIndex = 66;
@@ -1480,7 +1493,7 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(469, 557);
+            this.label37.Location = new System.Drawing.Point(471, 514);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(75, 17);
             this.label37.TabIndex = 65;
@@ -1488,7 +1501,7 @@
             // 
             // TxtNomRefEdit
             // 
-            this.TxtNomRefEdit.Location = new System.Drawing.Point(32, 577);
+            this.TxtNomRefEdit.Location = new System.Drawing.Point(34, 534);
             this.TxtNomRefEdit.Name = "TxtNomRefEdit";
             this.TxtNomRefEdit.Size = new System.Drawing.Size(405, 23);
             this.TxtNomRefEdit.TabIndex = 64;
@@ -1497,7 +1510,7 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(47, 557);
+            this.label38.Location = new System.Drawing.Point(49, 514);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(58, 17);
             this.label38.TabIndex = 63;
@@ -1506,10 +1519,11 @@
             // label39
             // 
             this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(492, 523);
+            this.label39.Font = new System.Drawing.Font("Perpetua Titling MT", 14.25F, ((System.Drawing.FontStyle)(((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic) 
+                | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.Location = new System.Drawing.Point(462, 484);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(76, 17);
+            this.label39.Size = new System.Drawing.Size(146, 23);
             this.label39.TabIndex = 62;
             this.label39.Text = "Referencias";
             // 
@@ -1680,6 +1694,7 @@
             // 
             // TxtDpi2
             // 
+            this.TxtDpi2.Enabled = false;
             this.TxtDpi2.Location = new System.Drawing.Point(154, 279);
             this.TxtDpi2.MaxLength = 13;
             this.TxtDpi2.Name = "TxtDpi2";
@@ -1775,6 +1790,7 @@
             // 
             // TxtApe2
             // 
+            this.TxtApe2.Enabled = false;
             this.TxtApe2.Location = new System.Drawing.Point(154, 89);
             this.TxtApe2.Name = "TxtApe2";
             this.TxtApe2.Size = new System.Drawing.Size(293, 23);
@@ -1792,6 +1808,7 @@
             // 
             // TxtNom2
             // 
+            this.TxtNom2.Enabled = false;
             this.TxtNom2.Location = new System.Drawing.Point(154, 44);
             this.TxtNom2.Name = "TxtNom2";
             this.TxtNom2.Size = new System.Drawing.Size(293, 23);
@@ -2011,5 +2028,6 @@
         private System.Windows.Forms.PictureBox PicDpiEdit;
         private System.Windows.Forms.Button BtnDpiImgEdit;
         private System.Windows.Forms.OpenFileDialog OfdDpiEdit;
+        private System.Windows.Forms.Label label57;
     }
 }

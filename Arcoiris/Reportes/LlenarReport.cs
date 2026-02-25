@@ -804,7 +804,7 @@ namespace Arcoiris.Reportes
             {
                 ConsulAdd2 = $"and asol.Cod_Asesor={aseso} ";
             }
-            string consulta = "SELECT  cre.COD_CREDITO,cli.NOMBRES,cli.APELLIDOS,cre.Saldo_cap, date_format(cre.FECHA_CONC,'%d/%m/%Y'), date_format(cre.FECHA_venci,'%d/%m/%Y'),cre.id_tipo_credito ,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias " +
+            string consulta = "SELECT  cre.COD_CREDITO,cli.NOMBRES,cli.APELLIDOS,cre.Saldo_cap, date_format(cre.FECHA_CONC,'%d/%m/%Y'), date_format(cre.FECHA_venci,'%d/%m/%Y'),cre.id_tipo_credito ,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias,Concat(cli.telefono1,'-',cli.telefono2) as Telefonos, cre.Monto " +
                              "FROM credito cre " +
                              "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = cre.COD_CREDITO " +
                              "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = acre.ID_SOLICITUD " +
@@ -823,7 +823,6 @@ namespace Arcoiris.Reportes
             {
                
                 Credi_Activity detalle = new Credi_Activity();
-               
                 string tipo = datos.Rows[cont][6].ToString();
                 string tipoc = "";
                 if (tipo.Equals("1")) { tipoc = "(D)"; }
@@ -837,12 +836,14 @@ namespace Arcoiris.Reportes
                 string Garantia = datos.Rows[cont][7] != DBNull.Value ? datos.Rows[cont][7].ToString() : "Sin Garantia";
                 if (interes < 0) interes = 0;
                 detalle.Credito = int.Parse(datos.Rows[cont][0].ToString());
+                detalle.Monto = decimal.Parse($"{datos.Rows[cont][9]}");
                 detalle.Nombre = $"{datos.Rows[cont][1]}  {datos.Rows[cont][2].ToString()} /{tipoc}";
                 detalle.Scapital = decimal.Parse(datos.Rows[cont][3].ToString());
                 detalle.Sinteres = interes;
                 detalle.Fcons = datos.Rows[cont][4].ToString();
                 detalle.Fvenc = datos.Rows[cont][5].ToString();
                 detalle.Garantia = Garantia;
+                detalle.Tel = $"{datos.Rows[cont][8]}";
                 enca.DetalleActi.Add(detalle);
             }
             Credi_Activ Activos = new Credi_Activ();
@@ -1276,7 +1277,75 @@ $"WHERE binv.Id_Inv = {datos.Rows[cont][0]}";
 
         }
 
+        public void InversionesAVencer(string ini, string fin)
+        {
+            Reportes.InvEnc Enca = new InvEnc();
+            
+            List<Reportes.InvDet> Deta = new List<InvDet>();
+            DataTable datos = new DataTable();
+            string consulta = "SELECT  inv.Id_Inv,cli.CODIGO_CLI,Concat(cli.NOMBRES,' ',cli.APELLIDOS),cli.DOMICILIO,cli.TELEFONO1 ,inv.Monto,inv.Plazo,Date_format(inv.FechaIn,'%Y/%m/%d'),Date_format(inv.FechaFin,'%Y/%m/%d'),inv.Interes " +
+"FROM inversion inv " +
+"inner JOIN asigna_inversion ainv ON inv.Id_Inv = ainv.Id_Inv " +
+"INNER JOIN cliente cli ON ainv.Codigo_Cli = cli.CODIGO_CLI " +
+"WHERE inv.Estado = 'Activo'";
+            string cons = $"SELECT inv.Id_Inv,cli.CODIGO_CLI,CONCAT(cli.NOMBRES,' ', cli.APELLIDOS) AS Nombre_Completo,cli.DOMICILIO,cli.TELEFONO1,inv.Monto,inv.Plazo,DATE_FORMAT(inv.FechaIn, '%Y/%M/%d') AS Fecha_Inicio,DATE_FORMAT(inv.FechaFin, '%Y/%M/%d') AS Fecha_Fin,inv.Interes " +
+                $"FROM inversion inv " +
+                $"INNER JOIN asigna_inversion ainv ON inv.Id_Inv = ainv.Id_Inv " +
+                $"INNER JOIN cliente cli ON ainv.Codigo_Cli = cli.CODIGO_CLI " +
+                $"WHERE inv.Estado = 'Activo' " +
+                $"AND inv.FechaFin>='{ini} 00:00:00' and Fechafin<='{fin} 23:59:59'; ";
+            datos = buscar(cons);
+            int cont, cant;
+            cant = datos.Rows.Count;
+            Enca.Titulo = "Reporte de Inversiones";
+            for (cont = 0; cont < cant; cont++)
+            {
+                Reportes.InvDet Temp = new InvDet();
+                string ConsulBenef = "SELECT CONCAT(cli.nombres,' ' ,cli.apellidos) AS Nombre, cli.telefono1,cli.telefono2 " +
+"FROM cliente cli " +
+"INNER JOIN benefiinver binv ON cli.CODIGO_CLI = binv.Id_Benef " +
+$"WHERE binv.Id_Inv = {datos.Rows[cont][0]}";
 
+
+                DataTable benefi = buscar(ConsulBenef);
+
+                
+                Temp.Monto = decimal.Parse($"{datos.Rows[cont][5]}");
+                Temp.Plazo = int.Parse($"{datos.Rows[cont][6]}");
+                Temp.Precorr = PeriodoCurrido($"{datos.Rows[cont][7]}",$"{datos.Rows[cont][8]}");
+                Temp.Por = Math.Round((decimal.Parse($"{datos.Rows[cont][9]}")  * Temp.Precorr * Temp.Monto / 12), 2); 
+                Temp.FI = DateTime.Parse($"{datos.Rows[cont][7]}");
+                Temp.FF = DateTime.Parse($"{datos.Rows[cont][8]}");
+                Temp.Cliente = ($"{datos.Rows[cont][2]}");
+                Temp.No_inv = int.Parse($"{datos.Rows[cont][0]}");
+                Temp.Telefono = ($"{datos.Rows[cont][4]}");
+                Temp.Direccion = ($"{datos.Rows[cont][3]}");
+                Temp.BenefTel = $"{benefi.Rows[0][1]}";
+                Temp.Benef = $"{benefi.Rows[0][0]}";
+
+                Deta.Add(Temp);
+
+                int lol = cont;
+            }
+            Reportes.InversionesProntas nuevo = new InversionesProntas();
+          //  nuevo.Encabezado.Add(Enca);
+            nuevo.Detalle = Deta;
+            nuevo.Show();
+        }
+
+        private int PeriodoCurrido(string Dada,string fecha)
+        {
+            DateTime FechaHoy = DateTime.Parse(fecha);
+            DateTime FechaIni = DateTime.Parse(Dada);
+            FechaIni = FechaIni.AddMonths(1);
+            int conteo = 0;
+            while (FechaHoy >= FechaIni)
+            {
+                conteo++;
+                FechaIni = FechaIni.AddMonths(1);
+            }
+            return conteo;
+        }
 
         #endregion
     }

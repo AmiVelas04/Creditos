@@ -72,7 +72,8 @@ namespace Arcoiris.Formularios
             {
                 imagenbytes = File.ReadAllBytes(DPISin);
             }
-           
+
+            if (TxtDpi.TextLength < TxtDpi.MaxLength) MessageBox.Show("El formato del numero de DPI es incorrecto, revise y vuelva a intentarlo","Formato incorrecto",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
           
             string nom = TxtNom.Text;
             string ape = TxtApe.Text;
@@ -105,6 +106,14 @@ namespace Arcoiris.Formularios
             string fechanaci = DtpNac.Value.ToString("yyyy/MM/dd");
             string fecha = DateTime.Today.ToString("yyyy/MM/dd");
             string imagen = Convert.ToBase64String(imagenbytes);
+            DataTable cliento = clien.BuscarCliDpi(dpi);
+            if (cliento.Rows.Count>0)
+            {
+                MessageBox.Show($"El dpi que intenta ingresar ya se encuentra registrado a nombre de {cliento.Rows[0][1]} {cliento.Rows[0][2]}", "DPI de cliente ya registrado", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            
+
             string[] datos = { nom, ape, dir,refe, dpi, tel1, tel2, prof, oProf, Est_civil, Nom_cony, telcon,  DpiCon, profCon, fecha,fechanaci, depa,muni,edad,genero, Nacionalidad,cargaf,NomNeg,DirNeg,TelNeg,RefNeg,TipNeg,AntiqNeg,imagen };
             //   int idcli;
             //   idcli = clien.agregar_cliente(datos);
@@ -195,6 +204,9 @@ namespace Arcoiris.Formularios
             cargarDepas();
             // Clases.Estilos.StyleForm(this);
             Colores();
+            if (Form1.Nivel == "1" || Form1.Nivel == "2")
+            { BloqueoSeg(); }
+            
 
         }
 
@@ -212,8 +224,16 @@ namespace Arcoiris.Formularios
             {
               PicDPI.Image = Image.FromStream(ms);
             }
+        }
 
-
+        private void BloqueoSeg()
+        {
+           
+                TxtNom2.Enabled = true;
+                TxtApe2.Enabled = true;
+                TxtDpi2.Enabled = true;
+               // BtnDpiImgEdit.Enabled = true;
+           
         }
 
         private void BtnEditar_Click(object sender, EventArgs e)
@@ -286,8 +306,9 @@ namespace Arcoiris.Formularios
             string tipneg = TxtTelNegEdit.Text;
             string antiqneg = TxtAntiqNegEdit.Text;
             string carga = TxtCargaFamEdit.Text;
+            string fechanaci = DtpNaci2.Value.ToString("yyyy/MM/dd");
             string imagen = Convert.ToBase64String(imagenbytes);
-            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, profOt, telcon, refe,edad,gene,depa,muni,profcon,dpicon,nomneg,dirneg,telneg,refneg,tipneg,antiqneg,carga,imagen };
+            string[] cliente = {nom, ape, dir, dpi, tel1,tel2, prof, Est_civil, Nom_cony, profOt, telcon, refe,edad,gene,depa,muni,profcon,dpicon,nomneg,dirneg,telneg,refneg,tipneg,antiqneg,carga,imagen,fechanaci };
           //  string[] fiador = { fiad, dfiad, tfiad };
 
           //  if (clien.updatecliente(idcli, cliente))

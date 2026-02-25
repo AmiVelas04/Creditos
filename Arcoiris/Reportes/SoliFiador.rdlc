@@ -376,14 +376,14 @@
                                   <TablixHeader>
                                     <Size>0.6cm</Size>
                                     <CellContents>
-                                      <Textbox Name="Textbox69">
+                                      <Textbox Name="Textbox5">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Telefono 1</Value>
+                                                <Value>Fecha de nacimiento</Value>
                                                 <Style>
                                                   <FontFamily>Times New Roman</FontFamily>
                                                   <FontWeight>Bold</FontWeight>
@@ -395,7 +395,7 @@
                                             </Style>
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Textbox69</rd:DefaultName>
+                                        <rd:DefaultName>Textbox5</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -414,14 +414,14 @@
                                       <TablixHeader>
                                         <Size>0.6cm</Size>
                                         <CellContents>
-                                          <Textbox Name="Textbox65">
+                                          <Textbox Name="Textbox69">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Profesion</Value>
+                                                    <Value>Telefono 1</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -433,7 +433,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox65</rd:DefaultName>
+                                            <rd:DefaultName>Textbox69</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -452,14 +452,14 @@
                                           <TablixHeader>
                                             <Size>0.6cm</Size>
                                             <CellContents>
-                                              <Textbox Name="Textbox73">
+                                              <Textbox Name="Textbox65">
                                                 <CanGrow>true</CanGrow>
                                                 <KeepTogether>true</KeepTogether>
                                                 <Paragraphs>
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>Rereferencia de ubicacion</Value>
+                                                        <Value>Profesion</Value>
                                                         <Style>
                                                           <FontFamily>Times New Roman</FontFamily>
                                                           <FontWeight>Bold</FontWeight>
@@ -471,7 +471,7 @@
                                                     </Style>
                                                   </Paragraph>
                                                 </Paragraphs>
-                                                <rd:DefaultName>Textbox73</rd:DefaultName>
+                                                <rd:DefaultName>Textbox65</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Color>LightGrey</Color>
@@ -486,7 +486,47 @@
                                             </CellContents>
                                           </TablixHeader>
                                           <TablixMembers>
-                                            <TablixMember />
+                                            <TablixMember>
+                                              <TablixHeader>
+                                                <Size>0.6cm</Size>
+                                                <CellContents>
+                                                  <Textbox Name="Textbox73">
+                                                    <CanGrow>true</CanGrow>
+                                                    <KeepTogether>true</KeepTogether>
+                                                    <Paragraphs>
+                                                      <Paragraph>
+                                                        <TextRuns>
+                                                          <TextRun>
+                                                            <Value>Rereferencia de ubicacion</Value>
+                                                            <Style>
+                                                              <FontFamily>Times New Roman</FontFamily>
+                                                              <FontWeight>Bold</FontWeight>
+                                                            </Style>
+                                                          </TextRun>
+                                                        </TextRuns>
+                                                        <Style>
+                                                          <TextAlign>Left</TextAlign>
+                                                        </Style>
+                                                      </Paragraph>
+                                                    </Paragraphs>
+                                                    <rd:DefaultName>Textbox73</rd:DefaultName>
+                                                    <Style>
+                                                      <Border>
+                                                        <Color>LightGrey</Color>
+                                                        <Style>Solid</Style>
+                                                      </Border>
+                                                      <PaddingLeft>2pt</PaddingLeft>
+                                                      <PaddingRight>2pt</PaddingRight>
+                                                      <PaddingTop>2pt</PaddingTop>
+                                                      <PaddingBottom>2pt</PaddingBottom>
+                                                    </Style>
+                                                  </Textbox>
+                                                </CellContents>
+                                              </TablixHeader>
+                                              <TablixMembers>
+                                                <TablixMember />
+                                              </TablixMembers>
+                                            </TablixMember>
                                           </TablixMembers>
                                         </TablixMember>
                                       </TablixMembers>
@@ -614,16 +654,17 @@
                                   <TablixHeader>
                                     <Size>0.6cm</Size>
                                     <CellContents>
-                                      <Textbox Name="Tel1">
+                                      <Textbox Name="Fecha">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!Tel1.Value</Value>
+                                                <Value>=Fields!Fecha.Value</Value>
                                                 <Style>
                                                   <FontFamily>Times New Roman</FontFamily>
+                                                  <Format>dd/MM/yyyy</Format>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -632,7 +673,7 @@
                                             </Style>
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Tel1</rd:DefaultName>
+                                        <rd:DefaultName>Fecha</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -644,6 +685,7 @@
                                           <PaddingBottom>2pt</PaddingBottom>
                                         </Style>
                                       </Textbox>
+                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                   </TablixHeader>
                                   <TablixMembers>
@@ -651,14 +693,14 @@
                                       <TablixHeader>
                                         <Size>0.6cm</Size>
                                         <CellContents>
-                                          <Textbox Name="Profes">
+                                          <Textbox Name="Tel1">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!Profes.Value</Value>
+                                                    <Value>=Fields!Tel1.Value</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                     </Style>
@@ -669,7 +711,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Profes</rd:DefaultName>
+                                            <rd:DefaultName>Tel1</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -688,14 +730,14 @@
                                           <TablixHeader>
                                             <Size>0.6cm</Size>
                                             <CellContents>
-                                              <Textbox Name="RefUbi">
+                                              <Textbox Name="Profes">
                                                 <CanGrow>true</CanGrow>
                                                 <KeepTogether>true</KeepTogether>
                                                 <Paragraphs>
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value>=Fields!RefUbi.Value</Value>
+                                                        <Value>=Fields!Profes.Value</Value>
                                                         <Style>
                                                           <FontFamily>Times New Roman</FontFamily>
                                                         </Style>
@@ -706,7 +748,7 @@
                                                     </Style>
                                                   </Paragraph>
                                                 </Paragraphs>
-                                                <rd:DefaultName>RefUbi</rd:DefaultName>
+                                                <rd:DefaultName>Profes</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Color>LightGrey</Color>
@@ -721,7 +763,46 @@
                                             </CellContents>
                                           </TablixHeader>
                                           <TablixMembers>
-                                            <TablixMember />
+                                            <TablixMember>
+                                              <TablixHeader>
+                                                <Size>0.6cm</Size>
+                                                <CellContents>
+                                                  <Textbox Name="RefUbi">
+                                                    <CanGrow>true</CanGrow>
+                                                    <KeepTogether>true</KeepTogether>
+                                                    <Paragraphs>
+                                                      <Paragraph>
+                                                        <TextRuns>
+                                                          <TextRun>
+                                                            <Value>=Fields!RefUbi.Value</Value>
+                                                            <Style>
+                                                              <FontFamily>Times New Roman</FontFamily>
+                                                            </Style>
+                                                          </TextRun>
+                                                        </TextRuns>
+                                                        <Style>
+                                                          <TextAlign>Left</TextAlign>
+                                                        </Style>
+                                                      </Paragraph>
+                                                    </Paragraphs>
+                                                    <rd:DefaultName>RefUbi</rd:DefaultName>
+                                                    <Style>
+                                                      <Border>
+                                                        <Color>LightGrey</Color>
+                                                        <Style>Solid</Style>
+                                                      </Border>
+                                                      <PaddingLeft>2pt</PaddingLeft>
+                                                      <PaddingRight>2pt</PaddingRight>
+                                                      <PaddingTop>2pt</PaddingTop>
+                                                      <PaddingBottom>2pt</PaddingBottom>
+                                                    </Style>
+                                                  </Textbox>
+                                                </CellContents>
+                                              </TablixHeader>
+                                              <TablixMembers>
+                                                <TablixMember />
+                                              </TablixMembers>
+                                            </TablixMember>
                                           </TablixMembers>
                                         </TablixMember>
                                       </TablixMembers>
@@ -732,14 +813,14 @@
                                   <TablixHeader>
                                     <Size>0.6cm</Size>
                                     <CellContents>
-                                      <Textbox Name="Textbox71">
+                                      <Textbox Name="Textbox7">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>Telefono 2</Value>
+                                                <Value>Edad</Value>
                                                 <Style>
                                                   <FontFamily>Times New Roman</FontFamily>
                                                   <FontWeight>Bold</FontWeight>
@@ -751,7 +832,7 @@
                                             </Style>
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Textbox71</rd:DefaultName>
+                                        <rd:DefaultName>Textbox7</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -770,14 +851,14 @@
                                       <TablixHeader>
                                         <Size>0.6cm</Size>
                                         <CellContents>
-                                          <Textbox Name="Textbox67">
+                                          <Textbox Name="Textbox71">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>Otros ingresos</Value>
+                                                    <Value>Telefono 2</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                       <FontWeight>Bold</FontWeight>
@@ -789,7 +870,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>Textbox67</rd:DefaultName>
+                                            <rd:DefaultName>Textbox71</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -808,14 +889,14 @@
                                           <TablixHeader>
                                             <Size>0.6cm</Size>
                                             <CellContents>
-                                              <Textbox Name="Textbox75">
+                                              <Textbox Name="Textbox67">
                                                 <CanGrow>true</CanGrow>
                                                 <KeepTogether>true</KeepTogether>
                                                 <Paragraphs>
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value />
+                                                        <Value>Otros ingresos</Value>
                                                         <Style>
                                                           <FontFamily>Times New Roman</FontFamily>
                                                           <FontWeight>Bold</FontWeight>
@@ -827,7 +908,7 @@
                                                     </Style>
                                                   </Paragraph>
                                                 </Paragraphs>
-                                                <rd:DefaultName>Textbox75</rd:DefaultName>
+                                                <rd:DefaultName>Textbox67</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Color>LightGrey</Color>
@@ -842,7 +923,47 @@
                                             </CellContents>
                                           </TablixHeader>
                                           <TablixMembers>
-                                            <TablixMember />
+                                            <TablixMember>
+                                              <TablixHeader>
+                                                <Size>0.6cm</Size>
+                                                <CellContents>
+                                                  <Textbox Name="Textbox75">
+                                                    <CanGrow>true</CanGrow>
+                                                    <KeepTogether>true</KeepTogether>
+                                                    <Paragraphs>
+                                                      <Paragraph>
+                                                        <TextRuns>
+                                                          <TextRun>
+                                                            <Value />
+                                                            <Style>
+                                                              <FontFamily>Times New Roman</FontFamily>
+                                                              <FontWeight>Bold</FontWeight>
+                                                            </Style>
+                                                          </TextRun>
+                                                        </TextRuns>
+                                                        <Style>
+                                                          <TextAlign>Center</TextAlign>
+                                                        </Style>
+                                                      </Paragraph>
+                                                    </Paragraphs>
+                                                    <rd:DefaultName>Textbox75</rd:DefaultName>
+                                                    <Style>
+                                                      <Border>
+                                                        <Color>LightGrey</Color>
+                                                        <Style>Solid</Style>
+                                                      </Border>
+                                                      <PaddingLeft>2pt</PaddingLeft>
+                                                      <PaddingRight>2pt</PaddingRight>
+                                                      <PaddingTop>2pt</PaddingTop>
+                                                      <PaddingBottom>2pt</PaddingBottom>
+                                                    </Style>
+                                                  </Textbox>
+                                                </CellContents>
+                                              </TablixHeader>
+                                              <TablixMembers>
+                                                <TablixMember />
+                                              </TablixMembers>
+                                            </TablixMember>
                                           </TablixMembers>
                                         </TablixMember>
                                       </TablixMembers>
@@ -853,14 +974,14 @@
                                   <TablixHeader>
                                     <Size>0.6cm</Size>
                                     <CellContents>
-                                      <Textbox Name="Tel2">
+                                      <Textbox Name="Edad">
                                         <CanGrow>true</CanGrow>
                                         <KeepTogether>true</KeepTogether>
                                         <Paragraphs>
                                           <Paragraph>
                                             <TextRuns>
                                               <TextRun>
-                                                <Value>=Fields!Tel2.Value</Value>
+                                                <Value>=Sum(Fields!Edad.Value)</Value>
                                                 <Style>
                                                   <FontFamily>Times New Roman</FontFamily>
                                                 </Style>
@@ -871,7 +992,7 @@
                                             </Style>
                                           </Paragraph>
                                         </Paragraphs>
-                                        <rd:DefaultName>Tel2</rd:DefaultName>
+                                        <rd:DefaultName>Edad</rd:DefaultName>
                                         <Style>
                                           <Border>
                                             <Color>LightGrey</Color>
@@ -890,14 +1011,14 @@
                                       <TablixHeader>
                                         <Size>0.6cm</Size>
                                         <CellContents>
-                                          <Textbox Name="OhterIncome">
+                                          <Textbox Name="Tel2">
                                             <CanGrow>true</CanGrow>
                                             <KeepTogether>true</KeepTogether>
                                             <Paragraphs>
                                               <Paragraph>
                                                 <TextRuns>
                                                   <TextRun>
-                                                    <Value>=Fields!OhterIncome.Value</Value>
+                                                    <Value>=Fields!Tel2.Value</Value>
                                                     <Style>
                                                       <FontFamily>Times New Roman</FontFamily>
                                                     </Style>
@@ -908,7 +1029,7 @@
                                                 </Style>
                                               </Paragraph>
                                             </Paragraphs>
-                                            <rd:DefaultName>OhterIncome</rd:DefaultName>
+                                            <rd:DefaultName>Tel2</rd:DefaultName>
                                             <Style>
                                               <Border>
                                                 <Color>LightGrey</Color>
@@ -927,26 +1048,25 @@
                                           <TablixHeader>
                                             <Size>0.6cm</Size>
                                             <CellContents>
-                                              <Textbox Name="Textbox76">
+                                              <Textbox Name="OhterIncome">
                                                 <CanGrow>true</CanGrow>
                                                 <KeepTogether>true</KeepTogether>
                                                 <Paragraphs>
                                                   <Paragraph>
                                                     <TextRuns>
                                                       <TextRun>
-                                                        <Value />
+                                                        <Value>=Fields!OhterIncome.Value</Value>
                                                         <Style>
                                                           <FontFamily>Times New Roman</FontFamily>
-                                                          <FontWeight>Bold</FontWeight>
                                                         </Style>
                                                       </TextRun>
                                                     </TextRuns>
                                                     <Style>
-                                                      <TextAlign>Center</TextAlign>
+                                                      <TextAlign>Left</TextAlign>
                                                     </Style>
                                                   </Paragraph>
                                                 </Paragraphs>
-                                                <rd:DefaultName>Textbox76</rd:DefaultName>
+                                                <rd:DefaultName>OhterIncome</rd:DefaultName>
                                                 <Style>
                                                   <Border>
                                                     <Color>LightGrey</Color>
@@ -961,7 +1081,47 @@
                                             </CellContents>
                                           </TablixHeader>
                                           <TablixMembers>
-                                            <TablixMember />
+                                            <TablixMember>
+                                              <TablixHeader>
+                                                <Size>0.6cm</Size>
+                                                <CellContents>
+                                                  <Textbox Name="Textbox76">
+                                                    <CanGrow>true</CanGrow>
+                                                    <KeepTogether>true</KeepTogether>
+                                                    <Paragraphs>
+                                                      <Paragraph>
+                                                        <TextRuns>
+                                                          <TextRun>
+                                                            <Value />
+                                                            <Style>
+                                                              <FontFamily>Times New Roman</FontFamily>
+                                                              <FontWeight>Bold</FontWeight>
+                                                            </Style>
+                                                          </TextRun>
+                                                        </TextRuns>
+                                                        <Style>
+                                                          <TextAlign>Center</TextAlign>
+                                                        </Style>
+                                                      </Paragraph>
+                                                    </Paragraphs>
+                                                    <rd:DefaultName>Textbox76</rd:DefaultName>
+                                                    <Style>
+                                                      <Border>
+                                                        <Color>LightGrey</Color>
+                                                        <Style>Solid</Style>
+                                                      </Border>
+                                                      <PaddingLeft>2pt</PaddingLeft>
+                                                      <PaddingRight>2pt</PaddingRight>
+                                                      <PaddingTop>2pt</PaddingTop>
+                                                      <PaddingBottom>2pt</PaddingBottom>
+                                                    </Style>
+                                                  </Textbox>
+                                                </CellContents>
+                                              </TablixHeader>
+                                              <TablixMembers>
+                                                <TablixMember />
+                                              </TablixMembers>
+                                            </TablixMember>
                                           </TablixMembers>
                                         </TablixMember>
                                       </TablixMembers>
@@ -988,7 +1148,7 @@
         <DataSetName>FiadorData</DataSetName>
         <Top>0.49953cm</Top>
         <Left>0.01cm</Left>
-        <Height>4.8cm</Height>
+        <Height>5.4cm</Height>
         <Width>18cm</Width>
         <Style>
           <Border>
@@ -997,7 +1157,7 @@
         </Style>
       </Tablix>
     </ReportItems>
-    <Height>2.13548in</Height>
+    <Height>2.3959in</Height>
     <Style />
   </Body>
   <Width>18.15146cm</Width>
@@ -1038,6 +1198,14 @@
           <DataField>Dpi</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Edad">
+          <DataField>Edad</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Fecha">
+          <DataField>Fecha</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="Nombre">
           <DataField>Nombre</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -1066,7 +1234,7 @@
       <rd:DataSetInfo>
         <rd:DataSetName>Arcoiris.Reportes.ClasesRepo</rd:DataSetName>
         <rd:TableName>FiadorSolicitud</rd:TableName>
-        <rd:ObjectDataSourceType>Arcoiris.Reportes.ClasesRepo.FiadorSolicitud, Arcoiris, Version=4.0.5.2, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:ObjectDataSourceType>Arcoiris.Reportes.ClasesRepo.FiadorSolicitud, Arcoiris, Version=5.0.4.2, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>

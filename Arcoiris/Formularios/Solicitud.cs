@@ -235,6 +235,20 @@ namespace Arcoiris.Formularios
             // VeriContGar();
             int FilasFiad = DgvFiadorLst.RowCount;
             int FilasGara = DgvGaranLSt.RowCount;
+            string interesIng;
+
+            // Validamos si el contenido de TxtInt se puede tratar como un número
+            if (double.TryParse(TxtInt.Text, out _))
+            {
+                // Si es numérico, procedemos con la asignación
+                interesIng = TxtInt.Text;
+            }
+            else
+            {
+                // Si no es numérico, podrías asignar un valor por defecto o avisar al usuario
+                MessageBox.Show("Por favor, ingrese un valor numérico válido en el interés.");
+                return;
+            }
 
             string Valu = "0", DetaGarantD = datosgaran.GarantDeudor;
             if (CboAsesor.SelectedValue == null)
@@ -297,7 +311,7 @@ namespace Arcoiris.Formularios
             string razon = CboRazon.Text;
             string sugerido = TxtMontoSug.Text;
 
-            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, TxtMontoSug.Text, asesor, cliente, tipo, Contratotip.ToString(), Valu, Txtfam.Text, datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador, datosgaran.CuiFiador, datosgaran.FiadorDomi,creditoaca,razon,sugerido };
+            string[] datos = { TxtNoSol.Text, TxtConcept.Text, TxtMonto.Text, fechaf, "Espera", plazo, TxtMontoSug.Text, asesor, cliente, tipo, Contratotip.ToString(), Valu, Txtfam.Text, datosgaran.GarantDeudor, datosgaran.NomFiador, datosgaran.MuniFiador, datosgaran.DeparFiador, datosgaran.ProfFiador, datosgaran.EdadFiador, datosgaran.EstCivFiador, datosgaran.GarantFiador, datosgaran.CuiFiador, datosgaran.FiadorDomi,creditoaca,razon,sugerido,interesIng };
             string[] datos2 = { TxtNoSol.Text, CboFiadNom.SelectedValue.ToString() };
             if (sol.hayasesor(asesor))
             {
@@ -318,17 +332,6 @@ namespace Arcoiris.Formularios
                 {
                     return;
                 }
-
-                //if (ListaAct <= 0)
-                //{
-                //    MostrarError("No existen datos de ingresos mensuales");
-                //   // return;
-                //}
-                //if (ListaPas<=0)
-                //{
-                //    MostrarError("No existen datos de egresos mensuales");
-                //    //return;
-                //}
                 if (verificarEstCuenta() != true)
                 {
                     DialogResult resp = MessageBox.Show("No se ha ingresado valores en ingresos o egresos mensuales, desea continuar sin estos valores?","sin ingresos o egresos",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
@@ -466,7 +469,8 @@ namespace Arcoiris.Formularios
                 TxtMontoSug2.Text = datos.Rows[0][5].ToString();
                 TxtPlazo.Text = datos.Rows[0][4].ToString();
                 TxtGarantia.Text = $"{datos.Rows[0][9]}";
-                 LblFechasol.Text = $"{Convert.ToDateTime(datos.Rows[0][6]).ToString("dd/MM/yyyy")}";
+                TxtInteres.Text = $"{datos.Rows[0][10]}";
+                LblFechasol.Text = $"{Convert.ToDateTime(datos.Rows[0][6]).ToString("dd/MM/yyyy")}";
                 CboTipo2.Items.Clear();
                 CboTipo2.Items.Add("Diario");
                 CboTipo2.Items.Add("Diario - Intereses");
@@ -1352,16 +1356,24 @@ namespace Arcoiris.Formularios
             {
             decimal total = decimal.Parse(cadena);
             int tiempo = int.Parse(plazo);
-            if (tiempo < 12)
-            { return 0.12M*100; }
-            else if (tiempo < 24)
+            if (Form1.Nivel != "1" || Form1.Nivel != "2")
             {
-                return 0.14M*100;
+                if (tiempo < 12)
+                { return 0.12M * 100; }
+                else if (tiempo < 24)
+                {
+                    return 0.14M * 100;
+                }
+                else
+                {
+                    return 0.15M * 100;
+                }
             }
             else
             {
-                return 0.15M*100;
+                return total;
             }
+           
         }
 
         private decimal Incentiv(string monto,string plazo)
@@ -1428,6 +1440,9 @@ namespace Arcoiris.Formularios
 
         private void NudInt_ValueChanged(object sender, EventArgs e)
         {
+            if (Form1.Nivel == "1" || Form1.Nivel == "2")
+            { }
+
             if (string.IsNullOrEmpty(TxtMontoInv.Text))
             {
                 MessageBox.Show("No se ha definido el monto de la inversion", "Vacio", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1767,6 +1782,11 @@ namespace Arcoiris.Formularios
 
         private void BtnSoliVer_Click(object sender, EventArgs e)
         {
+            if (CboSoli.SelectedIndex == -1)
+            {
+                MessageBox.Show($"Aun no se ha seleccionado el numero de solicitud", "No seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
             CargarRepoSoli();
         }
 
@@ -1783,6 +1803,8 @@ namespace Arcoiris.Formularios
 
             string idcli = LblCodCli.Text;
             string idsol = CboSoli.Text;
+            string Tipocredi = "";
+            string Pcred="";
 
             DataTable datosCli = cli.clientebusca(idcli);
             DataTable datosRefes = cli.refscli(idcli);
@@ -1791,11 +1813,55 @@ namespace Arcoiris.Formularios
             DataTable datosEgre = sol.EgresoSol(idsol);
             DataTable datosCuent = sol.CuentaSol(idsol);
             DataTable datosFiad = sol.FiadAllSol(idsol);
-          //  DataTable datosSoli = sol.busca_datos(CboSoli.Text);
+          DataTable datosSoli = sol.busca_datos(CboSoli.Text);
+            int edad = CalcularEdadSegura(datosCli.Rows[0][22]);
+            DateTime fechaNac = DateTime.Now;
+            if (edad != -1)
+            {
+              
+                fechaNac = Convert.ToDateTime(datosCli.Rows[0][22]);
+            }
+            else
+            {
+                edad = 0;
+                MessageBox.Show($"La fecha de nacimiento del cliente no tiene un valor correcto", "No seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+    
+            if ($"{datosSoli.Rows[0][7]}" == "1")
+            { Tipocredi = "Diario";
+                Pcred = "Diario";
+            }
+            else if ($"{datosSoli.Rows[0][7]}" == "2")
+            {
+                Tipocredi = "Diario al vencimiento";
+                Pcred = "Diario";
+            }
+            else if ($"{datosSoli.Rows[0][7]}" == "3")
+            {
+                Tipocredi = "Mensual fijo";
+                Pcred = "Mensual";
+            }
+            else if ($"{datosSoli.Rows[0][7]}" == "4")
+            {
+                Tipocredi = "Mensual sobre saldo";
+                Pcred = "Mensual";
+            }
+            else if ($"{datosSoli.Rows[0][7]}" == "5")
+            {
+                Tipocredi = "Semanal";
+                Pcred = "Semanal";
+            }
+            else if ($"{datosSoli.Rows[0][7]}" == "6")
+            {
+                Tipocredi = "Quincenal";
+                Pcred = "Quincenal";
+            }
             Reportes.ClasesRepo.DatosSolicitud DatoSol = new Reportes.ClasesRepo.DatosSolicitud();
             DatoSol.IdSol = int.Parse(CboSoli.Text);
             DatoSol.FechaSol = DateTime.Parse(LblFechasol.Text);
             DatoSol.Cliente =$"{datosCli.Rows[0][0]} {datosCli.Rows[0][1]}";
+            DatoSol.Edad = edad;
+            DatoSol.Naci = fechaNac;
             DatoSol.Domicilio=$"{datosCli.Rows[0][2]}";
             DatoSol.DPI = $"{datosCli.Rows[0][3]}";
             DatoSol.Tel1 = $"{datosCli.Rows[0][4]}";
@@ -1810,6 +1876,7 @@ namespace Arcoiris.Formularios
             DatoSol.ProfCony = $"{datosCli.Rows[0][19]}";
             DatoSol.DPICony= $"{datosCli.Rows[0][20]}";
             DatoSol.Asesor = TxtNomAseso.Text;
+            DatoSol.MotivoCred = TxtConcept.Text;
             //falta buscar
             DatoSol.TelNeg= $"{datosCli.Rows[0][24]}";
             DatoSol.RefNeg= $"{datosCli.Rows[0][26]}";
@@ -1817,12 +1884,13 @@ namespace Arcoiris.Formularios
             DatoSol.DirNeg = $"{datosCli.Rows[0][25]}";
             DatoSol.NomNeg = $"{datosCli.Rows[0][23]}";
             DatoSol.TipoNeg= $"{datosCli.Rows[0][27]}";
-            DatoSol.PlazoCred =int.Parse(TxtPlazo.Text);
-            DatoSol.PagoCred = CboTipo.Text;
-            DatoSol.TipoCred = TxtPlazo.Text;
-            DatoSol.Monto = decimal.Parse(TxtMonto2.Text);
-            DatoSol.MontoSug= decimal.Parse(TxtMontoSug2.Text);
-            DatoSol.MotivoCred = TxtConcept.Text;
+            DatoSol.PlazoCred =int.Parse($"{datosSoli.Rows[0][4]}");
+            DatoSol.PagoCred =Pcred;
+            DatoSol.TipoCred = Tipocredi;
+            DatoSol.interes=decimal.Parse($"{datosSoli.Rows[0][10]}");
+            DatoSol.Monto = decimal.Parse($"{datosSoli.Rows[0][3]}");
+            DatoSol.MontoSug= decimal.Parse($"{datosSoli.Rows[0][5]}");
+            DatoSol.MotivoCred = $"{datosSoli.Rows[0][2]}";
             DatoSol.FamConCredito = TxtGarantia.Text;
             DatoSol.interes = decimal.Parse(TxtInteres.Text);
            
@@ -1870,9 +1938,9 @@ namespace Arcoiris.Formularios
             {
                 Reportes.ClasesRepo.EgresoRepo temp = new Reportes.ClasesRepo.EgresoRepo();
                 temp.Cantidad = int.Parse($"{datosEgre.Rows[i][0]}");
-                temp.Detalle = ($"{datosEgre.Rows[i][0]}");
-                temp.Empresa = ($"{datosEgre.Rows[i][0]}");
-                temp.Cuota_men = decimal.Parse($"{datosEgre.Rows[i][0]}");
+                temp.Detalle = ($"{datosEgre.Rows[i][1]}");
+                temp.Empresa = ($"{datosEgre.Rows[i][2]}");
+                temp.Cuota_men = decimal.Parse($"{datosEgre.Rows[i][3]}");
                 Egre.Add(temp);
             }
 
@@ -1887,6 +1955,8 @@ namespace Arcoiris.Formularios
                 temp.Tel2 =($"{datosFiad.Rows[i][4]}");
                 temp.Profes = ($"{datosFiad.Rows[i][6]}");
                 temp.RefUbi = ($"{datosFiad.Rows[i][7]}");
+                temp.Fecha = DateTime.Parse($"{datosFiad.Rows[i][9]}");
+                temp.Edad = CalcularEdadSegura($"{datosFiad.Rows[i][9]}");
                 
                Fiad.Add(temp);
             }
@@ -2308,6 +2378,29 @@ namespace Arcoiris.Formularios
                 }
             }
             return respo;
+        }
+
+        public int CalcularEdadSegura(object valorCelda)
+        {
+            // 1. Verificar si el valor es nulo o DBNull
+            if (valorCelda == null || valorCelda == DBNull.Value)
+            {
+                return -1; // O manejar el error como prefieras
+            }
+
+            // 2. Intentar convertir a DateTime de forma segura
+            if (DateTime.TryParse(valorCelda.ToString(), out DateTime fechaNac))
+            {
+                DateTime fechaActual = DateTime.Today;
+                int edad = fechaActual.Year - fechaNac.Year;
+
+                // Ajuste por si no ha cumplido años aún
+                if (fechaNac.Date > fechaActual.AddYears(-edad)) edad--;
+
+                return edad;
+            }
+
+            return -1; // Retorna -1 si el formato de fecha no era válido
         }
 
     }

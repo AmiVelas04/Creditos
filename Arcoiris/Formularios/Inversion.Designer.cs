@@ -211,7 +211,7 @@
             this.BtnRetiro.Name = "BtnRetiro";
             this.BtnRetiro.Size = new System.Drawing.Size(171, 55);
             this.BtnRetiro.TabIndex = 11;
-            this.BtnRetiro.Text = "Realizar Retiro de Fondos";
+            this.BtnRetiro.Text = "Retiro de inversion";
             this.BtnRetiro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnRetiro.UseVisualStyleBackColor = true;
             this.BtnRetiro.Click += new System.EventHandler(this.BtnRetiro_Click);
@@ -224,7 +224,7 @@
             this.BtnGanAct.Name = "BtnGanAct";
             this.BtnGanAct.Size = new System.Drawing.Size(177, 55);
             this.BtnGanAct.TabIndex = 10;
-            this.BtnGanAct.Text = "Realizar Operacion";
+            this.BtnGanAct.Text = "Generar calculo";
             this.BtnGanAct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnGanAct.UseVisualStyleBackColor = true;
             this.BtnGanAct.Click += new System.EventHandler(this.BtnGanAct_Click);

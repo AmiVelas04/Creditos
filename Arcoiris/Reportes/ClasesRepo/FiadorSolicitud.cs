@@ -19,6 +19,8 @@ namespace Arcoiris.Reportes.ClasesRepo
         public string Tel1 { get; set; }
         [MaxLength(8)]
         public string Tel2 { get; set; }
+        public DateTime Fecha { get; set; }
+        public int Edad { get; set; }
         
         public string Profes { get; set; }
         public string RefUbi { get; set; }

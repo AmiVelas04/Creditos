@@ -32,6 +32,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.GbxD = new System.Windows.Forms.GroupBox();
             this.GbxInver = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.BtnInver = new System.Windows.Forms.Button();
             this.GbxPrest = new System.Windows.Forms.GroupBox();
             this.RdbPMens = new System.Windows.Forms.RadioButton();
@@ -67,6 +68,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.CboMes = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.DtpPVenci = new System.Windows.Forms.DateTimePicker();
+            this.label10 = new System.Windows.Forms.Label();
+            this.DtpPVenf = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.GbxD.SuspendLayout();
             this.GbxInver.SuspendLayout();
@@ -113,21 +118,40 @@
             // 
             // GbxInver
             // 
+            this.GbxInver.Controls.Add(this.label10);
+            this.GbxInver.Controls.Add(this.label9);
+            this.GbxInver.Controls.Add(this.DtpPVenf);
+            this.GbxInver.Controls.Add(this.DtpPVenci);
+            this.GbxInver.Controls.Add(this.button1);
             this.GbxInver.Controls.Add(this.BtnInver);
-            this.GbxInver.Location = new System.Drawing.Point(600, 25);
+            this.GbxInver.Location = new System.Drawing.Point(543, 25);
             this.GbxInver.Name = "GbxInver";
-            this.GbxInver.Size = new System.Drawing.Size(283, 214);
+            this.GbxInver.Size = new System.Drawing.Size(340, 214);
             this.GbxInver.TabIndex = 9;
             this.GbxInver.TabStop = false;
             this.GbxInver.Text = "Inversiones";
             // 
+            // button1
+            // 
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(19, 118);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 81);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Inversiones prontas a vencer";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // BtnInver
             // 
-            this.BtnInver.Location = new System.Drawing.Point(24, 38);
+            this.BtnInver.Image = ((System.Drawing.Image)(resources.GetObject("BtnInver.Image")));
+            this.BtnInver.Location = new System.Drawing.Point(19, 25);
             this.BtnInver.Name = "BtnInver";
-            this.BtnInver.Size = new System.Drawing.Size(136, 31);
+            this.BtnInver.Size = new System.Drawing.Size(136, 65);
             this.BtnInver.TabIndex = 0;
-            this.BtnInver.Text = "Inversiones";
+            this.BtnInver.Text = "Ver Inversiones";
+            this.BtnInver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnInver.UseVisualStyleBackColor = true;
             this.BtnInver.Click += new System.EventHandler(this.BtnInver_Click);
             // 
@@ -483,6 +507,40 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Mes";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(171, 98);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(46, 17);
+            this.label9.TabIndex = 4;
+            this.label9.Text = "Desde";
+            // 
+            // DtpPVenci
+            // 
+            this.DtpPVenci.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpPVenci.Location = new System.Drawing.Point(171, 118);
+            this.DtpPVenci.Name = "DtpPVenci";
+            this.DtpPVenci.Size = new System.Drawing.Size(138, 25);
+            this.DtpPVenci.TabIndex = 3;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(171, 154);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(43, 17);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Hasta";
+            // 
+            // DtpPVenf
+            // 
+            this.DtpPVenf.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DtpPVenf.Location = new System.Drawing.Point(174, 174);
+            this.DtpPVenf.Name = "DtpPVenf";
+            this.DtpPVenf.Size = new System.Drawing.Size(135, 25);
+            this.DtpPVenf.TabIndex = 10;
+            // 
             // Reporte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -503,6 +561,7 @@
             this.GbxD.ResumeLayout(false);
             this.GbxD.PerformLayout();
             this.GbxInver.ResumeLayout(false);
+            this.GbxInver.PerformLayout();
             this.GbxPrest.ResumeLayout(false);
             this.GbxPrest.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -557,5 +616,10 @@
         private System.Windows.Forms.Button BtnInver;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox CboRepoA;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DateTimePicker DtpPVenf;
+        private System.Windows.Forms.DateTimePicker DtpPVenci;
     }
 }

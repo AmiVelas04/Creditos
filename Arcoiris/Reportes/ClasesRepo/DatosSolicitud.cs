@@ -14,6 +14,8 @@ namespace Arcoiris.Reportes.ClasesRepo
       public int IdSol { get; set; }
         public string Asesor { get; set; }
         public DateTime FechaSol { get; set; }
+        public DateTime Naci { get; set; }
+        public int Edad { get; set; }
         public string Cliente { get; set; }
         public string DpiImg64 { get; set; }
         [MaxLength(13)]

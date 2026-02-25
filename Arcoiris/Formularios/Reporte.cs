@@ -26,8 +26,7 @@ namespace Arcoiris.Formularios
             listarasesores();
             ListaAsesoAll();
 
-            if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "3" || Form1.Nivel=="5"
-                )
+            if (Form1.Nivel == "1" || Form1.Nivel == "2" || Form1.Nivel == "3" || Form1.Nivel=="5")
             {
                 CboCre.Items.Add("Creditos Atrasados Diarios");
                 CboCre.Items.Add("Creditos Atrasados Mensuales");
@@ -51,6 +50,8 @@ namespace Arcoiris.Formularios
                 { GbxD.Visible = false;
                     GbxAs.Visible = false;
                 }
+                if (Form1.Nivel.Equals("5"))
+                { GbxAs.Visible = false; }
             }
             else if (Form1.Nivel.Equals("4"))
             {
@@ -58,8 +59,6 @@ namespace Arcoiris.Formularios
                 {
                     DataTable data = aseso.Usuario_Asesor(Form1.Cod_U);
                     int ido = int.Parse(data.Rows[0][1].ToString());
-                    GbxAs.Visible = false;
-                    GbxD.Visible = false;
                     CboCre.Items.Add("Creditos Atrasados Diarios");
                     CboCre.Items.Add("Creditos Atrasados Mensuales");
                     CboCre.Items.Add("Creditos Cancelados Diarios");
@@ -895,6 +894,14 @@ namespace Arcoiris.Formularios
         private void CboAseRepoGan_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string ini, fin;
+            ini = DtpPVenci.Value.ToString("yyyy/MM/dd");
+            fin = DtpPVenf.Value.ToString("yyyy/MM/dd");
+            repor.InversionesAVencer(ini,fin);
         }
     }
 }

@@ -424,6 +424,12 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
 
         }
 
+        public DataTable BuscarCliDpi(string dpi)
+        {
+            string consulta = $"Select * from cliente where dpi='{dpi}'";
+            return buscar(consulta); ;
+        }
+
         public DataTable AllCli()
         {
             DataTable datos = new DataTable();
@@ -439,7 +445,7 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
         {
             string consulta;
             consulta = "SELECT Nombres,apellidos,domicilio,dpi,telefono1,telefono2,profesion,nombre_cony,apellido_cony,telefonocon,referencia,estado_civil,edad, " +
-                "Departamento,Municipio,Genero,Nacionalidad,profe2,cargafam,profcony,dpicony, DPIBASE64,fechanaci,negnom,negtel,negdir,negref,tiponeg,negantiq,dpibase64 " +
+                "Departamento,Municipio,Genero,Nacionalidad,profe2,cargafam,profcony,dpicony, DPIBASE64,Date_format(fechanaci,'%Y-%M-%d'),negnom,negtel,negdir,negref,tiponeg,negantiq,dpibase64 " +
                         $"FROM cliente WHERE codigo_cli ={idcli}";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
@@ -565,7 +571,7 @@ com2.Parameters.Add("?id", MySqlDbType.Int32);
             com.Parameters["?estC"].Value = datos[7];
             com.Parameters["?nomCon"].Value = datos[8];
             com.Parameters["?telcon"].Value = datos[10];
-            com.Parameters["?fnaci"].Value = DateTime.Now;
+            com.Parameters["?fnaci"].Value = datos[26];
             com.Parameters["?ref"].Value = datos[11];
             com.Parameters["?edad"].Value = datos[12];
             com.Parameters["?gene"].Value = datos[13];

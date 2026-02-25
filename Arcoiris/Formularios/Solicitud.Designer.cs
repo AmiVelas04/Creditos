@@ -35,6 +35,8 @@
             this.TCTSoli = new System.Windows.Forms.TabControl();
             this.TabCred = new System.Windows.Forms.TabPage();
             this.GbxSol = new System.Windows.Forms.GroupBox();
+            this.TxtInt = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.Txtfam = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.CboRazon = new System.Windows.Forms.ComboBox();
@@ -180,8 +182,6 @@
             this.label28 = new System.Windows.Forms.Label();
             this.CboCliInv = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.TxtInt = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.Tab1.SuspendLayout();
             this.GbxSolicitud.SuspendLayout();
@@ -318,6 +318,27 @@
             this.GbxSol.TabIndex = 50;
             this.GbxSol.TabStop = false;
             this.GbxSol.Text = "Datos del credito";
+            // 
+            // TxtInt
+            // 
+            this.TxtInt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
+            this.TxtInt.Location = new System.Drawing.Point(164, 365);
+            this.TxtInt.Margin = new System.Windows.Forms.Padding(4);
+            this.TxtInt.Name = "TxtInt";
+            this.TxtInt.Size = new System.Drawing.Size(132, 23);
+            this.TxtInt.TabIndex = 71;
+            this.TxtInt.Text = "0";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
+            this.label22.Location = new System.Drawing.Point(17, 369);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(43, 15);
+            this.label22.TabIndex = 70;
+            this.label22.Text = "Interes";
             // 
             // Txtfam
             // 
@@ -1392,7 +1413,7 @@
             this.BtnCancelar.Name = "BtnCancelar";
             this.BtnCancelar.Size = new System.Drawing.Size(165, 65);
             this.BtnCancelar.TabIndex = 30;
-            this.BtnCancelar.Text = "Cancelar   Solicitud";
+            this.BtnCancelar.Text = "Rechazar  Solicitud";
             this.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnCancelar.UseVisualStyleBackColor = false;
@@ -1935,29 +1956,6 @@
             this.label27.Size = new System.Drawing.Size(51, 17);
             this.label27.TabIndex = 0;
             this.label27.Text = "Cliente";
-            // 
-            // TxtInt
-            // 
-            this.TxtInt.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
-            this.TxtInt.Location = new System.Drawing.Point(164, 365);
-            this.TxtInt.Margin = new System.Windows.Forms.Padding(4);
-            this.TxtInt.Name = "TxtInt";
-            this.TxtInt.Size = new System.Drawing.Size(132, 23);
-            this.TxtInt.TabIndex = 71;
-            this.TxtInt.Text = "0";
-            this.TxtInt.Visible = false;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label22.Location = new System.Drawing.Point(17, 369);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(43, 15);
-            this.label22.TabIndex = 70;
-            this.label22.Text = "Interes";
-            this.label22.Visible = false;
             // 
             // Solicitud
             // 

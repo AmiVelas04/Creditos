@@ -111,11 +111,6 @@
             this.GbxResumenEgr = new System.Windows.Forms.GroupBox();
             this.BtnElimEgr = new System.Windows.Forms.Button();
             this.DgvEngMen = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbxResumenIn = new System.Windows.Forms.GroupBox();
             this.BtnElimIng = new System.Windows.Forms.Button();
             this.DgvIngMen = new System.Windows.Forms.DataGridView();
@@ -134,6 +129,11 @@
             this.label36 = new System.Windows.Forms.Label();
             this.CboCuenta = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanMain.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.TCTSoli.SuspendLayout();
@@ -631,8 +631,10 @@
             this.UpdFiadEdit.Image = ((System.Drawing.Image)(resources.GetObject("UpdFiadEdit.Image")));
             this.UpdFiadEdit.Location = new System.Drawing.Point(408, 146);
             this.UpdFiadEdit.Name = "UpdFiadEdit";
-            this.UpdFiadEdit.Size = new System.Drawing.Size(75, 53);
+            this.UpdFiadEdit.Size = new System.Drawing.Size(75, 82);
             this.UpdFiadEdit.TabIndex = 61;
+            this.UpdFiadEdit.Text = "Actualizar Fiador";
+            this.UpdFiadEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.UpdFiadEdit.UseVisualStyleBackColor = false;
             this.UpdFiadEdit.Click += new System.EventHandler(this.UpdFiadEdit_Click);
             // 
@@ -642,8 +644,10 @@
             this.BtnDelLstFiad.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelLstFiad.Image")));
             this.BtnDelLstFiad.Location = new System.Drawing.Point(246, 146);
             this.BtnDelLstFiad.Name = "BtnDelLstFiad";
-            this.BtnDelLstFiad.Size = new System.Drawing.Size(75, 53);
+            this.BtnDelLstFiad.Size = new System.Drawing.Size(75, 82);
             this.BtnDelLstFiad.TabIndex = 60;
+            this.BtnDelLstFiad.Text = "Remover Fiador";
+            this.BtnDelLstFiad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnDelLstFiad.UseVisualStyleBackColor = false;
             // 
             // BtnAddLstFiad
@@ -652,8 +656,10 @@
             this.BtnAddLstFiad.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddLstFiad.Image")));
             this.BtnAddLstFiad.Location = new System.Drawing.Point(327, 146);
             this.BtnAddLstFiad.Name = "BtnAddLstFiad";
-            this.BtnAddLstFiad.Size = new System.Drawing.Size(75, 53);
+            this.BtnAddLstFiad.Size = new System.Drawing.Size(75, 82);
             this.BtnAddLstFiad.TabIndex = 59;
+            this.BtnAddLstFiad.Text = "Agregar Fiador";
+            this.BtnAddLstFiad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnAddLstFiad.UseVisualStyleBackColor = false;
             this.BtnAddLstFiad.Click += new System.EventHandler(this.BtnAddLstFiad_Click);
             // 
@@ -777,8 +783,10 @@
             this.BtnUpGarantEdit.Image = ((System.Drawing.Image)(resources.GetObject("BtnUpGarantEdit.Image")));
             this.BtnUpGarantEdit.Location = new System.Drawing.Point(411, 26);
             this.BtnUpGarantEdit.Name = "BtnUpGarantEdit";
-            this.BtnUpGarantEdit.Size = new System.Drawing.Size(75, 53);
+            this.BtnUpGarantEdit.Size = new System.Drawing.Size(75, 84);
             this.BtnUpGarantEdit.TabIndex = 59;
+            this.BtnUpGarantEdit.Text = "Actualizar Garantia(s)";
+            this.BtnUpGarantEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnUpGarantEdit.UseVisualStyleBackColor = false;
             this.BtnUpGarantEdit.Click += new System.EventHandler(this.BtnUpGarantEdit_Click);
             // 
@@ -788,8 +796,10 @@
             this.BtnDelLstGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnDelLstGarant.Image")));
             this.BtnDelLstGarant.Location = new System.Drawing.Point(249, 26);
             this.BtnDelLstGarant.Name = "BtnDelLstGarant";
-            this.BtnDelLstGarant.Size = new System.Drawing.Size(75, 53);
+            this.BtnDelLstGarant.Size = new System.Drawing.Size(75, 84);
             this.BtnDelLstGarant.TabIndex = 58;
+            this.BtnDelLstGarant.Text = "Remover Garantia";
+            this.BtnDelLstGarant.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnDelLstGarant.UseVisualStyleBackColor = false;
             // 
             // BtnAddLstGarant
@@ -798,25 +808,27 @@
             this.BtnAddLstGarant.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddLstGarant.Image")));
             this.BtnAddLstGarant.Location = new System.Drawing.Point(330, 26);
             this.BtnAddLstGarant.Name = "BtnAddLstGarant";
-            this.BtnAddLstGarant.Size = new System.Drawing.Size(75, 53);
+            this.BtnAddLstGarant.Size = new System.Drawing.Size(75, 84);
             this.BtnAddLstGarant.TabIndex = 57;
+            this.BtnAddLstGarant.Text = "Agregar Garantia";
+            this.BtnAddLstGarant.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnAddLstGarant.UseVisualStyleBackColor = false;
             this.BtnAddLstGarant.Click += new System.EventHandler(this.BtnAddLstGarant_Click);
             // 
             // TxtObsGara
             // 
-            this.TxtObsGara.Location = new System.Drawing.Point(223, 154);
+            this.TxtObsGara.Location = new System.Drawing.Point(223, 172);
             this.TxtObsGara.Multiline = true;
             this.TxtObsGara.Name = "TxtObsGara";
             this.TxtObsGara.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtObsGara.Size = new System.Drawing.Size(140, 113);
+            this.TxtObsGara.Size = new System.Drawing.Size(197, 95);
             this.TxtObsGara.TabIndex = 56;
             // 
             // label45
             // 
             this.label45.AutoSize = true;
             this.label45.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label45.Location = new System.Drawing.Point(209, 134);
+            this.label45.Location = new System.Drawing.Point(220, 154);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(131, 15);
             this.label45.TabIndex = 55;
@@ -841,18 +853,18 @@
             // 
             // TxtDetaGara
             // 
-            this.TxtDetaGara.Location = new System.Drawing.Point(9, 206);
+            this.TxtDetaGara.Location = new System.Drawing.Point(9, 216);
             this.TxtDetaGara.Multiline = true;
             this.TxtDetaGara.Name = "TxtDetaGara";
             this.TxtDetaGara.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtDetaGara.Size = new System.Drawing.Size(208, 61);
+            this.TxtDetaGara.Size = new System.Drawing.Size(208, 51);
             this.TxtDetaGara.TabIndex = 52;
             // 
             // label43
             // 
             this.label43.AutoSize = true;
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label43.Location = new System.Drawing.Point(21, 186);
+            this.label43.Location = new System.Drawing.Point(21, 198);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(91, 15);
             this.label43.TabIndex = 51;
@@ -860,7 +872,7 @@
             // 
             // TxtValGara
             // 
-            this.TxtValGara.Location = new System.Drawing.Point(9, 154);
+            this.TxtValGara.Location = new System.Drawing.Point(9, 172);
             this.TxtValGara.Name = "TxtValGara";
             this.TxtValGara.Size = new System.Drawing.Size(122, 23);
             this.TxtValGara.TabIndex = 50;
@@ -870,7 +882,7 @@
             // 
             this.label42.AutoSize = true;
             this.label42.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label42.Location = new System.Drawing.Point(21, 134);
+            this.label42.Location = new System.Drawing.Point(24, 154);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(81, 15);
             this.label42.TabIndex = 49;
@@ -879,7 +891,7 @@
             // CboPropi
             // 
             this.CboPropi.FormattingEnabled = true;
-            this.CboPropi.Location = new System.Drawing.Point(9, 96);
+            this.CboPropi.Location = new System.Drawing.Point(9, 116);
             this.CboPropi.Name = "CboPropi";
             this.CboPropi.Size = new System.Drawing.Size(411, 23);
             this.CboPropi.TabIndex = 48;
@@ -889,7 +901,7 @@
             // 
             this.label41.AutoSize = true;
             this.label41.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label41.Location = new System.Drawing.Point(21, 76);
+            this.label41.Location = new System.Drawing.Point(21, 96);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(65, 15);
             this.label41.TabIndex = 47;
@@ -1078,36 +1090,6 @@
             this.DgvEngMen.Name = "DgvEngMen";
             this.DgvEngMen.Size = new System.Drawing.Size(373, 430);
             this.DgvEngMen.TabIndex = 1;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 69;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 79;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 77;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 111;
-            // 
-            // IdEgrEdit
-            // 
-            this.IdEgrEdit.HeaderText = "Id";
-            this.IdEgrEdit.Name = "IdEgrEdit";
-            this.IdEgrEdit.Width = 43;
             // 
             // GbxResumenIn
             // 
@@ -1300,6 +1282,37 @@
             this.label35.TabIndex = 0;
             this.label35.Text = "Cuenta";
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 69;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 79;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 77;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 111;
+            // 
+            // IdEgrEdit
+            // 
+            this.IdEgrEdit.HeaderText = "Id";
+            this.IdEgrEdit.Name = "IdEgrEdit";
+            this.IdEgrEdit.Visible = false;
+            this.IdEgrEdit.Width = 43;
+            // 
             // EditSolicitud
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1415,11 +1428,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox TxtMontoAprov;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdEgrEdit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Prod;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cant;
         private System.Windows.Forms.DataGridViewTextBoxColumn Costo;
@@ -1447,5 +1455,10 @@
         private System.Windows.Forms.Label LblEstado;
         private System.Windows.Forms.TextBox TxtInteresEdit;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEgrEdit;
     }
 }

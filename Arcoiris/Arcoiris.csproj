@@ -535,6 +535,12 @@
     <Compile Include="Reportes\Inversiones.Designer.cs">
       <DependentUpon>Inversiones.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\InversionesProntas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\InversionesProntas.Designer.cs">
+      <DependentUpon>InversionesProntas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\LlenarReport.cs" />
     <Compile Include="Reportes\PagoDesc.cs" />
     <Compile Include="Reportes\Pagohoy.cs">
@@ -745,6 +751,10 @@
     <EmbeddedResource Include="Reportes\Inversiones.resx">
       <DependentUpon>Inversiones.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InversionesProntas.resx">
+      <DependentUpon>InversionesProntas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InversionPronta.rdlc" />
     <EmbeddedResource Include="Reportes\Pago.rdlc" />
     <EmbeddedResource Include="Reportes\Pagohoy.rdlc" />
     <EmbeddedResource Include="Reportes\Pagohoy.resx">

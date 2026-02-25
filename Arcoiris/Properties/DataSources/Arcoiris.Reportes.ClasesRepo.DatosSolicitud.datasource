@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="DatosSolicitud" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>Arcoiris.Reportes.ClasesRepo.DatosSolicitud, Arcoiris, Version=4.0.5.2, Culture=neutral, PublicKeyToken=null</TypeInfo>
+   <TypeInfo>Arcoiris.Reportes.ClasesRepo.DatosSolicitud, Arcoiris, Version=5.0.1.12, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>
