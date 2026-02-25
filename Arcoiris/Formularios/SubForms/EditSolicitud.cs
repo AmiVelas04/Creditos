@@ -252,7 +252,7 @@ namespace Arcoiris.Formularios.SubForms
 
         private void cargaEgreso()
         {
-            DgvIngMen.Rows.Clear();
+            DgvEngMen.Rows.Clear();
             DataTable datosEgre = Soli.EgresoSol($"{IdSol}");
             int filas = datosEgre.Rows.Count;
             for (int i = 0; i < filas; i++)
@@ -435,10 +435,11 @@ namespace Arcoiris.Formularios.SubForms
             }
             int CantIngre = ingresos.Count;
             int CantEgre = egresos.Count;
+            bool cuentasingre = (LstCuentas.Items.Count > 0 || LstPasiv.Items.Count > 0) ? Soli.IngresoEstadoFinan(listaCuentas, TxtNoSol.Text) : true;
             bool IngreResp = CantIngre > 0 ? Soli.IngresoMen(ingresos, TxtNoSol.Text) : true;
             bool EgreResp = CantEgre > 0 ? Soli.EgresoMen(egresos, TxtNoSol.Text) : true;
 
-            Doing = ((Soli.IngresoEstadoFinan(listaCuentas, TxtNoSol.Text) && IngreResp && EgreResp));
+            Doing = (( cuentasingre && IngreResp && EgreResp));
             if (Doing)
             {
                
