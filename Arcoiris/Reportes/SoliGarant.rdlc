@@ -542,7 +542,6 @@
                                           <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                                         </Style>
                                       </Textbox>
-                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                   </TablixHeader>
                                   <TablixMembers>
@@ -680,6 +679,7 @@
       <NumberOfRows>2</NumberOfRows>
     </GridLayoutDefinition>
   </ReportParametersLayout>
+  <Language>es-GT</Language>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>96a40ef2-af99-40ea-ab23-fb198b8beb36</rd:ReportID>
 </Report>

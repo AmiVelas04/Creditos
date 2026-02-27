@@ -684,7 +684,7 @@ namespace Arcoiris.Clases
         public DataTable SolibyCredi(string idcre)
         {
             string consulta;
-            consulta = "SELECT* FROM solicitud sol " +
+            consulta = "SELECT sol.id_solicitud,sol.Concepto,sol.razon,sol.monto,Date_format(sol.fecha,'%d/%m/%y'),sol.estado,sol.plazo,sol.garantia,sol.fiador,sol.tipo,sol.interes FROM solicitud sol " +
                        "JOIN asigna_credito ac ON sol.ID_SOLICITUD = ac.ID_SOLICITUD AND ac.COD_CREDITO =" + idcre;
             return buscar(consulta);
 
@@ -694,7 +694,8 @@ namespace Arcoiris.Clases
         public bool updgarantia(string[] datos)
         {
             string consulta;
-            consulta = "Update  garantia set tipo='" + datos[1] + "', valuacion=" + datos[2] + ", detalle='" + datos[3] + "', Tipo_esc='" + datos[4] + "', Fecha_esc='" + datos[5] + "', Autorizo='" + datos[6] + "', ubicacion='" + datos[7] + "', Estado='" + datos[8] + "' where id_garant=" + datos[0];
+            consulta = $"Update  garantia set tipo='{datos[1]}', valuacion={datos[2]}, detalle='{datos[3]}', Tipo_esc='{datos[4]}', Fecha_esc='{datos[5]}', Autorizo='{datos[6]}', ubicacion='{datos[7]}', Estado='{datos[8]}' " +
+                $"where id_garant={datos[0]}";
             return (consulta_gen(consulta));
         }
         #endregion
@@ -1007,7 +1008,7 @@ namespace Arcoiris.Clases
 
         public DataTable FiadAllSol(string sol)
         {
-            string consulta = $"SELECT c.CODIGO_CLI, CONCAT(c.NOMBRES, ' ', c.APELLIDOS),c.DPI,c.DOMICILIO,c.TELEFONO1,c.Telefono2,c.PROFESION,c.REFERENCIA,sfi.OtherIng,Date_format(c.fechanaci,'%y/%m/%d') " +
+            string consulta = $"SELECT c.CODIGO_CLI, CONCAT(c.NOMBRES, ' ', c.APELLIDOS),c.DPI,c.DOMICILIO,c.TELEFONO1,c.Telefono2,c.PROFESION,c.REFERENCIA,sfi.OtherIng,Date_format(c.fechanaci,'%d/%m/%y') " +
                 $"FROM cliente c " +
                 $"JOIN sol_fiad sfi ON c.CODIGO_CLI = sfi.Id_Fia " +
                 $"WHERE sfi.Id_sol ={sol}";

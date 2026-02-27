@@ -6,10 +6,10 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>5.65662cm</Width>
+              <Width>5.11445cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.10994cm</Width>
+              <Width>2.65211cm</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>4.53057cm</Width>
@@ -411,6 +411,7 @@
                               <Value>=Sum(CDec(IIf(Fields!tipo.Value=true,Fields!Valor.Value,0.0)))</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -477,6 +478,7 @@
                               <Value>=Sum(CDec(IIf((Fields!tipo.Value)="false", Fields!Valor.Value,0.0)))</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -551,6 +553,7 @@
                               <Value>=Sum(CDec(IIf(Fields!tipo.Value=true,Fields!Valor.Value,0.0)))-Sum(CDec(IIf((Fields!tipo.Value)="false", Fields!Valor.Value,0.0)))</Value>
                               <Style>
                                 <FontFamily>Times New Roman</FontFamily>
+                                <FontWeight>Bold</FontWeight>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
@@ -572,6 +575,7 @@
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1133,7 +1137,6 @@
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -1169,7 +1172,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Ingreso</DataSetName>
-        <Top>5.73828cm</Top>
+        <Top>3.83328cm</Top>
         <Left>0.1cm</Left>
         <Height>2.4cm</Height>
         <Width>17.00001cm</Width>
@@ -1634,8 +1637,8 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Egreso</DataSetName>
-        <Top>8.46349cm</Top>
-        <Left>0.1cm</Left>
+        <Top>6.55849cm</Top>
+        <Left>0.10002cm</Left>
         <Height>2.4cm</Height>
         <Width>16.99999cm</Width>
         <ZIndex>2</ZIndex>
@@ -1672,7 +1675,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>11.34745cm</Top>
+        <Top>9.44245cm</Top>
         <Left>0.1cm</Left>
         <Height>0.6cm</Height>
         <Width>6.12605cm</Width>
@@ -1727,7 +1730,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>11.98273cm</Top>
+        <Top>10.07773cm</Top>
         <Left>0.1cm</Left>
         <Height>0.6cm</Height>
         <Width>6.12605cm</Width>
@@ -1765,14 +1768,14 @@
                 <Value>Diferencia: </Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <Format>'Q'#,0.00;('Q'#,0.00)</Format>
+                  <Format>'Q'#,0.00</Format>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=(Sum(Fields!Ganacia.Value, "Ingreso") -Sum(Fields!Cuota_men.Value, "Egreso"))</Value>
                 <Style>
                   <FontFamily>Times New Roman</FontFamily>
-                  <Format>'Q'#,0.00;('Q'#,0.00)</Format>
+                  <Format>'Q'#,0.00</Format>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -1782,7 +1785,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox57</rd:DefaultName>
-        <Top>12.61801cm</Top>
+        <Top>10.71301cm</Top>
         <Left>0.1cm</Left>
         <Height>0.6cm</Height>
         <Width>6.12605cm</Width>
@@ -1791,18 +1794,6 @@
           <Border>
             <Style>Solid</Style>
           </Border>
-          <TopBorder>
-            <Width>1pt</Width>
-          </TopBorder>
-          <BottomBorder>
-            <Width>1pt</Width>
-          </BottomBorder>
-          <LeftBorder>
-            <Width>1pt</Width>
-          </LeftBorder>
-          <RightBorder>
-            <Width>1pt</Width>
-          </RightBorder>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -1811,7 +1802,7 @@
         </Style>
       </Textbox>
       <Line Name="Line1">
-        <Top>14.70766cm</Top>
+        <Top>12.80266cm</Top>
         <Left>2.3225cm</Left>
         <Height>0cm</Height>
         <Width>13.39958cm</Width>
@@ -1842,7 +1833,7 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox60</rd:DefaultName>
-        <Top>14.88405cm</Top>
+        <Top>12.97905cm</Top>
         <Left>6.44454cm</Left>
         <Height>0.6cm</Height>
         <Width>5.41042cm</Width>
@@ -1858,7 +1849,7 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>6.59375in</Height>
+    <Height>5.54167in</Height>
     <Style />
   </Body>
   <Width>6.98959in</Width>
@@ -2000,6 +1991,7 @@
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
+  <Language>es-GT</Language>
   <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>77c22fc9-667d-4151-bf90-f17e48e7bee7</rd:ReportID>
 </Report>

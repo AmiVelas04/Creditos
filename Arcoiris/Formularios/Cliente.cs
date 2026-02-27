@@ -198,8 +198,8 @@ namespace Arcoiris.Formularios
             TabC3.Parent = null;
             if (Form1.Nivel == "4")
             {
-                BtnGuardar.Visible = false;
-                BtnUpd.Visible = false;
+                BtnGuardar.Visible = true;
+                BtnUpd.Visible = true;
             }
             cargarDepas();
             // Clases.Estilos.StyleForm(this);
@@ -364,7 +364,8 @@ namespace Arcoiris.Formularios
                        TxtOProfEdit.Text= cliedit.Rows[0][10].ToString();
                     TxtCargaF.Text= cliedit.Rows[0][17].ToString();
                         TxtProfConyEdit.Text= $"{cliedit.Rows[0][19]}";
-                         CboDepaEdit.SelectedValue = clien.idDepaByName($"{cliedit.Rows[0][13]}");
+                        TxtOProfEdit.Text= $"{cliedit.Rows[0][17]}";
+                        CboDepaEdit.SelectedValue = clien.idDepaByName($"{cliedit.Rows[0][13]}");
                         CboMunEdit.SelectedValue = clien.idMuniByName($"{cliedit.Rows[0][14]}");
                         TxtCargaFamEdit.Text= $"{cliedit.Rows[0][18]}";
                         TxtNomNegEdit.Text = $"{cliedit.Rows[0][23]}";
@@ -373,7 +374,7 @@ namespace Arcoiris.Formularios
                         TxtRefNegEdit.Text = $"{cliedit.Rows[0][26]}";
                         TxtTipNegEdit.Text= $"{cliedit.Rows[0][27]}";
                         TxtAntiqNegEdit.Text= $"{cliedit.Rows[0][28]}";
-                        //  TxtCargaFamEdit.Text=(cliedit.Rows[0][21].ToString());
+                         // TxtCargaFamEdit.Text=(cliedit.Rows[0][18].ToString());
                         try
                         {
                             byte[] imadpi = (byte[])cliedit.Rows[0][21];

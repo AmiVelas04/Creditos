@@ -867,8 +867,7 @@
             "Ninguna",
             "Inmobiliaria",
             "Mobiliaria",
-            "Prendaria",
-            "Fiduciaria"});
+            "Prendaria"});
             this.CboTipoGarant.Location = new System.Drawing.Point(9, 46);
             this.CboTipoGarant.Name = "CboTipoGarant";
             this.CboTipoGarant.Size = new System.Drawing.Size(188, 23);

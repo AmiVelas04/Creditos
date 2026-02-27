@@ -1241,7 +1241,7 @@ namespace Arcoiris.Formularios
 
             string idcli = LblIdCli.Text;
             string idsol = $"{respo1.Rows[0][0]}";
-            string fechasoli = $"{DateTime.Parse($"{respo1.Rows[0][5]}").ToString("dd/MM/yyy")}";
+            string fechasoli = $"{DateTime.Parse($"{respo1.Rows[0][4]}")}";
             DataTable datosCli = cli.clientebusca(idcli);
             DataTable datosRefes = cli.refscli(idcli);
             DataTable datosGarant = soli.GarantbyCliSol(idsol, idcli);
@@ -1279,7 +1279,7 @@ namespace Arcoiris.Formularios
             DatoSol.PagoCred = TxtTipo.Text;
             DatoSol.TipoCred = TxtPlazo.Text;
             DatoSol.Monto = decimal.Parse(TxtMonto.Text);
-            DatoSol.MontoSug = decimal.Parse($"{respo1.Rows[0][2]}");
+            DatoSol.MontoSug = decimal.Parse($"{respo1.Rows[0][7]}");
             DatoSol.MotivoCred = $"{respo1.Rows[0][1]}";
 
             for (int i = 0; i < datosRefes.Rows.Count; i++)
@@ -1336,13 +1336,13 @@ namespace Arcoiris.Formularios
             {
                 Reportes.ClasesRepo.FiadorSolicitud temp = new Reportes.ClasesRepo.FiadorSolicitud();
                 //temp = int.Parse($"{datosEgre.Rows[i][0]}");
-                temp.Nombre = ($"{datosEgre.Rows[i][0]}");
-                temp.Dpi = ($"{datosEgre.Rows[i][0]}");
-                temp.Domicilio = ($"{datosEgre.Rows[i][0]}");
-                temp.Tel1 = ($"{datosEgre.Rows[i][0]}");
-                temp.Tel2 = ($"{datosEgre.Rows[i][0]}");
-                temp.Profes = ($"{datosEgre.Rows[i][0]}");
-                temp.RefUbi = ($"{datosEgre.Rows[i][0]}");
+                temp.Nombre = ($"{datosFiad.Rows[i][1]}");
+                temp.Dpi = ($"{datosFiad.Rows[i][2]}");
+                temp.Domicilio = ($"{datosFiad.Rows[i][3]}");
+                temp.Tel1 = ($"{datosFiad.Rows[i][4]}");
+                temp.Tel2 = ($"{datosFiad.Rows[i][5]}");
+                temp.Profes = ($"{datosFiad.Rows[i][6]}");
+                temp.RefUbi = ($"{datosFiad.Rows[i][7]}");
 
                 Fiad.Add(temp);
             }
