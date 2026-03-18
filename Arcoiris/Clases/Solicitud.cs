@@ -310,10 +310,12 @@ namespace Arcoiris.Clases
             return datos;
         }
 
-        public DataTable busca_soli_pend_asesor()
+        public DataTable busca_soli_pend_asesor(int asesor)
         {
             string consulta;
-            consulta = "Select id_solicitud from solicitud where estado ='Espera'";
+            consulta = "Select sol.id_solicitud from solicitud sol " +
+                "join asigna_solicitud asol ON asol.ID_SOLICITUD = sol.ID_SOLICITUD " +
+                $"where estado = 'Espera' AND asol.COD_ASESOR = {asesor}";
             DataTable datos = new DataTable();
             datos = buscar(consulta);
             return datos;

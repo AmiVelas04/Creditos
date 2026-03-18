@@ -431,9 +431,9 @@
             this.LblPlazo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
             this.LblPlazo.Location = new System.Drawing.Point(17, 308);
             this.LblPlazo.Name = "LblPlazo";
-            this.LblPlazo.Size = new System.Drawing.Size(77, 15);
+            this.LblPlazo.Size = new System.Drawing.Size(67, 15);
             this.LblPlazo.TabIndex = 62;
-            this.LblPlazo.Text = "Plazo(Meses)";
+            this.LblPlazo.Text = "Plazo(Dias)";
             // 
             // CboTipo
             // 
@@ -445,6 +445,7 @@
             this.CboTipo.Name = "CboTipo";
             this.CboTipo.Size = new System.Drawing.Size(176, 23);
             this.CboTipo.TabIndex = 61;
+            this.CboTipo.SelectedIndexChanged += new System.EventHandler(this.CboTipo_SelectedIndexChanged);
             // 
             // label6
             // 

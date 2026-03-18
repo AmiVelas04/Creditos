@@ -34,6 +34,7 @@ namespace Arcoiris.Formularios
         int Contratotip = 0;
         List<string> DetaGaran = new List<string>();
         private int cod_credi;
+        private int codiAsesor;
         private decimal salantes = 0;
         string contrato = "0";
         decimal interescalc = 1;
@@ -81,7 +82,7 @@ namespace Arcoiris.Formularios
             }
             else if (Form1.Nivel.Equals("4"))
             {
-                
+               codiAsesor = aseso.UsuAseso(Form1.Cod_U);
                 Tab2.Parent = tabControl1;
                 Tab3.Parent = null;
                 BtnCancelar.Enabled = false;
@@ -184,8 +185,7 @@ namespace Arcoiris.Formularios
             listCliFia();
             if (Form1.Nivel.Equals("4"))
             {
-                int ases= aseso.UsuAseso(Form1.Cod_U);
-                CboAsesor.SelectedValue = ases;
+                CboAsesor.SelectedValue = codiAsesor;
             }
 
             LblFecha.Text = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
@@ -442,7 +442,9 @@ namespace Arcoiris.Formularios
             int total;
             DataTable datos = new DataTable();
             if (Form1.Nivel.Equals("4"))
-            { }
+            {
+                datos = sol.busca_soli_pend_asesor(codiAsesor);
+            }
             else
             { datos = sol.busca_soli_pend(); }
             
@@ -1825,7 +1827,6 @@ namespace Arcoiris.Formularios
             DateTime fechaNac = DateTime.Now;
             if (edad != -1)
             {
-              
                 fechaNac = Convert.ToDateTime(datosCli.Rows[0][22]);
             }
             else
@@ -2423,6 +2424,22 @@ namespace Arcoiris.Formularios
         private void GBXPrestamo_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void CboTipo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CboTipo.SelectedIndex == 0)
+            { LblPlazo.Text = "Plazo(Dias)"; }
+            else if (CboTipo.SelectedIndex == 1)
+            { LblPlazo.Text = "Plazo(Dias)"; }
+            else if (CboTipo.SelectedIndex == 2)
+            { LblPlazo.Text = "Plazo(Semana)"; }
+            else if (CboTipo.SelectedIndex == 3)
+            { LblPlazo.Text = "Plazo(Quincena)"; }
+            else if (CboTipo.SelectedIndex == 4)
+            { LblPlazo.Text = "Plazo(Mes)"; }
+            else if (CboTipo.SelectedIndex == 5)
+            { LblPlazo.Text = "Plazo(Mes)"; }
         }
     }
 }
