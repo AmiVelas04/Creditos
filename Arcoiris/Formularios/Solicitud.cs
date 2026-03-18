@@ -22,6 +22,7 @@ namespace Arcoiris.Formularios
         Clases.CajaOpe caj = new Clases.CajaOpe();
         Clases.Logueo log = new Clases.Logueo();
         Clases.Inversion Inver = new Clases.Inversion();
+     
         Reportes.LlenarReport repo = new Reportes.LlenarReport();
         DataTable AllCli = new DataTable();
         List<Clases.Modelos.DeparamentoModel> AllDepas;
@@ -60,7 +61,6 @@ namespace Arcoiris.Formularios
             CboFiadNom.AutoCompleteCustomSource = coleccion;
             CboFiadNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboFiadNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
         }
 
         private void Solicitud_Load(object sender, EventArgs e)
@@ -72,7 +72,6 @@ namespace Arcoiris.Formularios
             // Configurar el DrawMode
             TCTSoli.DrawMode = TabDrawMode.OwnerDrawFixed;
             TCTSoli.DrawItem += TCTSoli_DrawItem;
-
             // Ajustar el tamaño de las pestañas
             AjustarTamanioPestaniasSegunTexto();
             if (Form1.Nivel.Equals("1") || Form1.Nivel.Equals("2") || Form1.Nivel.Equals("5"))
@@ -82,18 +81,19 @@ namespace Arcoiris.Formularios
             }
             else if (Form1.Nivel.Equals("4"))
             {
+                
                 Tab2.Parent = tabControl1;
                 Tab3.Parent = null;
                 BtnCancelar.Enabled = false;
                 BntCambiar.Enabled = false;
+             
+                CboAsesor.Enabled = false;
             }
             else
             {
                 Tab2.Parent = null;
                 Tab3.Parent = null;
             }
-
-
             /*  for (c1 = 0; c1 <= totalas - 1; c1++)
               {
                   CboAsesor.Items.Add (datosas.Rows[c1][0]);
@@ -105,7 +105,6 @@ namespace Arcoiris.Formularios
 
             //Agregar datos al combo box cliente
             DataTable datoscli = new DataTable();
-            
             datoscli = cli.Buscar_nom_cli();
             AllCliInv = cli.AllCli();
             DataTable datos2 = datoscli.Copy();
@@ -183,7 +182,11 @@ namespace Arcoiris.Formularios
 
             //Lista de fiadores
             listCliFia();
-
+            if (Form1.Nivel.Equals("4"))
+            {
+                int ases= aseso.UsuAseso(Form1.Cod_U);
+                CboAsesor.SelectedValue = ases;
+            }
 
             LblFecha.Text = "Fecha de solicitud: " + DateTime.Now.ToString("yyyy/MM/dd");
             TxtNoSol.Text = $"{sol.id_solicitud()}";
@@ -438,7 +441,11 @@ namespace Arcoiris.Formularios
         {
             int total;
             DataTable datos = new DataTable();
-            datos = sol.busca_soli_pend();
+            if (Form1.Nivel.Equals("4"))
+            { }
+            else
+            { datos = sol.busca_soli_pend(); }
+            
             total = datos.Rows.Count;
             CboSoli.Items.Clear();
             int c1;
@@ -2403,6 +2410,20 @@ namespace Arcoiris.Formularios
             return -1; // Retorna -1 si el formato de fecha no era válido
         }
 
+        private void CboAsesor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GBXPrestamo_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

@@ -223,7 +223,7 @@ namespace Arcoiris.Clases
             conect.iniciar();
             int solicompa =id_solicitud();
             string consulta;
-            string[] data = { datos[7], datos[0], datos[8] };
+         
             string fecha = datos[3].ToString();
             fecha = DateTime.Now.ToString("yyyy/MM/dd");
             int solTemp = int.Parse(datos[0]);
@@ -240,6 +240,7 @@ namespace Arcoiris.Clases
             com.Connection = conect.conn;
             com.CommandText = consulta;
             com.CommandType = CommandType.Text;
+            string[] data = { datos[7], datos[0], datos[8] };
             try
             {
                 conect.conn.Open();
@@ -301,6 +302,15 @@ namespace Arcoiris.Clases
 
 
         public DataTable busca_soli_pend()
+        {
+            string consulta;
+            consulta = "Select id_solicitud from solicitud where estado ='Espera'";
+            DataTable datos = new DataTable();
+            datos = buscar(consulta);
+            return datos;
+        }
+
+        public DataTable busca_soli_pend_asesor()
         {
             string consulta;
             consulta = "Select id_solicitud from solicitud where estado ='Espera'";

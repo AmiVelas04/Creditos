@@ -483,11 +483,12 @@
             // 
             this.CboAsesor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.CboAsesor.FormattingEnabled = true;
-            this.CboAsesor.Location = new System.Drawing.Point(164, 111);
+            this.CboAsesor.Location = new System.Drawing.Point(163, 115);
             this.CboAsesor.Margin = new System.Windows.Forms.Padding(4);
             this.CboAsesor.Name = "CboAsesor";
             this.CboAsesor.Size = new System.Drawing.Size(307, 23);
             this.CboAsesor.TabIndex = 57;
+            this.CboAsesor.SelectedIndexChanged += new System.EventHandler(this.CboAsesor_SelectedIndexChanged);
             // 
             // TxtConcept
             // 
@@ -515,12 +516,13 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(85)))), ((int)(((byte)(99)))));
-            this.label3.Location = new System.Drawing.Point(17, 111);
+            this.label3.Location = new System.Drawing.Point(16, 115);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(42, 15);
             this.label3.TabIndex = 54;
             this.label3.Text = "Asesor";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // TxtMonto
             // 
@@ -540,9 +542,9 @@
             this.label2.Location = new System.Drawing.Point(17, 163);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 15);
+            this.label2.Size = new System.Drawing.Size(96, 15);
             this.label2.TabIndex = 52;
-            this.label2.Text = "Monto solicitado";
+            this.label2.Text = "Monto a aprobar";
             // 
             // CboCliente
             // 
@@ -1354,6 +1356,7 @@
             this.GBXPrestamo.TabIndex = 2;
             this.GBXPrestamo.TabStop = false;
             this.GBXPrestamo.Text = "Prestamo";
+            this.GBXPrestamo.Enter += new System.EventHandler(this.GBXPrestamo_Enter);
             // 
             // TxtMontoSug2
             // 
@@ -1656,7 +1659,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 43);
             this.label10.TabIndex = 6;
-            this.label10.Text = "Familiar Que tiene credito ";
+            this.label10.Text = "Familiar que tiene credito ";
             // 
             // TxtConcepto
             // 

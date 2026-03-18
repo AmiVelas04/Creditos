@@ -161,6 +161,17 @@ namespace Arcoiris.Clases
 
         }
 
+        public int UsuAseso(string usu)
+        {
+            DataTable data = new DataTable();
+            int cod = 0;
+            string consulta = $"SELECT  cod_asesor FROM usuaseso where cod_usu={usu}";
+            data = buscar(consulta);
+            if (data.Rows[0][0] != DBNull.Value)
+                cod = Int32.Parse(data.Rows[0][0].ToString());
+            return cod;
+        }
+
 
 
 

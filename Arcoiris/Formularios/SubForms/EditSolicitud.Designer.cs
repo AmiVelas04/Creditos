@@ -111,6 +111,11 @@
             this.GbxResumenEgr = new System.Windows.Forms.GroupBox();
             this.BtnElimEgr = new System.Windows.Forms.Button();
             this.DgvEngMen = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GbxResumenIn = new System.Windows.Forms.GroupBox();
             this.BtnElimIng = new System.Windows.Forms.Button();
             this.DgvIngMen = new System.Windows.Forms.DataGridView();
@@ -129,11 +134,6 @@
             this.label36 = new System.Windows.Forms.Label();
             this.CboCuenta = new System.Windows.Forms.ComboBox();
             this.label35 = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdEgrEdit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanMain.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.TCTSoli.SuspendLayout();
@@ -403,7 +403,6 @@
             // 
             // TxtMontoSug
             // 
-            this.TxtMontoSug.Enabled = false;
             this.TxtMontoSug.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(24)))), ((int)(((byte)(39)))));
             this.TxtMontoSug.Location = new System.Drawing.Point(164, 229);
             this.TxtMontoSug.Margin = new System.Windows.Forms.Padding(4);
@@ -557,9 +556,9 @@
             this.label2.Location = new System.Drawing.Point(17, 187);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 15);
+            this.label2.Size = new System.Drawing.Size(96, 15);
             this.label2.TabIndex = 52;
-            this.label2.Text = "Monto solicitado";
+            this.label2.Text = "Monto a aprobar";
             // 
             // CboCliente
             // 
@@ -1091,6 +1090,37 @@
             this.DgvEngMen.Size = new System.Drawing.Size(373, 430);
             this.DgvEngMen.TabIndex = 1;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.Width = 69;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 79;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 77;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 111;
+            // 
+            // IdEgrEdit
+            // 
+            this.IdEgrEdit.HeaderText = "Id";
+            this.IdEgrEdit.Name = "IdEgrEdit";
+            this.IdEgrEdit.Visible = false;
+            this.IdEgrEdit.Width = 43;
+            // 
             // GbxResumenIn
             // 
             this.GbxResumenIn.Controls.Add(this.BtnElimIng);
@@ -1281,37 +1311,6 @@
             this.label35.Size = new System.Drawing.Size(44, 15);
             this.label35.TabIndex = 0;
             this.label35.Text = "Cuenta";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Detalle";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 69;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Cantidad";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 79;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Empresa";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 77;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Cuota Mensual";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 111;
-            // 
-            // IdEgrEdit
-            // 
-            this.IdEgrEdit.HeaderText = "Id";
-            this.IdEgrEdit.Name = "IdEgrEdit";
-            this.IdEgrEdit.Visible = false;
-            this.IdEgrEdit.Width = 43;
             // 
             // EditSolicitud
             // 

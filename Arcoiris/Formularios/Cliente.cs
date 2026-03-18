@@ -293,7 +293,7 @@ namespace Arcoiris.Formularios
             string Nom_cony = TxtNomCony2.Text;
             string profOt = TxtOProfEdit.Text;
             string telcon = TxtTelCony2.Text;
-            string refe = TxtDpiConEdit.Text;
+            string refe = TztRefeEdit.Text;
             string depa = CboDepaEdit.Text;
             string muni = CboMunEdit.Text;
             string edad =NudEdadEdit.Value.ToString();
@@ -303,7 +303,7 @@ namespace Arcoiris.Formularios
             string dirneg = TxtDirNegEdit.Text;
             string telneg = TxtTelNegEdit.Text;
             string refneg = TxtRefNegEdit.Text;
-            string tipneg = TxtTelNegEdit.Text;
+            string tipneg = TxtTipNegEdit.Text;
             string antiqneg = TxtAntiqNegEdit.Text;
             string carga = TxtCargaFamEdit.Text;
             string fechanaci = DtpNaci2.Value.ToString("yyyy/MM/dd");
@@ -349,6 +349,7 @@ namespace Arcoiris.Formularios
                         cliedit = clien.clientebusca(idcli);
                         clirefs = clien.refscli(idcli);
                         TabC3.Parent = tabControl1;
+                      
                         tabControl1.SelectedIndex = 2;
                         TxtNom2.Text = cliedit.Rows[0][0].ToString();
                         TxtApe2.Text = cliedit.Rows[0][1].ToString();
@@ -360,8 +361,9 @@ namespace Arcoiris.Formularios
                         TxtNomCony2.Text = cliedit.Rows[0][7].ToString();
                      //   TxtApeCony2.Text = cliedit.Rows[0][8].ToString();
                         TxtTelCony2.Text = cliedit.Rows[0][9].ToString();
+
                         TxtDpiConEdit.Text = cliedit.Rows[0][20].ToString();
-                       TxtOProfEdit.Text= cliedit.Rows[0][10].ToString();
+                       TztRefeEdit.Text= cliedit.Rows[0][10].ToString();
                     TxtCargaF.Text= cliedit.Rows[0][17].ToString();
                         TxtProfConyEdit.Text= $"{cliedit.Rows[0][19]}";
                         TxtOProfEdit.Text= $"{cliedit.Rows[0][17]}";
@@ -374,6 +376,7 @@ namespace Arcoiris.Formularios
                         TxtRefNegEdit.Text = $"{cliedit.Rows[0][26]}";
                         TxtTipNegEdit.Text= $"{cliedit.Rows[0][27]}";
                         TxtAntiqNegEdit.Text= $"{cliedit.Rows[0][28]}";
+                        DtpNaci2.Value =DateTime.Parse($"{cliedit.Rows[0][22]}");
                          // TxtCargaFamEdit.Text=(cliedit.Rows[0][18].ToString());
                         try
                         {
@@ -431,6 +434,8 @@ namespace Arcoiris.Formularios
                         {
                             CboCivEdit.SelectedIndex = 2;
                         }
+                        else
+                        { CboCivEdit.SelectedIndex = 0; }
                         //12 edad
                         NudEdadEdit.Value = decimal.Parse(cliedit.Rows[0][12].ToString());
                         //13 departamento
