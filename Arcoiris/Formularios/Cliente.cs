@@ -20,7 +20,7 @@ namespace Arcoiris.Formularios
         DataTable cliedit = new DataTable();
         DataTable clirefs = new DataTable();
         string DPISin =$"{AppDomain.CurrentDomain.BaseDirectory}\\0.jpg";
-       
+        byte[] imageAnte = new byte[0];
         string idcli;
         //string idfiad;
         public Cliente()
@@ -270,17 +270,24 @@ namespace Arcoiris.Formularios
             { gene = "M"; }
             else
             { gene = "F"; }
-
             byte[] imagenbytes;
-            try
+            if (!OfdDpiEdit.FileName.Equals("openFileDialog1"))
             {
-                imagenbytes = File.ReadAllBytes(OfdDpiEdit.FileName);
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    imagenbytes = File.ReadAllBytes(OfdDpiEdit.FileName);
+                }
+                catch (Exception)
+                {
 
-                imagenbytes = File.ReadAllBytes(DPISin);
+                    imagenbytes = File.ReadAllBytes(DPISin);
+                }
             }
+            else
+            {
+                imagenbytes = imageAnte;
+            }
+
                
             string nom = TxtNom2.Text;
             string ape = TxtApe2.Text;
@@ -386,6 +393,7 @@ namespace Arcoiris.Formularios
                             // Solo si el programador anterior guardó el Base64 puro en el BLOB
                             string base64String =Encoding.UTF8.GetString(imadpi);
                             byte[] realBytes = Convert.FromBase64String(base64String);
+                            imageAnte = realBytes;
 
                             using (MemoryStream ms = new MemoryStream(realBytes))
                             {
@@ -743,7 +751,9 @@ namespace Arcoiris.Formularios
                 edad--;
             }
 
-            // Resultado
+            
+
+            //Revisar el cambio de fecha calcula edad y si es emnor genera un error
             NudEdad.Value = edad;
         }
 

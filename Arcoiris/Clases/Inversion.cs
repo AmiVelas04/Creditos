@@ -219,9 +219,46 @@ namespace Arcoiris.Clases
             return datos;
         }
 
+        public DataTable DatosComprobante(string Inv)
+        {
+            DataTable datos = new DataTable();
+            string consulta = "SELECT Inv.Id_Inv,CONCAT(cli.NOMBRES,' ', cli.APELLIDOS) AS cliente,cli.DOMICILIO,cli.TELEFONO1,CONCAT(benef.NOMBRES, ' ', benef.APELLIDOS) AS beneficiario, "+
+                              "Inv.Plazo,Inv.Interes, Inv.Monto, date_format(Inv.FechaIn,'%Y/%m/%d') as fechai, date_format(Inv.FechaFin,'%Y/%m/%d') as fechav,cli.dpi FROM inversion Inv " +
+                              "INNER JOIN benefiinver binv ON Inv.Id_Inv = binv.Id_Inv "+
+                              "INNER JOIN cliente cli ON cli.CODIGO_CLI = binv.Codigo_Cli "+
+                              "INNER JOIN cliente benef ON benef.CODIGO_CLI = binv.Id_Benef "+
+                              $"WHERE Inv.Id_Inv ={Inv} ";
+            datos = buscar(consulta);
+            return datos;
+        }
 
 
+        private void imprimirCompro(string inv)
+        {
+            Reportes.InversionComDeta temp = new Reportes.InversionComDeta();
+            DataTable recibe= DatosComprobante(inv);
+            for (int i = 0; i < recibe.Rows.Count; i++)
+            {
+                temp.Agencia = "Arcoiris 1";
+                temp.Inv =int.Parse($"{recibe.Rows[0][0]}");
+                temp.Cliente = $"{recibe.Rows[0][1]}";
+                temp.Direccion = $"{recibe.Rows[0][2]}";
+                temp.Tel = $"{recibe.Rows[0][3]}";
+                temp.Beneficiario = $"{recibe.Rows[0][4]}";
+                temp.Plazo = int.Parse($"{recibe.Rows[0][5]}");
+                temp.Tasa= decimal.Parse($"{recibe.Rows[0][6]}");
+                temp.Capital = decimal.Parse($"{recibe.Rows[0][7]}");
+                temp.Interes = temp.Capital * temp.Tasa / 12 * temp.Plazo;
+                temp.Recibe = temp.Capital + temp.Interes;
+                temp.Ingreso = DateTime.Parse($"{recibe.Rows[0][8]}");
+                temp.Vencimiento = DateTime.Parse($"{recibe.Rows[0][9]}");
+                temp.DPI = $"{recibe.Rows[0][10]}";
+            }
+            Reportes.InversionCompro nuevo = new Reportes.InversionCompro();
+            nuevo.datos.Add(temp);
+            nuevo.ShowDialog();
 
+        }
 
         #endregion
 
@@ -237,14 +274,20 @@ namespace Arcoiris.Clases
             { idInv = Convert.ToInt32(Inver.Rows[0][0]) + 1; }
             else { idInv = 1; }
             // posicion 8 es cliente, posicion 9 es asesor, posicion 10 es beneficiario
-
-
             string consultaingInv;
             consultaingInv = "insert into Inversion(id_inv,Monto,Interes,Plazo,FechaIn,FechaFin,Estado,Incentivo,Origen) " +
                 $"values({idInv},{datos[0]},{datos[1]},{datos[2]},'{datos[3]}','{datos[4]}','{datos[5]}',{datos[6]},'{datos[7]}')";
             if (consulta_gen(consultaingInv))
             {
-                return ((AsignaAsesoInv(idInv.ToString(), datos[8], datos[9], datos[10])) && (AsignaBenef(idInv.ToString(), datos[8], datos[10])));
+                if ((AsignaAsesoInv(idInv.ToString(), datos[8], datos[9], datos[10])) && (AsignaBenef(idInv.ToString(), datos[8], datos[10])))
+                {
+                    imprimirCompro($"{idInv}");
+                    return true; }
+                else
+                {
+                    return false;
+                }
+
             }
             else
             { return false; }
@@ -252,7 +295,6 @@ namespace Arcoiris.Clases
 
         private bool AsignaAsesoInv(string inv, string cli, string aseso, string tutor)
         {
-
             string consulAsesoInv = "insert into Asigna_Inversion(id_inv,Codigo_Cli,Cod_Asesor, cod_tutor) " +
     $"values({inv},{cli},{aseso},{tutor})";
             return consulta_gen(consulAsesoInv);

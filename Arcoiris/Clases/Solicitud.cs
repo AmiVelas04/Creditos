@@ -112,7 +112,7 @@ namespace Arcoiris.Clases
             if (!DBNull.Value.Equals(datos.Rows[0][0]))
             {
                 int id = Convert.ToInt32(datos.Rows[0][0]);
-                id = ++id;
+                id +=1;
                 return id;
             }
             else
@@ -232,7 +232,7 @@ namespace Arcoiris.Clases
                 solTemp++;
                 solicompa = id_solicitud();
             }
-            datos[0] = $"{solTemp}";
+          // datos[0] = $"{solTemp}";
             consulta = $"insert into solicitud (id_solicitud,concepto,monto,fecha, estado, plazo,garantia,tipo,fiador,razon,interes) " +
                 $"values({datos[0]},'{datos[1]}',{datos[2]} ,'{fecha}','{datos[4]}','{datos[5]}','{datos[6]}',{datos[9]},'{datos[23]}','{datos[24]}',{datos[26]})";
             //MessageBox.Show(consulta);
@@ -1145,6 +1145,8 @@ namespace Arcoiris.Clases
             consulta = $"insert into sol_garant(id_solicitud,id_garant) " +
                 "values (?sol,?gar)";
 
+
+
             // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
 
@@ -1158,6 +1160,27 @@ namespace Arcoiris.Clases
 
             return Consulta_General_tipo2(com);
         }
+
+        public bool deleteGarant(int sol)
+        {
+            try
+            {
+                string consulta;
+                consulta = $"delete from sol_garant where id_solicitud=?sol";
+                MySqlCommand com = new MySqlCommand();
+                com.CommandText = consulta;
+                com.CommandType = CommandType.Text;
+                com.Parameters.Add("?sol", MySqlDbType.Int32);
+                com.Parameters.Add("?gara", MySqlDbType.Int32);
+                com.Parameters["?sol"].Value = sol;
+                return Consulta_General_tipo2(com);
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         #endregion
 
         #region Solicitud Fiador
@@ -1263,8 +1286,30 @@ namespace Arcoiris.Clases
                 $"where id_solicitud={datos[0]}";
             return consulta_gen(consulta);
         }
-       
-        
+
+
+        public bool deleteFiadSol(int sol, int fiad)
+        {
+            try
+            {
+                string consulta;
+                consulta = $"delete from sol_fiad where id_sol=?sol && id_fia=?fia";
+                MySqlCommand com = new MySqlCommand();
+                com.CommandText = consulta;
+                com.CommandType = CommandType.Text;
+                com.Parameters.Add("?sol", MySqlDbType.Int32);
+                com.Parameters.Add("?fia", MySqlDbType.Int32);
+                com.Parameters["?sol"].Value = sol;
+                com.Parameters["?fia"].Value = fiad;
+                return Consulta_General_tipo2(com);
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
+        }
+
         #endregion
 
     }

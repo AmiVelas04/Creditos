@@ -1589,6 +1589,7 @@
             0,
             0,
             0});
+            this.NudEdadEdit.Visible = false;
             // 
             // CboMunEdit
             // 

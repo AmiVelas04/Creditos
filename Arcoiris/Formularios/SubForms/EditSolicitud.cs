@@ -498,6 +498,54 @@ namespace Arcoiris.Formularios.SubForms
 
         }
 
+        private void DeleteGarantia()
+        {
+            int indice = DgvGaranLSt.CurrentRow.Index;
+            if (indice > -1)
+            {
+                string id = $"{DgvGaranLSt.Rows[indice].Cells[7]}";
+                if (id.Equals("0"))
+                {
+                    DgvGaranLSt.Rows.RemoveAt((indice));
+                }
+                else
+                {
+                    int idsol = int.Parse(TxtNoSol.Text);
+                    if (Soli.deleteGarant(idsol))
+                    {
+                        MessageBox.Show("El fiador fue eliminiado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DgvGaranLSt.Rows.RemoveAt(indice);
+                    }
+                    else
+                    { MessageBox.Show("No fue posible eliminar el fiador", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                }
+            }
+        }
+
+        private void DeleteFiador ()
+        {
+            int indice = DgvFiadorLst.CurrentRow.Index;
+            if (indice > -1)
+            {
+                string idestado = $"{DgvFiadorLst.Rows[indice].Cells[4].Value}";
+                int idfiad = int.Parse($"{DgvFiadorLst.Rows[indice].Cells[0].Value}");
+                if (idestado.Equals("0"))
+                {
+                    DgvFiadorLst.Rows.RemoveAt((indice));
+                }
+                else
+                {
+                    int idsol = int.Parse(TxtNoSol.Text);
+                    if (Soli.deleteFiadSol(idsol, idfiad))
+                    { MessageBox.Show("El fiador fue eliminiado", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DgvFiadorLst.Rows.RemoveAt(indice);
+                    }
+                    else
+                    { MessageBox.Show("No fue posible eliminar el fiador", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
+                }
+            }
+        }
+
 
 
         #endregion
@@ -1054,6 +1102,16 @@ namespace Arcoiris.Formularios.SubForms
         private void LstPasiv_SelectedIndexChanged(object sender, EventArgs e)
         {
             LstCuentas.SelectedIndex = -1;
+        }
+
+        private void BtnDelLstGarant_Click(object sender, EventArgs e)
+        {
+            DeleteGarantia();
+        }
+
+        private void BtnDelLstFiad_Click(object sender, EventArgs e)
+        {
+            DeleteFiador();
         }
     }
 }

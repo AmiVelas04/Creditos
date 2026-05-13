@@ -222,14 +222,9 @@ namespace Arcoiris.Formularios
         }
         private void añadir()
         {
+            int soligen = sol.id_solicitud();
+            TxtNoSol.Text = $"{soligen}";
             datosgaran.NomFiador = CboFiadNom.Text;
-            //datosgaran.DeparFiador = CboDepaF.Text;
-            //datosgaran.MuniFiador = CboMuniF.Text;
-            //datosgaran.ProfFiador = TxtProfFiad.Text;
-            //datosgaran.EdadFiador = NudEdadF.Value.ToString();
-            //datosgaran.EstCivFiador = TxtEstCivilF.Text;
-            //datosgaran.CuiFiador = TxtDpiF.Text;
-            //datosgaran.FiadorDomi = TxtDirF.Text;
             string asesor = "";
             string cliente = "";
             string fecha = DateTime.Now.ToString("yyyy/MM/dd");
@@ -318,10 +313,10 @@ namespace Arcoiris.Formularios
             string[] datos2 = { TxtNoSol.Text, CboFiadNom.SelectedValue.ToString() };
             if (sol.hayasesor(asesor))
             {
-                int FilIngM = DgvIngMen.RowCount;
-                int FilEgrM = DgvEngMen.RowCount;
-                int ListaAct = LstCuentas.Items.Count;
-                int ListaPas = LstPasiv.Items.Count;
+                //int FilIngM = DgvIngMen.RowCount;
+                //int FilEgrM = DgvEngMen.RowCount;
+                //int ListaAct = LstCuentas.Items.Count;
+                //int ListaPas = LstPasiv.Items.Count;
                 //int CantIngre = DgvIngMen.RowCount;
                 //int CantEgre = DgvIngMen.RowCount;
 
@@ -551,8 +546,6 @@ namespace Arcoiris.Formularios
             TxtNomAseso.Enabled = false;
             TxtNomSoli.Enabled = false;
             CboTipo2.Enabled = false;
-
-
         }
         private void desbloquear()
         {
@@ -1349,6 +1342,7 @@ namespace Arcoiris.Formularios
             string[] datos = { TxtMontoInv.Text, Interes.ToString(), plazo, DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss"), Ffin.ToString("yyyy/MM/dd HH:mm:ss"), "Activo",incent.ToString(),TxtOrigenMonto.Text,idcli,asesor,bene, tutor};
             if (Inver.crear_Inv(datos) && caj.ingreope(valor))
             {
+
                 MessageBox.Show("La inversion fue ingresada correctamente!", "Correcto", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             else
             { MessageBox.Show("No se pudo ingresar la inversion", "Algo salio mal!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation); }
@@ -1702,81 +1696,136 @@ namespace Arcoiris.Formularios
 
             
             foreach (DataGridViewRow item in DgvIngMen.Rows)
-            {
-                // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
-                if (item.IsNewRow) continue;
+{
+    // 1. Evitar la fila nueva (la de ingreso)
+    if (item.IsNewRow) continue;
+    
+    // 2. Verificar si la fila está completamente vacía (todas las celdas sin valor)
+    bool filaCompletamenteVacia = true;
+    for (int i = 0; i <= 4; i++) // Verificar columnas 0-4 (obligatorias)
+    {
+        var valor = item.Cells[i].Value?.ToString();
+        if (!string.IsNullOrWhiteSpace(valor))
+        {
+            filaCompletamenteVacia = false;
+            break;
+        }
+    }
+    
+    // Si la fila está completamente vacía, la saltamos (no es error)
+    if (filaCompletamenteVacia) continue;
+    
+    // 3. Obtener valores de las celdas (manejando posibles nulos)
+    var val0 = item.Cells[0].Value?.ToString();
+    var val1 = item.Cells[1].Value?.ToString();
+    var val2 = item.Cells[2].Value?.ToString();
+    var val3 = item.Cells[3].Value?.ToString();
+    var val4 = item.Cells[4].Value?.ToString();
+    var val5 = item.Cells[5].Value?.ToString();
+    
+    // 4. Verificar que los campos obligatorios (0-4) no estén vacíos
+    bool camposObligatoriosLlenos = !string.IsNullOrWhiteSpace(val0) &&
+                                     !string.IsNullOrWhiteSpace(val1) &&
+                                     !string.IsNullOrWhiteSpace(val2) &&
+                                     !string.IsNullOrWhiteSpace(val3) &&
+                                     !string.IsNullOrWhiteSpace(val4);
+    
+    if (!camposObligatoriosLlenos)
+    {
+        MessageBox.Show($"La fila {item.Index} tiene campos obligatorios vacíos. Complete todos los campos (Producto, Cantidad, Costo, Venta, Ganancia)", 
+                        "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        return false;
+    }
+    
+    // 5. Validaciones de tipo de datos
+    bool esInt1Valido = int.TryParse(val1, out int cantidad);
+    bool esDecimal1Valido = decimal.TryParse(val2, out decimal costo);
+    bool esDecimal2Valido = decimal.TryParse(val3, out decimal venta);
+    bool esDecimal3Valido = decimal.TryParse(val4, out decimal ganancia);
+    
+    // 6. Solo si todo es válido, se agregan a la lista
+    if (esInt1Valido && esDecimal1Valido && esDecimal2Valido && esDecimal3Valido)
+    {
+        SubClases.Ingreso temp = new SubClases.Ingreso();
+        temp.Producto = val0;
+        temp.Cantidad = cantidad;
+        temp.Costo = costo;
+        temp.Venta = venta;
+        temp.Ganacia = ganancia;
+        temp.Id = string.IsNullOrWhiteSpace(val5) ? 0 : int.Parse(val5);
+        ingresos.Add(temp);
+    }
+    else
+    {
+        MessageBox.Show($"La fila {item.Index} posee un valor inválido (formato numérico incorrecto en Cantidad, Costo, Venta o Ganancia), verifique por favor", 
+                        "Valor inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        return false;
+    }
+}
 
-                // 2. Obtener valores de las celdas (manejando posibles nulos)
-                var val0 = item.Cells[0].Value?.ToString();
-                var val1 = item.Cells[1].Value?.ToString();
-                var val2 = item.Cells[2].Value?.ToString();
-                var val3 = item.Cells[3].Value?.ToString();
-                var val4 = item.Cells[4].Value?.ToString();
-                var val5 = item.Cells[5].Value?.ToString();
-
-
-                // 3. Comprobaciones de validación
-                bool esInt1Valido = int.TryParse(val1, out _);
-                bool esString1Valido = !string.IsNullOrWhiteSpace(val0);
-                bool esDecimal1Valido = decimal.TryParse(val2, out _);
-                bool esDecimal2Valido = decimal.TryParse(val3, out _);
-                bool esDecimal3Valido = decimal.TryParse(val4, out _);
-
-                // 4. Solo si todo es válido, se agregan a la lista
-                if (esInt1Valido && esString1Valido && esDecimal1Valido && esDecimal2Valido && esDecimal3Valido)
-                {
-                    SubClases.Ingreso temp = new SubClases.Ingreso();
-                    temp.Producto = val0;
-                    temp.Cantidad = int.Parse(val1);
-                    temp.Costo = decimal.Parse(val2);
-                    temp.Venta = decimal.Parse(val3);
-                    temp.Ganacia = decimal.Parse(val4);
-                    temp.Id= string.IsNullOrWhiteSpace(val5) ? 0 : int.Parse(val5);
-                    ingresos.Add(temp);
-                }
-                else
-                {
-                    MessageBox.Show($"La fila {item.Index} de ingresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return false; //omitir este return para revision 
-                }
-            }
-
-            //Comprobacion de valores para egresos
-
+            // Comprobacion de valores para egresos
             foreach (DataGridViewRow item in DgvEngMen.Rows)
             {
-                // 1. Evitar errores si la fila está vacía (común al final de un DataGridView)
+                // 1. Evitar la fila nueva (la de ingreso)
                 if (item.IsNewRow) continue;
 
-                // 2. Obtener valores de las celdas (manejando posibles nulos)
-                var valE0 = item.Cells[0].Value?.ToString();
-                var valE1 = item.Cells[1].Value?.ToString();
-                var valE2 = item.Cells[2].Value?.ToString();
-                var valE3 = item.Cells[3].Value?.ToString();
-                var valeE4 = item.Cells[3].Value?.ToString();
+                // 2. Verificar si la fila está completamente vacía (todas las celdas sin valor)
+                bool filaCompletamenteVacia = true;
+                for (int i = 0; i <= 3; i++) // Verificar columnas 0-3 (obligatorias)
+                {
+                    var valor = item.Cells[i].Value?.ToString();
+                    if (!string.IsNullOrWhiteSpace(valor))
+                    {
+                        filaCompletamenteVacia = false;
+                        break;
+                    }
+                }
 
+                // Si la fila está completamente vacía, la saltamos (no es error)
+                if (filaCompletamenteVacia) continue;
 
-                // 3. Comprobaciones de validación
-                bool esIntValido = int.TryParse(valE1, out _);
-                bool esString1Valido = !string.IsNullOrWhiteSpace(valE0);
-                bool esString2Valido = !string.IsNullOrWhiteSpace(valE2);
-                bool esDecimalValido = decimal.TryParse(valE3, out _);
+                // 3. Obtener valores de las celdas (manejando posibles nulos)
+                var valE0 = item.Cells[0].Value?.ToString(); // Detalle
+                var valE1 = item.Cells[1].Value?.ToString(); // Cantidad
+                var valE2 = item.Cells[2].Value?.ToString(); // Empresa
+                var valE3 = item.Cells[3].Value?.ToString(); // Cuota mensual
+                var valE4 = item.Cells[4].Value?.ToString(); // ID (opcional)
 
+                // 4. Verificar que los campos obligatorios (0-3) no estén vacíos
+                bool camposObligatoriosLlenos = !string.IsNullOrWhiteSpace(valE0) &&
+                                                 !string.IsNullOrWhiteSpace(valE1) &&
+                                                 !string.IsNullOrWhiteSpace(valE2) &&
+                                                 !string.IsNullOrWhiteSpace(valE3);
 
-                // 4. Solo si todo es válido, se agregan a la lista
-                if (esIntValido && esString1Valido && esString2Valido && esDecimalValido)
+                if (!camposObligatoriosLlenos)
+                {
+                    MessageBox.Show($"La fila {item.Index} de egresos tiene campos obligatorios vacíos. Complete todos los campos (Detalle, Cantidad, Empresa, Cuota mensual)",
+                                    "Campos incompletos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return false;
+                }
+
+                // 5. Validaciones de tipo de datos
+                bool esIntValido = int.TryParse(valE1, out int cantidad);
+                bool esDecimalValido = decimal.TryParse(valE3, out decimal cuotaMensual);
+
+                // 6. Solo si todo es válido, se agregan a la lista
+                if (esIntValido && esDecimalValido)
                 {
                     SubClases.Egreso TempE = new SubClases.Egreso();
                     TempE.Detalle = valE0;
-                    TempE.Cantidad = int.Parse(valE1);
+                    TempE.Cantidad = cantidad;
                     TempE.Empresa = valE2;
-                    TempE.Cuota_men = decimal.Parse(valE3);
-                    TempE.Id= string.IsNullOrWhiteSpace(valeE4) ? 0 : int.Parse(valeE4);
+                    TempE.Cuota_men = cuotaMensual;
+                    TempE.Id = string.IsNullOrWhiteSpace(valE4) ? 0 : int.Parse(valE4);
                     egresos.Add(TempE);
                 }
                 else
                 {
-                    MessageBox.Show($"La fila {item.Index} de egresos posee un valor invalido, verifique porfavor", "Valor invalida", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    string mensajeError = "La fila " + item.Index + " de egresos posee un valor inválido: ";
+                    if (!esIntValido) mensajeError += "\n- Cantidad debe ser un número entero";
+                    if (!esDecimalValido) mensajeError += "\n- Cuota mensual debe ser un número decimal";
+
+                    MessageBox.Show(mensajeError, "Valor inválido", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     return false;
                 }
             }
@@ -2069,7 +2118,6 @@ namespace Arcoiris.Formularios
 
         private void BtnAddLstFiad_Click(object sender, EventArgs e)
         {
-            //primera parte: comprovacion de datos
             //primera parte: comprovacion de datos
             // 1. Limpieza de espacios para evitar entradas de solo espacios
             string IdFiad = CboFiadNom.SelectedValue.ToString().Trim();

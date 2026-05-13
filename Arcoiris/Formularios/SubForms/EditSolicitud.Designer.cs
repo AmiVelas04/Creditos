@@ -256,7 +256,6 @@
             this.TxtInteresEdit.Size = new System.Drawing.Size(132, 23);
             this.TxtInteresEdit.TabIndex = 77;
             this.TxtInteresEdit.Text = "0";
-            this.TxtInteresEdit.Visible = false;
             // 
             // label11
             // 
@@ -268,7 +267,6 @@
             this.label11.Size = new System.Drawing.Size(43, 15);
             this.label11.TabIndex = 76;
             this.label11.Text = "Interes";
-            this.label11.Visible = false;
             // 
             // LblEstado
             // 
@@ -648,6 +646,7 @@
             this.BtnDelLstFiad.Text = "Remover Fiador";
             this.BtnDelLstFiad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnDelLstFiad.UseVisualStyleBackColor = false;
+            this.BtnDelLstFiad.Click += new System.EventHandler(this.BtnDelLstFiad_Click);
             // 
             // BtnAddLstFiad
             // 
@@ -800,6 +799,7 @@
             this.BtnDelLstGarant.Text = "Remover Garantia";
             this.BtnDelLstGarant.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.BtnDelLstGarant.UseVisualStyleBackColor = false;
+            this.BtnDelLstGarant.Click += new System.EventHandler(this.BtnDelLstGarant_Click);
             // 
             // BtnAddLstGarant
             // 

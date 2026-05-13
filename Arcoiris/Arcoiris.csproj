@@ -529,6 +529,13 @@
     </Compile>
     <Compile Include="Reportes\InvDet.cs" />
     <Compile Include="Reportes\InvEnc.cs" />
+    <Compile Include="Reportes\InversionComDeta.cs" />
+    <Compile Include="Reportes\InversionCompro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reportes\InversionCompro.Designer.cs">
+      <DependentUpon>InversionCompro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\Inversiones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -747,6 +754,10 @@
     <EmbeddedResource Include="Reportes\Ganancias.resx">
       <DependentUpon>Ganancias.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\InversionCompro.rdlc" />
+    <EmbeddedResource Include="Reportes\InversionCompro.resx">
+      <DependentUpon>InversionCompro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reportes\Inversiones.rdlc" />
     <EmbeddedResource Include="Reportes\Inversiones.resx">
       <DependentUpon>Inversiones.cs</DependentUpon>
@@ -822,6 +833,7 @@
     <None Include="Properties\DataSources\Arcoiris.Reportes.GanaciaDet.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.InvDet.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.InvEnc.datasource" />
+    <None Include="Properties\DataSources\Arcoiris.Reportes.InversionComDeta.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc1.datasource" />
     <None Include="Properties\DataSources\Arcoiris.Reportes.PagoDesc2.datasource" />
