@@ -1293,8 +1293,7 @@ namespace Arcoiris.Formularios
             for (int i = 0; i < datosGarant.Rows.Count; i++)
             {
                 Reportes.ClasesRepo.GarantiaSolicitud temp = new Reportes.ClasesRepo.GarantiaSolicitud();
-                temp.Propietario = $"{datosGarant.Rows[i][0]}";
-                temp.Detalle = $"{datosGarant.Rows[i][1]}";
+                temp.Propietario = $"{datosGarant.Rows[i][1]}";
                 temp.Tipo = $"{datosGarant.Rows[i][2]}";
                 temp.Detalle = $"{datosGarant.Rows[i][3]}";
                 temp.Valor = decimal.Parse($"{datosGarant.Rows[i][4]}");

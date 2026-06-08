@@ -229,8 +229,55 @@ namespace Arcoiris.Clases
                 }
                 else if (tipoc.Equals("4"))
                 {
-                    datraso = dias.Days;
+                    // Calcular días de atraso considerando el saldo pendiente
+                    int mesesAtraso = 0;
+                    DateTime fechaReferencia = fechap;
 
+                    // Si no hay pagos, usar fecha de concesión
+                    if (NumPagos == 0)
+                    {
+                        fechaReferencia = Convert.ToDateTime(Dcre.Rows[0][2].ToString());
+                    }
+
+                    // Avanzar mes a mes hasta la fecha actual
+                    while (fechaReferencia.AddMonths(mesesAtraso + 1) <= fechaact)
+                    {
+                        DateTime fechaPeriodo = fechaReferencia.AddMonths(mesesAtraso + 1);
+
+                        // Verificar si en ese mes hay saldo pendiente
+                        DataTable saldoPeriodo = saldosdias(credito, fechaPeriodo.ToString("yyyy-MM-dd"));
+                        decimal capPendiente = 0;
+                        decimal intPendiente = 0;
+
+                        if (saldoPeriodo.Rows.Count > 0)
+                        {
+                            capPendiente = decimal.Parse(saldoPeriodo.Rows[0]["Capital"].ToString());
+                            intPendiente = decimal.Parse(saldoPeriodo.Rows[0]["Interes"].ToString());
+                        }
+
+                        if (capPendiente > 0 || intPendiente > 0)
+                        {
+                            mesesAtraso++;
+                        }
+                        else
+                        {
+                            fechaReferencia = fechaPeriodo;
+                        }
+                    }
+
+                    // Calcular días específicos del mes actual en atraso
+                    DateTime inicioMesActual = fechaReferencia.AddMonths(mesesAtraso);
+                    if (fechaact > inicioMesActual)
+                    {
+                        TimeSpan diasMesActual = fechaact - inicioMesActual;
+                        datraso = (mesesAtraso * 30) + diasMesActual.Days;
+                    }
+                    else
+                    {
+                        datraso = mesesAtraso * 30;
+                    }
+
+                    if (datraso < 0) datraso = 0;
                 }
                 else if (tipoc.Equals("5"))
                 {
@@ -2231,7 +2278,8 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             else if (tipoc == "4")
             {
                 /*inicio de calculo oimitido temporalmente para atraso de dias ---------------------------------------------------------------------------------------------
-                                  final de  parte omitida para registro de nuevo calculo de dias atrasados en creditos mensulaes sobre saldo-------------------------------------------------*/
+                                 
+                final de  parte omitida para registro de nuevo calculo de dias atrasados en creditos mensulaes sobre saldo-------------------------------------------------*/
                 decimal sint, scap, cuotac;
                 decimal intadeu = 0, capadeu = 0, totadeu = 0;
                 DataTable saldos = new DataTable();

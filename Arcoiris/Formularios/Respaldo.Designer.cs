@@ -34,6 +34,7 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.BtnCerrar = new System.Windows.Forms.Button();
+            this.PgbSave = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
             // 
             // BtnCarpeta
@@ -86,12 +87,21 @@
             this.BtnCerrar.UseVisualStyleBackColor = true;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
+            // PgbSave
+            // 
+            this.PgbSave.Location = new System.Drawing.Point(27, 159);
+            this.PgbSave.Name = "PgbSave";
+            this.PgbSave.Size = new System.Drawing.Size(388, 23);
+            this.PgbSave.TabIndex = 4;
+            this.PgbSave.Visible = false;
+            // 
             // Respaldo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Olive;
-            this.ClientSize = new System.Drawing.Size(441, 178);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(58)))), ((int)(((byte)(95)))));
+            this.ClientSize = new System.Drawing.Size(441, 194);
+            this.Controls.Add(this.PgbSave);
             this.Controls.Add(this.BtnCerrar);
             this.Controls.Add(this.BtnGuardar);
             this.Controls.Add(this.TxtRuta);
@@ -116,5 +126,6 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button BtnCerrar;
+        private System.Windows.Forms.ProgressBar PgbSave;
     }
 }

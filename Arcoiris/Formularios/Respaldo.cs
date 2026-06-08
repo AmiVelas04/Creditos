@@ -39,36 +39,48 @@ namespace Arcoiris.Formularios
             destino = miCarpeta.Trim() +"\\RespaldoBd_" + MiFecha + ".sql";
         }
         }
-
-        private void BtnGuardar_Click(object sender, EventArgs e)
+        private async void BtnGuardar_Click(object sender, EventArgs e)
         {
             if (TxtRuta.Text != "")
             {
-                respaldo();
+                // Deshabilitar el botón y mostrar loader
+                BtnGuardar.Enabled = false;
+                BtnGuardar.Text = "Respaldo en progreso...";
+                ShowLoader(true);
+
+                // Esperar a que termine el respaldo
+                await respaldo(); // Asegúrate de esperar aquí
+
+                // Habilitar el botón y ocultar loader
+                ShowLoader(false);
+                BtnGuardar.Enabled = true;
+                BtnGuardar.Text = "Guardar";
             }
             else
             {
                 MessageBox.Show("Ruta no encontrada");
             }
-          
         }
 
-        private void respaldo()
+        // Cambiar de async void a async Task
+        private async Task respaldo()
         {
             try
             {
-                string cadena;
-                cadena = "cmd.exe /k " + rutaDump + " -h 192.168.1.103 -u prueba -p1532  prod > " + destino;
+                // Ejecutar toda la operación de respaldo en un Task
+                await Task.Run(() =>
+                {
+                    MySqlCommand com = new MySqlCommand();
+                    conect.iniciar();
+                    com.Connection = conect.conn;
+                    MySqlBackup respaldo = new MySqlBackup(com);
 
-                MySqlCommand com = new MySqlCommand();
-                conect.iniciar();
-                com.Connection = conect.conn;
-                MySqlBackup respaldo = new MySqlBackup(com);
-                // MessageBox.Show(cadena)
-                //   Shell(cadena, 0);
-                conect.conn.Open();
-                respaldo.ExportToFile(destino);
-                conect.conn.Close();
+                    conect.conn.Open();
+                    respaldo.ExportToFile(destino);
+                    conect.conn.Close();
+                });
+
+                // Mostrar mensaje de éxito (esto ya está en el hilo UI)
                 MessageBox.Show("El respaldo se ha realizado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 TxtRuta.Clear();
             }
@@ -80,6 +92,18 @@ namespace Arcoiris.Formularios
             }
         }
 
+        private void ShowLoader(bool mostrar)
+        {
+            // Si tienes un ProgressBar o un Panel con un GIF
+            if (PgbSave != null)
+            {
+                PgbSave.Visible = mostrar;
+                if (mostrar)
+                    PgbSave.Style = ProgressBarStyle.Marquee;
+            }
+
+          
+        }
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();

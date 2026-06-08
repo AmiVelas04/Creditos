@@ -1004,7 +1004,7 @@ namespace Arcoiris.Clases
                 $"inner JOIN sol_garant sg ON g.Id_Garant = sg.id_garant " +
                 $"INNER JOIN solicitud s ON s.ID_SOLICITUD = sg.Id_Solicitud " +
                 $"INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = s.ID_SOLICITUD " +
-                $"INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
+                $"INNER JOIN cliente cli ON cli.CODIGO_CLI = g.Id_prop " +
                 $"WHERE asol.codigo_cli ={cli} AND asol.ID_SOLICITUD = {sol}";
             return buscar(consulta);
         }
