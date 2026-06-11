@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +17,739 @@ namespace Arcoiris.Reportes
         Clases.Cliente cli = new Clases.Cliente();
         Clases.Credito cre = new Clases.Credito();
         Clases.Pago pag = new Clases.Pago();
+
+        private class PagoInfo
+        {
+            public decimal Capital { get; set; }
+            public decimal Interes { get; set; }
+            public DateTime Fecha { get; set; }
+        }
+
+        private int PagProyMemoria(DateTime fechai, DateTime fechaa, string tipo, int diasp)
+        {
+            DateTime fechacambio = fechai;
+            TimeSpan dias = fechaa - fechai;
+            int totdia = dias.Days;
+            int cont;
+            int diashab = 0;
+
+            for (cont = 1; cont <= totdia; cont++)
+            {
+                fechacambio = fechacambio.AddDays(1);
+                if (fechacambio.DayOfWeek == DayOfWeek.Sunday || fechacambio.DayOfWeek == DayOfWeek.Monday)
+                {
+                }
+                else
+                {
+                    diashab++;
+                }
+            }
+            if (tipo.Equals("1"))
+            {
+            }
+            else if (tipo.Equals("2"))
+            {
+                if (diashab > diasp)
+                {
+                    diashab = diasp;
+                }
+                else
+                { diashab = 0; }
+            }
+            else if (tipo.Equals("3") || tipo.Equals("4"))
+            {
+                diashab = 0;
+                int conteo = 1;
+                DateTime fechap = fechai.AddMonths(conteo);
+                while (fechaa > fechap)
+                {
+                    conteo++;
+                    fechap = fechai.AddMonths(conteo);
+                    diashab++;
+                }
+            }
+            else if (tipo.Equals("5"))
+            {
+                diashab = 0;
+                int conteo = 7;
+                DateTime fechap = fechai.AddDays(conteo);
+                while (fechaa > fechap)
+                {
+                    conteo += 7;
+                    fechap = fechai.AddDays(conteo);
+                    diashab++;
+                }
+            }
+            else if (tipo.Equals("6"))
+            {
+                diashab = 0;
+                int conteo = 14;
+                DateTime fechap = fechai.AddDays(conteo);
+                while (fechaa > fechap)
+                {
+                    conteo += 14;
+                    fechap = fechai.AddDays(conteo);
+                    diashab++;
+                }
+            }
+
+            if (diashab > diasp) diashab = diasp;
+
+            return diashab;
+        }
+
+        private Tuple<decimal, decimal, decimal> CalcularSaldosDiasMemoria(DataRow creRow, List<PagoInfo> pagosList, DateTime fechaEval)
+        {
+            decimal monto = Convert.ToDecimal(creRow["monto"]);
+            decimal inte = Convert.ToDecimal(creRow["interes"]);
+            int dias = Convert.ToInt32(creRow["dias_pago"]);
+            DateTime fechaC = Convert.ToDateTime(creRow["fecha_conc"]);
+            DateTime FechaVen = Convert.ToDateTime(creRow["Fecha_venci"]);
+            string tipo = creRow["id_tipo_credito"].ToString();
+            decimal SaldoC = Convert.ToDecimal(creRow["saldo_cap"]);
+
+            int pagos = PagProyMemoria(fechaC, fechaEval, tipo, dias);
+            decimal pint = 0, pcap = 0, ptot = 0;
+            if (pagos > dias) pagos = dias;
+
+            if (tipo == "1")
+            {
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100), 2);
+                pcap *= pagos;
+                pint *= pagos;
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+            else if (tipo == "2")
+            {
+                pcap = 0;
+                pint = 0;
+                if (pagos >= dias)
+                {
+                    pcap = monto;
+                    pint = Math.Round((monto * inte / 100 * dias), 2);
+                }
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+            else if (tipo == "3")
+            {
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100 / 12), 2);
+                pcap *= pagos;
+                pint *= pagos;
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+            else if (tipo == "4")
+            {
+                decimal pcaptemp = Math.Round((monto / dias), 2);
+                pcap = Math.Round((monto / dias), 2);
+                pcap *= pagos;
+
+                int pagosmade = pagosList.Count;
+
+                DateTime FechaA = fechaC.AddMonths(pagos);
+                DateTime Fechamov = fechaC.AddMonths(1);
+                if (FechaA > FechaVen)
+                {
+                    FechaA = FechaVen;
+                }
+                else if (FechaA <= Fechamov)
+                {
+                    Fechamov = fechaC;
+                }
+
+                if (FechaA < Fechamov)
+                {
+                    pint = 0;
+                }
+                else
+                {
+                    int conteop = 0;
+                    DateTime DatePag;
+                    if (pagosmade > 0)
+                    {
+                        DatePag = pagosList[conteop].Fecha;
+                    }
+                    else
+                    {
+                        DatePag = FechaA;
+                    }
+                    if (DatePag > FechaA)
+                    {
+                        DatePag = FechaA;
+                    }
+                    DateTime DatePrim = fechaC;
+
+                    while (DatePag <= FechaA)
+                    {
+                        if (conteop < pagosmade)
+                        {
+                            if (DatePag <= Fechamov)
+                            {
+                                TimeSpan time = DatePag - DatePrim;
+                                int diascobr = time.Days;
+                                if (diascobr < 0) diascobr = 0;
+                                decimal intante = Math.Round(((monto * inte / 100 / 12 / 30) * diascobr), 2);
+                                decimal capante = pagosList[conteop].Capital;
+                                monto -= capante;
+                                pint += intante;
+                                DatePrim = DatePag;
+                                conteop++;
+                                if (conteop < pagosmade)
+                                {
+                                    if (pagosList[conteop].Fecha > FechaA)
+                                    {
+                                        DateTime DateAnte = pagosList[conteop - 1].Fecha;
+                                        TimeSpan diaz = FechaA - DateAnte;
+                                        int diazc = diaz.Days;
+                                        intante = Math.Round((((monto) * inte / 100 / 12 / 30) * diazc), 2);
+                                        pint += intante;
+                                    }
+                                    DatePag = pagosList[conteop].Fecha;
+                                }
+                                else if (conteop == pagosmade)
+                                {
+                                    time = fechaC.AddMonths(pagos) - DatePrim;
+                                    diascobr = time.Days;
+                                    if (diascobr >= 0)
+                                    {
+                                        intante = Math.Round((((monto) * inte / 100 / 12 / 30) * diascobr), 2);
+                                        pint += intante;
+                                        DatePag = FechaA;
+                                    }
+                                    else
+                                    {
+                                        intante = Math.Round((((monto + capante) * inte / 100 / 12 / 30) * diascobr), 2);
+                                        pint += intante;
+                                        DatePag = FechaA;
+                                    }
+                                }
+                                else
+                                {
+                                    DatePag = FechaA;
+                                }
+                            }
+                            else
+                            {
+                                Fechamov = Fechamov.AddMonths(1);
+                            }
+                        }
+                        else if (pagosmade == 0)
+                        {
+                            TimeSpan time = DatePag - Fechamov;
+                            int diascobr = time.Days;
+                            if (diascobr < 0) diascobr = 0;
+                            pint += ((monto * inte / 100 / 12 / 30) * diascobr);
+                            break;
+                        }
+                        else
+                        {
+                            TimeSpan time = FechaA - DatePag;
+                            int diascobr = time.Days;
+                            if (diascobr < 0) diascobr = 0;
+                            pcap += pcaptemp / 30 * diascobr;
+                            pint += ((monto * inte / 100 / 12 / 30) * diascobr);
+                            break;
+                        }
+                    }
+                }
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+            else if (tipo == "5")
+            {
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100 * 5), 2);
+                pcap *= pagos;
+                pint *= pagos;
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+            else if (tipo == "6")
+            {
+                pcap = Math.Round((monto / dias), 2);
+                pint = Math.Round((monto * inte / 100 * 10), 2);
+                pcap *= pagos;
+                pint *= pagos;
+                pcap = Math.Round(pcap, 2);
+                pint = Math.Round(pint, 2);
+                ptot = pcap + pint;
+            }
+
+            decimal Scap = 0;
+            decimal Sint = 0;
+            for (int i = 0; i < pagosList.Count; i++)
+            {
+                Scap += pagosList[i].Capital;
+                Sint += pagosList[i].Interes;
+            }
+
+            decimal Rint = Math.Round((pint - Sint), 2);
+            if (Rint < 0) Rint = 0;
+            decimal Rcap = Math.Round((pcap - Scap), 2);
+            decimal tempcap = Rcap > 0 ? Rcap : 0;
+            decimal Rtot = tempcap + Rint;
+
+            return Tuple.Create(Rcap, Rint, Rtot);
+        }
+
+        private Tuple<decimal, decimal, decimal> CalcularSaldosDiasMemoriaInterna(DataRow creRow, List<PagoInfo> pagosList, DateTime fechaEval)
+        {
+            return CalcularSaldosDiasMemoria(creRow, pagosList, fechaEval);
+        }
+
+        private int CalcularDiasNoPagMemoria(DataRow creRow, List<PagoInfo> pagosList, DateTime fechaEval)
+        {
+            int numpag = pagosList.Count;
+            int Totd = 0;
+
+            string tipoc = creRow["id_tipo_credito"].ToString();
+            decimal monto = Convert.ToDecimal(creRow["monto"]);
+            decimal interes = Convert.ToDecimal(creRow["interes"]);
+            int diasP = Convert.ToInt32(creRow["dias_pago"]);
+            DateTime Fini = Convert.ToDateTime(creRow["fecha_conc"]);
+            DateTime FinCe = Convert.ToDateTime(creRow["Fecha_venci"]);
+            DateTime Ffin = fechaEval;
+
+            decimal TotCap = 0;
+            decimal TotInt = 0;
+            foreach (var p in pagosList)
+            {
+                TotCap += p.Capital;
+                TotInt += p.Interes;
+            }
+
+            TimeSpan dif;
+            if (tipoc == "1")
+            {
+                decimal Pcap = Math.Round((monto / diasP), 2);
+                decimal Pint = Math.Round((monto * interes / 100), 2);
+                int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
+                DateTime fechaval;
+                dif = Ffin - Fini;
+                dias = dif.Days;
+                for (cont = 1; cont <= dias; cont++)
+                {
+                    pdia++;
+                    fechaval = Fini.AddDays(pdia);
+                    if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        Dfin++;
+                    }
+                }
+                while (TotCap > 0 || TotInt > 0)
+                {
+                    TotCap -= Pcap;
+                    TotInt -= Pint;
+                    if (TotCap >= 0 && TotInt >= 0)
+                        pagao++;
+                }
+                pagao++;
+                dias -= (Dfin + pagao);
+                if (dias < 0) dias = 0;
+                Totd = dias;
+            }
+            else if (tipoc == "2")
+            {
+                decimal Pcap = Math.Round((monto / diasP), 2);
+                decimal Pint = Math.Round((monto * interes / 100), 2);
+                int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
+                DateTime Inicio = FinCe, fechaval;
+                dif = Ffin - Inicio;
+                dias = dif.Days;
+                if (dias <= 0) return 0;
+                for (cont = 1; cont <= dias; cont++)
+                {
+                    fechaval = Fini.AddDays(pdia);
+                    pdia++;
+                    if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        Dfin++;
+                    }
+                }
+                if (TotCap <= 0 && TotInt > 0)
+                {
+                    while (TotInt > 0)
+                    {
+                        TotInt -= Pint;
+                        if (TotInt >= Pint) pagao++;
+                    }
+                }
+                else if (TotCap > 0 && TotInt <= 0)
+                {
+                    while (TotCap > 0)
+                    {
+                        TotCap -= Pcap;
+                        if (TotCap >= Pcap) pagao++;
+                    }
+                }
+                else if (TotCap > 0 && TotInt > 0)
+                {
+                    while (TotCap >= 0 || TotInt >= 0)
+                    {
+                        TotCap -= Pcap;
+                        TotInt -= Pint;
+                        if (TotCap >= 0 || TotInt >= 0)
+                            pagao++;
+                    }
+                }
+                dias -= (Dfin + pagao);
+                if (dias < 0) dias = 0;
+                Totd = dias;
+            }
+            else if (tipoc == "3")
+            {
+                decimal sint, scap, cuotac;
+                var saldos = CalcularSaldosDiasMemoria(creRow, pagosList, Ffin);
+                cuotac = Math.Round((monto / diasP), 2);
+                scap = saldos.Item1;
+                sint = saldos.Item2;
+
+                int atraso = 0;
+                if (scap <= 0 && sint <= 0)
+                {
+                    atraso = 0;
+                }
+                else if (scap > 0 && sint <= 0)
+                {
+                    while (scap > 0)
+                    {
+                        atraso++;
+                        scap -= cuotac;
+                    }
+                }
+                else if (scap <= 0 && sint > 0)
+                {
+                    decimal pagoint = Math.Round((monto * interes / 100 / 12), 2);
+                    while (sint > 0)
+                    {
+                        atraso++;
+                        sint -= pagoint;
+                    }
+                }
+                else
+                {
+                    decimal pagoint = Math.Round((monto * interes / 100 / 12), 2);
+                    while (scap > 0 || sint > 0)
+                    {
+                        atraso++;
+                        sint -= pagoint;
+                        scap -= cuotac;
+                    }
+                }
+                int conteo = 1;
+                DateTime fechaavanz = Fini;
+                while (Ffin > fechaavanz)
+                {
+                    fechaavanz = Fini.AddMonths(conteo);
+                    conteo++;
+                }
+                fechaavanz = fechaavanz.AddMonths(-atraso);
+                dif = Ffin - fechaavanz;
+                Totd = dif.Days;
+            }
+            else if (tipoc == "4")
+            {
+                var saldoActual = CalcularSaldosDiasMemoria(creRow, pagosList, Ffin);
+                decimal capSaldo = saldoActual.Item1;
+                decimal intSaldo = saldoActual.Item2;
+
+                if (capSaldo <= 0 && intSaldo <= 0)
+                {
+                    Totd = 0;
+                }
+                else
+                {
+                    decimal totalCapPagado = 0;
+                    foreach (var p in pagosList)
+                    {
+                        totalCapPagado += p.Capital;
+                    }
+                    decimal capitalVigente = monto - totalCapPagado;
+                    if (capitalVigente < 0) capitalVigente = 0;
+
+                    decimal cuotaCapDiaria = Math.Round((monto / diasP / 30), 4);
+                    decimal intDiario = Math.Round((capitalVigente * interes / 100 / 30), 4);
+
+                    decimal diasPorCap = (cuotaCapDiaria > 0) ? Math.Round(capSaldo / cuotaCapDiaria, 0) : 0;
+                    decimal diasPorInt = (intDiario > 0) ? Math.Round(intSaldo / intDiario, 0) : 0;
+
+                    Totd = (int)Math.Max(diasPorCap, diasPorInt);
+
+                    DateTime fechaVencimiento = FinCe;
+                    DateTime fechaActual = Ffin;
+                    if (fechaActual > fechaVencimiento)
+                    {
+                        TimeSpan diasPostVenc = fechaActual - fechaVencimiento;
+                        Totd += diasPostVenc.Days;
+                    }
+
+                    if (Totd < 0) Totd = 0;
+                }
+            }
+            else if (tipoc == "5")
+            {
+                decimal Pcap = Math.Round((monto / diasP), 2);
+                decimal Pint = Math.Round((monto * interes / 100 * 5), 2);
+                int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
+                dif = Ffin - Fini;
+                dias = dif.Days;
+                for (cont = 1; cont <= dias; cont++)
+                {
+                    pdia++;
+                    DateTime fechaval = Fini.AddDays(pdia);
+                    if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        Dfin++;
+                    }
+                }
+                while (TotCap > 0 || TotInt > 0)
+                {
+                    TotCap -= Pcap;
+                    TotInt -= Pint;
+                    if (TotCap >= 0 && TotInt >= 0)
+                        pagao++;
+                }
+                pagao++;
+                dias -= (Dfin + (pagao * 5));
+                if (dias < 0) dias = 0;
+                Totd = dias;
+            }
+            else if (tipoc == "6")
+            {
+                decimal Pcap = Math.Round((monto / diasP), 2);
+                decimal Pint = Math.Round((monto * interes / 100 * 10), 2);
+                int dias = 0, cont, Dfin = 0, pdia = 0, pagao = 0;
+                dif = Ffin - Fini;
+                dias = dif.Days / 14;
+                for (cont = 1; cont <= dias; cont++)
+                {
+                    pdia++;
+                    DateTime fechaval = Fini.AddDays(pdia * 14);
+                    if (fechaval.DayOfWeek == DayOfWeek.Saturday || fechaval.DayOfWeek == DayOfWeek.Sunday)
+                    {
+                        Dfin++;
+                    }
+                }
+                while ((TotCap > 0 || TotInt > 0))
+                {
+                    TotCap -= Pcap;
+                    TotInt -= Pint;
+                    if (TotCap >= 0 && TotInt >= 0)
+                        pagao++;
+                }
+                dias -= (Dfin + pagao);
+                dias *= 10;
+                if (dias < 0) dias = 0;
+                Totd = dias;
+            }
+            if (Totd < 0) Totd = 0;
+            return Totd;
+        }
+
+        private int CalcularDiasAtrasoMemoria(DataRow creRow, List<PagoInfo> pagosList, DateTime fechaEval)
+        {
+            int numPagos = pagosList.Count;
+            DateTime? maxFechaPago = numPagos > 0 ? (DateTime?)pagosList[numPagos - 1].Fecha : null;
+
+            string tipoc = creRow["id_tipo_credito"].ToString();
+            int dmaxatraso = Convert.ToInt32(creRow["dias_pago"]);
+            int plazo = Convert.ToInt32(creRow["plazo"]);
+            DateTime fechaconc = Convert.ToDateTime(creRow["fecha_conc"]);
+            DateTime fechavenci = Convert.ToDateTime(creRow["Fecha_venci"]);
+            decimal monto = Convert.ToDecimal(creRow["monto"]);
+            decimal interes = Convert.ToDecimal(creRow["interes"]);
+
+            int datraso = 0;
+
+            if (maxFechaPago == null && numPagos == 0)
+            {
+                DateTime fechav = fechaconc;
+                TimeSpan dias = fechaEval - fechav;
+                int tdias = dias.Days;
+                int cont, atra = 0;
+                if (tipoc.Equals("1") || tipoc.Equals("2"))
+                {
+                    dias = fechaEval - fechav.AddDays(1);
+                    tdias = dias.Days;
+                    for (cont = 1; cont <= tdias; cont++)
+                    {
+                        if (fechav.DayOfWeek == DayOfWeek.Saturday || fechav.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                        }
+                        else
+                        {
+                            atra++;
+                        }
+                        fechav = fechav.AddDays(1);
+                    }
+                    datraso = atra;
+                }
+                else if (tipoc.Equals("3"))
+                {
+                    int mesatras = 0;
+                    fechav = fechav.AddDays(1);
+                    while (fechav.AddMonths(mesatras) < fechaEval)
+                    { mesatras++; }
+                    datraso = mesatras;
+                }
+                else if (tipoc.Equals("4"))
+                {
+                    int mesesAtraso = 0;
+                    DateTime fechaReferencia = fechaconc;
+
+                    while (fechaReferencia.AddMonths(mesesAtraso + 1) <= fechaEval)
+                    {
+                        DateTime fechaPeriodo = fechaReferencia.AddMonths(mesesAtraso + 1);
+
+                        var saldoPeriodo = CalcularSaldosDiasMemoriaInterna(creRow, pagosList, fechaPeriodo);
+                        decimal capPendiente = saldoPeriodo.Item1;
+                        decimal intPendiente = saldoPeriodo.Item2;
+
+                        if (capPendiente > 0 || intPendiente > 0)
+                        {
+                            mesesAtraso++;
+                        }
+                        else
+                        {
+                            fechaReferencia = fechaPeriodo;
+                        }
+                    }
+
+                    DateTime inicioMesActual = fechaReferencia.AddMonths(mesesAtraso);
+                    if (fechaEval > inicioMesActual)
+                    {
+                        TimeSpan diasMesActual = fechaEval - inicioMesActual;
+                        datraso = (mesesAtraso * 30) + diasMesActual.Days;
+                    }
+                    else
+                    {
+                        datraso = mesesAtraso * 30;
+                    }
+                }
+                else if (tipoc.Equals("5"))
+                {
+                    dias = fechaEval - fechav.AddDays(1);
+                    tdias = dias.Days;
+                    for (cont = 1; cont <= tdias; cont++)
+                    {
+                        if (fechav.DayOfWeek == DayOfWeek.Saturday || fechav.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                        }
+                        else
+                        {
+                            atra++;
+                        }
+                        fechav = fechav.AddDays(7);
+                        cont += 7;
+                    }
+                    datraso = atra;
+                }
+                else if (tipoc.Equals("6"))
+                {
+                    dias = fechaEval - fechav.AddDays(1);
+                    tdias = dias.Days;
+                    for (cont = 1; cont <= tdias; cont++)
+                    {
+                        if (fechav.DayOfWeek == DayOfWeek.Saturday || fechav.DayOfWeek == DayOfWeek.Sunday)
+                        {
+                        }
+                        else
+                        {
+                            atra++;
+                        }
+                        fechav = fechav.AddDays(14);
+                        cont += 7;
+                    }
+                    datraso = atra;
+                }
+
+                if (datraso >= dmaxatraso) datraso = dmaxatraso;
+                if (datraso < 0) datraso = 0;
+            }
+            else
+            {
+                DateTime fechav = fechaconc;
+                DateTime fechap = fechaconc.AddMonths(numPagos);
+                DateTime sigfecha = fechav;
+                while (fechap > sigfecha)
+                { sigfecha = sigfecha.AddMonths(1); }
+
+                TimeSpan dif = fechaEval - sigfecha;
+                int diastraso = dif.Days;
+
+                int cont, atra = 0;
+
+                if (tipoc.Equals("1") || tipoc.Equals("2"))
+                {
+                    for (cont = 1; cont <= diastraso; cont++)
+                    {
+                        if (fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Saturday || fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Sunday)
+                        {
+                        }
+                        else
+                        {
+                            atra++;
+                        }
+                    }
+                    datraso = atra;
+                }
+                else if (tipoc.Equals("3"))
+                {
+                    int atram = 0;
+                    sigfecha = sigfecha.AddDays(1);
+                    while (fechaEval >= sigfecha)
+                    {
+                        atram++;
+                        sigfecha = sigfecha.AddMonths(1);
+                    }
+                    datraso = atram;
+                }
+                else if (tipoc.Equals("5"))
+                {
+                    for (cont = 1; cont <= dif.Days; cont++)
+                    {
+                        if (fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Saturday || fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Sunday)
+                        {
+                        }
+                        else
+                        {
+                            atra++;
+                        }
+                        diastraso += 7;
+                    }
+                    datraso = atra;
+                }
+                else if (tipoc.Equals("6"))
+                {
+                    for (cont = 1; cont <= dif.Days; cont++)
+                    {
+                        if (fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Saturday || fechap.AddDays(cont - 1).DayOfWeek == DayOfWeek.Sunday)
+                        {
+                        }
+                        else
+                        {
+                            atra++;
+                        }
+                        diastraso += 14;
+                    }
+                    datraso = atra;
+                }
+
+                if (datraso > dmaxatraso) datraso = dmaxatraso;
+                if (datraso < 0) datraso = 0;
+            }
+
+            return datraso;
+        }
 
         private DataTable buscar(string consulta)
         {
@@ -665,7 +1398,7 @@ namespace Arcoiris.Reportes
             {
                 ConsulAdd2 = $"and aso.Cod_Asesor={aseso}";
             }
-            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
+            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias, cli.telefono1, cli.telefono2, cli.telefonoCon, cre.fecha_conc, cre.Fecha_venci, cre.dias_pago  " +
                        "FROM credito cre " +
                        "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = cre.COD_CREDITO " +
                        "INNER JOIN asigna_solicitud aso ON aso.ID_SOLICITUD = ac.ID_SOLICITUD " +
@@ -676,110 +1409,161 @@ namespace Arcoiris.Reportes
                        "GROUP BY cre.COD_CREDITO " +
                        "ORDER BY cre.FECHA_CONC";
             credito = buscar(consulta);
+
+            // Cargar todos los pagos activos en memoria en una sola consulta
+            DataTable dtPagos = buscar("SELECT p.cod_credito, p.capital, p.interes, p.fecha FROM pagos p INNER JOIN credito c ON p.cod_credito = c.COD_CREDITO WHERE c.ESTADO = 'Activo' AND p.estado = 'Hecho' ORDER BY p.fecha ASC");
+            Dictionary<string, List<PagoInfo>> pagosDict = new Dictionary<string, List<PagoInfo>>();
+            foreach (DataRow row in dtPagos.Rows)
+            {
+                string cod = row["cod_credito"].ToString();
+                if (!pagosDict.ContainsKey(cod))
+                {
+                    pagosDict[cod] = new List<PagoInfo>();
+                }
+                pagosDict[cod].Add(new PagoInfo
+                {
+                    Capital = row["capital"] == DBNull.Value ? 0m : Convert.ToDecimal(row["capital"]),
+                    Interes = row["interes"] == DBNull.Value ? 0m : Convert.ToDecimal(row["interes"]),
+                    Fecha = Convert.ToDateTime(row["fecha"])
+                });
+            }
+
             int cont, total;
             total = credito.Rows.Count;
             for (cont = 0; cont < total; cont++)
             {
-                int diasatras;
-                decimal cuotac, cuotai, cuota,Ccancelar;
-                DatosCre detalle = new DatosCre();
-                DataTable datoscli = new DataTable();
-                DataTable datcred = new DataTable();
-                DataTable saldos = new DataTable();
-                DataTable canti = new DataTable();
-                DataTable fechas = new DataTable();
-                string codigocli = credito.Rows[cont][8].ToString();
-                string tipo = credito.Rows[cont][9].ToString();
-                string Conscli = "select telefono1,telefono2,telefonocon as telefono from cliente where codigo_cli=" + codigocli;
-                datoscli = buscar(Conscli);
                 string codigocre = credito.Rows[cont][0].ToString();
-                string consfech = "SELECT date_format(Max(fecha),'%d-%M-%Y'), COUNT(*) FROM pagos WHERE cod_credito=" + codigocre +" and estado='Hecho'";
-                fechas = buscar(consfech);
-                saldos = cre.saldosdias(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
-                datcred = cre.datoscre(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
-                canti = cre.cantcre(codigocre, DateTime.Now.Date.ToString());
-                diasatras = cre.diasnopag(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"), credito.Rows[cont][5].ToString());
-                cuotac= decimal.Parse(datcred.Rows[0][4].ToString());
-                cuotai= decimal.Parse(datcred.Rows[0][5].ToString());
-                if (cuotac < 0) cuotac = 0;
-                if (cuotai < 0) cuotai = 0;
-                cuota = cuotac + cuotai;
-                string tipoc="";
-                if (tipo.Equals("1")) { tipoc = "Diario"; }
-                else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
-                else if (tipo.Equals("3")) { tipoc = "Mensual"; }
-                else if (tipo.Equals("4")) { tipoc = "Mensual-Sobresaldo"; }
-                else if (tipo.Equals("5")) { tipoc = "Semanal"; }
-                else if (tipo.Equals("6")) { tipoc = "Quincenal"; }
-                decimal catras, iatras;
-                catras = decimal.Parse(saldos.Rows[0][0].ToString());
+                string tipo = credito.Rows[cont][9].ToString();
+                List<PagoInfo> pagosList = pagosDict.ContainsKey(codigocre) ? pagosDict[codigocre] : new List<PagoInfo>();
+
+                decimal monto = Convert.ToDecimal(credito.Rows[cont][2]);
+                decimal interes = Convert.ToDecimal(credito.Rows[cont][4]);
+                int plazo = Convert.ToInt32(credito.Rows[cont][3]);
+                int diasp = Convert.ToInt32(credito.Rows[cont][16]); // index 16 is cre.dias_pago
+                DateTime fechaConc = Convert.ToDateTime(credito.Rows[cont][14]); // index 14 is raw fecha_conc
+                DateTime fechaVenci = Convert.ToDateTime(credito.Rows[cont][15]); // index 15 is raw Fecha_venci
+                decimal saldoCap = Convert.ToDecimal(credito.Rows[cont][7]);
+
+                // 1) Calcular diasatras en memoria
+                int diasatras = CalcularDiasNoPagMemoria(credito.Rows[cont], pagosList, DateTime.Now.Date);
+
+                // 2) Calcular saldos en memoria
+                var saldosRes = CalcularSaldosDiasMemoria(credito.Rows[cont], pagosList, DateTime.Now.Date);
+                decimal catras = saldosRes.Item1;
+                decimal iatras = saldosRes.Item2;
                 if (catras < 0) catras = 0;
-                iatras = decimal.Parse(saldos.Rows[0][1].ToString());
                 if (iatras < 0) iatras = 0;
-                detalle.intatras = iatras;
-                //Condicion de 
-                DateTime fechi = DateTime.Parse($"{credito.Rows[cont][6]} 23:59:59");
+
+                // Tipo 2 exception
                 if (tipo.Equals("2"))
                 {
                     catras = 0;
                     iatras = 0;
-                    if ((DateTime.Now > fechi))
+                    DateTime fechi = fechaVenci.AddHours(23).AddMinutes(59).AddSeconds(59);
+                    if (DateTime.Now > fechi)
                     {
-                        catras = decimal.Parse(saldos.Rows[0][0].ToString());
-                        iatras = decimal.Parse(saldos.Rows[0][1].ToString());
+                        catras = saldosRes.Item1;
+                        iatras = saldosRes.Item2;
+                        if (catras < 0) catras = 0;
+                        if (iatras < 0) iatras = 0;
                     }
                 }
-                if (catras > 0 || iatras>0)
+
+                if (catras > 0 || iatras > 0)
                 {
-                    decimal capatras, intatras;
-                    string Garantia = credito.Rows[cont][10] != DBNull.Value ? credito.Rows[cont][10].ToString() : "Sin Garantia";
-                    Ccancelar = decimal.Parse(canti.Rows[0][5].ToString()) + decimal.Parse(credito.Rows[cont][7].ToString());
-                    //No credito
-                    detalle.cre = int.Parse(credito.Rows[cont][0].ToString());
-                    //nombre del cliente
-                    detalle.cliente = credito.Rows[cont][1].ToString();
-                    //tipo de credito
-                    detalle.tipo = tipoc;
-                    //Numero de cuotas pagadas
-                    detalle.cuotap = int.Parse(fechas.Rows[0][1].ToString());
-                    //Dias de atraso
-                    detalle.diatras = diasatras;
-                    //Fecha de concesion
-                    detalle.fechaconc = DateTime.Parse(credito.Rows[cont][5].ToString());
-                    //Fecha de Vencimiento
-                    detalle.fechavenc = DateTime.Parse(credito.Rows[cont][6].ToString());
-                    //Tasa del credito
-                    detalle.tasa = credito.Rows[cont][4].ToString();
-                    //Monto
-                    detalle.monto = decimal.Parse(credito.Rows[cont][2].ToString());
-                    //capatras
-                    capatras = decimal.Parse(saldos.Rows[0][0].ToString());
-                    if (capatras < 0) capatras = 0;
-                    detalle.capatras = capatras;
-                    //intatras
-                    intatras= decimal.Parse(saldos.Rows[0][1].ToString());
-                    if (intatras < 0) intatras = 0;
-                    detalle.intatras = intatras;
-                    //cancelar
-                    detalle.cancelar = Ccancelar;
-                    //cuota
-                    detalle.cuota = cuota;
-                    //utlimpag
-                    if (fechas.Rows[0][0] != DBNull.Value)
+                    // 3) Calcular cuota
+                    decimal cuotac = 0;
+                    decimal cuotai = 0;
+                    if (tipo == "1" || tipo == "3" || tipo == "4" || tipo == "5" || tipo == "6")
                     {
-                        detalle.utlimpag = DateTime.Parse(fechas.Rows[0][0].ToString() + " 00:00:00"); }
-                    else
-                    {
-                        detalle.utlimpag = DateTime.Parse(credito.Rows[cont][5].ToString());
+                        cuotac = diasp > 0 ? Math.Round(monto / diasp, 2) : 0;
                     }
-                    //telefono
-                    detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
+                    else if (tipo == "2")
+                    {
+                        int pagosProyFalso = PagProyMemoria(fechaConc.AddDays(1), DateTime.Now.Date.AddDays(1), "1", plazo);
+                        cuotac = plazo > 0 ? (monto / plazo * pagosProyFalso) : 0;
+                    }
+
+                    if (tipo == "1")
+                    {
+                        cuotai = Math.Round(monto * interes / 100, 2);
+                    }
+                    else if (tipo == "2")
+                    {
+                        int pagosProyFalso = PagProyMemoria(fechaConc.AddDays(1), DateTime.Now.Date.AddDays(1), "1", plazo);
+                        cuotai = Math.Round(monto * interes / 100 * pagosProyFalso, 2);
+                    }
+                    else if (tipo == "3")
+                    {
+                        cuotai = Math.Round(monto * interes / 100 / 12, 2);
+                    }
+                    else if (tipo == "4")
+                    {
+                        int difDias = 0;
+                        if (pagosList.Count <= 0)
+                        {
+                            difDias = (DateTime.Now.Date - fechaConc.Date).Days;
+                        }
+                        else
+                        {
+                            difDias = (DateTime.Now.Date - pagosList[pagosList.Count - 1].Fecha.Date).Days;
+                        }
+                        decimal pagoint = ((saldoCap * interes / 100 / 12 / 30) * difDias);
+                        cuotai = Math.Round(pagoint, 2);
+                    }
+                    else if (tipo == "5")
+                    {
+                        cuotai = Math.Round(monto * interes / 100 * 5, 2);
+                    }
+                    else if (tipo == "6")
+                    {
+                        cuotai = Math.Round(monto * interes / 100 * 10, 2);
+                    }
+
+                    if (cuotac < 0) cuotac = 0;
+                    if (cuotai < 0) cuotai = 0;
+                    decimal cuota = cuotac + cuotai;
+
+                    string tipoc = "";
+                    if (tipo.Equals("1")) { tipoc = "Diario"; }
+                    else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
+                    else if (tipo.Equals("3")) { tipoc = "Mensual"; }
+                    else if (tipo.Equals("4")) { tipoc = "Mensual-Sobresaldo"; }
+                    else if (tipo.Equals("5")) { tipoc = "Semanal"; }
+                    else if (tipo.Equals("6")) { tipoc = "Quincenal"; }
+
+                    decimal capatras = catras;
+                    decimal intatras = iatras;
+
+                    string Garantia = credito.Rows[cont][10] != DBNull.Value ? credito.Rows[cont][10].ToString() : "Sin Garantia";
+                    decimal Ccancelar = iatras + saldoCap;
+
+                    DatosCre detalle = new DatosCre();
+                    detalle.cre = int.Parse(codigocre);
+                    detalle.cliente = credito.Rows[cont][1].ToString();
+                    detalle.tipo = tipoc;
+                    detalle.cuotap = pagosList.Count;
+                    detalle.diatras = diasatras;
+                    detalle.fechaconc = fechaConc;
+                    detalle.fechavenc = fechaVenci;
+                    detalle.tasa = credito.Rows[cont][4].ToString();
+                    detalle.monto = monto;
+                    detalle.capatras = capatras;
+                    detalle.intatras = intatras;
+                    detalle.cancelar = Ccancelar;
+                    detalle.cuota = cuota;
+                    detalle.utlimpag = pagosList.Count > 0 ? pagosList[pagosList.Count - 1].Fecha : fechaConc;
+
+                    string tel1 = credito.Rows[cont][11] != DBNull.Value ? credito.Rows[cont][11].ToString() : "";
+                    string tel2 = credito.Rows[cont][12] != DBNull.Value ? credito.Rows[cont][12].ToString() : "";
+                    string telCon = credito.Rows[cont][13] != DBNull.Value ? credito.Rows[cont][13].ToString() : "";
+                    detalle.telefono = tel1 + "\n" + tel2 + "\n" + telCon;
+
                     detalle.Garantia = Garantia;
                     Encab.Datos.Add(detalle);
                 }
-
             }
-    Reportes.CreCartera formu = new Reportes.CreCartera();
+            Reportes.CreCartera formu = new Reportes.CreCartera();
             formu.Enca.Add(Encab);
             formu.Deta = Encab.Datos;
             formu.Show();
