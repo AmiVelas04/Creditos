@@ -1031,9 +1031,9 @@
             // 
             this.BtnBoleta.Image = ((System.Drawing.Image)(resources.GetObject("BtnBoleta.Image")));
             this.BtnBoleta.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnBoleta.Location = new System.Drawing.Point(1031, 22);
+            this.BtnBoleta.Location = new System.Drawing.Point(1019, 22);
             this.BtnBoleta.Name = "BtnBoleta";
-            this.BtnBoleta.Size = new System.Drawing.Size(112, 66);
+            this.BtnBoleta.Size = new System.Drawing.Size(124, 66);
             this.BtnBoleta.TabIndex = 30;
             this.BtnBoleta.Text = "Imprimr Boleta";
             this.BtnBoleta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -1044,12 +1044,13 @@
             // 
             this.BtnControl.Image = ((System.Drawing.Image)(resources.GetObject("BtnControl.Image")));
             this.BtnControl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnControl.Location = new System.Drawing.Point(238, 17);
+            this.BtnControl.Location = new System.Drawing.Point(266, 16);
             this.BtnControl.Name = "BtnControl";
-            this.BtnControl.Size = new System.Drawing.Size(112, 66);
+            this.BtnControl.Size = new System.Drawing.Size(126, 66);
             this.BtnControl.TabIndex = 29;
             this.BtnControl.Text = "Imprimir control de pago";
             this.BtnControl.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnControl.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnControl.UseVisualStyleBackColor = true;
             this.BtnControl.Click += new System.EventHandler(this.BtnControl_Click);
             // 
@@ -1057,12 +1058,13 @@
             // 
             this.BtnImpPago.Image = ((System.Drawing.Image)(resources.GetObject("BtnImpPago.Image")));
             this.BtnImpPago.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnImpPago.Location = new System.Drawing.Point(115, 17);
+            this.BtnImpPago.Location = new System.Drawing.Point(132, 16);
             this.BtnImpPago.Name = "BtnImpPago";
-            this.BtnImpPago.Size = new System.Drawing.Size(117, 66);
+            this.BtnImpPago.Size = new System.Drawing.Size(115, 66);
             this.BtnImpPago.TabIndex = 28;
             this.BtnImpPago.Text = "Imprimir Estado de cuenta";
             this.BtnImpPago.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnImpPago.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.BtnImpPago.UseVisualStyleBackColor = true;
             this.BtnImpPago.Click += new System.EventHandler(this.BtnImpPago_Click);
             // 
@@ -1083,9 +1085,9 @@
             // 
             this.panel1.Controls.Add(this.DGVPpago);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 44);
+            this.panel1.Location = new System.Drawing.Point(3, 120);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1143, 647);
+            this.panel1.Size = new System.Drawing.Size(1143, 571);
             this.panel1.TabIndex = 24;
             // 
             // DGVPpago
@@ -1106,7 +1108,7 @@
             this.DGVPpago.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
             this.DGVPpago.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.DGVPpago.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DGVPpago.Size = new System.Drawing.Size(1143, 647);
+            this.DGVPpago.Size = new System.Drawing.Size(1143, 571);
             this.DGVPpago.TabIndex = 0;
             // 
             // Prestamo

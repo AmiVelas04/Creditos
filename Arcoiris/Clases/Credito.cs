@@ -231,7 +231,11 @@ namespace Arcoiris.Clases
                 {
                     // Calcular días de atraso considerando el saldo pendiente
                     int mesesAtraso = 0;
-                    DateTime fechaReferencia = fechap;
+                    DateTime fechaReferencia;
+                    if (datos.Rows[0][1] == DBNull.Value || datos.Rows[0][1].ToString() == "")
+                        fechaReferencia = Convert.ToDateTime(fechas);
+                    else
+                        fechaReferencia = Convert.ToDateTime(fechas);
 
                     // Si no hay pagos, usar fecha de concesión
                     if (NumPagos == 0)
@@ -2277,157 +2281,54 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             }
             else if (tipoc == "4")
             {
-                /*inicio de calculo oimitido temporalmente para atraso de dias ---------------------------------------------------------------------------------------------
-                                 
-                final de  parte omitida para registro de nuevo calculo de dias atrasados en creditos mensulaes sobre saldo-------------------------------------------------*/
-                decimal sint, scap, cuotac;
-                decimal intadeu = 0, capadeu = 0, totadeu = 0;
-                DataTable saldos = new DataTable();
-                // saldos = saldosdias(cre, fecha);
-                cuotac = Math.Round((monto / diasP), 2);
-                //  scap = decimal.Parse(saldos.Rows[0][0].ToString());
-                // sint = decimal.Parse(saldos.Rows[0][1].ToString());
-                string ConsuAllPag = "select capital,interes,date_format(Fecha,'%Y/%M/%d') as fecha FROM pagos WHERE cod_credito=" + cre + " AND estado ='Hecho'";
-                DataTable allpag = buscar(ConsuAllPag);
-                DateTime DateChan = Fini.AddMonths(1);
-                int totpagos = allpag.Rows.Count;
-                int atraso = 0;
-                decimal montoTemp = monto;
-                //Intento diferente de calcular dias de atraso
-                if (totpagos <= 0)
+                DataTable saldoActual = saldosdias(cre, fecha);
+                decimal capSaldo = decimal.Parse(saldoActual.Rows[0]["Capital"].ToString());
+                decimal intSaldo = decimal.Parse(saldoActual.Rows[0]["Interes"].ToString());
+
+                if (capSaldo <= 0 && intSaldo <= 0)
                 {
-                    TimeSpan dias = Ffin - DateChan;
-                    Totd = dias.Days;
+                    Totd = 0;
                 }
                 else
                 {
-                    DateTime FechaNoPag = DateChan;
+                    // Capital vigente actual
+                    string consultaCapVigente = "SELECT COALESCE(SUM(capital), 0) " +
+                        "FROM pagos WHERE cod_credito=" + cre + " AND estado='Hecho'";
+                    DataTable dtCapVigente = buscar(consultaCapVigente);
+                    decimal totalCapPagado = decimal.Parse(dtCapVigente.Rows[0][0].ToString());
+                    decimal capitalVigente = monto - totalCapPagado;
+                    if (capitalVigente < 0) capitalVigente = 0;
 
-                    decimal saldinio1 = 0, saldinio2 = 0;
-                    while (saldinio1 <= 0 && saldinio2 <= 0)
+                    // Cuota diaria de capital
+                    decimal cuotaCapDiaria = Math.Round((monto / diasP / 30), 4);
+
+                    // Interes diario con capital vigente actual
+                    decimal intDiario = Math.Round((capitalVigente * interes / 100 / 30), 4);
+
+                    // Convertir faltantes a dias
+                    decimal diasPorCap = (cuotaCapDiaria > 0)
+                        ? Math.Round(capSaldo / cuotaCapDiaria, 0)
+                        : 0;
+
+                    decimal diasPorInt = (intDiario > 0)
+                        ? Math.Round(intSaldo / intDiario, 0)
+                        : 0;
+
+                    // Dias base desde saldosdias
+                    Totd = (int)Math.Max(diasPorCap, diasPorInt);
+
+                    // Si la fecha actual supera la fecha de vencimiento
+                    // sumar los dias adicionales posteriores al vencimiento
+                    DateTime fechaVencimiento = Convert.ToDateTime(FinCe.ToString());
+                    DateTime fechaActual = Convert.ToDateTime(Ffin.ToString());
+                    if (fechaActual > fechaVencimiento)
                     {
-                        DataTable SaldNoPag = saldosdias(cre, FechaNoPag.ToString("yyyy/MM/dd"));
-                        saldinio1 = decimal.Parse(SaldNoPag.Rows[0][0].ToString());
-                        saldinio2 = decimal.Parse(SaldNoPag.Rows[0][1].ToString());
-                        if (saldinio1 <= 0 && saldinio2 <= 0)
-                        {
-                            FechaNoPag = FechaNoPag.AddMonths(1);
-                        }
-                        else
-                        {
-                            break;
-                        }
-                        if (FechaNoPag >= DateTime.Parse(fecha))
-                        {
-                            break;
-                        }
+                        TimeSpan diasPostVenc = fechaActual - fechaVencimiento;
+                        Totd += diasPostVenc.Days;
                     }
-                    DateTime FechaHoy = DateTime.Parse(fecha);
-                    TimeSpan dias = FechaHoy - FechaNoPag;
-                    Totd = dias.Days;
 
-
-                    //     ///Revisar error de redundacia en este punto al regresar los dias atrasados en la muestra de los dias de pago de todos, revisar deteneidamente
-                    //     DataTable saldoDcre = saldosdias(cre, fecha);
-                    //     decimal InteSal = decimal.Parse(saldoDcre.Rows[0][1].ToString());
-                    //     decimal CapSal = decimal.Parse(saldoDcre.Rows[0][0].ToString());
-                    //     decimal CapUsar = decimal.Parse(tipo.Rows[0][6].ToString());
-                    //     decimal CapTemp = monto;
-                    //     atraso = 0;
-                    //     decimal[]sumtotPag = { 0,0};
-                    //     int DiasEntrePagos = 0;
-                    //     TimeSpan lapso;
-                    //     TimeSpan TimePago;
-                    //     DateTime Fechapagini = DateTime.Parse(tipo.Rows[0][1].ToString());
-                    //     decimal tempint=0, saldtempint = 0;
-
-
-                    //     foreach (DataRow Row in allpag.Rows)
-                    //     {
-                    //         DateTime PagoFechaH = DateTime.Parse(Row[2].ToString());
-                    //         decimal PagointTemp = decimal.Parse(Row[1].ToString());
-                    //         sumtotPag[0] = sumtotPag[0] + decimal.Parse(Row[0].ToString());
-                    //         sumtotPag[1] = sumtotPag[1] + decimal.Parse(Row[1].ToString());
-                    //         TimePago = PagoFechaH - Fechapagini;
-                    //tempint   = Math.Round((CapTemp * interes / 100 / 12 / 30 * TimePago.Days), 2);
-
-                    //         saldtempint = saldtempint + ( tempint - PagointTemp );
-                    //         CapTemp = CapTemp - decimal.Parse(Row[0].ToString());
-                    //         Fechapagini = PagoFechaH;
-                    //     }
-                    //     TimePago = Ffin.AddMonths(-1) - Fechapagini;
-                    //     if (TimePago.Days < 0)
-                    //     { tempint = Math.Round((CapTemp * interes / 100 / 12 / 30 * 0), 2); }
-                    //     else
-                    //     {
-                    //         tempint = Math.Round((CapTemp * interes / 100 / 12 / 30 * TimePago.Days), 2);
-                    //     }
-
-                    //     saldtempint = saldtempint + (tempint);
-                    //     decimal temponeCuota= Math.Round((CapTemp * interes / 100 / 12 / 30), 2);
-
-                    //     Totd =int.Parse(  Math.Truncate(saldtempint / temponeCuota).ToString());
-                    //     return Totd;
-                    //     lapso = Ffin - Fechapagini;
-                    //     DiasEntrePagos = (lapso.Days);
-                    //     if (CapUsar <= 0)
-                    //         return 0;
-                    //     if (CapSal <= 0 && InteSal <= 0)
-                    //     {
-                    //         atraso = 0;
-                    //     }
-                    //     else if (CapSal > 0 && InteSal <= 0)
-                    //     {
-                    //         cuotac = montoTemp / diasP;
-                    //         while (CapSal > 0)
-                    //         {
-                    //             atraso++;
-                    //             CapSal -= cuotac;
-                    //         }
-                    //     }
-                    //     else if (CapSal <= 0 && InteSal > 0)
-                    //     {
-                    //         decimal pagoint;
-
-
-                    //         while (InteSal > 0)
-                    //         {
-                    //             pagoint = Math.Round((CapUsar * interes / 100 / 12 / 30 * DiasEntrePagos), 2);
-                    //             lapso = Fechapagini.AddMonths(1) - Fechapagini;
-                    //             DiasEntrePagos = lapso.Days;
-                    //             Fechapagini = Fechapagini.AddMonths(1);
-                    //             atraso++;
-                    //             InteSal -= pagoint;
-                    //         }
-                    //     }
-                    //     else
-                    //     {
-                    //         decimal pagoint;
-
-                    //         cuotac = montoTemp / diasP;
-                    //         while (CapSal > 0 || InteSal > 0)
-                    //         {
-                    //             pagoint = Math.Round((CapUsar * interes / 100 / 12 / 30 * DiasEntrePagos), 2);
-                    //             lapso = Fechapagini.AddMonths(1) - Fechapagini;
-                    //             DiasEntrePagos = lapso.Days;
-                    //             Fechapagini = Fechapagini.AddMonths(1);
-                    //             atraso++;
-                    //             InteSal -= pagoint;
-                    //             CapSal -= cuotac;
-                    //         }
-                    //     }
-                    //     int conteo = 2;
-                    //     DateTime fechaavanz = Fini;
-                    //     while (Ffin > fechaavanz)
-                    //     {
-                    //         fechaavanz = Fini.AddMonths(conteo);
-                    //         conteo++;
-                    //     }
-                    //     fechaavanz = fechaavanz.AddMonths(-atraso);
-                    //     dif = Ffin - fechaavanz;
-                    //     Totd = dif.Days;
+                    if (Totd < 0) Totd = 0;
                 }
-                //fin de intento nuevo
             }
             else if (tipoc == "5")
             {
