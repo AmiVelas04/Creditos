@@ -1287,13 +1287,12 @@ namespace Arcoiris.Reportes
 
         }
 
-        public void Venc_ord(string titulo,string tip, string aseso)
+        public void Venc_ord(string titulo, string tip, string aseso)
         {
             Reportes.AtrasosE Encab = new Reportes.AtrasosE();
             Encab.titulo = titulo;
-            string consulta,ConsulAdd="";
+            string consulta, ConsulAdd = "";
             string ConsulAdd2 = "";
-            decimal capital;
             if (tip == "Diario")
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (tip == "Mensual")
@@ -1306,43 +1305,59 @@ namespace Arcoiris.Reportes
             {
                 ConsulAdd2 = $"and asol.Cod_Asesor={aseso} ";
             }
-            consulta = "SELECT cre.cod_credito,CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, DATE_format(cre.FECHA_CONC,'%d/%m/%y'), cre.FECHA_VENCI, CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos, interes,cre.id_tipo_credito,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
+            consulta = "SELECT cre.COD_CREDITO, CONCAT(cli.nombres,' ', cli.apellidos) AS Nombre, cre.monto, cre.fecha_conc, cre.FECHA_VENCI, CONCAT(cli.TELEFONO1,'\n',cli.Telefono2,'\n',cli.TelefonoCon) AS telefonos, cre.interes, cre.id_tipo_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias, cre.saldo_cap, cre.dias_pago " +
             "FROM cliente cli " +
             "INNER JOIN asigna_solicitud asol ON asol.codigo_cli = cli.CODIGO_CLI " +
             "INNER JOIN asigna_credito acre ON acre.ID_SOLICITUD = asol.ID_SOLICITUD " +
-            "LEFT JOIN sol_garant solg ON solg.Id_Solicitud=acre.ID_SOLICITUD "+
-            "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+ 
+            "LEFT JOIN sol_garant solg ON solg.Id_Solicitud=acre.ID_SOLICITUD " +
+            "Left JOIN garantia gar ON gar.id_garant = solg.id_garant " +
             "INNER JOIN credito cre ON cre.COD_CREDITO = acre.COD_CREDITO " +
-            "WHERE cre.ESTADO = 'Activo' "+ ConsulAdd + ConsulAdd2 +
-            "Group by cre.cod_credito "+
+            "WHERE cre.ESTADO = 'Activo' " + ConsulAdd + ConsulAdd2 +
+            "Group by cre.cod_credito " +
             "order by cli.nombres and cli.apellidos";
             DataTable credito = new DataTable();
             credito = buscar(consulta);
+
+            // Pre-fetch all payments for active credits
+            DataTable dtPagos = buscar("SELECT p.cod_credito, p.capital, p.interes, p.fecha FROM pagos p INNER JOIN credito c ON p.cod_credito = c.COD_CREDITO WHERE c.ESTADO = 'Activo' AND p.estado = 'Hecho' ORDER BY p.fecha ASC");
+            Dictionary<string, List<PagoInfo>> pagosDict = new Dictionary<string, List<PagoInfo>>();
+            foreach (DataRow row in dtPagos.Rows)
+            {
+                string cod = row["cod_credito"].ToString();
+                if (!pagosDict.ContainsKey(cod))
+                {
+                    pagosDict[cod] = new List<PagoInfo>();
+                }
+                pagosDict[cod].Add(new PagoInfo
+                {
+                    Capital = row["capital"] == DBNull.Value ? 0m : Convert.ToDecimal(row["capital"]),
+                    Interes = row["interes"] == DBNull.Value ? 0m : Convert.ToDecimal(row["interes"]),
+                    Fecha = Convert.ToDateTime(row["fecha"])
+                });
+            }
+
             int cont, total;
             total = credito.Rows.Count;
             for (cont = 0; cont < total; cont++)
             {
-                Reportes.AtrasosD detalle = new Reportes.AtrasosD();
-                string cod = credito.Rows[cont][0].ToString();
-                string tipo = credito.Rows[cont][7].ToString();
-                /*string etiqueta="";
-                if (tipo == "1" || tipo == "2") { etiqueta = "(D)"; }
-                else { etiqueta = "(M)"; }*/
-                int diasatras = 0;
-                diasatras = cre.diasnopag(cod, DateTime.Now.Date.ToString("yyyy/MM/dd"), credito.Rows[0][3].ToString());
-                DataTable atras = new DataTable();
-                atras = cre.saldosdias(cod, DateTime.Now.Date.ToString());
+                DataRow row = credito.Rows[cont];
+                string cod = row["COD_CREDITO"].ToString();
+                string tipo = row["id_tipo_credito"].ToString();
+                List<PagoInfo> pagosList = pagosDict.ContainsKey(cod) ? pagosDict[cod] : new List<PagoInfo>();
+
+                // 1) O(1) Memory Calculations instead of N+1 database queries
+                int diasatras = CalcularDiasNoPagMemoria(row, pagosList, DateTime.Now.Date);
 
                 if (diasatras > 0)
                 {
-                   // interes = calcint(credito.Rows[cont][0].ToString(), diasatras);
-                    capital = calcCap(credito.Rows[cont][0].ToString(), diasatras);
-                    decimal inte;
-                    inte = Convert.ToDecimal(atras.Rows[0][1].ToString());
+                    var saldosRes = CalcularSaldosDiasMemoria(row, pagosList, DateTime.Now.Date);
+                    decimal capitalAtras = saldosRes.Item1;
+                    decimal inte = saldosRes.Item2;
                     if (inte < 0) inte = 0;
 
-                    if (inte > 0 || capital > 0)
+                    if (inte > 0 || capitalAtras > 0)
                     {
+                        Reportes.AtrasosD detalle = new Reportes.AtrasosD();
                         string tipoc = "";
                         if (tipo.Equals("1")) { tipoc = "Diario"; }
                         else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
@@ -1350,14 +1365,15 @@ namespace Arcoiris.Reportes
                         else if (tipo.Equals("4")) { tipoc = "Mensual-Sobresaldo"; }
                         else if (tipo.Equals("5")) { tipoc = "Semanal"; }
                         else if (tipo.Equals("6")) { tipoc = "Quincenal"; }
-                        string Garantia = credito.Rows[cont][8] != DBNull.Value ? credito.Rows[cont][8].ToString() : "Sin Garantia";
-                        detalle.Nombre = $"{credito.Rows[cont][1]}/{tipoc}";
-                        detalle.Monto = Convert.ToDecimal(credito.Rows[cont][2]);
+                        string Garantia = row["Garantias"] != DBNull.Value ? row["Garantias"].ToString() : "Sin Garantia";
+
+                        detalle.Nombre = $"{row["Nombre"]}/{tipoc}";
+                        detalle.Monto = Convert.ToDecimal(row["monto"]);
                         detalle.Lugar = "Total a cancelar";
-                        detalle.Catraso = Convert.ToDecimal(atras.Rows[0][0].ToString()); //capital;
-                        detalle.Iatraso =inte;//interes;
+                        detalle.Catraso = capitalAtras;
+                        detalle.Iatraso = inte;
                         detalle.dias = diasatras;
-                        detalle.Tel = credito.Rows[cont][5].ToString();
+                        detalle.Tel = row["telefonos"].ToString();
                         detalle.Garant = Garantia;
                         Encab.Detalle.Add(detalle);
                     }
@@ -1569,10 +1585,10 @@ namespace Arcoiris.Reportes
             formu.Show();
         }
 
-        public void RepCreActi(string titulo,string t,string aseso)
+        public void RepCreActi(string titulo, string t, string aseso)
         {
             DataTable datos = new DataTable();
-            string ConsulAdd1="";
+            string ConsulAdd1 = "";
             string ConsulAdd2 = "";
             if (t == "Diario")
             {
@@ -1581,33 +1597,58 @@ namespace Arcoiris.Reportes
             else if (t == "Mensual")
             { ConsulAdd1 = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
 
-            if (aseso.Equals("0")) {
+            if (aseso.Equals("0"))
+            {
                 ConsulAdd2 = "";
             }
             else
             {
                 ConsulAdd2 = $"and asol.Cod_Asesor={aseso} ";
             }
-            string consulta = "SELECT  cre.COD_CREDITO,cli.NOMBRES,cli.APELLIDOS,cre.Saldo_cap, date_format(cre.FECHA_CONC,'%d/%m/%Y'), date_format(cre.FECHA_venci,'%d/%m/%Y'),cre.id_tipo_credito ,CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias,Concat(cli.telefono1,'-',cli.telefono2) as Telefonos, cre.Monto " +
-                             "FROM credito cre " +
-                             "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = cre.COD_CREDITO " +
-                             "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = acre.ID_SOLICITUD " +
-                             "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = acre.ID_SOLICITUD "+
-                             "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
-                             "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
-                             "WHERE cre.ESTADO='Activo'"+ConsulAdd1 +ConsulAdd2+
-                             "GROUP BY cre.COD_CREDITO";
-            int cont, cant;
+            string consulta = "SELECT cre.COD_CREDITO, cli.NOMBRES, cli.APELLIDOS, cre.saldo_cap, date_format(cre.fecha_conc,'%d/%m/%Y') AS fechaconc_format, date_format(cre.Fecha_venci,'%d/%m/%Y') AS fechavenci_format, cre.id_tipo_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias, Concat(cli.telefono1,'-',cli.telefono2) as Telefonos, cre.monto, cre.fecha_conc, cre.Fecha_venci, cre.interes, cre.dias_pago " +
+                              "FROM credito cre " +
+                              "INNER JOIN asigna_credito acre ON acre.COD_CREDITO = cre.COD_CREDITO " +
+                              "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = acre.ID_SOLICITUD " +
+                              "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = acre.ID_SOLICITUD " +
+                              "Left JOIN garantia gar ON gar.id_garant = solg.id_garant " +
+                              "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
+                              "WHERE cre.ESTADO='Activo'" + ConsulAdd1 + ConsulAdd2 +
+                              "GROUP BY cre.COD_CREDITO";
+            
             datos = buscar(consulta);
-            cant = datos.Rows.Count;
-            string fechahoy = DateTime.Now.Date.ToString("yyyy/MM/dd");
+            int cant = datos.Rows.Count;
+
+            // Pre-fetch all payments for active credits
+            DataTable dtPagos = buscar("SELECT p.cod_credito, p.capital, p.interes, p.fecha FROM pagos p INNER JOIN credito c ON p.cod_credito = c.COD_CREDITO WHERE c.ESTADO = 'Activo' AND p.estado = 'Hecho' ORDER BY p.fecha ASC");
+            Dictionary<string, List<PagoInfo>> pagosDict = new Dictionary<string, List<PagoInfo>>();
+            foreach (DataRow row in dtPagos.Rows)
+            {
+                string cod = row["cod_credito"].ToString();
+                if (!pagosDict.ContainsKey(cod))
+                {
+                    pagosDict[cod] = new List<PagoInfo>();
+                }
+                pagosDict[cod].Add(new PagoInfo
+                {
+                    Capital = row["capital"] == DBNull.Value ? 0m : Convert.ToDecimal(row["capital"]),
+                    Interes = row["interes"] == DBNull.Value ? 0m : Convert.ToDecimal(row["interes"]),
+                    Fecha = Convert.ToDateTime(row["fecha"])
+                });
+            }
+
             RepEnc enca = new RepEnc();
             enca.Titulo = titulo;
-            for (cont = 0; cont < cant; cont++)
+            for (int cont = 0; cont < cant; cont++)
             {
-               
-                Credi_Activity detalle = new Credi_Activity();
-                string tipo = datos.Rows[cont][6].ToString();
+                DataRow row = datos.Rows[cont];
+                string codcre = row["COD_CREDITO"].ToString();
+                string tipo = row["id_tipo_credito"].ToString();
+                List<PagoInfo> pagosList = pagosDict.ContainsKey(codcre) ? pagosDict[codcre] : new List<PagoInfo>();
+
+                // Calculate interest balance in memory
+                var saldosRes = CalcularSaldosDiasMemoria(row, pagosList, DateTime.Now.Date);
+                decimal interes = Math.Max(0, saldosRes.Item2);
+
                 string tipoc = "";
                 if (tipo.Equals("1")) { tipoc = "(D)"; }
                 else if (tipo.Equals("2")) { tipoc = "(DI)"; }
@@ -1615,26 +1656,26 @@ namespace Arcoiris.Reportes
                 else if (tipo.Equals("4")) { tipoc = "(MS)"; }
                 else if (tipo.Equals("5")) { tipoc = "(S)"; }
                 else if (tipo.Equals("6")) { tipoc = "(Q)"; }
-                string codcre= datos.Rows[cont][0].ToString();
-                decimal interes = cre.SaldoDeinteres(codcre,fechahoy,tipo,0);
-                string Garantia = datos.Rows[cont][7] != DBNull.Value ? datos.Rows[cont][7].ToString() : "Sin Garantia";
-                if (interes < 0) interes = 0;
-                detalle.Credito = int.Parse(datos.Rows[cont][0].ToString());
-                detalle.Monto = decimal.Parse($"{datos.Rows[cont][9]}");
-                detalle.Nombre = $"{datos.Rows[cont][1]}  {datos.Rows[cont][2].ToString()} /{tipoc}";
-                detalle.Scapital = decimal.Parse(datos.Rows[cont][3].ToString());
+
+                string Garantia = row["Garantias"] != DBNull.Value ? row["Garantias"].ToString() : "Sin Garantia";
+                
+                Credi_Activity detalle = new Credi_Activity();
+                detalle.Credito = int.Parse(codcre);
+                detalle.Monto = Convert.ToDecimal(row["monto"]);
+                detalle.Nombre = $"{row["NOMBRES"]}  {row["APELLIDOS"]} /{tipoc}";
+                detalle.Scapital = Convert.ToDecimal(row["saldo_cap"]);
                 detalle.Sinteres = interes;
-                detalle.Fcons = datos.Rows[cont][4].ToString();
-                detalle.Fvenc = datos.Rows[cont][5].ToString();
+                detalle.Fcons = row["fechaconc_format"].ToString();
+                detalle.Fvenc = row["fechavenci_format"].ToString();
                 detalle.Garantia = Garantia;
-                detalle.Tel = $"{datos.Rows[cont][8]}";
+                detalle.Tel = row["Telefonos"].ToString();
                 enca.DetalleActi.Add(detalle);
             }
+            
             Credi_Activ Activos = new Credi_Activ();
             Activos.detalle = enca.DetalleActi;
             Activos.encabezado.Add(enca);
             Activos.Show();
-
         }
 
  
@@ -1643,159 +1684,153 @@ namespace Arcoiris.Reportes
             EstadoEnc Encab = new EstadoEnc();
             DataTable credito = new DataTable();
             Encab.cliente = titulo;
-            string consulta, ConsulAdd = "",addAseso="";
+            string consulta, ConsulAdd = "", addAseso = "";
             if (!aseso.Equals("0")) addAseso = $"AND aso.COD_ASESOR={aseso}";
             if (tip == "Diario")
             { ConsulAdd = "and (cre.id_tipo_credito=1 or cre.id_tipo_credito=2 or cre.id_tipo_credito=5 or cre.id_tipo_credito=6) "; }
             else if (tip == "Mensual")
             { ConsulAdd = "and (cre.id_tipo_credito=3 or cre.id_tipo_credito=4) "; }
-            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto,cre.plazo,cre.interes,date_format(cre.fecha_conc,'%d-%M-%Y'),date_format(cre.Fecha_venci,'%d-%M-%Y'),cre.saldo_cap, cli.codigo_cli,cre.id_tipo_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias  " +
+
+            // Optimized query: Select necessary client/credit columns to avoid sub-queries inside the loop
+            consulta = "SELECT cre.COD_CREDITO, concat(cli.NOMBRES,' ' ,cli.apellidos) AS nombre, cre.monto, cre.plazo, cre.interes, cre.fecha_conc, cre.Fecha_venci, cre.saldo_cap, cli.codigo_cli, cre.id_tipo_credito, CONCAT(gar.Tipo,'\n',gar.Detalle,'\n',gar.Valuacion,'\n',gar.Estado) AS Garantias, cli.telefono1, cli.telefono2, cli.telefonoCon, cre.dias_pago " +
                        "FROM credito cre " +
                        "INNER JOIN asigna_credito ac ON ac.COD_CREDITO = cre.COD_CREDITO " +
                        "INNER JOIN asigna_solicitud aso ON aso.ID_SOLICITUD = ac.ID_SOLICITUD " +
-                       "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = ac.ID_SOLICITUD "+
-                       "Left JOIN garantia gar ON gar.id_garant = solg.id_garant "+
+                       "LEFT JOIN sol_garant solg ON solg.Id_Solicitud = ac.ID_SOLICITUD " +
+                       "Left JOIN garantia gar ON gar.id_garant = solg.id_garant " +
                        "INNER JOIN cliente cli ON cli.CODIGO_CLI = aso.codigo_cli " +
-                       $"WHERE cre.ESTADO = 'Activo' {addAseso} {ConsulAdd} "+
+                       $"WHERE cre.ESTADO = 'Activo' {addAseso} {ConsulAdd} " +
                        "GROUP BY cre.COD_CREDITO " +
                        "ORDER BY cre.FECHA_CONC";
             credito = buscar(consulta);
-            int cont, total;
-            total = credito.Rows.Count;
-            for (cont = 0; cont < total; cont++)
+
+            // Pre-fetch all payments for active credits to perform calculations in memory
+            DataTable dtPagos = buscar("SELECT p.cod_credito, p.capital, p.interes, p.fecha FROM pagos p INNER JOIN credito c ON p.cod_credito = c.COD_CREDITO WHERE c.ESTADO = 'Activo' AND p.estado = 'Hecho' ORDER BY p.fecha ASC");
+            Dictionary<string, List<PagoInfo>> pagosDict = new Dictionary<string, List<PagoInfo>>();
+            foreach (DataRow row in dtPagos.Rows)
             {
-                int diasatras;
-                decimal cuotac, cuotai, cuota, Ccancelar;
-                DatosCre detalle = new DatosCre();
-                DataTable datoscli = new DataTable();
-                DataTable datcred = new DataTable();
-                DataTable saldos = new DataTable();
-                DataTable canti = new DataTable();
-                DataTable fechas = new DataTable();
-                string Garantia = credito.Rows[cont][10] != DBNull.Value ? credito.Rows[cont][10].ToString() : "Sin Garantia";
-                string codigocli = credito.Rows[cont][8].ToString();
-                string tipo = credito.Rows[cont][9].ToString();
-                string Conscli = "select telefono1,telefono2,telefonocon as telefono from cliente where codigo_cli=" + codigocli;
-                datoscli = buscar(Conscli);
-                string codigocre = credito.Rows[cont][0].ToString();
-                string consfech = "SELECT date_format(Max(fecha),'%d-%M-%Y'), COUNT(*) FROM pagos WHERE cod_credito=" + codigocre + " and estado='Hecho'";
-                fechas = buscar(consfech);
-                saldos = cre.saldosdias(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
-                datcred = cre.datoscre(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"));
-                canti = cre.cantcre(codigocre, DateTime.Now.Date.ToString());
-                diasatras = cre.diasnopag(codigocre, DateTime.Now.Date.ToString("yyyy/MM/dd"), credito.Rows[cont][5].ToString());
-                cuotac = decimal.Parse(datcred.Rows[0][4].ToString());
-                cuotai = decimal.Parse(datcred.Rows[0][5].ToString());
+                string cod = row["cod_credito"].ToString();
+                if (!pagosDict.ContainsKey(cod))
+                {
+                    pagosDict[cod] = new List<PagoInfo>();
+                }
+                pagosDict[cod].Add(new PagoInfo
+                {
+                    Capital = row["capital"] == DBNull.Value ? 0m : Convert.ToDecimal(row["capital"]),
+                    Interes = row["interes"] == DBNull.Value ? 0m : Convert.ToDecimal(row["interes"]),
+                    Fecha = Convert.ToDateTime(row["fecha"])
+                });
+            }
+
+            DateTime fechapag = DateTime.Parse(fech);
+            int total = credito.Rows.Count;
+
+            for (int cont = 0; cont < total; cont++)
+            {
+                DataRow row = credito.Rows[cont];
+                string codigocre = row["COD_CREDITO"].ToString();
+                string tipo = row["id_tipo_credito"].ToString();
+                DateTime fechaConc = Convert.ToDateTime(row["fecha_conc"]);
+
+                // 1) O(1) in-memory check if the selected date matches the payment schedule before performing any calculations
+                bool sihayp = false;
+                if (tip.Equals("Diario"))
+                {
+                    sihayp = fechapag.Date >= fechaConc.Date;
+                }
+                else if (tip.Equals("Mensual"))
+                {
+                    int monthsDiff = (fechapag.Year - fechaConc.Year) * 12 + (fechapag.Month - fechaConc.Month);
+                    sihayp = monthsDiff >= 1 && fechaConc.AddMonths(monthsDiff).Date == fechapag.Date;
+                }
+
+                if (!sihayp)
+                {
+                    continue; // Skip entirely, avoiding all calculations and overhead
+                }
+
+                // 2) Gather pre-fetched details and perform calculations in memory
+                List<PagoInfo> pagosList = pagosDict.ContainsKey(codigocre) ? pagosDict[codigocre] : new List<PagoInfo>();
+                decimal monto = Convert.ToDecimal(row["monto"]);
+                int plazo = Convert.ToInt32(row["plazo"]);
+                decimal interes = Convert.ToDecimal(row["interes"]);
+                DateTime fechaVenci = Convert.ToDateTime(row["Fecha_venci"]);
+                decimal saldoCap = Convert.ToDecimal(row["saldo_cap"]);
+                int diasp = Convert.ToInt32(row["dias_pago"]);
+
+                // In-memory calculations for diasatras and saldos
+                int diasatras = CalcularDiasNoPagMemoria(row, pagosList, DateTime.Now.Date);
+                var saldosRes = CalcularSaldosDiasMemoria(row, pagosList, DateTime.Now.Date);
+
+                decimal catras = Math.Max(0, saldosRes.Item1);
+                decimal iatras = Math.Max(0, saldosRes.Item2);
+
+                // Compute cuotac and cuotai in memory
+                decimal cuotac = diasp > 0 ? Math.Round(monto / diasp, 2) : 0;
+                decimal cuotai = 0;
+
+                if (tipo == "1" || tipo == "2")
+                {
+                    cuotai = Math.Round(monto * interes / 100, 2);
+                }
+                else if (tipo == "3")
+                {
+                    cuotai = Math.Round(monto * interes / 100 / 12, 2);
+                }
+                else if (tipo == "4")
+                {
+                    int difDias = (pagosList.Count <= 0)
+                        ? (DateTime.Now.Date - fechaConc.Date).Days
+                        : (DateTime.Now.Date - pagosList[pagosList.Count - 1].Fecha.Date).Days;
+                    decimal pagoint = ((saldoCap * interes / 100 / 12 / 30) * difDias);
+                    cuotai = Math.Round(pagoint, 2);
+                }
+                else if (tipo == "5")
+                {
+                    cuotai = Math.Round(monto * interes / 100 * 5, 2);
+                }
+                else if (tipo == "6")
+                {
+                    cuotai = Math.Round(monto * interes / 100 * 10, 2);
+                }
+
                 if (cuotac < 0) cuotac = 0;
                 if (cuotai < 0) cuotai = 0;
-                cuota = cuotac + cuotai;
+                decimal cuota = cuotac + cuotai;
+
                 string tipoc = "";
                 if (tipo.Equals("1")) { tipoc = "Diario"; }
                 else if (tipo.Equals("2")) { tipoc = "Diario-Interes"; }
                 else if (tipo.Equals("3")) { tipoc = "Mensual"; }
                 else if (tipo.Equals("4")) { tipoc = "Mensua-Sobresaldo"; }
-                decimal catras, iatras;
-                catras = decimal.Parse(saldos.Rows[0][0].ToString());
-                if (catras < 0) catras = 0;
-                iatras = decimal.Parse(saldos.Rows[0][1].ToString());
-                if (iatras < 0) iatras = 0;
+
+                decimal Ccancelar = iatras + saldoCap;
+
+                string tel1 = row["telefono1"] != DBNull.Value ? row["telefono1"].ToString() : "";
+                string tel2 = row["telefono2"] != DBNull.Value ? row["telefono2"].ToString() : "";
+                string telCon = row["telefonoCon"] != DBNull.Value ? row["telefonoCon"].ToString() : "";
+
+                DatosCre detalle = new DatosCre();
+                detalle.cre = int.Parse(codigocre);
+                detalle.cliente = row["nombre"].ToString();
+                detalle.tipo = tipoc;
+                detalle.cuotap = pagosList.Count;
+                detalle.diatras = diasatras;
+                detalle.fechaconc = fechaConc;
+                detalle.fechavenc = fechaVenci;
+                detalle.tasa = interes.ToString();
+                detalle.monto = monto;
+                detalle.capatras = catras;
                 detalle.intatras = iatras;
-                bool fechap=true;
-               int contendi=0, plaz= int.Parse(credito.Rows[cont][3].ToString());
-                DateTime fechaeval = new DateTime();
-                fechaeval= DateTime.Parse(credito.Rows[cont][5].ToString());
-                DateTime fechapag = new DateTime();
-                fechapag = DateTime.Parse(fech);
-                    bool sihayp= false;
+                detalle.cancelar = Ccancelar;
+                detalle.cuota = cuota;
+                detalle.utlimpag = pagosList.Count > 0 ? pagosList[pagosList.Count - 1].Fecha : fechaConc;
+                detalle.telefono = tel1 + "\n" + tel2 + "\n" + telCon;
+                detalle.Garantia = row["Garantias"] != DBNull.Value ? row["Garantias"].ToString() : "Sin Garantia";
 
-                // revisar fecga para los creditos mensuales
-                if (tip.Equals("Diario"))
-                {
-                    while (fechapag >= fechaeval.AddDays(contendi))
-                    {
-                        contendi++;
-                        if (fechaeval.AddDays(contendi) ==fechapag)
-                        {
-                            fechap = false;
-                            sihayp = true;
-                        }
-                        else
-                        {
-                            fechap = true;
-                        }
-                    }
-                }
-                // revisar fecga para los creditos mensuales
-                else if(tip.Equals("Mensual"))
-                    {
-                    while (fechapag >= fechaeval.AddMonths(contendi))
-                    {
-                        contendi++;
-                        if (fechaeval.AddMonths(contendi) == fechapag)
-                        {
-                            fechap = false;
-                            sihayp = true;
-                            break;
-                        }
-                        else
-                        {
-                            fechap = true;
-                        }
-                    }
-                }
-
-                    if (sihayp)
-                    { 
-                    decimal capatras, intatras;
-                    Ccancelar = decimal.Parse(canti.Rows[0][5].ToString()) + decimal.Parse(credito.Rows[cont][7].ToString());
-                    //No credito
-                    detalle.cre = int.Parse(credito.Rows[cont][0].ToString());
-                    //nombre del cliente
-                    detalle.cliente = credito.Rows[cont][1].ToString();
-                    //tipo de credito
-                    detalle.tipo = tipoc;
-                    //Numero de cuotas pagadas
-                    detalle.cuotap = int.Parse(fechas.Rows[0][1].ToString());
-                    //Dias de atraso
-                    detalle.diatras = diasatras;
-                    //Fecha de concesion
-                    detalle.fechaconc = DateTime.Parse(credito.Rows[cont][5].ToString());
-                    //Fecha de Vencimiento
-                    detalle.fechavenc = DateTime.Parse(credito.Rows[cont][6].ToString());
-                    //Tasa del credito
-                    detalle.tasa = credito.Rows[cont][4].ToString();
-                    //Monto
-                    detalle.monto = decimal.Parse(credito.Rows[cont][2].ToString());
-                    //capatras
-                    capatras = decimal.Parse(saldos.Rows[0][0].ToString());
-                    if (capatras < 0) capatras = 0;
-                    detalle.capatras = capatras;
-                    //intatras
-                    intatras = decimal.Parse(saldos.Rows[0][1].ToString());
-                    if (intatras < 0) intatras = 0;
-                    detalle.intatras = intatras;
-                    //cancelar
-                    detalle.cancelar = Ccancelar;
-                    //cuota
-                    detalle.cuota = cuota;
-                    //utlimpag
-
-                    if (fechas.Rows[0][0] != DBNull.Value)
-                    {
-                        detalle.utlimpag = DateTime.Parse(fechas.Rows[0][0].ToString() + " 00:00:00");
-                    }
-                    else
-                    {
-                        detalle.utlimpag = DateTime.Parse(credito.Rows[cont][5].ToString());
-                    }
-                    //telefono
-                    detalle.telefono = datoscli.Rows[0][0].ToString() + "\n" + datoscli.Rows[0][1].ToString() + "\n" + datoscli.Rows[0][2].ToString();
-                    //Garantia 
-                    detalle.Garantia = Garantia;
-                    Encab.Datos.Add(detalle);
-                    
-                }
+                Encab.Datos.Add(detalle);
             }
+
             Reportes.Pagohoy formu = new Reportes.Pagohoy();
             formu.Enca.Add(Encab);
             formu.Deta = Encab.Datos;

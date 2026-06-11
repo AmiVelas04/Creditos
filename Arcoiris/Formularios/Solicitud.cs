@@ -1941,6 +1941,7 @@ namespace Arcoiris.Formularios
             DatoSol.DirNeg = $"{datosCli.Rows[0][25]}";
             DatoSol.NomNeg = $"{datosCli.Rows[0][23]}";
             DatoSol.TipoNeg= $"{datosCli.Rows[0][27]}";
+
             DatoSol.PlazoCred =int.Parse($"{datosSoli.Rows[0][4]}");
             DatoSol.PagoCred =Pcred;
             DatoSol.TipoCred = Tipocredi;

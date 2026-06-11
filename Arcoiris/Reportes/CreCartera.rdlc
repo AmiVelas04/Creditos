@@ -6,58 +6,58 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.47604cm</Width>
+              <Width>0.8cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.54557cm</Width>
+              <Width>1.3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.23271cm</Width>
+              <Width>4.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.57937cm</Width>
+              <Width>2.0cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.5475cm</Width>
+              <Width>1.3cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.54874cm</Width>
+              <Width>1.4cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.69063cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.55834cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.57396cm</Width>
+              <Width>1.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.19546cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.14312cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.07666cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.20896cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.15605cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.89146cm</Width>
+              <Width>2.0cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.39959cm</Width>
+              <Width>2.2cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>2.31479cm</Width>
+              <Width>2.5cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.55833cm</Width>
+              <Width>3.5cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -75,9 +75,10 @@
                             <TextRun>
                               <Value>Orden</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -92,7 +93,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -112,9 +113,10 @@
                             <TextRun>
                               <Value>Credito</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -129,7 +131,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -149,9 +151,10 @@
                             <TextRun>
                               <Value>Cliente</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -166,7 +169,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -186,9 +189,10 @@
                             <TextRun>
                               <Value>Tipo</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -203,7 +207,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -223,9 +227,10 @@
                             <TextRun>
                               <Value>Cuotas hechas</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -240,7 +245,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -260,9 +265,10 @@
                             <TextRun>
                               <Value>Dias atrasados</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -277,7 +283,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -297,9 +303,10 @@
                             <TextRun>
                               <Value>Concesion</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -314,7 +321,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -334,9 +341,10 @@
                             <TextRun>
                               <Value>Vencimiento</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -351,7 +359,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -371,9 +379,10 @@
                             <TextRun>
                               <Value>Tasa</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -388,7 +397,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -408,14 +417,15 @@
                             <TextRun>
                               <Value>Monto</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -425,7 +435,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -445,14 +455,15 @@
                             <TextRun>
                               <Value>Capital Atrasado</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -462,7 +473,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -482,14 +493,15 @@
                             <TextRun>
                               <Value>Interes atrasado</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -499,7 +511,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -519,14 +531,15 @@
                             <TextRun>
                               <Value>Monto Poner al dia</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                         <Paragraph>
@@ -534,14 +547,15 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -551,7 +565,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -571,14 +585,15 @@
                             <TextRun>
                               <Value>Monto para Cancelar</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -588,7 +603,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -608,14 +623,15 @@
                             <TextRun>
                               <Value>Proxima cuota</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -625,7 +641,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -645,9 +661,10 @@
                             <TextRun>
                               <Value>Ultimo Pago</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -662,7 +679,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -682,9 +699,10 @@
                             <TextRun>
                               <Value>Telefonos</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -699,7 +717,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -719,9 +737,10 @@
                             <TextRun>
                               <Value>Garantia</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>9pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -736,7 +755,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>Gray</BackgroundColor>
+                        <BackgroundColor>#1F4E79</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -761,7 +780,7 @@
                             <TextRun>
                               <Value>=RowNumber("Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -777,10 +796,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -796,7 +816,7 @@
                             <TextRun>
                               <Value>=Fields!cre.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -812,10 +832,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -831,7 +852,7 @@
                             <TextRun>
                               <Value>=Fields!cliente.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -845,10 +866,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -864,7 +886,7 @@
                             <TextRun>
                               <Value>=Fields!tipo.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -880,10 +902,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -899,7 +922,7 @@
                             <TextRun>
                               <Value>=Fields!cuotap.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -915,10 +938,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -934,7 +958,7 @@
                             <TextRun>
                               <Value>=Fields!diatras.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -950,10 +974,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -969,13 +994,15 @@
                             <TextRun>
                               <Value>=Fields!fechaconc.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
-                                <Format>d' de 'MMMM' de 'yyyy</Format>
+                                <Format>dd/MM/yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>fechaconc</rd:DefaultName>
@@ -984,10 +1011,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1003,13 +1031,15 @@
                             <TextRun>
                               <Value>=Fields!fechavenc.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
-                                <Format>d' de 'MMMM' de 'yyyy</Format>
+                                <Format>dd/MM/yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>fechavenc</rd:DefaultName>
@@ -1018,10 +1048,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1037,7 +1068,7 @@
                             <TextRun>
                               <Value>=CDec(Fields!tasa.Value) &amp; "%"</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>0.00%</Format>
                               </Style>
@@ -1054,10 +1085,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1073,13 +1105,15 @@
                             <TextRun>
                               <Value>=Fields!monto.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>monto</rd:DefaultName>
@@ -1088,10 +1122,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
@@ -1108,13 +1143,15 @@
                             <TextRun>
                               <Value>=Fields!capatras.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>capatras</rd:DefaultName>
@@ -1123,10 +1160,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
@@ -1143,13 +1181,15 @@
                             <TextRun>
                               <Value>=Fields!intatras.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>intatras</rd:DefaultName>
@@ -1158,10 +1198,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
@@ -1178,13 +1219,15 @@
                             <TextRun>
                               <Value>=Fields!capatras.Value + Fields!intatras.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -1193,10 +1236,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
@@ -1213,13 +1257,15 @@
                             <TextRun>
                               <Value>=Fields!cancelar.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>cancelar</rd:DefaultName>
@@ -1228,10 +1274,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
@@ -1248,13 +1295,15 @@
                             <TextRun>
                               <Value>=Fields!cuota.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>cuota</rd:DefaultName>
@@ -1263,10 +1312,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                         <rd:FormatSymbolCulture>es-GT</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
@@ -1283,13 +1333,15 @@
                             <TextRun>
                               <Value>=Fields!utlimpag.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
-                                <Format>d' de 'MMMM' de 'yyyy</Format>
+                                <Format>dd/MM/yyyy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Center</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>utlimpag</rd:DefaultName>
@@ -1298,10 +1350,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1317,7 +1370,7 @@
                             <TextRun>
                               <Value>=Fields!telefono.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1333,10 +1386,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1352,7 +1406,7 @@
                             <TextRun>
                               <Value>=Fields!Garantia.Value</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1368,10 +1422,11 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
+                        <BackgroundColor>=IIF(RowNumber(Nothing) Mod 2 = 0, "#F5F7FA", "#FFFFFF")</BackgroundColor>
+                        <PaddingLeft>4pt</PaddingLeft>
+                        <PaddingRight>4pt</PaddingRight>
+                        <PaddingTop>4pt</PaddingTop>
+                        <PaddingBottom>4pt</PaddingBottom>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -1392,7 +1447,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1408,7 +1463,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1428,7 +1483,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1444,7 +1499,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1464,7 +1519,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1478,7 +1533,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1498,7 +1553,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1514,7 +1569,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1534,7 +1589,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1550,7 +1605,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1570,7 +1625,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1586,7 +1641,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1606,7 +1661,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1620,7 +1675,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1640,7 +1695,7 @@
                             <TextRun>
                               <Value>Totales:</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -1656,7 +1711,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1676,7 +1731,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1692,7 +1747,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1712,13 +1767,15 @@
                             <TextRun>
                               <Value>=Sum(Fields!monto.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox26</rd:DefaultName>
@@ -1727,7 +1784,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1748,13 +1805,15 @@
                             <TextRun>
                               <Value>=Sum(Fields!capatras.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox28</rd:DefaultName>
@@ -1763,7 +1822,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1784,13 +1843,15 @@
                             <TextRun>
                               <Value>=Sum(Fields!intatras.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox30</rd:DefaultName>
@@ -1799,7 +1860,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1820,13 +1881,15 @@
                             <TextRun>
                               <Value>=Sum(Fields!capatras.Value, "Detalle")+Sum(Fields!intatras.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox32</rd:DefaultName>
@@ -1835,7 +1898,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1856,13 +1919,15 @@
                             <TextRun>
                               <Value>=Sum(Fields!cancelar.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox34</rd:DefaultName>
@@ -1871,7 +1936,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1892,13 +1957,15 @@
                             <TextRun>
                               <Value>=Sum(Fields!cuota.Value, "Detalle")</Value>
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                                 <Format>'Q'#,0.00</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
-                          <Style />
+                          <Style>
+                            <TextAlign>Right</TextAlign>
+                          </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox36</rd:DefaultName>
@@ -1907,7 +1974,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1928,7 +1995,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1942,7 +2009,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1962,7 +2029,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -1978,7 +2045,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -1998,7 +2065,7 @@
                             <TextRun>
                               <Value />
                               <Style>
-                                <FontFamily>Microsoft Sans Serif</FontFamily>
+                                <FontFamily>Segoe UI</FontFamily>
                                 <FontSize>8pt</FontSize>
                               </Style>
                             </TextRun>
@@ -2014,7 +2081,7 @@
                           <Color>LightGrey</Color>
                           <Style>Solid</Style>
                         </Border>
-                        <BackgroundColor>#89b3d7</BackgroundColor>
+                        <BackgroundColor>#E9EEF4</BackgroundColor>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
@@ -2067,7 +2134,7 @@
         <Top>0.17639cm</Top>
         <Left>0.26458cm</Left>
         <Height>1.8cm</Height>
-        <Width>44.69728cm</Width>
+        <Width>41.5cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2078,7 +2145,7 @@
     <Height>0.9375in</Height>
     <Style />
   </Body>
-  <Width>18.11842in</Width>
+  <Width>16.5in</Width>
   <Page>
     <PageHeader>
       <Height>3.13725cm</Height>
@@ -2108,7 +2175,7 @@
                 <TextRun>
                   <Value>=First(Fields!cliente.Value, "Encabezado")</Value>
                   <Style>
-                    <FontFamily>Microsoft Sans Serif</FontFamily>
+                    <FontFamily>Segoe UI</FontFamily>
                     <FontSize>20pt</FontSize>
                     <FontWeight>Bold</FontWeight>
                   </Style>
@@ -2143,9 +2210,9 @@
                 <TextRun>
                   <Value>=Now()</Value>
                   <Style>
-                    <FontFamily>Microsoft Sans Serif</FontFamily>
+                    <FontFamily>Segoe UI</FontFamily>
                     <FontWeight>Bold</FontWeight>
-                    <Format>d' de 'MMMM' de 'yyyy</Format>
+                    <Format>dd/MM/yyyy</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
