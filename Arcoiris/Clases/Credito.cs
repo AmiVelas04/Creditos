@@ -2291,46 +2291,45 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 }
                 else
                 {
-                    // Capital vigente actual
-                    string consultaCapVigente = "SELECT COALESCE(SUM(capital), 0) " +
-                        "FROM pagos WHERE cod_credito=" + cre + " AND estado='Hecho'";
+                    // 1. Obtener capital total pagado
+                    string consultaCapVigente = "SELECT COALESCE(SUM(capital), 0) FROM pagos WHERE cod_credito=" + cre + " AND estado='Hecho'";
                     DataTable dtCapVigente = buscar(consultaCapVigente);
                     decimal totalCapPagado = decimal.Parse(dtCapVigente.Rows[0][0].ToString());
-                    decimal capitalVigente = monto - totalCapPagado;
-                    if (capitalVigente < 0) capitalVigente = 0;
 
-                    // Cuota diaria de capital
-                    decimal cuotaCapDiaria = Math.Round((monto / diasP / 30), 4);
-
-                    // Interes diario con capital vigente actual
-                    decimal intDiario = Math.Round((capitalVigente * interes / 100 / 30), 4);
-
-                    // Convertir faltantes a dias
-                    decimal diasPorCap = (cuotaCapDiaria > 0)
-                        ? Math.Round(capSaldo / cuotaCapDiaria, 0)
-                        : 0;
-
-                    decimal diasPorInt = (intDiario > 0)
-                        ? Math.Round(intSaldo / intDiario, 0)
-                        : 0;
-
-                    // Dias base desde saldosdias
-                    Totd = (int)Math.Max(diasPorCap, diasPorInt);
-
-                    // Si la fecha actual supera la fecha de vencimiento
-                    // sumar los dias adicionales posteriores al vencimiento
-                    DateTime fechaVencimiento = Convert.ToDateTime(FinCe.ToString());
-                    DateTime fechaActual = Convert.ToDateTime(Ffin.ToString());
-                    if (fechaActual > fechaVencimiento)
+                    // 2. Si ya pagó todo el capital, no hay atraso
+                    if (totalCapPagado >= monto)
                     {
-                        TimeSpan diasPostVenc = fechaActual - fechaVencimiento;
-                        Totd += diasPostVenc.Days;
+                        Totd = 0;
                     }
+                    else
+                    {
+                        // 3. Determinar cuota mensual y cuántas cuotas completas se han pagado
+                        decimal cuotaCap = Math.Round((monto / diasP), 2);
+                        if (cuotaCap > 0)
+                        {
+                            int cuotasCompletas = (int)(totalCapPagado / cuotaCap);
+                            int cuotaPendiente = cuotasCompletas + 1;
 
-                    if (Totd < 0) Totd = 0;
+                            // 4. Fecha de vencimiento de la primera cuota pendiente
+                            DateTime dueUnpaid = Fini.AddMonths(cuotaPendiente);
+
+                            // 5. Contar días desde que venció y no se ha completado
+                            if (Ffin > dueUnpaid)
+                            {
+                                Totd = (Ffin - dueUnpaid).Days;
+                            }
+                            else
+                            {
+                                Totd = 0;
+                            }
+                        }
+                        else
+                        {
+                            Totd = 0;
+                        }
+                    }
                 }
-                
-               
+                if (Totd < 0) Totd = 0;
             }
             else if (tipoc == "5")
             {
