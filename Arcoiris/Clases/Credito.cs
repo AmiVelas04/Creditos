@@ -2533,6 +2533,11 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                 DateTime pagultifech;
                 DateTime FechaA = fechaC.AddMonths(pagos); // // DateTime.Parse(fecha);
                 DateTime Fechamov = fechaC.AddMonths(1);
+                if (pagos >= 1)
+                {
+                    FechaA = fechaact;
+                    Fechamov = fechaC;
+                }
                 if (FechaA > FechaVen)
                 {
                     FechaA = FechaVen;
@@ -2597,7 +2602,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
                                 }
                                 else if (conteop == pagosmade)
                                 {
-                                    time = fechaC.AddMonths(pagos) - DatePrim;
+                                    time = FechaA - DatePrim;
                                     diascobr = time.Days;
                                     if (diascobr >= 0)
                                     {
