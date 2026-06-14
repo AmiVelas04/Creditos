@@ -943,7 +943,7 @@
             // BtnMostrar
             // 
             this.BtnMostrar.Image = ((System.Drawing.Image)(resources.GetObject("BtnMostrar.Image")));
-            this.BtnMostrar.Location = new System.Drawing.Point(972, 50);
+            this.BtnMostrar.Location = new System.Drawing.Point(972, 57);
             this.BtnMostrar.Name = "BtnMostrar";
             this.BtnMostrar.Size = new System.Drawing.Size(119, 49);
             this.BtnMostrar.TabIndex = 18;

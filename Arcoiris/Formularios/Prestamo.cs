@@ -109,6 +109,7 @@ namespace Arcoiris.Formularios
 
         private void listacre()
         {
+          //  MessageBox.Show("listacre llamado desde:\n" + Environment.StackTrace);
             int total;
             DataTable datos = new DataTable();
             string valor;
@@ -120,7 +121,9 @@ namespace Arcoiris.Formularios
             {
                 valor = LblIdCli.Text;//CboCliNom.SelectedValue.ToString();
             }
+          
             datos = cre.creditos_act(valor);
+          
             total = datos.Rows.Count;
             CboPresta.Items.Clear();
             int c1;
@@ -290,7 +293,6 @@ namespace Arcoiris.Formularios
             CboCliNom.AutoCompleteCustomSource = coleccion;
             CboCliNom.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             CboCliNom.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
 
 
         }

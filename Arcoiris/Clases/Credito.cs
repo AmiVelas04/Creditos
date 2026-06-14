@@ -139,7 +139,7 @@ namespace Arcoiris.Clases
 
         public DataTable creditos_act(String cod)
         {
-            string consulta = "select CAST(Cre.COD_CREDITO as int) as Cod from credito Cre " +
+            string consulta = "select Cre.COD_CREDITO as Cod from credito Cre " +
             "INNER JOIN asigna_credito acr ON acr.COD_CREDITO = Cre.COD_CREDITO " +
             "INNER JOIN asigna_solicitud asol ON asol.ID_SOLICITUD = acr.ID_SOLICITUD " +
             "INNER JOIN cliente cli ON cli.CODIGO_CLI = asol.codigo_cli " +
@@ -2329,6 +2329,8 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
 
                     if (Totd < 0) Totd = 0;
                 }
+                
+               
             }
             else if (tipoc == "5")
             {
@@ -2408,6 +2410,19 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             string tipo = "";
             DataTable datcre = new DataTable();
             datcre = buscar(consulCre);
+            if (datcre.Rows.Count == 0)
+            {
+                DataTable respo = new DataTable();
+                respo.Columns.Add("Capital").DataType = System.Type.GetType("System.String");
+                respo.Columns.Add("Interes").DataType = System.Type.GetType("System.String");
+                respo.Columns.Add("Total").DataType = System.Type.GetType("System.String");
+                DataRow filao = respo.NewRow();
+                filao["Capital"] = "0";
+                filao["Interes"] = "0";
+                filao["Total"] = "0";
+                respo.Rows.Add(filao);
+                return respo;
+            }
             decimal monto = 0, inte = 0, SaldoC = 0;
             int dias = 0; DateTime fechaC = DateTime.Now; DateTime FechaVen = DateTime.Now;
             if (datcre.Rows.Count > 0)
@@ -2422,7 +2437,7 @@ $"WHERE acre.COD_CREDITO ={CodCred}";
             }
             //parte 2 calculo de valores 
             int pagos = pagproy(fechaC.ToString("yyyy/MM/dd"), fecha, tipo, dias);//revisar numero de pagos que deberia haberse hecho
-            int atraso = Convert.ToInt32(dias_atraso(cre, fecha));
+            // int atraso = Convert.ToInt32(dias_atraso(cre, fecha)); // Removido para evitar recursión mutua infinita (StackOverflowException)
             decimal pint = 0, pcap = 0, ptot = 0, PcapO = 0;
             if (pagos > dias) pagos = dias;
             if (tipo == "1")
