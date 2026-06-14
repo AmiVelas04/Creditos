@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -1068,8 +1068,8 @@ namespace Arcoiris.Clases
             string consulta1,consulta2;
             int id = id_garant() + 1;
             int soli = int.Parse(sol);
-            consulta1 = $"Insert into Garantia(Id_garant,tipo,id_prop,Valuacion,detalle,info,estado,recepcion,entrega) " +
-               $"values(?Id_garant,?Tipo,?id_prop,?Valuacion,?detalle,?info,?estado,?recepcion,?entrega)";
+            consulta1 = $"Insert into Garantia(Id_garant,tipo,id_prop,Valuacion,detalle,info,estado,recepcion,entrega,Observaciones) " +
+               $"values(?Id_garant,?Tipo,?id_prop,?Valuacion,?detalle,?info,?estado,?recepcion,?entrega,?Observaciones)";
             // MessageBox.Show(consulta);
             MySqlCommand com = new MySqlCommand();
 
@@ -1086,10 +1086,11 @@ namespace Arcoiris.Clases
             com.Parameters.Add("?Estado", MySqlDbType.VarChar);
             com.Parameters.Add("?recepcion", MySqlDbType.DateTime);
             com.Parameters.Add("?entrega", MySqlDbType.DateTime);
+            com.Parameters.Add("?Observaciones", MySqlDbType.VarChar);
 
 
 
-            consulta2 = $"Update Garantia set tipo=?Tipo, id_prop=?id_prop, Valuacion=?Valuacion, detalle=?detalle, info=?info " +
+            consulta2 = $"Update Garantia set tipo=?Tipo, id_prop=?id_prop, Valuacion=?Valuacion, detalle=?detalle, info=?info, Observaciones=?Observaciones " +
                         $"where id_garant= ?Id_garant";
             // MessageBox.Show(consulta);
             MySqlCommand com2 = new MySqlCommand();
@@ -1103,6 +1104,7 @@ namespace Arcoiris.Clases
             com2.Parameters.Add("?Valuacion", MySqlDbType.Decimal);
             com2.Parameters.Add("?detalle", MySqlDbType.VarChar);
             com2.Parameters.Add("?info", MySqlDbType.VarChar);
+            com2.Parameters.Add("?Observaciones", MySqlDbType.VarChar);
           
 
             bool respo = false;
@@ -1120,6 +1122,7 @@ namespace Arcoiris.Clases
                     com.Parameters["?Estado"].Value = "En posesion";
                     com.Parameters["?recepcion"].Value = DateTime.Now;
                     com.Parameters["?entrega"].Value = DateTime.Now;
+                    com.Parameters["?Observaciones"].Value = item.Observaciones;
                     respo = Consulta_General_tipo2(com) && asignaGarant(id, soli);
                     id++;
                     if (respo == false) return false;
@@ -1132,6 +1135,7 @@ namespace Arcoiris.Clases
                     com2.Parameters["?Valuacion"].Value = item.Valor;
                     com2.Parameters["?detalle"].Value = item.Detalle;
                     com2.Parameters["?info"].Value = item.Informacion;
+                    com2.Parameters["?Observaciones"].Value = item.Observaciones;
                     respo = Consulta_General_tipo2(com2);
                     if (respo == false) return false;
                 }
